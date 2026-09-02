@@ -69,3 +69,15 @@ export type GameProgress = {
   bestScore: number;
   weakConcepts?: string[];
 };
+
+
+export type MaterialItem = {
+  id: string;
+  title: string;
+  category: 'Apostilas' | 'Laboratórios' | 'Ferramentas' | 'Projeto' | 'Scanner';
+  description: string;
+  href: string;
+  kind: 'PDF' | 'TXT' | 'MD';
+  sizeLabel?: string;
+  lessons?: string;
+};

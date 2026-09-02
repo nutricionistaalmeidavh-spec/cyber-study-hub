@@ -53,3 +53,10 @@ O script sincroniza o ZIP, remove arquivos antigos ausentes na versão cumulativ
 ## Segurança
 
 O conteúdo é educacional e defensivo. Práticas devem ocorrer apenas em ambientes próprios, de laboratório ou explicitamente autorizados.
+
+
+## v1.1 — Conteúdo e Materiais
+- Conteúdo técnico completo nas aulas 43–100 com fluxo, código e laboratório.
+- Biblioteca de materiais incorporada a partir da pasta `Aulas de Ethical Hacking` do Google Drive.
+- PDFs acessíveis em `/materials/*`.
+- Navegação mobile com acesso direto a Materiais.

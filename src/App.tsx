@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard';
 import { LessonList, LessonViewer } from './components/Lessons';
 import { GamePlayer, GamesHub } from './components/Games';
 import Review from './components/Review';
+import { MaterialsHub, MaterialViewer } from './components/Materials';
 import type { GameType } from './types';
 
 interface InstallPromptEvent extends Event {
@@ -16,7 +17,9 @@ type Route =
   | { page: 'lesson'; id: number }
   | { page: 'games' }
   | { page: 'game'; packId: number; type: GameType }
-  | { page: 'review' };
+  | { page: 'review' }
+  | { page: 'materials' }
+  | { page: 'material'; id: string };
 
 function parseHash(): Route {
   const raw = window.location.hash.replace(/^#/, '') || 'dashboard';
@@ -30,6 +33,8 @@ function parseHash(): Route {
     const track = new URLSearchParams(query).get('track') || undefined;
     return { page: 'lessons', track };
   }
+  if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
+  if (raw === 'materials') return { page: 'materials' };
   if (raw === 'games') return { page: 'games' };
   if (raw === 'review') return { page: 'review' };
   return { page: 'dashboard' };
@@ -64,6 +69,7 @@ export default function App() {
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Dashboard" />
         <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'} icon="▤" label="Aulas" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Cyber Games" />
+        <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />
       </nav>
       {!isStandalone && <button className="install-card" onClick={install}><span>＋</span><div><strong>Instalar app</strong><small>Use como PWA</small></div></button>}
@@ -76,6 +82,8 @@ export default function App() {
       {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
       {route.page==='games' && <GamesHub />}
       {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
+      {route.page==='materials' && <MaterialsHub />}
+      {route.page==='material' && <MaterialViewer id={route.id} />}
       {route.page==='review' && <Review />}
     </main>
 
@@ -83,6 +91,7 @@ export default function App() {
       <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Início" />
       <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'} icon="▤" label="Aulas" />
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Jogos" />
+      <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
       <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />
     </nav>
 

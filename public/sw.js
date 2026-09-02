@@ -1,4 +1,4 @@
-const CACHE = 'cyber-study-hub-v1';
+const CACHE = 'cyber-study-hub-v3';
 const APP_SHELL = ['/', '/manifest.webmanifest', '/favicon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(APP_SHELL)));

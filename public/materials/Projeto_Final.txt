@@ -1,0 +1,1 @@
+Estrutura reservada para relatório inicial, correções, reteste e relatório final do laboratório.

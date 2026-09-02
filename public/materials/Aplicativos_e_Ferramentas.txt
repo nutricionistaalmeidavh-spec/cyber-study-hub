@@ -1,0 +1,14 @@
+AULAS DE ETHICAL HACKING - APLICATIVOS E FERRAMENTAS
+
+Ambiente usado ou planejado no curso:
+
+- VS Code - editor de código.
+- Node.js LTS + npm - execução dos laboratórios JavaScript/Express e do Scanner Defensivo.
+- Git - versionamento dos projetos.
+- Docker Desktop + WSL 2 - laboratórios isolados no Windows.
+- Burp Suite Community - observação e repetição de requisições HTTP em laboratório autorizado.
+- Nmap - estudo de portas e serviços em localhost, redes próprias ou alvos autorizados.
+- Wireshark - análise de tráfego de rede.
+- Ghidra - engenharia reversa e análise estática de binários próprios/de laboratório.
+
+Observação: esta pasta é destinada a documentação, configurações e materiais auxiliares. Instaladores de terceiros não são redistribuídos aqui; prefira sempre as fontes oficiais.

@@ -1,0 +1,3 @@
+Laboratórios práticos devem ser executados somente em localhost, sistemas próprios ou ambientes com autorização explícita.
+
+Próximas práticas: aulas 16-20; Nmap/Wireshark; C/Ghidra; SAST/SCA/DAST; pentest final.
