@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 1,
+  "pilot": "8 aula principal/paralelas",
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — redação Fase 16 + piloto anterior",
+  "reviewer": "GPT-6 — passagem editorial crítica de 13/10/2026 (IA, não humano)",
+  "humanLearnerTesting": "not_performed",
+  "acceptance": "A = qualidade editorial técnica e didática para iniciante auditada por IA; NÃO significa eficácia pedagógica humana comprovada.",
+  "sourcesCheckedAgainst": [
+    "https://www.nist.gov/cyberframework",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Web_Cache_Security_Cheat_Sheet.html",
+    "https://www.rfc-editor.org/rfc/rfc8446",
+    "https://docs.kernel.org/admin-guide/sysctl/kernel.html#randomize-va-space"
+  ],
+  "priorQaActions": [
+    "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38482223979",
+    "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38482223998"
+  ],
+  "units": {
+    "AULA-001": {
+      "title": "Fundamentos de Segurança da Informação",
+      "contentPath": "/course-library/main/001.md",
+      "contentSha256": "5a1af795898d5461486de7f64c46f1747c6cade9da6577b9da5caa92254e124f",
+      "technicalSources": [
+        "https://www.nist.gov/cyberframework",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 89,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/main/001.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "A explicação distingue sessão, autorização por objeto, prova de leitura e ausência de indício de alteração."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/main/001.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Glossário do portal e exemplo Alice/Bob antes da matriz de prefeitura; não exige terminal."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/main/001.md :: Laboratório/checkpoints e prova independente",
+          "result": "Matriz dois usuários/dois recursos, testes negativo e positivo e exercício inédito de serviço público."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/main/001.md :: Defesa, negativos, erros e reteste",
+          "result": "Rejeição por objeto, acesso autorizado mantido e coleta mínima sem dados privados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/main/001.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/AULA-001.md",
+          "result": "Seis questões inéditas com matriz, hipótese alternativa e critério eliminatório em arquivo separado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/main/001.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Objetos R10/R11, códigos HTTP e verificação do acesso indevido, com caso novo de protocolo P01/P02."
+        }
+      ],
+      "summary": "autorização por objeto e CIA; A explicação distingue sessão, autorização por objeto, prova de leitura e ausência de indício de alteração. Matriz dois usuários/dois recursos, testes negativo e positivo e exercício inédito de serviço público.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "AULA-009": {
+      "title": "CSRF e intenção da requisição",
+      "contentPath": "/course-library/main/009.md",
+      "contentSha256": "2855f2e28957ba31d7e6cbcbbb273a04088d378cb03fffa2fb43babbff109e54",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 92,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/main/009.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "O teste diferencia token ausente, de outra sessão e correto, além dos limites de fetch Node versus navegador real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/main/009.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Explica cookie, sessão, origem/site e ordem de mutação antes de executar HTTP."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/main/009.md :: Laboratório/checkpoints e prova independente",
+          "result": "Driver HTTP e casos concretos de rejeição sem mutação mais seis condições no caso novo de agendamento."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/main/009.md :: Defesa, negativos, erros e reteste",
+          "result": "SameSite é defesa em profundidade, CORS não basta, teste positivo mantém atualização legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/main/009.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/AULA-009.md",
+          "result": "Seis questões novas separando seleção de token e client-side CSRF, gabarito externo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/main/009.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Requisição Alice/Bob, validação de 64 hex e diferença entre envio cross-site e leitura de resposta."
+        }
+      ],
+      "summary": "token ligado à sessão, SameSite e client-side CSRF; O teste diferencia token ausente, de outra sessão e correto, além dos limites de fetch Node versus navegador real. Driver HTTP e casos concretos de rejeição sem mutação mais seis condições no caso novo de agendamento.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "AULA-047": {
+      "title": "Web Cache Deception",
+      "contentPath": "/course-library/main/047.md",
+      "contentSha256": "0d423457d7d8cec5fe3fbd77f7d28206de2e7e04595feb653e4644226031556a",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Web_Cache_Security_Cheat_Sheet.html",
+        "https://www.rfc-editor.org/rfc/rfc9111"
+      ],
+      "scores": {
+        "conteudoTecnico": 96,
+        "didatica": 91,
+        "pratica": 96,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/main/047.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "Distingue Deception/Poisoning, Vary Cookie não é autorização e purge de itens antigos."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/main/047.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Passa por asset público, ataque com duas contas e cache corrigido com checkpoints."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/main/047.md :: Laboratório/checkpoints e prova independente",
+          "result": "Origin/proxy vulnerável e corrigido, HIT/MISS, conteúdo público preservado e caso inédito CSV."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/main/047.md :: Defesa, negativos, erros e reteste",
+          "result": "Cache privado não compartilhável, purge obrigatório, regressão com identidade e assets públicos."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/main/047.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/AULA-047.md",
+          "result": "Seis questões de três decisões distintas com rubrica e controle negativo externo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/main/047.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Usa rotas de perfil, sufixo CSS/CSV, dois usuários, controles da CDN e evidências do HIT/MISS."
+        }
+      ],
+      "summary": "roteamento, elegibilidade e chave do cache; Distingue Deception/Poisoning, Vary Cookie não é autorização e purge de itens antigos. Origin/proxy vulnerável e corrigido, HIT/MISS, conteúdo público preservado e caso inédito CSV.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "AULA-160": {
+      "title": "Investigação de evidência sintética",
+      "contentPath": "/course-library/main/160.md",
+      "contentSha256": "7e496102c8f3fd532b01b49d15bcc10cf0ab724e35c955cf555e019e3d97e308",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 93,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/main/160.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "Evita chamar amostra sintética de incidente confirmado; discrimina eventos por PID e janela temporal."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/main/160.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Oferece hipóteses concorrentes, exemplo calculado e modelo de relatório antes do capstone."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/main/160.md :: Laboratório/checkpoints e prova independente",
+          "result": "Correlacionador, controle negativo e exercício inédito PID88/PID99 com 0..9 segundos."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/main/160.md :: Defesa, negativos, erros e reteste",
+          "result": "Não executa binário suspeito, exige hash, proveniência e limitações de dataset."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/main/160.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/AULA-160.md",
+          "result": "Seis questões de janela, cadeia de custódia, inferência e conclusão com respostas fora da aula."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/main/160.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Detalha PID, DNS, arquivo, delta e controle negativo sem afirmar comprometimento."
+        }
+      ],
+      "summary": "correlação temporal, PID e cadeia de custódia; Evita chamar amostra sintética de incidente confirmado; discrimina eventos por PID e janela temporal. Correlacionador, controle negativo e exercício inédito PID88/PID99 com 0..9 segundos.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "AULA-166": {
+      "title": "ASLR/PIE e limites",
+      "contentPath": "/course-library/main/166.md",
+      "contentSha256": "73a92fabf0e440e311dcd8d2761872d129b9bf630af27b8481fb5e2e17655744",
+      "technicalSources": [
+        "https://docs.kernel.org/admin-guide/sysctl/kernel.html#randomize-va-space",
+        "https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 91,
+        "pratica": 94,
+        "defesa": 95,
+        "avaliacao": 92,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/main/166.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "Distingue mapa virtual, PIE não-PIE, stack e resolução de bug; não estima entropia a partir de poucas execuções."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/main/166.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Inicia do endereçamento virtual, simula aritmética base+offset e oferece checkpoints sem bypass."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/main/166.md :: Laboratório/checkpoints e prova independente",
+          "result": "GCC compila executáveis próprios PIE e não-PIE; endereços observados comparados em script."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/main/166.md :: Defesa, negativos, erros e reteste",
+          "result": "Não desativa ASLR global; a correção de bug de índice requer reteste distinto da mitigação."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/main/166.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/AULA-166.md",
+          "result": "Seis questões novas de experimentação e limites de conclusão, com critérios de reprovação específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/main/166.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Flags -fPIE -pie vs -fno-pie -no-pie, amostras reais e dependência do compilador/kernel."
+        }
+      ],
+      "summary": "ASLR, PIE, base/offset e proteção por regiões; Distingue mapa virtual, PIE não-PIE, stack e resolução de bug; não estima entropia a partir de poucas execuções. GCC compila executáveis próprios PIE e não-PIE; endereços observados comparados em script.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "LOG-01": {
+      "title": "Algoritmos e estados",
+      "contentPath": "/course-library/parallel/LOG-01.md",
+      "contentSha256": "6cfe8031cd96ef16f638373f2a941ab9c5da96b22a93bd812849602c582b9142",
+      "technicalSources": [
+        "https://docs.python.org/3/tutorial/controlflow.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 94,
+        "pratica": 93,
+        "defesa": 91,
+        "avaliacao": 93,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/parallel/LOG-01.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "Invariante de saldo e domínio de pedidos positivos não confundem recusa e inválido."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/parallel/LOG-01.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Linguagem de iniciante, pseudocódigo, trace manual e teste de mesa anterior ao Python."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/parallel/LOG-01.md :: Laboratório/checkpoints e prova independente",
+          "result": "Verificador Python e caso de biblioteca, mais novo caso de horários em clínica."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/parallel/LOG-01.md :: Defesa, negativos, erros e reteste",
+          "result": "Entrada inválida não altera saldo e relatório não finge suportar concorrência."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/parallel/LOG-01.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/LOG-01.md",
+          "result": "Seis testes de domínio, limites e contraexemplos com gabarito separado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/parallel/LOG-01.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Resultados calculados para (8,3),(8,8),(8,9),(8,0),(8,-1),(8,2.5)."
+        }
+      ],
+      "summary": "entrada, validação, invariantes e concorrência; Invariante de saldo e domínio de pedidos positivos não confundem recusa e inválido. Verificador Python e caso de biblioteca, mais novo caso de horários em clínica.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "PY-01": {
+      "title": "Python para iniciantes",
+      "contentPath": "/course-library/parallel/PY-01.md",
+      "contentSha256": "4b5d399245f2d71cadb849a0a0dbb2fb8ca596d44d163d0b9ad9bc52ded625d2",
+      "technicalSources": [
+        "https://docs.python.org/3/tutorial/errors.html",
+        "https://docs.python.org/3/library/functions.html#int"
+      ],
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 95,
+        "pratica": 94,
+        "defesa": 91,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/parallel/PY-01.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "Diferencia syntax check de comportamento e ValueError de SyntaxError."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/parallel/PY-01.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Primeiro arquivo, explicação de entrada/saída, exemplo guiado e projeto novo graduado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/parallel/PY-01.md :: Laboratório/checkpoints e prova independente",
+          "result": "Programa introdutório executado; exercício novo de horas com 9 casos previstos e limites."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/parallel/PY-01.md :: Defesa, negativos, erros e reteste",
+          "result": "Exceções do input tratadas, valores fora 0..23 recusados e py_compile contextualizado."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/parallel/PY-01.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/PY-01.md",
+          "result": "Seis questões independentes e verificação comportamental de valores fronteira com gabarito fora da página."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/parallel/PY-01.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Abertura de biblioteca, hora 08/11/12/17/18/21/abc/-1/24 e print distinto de valor."
+        }
+      ],
+      "summary": "execução, conversão, erros e testes de fronteira; Diferencia syntax check de comportamento e ValueError de SyntaxError. Programa introdutório executado; exercício novo de horas com 9 casos previstos e limites.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    },
+    "NET-25": {
+      "title": "TLS diagnóstico e evidência",
+      "contentPath": "/course-library/parallel/NET-25.md",
+      "contentSha256": "f875af43f99dd10aff845e662eab3fec624f95190c86caa032b71d2fd5587334",
+      "technicalSources": [
+        "https://www.rfc-editor.org/rfc/rfc8446",
+        "https://docs.python.org/3/library/ssl.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 92,
+        "pratica": 95,
+        "defesa": 95,
+        "avaliacao": 93,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica de conceitos e comparação com documentação primária; execução de casos aplicáveis",
+          "reference": "public/course-library/parallel/NET-25.md :: Mecanismo técnico, limites e fontes oficiais",
+          "result": "Separação versão oferecida/negociada, material RSA e ECDHE e dados TCP reconstruídos."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough por IA do ponto de vista de quem parte do zero; não é pesquisa com aluno real",
+          "reference": "public/course-library/parallel/NET-25.md :: Problema, glossário/pré-requisitos e exemplos resolvidos",
+          "result": "Distingue quatro resultados antes de correr laboratório, apresenta erros e interpretação."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução dos laboratórios Python/Node/GCC no Linux, comparação com resultados esperados e análise da atividade de mesa",
+          "reference": "public/course-library/parallel/NET-25.md :: Laboratório/checkpoints e prova independente",
+          "result": "TLS1.2/TLS1.3 autenticados em loopback; rejeições CA/nome, exercício inédito servidor da intranet."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão dos cenários negativos e preservação de operação legítima",
+          "reference": "public/course-library/parallel/NET-25.md :: Defesa, negativos, erros e reteste",
+          "result": "Recusa CA e hostname inválidos, não sugere desligar verificação de certificados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
+          "reference": "public/course-library/parallel/NET-25.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/NET-25.md",
+          "result": "Seis questões sobre versão, confiança, e proveniência de PCAP com gabarito apartado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastrear identificadores, arquivos, protocolos e dados de entrada/saída até o caso específico",
+          "reference": "public/course-library/parallel/NET-25.md :: Cenário, dados, saídas e condições particulares",
+          "result": "Saídas SSLContext, TLSv1.2/v1.3, HTTP200, chave de sessão e cabeçalhos TCP sintéticos."
+        }
+      ],
+      "summary": "negociação TLS, CA, nome e segredos; Separação versão oferecida/negociada, material RSA e ECDHE e dados TCP reconstruídos. TLS1.2/TLS1.3 autenticados em loopback; rejeições CA/nome, exercício inédito servidor da intranet.",
+      "limitations": [
+        "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
+        "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
+      ]
+    }
+  }
+}

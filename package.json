@@ -15,8 +15,9 @@
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
     "verify:catalog": "node scripts/verify-phase-12-14.mjs",
     "test:quality": "node scripts/test-quality-p0.mjs",
-    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality",
-    "report:quality": "node scripts/quality-p0.mjs --write"
+    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a",
+    "report:quality": "node scripts/quality-p0.mjs --write",
+    "test:pilot-grade-a": "node scripts/test-pilot-grade-a.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
