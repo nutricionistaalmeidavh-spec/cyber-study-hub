@@ -114,3 +114,23 @@ Uma biblioteca tem três exemplares livres de um livro. Um empréstimo deve soli
 - Propõe um novo exemplo sem copiar os números da oficina.
 
 **Próximo:** LOG-02 para explorar estruturas de decisão e repetição; retorne à validação de entrada quando iniciar PY-01.
+
+---
+
+## Prova final independente — competência aplicada
+
+**Importante:** execute esta avaliação sem consultar o gabarito. Se já estudou os exemplos, use apenas as regras conceituais; a situação a seguir não reutiliza os mesmos dados. A correção fica em outro arquivo para reduzir o risco de ver a resposta por acidente.
+
+**Caso novo:** uma clínica fictícia possui 8 horários livres em uma agenda simples, processando solicitações **uma de cada vez**. Uma solicitação válida é um número inteiro positivo que não excede o número livre. O pedido nunca pode aumentar a disponibilidade.
+
+1. Transforme o enunciado em entradas, saídas, verificações e única etapa de mutação.
+2. Preencha uma tabela com `(8,3)`, `(8,8)`, `(8,9)`, `(8,0)`, `(8,-1)` e `(8,2.5)`: classificação e saldo.
+3. Indique o primeiro ponto em que se deve abortar um pedido fracionário, preservando o estado.
+4. Dê um **contraexemplo** mostrando por que subtrair antes de validar pode aumentar a disponibilidade.
+5. Um sistema simultâneo aceita dois pedidos de 7 horários com 8 livres. Qual hipótese da oficina deixou de valer? O que seria necessário para impedir a dupla reserva no armazenamento?
+6. Troque o contexto para uma fila de ingressos. Explique o que permanece idêntico e o que muda.
+
+**Entrega:** pseudocódigo, tabela e contraexemplos.
+**Condição de aprovação:** nenhum saldo negativo, rejeição não altera estoque e distinção clara entre validação e concorrência.
+
+**Confira o resultado somente depois de registrar sua primeira tentativa:** [Gabarito e critérios da LOG-01](/course-labs/pilot-a/answer-keys/LOG-01.md).

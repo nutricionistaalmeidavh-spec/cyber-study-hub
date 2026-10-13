@@ -124,3 +124,23 @@ Um relatório afirma: “TLS 1.3 foi negociado porque o servidor suporta 1.3; a 
 **Rubrica:** o estudante precisa diferenciar versão permitida da negociada, autenticação da troca de chaves, falha TLS de status HTTP, e evidência original de fixture sintetizada. Não avance se concluiu segurança apenas porque viu “cadeado”, “TLS” ou “HTTP 200”.
 
 **Referências:** [RFC 8446 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446), [Python `ssl`](https://docs.python.org/3/library/ssl.html). O resultado do laboratório é uma observação local, não uma promessa universal de cifras.
+
+---
+
+## Prova final independente — competência aplicada
+
+**Importante:** execute esta avaliação sem consultar o gabarito. Se já estudou os exemplos, use apenas as regras conceituais; a situação a seguir não reutiliza os mesmos dados. A correção fica em outro arquivo para reduzir o risco de ver a resposta por acidente.
+
+**Caso novo:** um navegador corporativo fictício fala com `dashboard.lab.invalid` via TLS. O servidor aceita TLS 1.2 e 1.3; um cliente só aceita 1.2, outro aceita ambas. O certificado é emitido por uma CA interna que não está na lista de confiança de um terceiro cliente.
+
+1. Explique a diferença entre versão **permitida pelo software** e versão **negociada no socket**; escreva como obtê-la no Python `ssl`.
+2. Preveja versões nas duas conexões compatíveis e o resultado de um cliente que exige 1.3 conectado a um servidor que só aceita 1.2.
+3. Uma versão compatível é suficiente para confiar na conexão com CA desconhecida? Qual etapa precisa falhar?
+4. Diferencie o papel do certificado RSA e dos segredos derivados por ECDHE no exemplo. O que possibilitam os arquivos `SSLKEYLOGFILE` quando autorizados?
+5. Justifique por que um pcap de payload TLS real inserido em cabeçalhos TCP sintéticos **não** é evidência de captura de rede original.
+6. Redija um relatório que inclua versões da biblioteca, política min/max, versão realmente negociada, cifra, resultado da validação de nome e CA e dois testes negativos.
+
+**Entrega:** relatório e previsão-vs-observação; logs sem segredos.
+**Condição de aprovação:** a conclusão não confunde negociação, autenticação nem proveniência dos dados.
+
+**Confira o resultado somente depois de registrar sua primeira tentativa:** [Gabarito e critérios da NET-25](/course-labs/pilot-a/answer-keys/NET-25.md).

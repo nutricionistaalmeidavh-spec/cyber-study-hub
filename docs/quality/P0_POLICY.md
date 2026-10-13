@@ -9,9 +9,9 @@
 
 ## Política de avaliação
 
-As classes A/B/C/D da Fase 15 pertencem ao material de setembro de 2026; após a Fase 16 são histórico, não a classificação corrente. As 66 unidades alteradas recebem triagem estática de integridade e organização do conteúdo, **não** uma promoção editorial automática. As outras 477 aguardam análise atualizada.
+As classes A/B/C/D da Fase 15 pertencem ao material de setembro de 2026; após a Fase 16 são histórico, não a classificação corrente. As 66 unidades alteradas recebem triagem estática de integridade e organização do conteúdo, **não** uma promoção editorial automática. Notas A só resultam de pareceres completos com seis dimensões, evidências e hash, discriminando auditoria IA de avaliação humana. As outras 477 aguardam análise atualizada.
 
-A qualificação A exige seis dimensões (conteúdo técnico, didática, prática, defesa, avaliação, especificidade) avaliadas entre 80 e 100 por um revisor; evidências individualizadas por dimensão (método, referência, resultado); precisão revisada, didática validada com iniciante, prática verificada, quiz revisado de modo independente, escopo seguro e revisão independente. Notas não podem ser deduzidas do número de palavras ou da presença de Markdown. Em aulas sem código, a prática adequada pode ser um exercício de análise com entregáveis verificáveis.
+A qualificação A exige seis dimensões (conteúdo técnico, didática, prática, defesa, avaliação, especificidade) avaliadas entre 80 e 100 por um revisor; evidências individualizadas por dimensão (método, referência, resultado); precisão revisada, didática para iniciante inspecionada via walkthrough editorial, prática verificada, avaliação de transferência revisada por um segundo processo, escopo seguro e identificação distinta de autoria/revisão. No parecer de IA, declarar explicitamente que não houve teste com estudantes humanos; este teste é uma métrica separada da nota editorial. Notas não podem ser deduzidas do número de palavras ou da presença de Markdown. Em aulas sem código, a prática adequada pode ser um exercício de análise com entregáveis verificáveis.
 
 **Não editar** o catálogo nem arquivos de aula para ajustar o resultado deste P0. Falhas estruturais ou recursos inacessíveis são findings; ausência de um cabeçalho detectável é apenas pista de revisão, não defeito pedagógico provado. Revisões independentes e testes reais com estudantes ainda precisam ser conduzidos.
 
@@ -31,9 +31,12 @@ npm run report:quality
 2. Verificar tecnicamente em ambiente autorizado, registrando entradas, saídas, versões, casos negativos e reteste.
 3. Avaliar as seis dimensões separadamente, com evidência de cada uma, sem pontuação simulada.
 4. Realizar revisão do quiz e walkthrough de iniciante com objetivo sem indicar o controle.
-5. Preencher `quality/registry.json > editorialReviews[ID]` com `grade`, `author`, `reviewer`, `reviewedOn`, `summary`, `contentSha256`, `scores`, `gates` e `evidence`; passar CI e revisão humana de PR.
+5. Preencher `quality/registry.json > editorialReviews[ID]` com `grade`, `author`, `reviewer`, `reviewedOn`, `summary`, `contentSha256`, `scores`, `gates` e `evidence`; passar CI e revisão externa/humana de PR quando disponível (não afirmar sua realização se somente a auditoria por IA ocorreu).
 6. Preservar a classificação histórica e refazer a revisão quando mudar conteúdo material. Comparar SHA-256 do arquivo revisado antes de aceitar nova promoção.
 
 ## Limites
 
 Esta triagem apenas verifica estrutura textual, integridade de referências locais e pendências de evidência. Não comprova a exatidão de conteúdo, execução de exercícios, funcionamento de VMs Windows, Kubernetes, GUI, nem eficácia para aprendizes sem observação independente. O core permanece local/self-hosted, sem API paga.
+## Escopo de A editorial assistido por IA (piloto)
+
+Oito avaliações realizadas em 13/10/2026 possuem `reviewMethod=ai_editorial_second_pass` e `humanLearnerTesting=not_performed`. `didaticaInicianteValidada` indica walkthrough editorial a partir de pressupostos de conhecimento inicial zero, **não** observação de alunos reais. `revisorIndependente` indica segunda passagem crítica separada da autoria, com identidade do processo IA documentada, **não** revisor humano. O indicador de eficácia pedagógica observada permanece em aberto e não deve ser inventado. A metodologia, fontes e resultados estão em `quality/reviews/pilot-a-2026-10-13.json` e `docs/quality/AUDITORIA_A_PILOTO.md`.
