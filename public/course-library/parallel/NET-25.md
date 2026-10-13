@@ -71,3 +71,76 @@ Não reutilize as chaves temporárias como infraestrutura. Os arquivos .keys per
 - **Handshake** → Negociação autenticada de parâmetros e segredos de sessão.
 - **Finished** → Mensagem que verifica integridade do transcript e posse de segredos.
 - **Forward secrecy** → Troca efêmera reduz o efeito de comprometimento futuro da chave de autenticação sobre sessões passadas.
+
+---
+
+## Oficina de diagnóstico TLS — negociação, identidade e provas
+
+**Você não precisa decorar cifras para começar.** TLS é o protocolo que negocia proteção para dados entre aplicações. Primeiro o cliente e servidor combinam versão e parâmetros; depois estabelecem chaves e verificam as mensagens relevantes do handshake. O certificado informa uma chave pública e uma identidade; **a presença de um certificado não significa que o nome foi verificado ou que a CA é confiável**.
+
+### Os quatro resultados que você deve distinguir
+
+1. **TLS 1.2 com cliente que exige 1.2 e servidor que suporta 1.2:** espera-se negociação 1.2; a cifra efetiva é registrada pela sessão e pode variar por ambiente.
+2. **TLS 1.3 com cliente e servidor compatíveis:** espera-se 1.3; o formato da suíte TLS 1.3 difere do formato de uma suíte ECDHE-RSA de TLS 1.2.
+3. **Cliente só 1.3, servidor só 1.2:** handshake falha **antes** da aplicação HTTP; não é status 500.
+4. **Versão compatível, mas CA não confiável ou hostname incorreto:** handshake pode chegar à verificação do certificado, mas o cliente **deve rejeitar** a conexão. Negociar cifra não garante identidade.
+
+### Prática guiada: leia os resultados do laboratório
+
+Na pasta do programa `tls_local.py`, execute `python3 tls_local.py`. Ele cria material criptográfico de laboratório, testa conexões locais e produz o resultado estruturado. **Não reutilize** essa CA, as chaves ou as sessões geradas como infraestrutura real.
+
+Os resultados que foram observados no ambiente de referência da Fase 16 para as conexões positivas são `TLSv1.2` e `TLSv1.3`, com HTTP 200 em ambas. Os casos de CA não confiável e hostname incorreto são rejeitados. A suíte exata depende da versão da biblioteca; o requisito é registrar `tls.version()` **na conexão negociada** e a cifra escolhida, não apenas a configuração máxima disponível.
+
+### Exercício parcialmente resolvido
+
+Complete: o ClientHello oferece `______`; o ServerHello escolhe `______`; a verificação do certificado verifica `______`; Finished contribui para verificar `______`. Resposta orientadora: versões/parâmetros; os compatíveis; identidade do servidor/cadeia de confiança/nome; integridade do transcript e posse de segredos do handshake.
+
+**Uma distinção essencial:** as reconstruções `.pcap` do material são artefatos educacionais com *payload TLS real e cabeçalhos TCP sintéticos*. Isso serve a exercícios delimitados; não descreva a reconstrução como uma captura de rede original. Os arquivos `.keys` podem permitir desencriptar **aquelas sessões** no laboratório; não são prova de que a chave privada do certificado RSA por si só descriptografa um handshake com troca efêmera.
+
+### Prática independente: revisão de um relatório incorreto
+
+Um relatório afirma: “TLS 1.3 foi negociado porque o servidor suporta 1.3; a chave privada RSA do certificado serve para ler as sessões capturadas; a CA não confiável é irrelevante porque houve HTTP 200.” Reescreva cada uma das três frases:
+
+- Evidência da **versão realmente negociada**: retorno do método de sessão `version()` enquanto ativa.
+- **Separação de chaves**: material de assinatura/autenticação não é o mesmo que segredos de tráfego derivados; com troca efêmera, possuir a chave privada de longo prazo não basta para decriptar sessões passadas.
+- **Autenticação do servidor**: CA confiável e hostname compatível são condições fundamentais de validação do cliente; o teste negativo deve ser rejeitado antes de confiar em HTTP.
+
+### Checklist de execução e recuperação
+
+- Registre `python3 --version`, a versão do OpenSSL acessível pelo módulo `ssl`, e os resultados de TLS1.2/TLS1.3.
+- Se TLS1.2 não estiver disponível em seu ambiente, registre a limitação e não reporte execução bem-sucedida da comparação.
+- Se o handshake falhar em ambos, confira a CA de laboratório, o hostname e o relógio do sistema antes de reduzir a política de verificação.
+- Se um teste negativo aceitar a conexão, **reprove a configuração** e descubra qual verificação foi relaxada. Não “conserte” desativando `check_hostname` ou `CERT_REQUIRED`.
+- Repita os casos positivos depois de corrigir o laboratório: uma configuração que rejeita todo o tráfego não demonstra TLS bem implementado.
+
+### Avaliação de transferência
+
+1. Um TLSv1.3 foi configurado como máximo; o handshake registrou TLSv1.2. Qual valor descreve a sessão? **TLSv1.2**, se o resultado veio do socket efetivamente negociado.
+2. Uma conexão falha por CA não confiável. Por que não é HTTP 403? **Porque a aplicação HTTP não chegou a operar em uma sessão TLS confiável.**
+3. TLS 1.2 usa ECDHE com autenticação RSA. Que papel tem o par RSA? **Autenticar/assinar**, não substituir automaticamente os segredos de tráfego.
+4. Por que o `.keys` gerado deve ser protegido fora da fixture pública? **Pode conter segredos de sessão capazes de revelar conteúdo daquela captura.**
+5. Qual observação demonstra falha de negociação por falta de versão comum? **Erro no handshake, sem resposta HTTP e com conjuntos de versões incompatíveis documentados.**
+
+**Rubrica:** o estudante precisa diferenciar versão permitida da negociada, autenticação da troca de chaves, falha TLS de status HTTP, e evidência original de fixture sintetizada. Não avance se concluiu segurança apenas porque viu “cadeado”, “TLS” ou “HTTP 200”.
+
+**Referências:** [RFC 8446 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446), [Python `ssl`](https://docs.python.org/3/library/ssl.html). O resultado do laboratório é uma observação local, não uma promessa universal de cifras.
+
+---
+
+## Prova final independente — competência aplicada
+
+**Importante:** execute esta avaliação sem consultar o gabarito. Se já estudou os exemplos, use apenas as regras conceituais; a situação a seguir não reutiliza os mesmos dados. A correção fica em outro arquivo para reduzir o risco de ver a resposta por acidente.
+
+**Caso novo:** um navegador corporativo fictício fala com `dashboard.lab.invalid` via TLS. O servidor aceita TLS 1.2 e 1.3; um cliente só aceita 1.2, outro aceita ambas. O certificado é emitido por uma CA interna que não está na lista de confiança de um terceiro cliente.
+
+1. Explique a diferença entre versão **permitida pelo software** e versão **negociada no socket**; escreva como obtê-la no Python `ssl`.
+2. Preveja versões nas duas conexões compatíveis e o resultado de um cliente que exige 1.3 conectado a um servidor que só aceita 1.2.
+3. Uma versão compatível é suficiente para confiar na conexão com CA desconhecida? Qual etapa precisa falhar?
+4. Diferencie o papel do certificado RSA e dos segredos derivados por ECDHE no exemplo. O que possibilitam os arquivos `SSLKEYLOGFILE` quando autorizados?
+5. Justifique por que um pcap de payload TLS real inserido em cabeçalhos TCP sintéticos **não** é evidência de captura de rede original.
+6. Redija um relatório que inclua versões da biblioteca, política min/max, versão realmente negociada, cifra, resultado da validação de nome e CA e dois testes negativos.
+
+**Entrega:** relatório e previsão-vs-observação; logs sem segredos.
+**Condição de aprovação:** a conclusão não confunde negociação, autenticação nem proveniência dos dados.
+
+**Confira o resultado somente depois de registrar sua primeira tentativa:** [Gabarito e critérios da NET-25](/course-labs/pilot-a/answer-keys/NET-25.md).

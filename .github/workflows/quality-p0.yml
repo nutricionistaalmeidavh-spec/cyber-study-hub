@@ -1,0 +1,29 @@
+name: Quality P0
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'quality/**'
+      - 'scripts/lib/quality-p0.mjs'
+      - 'scripts/quality-p0.mjs'
+      - 'scripts/test-quality-p0.mjs'
+      - 'docs/quality/**'
+      - 'package.json'
+      - '.github/workflows/quality-p0.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - run: npm run verify:quality
+      - run: npm run build

@@ -9,11 +9,15 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run verify:curriculum && npm run verify:learning && npm run verify:catalog && tsc --noEmit && vite build",
+    "build": "npm run verify:curriculum && npm run verify:learning && npm run verify:catalog && npm run verify:quality && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
-    "verify:catalog": "node scripts/verify-phase-12-14.mjs"
+    "verify:catalog": "node scripts/verify-phase-12-14.mjs",
+    "test:quality": "node scripts/test-quality-p0.mjs",
+    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a",
+    "report:quality": "node scripts/quality-p0.mjs --write",
+    "test:pilot-grade-a": "node scripts/test-pilot-grade-a.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

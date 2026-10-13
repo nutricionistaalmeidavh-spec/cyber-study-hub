@@ -1,3 +1,4 @@
+import { resolveCourseLink, parsePipeRow, isTableSeparator } from './markdownSupport';
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react';
 import catalogData from '../../curriculum/catalog.json';
 import type {
@@ -150,6 +151,27 @@ function parseMarkdown(markdown: string) {
       continue;
     }
 
+    // Tabelas precisam ser reconhecidas antes do parser genérico de parágrafos.
+    if (index + 1 < lines.length && lines[index].includes('|') && isTableSeparator(lines[index + 1])) {
+      const headers = parsePipeRow(lines[index]);
+      index += 2;
+      const rows: string[][] = [];
+      while (index < lines.length && lines[index].trim() && lines[index].includes('|')) {
+        const cells = parsePipeRow(lines[index]);
+        if (cells.length !== headers.length) break;
+        rows.push(cells);
+        index += 1;
+      }
+      nodes.push(
+        <div className="markdown-table-scroll" key={`table-${index}`} tabIndex={0} aria-label="Tabela da aula, rolável horizontalmente">
+          <table><thead><tr>{headers.map((c, i) => <th key={i}>{renderInline(c)}</th>)}</tr></thead>
+            <tbody>{rows.map((row, i) => <tr key={i}>{row.map((c, j) => <td key={j}>{renderInline(c)}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+
     const heading = /^(#{1,4})\s+(.+)$/.exec(line);
     if (heading) {
       const level = heading[1].length;
@@ -255,9 +277,9 @@ function renderInline(text: string) {
     }
     const link = /^\[([^\]]+)\]\(([^\)]+)\)$/.exec(chunk);
     if (link) {
-      const safe = /^https?:\/\//i.test(link[2]);
-      return safe ? (
-        <a key={index} href={link[2]} target="_blank" rel="noreferrer">{link[1]}</a>
+      const target = resolveCourseLink(link[2]);
+      return target ? (
+        <a key={index} href={target.href} target="_blank" rel="noopener noreferrer">{link[1]}</a>
       ) : <Fragment key={index}>{link[1]}</Fragment>;
     }
     return <Fragment key={index}>{chunk}</Fragment>;

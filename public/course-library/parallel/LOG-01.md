@@ -72,3 +72,65 @@ Se o saldo for negativo, revise a comparação de disponibilidade; se aumentar, 
 - **Decomposição** → Separar validação, decisão e atualização para testar cada regra.
 - **Invariante do saldo** → Permanece entre zero e estoque inicial nas entradas válidas.
 - **Contraexemplo** → Pedido -2 revela aumento indevido se a validação for omitida.
+
+---
+
+## Segunda oficina — algoritmo que preserva o estado, inclusive com erros
+
+Um algoritmo pode produzir o resultado certo no exemplo fácil e falhar nos limites. Nesta oficina, o contrato é **uma única reserva**, sem concorrência. Estoque inicial deve ser inteiro não negativo. Pedido deve ser inteiro estritamente positivo; uma recusa não pode modificar estoque.
+
+**Para quem nunca programou:** entrada é informação recebida; condição é uma pergunta com duas saídas; estado é informação que pode mudar; saída é o que devolvemos. O algoritmo não precisa de Python para funcionar no papel.
+
+### Trace manual, etapa a etapa
+
+Siga as entradas `(estoque=5, pedido=5)`: valide estoque (sim) → valide pedido (sim) → compare `pedido > estoque` (falso) → subtraia (saldo 0) → devolva `aceitar,0`.
+
+Agora siga `(5,6)`: validações verdadeiras → comparação verdadeira → devolva `recusar,5` **sem** executar subtração. Para `(5,0)`, o pedido é inválido antes de qualquer comparação de disponibilidade. A distinção importa: um pedido inválido não pode consumir estoque nem ser tratado como falta de estoque.
+
+### Exercícios para completar
+
+1. `(0,1)` → decisão `______` e saldo `______`.
+2. `(5,5)` → decisão `______` e saldo `______`.
+3. `(5,-1)` → decisão `______` e saldo `______`.
+4. `(5,2.5)` → decisão `______` e saldo `______`.
+5. `(5,1)` → decisão `______` e saldo `______`.
+
+**Gabarito com justificativa:** 1 recusar/0 (sem peças); 2 aceitar/0 (limite permitido); 3 inválido/5 (pedido não positivo); 4 inválido/5 (pedido fracionário); 5 aceitar/4 (subtração válida). Atenção: a validação de `estoque` precede a de `pedido`; uma entrada com estoque negativo é erro de estoque, não recusa por falta.
+
+### Programa verificador opcional
+
+O [verificador LOG-01](/course-labs/pilot-a/stock_rules.py) é uma implementação **de referência** em Python 3, separada do exercício de papel. Você não precisa dominar Python para realizar a aula; ele existe para conferir respostas depois. Execute `python3 stock_rules.py` para testar casos positivos, inválidos e limites. O comando para com falha se a regra produzir saldo incorreto. Ele não simula concorrência nem sistema de vendas real.
+
+### Desafio independente — transferência
+
+Uma biblioteca tem três exemplares livres de um livro. Um empréstimo deve solicitar um número **inteiro positivo**, não superior ao disponível. Adapte seu pseudocódigo para o vocabulário da biblioteca e teste `(3,0)`, `(3,4)`, `(3,3)` e `(3,1)`. Explique por que o estado só muda **depois** de todas as validações. Qual parte você alteraria se várias pessoas reservassem simultaneamente? Não basta o algoritmo de uma execução: seria preciso uma operação transacional/atômica no armazenamento compartilhado.
+
+### Rubrica da competência
+
+- Consegue identificar **entradas, decisões, estado e saídas** sem decorar código.
+- Preserva estoque nos casos inválidos/recusados e nunca produz saldo negativo.
+- Diferencia pedido igual ao disponível de pedido maior.
+- Reconhece que o contrato não contempla concorrência, em vez de prometer segurança multiusuário.
+- Propõe um novo exemplo sem copiar os números da oficina.
+
+**Próximo:** LOG-02 para explorar estruturas de decisão e repetição; retorne à validação de entrada quando iniciar PY-01.
+
+---
+
+## Prova final independente — competência aplicada
+
+**Importante:** execute esta avaliação sem consultar o gabarito. Se já estudou os exemplos, use apenas as regras conceituais; a situação a seguir não reutiliza os mesmos dados. A correção fica em outro arquivo para reduzir o risco de ver a resposta por acidente.
+
+**Caso novo:** uma clínica fictícia possui 8 horários livres em uma agenda simples, processando solicitações **uma de cada vez**. Uma solicitação válida é um número inteiro positivo que não excede o número livre. O pedido nunca pode aumentar a disponibilidade.
+
+1. Transforme o enunciado em entradas, saídas, verificações e única etapa de mutação.
+2. Preencha uma tabela com `(8,3)`, `(8,8)`, `(8,9)`, `(8,0)`, `(8,-1)` e `(8,2.5)`: classificação e saldo.
+3. Indique o primeiro ponto em que se deve abortar um pedido fracionário, preservando o estado.
+4. Dê um **contraexemplo** mostrando por que subtrair antes de validar pode aumentar a disponibilidade.
+5. Um sistema simultâneo aceita dois pedidos de 7 horários com 8 livres. Qual hipótese da oficina deixou de valer? O que seria necessário para impedir a dupla reserva no armazenamento?
+6. Troque o contexto para uma fila de ingressos. Explique o que permanece idêntico e o que muda.
+
+**Entrega:** pseudocódigo, tabela e contraexemplos.
+**Condição de aprovação:** nenhum saldo negativo, rejeição não altera estoque e distinção clara entre validação e concorrência.
+
+**Confira o resultado somente depois de registrar sua primeira tentativa:** [Gabarito e critérios da LOG-01](/course-labs/pilot-a/answer-keys/LOG-01.md).

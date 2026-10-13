@@ -161,6 +161,18 @@
         "assets públicos possuem namespace explícito",
         "casos dependentes de contexto explicam qual dimensão precisa variar ou fazer bypass"
       ]
+    },
+    {
+      "id": "wcd-independent-02",
+      "title": "Diagnostique um HIT que cruza identidades sem desativar todo o cache",
+      "prompt": "Uma resposta privada /account/invoices/export.css tem Cache-Control: no-store; o proxy usa sufixo .css como permissão de armazenamento e entrega a Bob um HIT com marcador de Alice. Localize a decisão defeituosa, proponha política corrigida, invalide entradas antigas e preserve HIT para /assets/app.css. Informe observações para Alice, Bob e asset público sem copiar conteúdo pessoal.",
+      "successCriteria": [
+        "Atribui o defeito a classificação do proxy e não inventa falha na autorização da origem",
+        "Bloqueia leitura E gravação de respostas privadas, inclusive entradas antigas",
+        "Confirma Bob com seu próprio corpo ou BYPASS e Alice com seu próprio corpo",
+        "Confirma que /assets/app.css ainda recebe HIT legítimo",
+        "Distingue conteúdo de outra identidade de status 200 ou HIT isolados"
+      ]
     }
   ],
   "codeExamples": [
@@ -406,6 +418,30 @@
         "answer": 1,
         "why": "Uma resposta pode ter uma chave correta e ainda assim ser inadequada para armazenamento compartilhado.",
         "concept": "cache-key-vs-cacheability"
+      },
+      {
+        "q": "O proxy passou a ignorar no-store corretamente, mas ainda mantém uma cópia privada antiga. Qual passo adicional fecha o risco desse registro?",
+        "options": [
+          "Somente reduzir o TTL para 10 segundos.",
+          "Invalidar ou eliminar a entrada antiga e repetir Alice/Bob antes de publicar.",
+          "Usar Vary: Cookie sem verificar política de armazenamento.",
+          "Aceitar o antigo HIT porque a nova política está correta."
+        ],
+        "answer": 1,
+        "why": "Uma mudança de política para próximas respostas não apaga automaticamente cópias sensíveis já armazenadas; o reteste precisa examinar o estado anterior.",
+        "concept": "cache-invalidation"
+      },
+      {
+        "q": "Após corrigir o proxy, Bob nunca recebe conteúdo de Alice, mas /assets/app.css deixou de gerar HIT para qualquer visitante. Como classificar o resultado?",
+        "options": [
+          "Totalmente aprovado, porque não houve vazamento.",
+          "Falha apenas de autenticação do origin.",
+          "A correção reduziu o vazamento, mas tem regressão no cache público e precisa ser ajustada.",
+          "Web Cache Poisoning automaticamente."
+        ],
+        "answer": 2,
+        "why": "Um controle correto preserva tanto o isolamento privado quanto a eficiência dos assets explicitamente públicos, conforme o contrato.",
+        "concept": "cache-regression"
       }
     ],
     "flashcards": [
@@ -453,6 +489,11 @@
         "front": "no-cache proíbe guardar em qualquer cache?",
         "back": "Não; exige validação antes de reutilizar. Este lab faz BYPASS porque não implementa revalidação.",
         "concept": "revalidation"
+      },
+      {
+        "front": "O que fazer com uma entrada privada que já foi armazenada?",
+        "back": "Invalidar/purgar a cópia antiga, alterar a regra de seleção e armazenamento, e retestar duas identidades.",
+        "concept": "cache-invalidation"
       }
     ]
   },
