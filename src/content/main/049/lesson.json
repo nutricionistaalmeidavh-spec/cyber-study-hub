@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 2,
+  "id": 49,
+  "slug": "host-header-attacks",
+  "title": "Host Header Attacks",
+  "track": "Web",
+  "level": "Base",
+  "durationMin": 45,
+  "pcPractice": true,
+  "summary": "Aplicações que confiam no Host podem gerar links, redirects ou decisões de roteamento controláveis pelo cliente.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 48,
+      "title": "Prototype Pollution",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de host header attacks no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Host.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de Host Header Attacks",
+    "scenario": "O header Host participa de roteamento e, em algumas aplicações, de geração de URLs absolutas. A aplicação deve ter uma origem canônica/configurada e uma lista de hosts aceitos; não deve transformar um valor do cliente em autoridade sobre seu próprio domínio."
+  },
+  "fundamentals": [
+    {
+      "term": "Host",
+      "explanation": "Cabeçalho HTTP que identifica o host solicitado."
+    },
+    {
+      "term": "X-Forwarded-Host",
+      "explanation": "Cabeçalho de proxy que pode influenciar host percebido pela aplicação."
+    },
+    {
+      "term": "Password reset poisoning",
+      "explanation": "Geração de link de redefinição usando host controlado."
+    },
+    {
+      "term": "Allowlist",
+      "explanation": "Lista explícita de hosts aceitos."
+    }
+  ],
+  "mechanism": {
+    "summary": "Aplicações frequentemente usam Host para construir links, redirects ou decisões de roteamento. Se esse valor for confiado sem validação, infraestrutura e lógica de negócio podem discordar sobre o host legítimo.",
+    "steps": [
+      {
+        "id": "m49-1",
+        "title": "Cliente envia Host",
+        "detail": "Cliente envia Host"
+      },
+      {
+        "id": "m49-2",
+        "title": "Proxy encaminha ou normaliza",
+        "detail": "Proxy encaminha ou normaliza"
+      },
+      {
+        "id": "m49-3",
+        "title": "Aplicação usa o valor em URL/redirect",
+        "detail": "Aplicação usa o valor em URL/redirect"
+      },
+      {
+        "id": "m49-4",
+        "title": "Links ou decisões podem refletir host não confiável",
+        "detail": "Links ou decisões podem refletir host não confiável"
+      },
+      {
+        "id": "m49-5",
+        "title": "Allowlist e configuração canônica quebram essa dependência",
+        "detail": "Allowlist e configuração canônica quebram essa dependência"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-49-01",
+      "title": "Raciocínio completo — Host Header Attacks",
+      "problem": "Aplicações frequentemente usam Host para construir links, redirects ou decisões de roteamento. Se esse valor for confiado sem validação, infraestrutura e lógica de negócio podem discordar sobre o host legítimo.",
+      "solutionSteps": [
+        {
+          "id": "w49-1",
+          "action": "Cliente envia Host",
+          "explanation": "Comece identificando a entrada ou estado relevante: cliente envia host.",
+          "evidence": null
+        },
+        {
+          "id": "w49-2",
+          "action": "Proxy encaminha ou normaliza",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: proxy encaminha ou normaliza.",
+          "evidence": null
+        },
+        {
+          "id": "w49-3",
+          "action": "Aplicação usa o valor em URL/redirect",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: aplicação usa o valor em url/redirect.",
+          "evidence": null
+        },
+        {
+          "id": "w49-4",
+          "action": "Links ou decisões podem refletir host não confiável",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: links ou decisões podem refletir host não confiável.",
+          "evidence": null
+        },
+        {
+          "id": "w49-5",
+          "action": "Allowlist e configuração canônica quebram essa dependência",
+          "explanation": "Feche a cadeia observando o efeito e o controle: allowlist e configuração canônica quebram essa dependência.",
+          "evidence": "Observe hosts desconhecidos, redirects externos e geração de URLs absolutas com domínios não autorizados."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em Host Header Attacks?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-49-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Cliente envia Host\n→ Proxy encaminha ou normaliza\n→ [COMPLETE ESTA DECISÃO]\n→ Links ou decisões podem refletir host não confiável\n→ Allowlist e configuração canônica quebram essa dependência",
+      "expectedConcepts": [
+        "Host",
+        "X-Forwarded-Host",
+        "Password reset poisoning"
+      ],
+      "solution": "Aplicação usa o valor em URL/redirect"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-49-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Host de X-Forwarded-Host e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-49-01",
+      "title": "Host canônico por allowlist",
+      "language": "ts",
+      "code": "const TRUSTED_HOSTS = new Set([\"app.exemplo.local\", \"localhost:5173\"]);\n\nfunction assertTrustedHost(host = \"\") {\n  const normalized = host.toLowerCase().trim();\n  if (!TRUSTED_HOSTS.has(normalized)) {\n    throw new Error(\"Invalid Host header\");\n  }\n  return normalized;\n}",
+      "explanation": "Para links externos importantes, uma origem configurada no servidor costuma ser mais segura que reconstruir a URL a partir do request."
+    }
+  ],
+  "lab": {
+    "title": "Comparar host recebido e host configurado",
+    "mode": "PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-49-1",
+        "instruction": "Crie uma aplicação local que registre Host e URL canônica configurada.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Crie uma aplicação local que registre Host e URL canônica configurada."
+      },
+      {
+        "id": "lab-49-2",
+        "instruction": "Faça requests locais com nomes válidos de desenvolvimento.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Faça requests locais com nomes válidos de desenvolvimento."
+      },
+      {
+        "id": "lab-49-3",
+        "instruction": "Implemente uma allowlist explícita.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Implemente uma allowlist explícita."
+      },
+      {
+        "id": "lab-49-4",
+        "instruction": "Verifique que hosts não reconhecidos geram erro antes de redirects ou geração de links.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Verifique que hosts não reconhecidos geram erro antes de redirects ou geração de links."
+      },
+      {
+        "id": "lab-49-5",
+        "instruction": "Registre o host rejeitado para detecção.",
+        "expected": "A aplicação não deve decidir sua origem pública apenas com base em um cabeçalho fornecido pelo cliente.",
+        "checkpoint": "A aplicação não deve decidir sua origem pública apenas com base em um cabeçalho fornecido pelo cliente."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Observe hosts desconhecidos, redirects externos e geração de URLs absolutas com domínios não autorizados.",
+    "signals": [
+      "Observe hosts desconhecidos, redirects externos e geração de URLs absolutas com domínios não autorizados."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Use host canônico configurado, valide hosts permitidos e trate headers de proxy apenas de infraestrutura confiável."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Host de X-Forwarded-Host e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Host?",
+        "options": [
+          "Cabeçalho HTTP que identifica o host solicitado.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica.",
+          "Cabeçalho de proxy que pode influenciar host percebido pela aplicação."
+        ],
+        "answer": 0,
+        "why": "Cabeçalho HTTP que identifica o host solicitado.",
+        "concept": "Host"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Use host canônico configurado, valide hosts permitidos e trate headers de proxy apenas de infraestrutura confiável.",
+          "Adiar correções até existir exploração pública confirmada.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS."
+        ],
+        "answer": 0,
+        "why": "Use host canônico configurado, valide hosts permitidos e trate headers de proxy apenas de infraestrutura confiável.",
+        "concept": "X-Forwarded-Host"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Observe hosts desconhecidos, redirects externos e geração de URLs absolutas com domínios não autorizados.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação."
+        ],
+        "answer": 0,
+        "why": "Observe hosts desconhecidos, redirects externos e geração de URLs absolutas com domínios não autorizados.",
+        "concept": "Password reset poisoning"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "A aplicação não deve decidir sua origem pública apenas com base em um cabeçalho fornecido pelo cliente.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Allowlist"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Host"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Host",
+        "back": "Cabeçalho HTTP que identifica o host solicitado.",
+        "concept": "Host"
+      },
+      {
+        "front": "X-Forwarded-Host",
+        "back": "Cabeçalho de proxy que pode influenciar host percebido pela aplicação.",
+        "concept": "X-Forwarded-Host"
+      },
+      {
+        "front": "Password reset poisoning",
+        "back": "Geração de link de redefinição usando host controlado.",
+        "concept": "Password reset poisoning"
+      },
+      {
+        "front": "Allowlist",
+        "back": "Lista explícita de hosts aceitos.",
+        "concept": "Allowlist"
+      },
+      {
+        "front": "Defesa",
+        "back": "Use host canônico configurado, valide hosts permitidos e trate headers de proxy apenas de infraestrutura confiável.",
+        "concept": "Host"
+      },
+      {
+        "front": "Detecção",
+        "back": "Observe hosts desconhecidos, redirects externos e geração de URLs absolutas com domínios não autorizados.",
+        "concept": "X-Forwarded-Host"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "A aplicação não deve decidir sua origem pública apenas com base em um cabeçalho fornecido pelo cliente.",
+        "concept": "Password reset poisoning"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 2,
+  "id": 47,
+  "slug": "web-cache-deception",
+  "title": "Web Cache Deception",
+  "track": "Web",
+  "level": "Avançado",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "Web Cache Deception aparece quando o origin entrega conteúdo privado para uma URL que uma camada de cache classifica como pública/cacheável. A falha nasce da divergência entre roteamento, cacheabilidade e contexto autenticado.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 46,
+      "title": "Web Cache Poisoning",
+      "reason": "Ajuda a diferenciar cache key, cacheability e poisoning de deception.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "HTTP Cache-Control",
+      "reason": "Facilita a leitura de private, no-store, Age e sinais de HIT/MISS.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Diferenciar Web Cache Deception de Web Cache Poisoning.",
+    "Explicar por que cache key e decisão de cacheabilidade são problemas diferentes.",
+    "Reconhecer divergências entre roteamento do origin e classificação de URL pelo cache.",
+    "Reproduzir em laboratório local uma resposta privada sendo armazenada incorretamente.",
+    "Detectar o problema usando cabeçalhos, logs e comparação entre usuários.",
+    "Aplicar correções e comprovar o reteste."
+  ],
+  "problem": {
+    "title": "Quando uma URL parece estática para o cache, mas continua privada para o origin",
+    "scenario": "Uma aplicação aceita /account/profile.css como rota dinâmica de conta porque o roteador considera apenas o prefixo /account. Um proxy, porém, classifica URLs terminadas em .css como estáticas e decide armazená-las. Alice acessa a URL autenticada; a resposta privada entra no cache. Depois Bob pede a mesma URL e pode receber a cópia de Alice. O problema não é a extensão em si: é a discordância entre as duas camadas sobre o significado da mesma URL."
+  },
+  "fundamentals": [
+    {
+      "term": "Cache key",
+      "explanation": "Define quais partes da requisição diferenciam uma entrada armazenada de outra. Host, caminho, query e alguns cabeçalhos podem participar da chave.",
+      "example": "Duas requisições que produzem conteúdo diferente não devem colidir na mesma chave compartilhada."
+    },
+    {
+      "term": "Cacheability",
+      "explanation": "É a decisão de armazenar ou não uma resposta. Uma chave correta não resolve o problema se uma resposta privada nunca deveria ter entrado no cache compartilhado.",
+      "example": "Uma resposta autenticada pode ter uma chave perfeitamente estável e ainda assim precisar de BYPASS."
+    },
+    {
+      "term": "Origin routing",
+      "explanation": "É a forma como a aplicação interpreta o caminho. Framework, rewrites e regras de rota podem tratar sufixos aparentemente estáticos como parte de uma rota dinâmica.",
+      "example": "/account/profile.css pode continuar sendo processado pela rota /account/*."
+    },
+    {
+      "term": "Shared cache",
+      "explanation": "CDN ou reverse proxy atende múltiplos usuários. Qualquer erro de isolamento tem impacto maior do que um cache privado do navegador.",
+      "example": "Um HIT para outro usuário é evidência crítica quando a primeira resposta foi personalizada."
+    },
+    {
+      "term": "private / no-store",
+      "explanation": "Diretivas de Cache-Control ajudam a sinalizar que conteúdo autenticado não deve ser armazenado em caches compartilhados ou, no caso de no-store, não deve ser armazenado.",
+      "example": "Rotas de conta normalmente devem ser privadas por padrão."
+    }
+  ],
+  "mechanism": {
+    "summary": "A cadeia de risco exige uma resposta privada, uma URL interpretada de forma diferente por cache e origin e uma política de armazenamento permissiva.",
+    "steps": [
+      {
+        "id": "m1",
+        "title": "Usuário autenticado solicita conteúdo privado",
+        "detail": "Alice pede uma rota de conta e envia sua sessão."
+      },
+      {
+        "id": "m2",
+        "title": "Origin resolve a URL como dinâmica",
+        "detail": "O roteador entrega os dados de Alice mesmo que o caminho termine com uma extensão aparentemente estática."
+      },
+      {
+        "id": "m3",
+        "title": "Cache classifica a URL como armazenável",
+        "detail": "Uma regra baseada em extensão ou path pattern decide que .css é estático."
+      },
+      {
+        "id": "m4",
+        "title": "Resposta privada é armazenada",
+        "detail": "A ausência de bypass/Cache-Control adequado permite que a resposta entre no cache compartilhado."
+      },
+      {
+        "id": "m5",
+        "title": "Outro usuário encontra a mesma entrada",
+        "detail": "Bob pede a mesma URL e recebe HIT com conteúdo que não pertence ao seu contexto."
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "wcd-worked-01",
+      "title": "Diagnóstico completo de uma divergência origin ↔ cache",
+      "problem": "Alice e Bob acessam a mesma URL /account/profile.css. O origin responde de acordo com a sessão, mas o proxy considera .css um recurso estático.",
+      "solutionSteps": [
+        {
+          "id": "s1",
+          "action": "Estabeleça o happy path sem cache compartilhado.",
+          "explanation": "Alice deve receber dados de Alice e Bob deve receber dados de Bob. Isso prova qual é o comportamento correto da aplicação antes de analisar o cache.",
+          "evidence": "As respostas diferem de acordo com a identidade autenticada."
+        },
+        {
+          "id": "s2",
+          "action": "Observe a primeira resposta de Alice passando pelo proxy.",
+          "explanation": "Se a política do proxy considera .css cacheável, a primeira resposta pode aparecer como MISS e ser armazenada.",
+          "evidence": "Cabeçalho de cache indica MISS/store; a resposta contém conteúdo privado."
+        },
+        {
+          "id": "s3",
+          "action": "Repita a mesma URL no contexto de Bob.",
+          "explanation": "Um HIT com conteúdo de Alice demonstra que a decisão de cacheabilidade ignorou o contexto privado.",
+          "evidence": "Bob recebe HIT e o corpo não corresponde à própria sessão."
+        },
+        {
+          "id": "s4",
+          "action": "Diferencie o problema de cache poisoning.",
+          "explanation": "Em deception, a resposta legítima e privada de Alice é armazenada incorretamente. Não é necessário que Alice injete conteúdo malicioso na resposta.",
+          "evidence": "O dado vazado é conteúdo legítimo do origin, apenas entregue ao usuário errado."
+        },
+        {
+          "id": "s5",
+          "action": "Corrija a política e refaça Alice → Bob.",
+          "explanation": "Conteúdo autenticado deve fazer BYPASS; somente namespaces públicos explícitos devem ser cacheáveis.",
+          "evidence": "Bob recebe sua própria resposta/BYPASS e não existe reutilização da resposta de Alice."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Por que uma cache key detalhada não basta se a resposta não deveria ser armazenada?",
+        "Qual camada atribuiu significado incorreto ao sufixo .css?",
+        "Qual evidência diferencia cache deception de uma falha simples de autorização do origin?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "wcd-completion-01",
+      "title": "Bloquear reutilização antes da consulta",
+      "prompt": "Uma entrada de asset foi aquecida por acesso anônimo. Complete A para que uma requisição com Cookie não receba essa entrada.",
+      "starterCode": "const key = `${req.method}:${req.originalUrl}`;\nconst saved = /* A */ ? cache.get(key) : null;",
+      "expectedConcepts": [
+        "elegibilidade da requisição antes de cache.get",
+        "Cookie/Authorization/X-Lab-User fazem bypass",
+        "armazenamento e seleção são decisões distintas"
+      ],
+      "solution": "A = isAnonymousAsset(req). Validar apenas quando cache.put é chamado não protege a seleção de objetos já armazenados."
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "wcd-independent-01",
+      "title": "Classifique rotas antes de escrever a regra",
+      "prompt": "Classifique /account, /api/me, /assets/app.css, /public/avatar/42 e /reports/export.csv como cache compartilhado permitido, proibido ou dependente de contexto. Justifique cada decisão sem usar apenas a extensão do arquivo.",
+      "successCriteria": [
+        "rotas autenticadas não são consideradas públicas apenas por extensão",
+        "a decisão usa contexto e contrato da rota",
+        "assets públicos possuem namespace explícito",
+        "casos dependentes de contexto explicam qual dimensão precisa variar ou fazer bypass"
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "wcd-code-policy",
+      "title": "Política executada: requisição, resposta e TTL",
+      "language": "js",
+      "code": "// Política propositalmente restrita: GET público, sem Vary nem identidade.\nexport function isAnonymousAsset(req) {\n  const h = req.headers;\n  return req.method === 'GET' && req.path.startsWith('/assets/') &&\n    !h['x-lab-user'] && !h.cookie && !h.authorization;\n}\nexport function storageTtl(req, response) {\n  if (!isAnonymousAsset(req) || response.status !== 200) return 0;\n  if (response.headers.has('set-cookie') || response.headers.has('vary')) return 0;\n  const directives = (response.headers.get('cache-control') || '').toLowerCase().split(',').map(x => x.trim());\n  if (!directives.includes('public') || directives.some(x => ['private','no-store','no-cache'].includes(x.split('=')[0]))) return 0;\n  const maxAge = directives.find(x => /^max-age=\\d+$/.test(x));\n  return maxAge ? Math.min(Number(maxAge.split('=')[1]), 3600) * 1000 : 0;\n}\nexport class TimedCache {\n  constructor(now = Date.now) { this.now = now; this.entries = new Map(); }\n  get(key) {\n    const entry = this.entries.get(key);\n    if (!entry) return null;\n    if (entry.expires <= this.now()) { this.entries.delete(key); return null; }\n    return { ...entry, age: Math.floor((this.now() - entry.storedAt) / 1000) };\n  }\n  put(key, value, ttl) {\n    if (ttl <= 0) return;\n    if (this.entries.size >= 100) this.entries.delete(this.entries.keys().next().value);\n    this.entries.set(key, { ...value, storedAt: this.now(), expires: this.now() + ttl });\n  }\n}\n",
+      "explanation": "O proxy consulta isAnonymousAsset antes de ler uma entrada existente. storageTtl valida a resposta; TimedCache expira objetos com relógio injetável. Política restrita ao lab: não implementa toda a RFC 9111.",
+      "annotations": [
+        {
+          "lines": "2-6",
+          "note": "Contexto autenticado e caminhos fora de assets são recusados antes da consulta ao cache."
+        },
+        {
+          "lines": "8-14",
+          "note": "Status, diretivas, Set-Cookie e Vary decidem se e por quanto tempo guardar."
+        },
+        {
+          "lines": "16-29",
+          "note": "Relógio injetável, expiração, idade e limite de entradas."
+        }
+      ]
+    }
+  ],
+  "lab": {
+    "title": "Reproduzir e corrigir Web Cache Deception em localhost",
+    "mode": "PC",
+    "safetyScope": "Laboratório exclusivamente local: origin e proxy executados pelo aluno em localhost. Não testar domínios de terceiros.",
+    "setup": [
+      "Use Node.js 24 e execute, da raiz do pacote: cd public/course-labs/aula-047 && npm ci.",
+      "Terminal A: npm run origin (127.0.0.1:3000). Terminal B: npm run vulnerable (127.0.0.1:4000).",
+      "X-Lab-User é identidade fictícia escolhida pelo cliente, somente para o experimento; não é autenticação real."
+    ],
+    "happyPath": [
+      "curl -i -H 'X-Lab-User: alice' http://127.0.0.1:3000/account/profile.css",
+      "curl -i -H 'X-Lab-User: bob' http://127.0.0.1:3000/account/profile.css",
+      "O origin retorna a identidade correspondente e Cache-Control: private, no-store em ambos."
+    ],
+    "steps": [
+      {
+        "id": "lab-1",
+        "instruction": "Faça Alice solicitar /account/profile.css através do proxy vulnerável.",
+        "command": "curl -i -H 'X-Lab-User: alice' http://localhost:4000/account/profile.css",
+        "expected": "Resposta de Alice e indicador de MISS/armazenamento no proxy.",
+        "checkpoint": "A resposta contém somente dados fictícios de Alice e foi armazenada pelo cache."
+      },
+      {
+        "id": "lab-2",
+        "instruction": "Faça Bob solicitar exatamente a mesma URL.",
+        "command": "curl -i -H 'X-Lab-User: bob' http://localhost:4000/account/profile.css",
+        "expected": "No modo vulnerável, um HIT demonstra reutilização indevida da resposta anterior.",
+        "checkpoint": "Você consegue apontar o cabeçalho/log que prova HIT e o dado que prova contexto incorreto."
+      },
+      {
+        "id": "lab-3",
+        "instruction": "Em outro terminal no diretório do lab, inicie o proxy corrigido em 127.0.0.1:4001. Ele recusa contexto antes da consulta e respeita a política da resposta.",
+        "expected": "Respostas de /account/* deixam de entrar no cache compartilhado.",
+        "checkpoint": "O log do proxy mostra BYPASS/NO-STORE para a rota autenticada.",
+        "command": "npm run fixed"
+      },
+      {
+        "id": "lab-4",
+        "instruction": "Repita Alice → Bob após a correção.",
+        "expected": "Bob recebe seus próprios dados; não há reutilização do corpo de Alice.",
+        "checkpoint": "O reteste comprova isolamento entre as duas identidades.",
+        "command": "curl -i -H 'X-Lab-User: alice' http://127.0.0.1:4001/account/profile.css\ncurl -i -H 'X-Lab-User: bob' http://127.0.0.1:4001/account/profile.css"
+      },
+      {
+        "id": "lab-5",
+        "instruction": "Aqueça o asset público e confirme MISS/HIT.",
+        "command": "curl -i http://127.0.0.1:4001/assets/app.css\ncurl -i http://127.0.0.1:4001/assets/app.css",
+        "expected": "Primeira requisição MISS; segunda HIT com Age.",
+        "checkpoint": "A correção preserva o contrato público."
+      },
+      {
+        "id": "lab-6",
+        "instruction": "Mude o contexto com o cache já aquecido.",
+        "command": "curl -i -H 'Cookie: session=ficticia' http://127.0.0.1:4001/assets/app.css",
+        "expected": "BYPASS apesar da entrada pública já presente.",
+        "checkpoint": "Elegibilidade foi conferida antes da leitura do cache."
+      },
+      {
+        "id": "lab-7",
+        "instruction": "Execute regressões HTTP e relógio determinístico.",
+        "command": "npm test",
+        "expected": "2 testes aprovados: isolamento, cache aquecido, TTL/Age, diretivas e headers de recusa.",
+        "checkpoint": "Expiração elimina a entrada; 404 e respostas privadas não são armazenadas."
+      }
+    ],
+    "cleanup": [
+      "Ctrl+C nos servidores iniciados manualmente. Os caches ficam somente em memória e desaparecem ao parar os processos.",
+      "O teste automático fecha seus próprios servidores em finally; não precisa apagar pastas do projeto."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Nunca aparece HIT.",
+        "likelyCause": "O proxy não está armazenando a resposta, o cache foi desabilitado ou a regra de path não está ativa.",
+        "action": "Confira logs do proxy e valide a regra de cacheabilidade antes de repetir o cenário."
+      },
+      {
+        "symptom": "O corpo muda, mas parece ser cache do navegador.",
+        "likelyCause": "Você está observando cache privado do cliente em vez do proxy compartilhado.",
+        "action": "Use curl e inspecione o cabeçalho/log do proxy; evite depender apenas do DevTools do navegador."
+      },
+      {
+        "symptom": "Alice e Bob recebem sempre o mesmo conteúdo mesmo sem proxy.",
+        "likelyCause": "O problema está no origin/autorização, não no cache.",
+        "action": "Volte ao happy path e corrija o isolamento do origin antes de estudar cache deception."
+      },
+      {
+        "symptom": "O corpo é anonymous apesar de enviar Cookie: user=alice.",
+        "likelyCause": "O origin deste exercício reconhece X-Lab-User, não Cookie como identidade.",
+        "action": "Use X-Lab-User: alice nos comandos de Alice; Cookie serve como sinal de bypass no proxy corrigido."
+      }
+    ],
+    "resources": [
+      {
+        "label": "README.md",
+        "href": "/course-labs/aula-047/README.md"
+      },
+      {
+        "label": "origin.mjs",
+        "href": "/course-labs/aula-047/origin.mjs"
+      },
+      {
+        "label": "proxy-vulneravel.mjs",
+        "href": "/course-labs/aula-047/proxy-vulneravel.mjs"
+      },
+      {
+        "label": "proxy-corrigido.mjs",
+        "href": "/course-labs/aula-047/proxy-corrigido.mjs"
+      },
+      {
+        "label": "cache-policy.mjs",
+        "href": "/course-labs/aula-047/cache-policy.mjs"
+      },
+      {
+        "label": "lab.test.mjs",
+        "href": "/course-labs/aula-047/lab.test.mjs"
+      },
+      {
+        "label": "package.json",
+        "href": "/course-labs/aula-047/package.json"
+      },
+      {
+        "label": "package-lock.json",
+        "href": "/course-labs/aula-047/package-lock.json"
+      }
+    ]
+  },
+  "detection": {
+    "why": "O sinal mais forte é uma resposta personalizada sendo servida como HIT compartilhado para contextos distintos.",
+    "signals": [
+      "Age/cache-status/HIT em rotas autenticadas ou personalizadas.",
+      "Mesmo cache key atendendo sessões diferentes.",
+      "Set-Cookie ou conteúdo de conta associado a respostas armazenadas.",
+      "Paths dinâmicos com sufixos estáticos tratados de forma diferente por proxy e origin."
+    ],
+    "investigation": [
+      "Compare a mesma URL com duas identidades fictícias.",
+      "Correlacione request ID do proxy e do origin.",
+      "Registre decisão de cacheabilidade, chave calculada e motivo de BYPASS/HIT.",
+      "Revise rewrites e normalização de caminho em todas as camadas."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Conteúdo autenticado deve ser privado por padrão.",
+      "Não inferir publicidade apenas por extensão de arquivo.",
+      "Cachear namespaces públicos explícitos, como /assets/.",
+      "Respeitar Cache-Control private/no-store e evitar armazenar respostas com Set-Cookie.",
+      "Alinhar normalização e roteamento entre CDN/proxy e origin."
+    ],
+    "verification": [
+      "Repita o cenário com duas identidades após a correção.",
+      "Confirme BYPASS/NO-STORE nas rotas privadas.",
+      "Confirme que assets públicos continuam podendo gerar HIT.",
+      "Verifique que a correção não depende apenas de uma URL de teste específica.",
+      "Aqueça asset anônimo; repita com Cookie, Authorization e X-Lab-User, exigindo BYPASS.",
+      "Avance o relógio do teste até a expiração e confira remoção da entrada."
+    ]
+  },
+  "review": {
+    "challenge": "Explique por que adicionar Cookie à cache key pode reduzir um vazamento específico, mas ainda ser uma solução inferior a não armazenar a resposta privada.",
+    "quiz": [
+      {
+        "q": "Qual condição caracteriza melhor Web Cache Deception?",
+        "options": [
+          "O atacante altera uma entrada não-keyed para modificar uma resposta pública compartilhada.",
+          "Uma resposta privada legítima é armazenada porque cache e origin discordam sobre a natureza da URL.",
+          "O origin ignora completamente a autenticação e retorna sempre o mesmo usuário.",
+          "O navegador mantém um asset público em cache por tempo excessivo."
+        ],
+        "answer": 1,
+        "why": "Deception depende do armazenamento indevido de conteúdo privado; poisoning normalmente envolve influenciar o conteúdo cacheado.",
+        "concept": "deception-vs-poisoning"
+      },
+      {
+        "q": "Por que uma extensão .css no caminho não deve decidir sozinha a cacheabilidade?",
+        "options": [
+          "Porque extensões nunca podem aparecer em URLs HTTP.",
+          "Porque o origin pode tratar o mesmo caminho como rota dinâmica, independentemente do sufixo.",
+          "Porque CSS é sempre conteúdo autenticado.",
+          "Porque caches compartilhados ignoram caminhos."
+        ],
+        "answer": 1,
+        "why": "O significado do caminho é definido pelo roteamento e pelas políticas das camadas, não apenas pelo sufixo.",
+        "concept": "origin-routing"
+      },
+      {
+        "q": "Qual evidência aponta mais diretamente para cache deception em laboratório?",
+        "options": [
+          "Bob recebe HIT com conteúdo que corresponde à sessão de Alice.",
+          "Alice recebe MISS com seus próprios dados.",
+          "Um asset público gera HIT para dois usuários.",
+          "O origin responde 200 para uma rota válida."
+        ],
+        "answer": 0,
+        "why": "O HIT compartilhando conteúdo de outro contexto prova a perda de isolamento causada pelo cache.",
+        "concept": "shared-cache-isolation"
+      },
+      {
+        "q": "Qual política é mais robusta para conteúdo de conta?",
+        "options": [
+          "Cachear qualquer caminho que termine em .css.",
+          "Adicionar mais extensões à lista de recursos estáticos.",
+          "Fazer BYPASS para contexto autenticado e cachear apenas namespaces públicos explícitos.",
+          "Usar uma TTL menor para todas as respostas privadas."
+        ],
+        "answer": 2,
+        "why": "A política trata privacidade como regra e publicidade como exceção explícita, em vez de inferir pelo nome da URL.",
+        "concept": "cacheability-policy"
+      },
+      {
+        "q": "Qual afirmação diferencia cache key de cacheability?",
+        "options": [
+          "Cache key decide se uma resposta pode ser armazenada; cacheability decide o nome do arquivo.",
+          "Cache key diferencia entradas; cacheability decide se a resposta deve entrar no cache.",
+          "São sinônimos em caches HTTP.",
+          "Cacheability só existe no navegador."
+        ],
+        "answer": 1,
+        "why": "Uma resposta pode ter uma chave correta e ainda assim ser inadequada para armazenamento compartilhado.",
+        "concept": "cache-key-vs-cacheability"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Cache key",
+        "back": "Conjunto de dimensões usado para distinguir uma entrada armazenada de outra.",
+        "concept": "cache-key"
+      },
+      {
+        "front": "Cacheability",
+        "back": "Decisão sobre se uma resposta deve ou não ser armazenada.",
+        "concept": "cacheability"
+      },
+      {
+        "front": "Web Cache Deception",
+        "back": "Armazenamento indevido de conteúdo privado por divergência entre interpretação do cache e do origin.",
+        "concept": "web-cache-deception"
+      },
+      {
+        "front": "private",
+        "back": "Diretiva que sinaliza que a resposta não deve ser armazenada por cache compartilhado.",
+        "concept": "cache-control"
+      },
+      {
+        "front": "no-store",
+        "back": "Diretiva que instrui a não armazenar a resposta.",
+        "concept": "cache-control"
+      },
+      {
+        "front": "Sinal de detecção forte",
+        "back": "HIT compartilhado entregando conteúdo de uma identidade a outra.",
+        "concept": "detection"
+      },
+      {
+        "front": "Correção estrutural",
+        "back": "BYPASS para contexto autenticado e cache apenas em namespaces públicos explícitos.",
+        "concept": "remediation"
+      },
+      {
+        "front": "Por que verificar identidade antes de cache.get?",
+        "back": "Um objeto já aquecido pode ser reutilizado sem chegar à regra de armazenamento; a requisição precisa ser elegível antes da consulta.",
+        "concept": "warm-cache-bypass"
+      },
+      {
+        "front": "no-cache proíbe guardar em qualquer cache?",
+        "back": "Não; exige validação antes de reutilizar. Este lab faz BYPASS porque não implementa revalidação.",
+        "concept": "revalidation"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "juice-shop",
+      "role": "general-appsec-lab-reference",
+      "note": "Referência de desenho de desafios, hints e ambiente AppSec local. Não é a fonte específica deste laboratório de cache deception."
+    },
+    {
+      "catalogId": "webgoat",
+      "role": "lesson-lab-reference",
+      "note": "Referência para aproximar explicação, exercício e mitigação mantendo laboratório local."
+    }
+  ]
+}

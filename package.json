@@ -5,13 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "check:baseline": "node scripts/check-baseline.mjs",
+    "validate:curriculum": "node scripts/validate-curriculum.mjs",
+    "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
+    "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
+    "build": "npm run verify:curriculum && npm run verify:learning && npm run verify:catalog && tsc --noEmit && vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "verify:learning": "node scripts/verify-phase-08-11.mjs",
+    "verify:catalog": "node scripts/verify-phase-12-14.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "ts-fsrs": "^5.4.2"
   },
   "devDependencies": {
     "@types/react": "^19.1.12",

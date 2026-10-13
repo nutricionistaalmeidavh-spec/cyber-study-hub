@@ -1,0 +1,32 @@
+[
+  {
+    "caso": "TLS12",
+    "versao": "TLSv1.2",
+    "cifra": "ECDHE-RSA-AES256-GCM-SHA384",
+    "HTTP": 200,
+    "hostname_verificado": "localhost",
+    "frames_reconstruidos": 13,
+    "payload_TLS_real": true,
+    "headers_TCP_sinteticos": true
+  },
+  {
+    "caso": "TLS13",
+    "versao": "TLSv1.3",
+    "cifra": "TLS_AES_256_GCM_SHA384",
+    "HTTP": 200,
+    "hostname_verificado": "localhost",
+    "frames_reconstruidos": 16,
+    "payload_TLS_real": true,
+    "headers_TCP_sinteticos": true
+  },
+  {
+    "caso": "CA-nao-confiavel",
+    "resultado": "rejeitado",
+    "motivo": "unable to get local issuer certificate"
+  },
+  {
+    "caso": "hostname-incorreto",
+    "resultado": "rejeitado",
+    "motivo": "Hostname mismatch, certificate is not valid for 'outro.local'."
+  }
+]

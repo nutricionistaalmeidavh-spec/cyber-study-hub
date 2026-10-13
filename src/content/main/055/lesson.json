@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 2,
+  "id": 55,
+  "slug": "oauth-e-oidc-security",
+  "title": "OAuth e OIDC Security",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": false,
+  "summary": "OAuth delega autorização; OIDC adiciona identidade. A segurança está em redirect URIs, state/nonce, PKCE e validação correta dos tokens.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 54,
+      "title": "JWT Security",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de oauth e oidc security no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Authorization Code.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de OAuth e OIDC Security",
+    "scenario": "OAuth 2.0 delega autorização. OIDC adiciona identidade. Confundir access token, ID token, authorization code e refresh token cria decisões erradas mesmo quando a criptografia está correta."
+  },
+  "fundamentals": [
+    {
+      "term": "Authorization Code",
+      "explanation": "Código temporário trocado por tokens."
+    },
+    {
+      "term": "PKCE",
+      "explanation": "Prova que vincula o cliente que iniciou o fluxo ao resgate do code."
+    },
+    {
+      "term": "State",
+      "explanation": "Valor usado para relacionar resposta ao fluxo iniciado e mitigar CSRF."
+    },
+    {
+      "term": "Nonce",
+      "explanation": "Valor usado no OIDC para vincular o ID token ao fluxo."
+    }
+  ],
+  "mechanism": {
+    "summary": "OAuth delega autorização; OIDC adiciona identidade. Os erros mais comuns surgem em redirect URI, state, PKCE, armazenamento de tokens e confusão entre access token e ID token.",
+    "steps": [
+      {
+        "id": "m55-1",
+        "title": "Cliente inicia autorização",
+        "detail": "Cliente inicia autorização"
+      },
+      {
+        "id": "m55-2",
+        "title": "Authorization Server autentica usuário",
+        "detail": "Authorization Server autentica usuário"
+      },
+      {
+        "id": "m55-3",
+        "title": "State/nonce vinculam a resposta à sessão",
+        "detail": "State/nonce vinculam a resposta à sessão"
+      },
+      {
+        "id": "m55-4",
+        "title": "PKCE protege troca do código",
+        "detail": "PKCE protege troca do código"
+      },
+      {
+        "id": "m55-5",
+        "title": "Cliente recebe tokens com finalidade definida",
+        "detail": "Cliente recebe tokens com finalidade definida"
+      },
+      {
+        "id": "m55-6",
+        "title": "API valida access token; cliente valida ID token quando aplicável",
+        "detail": "API valida access token; cliente valida ID token quando aplicável"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-55-01",
+      "title": "Raciocínio completo — OAuth e OIDC Security",
+      "problem": "OAuth delega autorização; OIDC adiciona identidade. Os erros mais comuns surgem em redirect URI, state, PKCE, armazenamento de tokens e confusão entre access token e ID token.",
+      "solutionSteps": [
+        {
+          "id": "w55-1",
+          "action": "Cliente inicia autorização",
+          "explanation": "Comece identificando a entrada ou estado relevante: cliente inicia autorização.",
+          "evidence": null
+        },
+        {
+          "id": "w55-2",
+          "action": "Authorization Server autentica usuário",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: authorization server autentica usuário.",
+          "evidence": null
+        },
+        {
+          "id": "w55-3",
+          "action": "State/nonce vinculam a resposta à sessão",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: state/nonce vinculam a resposta à sessão.",
+          "evidence": null
+        },
+        {
+          "id": "w55-4",
+          "action": "PKCE protege troca do código",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: pkce protege troca do código.",
+          "evidence": null
+        },
+        {
+          "id": "w55-5",
+          "action": "Cliente recebe tokens com finalidade definida",
+          "explanation": "Feche a cadeia observando o efeito e o controle: cliente recebe tokens com finalidade definida.",
+          "evidence": "Procure redirects fora da allowlist, reutilização de code, tokens para audiência errada e falhas de state/nonce."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em OAuth e OIDC Security?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-55-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Cliente inicia autorização\n→ Authorization Server autentica usuário\n→ State/nonce vinculam a resposta à sessão\n→ [COMPLETE ESTA DECISÃO]\n→ Cliente recebe tokens com finalidade definida\n→ API valida access token; cliente valida ID token quando aplicável",
+      "expectedConcepts": [
+        "Authorization Code",
+        "PKCE",
+        "State"
+      ],
+      "solution": "PKCE protege troca do código"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-55-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Authorization Code de PKCE e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-55-01",
+      "title": "Gerar challenge PKCE",
+      "language": "js",
+      "code": "const verifier = base64url(crypto.getRandomValues(new Uint8Array(32)));\nconst digest = await crypto.subtle.digest(\n  \"SHA-256\",\n  new TextEncoder().encode(verifier)\n);\nconst challenge = base64url(new Uint8Array(digest));\n\n// Salve verifier apenas para a troca do authorization code.",
+      "explanation": "PKCE reduz o valor de um authorization code interceptado sem o verifier correspondente."
+    }
+  ],
+  "lab": {
+    "title": "Desenhar um fluxo Authorization Code + PKCE",
+    "mode": "Celular",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-55-1",
+        "instruction": "Desenhe cliente, Authorization Server e API.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Desenhe cliente, Authorization Server e API."
+      },
+      {
+        "id": "lab-55-2",
+        "instruction": "Marque onde entram state, nonce, codechallenge e codeverifier.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Marque onde entram state, nonce, codechallenge e codeverifier."
+      },
+      {
+        "id": "lab-55-3",
+        "instruction": "Diferencie ID token de access token.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Diferencie ID token de access token."
+      },
+      {
+        "id": "lab-55-4",
+        "instruction": "Liste quais URLs de redirect seriam permitidas.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Liste quais URLs de redirect seriam permitidas."
+      },
+      {
+        "id": "lab-55-5",
+        "instruction": "Explique onde tokens não deveriam ser gravados.",
+        "expected": "Você deve conseguir narrar o fluxo sem confundir autenticação com autorização.",
+        "checkpoint": "Você deve conseguir narrar o fluxo sem confundir autenticação com autorização."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Procure redirects fora da allowlist, reutilização de code, tokens para audiência errada e falhas de state/nonce.",
+    "signals": [
+      "Procure redirects fora da allowlist, reutilização de code, tokens para audiência errada e falhas de state/nonce."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Use redirect URIs exatas, PKCE, state/nonce fortes e valide issuer, audience e assinatura."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Authorization Code de PKCE e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Authorization Code?",
+        "options": [
+          "Código temporário trocado por tokens.",
+          "Prova que vincula o cliente que iniciou o fluxo ao resgate do code.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica."
+        ],
+        "answer": 0,
+        "why": "Código temporário trocado por tokens.",
+        "concept": "Authorization Code"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Use redirect URIs exatas, PKCE, state/nonce fortes e valide issuer, audience e assinatura.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada."
+        ],
+        "answer": 0,
+        "why": "Use redirect URIs exatas, PKCE, state/nonce fortes e valide issuer, audience e assinatura.",
+        "concept": "PKCE"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Procure redirects fora da allowlist, reutilização de code, tokens para audiência errada e falhas de state/nonce.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação.",
+          "Ignorar eventos raros porque normalmente são falsos positivos."
+        ],
+        "answer": 0,
+        "why": "Procure redirects fora da allowlist, reutilização de code, tokens para audiência errada e falhas de state/nonce.",
+        "concept": "State"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "Você deve conseguir narrar o fluxo sem confundir autenticação com autorização.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Nonce"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Authorization Code"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Authorization Code",
+        "back": "Código temporário trocado por tokens.",
+        "concept": "Authorization Code"
+      },
+      {
+        "front": "PKCE",
+        "back": "Prova que vincula o cliente que iniciou o fluxo ao resgate do code.",
+        "concept": "PKCE"
+      },
+      {
+        "front": "State",
+        "back": "Valor usado para relacionar resposta ao fluxo iniciado e mitigar CSRF.",
+        "concept": "State"
+      },
+      {
+        "front": "Nonce",
+        "back": "Valor usado no OIDC para vincular o ID token ao fluxo.",
+        "concept": "Nonce"
+      },
+      {
+        "front": "Defesa",
+        "back": "Use redirect URIs exatas, PKCE, state/nonce fortes e valide issuer, audience e assinatura.",
+        "concept": "Authorization Code"
+      },
+      {
+        "front": "Detecção",
+        "back": "Procure redirects fora da allowlist, reutilização de code, tokens para audiência errada e falhas de state/nonce.",
+        "concept": "PKCE"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "Você deve conseguir narrar o fluxo sem confundir autenticação com autorização.",
+        "concept": "State"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

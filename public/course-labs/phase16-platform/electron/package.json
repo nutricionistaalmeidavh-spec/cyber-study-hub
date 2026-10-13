@@ -1,0 +1,10 @@
+{
+  "name": "course-ipc-lab",
+  "private": true,
+  "version": "1.0.0",
+  "main": "main.cjs",
+  "scripts": {
+    "test": "node --test test.cjs",
+    "start": "electron ."
+  }
+}

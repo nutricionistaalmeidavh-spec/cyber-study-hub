@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 2,
+  "id": 53,
+  "slug": "file-upload-vulnerabilities",
+  "title": "File Upload Vulnerabilities",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "Uploads exigem validação de conteúdo, extensão, armazenamento e execução; confiar só no nome do arquivo é insuficiente.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 52,
+      "title": "Path Traversal e LFI/RFI",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de file upload vulnerabilities no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a MIME type.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de File Upload Vulnerabilities",
+    "scenario": "Upload seguro possui duas fases diferentes: aceitar/armazenar e depois servir/processar. Validar somente na entrada não basta se o arquivo mais tarde for servido com tipo incorreto ou colocado em área executável."
+  },
+  "fundamentals": [
+    {
+      "term": "MIME type",
+      "explanation": "Tipo declarado/identificado do conteúdo."
+    },
+    {
+      "term": "Magic bytes",
+      "explanation": "Assinaturas iniciais usadas para reconhecer formatos."
+    },
+    {
+      "term": "Storage isolation",
+      "explanation": "Guardar upload fora de área executável e, idealmente, em serviço isolado."
+    },
+    {
+      "term": "Renaming",
+      "explanation": "Gerar nome interno em vez de confiar no nome enviado."
+    }
+  ],
+  "mechanism": {
+    "summary": "Upload seguro exige validar mais que extensão: tipo real, tamanho, nome, destino, permissões e forma como o arquivo será servido depois do armazenamento.",
+    "steps": [
+      {
+        "id": "m53-1",
+        "title": "Cliente envia arquivo",
+        "detail": "Cliente envia arquivo"
+      },
+      {
+        "id": "m53-2",
+        "title": "Servidor limita tamanho e quantidade",
+        "detail": "Servidor limita tamanho e quantidade"
+      },
+      {
+        "id": "m53-3",
+        "title": "Conteúdo e extensão são validados",
+        "detail": "Conteúdo e extensão são validados"
+      },
+      {
+        "id": "m53-4",
+        "title": "Nome é substituído por identificador seguro",
+        "detail": "Nome é substituído por identificador seguro"
+      },
+      {
+        "id": "m53-5",
+        "title": "Arquivo vai para storage não executável",
+        "detail": "Arquivo vai para storage não executável"
+      },
+      {
+        "id": "m53-6",
+        "title": "Download usa Content-Type/Content-Disposition adequados",
+        "detail": "Download usa Content-Type/Content-Disposition adequados"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-53-01",
+      "title": "Raciocínio completo — File Upload Vulnerabilities",
+      "problem": "Upload seguro exige validar mais que extensão: tipo real, tamanho, nome, destino, permissões e forma como o arquivo será servido depois do armazenamento.",
+      "solutionSteps": [
+        {
+          "id": "w53-1",
+          "action": "Cliente envia arquivo",
+          "explanation": "Comece identificando a entrada ou estado relevante: cliente envia arquivo.",
+          "evidence": null
+        },
+        {
+          "id": "w53-2",
+          "action": "Servidor limita tamanho e quantidade",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: servidor limita tamanho e quantidade.",
+          "evidence": null
+        },
+        {
+          "id": "w53-3",
+          "action": "Conteúdo e extensão são validados",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: conteúdo e extensão são validados.",
+          "evidence": null
+        },
+        {
+          "id": "w53-4",
+          "action": "Nome é substituído por identificador seguro",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: nome é substituído por identificador seguro.",
+          "evidence": null
+        },
+        {
+          "id": "w53-5",
+          "action": "Arquivo vai para storage não executável",
+          "explanation": "Feche a cadeia observando o efeito e o controle: arquivo vai para storage não executável.",
+          "evidence": "Observe uploads executáveis, dupla extensão, MIME divergente e acessos diretos a caminhos de upload."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em File Upload Vulnerabilities?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-53-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Cliente envia arquivo\n→ Servidor limita tamanho e quantidade\n→ Conteúdo e extensão são validados\n→ [COMPLETE ESTA DECISÃO]\n→ Arquivo vai para storage não executável\n→ Download usa Content-Type/Content-Disposition adequados",
+      "expectedConcepts": [
+        "MIME type",
+        "Magic bytes",
+        "Storage isolation"
+      ],
+      "solution": "Nome é substituído por identificador seguro"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-53-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria MIME type de Magic bytes e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-53-01",
+      "title": "Metadados controlados no upload",
+      "language": "ts",
+      "code": "const ALLOWED = new Set([\"image/png\", \"image/jpeg\"]);\n\nfunction validateUpload(file: { size: number; mimetype: string }) {\n  if (file.size > 5 * 1024 * 1024) throw new Error(\"Arquivo muito grande\");\n  if (!ALLOWED.has(file.mimetype)) throw new Error(\"Tipo não permitido\");\n\n  return crypto.randomUUID();\n}",
+      "explanation": "Em produção, valide assinatura/magic bytes e mantenha o storage fora de diretórios executáveis."
+    }
+  ],
+  "lab": {
+    "title": "Pipeline de upload seguro",
+    "mode": "PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-53-1",
+        "instruction": "Monte um endpoint local que aceite apenas PNG/JPEG pequenos.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Monte um endpoint local que aceite apenas PNG/JPEG pequenos."
+      },
+      {
+        "id": "lab-53-2",
+        "instruction": "Troque o nome original por UUID.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Troque o nome original por UUID."
+      },
+      {
+        "id": "lab-53-3",
+        "instruction": "Armazene fora da pasta de código.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Armazene fora da pasta de código."
+      },
+      {
+        "id": "lab-53-4",
+        "instruction": "Sirva o arquivo com cabeçalhos de conteúdo explícitos.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Sirva o arquivo com cabeçalhos de conteúdo explícitos."
+      },
+      {
+        "id": "lab-53-5",
+        "instruction": "Teste tamanho excedido e MIME não permitido.",
+        "expected": "O nome e a extensão fornecidos pelo usuário não controlam onde ou como o servidor executa o arquivo.",
+        "checkpoint": "O nome e a extensão fornecidos pelo usuário não controlam onde ou como o servidor executa o arquivo."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Observe uploads executáveis, dupla extensão, MIME divergente e acessos diretos a caminhos de upload.",
+    "signals": [
+      "Observe uploads executáveis, dupla extensão, MIME divergente e acessos diretos a caminhos de upload."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Valide conteúdo e tamanho, renomeie, armazene fora do webroot e sirva com headers seguros."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria MIME type de Magic bytes e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve MIME type?",
+        "options": [
+          "Tipo declarado/identificado do conteúdo.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica.",
+          "Assinaturas iniciais usadas para reconhecer formatos."
+        ],
+        "answer": 0,
+        "why": "Tipo declarado/identificado do conteúdo.",
+        "concept": "MIME type"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Valide conteúdo e tamanho, renomeie, armazene fora do webroot e sirva com headers seguros.",
+          "Adiar correções até existir exploração pública confirmada.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS."
+        ],
+        "answer": 0,
+        "why": "Valide conteúdo e tamanho, renomeie, armazene fora do webroot e sirva com headers seguros.",
+        "concept": "Magic bytes"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Observe uploads executáveis, dupla extensão, MIME divergente e acessos diretos a caminhos de upload.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação."
+        ],
+        "answer": 0,
+        "why": "Observe uploads executáveis, dupla extensão, MIME divergente e acessos diretos a caminhos de upload.",
+        "concept": "Storage isolation"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "O nome e a extensão fornecidos pelo usuário não controlam onde ou como o servidor executa o arquivo.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Renaming"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "MIME type"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "MIME type",
+        "back": "Tipo declarado/identificado do conteúdo.",
+        "concept": "MIME type"
+      },
+      {
+        "front": "Magic bytes",
+        "back": "Assinaturas iniciais usadas para reconhecer formatos.",
+        "concept": "Magic bytes"
+      },
+      {
+        "front": "Storage isolation",
+        "back": "Guardar upload fora de área executável e, idealmente, em serviço isolado.",
+        "concept": "Storage isolation"
+      },
+      {
+        "front": "Renaming",
+        "back": "Gerar nome interno em vez de confiar no nome enviado.",
+        "concept": "Renaming"
+      },
+      {
+        "front": "Defesa",
+        "back": "Valide conteúdo e tamanho, renomeie, armazene fora do webroot e sirva com headers seguros.",
+        "concept": "MIME type"
+      },
+      {
+        "front": "Detecção",
+        "back": "Observe uploads executáveis, dupla extensão, MIME divergente e acessos diretos a caminhos de upload.",
+        "concept": "Magic bytes"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "O nome e a extensão fornecidos pelo usuário não controlam onde ou como o servidor executa o arquivo.",
+        "concept": "Storage isolation"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

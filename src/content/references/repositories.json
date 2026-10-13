@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "repositories": [
+    {
+      "id": "juice-shop",
+      "name": "OWASP Juice Shop",
+      "url": "https://github.com/juice-shop/juice-shop",
+      "license": "MIT",
+      "bestFor": [
+        "Web/AppSec",
+        "challenges",
+        "hints",
+        "ambiente deliberadamente vulnerável"
+      ],
+      "safeUse": "Executar localmente/Docker. Não usar instância demo pública como alvo de hacking."
+    },
+    {
+      "id": "webgoat",
+      "name": "OWASP WebGoat",
+      "url": "https://github.com/WebGoat/WebGoat",
+      "license": "Consultar LICENSE do repositório antes de reutilizar conteúdo.",
+      "bestFor": [
+        "Web/AppSec",
+        "aula + exercício",
+        "mitigação ligada ao exercício"
+      ],
+      "safeUse": "Executar localmente e manter isolamento conforme orientação do projeto."
+    },
+    {
+      "id": "crapi",
+      "name": "OWASP crAPI",
+      "url": "https://github.com/OWASP/crAPI",
+      "license": "Apache-2.0",
+      "bestFor": [
+        "API Security",
+        "happy path",
+        "BOLA/BFLA",
+        "microservices"
+      ],
+      "safeUse": "Executar apenas em ambiente próprio/local."
+    },
+    {
+      "id": "atomic-red-team",
+      "name": "Atomic Red Team",
+      "url": "https://github.com/redcanaryco/atomic-red-team",
+      "license": "MIT",
+      "bestFor": [
+        "Blue Team",
+        "Purple Team",
+        "EDR",
+        "MITRE ATT&CK",
+        "testes pequenos com cleanup"
+      ],
+      "safeUse": "Executar somente técnicas selecionadas em laboratório controlado e revisar pré-requisitos/cleanup."
+    },
+    {
+      "id": "sigma",
+      "name": "SigmaHQ/sigma",
+      "url": "https://github.com/SigmaHQ/sigma",
+      "license": "Consultar a licença/metadata de cada regra antes de incorporar.",
+      "bestFor": [
+        "SIEM",
+        "Sigma",
+        "Threat Hunting",
+        "Detection Engineering"
+      ],
+      "safeUse": "Usar regras como fonte de estudo defensivo e adaptar com atribuição quando permitido."
+    },
+    {
+      "id": "yara-rules",
+      "name": "Yara-Rules/rules",
+      "url": "https://github.com/Yara-Rules/rules",
+      "license": "GPL-2.0",
+      "bestFor": [
+        "YARA",
+        "exemplos históricos de regras"
+      ],
+      "safeUse": "Revisar atualidade e licença antes de copiar/adaptar regras."
+    },
+    {
+      "id": "pwncollege-dojo",
+      "name": "pwn.college dojo",
+      "url": "https://github.com/pwncollege/dojo",
+      "license": "BSD-2-Clause",
+      "bestFor": [
+        "arquitetura de módulos",
+        "challenges",
+        "progressão prática"
+      ],
+      "safeUse": "Usar como referência arquitetural; exercícios ativos permanecem em laboratório autorizado."
+    },
+    {
+      "id": "ts-fsrs",
+      "name": "open-spaced-repetition/ts-fsrs",
+      "url": "https://github.com/open-spaced-repetition/ts-fsrs",
+      "license": "MIT",
+      "bestFor": [
+        "revisão espaçada",
+        "TypeScript",
+        "local-first"
+      ],
+      "safeUse": "Integração futura; não é dependência das Fases 0–3."
+    },
+    {
+      "id": "weird-proxies",
+      "name": "GrrrDog/weird_proxies",
+      "url": "https://github.com/GrrrDog/weird_proxies",
+      "license": "Sem licença declarada no metadata consultado; usar apenas como referência e não copiar conteúdo.",
+      "bestFor": [
+        "reverse proxies",
+        "cache edge cases",
+        "normalização",
+        "material de leitura"
+      ],
+      "safeUse": "Referência conceitual. Não transformar exemplos em varredura de terceiros."
+    },
+    {
+      "id": "param-miner",
+      "name": "PortSwigger/param-miner",
+      "url": "https://github.com/PortSwigger/param-miner",
+      "license": "NOASSERTION no metadata consultado; revisar licença antes de reutilizar código.",
+      "bestFor": [
+        "cache poisoning",
+        "parâmetros não-keyed",
+        "pesquisa de comportamento de cache"
+      ],
+      "safeUse": "Usar apenas em laboratório autorizado; para o Hub, priorizar conceitos e não automação contra alvos externos."
+    },
+    {
+      "id": "airachnid",
+      "name": "SpiderLabs/Airachnid-Burp-Extension",
+      "url": "https://github.com/SpiderLabs/Airachnid-Burp-Extension",
+      "license": "GPL-3.0",
+      "bestFor": [
+        "referência histórica de automação para Web Cache Deception"
+      ],
+      "safeUse": "Projeto antigo (último push observado em 2021); usar como referência histórica, não como dependência atual do Hub."
+    }
+  ]
+}

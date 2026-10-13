@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 2,
+  "id": 50,
+  "slug": "dom-based-vulnerabilities",
+  "title": "DOM-based Vulnerabilities",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "Falhas DOM surgem quando código cliente move dados não confiáveis de fontes para sinks perigosos sem validação ou encoding adequado.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 49,
+      "title": "Host Header Attacks",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de dom-based vulnerabilities no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Source.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de DOM-based Vulnerabilities",
+    "scenario": "Vulnerabilidades DOM-based podem existir inteiramente no navegador: a resposta do servidor pode ser estática, mas JavaScript lê uma source controlável e entrega o valor a um sink que interpreta HTML, script ou URL."
+  },
+  "fundamentals": [
+    {
+      "term": "Source",
+      "explanation": "Origem de dados, como location, postMessage ou storage."
+    },
+    {
+      "term": "Sink",
+      "explanation": "API que interpreta dados de forma perigosa, como innerHTML."
+    },
+    {
+      "term": "Taint flow",
+      "explanation": "Caminho do dado não confiável até um sink."
+    },
+    {
+      "term": "postMessage",
+      "explanation": "Canal entre janelas que exige validação de origin e payload."
+    }
+  ],
+  "mechanism": {
+    "summary": "Vulnerabilidades DOM-based acontecem no navegador quando uma fonte controlável chega a um sink perigoso. A resposta do servidor pode estar correta e, ainda assim, o JavaScript do cliente criar o problema.",
+    "steps": [
+      {
+        "id": "m50-1",
+        "title": "Fonte: URL, hash, postMessage ou storage",
+        "detail": "Fonte: URL, hash, postMessage ou storage"
+      },
+      {
+        "id": "m50-2",
+        "title": "JavaScript lê o valor",
+        "detail": "JavaScript lê o valor"
+      },
+      {
+        "id": "m50-3",
+        "title": "O valor percorre transformações",
+        "detail": "O valor percorre transformações"
+      },
+      {
+        "id": "m50-4",
+        "title": "Sink altera DOM, URL ou código",
+        "detail": "Sink altera DOM, URL ou código"
+      },
+      {
+        "id": "m50-5",
+        "title": "API segura ou sanitização interrompe o fluxo",
+        "detail": "API segura ou sanitização interrompe o fluxo"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-50-01",
+      "title": "Raciocínio completo — DOM-based Vulnerabilities",
+      "problem": "Vulnerabilidades DOM-based acontecem no navegador quando uma fonte controlável chega a um sink perigoso. A resposta do servidor pode estar correta e, ainda assim, o JavaScript do cliente criar o problema.",
+      "solutionSteps": [
+        {
+          "id": "w50-1",
+          "action": "Fonte: URL, hash, postMessage ou storage",
+          "explanation": "Comece identificando a entrada ou estado relevante: fonte: url, hash, postmessage ou storage.",
+          "evidence": null
+        },
+        {
+          "id": "w50-2",
+          "action": "JavaScript lê o valor",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: javascript lê o valor.",
+          "evidence": null
+        },
+        {
+          "id": "w50-3",
+          "action": "O valor percorre transformações",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: o valor percorre transformações.",
+          "evidence": null
+        },
+        {
+          "id": "w50-4",
+          "action": "Sink altera DOM, URL ou código",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: sink altera dom, url ou código.",
+          "evidence": null
+        },
+        {
+          "id": "w50-5",
+          "action": "API segura ou sanitização interrompe o fluxo",
+          "explanation": "Feche a cadeia observando o efeito e o controle: api segura ou sanitização interrompe o fluxo.",
+          "evidence": "Use análise estática/dinâmica do fluxo source→sink e monitore erros/DOM mutations inesperadas."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em DOM-based Vulnerabilities?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-50-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Fonte: URL, hash, postMessage ou storage\n→ JavaScript lê o valor\n→ [COMPLETE ESTA DECISÃO]\n→ Sink altera DOM, URL ou código\n→ API segura ou sanitização interrompe o fluxo",
+      "expectedConcepts": [
+        "Source",
+        "Sink",
+        "Taint flow"
+      ],
+      "solution": "O valor percorre transformações"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-50-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Source de Sink e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-50-01",
+      "title": "textContent em vez de innerHTML",
+      "language": "js",
+      "code": "const params = new URLSearchParams(location.search);\nconst name = params.get(\"name\") ?? \"\";\n\nconst output = document.querySelector(\"#welcome\");\nif (output) {\n  output.textContent = `Olá, ${name}`;\n}",
+      "explanation": "Quando a intenção é exibir texto, textContent evita interpretar marcação HTML."
+    }
+  ],
+  "lab": {
+    "title": "Rastrear fonte → transformação → sink",
+    "mode": "Celular + PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-50-1",
+        "instruction": "No celular, identifique exemplos de source e sink.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: No celular, identifique exemplos de source e sink."
+      },
+      {
+        "id": "lab-50-2",
+        "instruction": "No PC, crie uma página local que leia um parâmetro da URL.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: No PC, crie uma página local que leia um parâmetro da URL."
+      },
+      {
+        "id": "lab-50-3",
+        "instruction": "Renderize primeiro com textContent.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Renderize primeiro com textContent."
+      },
+      {
+        "id": "lab-50-4",
+        "instruction": "Use DevTools para acompanhar o valor no código.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Use DevTools para acompanhar o valor no código."
+      },
+      {
+        "id": "lab-50-5",
+        "instruction": "Liste quais sinks do projeto merecem revisão: innerHTML, insertAdjacentHTML, eval e URLs dinâmicas.",
+        "expected": "Você deve conseguir desenhar o caminho de um dado controlável até o DOM e escolher uma API mais segura.",
+        "checkpoint": "Você deve conseguir desenhar o caminho de um dado controlável até o DOM e escolher uma API mais segura."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Use análise estática/dinâmica do fluxo source→sink e monitore erros/DOM mutations inesperadas.",
+    "signals": [
+      "Use análise estática/dinâmica do fluxo source→sink e monitore erros/DOM mutations inesperadas."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Prefira APIs seguras como textContent, valide origin em postMessage e aplique sanitização contextual."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Source de Sink e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Source?",
+        "options": [
+          "Origem de dados, como location, postMessage ou storage.",
+          "Processo que substitui autenticação por criptografia simétrica.",
+          "API que interpreta dados de forma perigosa, como innerHTML.",
+          "Mecanismo usado apenas para estética da interface."
+        ],
+        "answer": 0,
+        "why": "Origem de dados, como location, postMessage ou storage.",
+        "concept": "Source"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Prefira APIs seguras como textContent, valide origin em postMessage e aplique sanitização contextual.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada."
+        ],
+        "answer": 0,
+        "why": "Prefira APIs seguras como textContent, valide origin em postMessage e aplique sanitização contextual.",
+        "concept": "Sink"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Use análise estática/dinâmica do fluxo source→sink e monitore erros/DOM mutations inesperadas.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação."
+        ],
+        "answer": 0,
+        "why": "Use análise estática/dinâmica do fluxo source→sink e monitore erros/DOM mutations inesperadas.",
+        "concept": "Taint flow"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "Você deve conseguir desenhar o caminho de um dado controlável até o DOM e escolher uma API mais segura.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "postMessage"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Source"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Source",
+        "back": "Origem de dados, como location, postMessage ou storage.",
+        "concept": "Source"
+      },
+      {
+        "front": "Sink",
+        "back": "API que interpreta dados de forma perigosa, como innerHTML.",
+        "concept": "Sink"
+      },
+      {
+        "front": "Taint flow",
+        "back": "Caminho do dado não confiável até um sink.",
+        "concept": "Taint flow"
+      },
+      {
+        "front": "postMessage",
+        "back": "Canal entre janelas que exige validação de origin e payload.",
+        "concept": "postMessage"
+      },
+      {
+        "front": "Defesa",
+        "back": "Prefira APIs seguras como textContent, valide origin em postMessage e aplique sanitização contextual.",
+        "concept": "Source"
+      },
+      {
+        "front": "Detecção",
+        "back": "Use análise estática/dinâmica do fluxo source→sink e monitore erros/DOM mutations inesperadas.",
+        "concept": "Sink"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "Você deve conseguir desenhar o caminho de um dado controlável até o DOM e escolher uma API mais segura.",
+        "concept": "Taint flow"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

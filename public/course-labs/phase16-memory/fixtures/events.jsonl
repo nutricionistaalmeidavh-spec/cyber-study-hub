@@ -1,0 +1,5 @@
+{"time": "2026-01-01T10:00:00Z", "pid": 410, "event": "process", "image": "csh-simulator", "parent": 100}
+{"time": "2026-01-01T10:00:02Z", "pid": 410, "event": "file", "path": "sample.txt", "sha256": "94c816f3c9e55be3c6f364114649fcf41d8931454669e638eada50145d39816d"}
+{"time": "2026-01-01T10:00:04Z", "pid": 410, "event": "dns", "query": "training.invalid"}
+{"time": "2026-01-01T10:00:05Z", "pid": 900, "event": "dns", "query": "training.invalid"}
+{"time": "2026-01-01T10:00:08Z", "pid": 410, "event": "exit", "code": 0}

@@ -1,0 +1,13 @@
+{
+  "name": "course-firestore-rules-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "firebase emulators:exec --only firestore --project demo-course-platform 'node test.mjs'"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "5.0.0",
+    "firebase": "12.2.0",
+    "firebase-tools": "14.15.0"
+  }
+}

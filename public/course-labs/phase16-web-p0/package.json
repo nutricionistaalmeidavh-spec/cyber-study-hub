@@ -1,0 +1,8 @@
+{
+  "name": "cyber-study-web-p0-labs",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=24 <25"},
+  "scripts": {"test": "node --test *.test.mjs", "passwords": "node passwords.mjs", "csrf": "node csrf.mjs", "ssrf": "node ssrf.mjs", "paths": "node paths.mjs", "oauth": "node oauth.mjs"},
+  "dependencies": {"bcryptjs": "3.0.2"}
+}

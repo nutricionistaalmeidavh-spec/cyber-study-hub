@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 2,
+  "id": 48,
+  "slug": "prototype-pollution",
+  "title": "Prototype Pollution",
+  "track": "Web",
+  "level": "Base",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "Prototype pollution altera propriedades herdadas em JavaScript e pode modificar comportamento de objetos em toda a aplicação.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 47,
+      "title": "Web Cache Deception",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de prototype pollution no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a proto.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de Prototype Pollution",
+    "scenario": "Em JavaScript, objetos normalmente herdam de protótipos. O risco aparece quando uma operação de merge/cópia permite que chaves especiais atinjam essa cadeia de herança e alterem propriedades vistas por objetos que nunca receberam aquele valor diretamente."
+  },
+  "fundamentals": [
+    {
+      "term": "proto",
+      "explanation": "Acesso histórico ao protótipo que pode ser abusado em merges inseguros."
+    },
+    {
+      "term": "Prototype chain",
+      "explanation": "Cadeia de herança usada para resolver propriedades."
+    },
+    {
+      "term": "Deep merge",
+      "explanation": "Combinação recursiva de objetos que precisa filtrar chaves perigosas."
+    },
+    {
+      "term": "Own property",
+      "explanation": "Propriedade que pertence diretamente ao objeto, sem herança."
+    }
+  ],
+  "mechanism": {
+    "summary": "Prototype pollution explora a forma como objetos JavaScript herdam propriedades. O risco aparece quando dados externos são mesclados sem bloquear chaves especiais.",
+    "steps": [
+      {
+        "id": "m48-1",
+        "title": "Entrada externa vira objeto",
+        "detail": "Entrada externa vira objeto"
+      },
+      {
+        "id": "m48-2",
+        "title": "Função de merge percorre chaves recursivamente",
+        "detail": "Função de merge percorre chaves recursivamente"
+      },
+      {
+        "id": "m48-3",
+        "title": "Chaves especiais alcançam prototype",
+        "detail": "Chaves especiais alcançam prototype"
+      },
+      {
+        "id": "m48-4",
+        "title": "Novos objetos herdam valores inesperados",
+        "detail": "Novos objetos herdam valores inesperados"
+      },
+      {
+        "id": "m48-5",
+        "title": "A lógica da aplicação pode mudar sem alteração explícita do objeto",
+        "detail": "A lógica da aplicação pode mudar sem alteração explícita do objeto"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-48-01",
+      "title": "Raciocínio completo — Prototype Pollution",
+      "problem": "Prototype pollution explora a forma como objetos JavaScript herdam propriedades. O risco aparece quando dados externos são mesclados sem bloquear chaves especiais.",
+      "solutionSteps": [
+        {
+          "id": "w48-1",
+          "action": "Entrada externa vira objeto",
+          "explanation": "Comece identificando a entrada ou estado relevante: entrada externa vira objeto.",
+          "evidence": null
+        },
+        {
+          "id": "w48-2",
+          "action": "Função de merge percorre chaves recursivamente",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: função de merge percorre chaves recursivamente.",
+          "evidence": null
+        },
+        {
+          "id": "w48-3",
+          "action": "Chaves especiais alcançam prototype",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: chaves especiais alcançam prototype.",
+          "evidence": null
+        },
+        {
+          "id": "w48-4",
+          "action": "Novos objetos herdam valores inesperados",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: novos objetos herdam valores inesperados.",
+          "evidence": null
+        },
+        {
+          "id": "w48-5",
+          "action": "A lógica da aplicação pode mudar sem alteração explícita do objeto",
+          "explanation": "Feche a cadeia observando o efeito e o controle: a lógica da aplicação pode mudar sem alteração explícita do objeto.",
+          "evidence": "Procure propriedades inesperadas em objetos, erros após merges de input e CVEs em utilitários de merge."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em Prototype Pollution?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-48-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Entrada externa vira objeto\n→ Função de merge percorre chaves recursivamente\n→ [COMPLETE ESTA DECISÃO]\n→ Novos objetos herdam valores inesperados\n→ A lógica da aplicação pode mudar sem alteração explícita do objeto",
+      "expectedConcepts": [
+        "proto",
+        "Prototype chain",
+        "Deep merge"
+      ],
+      "solution": "Chaves especiais alcançam prototype"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-48-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria proto de Prototype chain e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-48-01",
+      "title": "Merge defensivo",
+      "language": "ts",
+      "code": "const BLOCKED = new Set([\"__proto__\", \"prototype\", \"constructor\"]);\n\nfunction safeAssign(target: Record<string, unknown>, source: Record<string, unknown>) {\n  for (const [key, value] of Object.entries(source)) {\n    if (BLOCKED.has(key)) continue;\n    target[key] = value;\n  }\n  return target;\n}",
+      "explanation": "Além do bloqueio, prefira bibliotecas atualizadas e objetos com esquema validado."
+    }
+  ],
+  "lab": {
+    "title": "Ver herança sem explorar aplicações reais",
+    "mode": "Celular + PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-48-1",
+        "instruction": "No console local, crie objetos simples e observe Object.getPrototypeOf().",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: No console local, crie objetos simples e observe Object.getPrototypeOf()."
+      },
+      {
+        "id": "lab-48-2",
+        "instruction": "Compare atribuição direta com uma função de merge própria.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Compare atribuição direta com uma função de merge própria."
+      },
+      {
+        "id": "lab-48-3",
+        "instruction": "Adicione validação de chaves e execute testes unitários com nomes bloqueados.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Adicione validação de chaves e execute testes unitários com nomes bloqueados."
+      },
+      {
+        "id": "lab-48-4",
+        "instruction": "Confirme que um objeto novo não recebe propriedades inesperadas.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Confirme que um objeto novo não recebe propriedades inesperadas."
+      },
+      {
+        "id": "lab-48-5",
+        "instruction": "Documente por que validação de schema ajuda.",
+        "expected": "A propriedade de um objeto deve vir do próprio objeto/esquema, não de uma alteração indevida na cadeia de prototype.",
+        "checkpoint": "A propriedade de um objeto deve vir do próprio objeto/esquema, não de uma alteração indevida na cadeia de prototype."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Procure propriedades inesperadas em objetos, erros após merges de input e CVEs em utilitários de merge.",
+    "signals": [
+      "Procure propriedades inesperadas em objetos, erros após merges de input e CVEs em utilitários de merge."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Bloqueie chaves especiais em merges, use Object.create(null) quando apropriado e atualize bibliotecas vulneráveis."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria proto de Prototype chain e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve proto?",
+        "options": [
+          "Acesso histórico ao protótipo que pode ser abusado em merges inseguros.",
+          "Cadeia de herança usada para resolver propriedades.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica."
+        ],
+        "answer": 0,
+        "why": "Acesso histórico ao protótipo que pode ser abusado em merges inseguros.",
+        "concept": "proto"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Bloqueie chaves especiais em merges, use Object.create(null) quando apropriado e atualize bibliotecas vulneráveis.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada.",
+          "Desabilitar logs para reduzir ruído."
+        ],
+        "answer": 0,
+        "why": "Bloqueie chaves especiais em merges, use Object.create(null) quando apropriado e atualize bibliotecas vulneráveis.",
+        "concept": "Prototype chain"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Procure propriedades inesperadas em objetos, erros após merges de input e CVEs em utilitários de merge.",
+          "Considerar somente métricas de desempenho da aplicação.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto."
+        ],
+        "answer": 0,
+        "why": "Procure propriedades inesperadas em objetos, erros após merges de input e CVEs em utilitários de merge.",
+        "concept": "Deep merge"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "A propriedade de um objeto deve vir do próprio objeto/esquema, não de uma alteração indevida na cadeia de prototype.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Own property"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "proto"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "proto",
+        "back": "Acesso histórico ao protótipo que pode ser abusado em merges inseguros.",
+        "concept": "proto"
+      },
+      {
+        "front": "Prototype chain",
+        "back": "Cadeia de herança usada para resolver propriedades.",
+        "concept": "Prototype chain"
+      },
+      {
+        "front": "Deep merge",
+        "back": "Combinação recursiva de objetos que precisa filtrar chaves perigosas.",
+        "concept": "Deep merge"
+      },
+      {
+        "front": "Own property",
+        "back": "Propriedade que pertence diretamente ao objeto, sem herança.",
+        "concept": "Own property"
+      },
+      {
+        "front": "Defesa",
+        "back": "Bloqueie chaves especiais em merges, use Object.create(null) quando apropriado e atualize bibliotecas vulneráveis.",
+        "concept": "proto"
+      },
+      {
+        "front": "Detecção",
+        "back": "Procure propriedades inesperadas em objetos, erros após merges de input e CVEs em utilitários de merge.",
+        "concept": "Prototype chain"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "A propriedade de um objeto deve vir do próprio objeto/esquema, não de uma alteração indevida na cadeia de prototype.",
+        "concept": "Deep merge"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

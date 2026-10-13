@@ -1,0 +1,10 @@
+{
+  "scenario": "Portal fictício de relatórios de manutenção",
+  "assets": ["relatórios privados", "ordens de pagamento", "serviço de consulta"],
+  "cases": [
+    {"id":"R1","observation":"Bob recebeu relatório privado de Alice; o conteúdo não foi alterado.","primary":"confidencialidade","evidence":"response body com owner Alice sob sessão Bob","control":"autorização por objeto e política de cache privado","retest":"Bob recebe 403; Alice continua recebendo 200"},
+    {"id":"R2","observation":"Uma ordem de pagamento passou de 120 para 1200 sem aprovação.","primary":"integridade","evidence":"histórico do valor e ausência de aprovação vinculada","control":"autorização da transição, validação e trilha de auditoria","retest":"alteração sem aprovação é rejeitada; aprovação válida permite o valor autorizado"},
+    {"id":"R3","observation":"Consulta ficou indisponível por esgotamento de conexões; não há evidência de leitura ou alteração de relatórios.","primary":"disponibilidade","evidence":"pool esgotado e falhas de healthcheck no mesmo intervalo","control":"limite de concorrência, timeout e liberação de conexões","retest":"carga de laboratório permanece limitada; consultas normais continuam atendidas"},
+    {"id":"R4","observation":"Alerta de versão antiga, sem confirmar configuração afetada.","primary":"hipótese, não incidente confirmado","evidence":"banner isolado","control":"validar versão efetiva, configuração e advisory","retest":"comparar propriedade afetada em fixture vulnerável e corrigida"}
+  ]
+}

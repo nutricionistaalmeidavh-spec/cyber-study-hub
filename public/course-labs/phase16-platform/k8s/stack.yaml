@@ -1,0 +1,147 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: course-platform
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: v1.34
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: notes
+  namespace: course-platform
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: note-token
+  namespace: course-platform
+type: Opaque
+# Fictício e público: não reutilizar como credencial real.
+stringData:
+  token: fixture-only-platform-token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes
+  namespace: course-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: notes}
+  template:
+    metadata:
+      labels: {app: notes}
+    spec:
+      serviceAccountName: notes
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: notes
+          image: course-notes:phase16
+          imagePullPolicy: Never
+          ports:
+            - {name: http, containerPort: 8080}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 250m, memory: 96Mi}
+          readinessProbe:
+            httpGet: {path: /health, port: http}
+            initialDelaySeconds: 1
+            periodSeconds: 2
+          livenessProbe:
+            httpGet: {path: /health, port: http}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - {name: token, mountPath: /run/secrets, readOnly: true}
+            - {name: tmp, mountPath: /tmp}
+      volumes:
+        - name: token
+          secret: {secretName: note-token, defaultMode: 288}
+        - name: tmp
+          emptyDir: {sizeLimit: 16Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notes
+  namespace: course-platform
+spec:
+  type: ClusterIP
+  selector: {app: notes}
+  ports:
+    - {name: http, port: 8000, targetPort: http}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: log-reader
+  namespace: course-platform
+rules:
+  - apiGroups: ['']
+    resources: [pods, pods/log]
+    verbs: [get, list]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: notes-read-logs
+  namespace: course-platform
+subjects:
+  - {kind: ServiceAccount, name: notes, namespace: course-platform}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: log-reader}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: notes-ingress
+  namespace: course-platform
+spec:
+  podSelector:
+    matchLabels: {app: notes}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        # Seletor de Pod sem namespaceSelector: somente mesmo namespace.
+        - podSelector:
+            matchLabels: {app: client}
+      ports:
+        - {protocol: TCP, port: 8080}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+  namespace: course-platform
+  labels: {app: client}
+spec:
+  automountServiceAccountToken: false
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10001
+    seccompProfile: {type: RuntimeDefault}
+  containers:
+    - name: client
+      image: course-notes:phase16
+      imagePullPolicy: Never
+      command: [python, -c, 'import time; time.sleep(86400)']
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities: {drop: [ALL]}
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 100m, memory: 64Mi}

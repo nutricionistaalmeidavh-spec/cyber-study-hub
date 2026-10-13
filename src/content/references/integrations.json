@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "mainRules": [
+    {
+      "id": "web-appsec",
+      "ranges": [[6, 20], [41, 60]],
+      "repositoryIds": ["webgoat", "juice-shop"],
+      "reason": "Laboratórios e desafios de Web/AppSec em ambiente deliberadamente vulnerável e local."
+    },
+    {
+      "id": "api-security",
+      "lessonIds": [11, 12, 56, 57],
+      "repositoryIds": ["crapi"],
+      "reason": "Happy path e falhas de autorização/objeto/função em APIs."
+    },
+    {
+      "id": "blue-purple",
+      "ranges": [[79, 100], [181, 190]],
+      "repositoryIds": ["atomic-red-team", "sigma"],
+      "reason": "Evidência, detecção, MITRE ATT&CK, SIEM e exercícios controlados de Purple Team."
+    },
+    {
+      "id": "malware-detection",
+      "ranges": [[131, 160]],
+      "repositoryIds": ["yara-rules", "sigma"],
+      "reason": "Referências defensivas para YARA, Sigma e detection engineering."
+    },
+    {
+      "id": "low-level",
+      "ranges": [[101, 130], [161, 180]],
+      "repositoryIds": ["pwncollege-dojo"],
+      "reason": "Referência arquitetural de desafios e prática low-level em ambiente educacional."
+    }
+  ],
+  "parallelRules": [
+    {
+      "trackCodes": ["WEB", "JS", "TS"],
+      "repositoryIds": ["webgoat", "juice-shop"],
+      "reason": "Complemento para desenvolvimento web e AppSec."
+    },
+    {
+      "trackCodes": ["LAB"],
+      "repositoryIds": ["webgoat", "crapi", "pwncollege-dojo"],
+      "reason": "Ambientes e arquitetura de laboratório."
+    },
+    {
+      "trackCodes": ["WIN", "PS"],
+      "repositoryIds": ["atomic-red-team", "sigma"],
+      "reason": "Telemetria, testes controlados e detecção em Windows."
+    }
+  ]
+}

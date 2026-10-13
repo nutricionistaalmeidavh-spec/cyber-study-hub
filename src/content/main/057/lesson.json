@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 2,
+  "id": 57,
+  "slug": "rate-limit-race-conditions-e-business-logic-flaws",
+  "title": "Rate Limit, Race Conditions e Business Logic Flaws",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "Controles de frequência, atomicidade e regras de negócio evitam abuso de fluxos válidos em combinações não previstas.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 56,
+      "title": "API Security avançada — BOLA, BFLA, Mass Assignment",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de rate limit, race conditions e business logic flaws no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Rate limit.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de Rate Limit, Race Conditions e Business Logic Flaws",
+    "scenario": "Business logic e race condition exigem pensar em invariantes. A pergunta não é apenas “a requisição é válida?”, mas “o estado final continua válido se duas operações legítimas ocorrerem quase juntas?”."
+  },
+  "fundamentals": [
+    {
+      "term": "Rate limit",
+      "explanation": "Restrição de frequência por identidade, recurso ou operação."
+    },
+    {
+      "term": "Race condition",
+      "explanation": "Falha quando operações concorrentes quebram uma suposição de ordem/atomicidade."
+    },
+    {
+      "term": "Idempotency key",
+      "explanation": "Chave para evitar processamento duplicado de uma mesma operação."
+    },
+    {
+      "term": "Invariant",
+      "explanation": "Regra de negócio que deve permanecer verdadeira em todas as transições."
+    }
+  ],
+  "mechanism": {
+    "summary": "Rate limit reduz abuso repetitivo, mas race conditions e falhas de lógica podem acontecer dentro de requisições perfeitamente válidas. Operações críticas precisam ser atômicas e invariantes de negócio precisam ser testadas.",
+    "steps": [
+      {
+        "id": "m57-1",
+        "title": "Usuário dispara operação de negócio",
+        "detail": "Usuário dispara operação de negócio"
+      },
+      {
+        "id": "m57-2",
+        "title": "Sistema valida pré-condições",
+        "detail": "Sistema valida pré-condições"
+      },
+      {
+        "id": "m57-3",
+        "title": "Mudança acontece em transação/controle de concorrência",
+        "detail": "Mudança acontece em transação/controle de concorrência"
+      },
+      {
+        "id": "m57-4",
+        "title": "Invariante é revalidada no momento da escrita",
+        "detail": "Invariante é revalidada no momento da escrita"
+      },
+      {
+        "id": "m57-5",
+        "title": "Rate limit e idempotência reduzem abuso/repetição",
+        "detail": "Rate limit e idempotência reduzem abuso/repetição"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-57-01",
+      "title": "Raciocínio completo — Rate Limit, Race Conditions e Business Logic Flaws",
+      "problem": "Rate limit reduz abuso repetitivo, mas race conditions e falhas de lógica podem acontecer dentro de requisições perfeitamente válidas. Operações críticas precisam ser atômicas e invariantes de negócio precisam ser testadas.",
+      "solutionSteps": [
+        {
+          "id": "w57-1",
+          "action": "Usuário dispara operação de negócio",
+          "explanation": "Comece identificando a entrada ou estado relevante: usuário dispara operação de negócio.",
+          "evidence": null
+        },
+        {
+          "id": "w57-2",
+          "action": "Sistema valida pré-condições",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: sistema valida pré-condições.",
+          "evidence": null
+        },
+        {
+          "id": "w57-3",
+          "action": "Mudança acontece em transação/controle de concorrência",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: mudança acontece em transação/controle de concorrência.",
+          "evidence": null
+        },
+        {
+          "id": "w57-4",
+          "action": "Invariante é revalidada no momento da escrita",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: invariante é revalidada no momento da escrita.",
+          "evidence": null
+        },
+        {
+          "id": "w57-5",
+          "action": "Rate limit e idempotência reduzem abuso/repetição",
+          "explanation": "Feche a cadeia observando o efeito e o controle: rate limit e idempotência reduzem abuso/repetição.",
+          "evidence": "Procure bursts, duplicidades, saldos impossíveis, estados intermediários e múltiplas requisições simultâneas."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em Rate Limit, Race Conditions e Business Logic Flaws?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-57-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Usuário dispara operação de negócio\n→ Sistema valida pré-condições\n→ [COMPLETE ESTA DECISÃO]\n→ Invariante é revalidada no momento da escrita\n→ Rate limit e idempotência reduzem abuso/repetição",
+      "expectedConcepts": [
+        "Rate limit",
+        "Race condition",
+        "Idempotency key"
+      ],
+      "solution": "Mudança acontece em transação/controle de concorrência"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-57-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Rate limit de Race condition e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-57-01",
+      "title": "Operação atômica com condição",
+      "language": "sql",
+      "code": "UPDATE coupons\nSET remaining = remaining - 1\nWHERE id = :id\n  AND remaining > 0;\n\n-- Verifique rows_affected = 1 antes de confirmar a operação.",
+      "explanation": "A condição participa da própria escrita, evitando a janela entre 'ler' e 'atualizar'."
+    }
+  ],
+  "lab": {
+    "title": "Simular concorrência local",
+    "mode": "PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-57-1",
+        "instruction": "Crie um contador/estoque simples em banco local.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Crie um contador/estoque simples em banco local."
+      },
+      {
+        "id": "lab-57-2",
+        "instruction": "Implemente primeiro leitura + escrita separadas e observe o risco conceitualmente.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Implemente primeiro leitura + escrita separadas e observe o risco conceitualmente."
+      },
+      {
+        "id": "lab-57-3",
+        "instruction": "Troque por update condicional ou transação.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Troque por update condicional ou transação."
+      },
+      {
+        "id": "lab-57-4",
+        "instruction": "Dispare várias operações de teste em paralelo.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Dispare várias operações de teste em paralelo."
+      },
+      {
+        "id": "lab-57-5",
+        "instruction": "Confirme que o valor nunca viola a invariante.",
+        "expected": "O sistema deve continuar correto mesmo quando duas requisições válidas chegam quase ao mesmo tempo.",
+        "checkpoint": "O sistema deve continuar correto mesmo quando duas requisições válidas chegam quase ao mesmo tempo."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Procure bursts, duplicidades, saldos impossíveis, estados intermediários e múltiplas requisições simultâneas.",
+    "signals": [
+      "Procure bursts, duplicidades, saldos impossíveis, estados intermediários e múltiplas requisições simultâneas."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Use transações/locks quando necessário, idempotência, limites contextuais e valide invariantes no servidor."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Rate limit de Race condition e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Rate limit?",
+        "options": [
+          "Restrição de frequência por identidade, recurso ou operação.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica.",
+          "Falha quando operações concorrentes quebram uma suposição de ordem/atomicidade."
+        ],
+        "answer": 0,
+        "why": "Restrição de frequência por identidade, recurso ou operação.",
+        "concept": "Rate limit"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Use transações/locks quando necessário, idempotência, limites contextuais e valide invariantes no servidor.",
+          "Adiar correções até existir exploração pública confirmada.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS."
+        ],
+        "answer": 0,
+        "why": "Use transações/locks quando necessário, idempotência, limites contextuais e valide invariantes no servidor.",
+        "concept": "Race condition"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Procure bursts, duplicidades, saldos impossíveis, estados intermediários e múltiplas requisições simultâneas.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação."
+        ],
+        "answer": 0,
+        "why": "Procure bursts, duplicidades, saldos impossíveis, estados intermediários e múltiplas requisições simultâneas.",
+        "concept": "Idempotency key"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "O sistema deve continuar correto mesmo quando duas requisições válidas chegam quase ao mesmo tempo.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Invariant"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Rate limit"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Rate limit",
+        "back": "Restrição de frequência por identidade, recurso ou operação.",
+        "concept": "Rate limit"
+      },
+      {
+        "front": "Race condition",
+        "back": "Falha quando operações concorrentes quebram uma suposição de ordem/atomicidade.",
+        "concept": "Race condition"
+      },
+      {
+        "front": "Idempotency key",
+        "back": "Chave para evitar processamento duplicado de uma mesma operação.",
+        "concept": "Idempotency key"
+      },
+      {
+        "front": "Invariant",
+        "back": "Regra de negócio que deve permanecer verdadeira em todas as transições.",
+        "concept": "Invariant"
+      },
+      {
+        "front": "Defesa",
+        "back": "Use transações/locks quando necessário, idempotência, limites contextuais e valide invariantes no servidor.",
+        "concept": "Rate limit"
+      },
+      {
+        "front": "Detecção",
+        "back": "Procure bursts, duplicidades, saldos impossíveis, estados intermediários e múltiplas requisições simultâneas.",
+        "concept": "Race condition"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "O sistema deve continuar correto mesmo quando duas requisições válidas chegam quase ao mesmo tempo.",
+        "concept": "Idempotency key"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "crapi",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

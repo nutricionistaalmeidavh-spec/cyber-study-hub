@@ -1,0 +1,17 @@
+{
+  "name": "aula-047-cache-deception-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "origin": "node origin.mjs",
+    "vulnerable": "node proxy-vulneravel.mjs",
+    "fixed": "node proxy-corrigido.mjs",
+    "test": "node --test lab.test.mjs"
+  },
+  "dependencies": {
+    "express": "5.2.1"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  }
+}

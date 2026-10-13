@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 2,
+  "id": 60,
+  "slug": "encadeamento-de-vulnerabilidades-web",
+  "title": "Encadeamento de Vulnerabilidades Web",
+  "track": "Web",
+  "level": "Avançado",
+  "durationMin": 60,
+  "pcPractice": false,
+  "summary": "Risco real frequentemente surge da combinação de falhas menores. Encadear exige entender pré-condições, impacto acumulado e onde quebrar a cadeia.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 59,
+      "title": "CSP, Security Headers e Browser Protections",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de encadeamento de vulnerabilidades web no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Precondition.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de Encadeamento de Vulnerabilidades Web",
+    "scenario": "Encadeamento de vulnerabilidades transforma pequenas capacidades em impacto maior. O exercício defensivo é mapear capacidades intermediárias e colocar controles que quebrem a cadeia o mais cedo possível."
+  },
+  "fundamentals": [
+    {
+      "term": "Precondition",
+      "explanation": "Estado necessário antes de uma etapa funcionar."
+    },
+    {
+      "term": "Exploit chain",
+      "explanation": "Sequência de falhas/ações que aumenta impacto."
+    },
+    {
+      "term": "Pivot point",
+      "explanation": "Etapa em que o atacante muda de privilégio, contexto ou camada."
+    },
+    {
+      "term": "Break the chain",
+      "explanation": "Controle que interrompe uma etapa e reduz impacto total."
+    }
+  ],
+  "mechanism": {
+    "summary": "Falhas raramente vivem isoladas. Encadear vulnerabilidades significa entender como uma fraqueza aumenta o impacto ou a alcançabilidade de outra; defensivamente, isso orienta priorização.",
+    "steps": [
+      {
+        "id": "m60-1",
+        "title": "Fraqueza inicial oferece uma capacidade limitada",
+        "detail": "Fraqueza inicial oferece uma capacidade limitada"
+      },
+      {
+        "id": "m60-2",
+        "title": "Essa capacidade expõe nova superfície ou contexto",
+        "detail": "Essa capacidade expõe nova superfície ou contexto"
+      },
+      {
+        "id": "m60-3",
+        "title": "Uma segunda falha amplia privilégios/impacto",
+        "detail": "Uma segunda falha amplia privilégios/impacto"
+      },
+      {
+        "id": "m60-4",
+        "title": "Controles intermediários podem quebrar a cadeia",
+        "detail": "Controles intermediários podem quebrar a cadeia"
+      },
+      {
+        "id": "m60-5",
+        "title": "Correção prioriza o caminho de maior risco",
+        "detail": "Correção prioriza o caminho de maior risco"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-60-01",
+      "title": "Raciocínio completo — Encadeamento de Vulnerabilidades Web",
+      "problem": "Falhas raramente vivem isoladas. Encadear vulnerabilidades significa entender como uma fraqueza aumenta o impacto ou a alcançabilidade de outra; defensivamente, isso orienta priorização.",
+      "solutionSteps": [
+        {
+          "id": "w60-1",
+          "action": "Fraqueza inicial oferece uma capacidade limitada",
+          "explanation": "Comece identificando a entrada ou estado relevante: fraqueza inicial oferece uma capacidade limitada.",
+          "evidence": null
+        },
+        {
+          "id": "w60-2",
+          "action": "Essa capacidade expõe nova superfície ou contexto",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: essa capacidade expõe nova superfície ou contexto.",
+          "evidence": null
+        },
+        {
+          "id": "w60-3",
+          "action": "Uma segunda falha amplia privilégios/impacto",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: uma segunda falha amplia privilégios/impacto.",
+          "evidence": null
+        },
+        {
+          "id": "w60-4",
+          "action": "Controles intermediários podem quebrar a cadeia",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: controles intermediários podem quebrar a cadeia.",
+          "evidence": null
+        },
+        {
+          "id": "w60-5",
+          "action": "Correção prioriza o caminho de maior risco",
+          "explanation": "Feche a cadeia observando o efeito e o controle: correção prioriza o caminho de maior risco.",
+          "evidence": "Correlacione eventos entre camadas e investigue sequências incomuns, não apenas alertas isolados."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em Encadeamento de Vulnerabilidades Web?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-60-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Fraqueza inicial oferece uma capacidade limitada\n→ Essa capacidade expõe nova superfície ou contexto\n→ [COMPLETE ESTA DECISÃO]\n→ Controles intermediários podem quebrar a cadeia\n→ Correção prioriza o caminho de maior risco",
+      "expectedConcepts": [
+        "Precondition",
+        "Exploit chain",
+        "Pivot point"
+      ],
+      "solution": "Uma segunda falha amplia privilégios/impacto"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-60-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Precondition de Exploit chain e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-60-01",
+      "title": "Representar uma cadeia de risco",
+      "language": "json",
+      "code": "{\n  \"steps\": [\n    {\"id\": \"A\", \"capability\": \"leitura de objeto\", \"control\": \"autorização por objeto\"},\n    {\"id\": \"B\", \"capability\": \"dados sensíveis\", \"control\": \"minimização de dados\"},\n    {\"id\": \"C\", \"capability\": \"ação privilegiada\", \"control\": \"BFLA\"}\n  ]\n}",
+      "explanation": "Modelar capacidades e controles ajuda a discutir impacto sem depender de um payload ofensivo."
+    }
+  ],
+  "lab": {
+    "title": "Threat chain em aplicação própria",
+    "mode": "Celular",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-60-1",
+        "instruction": "Escolha uma aplicação sua ou fictícia.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Escolha uma aplicação sua ou fictícia."
+      },
+      {
+        "id": "lab-60-2",
+        "instruction": "Liste três superfícies: autenticação, API e frontend.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Liste três superfícies: autenticação, API e frontend."
+      },
+      {
+        "id": "lab-60-3",
+        "instruction": "Imagine uma falha de baixo impacto em cada uma.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Imagine uma falha de baixo impacto em cada uma."
+      },
+      {
+        "id": "lab-60-4",
+        "instruction": "Desenhe quais combinações poderiam aumentar o impacto.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Desenhe quais combinações poderiam aumentar o impacto."
+      },
+      {
+        "id": "lab-60-5",
+        "instruction": "Adicione um controle entre cada etapa para quebrar a cadeia.",
+        "expected": "Você deve priorizar falhas considerando combinação, exposição e controles compensatórios.",
+        "checkpoint": "Você deve priorizar falhas considerando combinação, exposição e controles compensatórios."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Correlacione eventos entre camadas e investigue sequências incomuns, não apenas alertas isolados.",
+    "signals": [
+      "Correlacione eventos entre camadas e investigue sequências incomuns, não apenas alertas isolados."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Corrija controles estruturais de autenticação/autorização, reduza exposição e priorize pontos que quebram cadeias inteiras."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Precondition de Exploit chain e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Precondition?",
+        "options": [
+          "Estado necessário antes de uma etapa funcionar.",
+          "Sequência de falhas/ações que aumenta impacto.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica."
+        ],
+        "answer": 0,
+        "why": "Estado necessário antes de uma etapa funcionar.",
+        "concept": "Precondition"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Corrija controles estruturais de autenticação/autorização, reduza exposição e priorize pontos que quebram cadeias inteiras.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada.",
+          "Desabilitar logs para reduzir ruído."
+        ],
+        "answer": 0,
+        "why": "Corrija controles estruturais de autenticação/autorização, reduza exposição e priorize pontos que quebram cadeias inteiras.",
+        "concept": "Exploit chain"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Correlacione eventos entre camadas e investigue sequências incomuns, não apenas alertas isolados.",
+          "Considerar somente métricas de desempenho da aplicação.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto."
+        ],
+        "answer": 0,
+        "why": "Correlacione eventos entre camadas e investigue sequências incomuns, não apenas alertas isolados.",
+        "concept": "Pivot point"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "Você deve priorizar falhas considerando combinação, exposição e controles compensatórios.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Break the chain"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Precondition"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Precondition",
+        "back": "Estado necessário antes de uma etapa funcionar.",
+        "concept": "Precondition"
+      },
+      {
+        "front": "Exploit chain",
+        "back": "Sequência de falhas/ações que aumenta impacto.",
+        "concept": "Exploit chain"
+      },
+      {
+        "front": "Pivot point",
+        "back": "Etapa em que o atacante muda de privilégio, contexto ou camada.",
+        "concept": "Pivot point"
+      },
+      {
+        "front": "Break the chain",
+        "back": "Controle que interrompe uma etapa e reduz impacto total.",
+        "concept": "Break the chain"
+      },
+      {
+        "front": "Defesa",
+        "back": "Corrija controles estruturais de autenticação/autorização, reduza exposição e priorize pontos que quebram cadeias inteiras.",
+        "concept": "Precondition"
+      },
+      {
+        "front": "Detecção",
+        "back": "Correlacione eventos entre camadas e investigue sequências incomuns, não apenas alertas isolados.",
+        "concept": "Exploit chain"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "Você deve priorizar falhas considerando combinação, exposição e controles compensatórios.",
+        "concept": "Pivot point"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

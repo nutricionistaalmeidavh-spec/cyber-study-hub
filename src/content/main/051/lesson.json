@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 2,
+  "id": 51,
+  "slug": "command-injection",
+  "title": "Command Injection",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "Command injection ocorre quando input influencia comandos do sistema operacional executados pela aplicação.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 50,
+      "title": "DOM-based Vulnerabilities",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de command injection no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Shell.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de Command Injection",
+    "scenario": "Command injection é, antes de tudo, um erro de fronteira entre dado e linguagem de comando. Quando o objetivo pode ser realizado por API ou por execFile/spawn com argumentos separados, passar por um shell é complexidade e risco desnecessários."
+  },
+  "fundamentals": [
+    {
+      "term": "Shell",
+      "explanation": "Interpretador de comandos que amplia risco quando recebe strings concatenadas."
+    },
+    {
+      "term": "Argument injection",
+      "explanation": "Abuso de parâmetros mesmo sem metacaracteres de shell."
+    },
+    {
+      "term": "Allowlist",
+      "explanation": "Validação por conjunto fechado de valores permitidos."
+    },
+    {
+      "term": "Process API",
+      "explanation": "API que executa binário e argumentos separadamente, reduzindo interpretação pelo shell."
+    }
+  ],
+  "mechanism": {
+    "summary": "Command injection aparece quando texto do usuário é concatenado em uma string interpretada por um shell. A defesa mais forte é não passar pelo shell quando a tarefa pode ser feita por uma API específica.",
+    "steps": [
+      {
+        "id": "m51-1",
+        "title": "Aplicação recebe uma entrada",
+        "detail": "Aplicação recebe uma entrada"
+      },
+      {
+        "id": "m51-2",
+        "title": "Código monta um comando de sistema",
+        "detail": "Código monta um comando de sistema"
+      },
+      {
+        "id": "m51-3",
+        "title": "Shell interpreta metacaracteres e argumentos",
+        "detail": "Shell interpreta metacaracteres e argumentos"
+      },
+      {
+        "id": "m51-4",
+        "title": "Processo filho executa com os privilégios da aplicação",
+        "detail": "Processo filho executa com os privilégios da aplicação"
+      },
+      {
+        "id": "m51-5",
+        "title": "APIs sem shell e allowlists reduzem o risco",
+        "detail": "APIs sem shell e allowlists reduzem o risco"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-51-01",
+      "title": "Raciocínio completo — Command Injection",
+      "problem": "Command injection aparece quando texto do usuário é concatenado em uma string interpretada por um shell. A defesa mais forte é não passar pelo shell quando a tarefa pode ser feita por uma API específica.",
+      "solutionSteps": [
+        {
+          "id": "w51-1",
+          "action": "Aplicação recebe uma entrada",
+          "explanation": "Comece identificando a entrada ou estado relevante: aplicação recebe uma entrada.",
+          "evidence": null
+        },
+        {
+          "id": "w51-2",
+          "action": "Código monta um comando de sistema",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: código monta um comando de sistema.",
+          "evidence": null
+        },
+        {
+          "id": "w51-3",
+          "action": "Shell interpreta metacaracteres e argumentos",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: shell interpreta metacaracteres e argumentos.",
+          "evidence": null
+        },
+        {
+          "id": "w51-4",
+          "action": "Processo filho executa com os privilégios da aplicação",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: processo filho executa com os privilégios da aplicação.",
+          "evidence": null
+        },
+        {
+          "id": "w51-5",
+          "action": "APIs sem shell e allowlists reduzem o risco",
+          "explanation": "Feche a cadeia observando o efeito e o controle: apis sem shell e allowlists reduzem o risco.",
+          "evidence": "Procure processos filhos inesperados, argumentos anômalos, erros de shell e execuções originadas por serviços web."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em Command Injection?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-51-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Aplicação recebe uma entrada\n→ Código monta um comando de sistema\n→ [COMPLETE ESTA DECISÃO]\n→ Processo filho executa com os privilégios da aplicação\n→ APIs sem shell e allowlists reduzem o risco",
+      "expectedConcepts": [
+        "Shell",
+        "Argument injection",
+        "Allowlist"
+      ],
+      "solution": "Shell interpreta metacaracteres e argumentos"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-51-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Shell de Argument injection e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-51-01",
+      "title": "execFile com argumentos separados",
+      "language": "js",
+      "code": "import { execFile } from \"node:child_process\";\n\nconst allowed = new Set([\"example.com\", \"localhost\"]);\n\nfunction pingHost(host) {\n  if (!allowed.has(host)) throw new Error(\"Host não permitido\");\n\n  execFile(\"ping\", [\"-c\", \"1\", host], { timeout: 3000 }, (err, stdout) => {\n    if (err) return;\n    console.log(stdout);\n  });\n}",
+      "explanation": "Não concatene a entrada em uma string de shell. Mesmo assim, valide o conjunto de valores aceitos."
+    }
+  ],
+  "lab": {
+    "title": "Refatorar uma chamada de processo local",
+    "mode": "PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-51-1",
+        "instruction": "Crie uma função local que executa uma ferramenta inofensiva com argumentos fixos.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Crie uma função local que executa uma ferramenta inofensiva com argumentos fixos."
+      },
+      {
+        "id": "lab-51-2",
+        "instruction": "Use execFile/spawn com array de argumentos.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Use execFile/spawn com array de argumentos."
+      },
+      {
+        "id": "lab-51-3",
+        "instruction": "Adicione allowlist e timeout.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Adicione allowlist e timeout."
+      },
+      {
+        "id": "lab-51-4",
+        "instruction": "Escreva testes para entrada válida e entrada fora da allowlist.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Escreva testes para entrada válida e entrada fora da allowlist."
+      },
+      {
+        "id": "lab-51-5",
+        "instruction": "Registre tentativa rejeitada sem executar o comando.",
+        "expected": "A entrada do usuário nunca deve virar sintaxe de shell.",
+        "checkpoint": "A entrada do usuário nunca deve virar sintaxe de shell."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Procure processos filhos inesperados, argumentos anômalos, erros de shell e execuções originadas por serviços web.",
+    "signals": [
+      "Procure processos filhos inesperados, argumentos anômalos, erros de shell e execuções originadas por serviços web."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Evite shell, use APIs com argumentos separados, allowlists estritas e princípio do menor privilégio."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Shell de Argument injection e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Shell?",
+        "options": [
+          "Interpretador de comandos que amplia risco quando recebe strings concatenadas.",
+          "Abuso de parâmetros mesmo sem metacaracteres de shell.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica."
+        ],
+        "answer": 0,
+        "why": "Interpretador de comandos que amplia risco quando recebe strings concatenadas.",
+        "concept": "Shell"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Evite shell, use APIs com argumentos separados, allowlists estritas e princípio do menor privilégio.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada."
+        ],
+        "answer": 0,
+        "why": "Evite shell, use APIs com argumentos separados, allowlists estritas e princípio do menor privilégio.",
+        "concept": "Argument injection"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Procure processos filhos inesperados, argumentos anômalos, erros de shell e execuções originadas por serviços web.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação.",
+          "Ignorar eventos raros porque normalmente são falsos positivos."
+        ],
+        "answer": 0,
+        "why": "Procure processos filhos inesperados, argumentos anômalos, erros de shell e execuções originadas por serviços web.",
+        "concept": "Allowlist"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "A entrada do usuário nunca deve virar sintaxe de shell.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Process API"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Shell"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Shell",
+        "back": "Interpretador de comandos que amplia risco quando recebe strings concatenadas.",
+        "concept": "Shell"
+      },
+      {
+        "front": "Argument injection",
+        "back": "Abuso de parâmetros mesmo sem metacaracteres de shell.",
+        "concept": "Argument injection"
+      },
+      {
+        "front": "Allowlist",
+        "back": "Validação por conjunto fechado de valores permitidos.",
+        "concept": "Allowlist"
+      },
+      {
+        "front": "Process API",
+        "back": "API que executa binário e argumentos separadamente, reduzindo interpretação pelo shell.",
+        "concept": "Process API"
+      },
+      {
+        "front": "Defesa",
+        "back": "Evite shell, use APIs com argumentos separados, allowlists estritas e princípio do menor privilégio.",
+        "concept": "Shell"
+      },
+      {
+        "front": "Detecção",
+        "back": "Procure processos filhos inesperados, argumentos anômalos, erros de shell e execuções originadas por serviços web.",
+        "concept": "Argument injection"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "A entrada do usuário nunca deve virar sintaxe de shell.",
+        "concept": "Allowlist"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 2,
+  "id": 56,
+  "slug": "api-security-avancada-bola-bfla-mass-assignment",
+  "title": "API Security avançada — BOLA, BFLA, Mass Assignment",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "APIs falham quando autorizam objetos, funções ou campos de forma implícita. BOLA, BFLA e mass assignment exigem controles explícitos.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 55,
+      "title": "OAuth e OIDC Security",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de api security avançada — bola, bfla, mass assignment no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a BOLA.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de API Security avançada — BOLA, BFLA, Mass Assignment",
+    "scenario": "BOLA, BFLA e Mass Assignment atuam em camadas distintas: objeto, função e campos. Uma API pode corrigir uma camada e continuar vulnerável em outra."
+  },
+  "fundamentals": [
+    {
+      "term": "BOLA",
+      "explanation": "Acesso indevido a objetos por falha de autorização no recurso."
+    },
+    {
+      "term": "BFLA",
+      "explanation": "Acesso indevido a funções/ações por falha de autorização funcional."
+    },
+    {
+      "term": "Mass Assignment",
+      "explanation": "Binding automático de campos que não deveriam ser alteráveis."
+    },
+    {
+      "term": "DTO",
+      "explanation": "Estrutura explícita que limita campos aceitos na entrada."
+    }
+  ],
+  "mechanism": {
+    "summary": "BOLA, BFLA e Mass Assignment são falhas de autorização em camadas diferentes: objeto, função e campos alteráveis. Uma API segura precisa controlar as três.",
+    "steps": [
+      {
+        "id": "m56-1",
+        "title": "Request autenticado chega à API",
+        "detail": "Request autenticado chega à API"
+      },
+      {
+        "id": "m56-2",
+        "title": "Rota define qual função pode ser usada",
+        "detail": "Rota define qual função pode ser usada"
+      },
+      {
+        "id": "m56-3",
+        "title": "Objeto solicitado é checado contra o usuário",
+        "detail": "Objeto solicitado é checado contra o usuário"
+      },
+      {
+        "id": "m56-4",
+        "title": "Campos recebidos são filtrados por esquema/allowlist",
+        "detail": "Campos recebidos são filtrados por esquema/allowlist"
+      },
+      {
+        "id": "m56-5",
+        "title": "Camada de domínio persiste somente alterações autorizadas",
+        "detail": "Camada de domínio persiste somente alterações autorizadas"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-56-01",
+      "title": "Raciocínio completo — API Security avançada — BOLA, BFLA, Mass Assignment",
+      "problem": "BOLA, BFLA e Mass Assignment são falhas de autorização em camadas diferentes: objeto, função e campos alteráveis. Uma API segura precisa controlar as três.",
+      "solutionSteps": [
+        {
+          "id": "w56-1",
+          "action": "Request autenticado chega à API",
+          "explanation": "Comece identificando a entrada ou estado relevante: request autenticado chega à api.",
+          "evidence": null
+        },
+        {
+          "id": "w56-2",
+          "action": "Rota define qual função pode ser usada",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: rota define qual função pode ser usada.",
+          "evidence": null
+        },
+        {
+          "id": "w56-3",
+          "action": "Objeto solicitado é checado contra o usuário",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: objeto solicitado é checado contra o usuário.",
+          "evidence": null
+        },
+        {
+          "id": "w56-4",
+          "action": "Campos recebidos são filtrados por esquema/allowlist",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: campos recebidos são filtrados por esquema/allowlist.",
+          "evidence": null
+        },
+        {
+          "id": "w56-5",
+          "action": "Camada de domínio persiste somente alterações autorizadas",
+          "explanation": "Feche a cadeia observando o efeito e o controle: camada de domínio persiste somente alterações autorizadas.",
+          "evidence": "Correlacione usuário, objeto, ação e campos alterados; alerte para mudanças de papel ou propriedade indevidas."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em API Security avançada — BOLA, BFLA, Mass Assignment?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-56-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Request autenticado chega à API\n→ Rota define qual função pode ser usada\n→ [COMPLETE ESTA DECISÃO]\n→ Campos recebidos são filtrados por esquema/allowlist\n→ Camada de domínio persiste somente alterações autorizadas",
+      "expectedConcepts": [
+        "BOLA",
+        "BFLA",
+        "Mass Assignment"
+      ],
+      "solution": "Objeto solicitado é checado contra o usuário"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-56-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria BOLA de BFLA e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-56-01",
+      "title": "Ownership + allowlist de campos",
+      "language": "ts",
+      "code": "const allowedFields = [\"displayName\", \"timezone\"] as const;\n\nasync function updateProfile(userId: string, targetId: string, body: any) {\n  if (userId !== targetId) throw new Error(\"Forbidden\");\n\n  const patch = Object.fromEntries(\n    allowedFields.filter(k => k in body).map(k => [k, body[k]])\n  );\n\n  return db.user.update({ where: { id: targetId }, data: patch });\n}",
+      "explanation": "Autorização do objeto e controle de campos são decisões distintas."
+    }
+  ],
+  "lab": {
+    "title": "Matriz de autorização de uma API fictícia",
+    "mode": "Celular + PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-56-1",
+        "instruction": "Crie três perfis: usuário, gerente e admin.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Crie três perfis: usuário, gerente e admin."
+      },
+      {
+        "id": "lab-56-2",
+        "instruction": "Liste rotas e operações possíveis para cada perfil.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Liste rotas e operações possíveis para cada perfil."
+      },
+      {
+        "id": "lab-56-3",
+        "instruction": "Para cada rota, marque objeto permitido e campos alteráveis.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Para cada rota, marque objeto permitido e campos alteráveis."
+      },
+      {
+        "id": "lab-56-4",
+        "instruction": "No PC, escreva testes que tentam acessar objeto alheio ou campo privilegiado.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: No PC, escreva testes que tentam acessar objeto alheio ou campo privilegiado."
+      },
+      {
+        "id": "lab-56-5",
+        "instruction": "Confirme retorno 403/404 conforme a política.",
+        "expected": "Cada endpoint deve responder a: quem pode executar, em qual objeto e quais campos pode alterar.",
+        "checkpoint": "Cada endpoint deve responder a: quem pode executar, em qual objeto e quais campos pode alterar."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Correlacione usuário, objeto, ação e campos alterados; alerte para mudanças de papel ou propriedade indevidas.",
+    "signals": [
+      "Correlacione usuário, objeto, ação e campos alterados; alerte para mudanças de papel ou propriedade indevidas."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Autorize objeto e função, use DTOs/allowlists de campos e testes negativos de permissão."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria BOLA de BFLA e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve BOLA?",
+        "options": [
+          "Acesso indevido a objetos por falha de autorização no recurso.",
+          "Acesso indevido a funções/ações por falha de autorização funcional.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica."
+        ],
+        "answer": 0,
+        "why": "Acesso indevido a objetos por falha de autorização no recurso.",
+        "concept": "BOLA"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Autorize objeto e função, use DTOs/allowlists de campos e testes negativos de permissão.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada.",
+          "Desabilitar logs para reduzir ruído."
+        ],
+        "answer": 0,
+        "why": "Autorize objeto e função, use DTOs/allowlists de campos e testes negativos de permissão.",
+        "concept": "BFLA"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Correlacione usuário, objeto, ação e campos alterados; alerte para mudanças de papel ou propriedade indevidas.",
+          "Considerar somente métricas de desempenho da aplicação.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto."
+        ],
+        "answer": 0,
+        "why": "Correlacione usuário, objeto, ação e campos alterados; alerte para mudanças de papel ou propriedade indevidas.",
+        "concept": "Mass Assignment"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "Cada endpoint deve responder a: quem pode executar, em qual objeto e quais campos pode alterar.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "DTO"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "BOLA"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "BOLA",
+        "back": "Acesso indevido a objetos por falha de autorização no recurso.",
+        "concept": "BOLA"
+      },
+      {
+        "front": "BFLA",
+        "back": "Acesso indevido a funções/ações por falha de autorização funcional.",
+        "concept": "BFLA"
+      },
+      {
+        "front": "Mass Assignment",
+        "back": "Binding automático de campos que não deveriam ser alteráveis.",
+        "concept": "Mass Assignment"
+      },
+      {
+        "front": "DTO",
+        "back": "Estrutura explícita que limita campos aceitos na entrada.",
+        "concept": "DTO"
+      },
+      {
+        "front": "Defesa",
+        "back": "Autorize objeto e função, use DTOs/allowlists de campos e testes negativos de permissão.",
+        "concept": "BOLA"
+      },
+      {
+        "front": "Detecção",
+        "back": "Correlacione usuário, objeto, ação e campos alterados; alerte para mudanças de papel ou propriedade indevidas.",
+        "concept": "BFLA"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "Cada endpoint deve responder a: quem pode executar, em qual objeto e quais campos pode alterar.",
+        "concept": "Mass Assignment"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "crapi",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

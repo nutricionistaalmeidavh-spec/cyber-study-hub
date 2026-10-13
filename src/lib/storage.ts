@@ -1,8 +1,10 @@
 import type { GameProgress } from '../types';
+import { recordGameEvidence } from './mastery';
 
 const LESSON_KEY = 'cyber-study-lessons-v1';
 const GAME_KEY = 'cyber-study-games-v1';
 const RECENT_KEY = 'cyber-study-recent-items-v1';
+const LAB_KEY = 'cyber-study-labs-v1';
 
 export type LessonState = Record<number, { completed: boolean; favorite: boolean; doubt: boolean; quizBest: number }>;
 
@@ -34,6 +36,7 @@ export function saveGameProgress(next: GameProgress) {
     all.push({ ...next, attempts: Math.max(1, next.attempts), bestScore: next.score });
   }
   localStorage.setItem(GAME_KEY, JSON.stringify(all));
+  recordGameEvidence(next);
 }
 
 export function pickWithRecency<T extends { id: string }>(key: string, pool: T[], count: number): T[] {
@@ -47,4 +50,55 @@ export function pickWithRecency<T extends { id: string }>(key: string, pool: T[]
   map[key] = [...shuffled.map(x => x.id), ...recent].slice(0, Math.max(count * 2, 12));
   localStorage.setItem(RECENT_KEY, JSON.stringify(map));
   return shuffled;
+}
+
+
+export type LabProgressRecord = {
+  completedStepIds: string[];
+  updatedAt: string;
+};
+
+export type LabProgressState = Record<number, LabProgressRecord>;
+
+export function getLabProgress(): LabProgressState {
+  try {
+    return JSON.parse(localStorage.getItem(LAB_KEY) || '{}');
+  } catch {
+    return {};
+  }
+}
+
+export function getLabProgressForLesson(id: number): LabProgressRecord {
+  return (
+    getLabProgress()[id] ?? {
+      completedStepIds: [],
+      updatedAt: ''
+    }
+  );
+}
+
+export function setLabStepCompletion(
+  lessonId: number,
+  stepId: string,
+  completed: boolean
+): LabProgressRecord {
+  const all = getLabProgress();
+  const current =
+    all[lessonId] ?? {
+      completedStepIds: [],
+      updatedAt: ''
+    };
+
+  const nextIds = new Set(current.completedStepIds);
+  if (completed) nextIds.add(stepId);
+  else nextIds.delete(stepId);
+
+  const next: LabProgressRecord = {
+    completedStepIds: [...nextIds],
+    updatedAt: new Date().toISOString()
+  };
+
+  all[lessonId] = next;
+  localStorage.setItem(LAB_KEY, JSON.stringify(all));
+  return next;
 }

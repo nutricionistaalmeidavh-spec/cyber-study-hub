@@ -1,0 +1,37 @@
+name: Platform teaching gate
+# Copiar para .github/workflows/platform-lab.yml somente em repositório de laboratório.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+# O token só lê o checkout; não há deploy nem secrets deste exercício.
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: public/course-labs/phase16-platform/ci
+        shell: bash
+    steps:
+      # Commit imutável de actions/checkout v4.2.2.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Runtime e inventário
+        run: |
+          node --version
+          test "$(node -p 'Number(process.versions.node.split(".")[0]) >= 22')" = true
+          echo 'Dependências npm: nenhuma; apenas módulos node embutidos'
+      - name: Gate bloqueia versão vulnerável
+        run: |
+          if node pipeline.cjs --unsafe; then
+            echo 'ERRO: variante sem autorização passou'; exit 1
+          fi
+          test ! -d out-unsafe
+      - name: Gerar após gates e verificar digest
+        run: |
+          node pipeline.cjs
+          node verify.cjs

@@ -1,0 +1,17 @@
+{
+  "system":"Portal de relatórios fictícios",
+  "entities":["browser","api","database","object-store"],
+  "flows":[
+    {"id":"F1","from":"browser","to":"api","data":"sessão e ID do relatório","boundary":"cliente não confiável → serviço"},
+    {"id":"F2","from":"api","to":"database","data":"consulta de owner e permissões","boundary":"serviço → dados privados"},
+    {"id":"F3","from":"api","to":"object-store","data":"leitura de documento autorizado","boundary":"identidade de serviço → armazenamento"}
+  ],
+  "threats":[
+    {"id":"T1","category":"Spoofing","flow":"F1","case":"api aceita identidade Alice declarada livremente pelo browser","control":"validar sessão emitida pelo servidor","test":"sessão inexistente produz 401; sessão válida identifica titular"},
+    {"id":"T2","category":"Tampering","flow":"F1","case":"cliente altera campo owner em update de relatório","control":"ignorar owner do cliente e autorizar transição","test":"update de campo proibido falha sem mudar registro"},
+    {"id":"T3","category":"Repudiation","flow":"F2","case":"alteração sem registro de identidade/data/objeto","control":"log com evento, ator, ação, objeto, resultado e proteção de integridade","test":"ação de laboratório gera registro correlacionável; usuário não altera log"},
+    {"id":"T4","category":"Information Disclosure","flow":"F3","case":"link de documento privado é servido publicamente","control":"autorização e resposta privada sem cache compartilhado","test":"Alice lê; Bob não lê; cache não reutiliza a resposta privada"},
+    {"id":"T5","category":"Denial of Service","flow":"F2","case":"consulta sem limite ocupa todo o pool","control":"paginação, timeout e concorrência limitada","test":"carga pequena controlada preserva orçamento e consulta legítima"},
+    {"id":"T6","category":"Elevation of Privilege","flow":"F3","case":"credencial somente de leitura também consegue apagar documentos","control":"identidade de serviço sem permissão de escrita/exclusão","test":"Get permitido e Delete negado na mesma identidade"}
+  ]
+}

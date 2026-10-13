@@ -1,0 +1,14 @@
+const {test}=require('node:test'),assert=require('node:assert/strict');
+const {createReadHandler}=require('./handler.cjs');
+const url='course://app/index.html',frame={url};
+const wc={id:7,mainFrame:frame},window={webContents:wc};
+const event={sender:wc,senderFrame:frame};
+const read=createReadHandler(window,url,id=>id===7?'alice':null);
+test('happy e reteste: nota própria',()=>{for(let i=0;i<2;i++)assert.deepEqual(read(event,{id:'a'}),{text:'nota A'});});
+test('owner alheio negado na fronteira main',()=>assert.throws(()=>read(event,{id:'b'}),/FORBIDDEN/));
+test('payload não pode escolher identidade',()=>assert.throws(()=>read(event,{id:'b',owner:'bob'}),/INVALID_ARGUMENT/));
+test('janela diferente com mesma URL negada',()=>assert.throws(()=>read({...event,sender:{id:8}},{id:'a'}),/SENDER_DENIED/));
+test('subframe de mesma origem negado',()=>assert.throws(()=>read({...event,senderFrame:{url}},{id:'a'}),/SENDER_DENIED/));
+test('frame principal navegado negado',()=>{frame.url='https://example.invalid/';try{assert.throws(()=>read(event,{id:'a'}),/SENDER_DENIED/);}finally{frame.url=url;}});
+test('sem identidade autenticada',()=>assert.throws(()=>createReadHandler(window,url,()=>null)(event,{id:'a'}),/UNAUTHENTICATED/));
+test('argumentos inválidos',()=>{for(const a of [null,[],{id:'../../secret'},{id:2},{}])assert.throws(()=>read(event,a),/INVALID_ARGUMENT/);});
