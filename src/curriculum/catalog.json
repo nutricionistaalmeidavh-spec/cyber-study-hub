@@ -1,0 +1,5005 @@
+{
+  "version": 1,
+  "main": [
+    {
+      "kind": "main",
+      "id": 1,
+      "code": "AULA-001",
+      "title": "Fundamentos de Segurança da Informação",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/001.md"
+    },
+    {
+      "kind": "main",
+      "id": 2,
+      "code": "AULA-002",
+      "title": "HTTP, Requests, Responses e Parâmetros",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/002.md"
+    },
+    {
+      "kind": "main",
+      "id": 3,
+      "code": "AULA-003",
+      "title": "Autenticação e Autorização",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/003.md"
+    },
+    {
+      "kind": "main",
+      "id": 4,
+      "code": "AULA-004",
+      "title": "Senhas, Hash, Salt e Bcrypt",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/004.md"
+    },
+    {
+      "kind": "main",
+      "id": 5,
+      "code": "AULA-005",
+      "title": "Sessões, Cookies e JWT",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/005.md"
+    },
+    {
+      "kind": "main",
+      "id": 6,
+      "code": "AULA-006",
+      "title": "IDOR e Broken Access Control",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/006.md"
+    },
+    {
+      "kind": "main",
+      "id": 7,
+      "code": "AULA-007",
+      "title": "SQL Injection",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/007.md"
+    },
+    {
+      "kind": "main",
+      "id": 8,
+      "code": "AULA-008",
+      "title": "Cross-Site Scripting — XSS",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/008.md"
+    },
+    {
+      "kind": "main",
+      "id": 9,
+      "code": "AULA-009",
+      "title": "CSRF",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/009.md"
+    },
+    {
+      "kind": "main",
+      "id": 10,
+      "code": "AULA-010",
+      "title": "Burp Suite: Proxy, Intercept e Repeater",
+      "track": "Fundamentos & Web",
+      "block": "Fundamentos e Web Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/010.md"
+    },
+    {
+      "kind": "main",
+      "id": 11,
+      "code": "AULA-011",
+      "title": "Segurança de APIs e Mass Assignment",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/011.md"
+    },
+    {
+      "kind": "main",
+      "id": 12,
+      "code": "AULA-012",
+      "title": "BOLA / IDOR em APIs",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/012.md"
+    },
+    {
+      "kind": "main",
+      "id": 13,
+      "code": "AULA-013",
+      "title": "Upload de Arquivos",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/013.md"
+    },
+    {
+      "kind": "main",
+      "id": 14,
+      "code": "AULA-014",
+      "title": "CORS",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/014.md"
+    },
+    {
+      "kind": "main",
+      "id": 15,
+      "code": "AULA-015",
+      "title": "SSRF — Server-Side Request Forgery",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/015.md"
+    },
+    {
+      "kind": "main",
+      "id": 16,
+      "code": "AULA-016",
+      "title": "Business Logic Vulnerabilities",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/016.md"
+    },
+    {
+      "kind": "main",
+      "id": 17,
+      "code": "AULA-017",
+      "title": "Race Conditions",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/017.md"
+    },
+    {
+      "kind": "main",
+      "id": 18,
+      "code": "AULA-018",
+      "title": "Privilege Escalation",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/018.md"
+    },
+    {
+      "kind": "main",
+      "id": 19,
+      "code": "AULA-019",
+      "title": "JWT Avançado, Sessões e Refresh Tokens",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/019.md"
+    },
+    {
+      "kind": "main",
+      "id": 20,
+      "code": "AULA-020",
+      "title": "OAuth 2.0, OpenID Connect, State e PKCE",
+      "track": "APIs & Identidade",
+      "block": "APIs, lógica de negócio, tokens e OAuth",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/020.md"
+    },
+    {
+      "kind": "main",
+      "id": 21,
+      "code": "AULA-021",
+      "title": "Redes: IP, Portas, TCP e UDP",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/021.md"
+    },
+    {
+      "kind": "main",
+      "id": 22,
+      "code": "AULA-022",
+      "title": "Linux para Segurança",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/022.md"
+    },
+    {
+      "kind": "main",
+      "id": 23,
+      "code": "AULA-023",
+      "title": "Nmap — Mapeamento de Portas e Serviços",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/023.md"
+    },
+    {
+      "kind": "main",
+      "id": 24,
+      "code": "AULA-024",
+      "title": "Wireshark — Observando Pacotes",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/024.md"
+    },
+    {
+      "kind": "main",
+      "id": 25,
+      "code": "AULA-025",
+      "title": "Programas Compilados, CPU e Registradores",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/025.md"
+    },
+    {
+      "kind": "main",
+      "id": 26,
+      "code": "AULA-026",
+      "title": "Memória: Stack, Heap e Buffer Overflow",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/026.md"
+    },
+    {
+      "kind": "main",
+      "id": 27,
+      "code": "AULA-027",
+      "title": "Assembly — Comparações e Saltos",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/027.md"
+    },
+    {
+      "kind": "main",
+      "id": 28,
+      "code": "AULA-028",
+      "title": "Ghidra e Engenharia Reversa",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/028.md"
+    },
+    {
+      "kind": "main",
+      "id": 29,
+      "code": "AULA-029",
+      "title": "Malware — Conceitos e Análise Segura",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/029.md"
+    },
+    {
+      "kind": "main",
+      "id": 30,
+      "code": "AULA-030",
+      "title": "Stuxnet e Sistemas Industriais",
+      "track": "Sistemas & Redes",
+      "block": "Redes, Linux, memória, Assembly, RE e Malware",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/030.md"
+    },
+    {
+      "kind": "main",
+      "id": 31,
+      "code": "AULA-031",
+      "title": "Metodologia de Pentest",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/031.md"
+    },
+    {
+      "kind": "main",
+      "id": 32,
+      "code": "AULA-032",
+      "title": "Reconhecimento e Superfície de Ataque",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/032.md"
+    },
+    {
+      "kind": "main",
+      "id": 33,
+      "code": "AULA-033",
+      "title": "De Pista a Hipótese",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/033.md"
+    },
+    {
+      "kind": "main",
+      "id": 34,
+      "code": "AULA-034",
+      "title": "Validação de Impacto",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/034.md"
+    },
+    {
+      "kind": "main",
+      "id": 35,
+      "code": "AULA-035",
+      "title": "Relatório Profissional e Reteste",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/035.md"
+    },
+    {
+      "kind": "main",
+      "id": 36,
+      "code": "AULA-036",
+      "title": "Threat Modeling com STRIDE",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/036.md"
+    },
+    {
+      "kind": "main",
+      "id": 37,
+      "code": "AULA-037",
+      "title": "Secure Coding",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/037.md"
+    },
+    {
+      "kind": "main",
+      "id": 38,
+      "code": "AULA-038",
+      "title": "SAST, DAST, SCA e Secret Scanning",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/038.md"
+    },
+    {
+      "kind": "main",
+      "id": 39,
+      "code": "AULA-039",
+      "title": "DevSecOps",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/039.md"
+    },
+    {
+      "kind": "main",
+      "id": 40,
+      "code": "AULA-040",
+      "title": "Projeto Final — Pentest Completo de Laboratório",
+      "track": "Pentest & Secure Development",
+      "block": "Metodologia de pentest e desenvolvimento seguro",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/040.md"
+    },
+    {
+      "kind": "main",
+      "id": 41,
+      "code": "AULA-041",
+      "title": "SSTI — Server-Side Template Injection",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/041.md"
+    },
+    {
+      "kind": "main",
+      "id": 42,
+      "code": "AULA-042",
+      "title": "Insecure Deserialization",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/042.md"
+    },
+    {
+      "kind": "main",
+      "id": 43,
+      "code": "AULA-043",
+      "title": "GraphQL Security",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/043.md"
+    },
+    {
+      "kind": "main",
+      "id": 44,
+      "code": "AULA-044",
+      "title": "WebSocket Security",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/044.md"
+    },
+    {
+      "kind": "main",
+      "id": 45,
+      "code": "AULA-045",
+      "title": "HTTP Request Smuggling",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/045.md"
+    },
+    {
+      "kind": "main",
+      "id": 46,
+      "code": "AULA-046",
+      "title": "Web Cache Poisoning",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/046.md"
+    },
+    {
+      "kind": "main",
+      "id": 47,
+      "code": "AULA-047",
+      "title": "Web Cache Deception",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/047.md"
+    },
+    {
+      "kind": "main",
+      "id": 48,
+      "code": "AULA-048",
+      "title": "Prototype Pollution",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/048.md"
+    },
+    {
+      "kind": "main",
+      "id": 49,
+      "code": "AULA-049",
+      "title": "Host Header Attacks",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/049.md"
+    },
+    {
+      "kind": "main",
+      "id": 50,
+      "code": "AULA-050",
+      "title": "DOM-based Vulnerabilities",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/050.md"
+    },
+    {
+      "kind": "main",
+      "id": 51,
+      "code": "AULA-051",
+      "title": "Command Injection",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/051.md"
+    },
+    {
+      "kind": "main",
+      "id": 52,
+      "code": "AULA-052",
+      "title": "Path Traversal e LFI/RFI",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/052.md"
+    },
+    {
+      "kind": "main",
+      "id": 53,
+      "code": "AULA-053",
+      "title": "File Upload Vulnerabilities",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/053.md"
+    },
+    {
+      "kind": "main",
+      "id": 54,
+      "code": "AULA-054",
+      "title": "JWT Security",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/054.md"
+    },
+    {
+      "kind": "main",
+      "id": 55,
+      "code": "AULA-055",
+      "title": "OAuth e OIDC Security",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/055.md"
+    },
+    {
+      "kind": "main",
+      "id": 56,
+      "code": "AULA-056",
+      "title": "API Security avançada — BOLA, BFLA, Mass Assignment",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/056.md"
+    },
+    {
+      "kind": "main",
+      "id": 57,
+      "code": "AULA-057",
+      "title": "Rate Limit, Race Conditions e Business Logic Flaws",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/057.md"
+    },
+    {
+      "kind": "main",
+      "id": 58,
+      "code": "AULA-058",
+      "title": "CORS e Same-Origin Policy",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/058.md"
+    },
+    {
+      "kind": "main",
+      "id": 59,
+      "code": "AULA-059",
+      "title": "CSP, Security Headers e Browser Protections",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/059.md"
+    },
+    {
+      "kind": "main",
+      "id": 60,
+      "code": "AULA-060",
+      "title": "Encadeamento de Vulnerabilidades Web",
+      "track": "Web/AppSec Avançado",
+      "block": "Web e AppSec avançado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/060.md"
+    },
+    {
+      "kind": "main",
+      "id": 61,
+      "code": "AULA-061",
+      "title": "Enumeração Linux",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/061.md"
+    },
+    {
+      "kind": "main",
+      "id": 62,
+      "code": "AULA-062",
+      "title": "Enumeração Windows",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/062.md"
+    },
+    {
+      "kind": "main",
+      "id": 63,
+      "code": "AULA-063",
+      "title": "Privilege Escalation Linux",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/063.md"
+    },
+    {
+      "kind": "main",
+      "id": 64,
+      "code": "AULA-064",
+      "title": "Privilege Escalation Windows",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/064.md"
+    },
+    {
+      "kind": "main",
+      "id": 65,
+      "code": "AULA-065",
+      "title": "Serviços, permissões e configurações inseguras",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/065.md"
+    },
+    {
+      "kind": "main",
+      "id": 66,
+      "code": "AULA-066",
+      "title": "Nmap avançado e Service Fingerprinting",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/066.md"
+    },
+    {
+      "kind": "main",
+      "id": 67,
+      "code": "AULA-067",
+      "title": "Vulnerability Scanning profissional — Nessus/OpenVAS/Nuclei",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/067.md"
+    },
+    {
+      "kind": "main",
+      "id": 68,
+      "code": "AULA-068",
+      "title": "CVE, CWE, CVSS e advisories",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/068.md"
+    },
+    {
+      "kind": "main",
+      "id": 69,
+      "code": "AULA-069",
+      "title": "Validação segura de PoCs em laboratório",
+      "track": "Sistemas",
+      "block": "Systems Security",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/069.md"
+    },
+    {
+      "kind": "main",
+      "id": 70,
+      "code": "AULA-070",
+      "title": "Active Directory fundamentals",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/070.md"
+    },
+    {
+      "kind": "main",
+      "id": 71,
+      "code": "AULA-071",
+      "title": "LDAP, Kerberos, NTLM",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/071.md"
+    },
+    {
+      "kind": "main",
+      "id": 72,
+      "code": "AULA-072",
+      "title": "Enumeração AD",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/072.md"
+    },
+    {
+      "kind": "main",
+      "id": 73,
+      "code": "AULA-073",
+      "title": "Misconfigurations em AD",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/073.md"
+    },
+    {
+      "kind": "main",
+      "id": 74,
+      "code": "AULA-074",
+      "title": "Privilege Escalation AD",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/074.md"
+    },
+    {
+      "kind": "main",
+      "id": 75,
+      "code": "AULA-075",
+      "title": "Lateral Movement em laboratório",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/075.md"
+    },
+    {
+      "kind": "main",
+      "id": 76,
+      "code": "AULA-076",
+      "title": "GPO e permissões",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/076.md"
+    },
+    {
+      "kind": "main",
+      "id": 77,
+      "code": "AULA-077",
+      "title": "AD Hardening",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/077.md"
+    },
+    {
+      "kind": "main",
+      "id": 78,
+      "code": "AULA-078",
+      "title": "Detection in Active Directory",
+      "track": "Active Directory",
+      "block": "Active Directory",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/078.md"
+    },
+    {
+      "kind": "main",
+      "id": 79,
+      "code": "AULA-079",
+      "title": "Logs Windows/Linux",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/079.md"
+    },
+    {
+      "kind": "main",
+      "id": 80,
+      "code": "AULA-080",
+      "title": "Sysmon",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/080.md"
+    },
+    {
+      "kind": "main",
+      "id": 81,
+      "code": "AULA-081",
+      "title": "Wireshark",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/081.md"
+    },
+    {
+      "kind": "main",
+      "id": 82,
+      "code": "AULA-082",
+      "title": "IDS/IPS com Suricata",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/082.md"
+    },
+    {
+      "kind": "main",
+      "id": 83,
+      "code": "AULA-083",
+      "title": "SIEM",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/083.md"
+    },
+    {
+      "kind": "main",
+      "id": 84,
+      "code": "AULA-084",
+      "title": "MITRE ATT&CK",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/084.md"
+    },
+    {
+      "kind": "main",
+      "id": 85,
+      "code": "AULA-085",
+      "title": "IOC, IOA e TTP",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/085.md"
+    },
+    {
+      "kind": "main",
+      "id": 86,
+      "code": "AULA-086",
+      "title": "Sigma",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/086.md"
+    },
+    {
+      "kind": "main",
+      "id": 87,
+      "code": "AULA-087",
+      "title": "YARA",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/087.md"
+    },
+    {
+      "kind": "main",
+      "id": 88,
+      "code": "AULA-088",
+      "title": "Threat Hunting",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/088.md"
+    },
+    {
+      "kind": "main",
+      "id": 89,
+      "code": "AULA-089",
+      "title": "Incident Response",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/089.md"
+    },
+    {
+      "kind": "main",
+      "id": 90,
+      "code": "AULA-090",
+      "title": "DFIR básico",
+      "track": "Blue Team",
+      "block": "Blue Team & SOC",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/090.md"
+    },
+    {
+      "kind": "main",
+      "id": 91,
+      "code": "AULA-091",
+      "title": "Arquitetura de antivírus",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/091.md"
+    },
+    {
+      "kind": "main",
+      "id": 92,
+      "code": "AULA-092",
+      "title": "Assinaturas, hashes e reputação",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/092.md"
+    },
+    {
+      "kind": "main",
+      "id": 93,
+      "code": "AULA-093",
+      "title": "Heurística",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/093.md"
+    },
+    {
+      "kind": "main",
+      "id": 94,
+      "code": "AULA-094",
+      "title": "Análise comportamental",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/094.md"
+    },
+    {
+      "kind": "main",
+      "id": 95,
+      "code": "AULA-095",
+      "title": "Sandboxing",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/095.md"
+    },
+    {
+      "kind": "main",
+      "id": 96,
+      "code": "AULA-096",
+      "title": "Exploit Protection",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/096.md"
+    },
+    {
+      "kind": "main",
+      "id": 97,
+      "code": "AULA-097",
+      "title": "EDR e telemetria",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/097.md"
+    },
+    {
+      "kind": "main",
+      "id": 98,
+      "code": "AULA-098",
+      "title": "Process Trees",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/098.md"
+    },
+    {
+      "kind": "main",
+      "id": 99,
+      "code": "AULA-099",
+      "title": "Falsos positivos e falsos negativos",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/099.md"
+    },
+    {
+      "kind": "main",
+      "id": 100,
+      "code": "AULA-100",
+      "title": "Detection Engineering aplicado",
+      "track": "Antivírus/EDR",
+      "block": "Antivírus, EDR e Detection",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/100.md"
+    },
+    {
+      "kind": "main",
+      "id": 101,
+      "code": "AULA-101",
+      "title": "C aplicado à Segurança",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/101.md"
+    },
+    {
+      "kind": "main",
+      "id": 102,
+      "code": "AULA-102",
+      "title": "Ponteiros",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/102.md"
+    },
+    {
+      "kind": "main",
+      "id": 103,
+      "code": "AULA-103",
+      "title": "Stack e Heap",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/103.md"
+    },
+    {
+      "kind": "main",
+      "id": 104,
+      "code": "AULA-104",
+      "title": "Memória Virtual",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/104.md"
+    },
+    {
+      "kind": "main",
+      "id": 105,
+      "code": "AULA-105",
+      "title": "Processes e Threads",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/105.md"
+    },
+    {
+      "kind": "main",
+      "id": 106,
+      "code": "AULA-106",
+      "title": "Windows API",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/106.md"
+    },
+    {
+      "kind": "main",
+      "id": 107,
+      "code": "AULA-107",
+      "title": "DLLs",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/107.md"
+    },
+    {
+      "kind": "main",
+      "id": 108,
+      "code": "AULA-108",
+      "title": "Formato PE",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/108.md"
+    },
+    {
+      "kind": "main",
+      "id": 109,
+      "code": "AULA-109",
+      "title": "User Mode vs Kernel Mode",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/109.md"
+    },
+    {
+      "kind": "main",
+      "id": 110,
+      "code": "AULA-110",
+      "title": "Windows Internals",
+      "track": "C & Windows Internals",
+      "block": "C aplicado à segurança e Windows Internals",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/110.md"
+    },
+    {
+      "kind": "main",
+      "id": 111,
+      "code": "AULA-111",
+      "title": "Assembly x86/x64",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/111.md"
+    },
+    {
+      "kind": "main",
+      "id": 112,
+      "code": "AULA-112",
+      "title": "Registradores e Instruções",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/112.md"
+    },
+    {
+      "kind": "main",
+      "id": 113,
+      "code": "AULA-113",
+      "title": "Stack Frames e Calling Conventions",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/113.md"
+    },
+    {
+      "kind": "main",
+      "id": 114,
+      "code": "AULA-114",
+      "title": "Jumps, Calls e Control Flow",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/114.md"
+    },
+    {
+      "kind": "main",
+      "id": 115,
+      "code": "AULA-115",
+      "title": "Ghidra",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/115.md"
+    },
+    {
+      "kind": "main",
+      "id": 116,
+      "code": "AULA-116",
+      "title": "x64dbg",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/116.md"
+    },
+    {
+      "kind": "main",
+      "id": 117,
+      "code": "AULA-117",
+      "title": "Decompilation",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/117.md"
+    },
+    {
+      "kind": "main",
+      "id": 118,
+      "code": "AULA-118",
+      "title": "Xrefs, Strings e Imports",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/118.md"
+    },
+    {
+      "kind": "main",
+      "id": 119,
+      "code": "AULA-119",
+      "title": "Debugging dos próprios executáveis",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/119.md"
+    },
+    {
+      "kind": "main",
+      "id": 120,
+      "code": "AULA-120",
+      "title": "Reconstrução de lógica",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/120.md"
+    },
+    {
+      "kind": "main",
+      "id": 121,
+      "code": "AULA-121",
+      "title": "Packing e Unpacking",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/121.md"
+    },
+    {
+      "kind": "main",
+      "id": 122,
+      "code": "AULA-122",
+      "title": "Obfuscation e Deobfuscation",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/122.md"
+    },
+    {
+      "kind": "main",
+      "id": 123,
+      "code": "AULA-123",
+      "title": "Anti-Debugging",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/123.md"
+    },
+    {
+      "kind": "main",
+      "id": 124,
+      "code": "AULA-124",
+      "title": "Anti-VM / Anti-Analysis",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/124.md"
+    },
+    {
+      "kind": "main",
+      "id": 125,
+      "code": "AULA-125",
+      "title": "Anti-Tamper",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/125.md"
+    },
+    {
+      "kind": "main",
+      "id": 126,
+      "code": "AULA-126",
+      "title": "Code Integrity",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/126.md"
+    },
+    {
+      "kind": "main",
+      "id": 127,
+      "code": "AULA-127",
+      "title": "Proteções de licença em software próprio",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/127.md"
+    },
+    {
+      "kind": "main",
+      "id": 128,
+      "code": "AULA-128",
+      "title": "Analisando nossas próprias proteções",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/128.md"
+    },
+    {
+      "kind": "main",
+      "id": 129,
+      "code": "AULA-129",
+      "title": "Hardening contra Reverse Engineering",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/129.md"
+    },
+    {
+      "kind": "main",
+      "id": 130,
+      "code": "AULA-130",
+      "title": "Capstone — Análise e Hardening de um binário próprio",
+      "track": "Assembly & RE",
+      "block": "Assembly e Engenharia Reversa",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/130.md"
+    },
+    {
+      "kind": "main",
+      "id": 131,
+      "code": "AULA-131",
+      "title": "Introdução a Malware",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/131.md"
+    },
+    {
+      "kind": "main",
+      "id": 132,
+      "code": "AULA-132",
+      "title": "Tipos de Malware",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/132.md"
+    },
+    {
+      "kind": "main",
+      "id": 133,
+      "code": "AULA-133",
+      "title": "Static Analysis",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/133.md"
+    },
+    {
+      "kind": "main",
+      "id": 134,
+      "code": "AULA-134",
+      "title": "Hashes, Strings, Imports e Metadata",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/134.md"
+    },
+    {
+      "kind": "main",
+      "id": 135,
+      "code": "AULA-135",
+      "title": "Entropy e Indicadores de Packing",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/135.md"
+    },
+    {
+      "kind": "main",
+      "id": 136,
+      "code": "AULA-136",
+      "title": "Laboratório Windows Isolado",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/136.md"
+    },
+    {
+      "kind": "main",
+      "id": 137,
+      "code": "AULA-137",
+      "title": "REMnux",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/137.md"
+    },
+    {
+      "kind": "main",
+      "id": 138,
+      "code": "AULA-138",
+      "title": "Process Monitor e Process Explorer",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/138.md"
+    },
+    {
+      "kind": "main",
+      "id": 139,
+      "code": "AULA-139",
+      "title": "Autoruns e Persistence",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/139.md"
+    },
+    {
+      "kind": "main",
+      "id": 140,
+      "code": "AULA-140",
+      "title": "Dynamic Analysis",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/140.md"
+    },
+    {
+      "kind": "main",
+      "id": 141,
+      "code": "AULA-141",
+      "title": "Process e Child Process Analysis",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/141.md"
+    },
+    {
+      "kind": "main",
+      "id": 142,
+      "code": "AULA-142",
+      "title": "Registry e File System Artifacts",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/142.md"
+    },
+    {
+      "kind": "main",
+      "id": 143,
+      "code": "AULA-143",
+      "title": "Network Behavior",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/143.md"
+    },
+    {
+      "kind": "main",
+      "id": 144,
+      "code": "AULA-144",
+      "title": "FakeNet-NG",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/144.md"
+    },
+    {
+      "kind": "main",
+      "id": 145,
+      "code": "AULA-145",
+      "title": "Malware Traffic",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/145.md"
+    },
+    {
+      "kind": "main",
+      "id": 146,
+      "code": "AULA-146",
+      "title": "PCAP + Wireshark",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/146.md"
+    },
+    {
+      "kind": "main",
+      "id": 147,
+      "code": "AULA-147",
+      "title": "C2 e Beaconing — análise defensiva",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/147.md"
+    },
+    {
+      "kind": "main",
+      "id": 148,
+      "code": "AULA-148",
+      "title": "Memory Forensics",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/148.md"
+    },
+    {
+      "kind": "main",
+      "id": 149,
+      "code": "AULA-149",
+      "title": "Volatility",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/149.md"
+    },
+    {
+      "kind": "main",
+      "id": 150,
+      "code": "AULA-150",
+      "title": "Extração de IOCs",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/150.md"
+    },
+    {
+      "kind": "main",
+      "id": 151,
+      "code": "AULA-151",
+      "title": "YARA aplicado",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/151.md"
+    },
+    {
+      "kind": "main",
+      "id": 152,
+      "code": "AULA-152",
+      "title": "Sigma aplicado",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/152.md"
+    },
+    {
+      "kind": "main",
+      "id": 153,
+      "code": "AULA-153",
+      "title": "Detection Rules",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/153.md"
+    },
+    {
+      "kind": "main",
+      "id": 154,
+      "code": "AULA-154",
+      "title": "MITRE ATT&CK Mapping",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/154.md"
+    },
+    {
+      "kind": "main",
+      "id": 155,
+      "code": "AULA-155",
+      "title": "Persistence Detection",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/155.md"
+    },
+    {
+      "kind": "main",
+      "id": 156,
+      "code": "AULA-156",
+      "title": "Suspicious Execution",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/156.md"
+    },
+    {
+      "kind": "main",
+      "id": 157,
+      "code": "AULA-157",
+      "title": "Suspicious PowerShell",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/157.md"
+    },
+    {
+      "kind": "main",
+      "id": 158,
+      "code": "AULA-158",
+      "title": "Process Injection Detection",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/158.md"
+    },
+    {
+      "kind": "main",
+      "id": 159,
+      "code": "AULA-159",
+      "title": "SIEM Correlation",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/159.md"
+    },
+    {
+      "kind": "main",
+      "id": 160,
+      "code": "AULA-160",
+      "title": "Capstone — Investigação completa de amostra educacional",
+      "track": "Malware",
+      "block": "Malware Analysis & Detection",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/160.md"
+    },
+    {
+      "kind": "main",
+      "id": 161,
+      "code": "AULA-161",
+      "title": "Memory Corruption",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/161.md"
+    },
+    {
+      "kind": "main",
+      "id": 162,
+      "code": "AULA-162",
+      "title": "Buffer Overflow",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/162.md"
+    },
+    {
+      "kind": "main",
+      "id": 163,
+      "code": "AULA-163",
+      "title": "Debugger e Crash Analysis",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/163.md"
+    },
+    {
+      "kind": "main",
+      "id": 164,
+      "code": "AULA-164",
+      "title": "Stack Overflow",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/164.md"
+    },
+    {
+      "kind": "main",
+      "id": 165,
+      "code": "AULA-165",
+      "title": "Heap Fundamentals",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/165.md"
+    },
+    {
+      "kind": "main",
+      "id": 166,
+      "code": "AULA-166",
+      "title": "ASLR",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/166.md"
+    },
+    {
+      "kind": "main",
+      "id": 167,
+      "code": "AULA-167",
+      "title": "DEP / NX",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/167.md"
+    },
+    {
+      "kind": "main",
+      "id": 168,
+      "code": "AULA-168",
+      "title": "Stack Canaries",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/168.md"
+    },
+    {
+      "kind": "main",
+      "id": 169,
+      "code": "AULA-169",
+      "title": "ROP em laboratório educacional",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/169.md"
+    },
+    {
+      "kind": "main",
+      "id": 170,
+      "code": "AULA-170",
+      "title": "Exploit Mitigations",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/170.md"
+    },
+    {
+      "kind": "main",
+      "id": 171,
+      "code": "AULA-171",
+      "title": "Fuzzing",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/171.md"
+    },
+    {
+      "kind": "main",
+      "id": 172,
+      "code": "AULA-172",
+      "title": "Coverage-Guided Fuzzing",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/172.md"
+    },
+    {
+      "kind": "main",
+      "id": 173,
+      "code": "AULA-173",
+      "title": "Sanitizers",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/173.md"
+    },
+    {
+      "kind": "main",
+      "id": 174,
+      "code": "AULA-174",
+      "title": "Crash Triage",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/174.md"
+    },
+    {
+      "kind": "main",
+      "id": 175,
+      "code": "AULA-175",
+      "title": "Root Cause Analysis",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/175.md"
+    },
+    {
+      "kind": "main",
+      "id": 176,
+      "code": "AULA-176",
+      "title": "Reproduzir Vulnerabilidade",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/176.md"
+    },
+    {
+      "kind": "main",
+      "id": 177,
+      "code": "AULA-177",
+      "title": "Safe PoC",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/177.md"
+    },
+    {
+      "kind": "main",
+      "id": 178,
+      "code": "AULA-178",
+      "title": "Patch Diff",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/178.md"
+    },
+    {
+      "kind": "main",
+      "id": 179,
+      "code": "AULA-179",
+      "title": "Variant Analysis",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/179.md"
+    },
+    {
+      "kind": "main",
+      "id": 180,
+      "code": "AULA-180",
+      "title": "Capstone — CVE Research e correção reproduzível",
+      "track": "Exploit Development",
+      "block": "Exploit Development & Vulnerability Research",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/180.md"
+    },
+    {
+      "kind": "main",
+      "id": 181,
+      "code": "AULA-181",
+      "title": "Red Team Methodology",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/181.md"
+    },
+    {
+      "kind": "main",
+      "id": 182,
+      "code": "AULA-182",
+      "title": "Adversary Emulation",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/182.md"
+    },
+    {
+      "kind": "main",
+      "id": 183,
+      "code": "AULA-183",
+      "title": "Initial Access em laboratório",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/183.md"
+    },
+    {
+      "kind": "main",
+      "id": 184,
+      "code": "AULA-184",
+      "title": "Privilege Escalation em laboratório",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/184.md"
+    },
+    {
+      "kind": "main",
+      "id": 185,
+      "code": "AULA-185",
+      "title": "Persistence — ofensivo e defensivo",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/185.md"
+    },
+    {
+      "kind": "main",
+      "id": 186,
+      "code": "AULA-186",
+      "title": "Credential Access — conceitos e defesa",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/186.md"
+    },
+    {
+      "kind": "main",
+      "id": 187,
+      "code": "AULA-187",
+      "title": "Lateral Movement em laboratório",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/187.md"
+    },
+    {
+      "kind": "main",
+      "id": 188,
+      "code": "AULA-188",
+      "title": "Defense Evasion — conceitos e telemetria",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/188.md"
+    },
+    {
+      "kind": "main",
+      "id": 189,
+      "code": "AULA-189",
+      "title": "Arquitetura conceitual de C2",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/189.md"
+    },
+    {
+      "kind": "main",
+      "id": 190,
+      "code": "AULA-190",
+      "title": "Capstone — Purple Team Exercise",
+      "track": "Red/Purple Team",
+      "block": "Red Team & Purple Team",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/190.md"
+    },
+    {
+      "kind": "main",
+      "id": 191,
+      "code": "AULA-191",
+      "title": "Docker Security",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/191.md"
+    },
+    {
+      "kind": "main",
+      "id": 192,
+      "code": "AULA-192",
+      "title": "Kubernetes Security",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/192.md"
+    },
+    {
+      "kind": "main",
+      "id": 193,
+      "code": "AULA-193",
+      "title": "IAM",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/193.md"
+    },
+    {
+      "kind": "main",
+      "id": 194,
+      "code": "AULA-194",
+      "title": "Secrets Management",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "N",
+      "durationMin": 35,
+      "contentPath": "/course-library/main/194.md"
+    },
+    {
+      "kind": "main",
+      "id": 195,
+      "code": "AULA-195",
+      "title": "CI/CD Security",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/195.md"
+    },
+    {
+      "kind": "main",
+      "id": 196,
+      "code": "AULA-196",
+      "title": "SAST, DAST e SCA em pipelines",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/196.md"
+    },
+    {
+      "kind": "main",
+      "id": 197,
+      "code": "AULA-197",
+      "title": "Software Supply Chain",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/197.md"
+    },
+    {
+      "kind": "main",
+      "id": 198,
+      "code": "AULA-198",
+      "title": "Supabase / Firebase Security",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/198.md"
+    },
+    {
+      "kind": "main",
+      "id": 199,
+      "code": "AULA-199",
+      "title": "Serverless Security",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/199.md"
+    },
+    {
+      "kind": "main",
+      "id": 200,
+      "code": "AULA-200",
+      "title": "Capstone — Electron/Desktop Security e aplicação moderna",
+      "track": "Cloud/DevSecOps",
+      "block": "Cloud, DevSecOps e Modern App Security",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/200.md"
+    },
+    {
+      "kind": "main",
+      "id": 201,
+      "code": "AULA-201",
+      "title": "LLM Security Fundamentals",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/201.md"
+    },
+    {
+      "kind": "main",
+      "id": 202,
+      "code": "AULA-202",
+      "title": "Prompt Injection",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/202.md"
+    },
+    {
+      "kind": "main",
+      "id": 203,
+      "code": "AULA-203",
+      "title": "Sensitive Information Disclosure",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/203.md"
+    },
+    {
+      "kind": "main",
+      "id": 204,
+      "code": "AULA-204",
+      "title": "RAG Security",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/204.md"
+    },
+    {
+      "kind": "main",
+      "id": 205,
+      "code": "AULA-205",
+      "title": "Tool / Agent Abuse",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/205.md"
+    },
+    {
+      "kind": "main",
+      "id": 206,
+      "code": "AULA-206",
+      "title": "Model & AI Supply Chain",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/206.md"
+    },
+    {
+      "kind": "main",
+      "id": 207,
+      "code": "AULA-207",
+      "title": "OWASP GenAI / LLM Top 10 2026",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/207.md"
+    },
+    {
+      "kind": "main",
+      "id": 208,
+      "code": "AULA-208",
+      "title": "Defesa de Agentes e Capstone AI Security",
+      "track": "AI/LLM Security",
+      "block": "AI e LLM Security",
+      "depth": "P",
+      "durationMin": 60,
+      "contentPath": "/course-library/main/208.md"
+    },
+    {
+      "kind": "main",
+      "id": 209,
+      "code": "AULA-209",
+      "title": "Definição do laboratório final",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/209.md"
+    },
+    {
+      "kind": "main",
+      "id": 210,
+      "code": "AULA-210",
+      "title": "Threat Modeling do laboratório",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/210.md"
+    },
+    {
+      "kind": "main",
+      "id": 211,
+      "code": "AULA-211",
+      "title": "Reconhecimento e inventário autorizado",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/211.md"
+    },
+    {
+      "kind": "main",
+      "id": 212,
+      "code": "AULA-212",
+      "title": "Pentest controlado — hipóteses e validação",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/212.md"
+    },
+    {
+      "kind": "main",
+      "id": 213,
+      "code": "AULA-213",
+      "title": "Exploração controlada e prova de impacto",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/213.md"
+    },
+    {
+      "kind": "main",
+      "id": 214,
+      "code": "AULA-214",
+      "title": "Coleta e análise de logs",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/214.md"
+    },
+    {
+      "kind": "main",
+      "id": 215,
+      "code": "AULA-215",
+      "title": "Detecções — YARA, Sigma, EDR e SIEM",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/215.md"
+    },
+    {
+      "kind": "main",
+      "id": 216,
+      "code": "AULA-216",
+      "title": "Correções e Hardening",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/216.md"
+    },
+    {
+      "kind": "main",
+      "id": 217,
+      "code": "AULA-217",
+      "title": "Reteste e regressão",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/217.md"
+    },
+    {
+      "kind": "main",
+      "id": 218,
+      "code": "AULA-218",
+      "title": "Relatório e apresentação final",
+      "track": "Projeto Final",
+      "block": "Projeto Final Integrado",
+      "depth": "CAP",
+      "durationMin": 90,
+      "contentPath": "/course-library/main/218.md"
+    }
+  ],
+  "parallel": [
+    {
+      "kind": "parallel",
+      "code": "LOG-01",
+      "title": "Algoritmos e decomposição de problemas",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-02",
+      "title": "Variáveis, tipos e memória conceitual",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-03",
+      "title": "Operadores e expressões",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-04",
+      "title": "Condições",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-05",
+      "title": "Laços de repetição",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-06",
+      "title": "Arrays e coleções",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-07",
+      "title": "Funções",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-08",
+      "title": "Escopo",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-09",
+      "title": "Recursividade",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-10",
+      "title": "Estruturas de dados básicas",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-11",
+      "title": "Entrada → processamento → saída",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-12",
+      "title": "Estado e mudança de estado",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-13",
+      "title": "Buscar e filtrar dados",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-14",
+      "title": "Contadores, acumuladores e flags",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-15",
+      "title": "Validação de entrada",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-16",
+      "title": "Tratamento de erros",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-17",
+      "title": "Debugging lógico",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-18",
+      "title": "Ler código de outra pessoa",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-19",
+      "title": "Refatoração básica",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LOG-20",
+      "title": "Projeto lógico final",
+      "track": "Lógica e Algoritmos",
+      "trackCode": "LOG",
+      "contentPath": "/course-library/parallel/LOG-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-01",
+      "title": "Python do zero",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-02",
+      "title": "Variáveis e tipos",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-03",
+      "title": "Condições e loops",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-04",
+      "title": "Funções",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-05",
+      "title": "Listas, dicts e sets",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-06",
+      "title": "Arquivos",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-07",
+      "title": "Exceções",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-08",
+      "title": "Módulos e ambientes",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-09",
+      "title": "JSON, CSV e dados",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-10",
+      "title": "Requests e HTTP",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-11",
+      "title": "Sockets",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-12",
+      "title": "Regex",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-13",
+      "title": "Processos",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-14",
+      "title": "Automação",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-15",
+      "title": "Parsing de logs",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-16",
+      "title": "Scanner defensivo",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-17",
+      "title": "Hashes e arquivos",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-18",
+      "title": "PCAP e dados de segurança",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-19",
+      "title": "Ferramentas CLI",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PY-20",
+      "title": "Projeto Python para Security",
+      "track": "Python para Segurança",
+      "trackCode": "PY",
+      "contentPath": "/course-library/parallel/PY-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-01",
+      "title": "JavaScript essencial",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-02",
+      "title": "Objetos e arrays",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-03",
+      "title": "Funções e closures",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-04",
+      "title": "DOM",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-05",
+      "title": "Eventos",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-06",
+      "title": "Async / Promises",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-07",
+      "title": "Fetch e HTTP",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-08",
+      "title": "Node.js",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-09",
+      "title": "Express",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "JS-10",
+      "title": "APIs",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "JS",
+      "contentPath": "/course-library/parallel/JS-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "TS-01",
+      "title": "TypeScript",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "TS",
+      "contentPath": "/course-library/parallel/TS-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "TS-02",
+      "title": "Interfaces e types",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "TS",
+      "contentPath": "/course-library/parallel/TS-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "TS-03",
+      "title": "Generics",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "TS",
+      "contentPath": "/course-library/parallel/TS-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "TS-04",
+      "title": "Type safety para APIs",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "TS",
+      "contentPath": "/course-library/parallel/TS-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "TS-05",
+      "title": "Segurança aplicada a Node/TypeScript",
+      "track": "JavaScript / TypeScript",
+      "trackCode": "TS",
+      "contentPath": "/course-library/parallel/TS-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-01",
+      "title": "Sintaxe",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-02",
+      "title": "Tipos",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-03",
+      "title": "Condições",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-04",
+      "title": "Loops",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-05",
+      "title": "Funções",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-06",
+      "title": "Arrays",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-07",
+      "title": "Strings",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-08",
+      "title": "Structs",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-09",
+      "title": "Ponteiros",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-10",
+      "title": "Endereços",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-11",
+      "title": "Stack",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-12",
+      "title": "Heap",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-13",
+      "title": "malloc e free",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-14",
+      "title": "Manipulação de memória",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-15",
+      "title": "Arquivos",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-16",
+      "title": "Compilação",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-17",
+      "title": "Debugging",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-18",
+      "title": "Código inseguro vs seguro",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-19",
+      "title": "Sanitizers",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "C-20",
+      "title": "Projeto C",
+      "track": "C — Fundamentos Paralelos",
+      "trackCode": "C",
+      "contentPath": "/course-library/parallel/C-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-01",
+      "title": "Terminal",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-02",
+      "title": "Filesystem",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-03",
+      "title": "Pipes e redirection",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-04",
+      "title": "grep e find",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-05",
+      "title": "Variáveis",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-06",
+      "title": "Loops",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-07",
+      "title": "Funções",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-08",
+      "title": "Processos",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-09",
+      "title": "Networking",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "BASH-10",
+      "title": "Automação defensiva",
+      "track": "Bash",
+      "trackCode": "BASH",
+      "contentPath": "/course-library/parallel/BASH-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-01",
+      "title": "Objetos e pipeline",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-02",
+      "title": "Filesystem",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-03",
+      "title": "Processos",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-04",
+      "title": "Serviços",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-05",
+      "title": "Rede",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-06",
+      "title": "Registry",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-07",
+      "title": "Eventos",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-08",
+      "title": "Active Directory",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-09",
+      "title": "Automação",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "PS-10",
+      "title": "Coleta de evidências",
+      "track": "PowerShell",
+      "trackCode": "PS",
+      "contentPath": "/course-library/parallel/PS-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-01",
+      "title": "O que é uma rede",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-02",
+      "title": "Modelo OSI",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-03",
+      "title": "TCP/IP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-04",
+      "title": "IPv4",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-05",
+      "title": "IPv6",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-06",
+      "title": "MAC e Ethernet",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-07",
+      "title": "ARP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-08",
+      "title": "Switching",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-09",
+      "title": "Routing",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-10",
+      "title": "NAT",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-11",
+      "title": "TCP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-12",
+      "title": "Three-way handshake",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-13",
+      "title": "Flags TCP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-14",
+      "title": "UDP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-15",
+      "title": "Portas",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-16",
+      "title": "Sockets",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-17",
+      "title": "Estado de conexões",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-18",
+      "title": "Retransmissão",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-19",
+      "title": "MTU e fragmentação",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-20",
+      "title": "Diagnóstico de conectividade",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-21",
+      "title": "DNS",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-21.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-22",
+      "title": "DHCP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-22.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-23",
+      "title": "HTTP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-23.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-24",
+      "title": "HTTPS",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-24.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-25",
+      "title": "TLS",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-25.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-26",
+      "title": "SSH",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-26.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-27",
+      "title": "FTP e SFTP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-27.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-28",
+      "title": "SMTP e IMAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-28.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-29",
+      "title": "SMB",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-29.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-30",
+      "title": "LDAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-30.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-31",
+      "title": "Wireshark básico",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-31.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-32",
+      "title": "Filtros Wireshark",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-32.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-33",
+      "title": "TCP no PCAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-33.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-34",
+      "title": "DNS no PCAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-34.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-35",
+      "title": "HTTP no PCAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-35.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-36",
+      "title": "TLS no PCAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-36.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-37",
+      "title": "Fluxos",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-37.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-38",
+      "title": "Baseline de rede",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-38.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-39",
+      "title": "Tráfego anômalo",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-39.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "NET-40",
+      "title": "Projeto de análise de PCAP",
+      "track": "Redes para Segurança",
+      "trackCode": "NET",
+      "contentPath": "/course-library/parallel/NET-40.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-01",
+      "title": "Filesystem",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-02",
+      "title": "Terminal",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-03",
+      "title": "Arquivos e diretórios",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-04",
+      "title": "Permissões",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-05",
+      "title": "Usuários e grupos",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-06",
+      "title": "sudo",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-07",
+      "title": "Processos",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-08",
+      "title": "Signals",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-09",
+      "title": "Packages",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-10",
+      "title": "Environment",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-11",
+      "title": "systemd",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-12",
+      "title": "Serviços",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-13",
+      "title": "Logs e journalctl",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-14",
+      "title": "cron",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-15",
+      "title": "Discos",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-16",
+      "title": "Mounts",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-17",
+      "title": "Networking",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-18",
+      "title": "SSH",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-19",
+      "title": "Firewall",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-20",
+      "title": "Troubleshooting",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-21",
+      "title": "Ownership e permissões",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-21.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-22",
+      "title": "SUID e SGID",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-22.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-23",
+      "title": "Capabilities",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-23.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-24",
+      "title": "sudoers",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-24.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-25",
+      "title": "Secrets",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-25.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-26",
+      "title": "Processos suspeitos",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-26.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-27",
+      "title": "Conexões",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-27.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-28",
+      "title": "Logs de autenticação",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-28.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-29",
+      "title": "Hardening",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-29.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LNX-30",
+      "title": "Auditoria final",
+      "track": "Linux",
+      "trackCode": "LNX",
+      "contentPath": "/course-library/parallel/LNX-30.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-01",
+      "title": "Arquitetura Windows",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-02",
+      "title": "Usuários e grupos",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-03",
+      "title": "Filesystem",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-04",
+      "title": "NTFS",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-05",
+      "title": "Processos",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-06",
+      "title": "Threads",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-07",
+      "title": "Services",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-08",
+      "title": "Registry",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-09",
+      "title": "Scheduled Tasks",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-10",
+      "title": "Environment",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-11",
+      "title": "PowerShell",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-12",
+      "title": "Networking",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-13",
+      "title": "Firewall",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-14",
+      "title": "Services — administração",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-15",
+      "title": "Event Viewer",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-16",
+      "title": "Windows Update",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-17",
+      "title": "Permissions",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-18",
+      "title": "UAC",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-19",
+      "title": "Defender",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-20",
+      "title": "Troubleshooting",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-21",
+      "title": "Access Tokens",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-21.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-22",
+      "title": "Integrity Levels",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-22.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-23",
+      "title": "Process Tree",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-23.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-24",
+      "title": "DLLs",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-24.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-25",
+      "title": "PE Basics",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-25.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-26",
+      "title": "Persistence Locations",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-26.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-27",
+      "title": "Security Logs",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-27.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-28",
+      "title": "Sysmon",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-28.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-29",
+      "title": "Hardening",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-29.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WIN-30",
+      "title": "Investigação final",
+      "track": "Windows",
+      "trackCode": "WIN",
+      "contentPath": "/course-library/parallel/WIN-30.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-01",
+      "title": "Browser",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-02",
+      "title": "URL",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-03",
+      "title": "HTTP Request",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-04",
+      "title": "HTTP Response",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-05",
+      "title": "Headers",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-06",
+      "title": "Methods",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-07",
+      "title": "Status Codes",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-08",
+      "title": "Cookies",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-09",
+      "title": "Sessions",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-10",
+      "title": "Same-Origin",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-11",
+      "title": "HTML",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-12",
+      "title": "Forms",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-13",
+      "title": "DOM",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-14",
+      "title": "JavaScript no navegador",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-15",
+      "title": "Fetch",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-16",
+      "title": "Storage",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-17",
+      "title": "SPA",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-18",
+      "title": "Routing",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-19",
+      "title": "CORS",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-20",
+      "title": "Browser Security",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-21",
+      "title": "Node e Express",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-21.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-22",
+      "title": "Rotas",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-22.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-23",
+      "title": "Middleware",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-23.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-24",
+      "title": "Controllers",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-24.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-25",
+      "title": "Services",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-25.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-26",
+      "title": "Databases",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-26.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-27",
+      "title": "SQL",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-27.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-28",
+      "title": "ORM",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-28.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-29",
+      "title": "Validação",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-29.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-30",
+      "title": "Error Handling",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-30.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-31",
+      "title": "Authentication",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-31.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-32",
+      "title": "Authorization",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-32.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-33",
+      "title": "Sessions no backend",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-33.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-34",
+      "title": "JWT",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-34.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-35",
+      "title": "OAuth",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-35.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-36",
+      "title": "REST",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-36.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-37",
+      "title": "GraphQL",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-37.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-38",
+      "title": "WebSocket",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-38.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-39",
+      "title": "Uploads",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-39.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "WEB-40",
+      "title": "Projeto web completo",
+      "track": "Web Development para AppSec",
+      "trackCode": "WEB",
+      "contentPath": "/course-library/parallel/WEB-40.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-01",
+      "title": "Git",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-02",
+      "title": "Commit",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-03",
+      "title": "Branch",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-04",
+      "title": "Merge",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-05",
+      "title": "Rebase",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-06",
+      "title": "Remote",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-07",
+      "title": "GitHub",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-08",
+      "title": "Pull Request",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-09",
+      "title": "Conflitos",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-10",
+      "title": "Estratégias de versionamento",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-11",
+      "title": "Estrutura de projeto",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-12",
+      "title": "Dependências",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-13",
+      "title": "Package managers",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-14",
+      "title": "Configuração",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-15",
+      "title": "Environment variables",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-16",
+      "title": "Testes",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-17",
+      "title": "Unit tests",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-18",
+      "title": "Integration tests",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-19",
+      "title": "Debugging",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-20",
+      "title": "Logging",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-21",
+      "title": "Build",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-21.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-22",
+      "title": "CI",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-22.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-23",
+      "title": "CD",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-23.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-24",
+      "title": "Artifacts",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-24.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-25",
+      "title": "Releases",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-25.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-26",
+      "title": "Semantic Versioning",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-26.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-27",
+      "title": "Dependency Security",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-27.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-28",
+      "title": "Secrets",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-28.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-29",
+      "title": "Software Supply Chain",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-29.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "ENG-30",
+      "title": "Projeto CI/CD seguro",
+      "track": "Git e Engenharia de Software",
+      "trackCode": "ENG",
+      "contentPath": "/course-library/parallel/ENG-30.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-01",
+      "title": "Ética, autorização e escopo",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-02",
+      "title": "Como documentar um laboratório",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-03",
+      "title": "Virtualização",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-04",
+      "title": "WSL",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-05",
+      "title": "Docker",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-06",
+      "title": "Redes Docker",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-07",
+      "title": "Kali",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-08",
+      "title": "Ubuntu",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-09",
+      "title": "Windows VM",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-10",
+      "title": "Snapshots",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-11",
+      "title": "Burp Suite",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-11.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-12",
+      "title": "OWASP ZAP",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-12.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-13",
+      "title": "DevTools",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-13.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-14",
+      "title": "curl",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-14.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-15",
+      "title": "Postman e Bruno",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-15.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-16",
+      "title": "Nmap",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-16.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-17",
+      "title": "Wireshark",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-17.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-18",
+      "title": "Nuclei",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-18.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-19",
+      "title": "Ghidra",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-19.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-20",
+      "title": "x64dbg",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-20.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-21",
+      "title": "Sysmon",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-21.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-22",
+      "title": "Procmon",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-22.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-23",
+      "title": "Process Explorer",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-23.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-24",
+      "title": "Autoruns",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-24.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-25",
+      "title": "REMnux",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-25.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-26",
+      "title": "Volatility",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-26.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-27",
+      "title": "Suricata",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-27.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-28",
+      "title": "SIEM",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-28.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-29",
+      "title": "YARA e Sigma",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-29.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "LAB-30",
+      "title": "Laboratório integrado",
+      "track": "Laboratório e Ferramentas",
+      "trackCode": "LAB",
+      "contentPath": "/course-library/parallel/LAB-30.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-01",
+      "title": "O que é cloud",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-02",
+      "title": "IaaS / PaaS / SaaS",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-03",
+      "title": "Regiões e zones",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-04",
+      "title": "Compute",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-05",
+      "title": "Storage",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-06",
+      "title": "Networking cloud",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-07",
+      "title": "IAM",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-08",
+      "title": "Roles e policies",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-09",
+      "title": "Secrets",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CLD-10",
+      "title": "Logging",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CLD",
+      "contentPath": "/course-library/parallel/CLD-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-01",
+      "title": "Containers",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-02",
+      "title": "Imagens",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-03",
+      "title": "Dockerfile",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-04",
+      "title": "Volumes",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-05",
+      "title": "Networking de containers",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-06",
+      "title": "Registries",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-07",
+      "title": "docker-compose",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-08",
+      "title": "Permissions em containers",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-09",
+      "title": "Secrets em containers",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "CTR-10",
+      "title": "Container hardening",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "CTR",
+      "contentPath": "/course-library/parallel/CTR-10.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-01",
+      "title": "Kubernetes",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-01.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-02",
+      "title": "Pods",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-02.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-03",
+      "title": "Deployments",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-03.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-04",
+      "title": "Services",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-04.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-05",
+      "title": "Secrets no Kubernetes",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-05.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-06",
+      "title": "RBAC",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-06.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-07",
+      "title": "Network Policies",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-07.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-08",
+      "title": "Logs no Kubernetes",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-08.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-09",
+      "title": "Security Context",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-09.md"
+    },
+    {
+      "kind": "parallel",
+      "code": "K8S-10",
+      "title": "Projeto Cloud/Containers/K8s",
+      "track": "Cloud, Containers e Kubernetes",
+      "trackCode": "K8S",
+      "contentPath": "/course-library/parallel/K8S-10.md"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { GamePlayer, GamesHub } from './components/Games';
 import Review from './components/Review';
 import { MaterialsHub, MaterialViewer } from './components/Materials';
 import type { GameType } from './types';
+import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
 
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -15,6 +16,8 @@ type Route =
   | { page: 'dashboard' }
   | { page: 'lessons'; track?: string }
   | { page: 'lesson'; id: number }
+  | { page: 'course-main'; id: number }
+  | { page: 'course-parallel'; code: string }
   | { page: 'games' }
   | { page: 'game'; packId: number; type: GameType }
   | { page: 'review' }
@@ -23,6 +26,8 @@ type Route =
 
 function parseHash(): Route {
   const raw = window.location.hash.replace(/^#/, '') || 'dashboard';
+  if (raw.startsWith('course/main/')) return { page: 'course-main', id: Number(raw.split('/')[2]) || 1 };
+  if (raw.startsWith('course/parallel/')) return { page: 'course-parallel', code: decodeURIComponent(raw.split('/')[2] || 'LOG-01') };
   if (raw.startsWith('lesson/')) return { page: 'lesson', id: Number(raw.split('/')[1]) || 43 };
   if (raw.startsWith('game/')) {
     const [, pack, type] = raw.split('/');
@@ -67,7 +72,7 @@ export default function App() {
       <a className="brand" href="#dashboard"><span className="brand-mark">+</span><div><strong>Cyber Study</strong><small>Hub</small></div></a>
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Dashboard" />
-        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'} icon="▤" label="Aulas" />
+        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="▤" label="Aulas" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Cyber Games" />
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />
@@ -80,6 +85,8 @@ export default function App() {
       {route.page==='dashboard' && <Dashboard />}
       {route.page==='lessons' && <LessonList initialTrack={route.track} />}
       {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
+      {route.page==='course-main' && <CourseDocumentViewer kind="main" id={route.id} />}
+      {route.page==='course-parallel' && <CourseDocumentViewer kind="parallel" code={route.code} />}
       {route.page==='games' && <GamesHub />}
       {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
       {route.page==='materials' && <MaterialsHub />}
@@ -89,7 +96,7 @@ export default function App() {
 
     <nav className="mobile-nav">
       <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Início" />
-      <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'} icon="▤" label="Aulas" />
+      <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="▤" label="Aulas" />
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Jogos" />
       <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
       <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />

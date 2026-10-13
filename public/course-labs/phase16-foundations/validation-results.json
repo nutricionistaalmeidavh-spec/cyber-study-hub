@@ -1,0 +1,495 @@
+{
+  "utc": "2026-09-02T16:57:24.693331+00:00",
+  "python": "3.12.13 (main, Aug  7 2026, 02:25:39) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "disable_leaks": true,
+  "checks": [
+    {
+      "check": "PY-01",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-01.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "Olá, Ana: 3 itens\nFim\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-04",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-04.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "subtotal=750; zero=0; externo=99; inválidos rejeitados\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-06",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-06.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "ausente: arquivo não encontrado; resumo preservado\nUTF-8: João; registros=2; caminhos com espaços OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-07",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-07.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "'12' 12 ['conversão concluída', 'finalizado']\n'x' None ['formato inválido', 'finalizado']\nTypeError propagado; finally executado\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-01 zero",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/tmp/foundations-check-syzlw5m9/zero.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "Fim\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-01 indentacao invalida",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/tmp/foundations-check-syzlw5m9/indentacao.py"
+      ],
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "  File \"/tmp/foundations-check-syzlw5m9/indentacao.py\", line 5\n    print(f\"Olá, {nome}: {quantidade} itens\")  # quatro espaços: corpo do if\n    ^^^^^\nIndentationError: expected an indented block after 'if' statement on line 4\n"
+    },
+    {
+      "check": "PY contratos adicionais",
+      "passed": true,
+      "detail": "subtotal: 500, zero e três contratos rejeitados; UTF-8 inválido preserva destino"
+    },
+    {
+      "check": "PY-08 criar venv",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "venv",
+        "/tmp/foundations-check-syzlw5m9/venv"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "PY-08 instalar offline",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--find-links",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations",
+        "-r",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/requirements-PY-08.txt"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "Looking in links: /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations\nProcessing ./medidas_lab-1.0.0-py3-none-any.whl (from -r /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/requirements-PY-08.txt (line 1))\nInstalling collected packages: medidas-lab\nSuccessfully installed medidas-lab-1.0.0\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-08 imports e versao",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/venv/bin/python",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-08.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "2.0 KiB\nversão: 1.0.0\ninterpretador: /tmp/foundations-check-syzlw5m9/venv/bin/python\ndependência: /tmp/foundations-check-syzlw5m9/venv/lib/python3.12/site-packages/medidas_lab/__init__.py\n",
+      "stderr": ""
+    },
+    {
+      "check": "PY-08 venv sem dependencia",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "venv",
+        "--without-pip",
+        "/tmp/foundations-check-syzlw5m9/sem-dependencia"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "PY-08 dependencia ausente",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/sem-dependencia/bin/python",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-08.py"
+      ],
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/PY-08.py\", line 2, in <module>\n    import medidas_lab\nModuleNotFoundError: No module named 'medidas_lab'\n"
+    },
+    {
+      "check": "C-01 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-Wpedantic",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-01.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-01"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "C-01 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-01"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "itens=12\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-06 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-Wpedantic",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-06.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-06"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "C-06 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-06"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "n=3 soma=13 vazio=0\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-07 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-Wpedantic",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-07.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-07"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "C-07 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-07"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "texto=Ana comprimento=3 capacidade=5\n4 caracteres aceitos; 5 recusados; destino preservado\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-09 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-Wpedantic",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-09.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-09"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "C-09 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-09"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "x=8 alias=8 null=recusado\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-12 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-Wpedantic",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-12.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-12"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "C-12 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-12"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "heap: 0 1 2\nfalha simulada e tamanho zero tratados\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-13 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-fsanitize=address",
+        "-fno-omit-frame-pointer",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-13"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c: In function ‘main’:\n/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c:12:9: warning: pointer ‘alias’ used after ‘free’ [-Wuse-after-free]\n   12 |         printf(\"%d\\n\", *alias); /* fixture intencional: ASan deve apontar UAF */\n      |         ^~~~~~~~~~~~~~~~~~~~~~\n/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c:10:9: note: call to ‘free’ here\n   10 |         free(p);\n      |         ^~~~~~~\n"
+    },
+    {
+      "check": "C-13 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-13"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "antes de free=42\nownership encerrado; nenhum acesso depois de free\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-13 UAF detectado",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-13",
+        "falha"
+      ],
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==89==ERROR: AddressSanitizer: heap-use-after-free on address 0x502000000010 at pc 0x5644398f2335 bp 0x7ffc2ed9c100 sp 0x7ffc2ed9c0f0\nREAD of size 4 at 0x502000000010 thread T0\n    #0 0x5644398f2334 in main /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c:12\n    #1 0x7f4bc7d531c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #2 0x7f4bc7d5328a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #3 0x5644398f21a4 in _start (/tmp/foundations-check-syzlw5m9/C-13+0x11a4) (BuildId: 626b0c353e294b096c43005f77db4ae234d4dce1)\n\n0x502000000010 is located 0 bytes inside of 4-byte region [0x502000000010,0x502000000014)\nfreed by thread T0 here:\n    #0 0x7f4bc80374d8 in free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:52\n    #1 0x5644398f22f5 in main /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c:10\n    #2 0x7f4bc7d531c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #3 0x7f4bc7d5328a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #4 0x5644398f21a4 in _start (/tmp/foundations-check-syzlw5m9/C-13+0x11a4) (BuildId: 626b0c353e294b096c43005f77db4ae234d4dce1)\n\npreviously allocated by thread T0 here:\n    #0 0x7f4bc80389c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69\n    #1 0x5644398f2285 in main /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c:5\n    #2 0x7f4bc7d531c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #3 0x7f4bc7d5328a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #4 0x5644398f21a4 in _start (/tmp/foundations-check-syzlw5m9/C-13+0x11a4) (BuildId: 626b0c353e294b096c43005f77db4ae234d4dce1)\n\nSUMMARY: AddressSanitizer: heap-use-after-free /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-13.c:12 in main\nShadow bytes around the buggy address:\n  0x501ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x502000000000: fa fa[fd]fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==89==ABORTING\n"
+    },
+    {
+      "check": "C-19 compile",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-fno-omit-frame-pointer",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-19.c",
+        "-o",
+        "/tmp/foundations-check-syzlw5m9/C-19"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "C-19 valido",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-19",
+        "corrigido"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "incremento recusado: limite de int\nultimo=9\n",
+      "stderr": ""
+    },
+    {
+      "check": "C-19 OOB detectado",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-19",
+        "asan"
+      ],
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==96==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000018 at pc 0x55a41cfe962f bp 0x7fff7f31ec60 sp 0x7fff7f31ec50\nWRITE of size 4 at 0x502000000018 thread T0\n    #0 0x55a41cfe962e in main /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-19.c:11\n    #1 0x7f7c481081c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #2 0x7f7c4810828a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #3 0x55a41cfe92c4 in _start (/tmp/foundations-check-syzlw5m9/C-19+0x22c4) (BuildId: 727a363c57b773c4e125b8a9f87366854248dd45)\n\n0x502000000018 is located 0 bytes after 8-byte region [0x502000000010,0x502000000018)\nallocated by thread T0 here:\n    #0 0x7f7c48a039c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69\n    #1 0x55a41cfe955e in main /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-19.c:8\n    #2 0x7f7c481081c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #3 0x7f7c4810828a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #4 0x55a41cfe92c4 in _start (/tmp/foundations-check-syzlw5m9/C-19+0x22c4) (BuildId: 727a363c57b773c4e125b8a9f87366854248dd45)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow /workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-19.c:11 in main\nShadow bytes around the buggy address:\n  0x501ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x502000000000: fa fa 00[fa]fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==96==ABORTING\n"
+    },
+    {
+      "check": "C-19 overflow detectado",
+      "command": [
+        "/tmp/foundations-check-syzlw5m9/C-19",
+        "ubsan"
+      ],
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-foundations/C-19.c:15:9: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'\n"
+    },
+    {
+      "check": "JS-07 seis cenarios",
+      "command": [
+        "node",
+        "JS-07.mjs"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "/ok {\"tipo\":\"ok\",\"dados\":{\"mensagem\":\"ação local\"}}\n/ausente {\"tipo\":\"http\",\"status\":404}\n/quebrado {\"tipo\":\"json\"}\n/lento {\"tipo\":\"timeout\"}\n/redireciona {\"tipo\":\"transporte-ou-redirecionamento\"}\n/offline {\"tipo\":\"transporte-ou-redirecionamento\"}\n",
+      "stderr": ""
+    },
+    {
+      "check": "TLS real e negativos",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "tls_local.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "[\n  {\n    \"caso\": \"TLS12\",\n    \"versao\": \"TLSv1.2\",\n    \"cifra\": \"ECDHE-RSA-AES256-GCM-SHA384\",\n    \"HTTP\": 200,\n    \"hostname_verificado\": \"localhost\",\n    \"frames_reconstruidos\": 13,\n    \"payload_TLS_real\": true,\n    \"headers_TCP_sinteticos\": true\n  },\n  {\n    \"caso\": \"TLS13\",\n    \"versao\": \"TLSv1.3\",\n    \"cifra\": \"TLS_AES_256_GCM_SHA384\",\n    \"HTTP\": 200,\n    \"hostname_verificado\": \"localhost\",\n    \"frames_reconstruidos\": 16,\n    \"payload_TLS_real\": true,\n    \"headers_TCP_sinteticos\": true\n  },\n  {\n    \"caso\": \"CA-nao-confiavel\",\n    \"resultado\": \"rejeitado\",\n    \"motivo\": \"unable to get local issuer certificate\"\n  },\n  {\n    \"caso\": \"hostname-incorreto\",\n    \"resultado\": \"rejeitado\",\n    \"motivo\": \"Hostname mismatch, certificate is not valid for 'outro.local'.\"\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "check": "LAB-01 gate e contador real",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "LAB-01-scope.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\n  \"resultados\": [\n    {\n      \"caso\": \"http://127.0.0.1:40299/health\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"permitido\"\n    },\n    {\n      \"caso\": \"http://127.0.0.1:40299/health\",\n      \"metodo\": \"POST\",\n      \"decisao\": \"acao-fora-do-escopo\"\n    },\n    {\n      \"caso\": \"http://127.0.0.1:40299/admin\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"acao-fora-do-escopo\"\n    },\n    {\n      \"caso\": \"http://192.0.2.10:80/health\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"ativo-fora-do-escopo\"\n    },\n    {\n      \"caso\": \"http://127.0.0.1:40299/health?export=1\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"ativo-fora-do-escopo\"\n    },\n    {\n      \"caso\": \"http://127.0.0.1:40299/health\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"fora-da-janela\"\n    },\n    {\n      \"caso\": \"http://127.0.0.1:40299/health\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"parada\"\n    },\n    {\n      \"caso\": \"http://127.0.0.1:40299/health\",\n      \"metodo\": \"GET\",\n      \"decisao\": \"sem-autorizacao\"\n    }\n  ],\n  \"requests_recebidas\": 1\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "LAB-03 canary HTTP",
+      "passed": true,
+      "detail": {
+        "observed": [
+          [
+            "/canary",
+            200
+          ],
+          [
+            "/ausente",
+            404
+          ]
+        ],
+        "limite": "HTTP loopback real; rede de duas VMs não executada"
+      }
+    },
+    {
+      "check": "LAB-03 bind amplo recusado",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "LAB-03-canary.py",
+        "--bind",
+        "0.0.0.0"
+      ],
+      "exit_code": 2,
+      "passed": true,
+      "stdout": "",
+      "stderr": "usage: LAB-03-canary.py [-h] [--bind BIND] [--port PORT]\nLAB-03-canary.py: error: use somente loopback ou o endereço da VM interna deste lab\n"
+    }
+  ],
+  "passed": 34,
+  "total": 34,
+  "source_sha256": {
+    "C-07.c": "bb93f8af46de74a6679537033f30d7faaa01694158e88f795dd98676afa9e538",
+    "C-09.c": "25929fa79b6e3ff01ab73f996be80a01fe9c3bc8ca0c9fe5fdd386173f0e959d",
+    "PY-04.py": "bfc2ad07105edfc57a136c0c28dcec5f5b903c1f125ad9dc1a6b8abe5ece7d78",
+    "tls_local.py": "df8de300ff5c3fad181dd9975080c22f698feb273407d9ef26769e53868ca352",
+    "LAB-01-scope.py": "dda9a27dc4d063d7defd2971ae4e30a4945bf2ffe83d296b0014bc2bfe17fdf7",
+    "C-19.c": "ae9d9e76da38a771025327daf69ca227731caec3fe79da8cddcfd0a001113756",
+    "LOG-01-mesa.md": "e8e9f6cde11f025be6122748a0eb4c69453f69c7ffd72d4c198340dc0ac0f149",
+    "JS-07.mjs": "9b5da03e33aa845b890ac0326bc9407e3e8bdd7e5b00fa0178d8233656f2fbf8",
+    "LOG-07-mesa.md": "38e774d577f7e159a934d4e579256e934aea3ac52002a8108728cd28442ddd69",
+    "PY-01.py": "2068c7866d0c23b91b6034ce09a2450e61852e17d662529d6a68dd1d15784db3",
+    "LAB-10-estado.ps1": "051fbb24dd45cb9c728d333d0bf6509bc60bac03e660af1834b0a31075c1847f",
+    "PY-08.py": "4999cd0cca5ed1da1fbacbe3a952a9e5cde0aee3cbe74b8a74c1503e2543c95f",
+    "C-06.c": "983a8a9061abd75feed3b64e62c623a3511ef1f652c26c262f105d38f11f4048",
+    "medidas_lab-1.0.0-py3-none-any.whl": "18247d81fb13397d376aaa5c430798f34756612602c30809a0205ceeee58286e",
+    "validate_foundations.py": "b2776f8741018f8e4740b92a8c10716b5ca08a7aeb1f34c62fb642f1c5b7695b",
+    "WIN-27-coletar.ps1": "f101bbb8877bd6436aca7313877fd9dbf54d9f835268ccc9b76ac0ead2bc9f0f",
+    "C-13.c": "a571480d3c8aedecd2385c93106e36caf264ff9b256c359b587d8737dd0c644b",
+    "C-01.c": "ff08e1914a0d2fdfd1ea973340876b2921dd2eb0f5390a24249bb0d4dac108b0",
+    "LOG-02-mesa.md": "969312240f2c777b1ce3d8cd47f270fcdf6e5bc35043bb85a888cf3bde300123",
+    "PY-06.py": "003ddbd3ee312139b72cac36603984eb0a365ddb8549c8d4e3c82253eb0a2db1",
+    "LAB-03-canary.py": "e1a8afd5d424a22e8a66ad88bd21b5627efc6980983b1d7ca62879f7300b1272",
+    "LAB-09-baseline.ps1": "045388dd5f47fc3e1203b5e5e2bed834edaff6e84702df16254ca7696e85289a",
+    "LOG-05-mesa.md": "26ab69c5aff30d2cf029e4f6d9aa4451246f91b3d5a527a95f1a2b634b45b1d1",
+    "requirements-PY-08.txt": "4c92653325c35f226a9c61fa28d340c81ff9ecf37c115334846eac18b1bfded5",
+    "PY-07.py": "1e9270fdb2c2026a730f32066c19fd7856151e02de52cef3cd0c93f7866437e9",
+    "conversao.py": "0dec2e465016acaf245ee0a7f1636109e4f0ec9c2745265c16889df2caf68baf",
+    "LOG-04-mesa.md": "4c72228b58dbe11a8a2b1a4fd57a23f03ad1406449b93e4c19868be09c97c910",
+    "C-12.c": "bb5df4a281b7882fe16d33522beb6e75f67f43f4c28eaf7f0d0f3c4cd77cfd26",
+    "resultados-tls/TLS13-fluxo.json": "2be7018966d3fb73fb00f4eaacb8c0511b6b951089c308fbc8ed4bbd3269f457",
+    "resultados-tls/TLS13.keys": "49634ad44a9f58d44a54dc57ac4cf61d4fb8e8d65da8af5ba705cd620acc5d23",
+    "resultados-tls/TLS13-reconstruido.pcap": "07fde3b7c6f33481415e6b5b8eda2bb62e7494fccd8ed2ef2e95a118be8b7d66",
+    "resultados-tls/TLS12-reconstruido.pcap": "e0a291b586ec50a27f3fc17cd11a9cc109f8836b64a542ba74ccc9092ed4ebe4",
+    "resultados-tls/TLS12-fluxo.json": "1d026b6abc68557241efcae21163237063e35ba3a0c1bf3a493eb1a4deb839f5",
+    "resultados-tls/LEIA-ME.txt": "8b87a0c125d272e61e079d56d817dddd68276a915cc1b332902f8cb3a0544768",
+    "resultados-tls/ca-publica.pem": "1d8d7ba81bb9240e3259cf8895359afec951ad221c185100d3e17764bf3b7bc1",
+    "resultados-tls/resultados.json": "e7a99deea8bac22da117c8b9e35952c9c9e706d67fdb2b3cb28213ed8f3e521a",
+    "resultados-tls/TLS12.keys": "4f8e0d2c63ab2f8038ccf960d91ed2773da6068359790a32a84a01bb6a4fb34e"
+  },
+  "limitations": [
+    "Windows/PowerShell/VirtualBox não executados",
+    "Wireshark/descriptografia e captura raw não executados",
+    "LeakSanitizer não verificado quando disable_leaks=true"
+  ]
+}

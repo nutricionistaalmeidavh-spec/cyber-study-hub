@@ -1,0 +1,279 @@
+{
+  "python": "3.12.13",
+  "checks": [
+    {
+      "id": "iam-matrix",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/iam",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "test_iam.py"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": "test_condicao_ausente_nao_corresponde_false (test_iam.PolicyTests.test_condicao_ausente_nao_corresponde_false) ... ok\ntest_listbucket_nao_e_getobject (test_iam.PolicyTests.test_listbucket_nao_e_getobject) ... ok\ntest_matriz_antes_depois_e_reteste (test_iam.PolicyTests.test_matriz_antes_depois_e_reteste) ... ok\ntest_operador_nao_implementado_falha (test_iam.PolicyTests.test_operador_nao_implementado_falha) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "id": "iam-wide",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/iam",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "evaluate.py",
+        "wide.json"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "read-report allowed\nread-private allowed\nwrite-report allowed\nplaintext allowed\n",
+      "stderr": ""
+    },
+    {
+      "id": "iam-fixed",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/iam",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "evaluate.py",
+        "policy.json"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "read-report allowed\nread-private implicitDeny\nwrite-report implicitDeny\nplaintext explicitDeny\n",
+      "stderr": ""
+    },
+    {
+      "id": "ci-safe",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci",
+      "command": [
+        "node",
+        "pipeline.cjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "PASS 5 gates; artifact SHA256 016ae26f0c9c855ac259279e81b74cfbba4d4751ec2ded0bb22aa5ab2ac132bd\n",
+      "stderr": ""
+    },
+    {
+      "id": "ci-digest",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci",
+      "command": [
+        "node",
+        "verify.cjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "PASS digest confere; isto prova integridade relativa ao digest, não autoria\n",
+      "stderr": ""
+    },
+    {
+      "id": "ci-unsafe",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci",
+      "command": [
+        "node",
+        "pipeline.cjs",
+        "--unsafe"
+      ],
+      "expected_exit": 1,
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: gate: alice/b\n\n200 !== 403\n\n    at Object.<anonymous> (/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci/pipeline.cjs:12:10)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 200,\n  expected: 403,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "ci-tamper",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci",
+      "command": [
+        "node",
+        "verify.cjs"
+      ],
+      "expected_exit": 1,
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "node:assert:152\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: artefato alterado depois do gate\n+ actual - expected\n\n+ 'bb08d83f2b99eb346368cb2d285a0d04b58959f96c40d03a7ce61b1b472fd7f9'\n- '016ae26f0c9c855ac259279e81b74cfbba4d4751ec2ded0bb22aa5ab2ac132bd'\n\n    at Object.<anonymous> (/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci/verify.cjs:5:8)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'bb08d83f2b99eb346368cb2d285a0d04b58959f96c40d03a7ce61b1b472fd7f9',\n  expected: '016ae26f0c9c855ac259279e81b74cfbba4d4751ec2ded0bb22aa5ab2ac132bd',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "id": "ci-rebuild",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci",
+      "command": [
+        "node",
+        "pipeline.cjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "PASS 5 gates; artifact SHA256 016ae26f0c9c855ac259279e81b74cfbba4d4751ec2ded0bb22aa5ab2ac132bd\n",
+      "stderr": ""
+    },
+    {
+      "id": "ci-retest",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/ci",
+      "command": [
+        "node",
+        "verify.cjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "PASS digest confere; isto prova integridade relativa ao digest, não autoria\n",
+      "stderr": ""
+    },
+    {
+      "id": "electron-handler",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/electron",
+      "command": [
+        "node",
+        "--test",
+        "test.cjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "✔ happy e reteste: nota própria (1.425832ms)\n✔ owner alheio negado na fronteira main (0.500749ms)\n✔ payload não pode escolher identidade (0.14693ms)\n✔ janela diferente com mesma URL negada (0.116685ms)\n✔ subframe de mesma origem negado (0.149533ms)\n✔ frame principal navegado negado (0.129263ms)\n✔ sem identidade autenticada (0.175182ms)\n✔ argumentos inválidos (0.185597ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 88.851916\n",
+      "stderr": ""
+    },
+    {
+      "id": "electron-owner-mutation",
+      "cwd": "/tmp/course-ipc-mutation-q6bxzfph",
+      "command": [
+        "node",
+        "--test",
+        "test.cjs"
+      ],
+      "expected_exit": 1,
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "✔ happy e reteste: nota própria (1.663277ms)\n✖ owner alheio negado na fronteira main (0.980466ms)\n✔ payload não pode escolher identidade (0.32745ms)\n✔ janela diferente com mesma URL negada (0.303975ms)\n✔ subframe de mesma origem negado (0.266549ms)\n✔ frame principal navegado negado (0.236744ms)\n✔ sem identidade autenticada (0.157505ms)\n✔ argumentos inválidos (0.174931ms)\nℹ tests 8\nℹ suites 0\nℹ pass 7\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 96.858017\n\n✖ failing tests:\n\ntest at test.cjs:8:1\n✖ owner alheio negado na fronteira main (0.980466ms)\n  AssertionError [ERR_ASSERTION]: Missing expected exception.\n      at TestContext.<anonymous> (/tmp/course-ipc-mutation-q6bxzfph/test.cjs:8:57)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: undefined,\n    expected: /FORBIDDEN/,\n    operator: 'throws',\n    diff: 'simple'\n  }\n",
+      "stderr": ""
+    },
+    {
+      "id": "electron-retest",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/electron",
+      "command": [
+        "node",
+        "--test",
+        "test.cjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "✔ happy e reteste: nota própria (1.895243ms)\n✔ owner alheio negado na fronteira main (0.34113ms)\n✔ payload não pode escolher identidade (0.125788ms)\n✔ janela diferente com mesma URL negada (0.115072ms)\n✔ subframe de mesma origem negado (0.225988ms)\n✔ frame principal navegado negado (0.132228ms)\n✔ sem identidade autenticada (0.133309ms)\n✔ argumentos inválidos (0.84255ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 89.141193\n",
+      "stderr": ""
+    },
+    {
+      "id": "k8s-http-tcp",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/k8s",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "test_server.py",
+        "test_check.py"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 200 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 401 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 401 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 200 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 401 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 401 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /absent HTTP/1.1\\\" 404 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /health HTTP/1.1\\\" 200 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 200 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 401 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 200 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /absent HTTP/1.1\\\" 404 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /note HTTP/1.1\\\" 200 -\"}\n{\"peer\": \"127.0.0.1\", \"event\": \"\\\"GET /absent HTTP/1.1\\\" 404 -\"}\n",
+      "stderr": "test_auth_and_retest (test_server.HTTPTests.test_auth_and_retest) ... ok\ntest_missing (test_server.HTTPTests.test_missing) ... ok\ntest_readiness (test_server.HTTPTests.test_readiness) ... ok\ntest_http_contract (test_check.ClientTests.test_http_contract) ... ok\ntest_http_not_accepted_as_network_denial (test_check.ClientTests.test_http_not_accepted_as_network_denial) ... ok\ntest_refusal_is_not_policy_timeout (test_check.ClientTests.test_refusal_is_not_policy_timeout) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.317s\n\nOK\n"
+    },
+    {
+      "id": "syntax-k8s-setup.sh",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/k8s",
+      "command": [
+        "bash",
+        "-n",
+        "setup.sh"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "syntax-k8s-run.sh",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/k8s",
+      "command": [
+        "bash",
+        "-n",
+        "run.sh"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "syntax-k8s-capstone.sh",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/k8s",
+      "command": [
+        "bash",
+        "-n",
+        "capstone.sh"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "syntax-rls",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/rls",
+      "command": [
+        "bash",
+        "-n",
+        "run.sh"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "firestore-rules-runtime",
+      "cwd": "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/firebase",
+      "command": [
+        "node",
+        "test.mjs"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "BASELINE: Alice lê B com rules abertas\nPASS 17 checks: própria/alheia/anon/create/update/query/schema/delete/reteste\n",
+      "stderr": "[2026-09-02T16:49:25.357Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a0103 error. Code: 7 Message: 7 PERMISSION_DENIED: \nfalse for 'create' @ L12, false for 'update' @ L14\n[2026-09-02T16:49:25.396Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a0104 error. Code: 7 Message: 7 PERMISSION_DENIED: \nevaluation error at L14:21 for 'update' @ L14, false for 'update' @ L14\n[2026-09-02T16:49:25.419Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a0105 error. Code: 7 Message: 7 PERMISSION_DENIED: \nevaluation error at L14:21 for 'update' @ L14, false for 'update' @ L14\n[2026-09-02T16:49:25.536Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a0107 error. Code: 7 Message: 7 PERMISSION_DENIED: \nfalse for 'create' @ L12, false for 'update' @ L14\n[2026-09-02T16:49:25.552Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a0108 error. Code: 7 Message: 7 PERMISSION_DENIED: \nfalse for 'create' @ L12, false for 'update' @ L14\n[2026-09-02T16:49:25.564Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a0109 error. Code: 7 Message: 7 PERMISSION_DENIED: \nfalse for 'create' @ L12, false for 'update' @ L14\n[2026-09-02T16:49:25.573Z]  @firebase/firestore: Firestore (12.2.0): GrpcConnection RPC 'Write' stream 0x269a010a error. Code: 7 Message: 7 PERMISSION_DENIED: \nfalse for 'delete' @ L16\n",
+      "emulator_command": [
+        "java",
+        "-jar",
+        "/root/.cache/firebase/emulators/cloud-firestore-emulator-v1.19.8.jar",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8088",
+        "--websocket_port",
+        "9150",
+        "--project_id",
+        "demo-course-platform",
+        "--rules",
+        "/workspace/scratch/209d3064a6c6/fase16/CyberStudyHub_Fases_00_16_cumulativo/public/course-labs/phase16-platform/firebase/firestore.rules"
+      ],
+      "emulator_host": "127.0.0.1:8088"
+    }
+  ],
+  "failure": null,
+  "execution_notes": [
+    "17 checks locais executados novamente após revisão final do verificador; exit global0.",
+    "Check Firestore da execução integrada anterior conservado: test.mjs/rules/lockfile não mudaram depois do runtime17checks exit0.",
+    "CLI npm test não aprovado: revisão de rede cancelada; sem exit final. JAR local loopback + node test.mjs constituem evidência de runtime concluída."
+  ],
+  "note": "Execução completa inclui Firestore local; reconferência da integração sem reinstalar Firebase em docs/phase16/platform-validation-integrated.json."
+}

@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 2,
+  "id": 58,
+  "slug": "cors-e-same-origin-policy",
+  "title": "CORS e Same-Origin Policy",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 45,
+  "pcPractice": true,
+  "summary": "Same-Origin Policy restringe interações entre origens; CORS é o mecanismo controlado para relaxar parte dessas restrições.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 57,
+      "title": "Rate Limit, Race Conditions e Business Logic Flaws",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de cors e same-origin policy no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Origin.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de CORS e Same-Origin Policy",
+    "scenario": "Same-Origin Policy é uma regra do navegador. CORS é uma forma controlada de relaxar leitura cross-origin. Nenhum dos dois substitui autenticação/autorização server-side."
+  },
+  "fundamentals": [
+    {
+      "term": "Origin",
+      "explanation": "Combinação de esquema, host e porta."
+    },
+    {
+      "term": "Preflight",
+      "explanation": "Requisição OPTIONS usada para verificar permissões CORS."
+    },
+    {
+      "term": "Access-Control-Allow-Origin",
+      "explanation": "Header que declara origens permitidas."
+    },
+    {
+      "term": "Credentials",
+      "explanation": "Cookies/autenticação que exigem política CORS mais cuidadosa."
+    }
+  ],
+  "mechanism": {
+    "summary": "Same-Origin Policy é a regra do navegador; CORS é um mecanismo controlado pelo servidor para relaxar parte dessa regra. CORS não substitui autenticação nem autorização.",
+    "steps": [
+      {
+        "id": "m58-1",
+        "title": "Página possui uma origin",
+        "detail": "Página possui uma origin"
+      },
+      {
+        "id": "m58-2",
+        "title": "JavaScript tenta acessar outra origin",
+        "detail": "JavaScript tenta acessar outra origin"
+      },
+      {
+        "id": "m58-3",
+        "title": "Navegador aplica SOP",
+        "detail": "Navegador aplica SOP"
+      },
+      {
+        "id": "m58-4",
+        "title": "Servidor pode responder com política CORS",
+        "detail": "Servidor pode responder com política CORS"
+      },
+      {
+        "id": "m58-5",
+        "title": "Browser decide se expõe a resposta ao script",
+        "detail": "Browser decide se expõe a resposta ao script"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-58-01",
+      "title": "Raciocínio completo — CORS e Same-Origin Policy",
+      "problem": "Same-Origin Policy é a regra do navegador; CORS é um mecanismo controlado pelo servidor para relaxar parte dessa regra. CORS não substitui autenticação nem autorização.",
+      "solutionSteps": [
+        {
+          "id": "w58-1",
+          "action": "Página possui uma origin",
+          "explanation": "Comece identificando a entrada ou estado relevante: página possui uma origin.",
+          "evidence": null
+        },
+        {
+          "id": "w58-2",
+          "action": "JavaScript tenta acessar outra origin",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: javascript tenta acessar outra origin.",
+          "evidence": null
+        },
+        {
+          "id": "w58-3",
+          "action": "Navegador aplica SOP",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: navegador aplica sop.",
+          "evidence": null
+        },
+        {
+          "id": "w58-4",
+          "action": "Servidor pode responder com política CORS",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: servidor pode responder com política cors.",
+          "evidence": null
+        },
+        {
+          "id": "w58-5",
+          "action": "Browser decide se expõe a resposta ao script",
+          "explanation": "Feche a cadeia observando o efeito e o controle: browser decide se expõe a resposta ao script.",
+          "evidence": "Audite respostas CORS, origens refletidas e combinações de ACAO/credentials inseguras."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em CORS e Same-Origin Policy?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-58-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Página possui uma origin\n→ JavaScript tenta acessar outra origin\n→ [COMPLETE ESTA DECISÃO]\n→ Servidor pode responder com política CORS\n→ Browser decide se expõe a resposta ao script",
+      "expectedConcepts": [
+        "Origin",
+        "Preflight",
+        "Access-Control-Allow-Origin"
+      ],
+      "solution": "Navegador aplica SOP"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-58-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Origin de Preflight e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-58-01",
+      "title": "Allowlist CORS explícita",
+      "language": "ts",
+      "code": "const origins = new Set([\"https://app.exemplo.com\"]);\n\nfunction corsOrigin(origin?: string) {\n  if (!origin) return false;\n  if (!origins.has(origin)) throw new Error(\"Origin não permitida\");\n  return origin;\n}",
+      "explanation": "Evite refletir qualquer Origin automaticamente, especialmente com credenciais."
+    }
+  ],
+  "lab": {
+    "title": "Comparar same-origin e cross-origin",
+    "mode": "PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-58-1",
+        "instruction": "Suba duas aplicações locais em portas diferentes.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Suba duas aplicações locais em portas diferentes."
+      },
+      {
+        "id": "lab-58-2",
+        "instruction": "Faça uma requisição fetch entre elas.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Faça uma requisição fetch entre elas."
+      },
+      {
+        "id": "lab-58-3",
+        "instruction": "Observe o erro do navegador sem CORS.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Observe o erro do navegador sem CORS."
+      },
+      {
+        "id": "lab-58-4",
+        "instruction": "Adicione allowlist para uma origem específica.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Adicione allowlist para uma origem específica."
+      },
+      {
+        "id": "lab-58-5",
+        "instruction": "Confira headers de preflight e resposta.",
+        "expected": "Você deve distinguir 'servidor respondeu' de 'navegador permitiu o JavaScript ler a resposta'.",
+        "checkpoint": "Você deve distinguir 'servidor respondeu' de 'navegador permitiu o JavaScript ler a resposta'."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Audite respostas CORS, origens refletidas e combinações de ACAO/credentials inseguras.",
+    "signals": [
+      "Audite respostas CORS, origens refletidas e combinações de ACAO/credentials inseguras."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Use allowlist explícita, não reflita Origin indiscriminadamente e evite credenciais com políticas amplas."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Origin de Preflight e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Origin?",
+        "options": [
+          "Combinação de esquema, host e porta.",
+          "Processo que substitui autenticação por criptografia simétrica.",
+          "Requisição OPTIONS usada para verificar permissões CORS.",
+          "Mecanismo usado apenas para estética da interface."
+        ],
+        "answer": 0,
+        "why": "Combinação de esquema, host e porta.",
+        "concept": "Origin"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Use allowlist explícita, não reflita Origin indiscriminadamente e evite credenciais com políticas amplas.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada."
+        ],
+        "answer": 0,
+        "why": "Use allowlist explícita, não reflita Origin indiscriminadamente e evite credenciais com políticas amplas.",
+        "concept": "Preflight"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Audite respostas CORS, origens refletidas e combinações de ACAO/credentials inseguras.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação."
+        ],
+        "answer": 0,
+        "why": "Audite respostas CORS, origens refletidas e combinações de ACAO/credentials inseguras.",
+        "concept": "Access-Control-Allow-Origin"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "Você deve distinguir 'servidor respondeu' de 'navegador permitiu o JavaScript ler a resposta'.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Credentials"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Origin"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Origin",
+        "back": "Combinação de esquema, host e porta.",
+        "concept": "Origin"
+      },
+      {
+        "front": "Preflight",
+        "back": "Requisição OPTIONS usada para verificar permissões CORS.",
+        "concept": "Preflight"
+      },
+      {
+        "front": "Access-Control-Allow-Origin",
+        "back": "Header que declara origens permitidas.",
+        "concept": "Access-Control-Allow-Origin"
+      },
+      {
+        "front": "Credentials",
+        "back": "Cookies/autenticação que exigem política CORS mais cuidadosa.",
+        "concept": "Credentials"
+      },
+      {
+        "front": "Defesa",
+        "back": "Use allowlist explícita, não reflita Origin indiscriminadamente e evite credenciais com políticas amplas.",
+        "concept": "Origin"
+      },
+      {
+        "front": "Detecção",
+        "back": "Audite respostas CORS, origens refletidas e combinações de ACAO/credentials inseguras.",
+        "concept": "Preflight"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "Você deve distinguir 'servidor respondeu' de 'navegador permitiu o JavaScript ler a resposta'.",
+        "concept": "Access-Control-Allow-Origin"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

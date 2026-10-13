@@ -2,8 +2,15 @@ import { useMemo, useState } from 'react';
 import { lessons } from '../data/lessons';
 import { lessonDetails } from '../data/lessonDetails';
 import { getLessonState, updateLessonState } from '../lib/storage';
+import { CurriculumBrowser } from './curriculum/CurriculumBrowser';
+import { hasNativeV2Lesson } from '../content/registry';
+import { LessonViewerV2 } from './lesson-v2/LessonViewerV2';
 
-export function LessonList({initialTrack}:{initialTrack?:string}) {
+export function LessonList(props:{initialTrack?:string}) {
+  return <CurriculumBrowser {...props} />;
+}
+
+function LegacyLessonList({initialTrack}:{initialTrack?:string}) {
   const [query,setQuery]=useState('');
   const [track,setTrack]=useState(initialTrack || 'Todas');
   const state=getLessonState();
@@ -25,7 +32,14 @@ export function LessonList({initialTrack}:{initialTrack?:string}) {
   </div>;
 }
 
-export function LessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
+export function LessonViewer(props:{id:number;onRefresh:()=>void}) {
+  if (hasNativeV2Lesson(props.id)) {
+    return <LessonViewerV2 {...props} />;
+  }
+  return <LegacyLessonViewer {...props} />;
+}
+
+function LegacyLessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
   const lesson=lessons.find(l=>l.id===id) || lessons[0];
   const detail=lessonDetails[lesson.id];
   const state=getLessonState()[lesson.id] || {completed:false,favorite:false,doubt:false,quizBest:0};

@@ -1,5 +1,6 @@
 import { lessons } from '../data/lessons';
 import { getGameProgress, getLessonState } from '../lib/storage';
+import { LearningInsights } from './review/LearningInsights';
 
 export default function Review() {
   const lessonState=getLessonState();
@@ -10,6 +11,7 @@ export default function Review() {
   const lowQuiz=lessons.filter(l=>lessonState[l.id]?.quizBest>0&&lessonState[l.id]?.quizBest<75);
   return <div className="page stack-lg">
     <section className="page-title"><div><span className="eyebrow">REVISÃO INTELIGENTE</span><h1>Volte onde houve atrito.</h1><p>Dúvidas, quizzes fracos e erros dos jogos aparecem aqui.</p></div></section>
+    <LearningInsights />
     <section className="two-col align-start">
       <div className="panel stack"><span className="eyebrow">DÚVIDAS MARCADAS</span><h2>{doubts.length} aulas</h2>{doubts.length?doubts.map(l=><a className="review-link" href={`#lesson/${l.id}`} key={l.id}><b>{l.id}</b><span>{l.title}</span></a>):<p className="muted">Nenhuma dúvida marcada ainda.</p>}</div>
       <div className="panel stack"><span className="eyebrow">QUIZ &lt; 75%</span><h2>{lowQuiz.length} aulas</h2>{lowQuiz.length?lowQuiz.map(l=><a className="review-link" href={`#lesson/${l.id}`} key={l.id}><b>{lessonState[l.id].quizBest}%</b><span>{l.id} · {l.title}</span></a>):<p className="muted">Nenhum quiz abaixo do limiar.</p>}</div>

@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  match /notes/{note} {
+   function signedIn() { return request.auth != null; }
+   function validNew() {
+    return request.resource.data.keys().hasOnly(['owner','body'])
+      && request.resource.data.body is string
+      && request.resource.data.body.size() <= 500;
+   }
+   allow get, list: if signedIn() && resource.data.owner == request.auth.uid;
+   allow create: if signedIn() && validNew() && request.resource.data.owner == request.auth.uid;
+   // Documento existente e estado proposto precisam ter o mesmo dono autenticado.
+   allow update: if signedIn() && resource.data.owner == request.auth.uid
+      && validNew() && request.resource.data.owner == request.auth.uid;
+   allow delete: if false;
+  }
+ }
+}

@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 2,
+  "id": 59,
+  "slug": "csp-security-headers-e-browser-protections",
+  "title": "CSP, Security Headers e Browser Protections",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 45,
+  "pcPractice": true,
+  "summary": "Security headers reduzem superfície no navegador ao controlar execução, framing, transporte e interpretação de conteúdo.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 58,
+      "title": "CORS e Same-Origin Policy",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de csp, security headers e browser protections no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a CSP.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de CSP, Security Headers e Browser Protections",
+    "scenario": "Headers de segurança são políticas entregues ao navegador. CSP é especialmente poderosa quando é baseada em fontes explícitas/nonces/hashes e evolui com telemetria, não como uma string copiada sem entender."
+  },
+  "fundamentals": [
+    {
+      "term": "CSP",
+      "explanation": "Política que restringe fontes de scripts, estilos e outros recursos."
+    },
+    {
+      "term": "HSTS",
+      "explanation": "Força uso de HTTPS após primeira política válida."
+    },
+    {
+      "term": "frame-ancestors",
+      "explanation": "Diretiva CSP para controlar incorporação em frames."
+    },
+    {
+      "term": "nosniff",
+      "explanation": "Evita interpretação MIME especulativa."
+    }
+  ],
+  "mechanism": {
+    "summary": "Security headers reduzem classes inteiras de risco no navegador. CSP é especialmente valiosa porque limita de onde scripts, estilos e outros recursos podem ser carregados.",
+    "steps": [
+      {
+        "id": "m59-1",
+        "title": "Servidor entrega documento",
+        "detail": "Servidor entrega documento"
+      },
+      {
+        "id": "m59-2",
+        "title": "Headers definem políticas do navegador",
+        "detail": "Headers definem políticas do navegador"
+      },
+      {
+        "id": "m59-3",
+        "title": "Browser aplica CSP, frame-ancestors e outras proteções",
+        "detail": "Browser aplica CSP, frame-ancestors e outras proteções"
+      },
+      {
+        "id": "m59-4",
+        "title": "Violações podem ser bloqueadas e reportadas",
+        "detail": "Violações podem ser bloqueadas e reportadas"
+      },
+      {
+        "id": "m59-5",
+        "title": "Política é refinada com telemetria",
+        "detail": "Política é refinada com telemetria"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-59-01",
+      "title": "Raciocínio completo — CSP, Security Headers e Browser Protections",
+      "problem": "Security headers reduzem classes inteiras de risco no navegador. CSP é especialmente valiosa porque limita de onde scripts, estilos e outros recursos podem ser carregados.",
+      "solutionSteps": [
+        {
+          "id": "w59-1",
+          "action": "Servidor entrega documento",
+          "explanation": "Comece identificando a entrada ou estado relevante: servidor entrega documento.",
+          "evidence": null
+        },
+        {
+          "id": "w59-2",
+          "action": "Headers definem políticas do navegador",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: headers definem políticas do navegador.",
+          "evidence": null
+        },
+        {
+          "id": "w59-3",
+          "action": "Browser aplica CSP, frame-ancestors e outras proteções",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: browser aplica csp, frame-ancestors e outras proteções.",
+          "evidence": null
+        },
+        {
+          "id": "w59-4",
+          "action": "Violações podem ser bloqueadas e reportadas",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: violações podem ser bloqueadas e reportadas.",
+          "evidence": null
+        },
+        {
+          "id": "w59-5",
+          "action": "Política é refinada com telemetria",
+          "explanation": "Feche a cadeia observando o efeito e o controle: política é refinada com telemetria.",
+          "evidence": "Use relatórios CSP, scanners de headers e inventário de páginas sem políticas mínimas."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em CSP, Security Headers e Browser Protections?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-59-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Servidor entrega documento\n→ Headers definem políticas do navegador\n→ [COMPLETE ESTA DECISÃO]\n→ Violações podem ser bloqueadas e reportadas\n→ Política é refinada com telemetria",
+      "expectedConcepts": [
+        "CSP",
+        "HSTS",
+        "frame-ancestors"
+      ],
+      "solution": "Browser aplica CSP, frame-ancestors e outras proteções"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-59-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria CSP de HSTS e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-59-01",
+      "title": "Conjunto inicial de headers",
+      "language": "http",
+      "code": "Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none'\nX-Content-Type-Options: nosniff\nReferrer-Policy: strict-origin-when-cross-origin\nPermissions-Policy: camera=(), microphone=()",
+      "explanation": "CSP deve ser adaptada à aplicação; começar em Report-Only ajuda a medir impacto antes de bloquear."
+    }
+  ],
+  "lab": {
+    "title": "Auditar headers no navegador",
+    "mode": "Celular + PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-59-1",
+        "instruction": "Abra DevTools > Network em uma aplicação local.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Abra DevTools > Network em uma aplicação local."
+      },
+      {
+        "id": "lab-59-2",
+        "instruction": "Selecione o documento principal e leia Response Headers.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Selecione o documento principal e leia Response Headers."
+      },
+      {
+        "id": "lab-59-3",
+        "instruction": "Liste headers ausentes.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Liste headers ausentes."
+      },
+      {
+        "id": "lab-59-4",
+        "instruction": "Adicione uma CSP simples em modo Report-Only.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Adicione uma CSP simples em modo Report-Only."
+      },
+      {
+        "id": "lab-59-5",
+        "instruction": "Observe violações e ajuste sem liberar origens desnecessárias.",
+        "expected": "A política do navegador deve ser explícita e verificável nos headers da resposta.",
+        "checkpoint": "A política do navegador deve ser explícita e verificável nos headers da resposta."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Use relatórios CSP, scanners de headers e inventário de páginas sem políticas mínimas.",
+    "signals": [
+      "Use relatórios CSP, scanners de headers e inventário de páginas sem políticas mínimas."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Adote CSP progressivamente, HSTS, headers de framing e MIME, com testes de compatibilidade."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria CSP de HSTS e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve CSP?",
+        "options": [
+          "Política que restringe fontes de scripts, estilos e outros recursos.",
+          "Força uso de HTTPS após primeira política válida.",
+          "Mecanismo usado apenas para estética da interface.",
+          "Processo que substitui autenticação por criptografia simétrica."
+        ],
+        "answer": 0,
+        "why": "Política que restringe fontes de scripts, estilos e outros recursos.",
+        "concept": "CSP"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Adote CSP progressivamente, HSTS, headers de framing e MIME, com testes de compatibilidade.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada."
+        ],
+        "answer": 0,
+        "why": "Adote CSP progressivamente, HSTS, headers de framing e MIME, com testes de compatibilidade.",
+        "concept": "HSTS"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Use relatórios CSP, scanners de headers e inventário de páginas sem políticas mínimas.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação.",
+          "Ignorar eventos raros porque normalmente são falsos positivos."
+        ],
+        "answer": 0,
+        "why": "Use relatórios CSP, scanners de headers e inventário de páginas sem políticas mínimas.",
+        "concept": "frame-ancestors"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "A política do navegador deve ser explícita e verificável nos headers da resposta.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "nosniff"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "CSP"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "CSP",
+        "back": "Política que restringe fontes de scripts, estilos e outros recursos.",
+        "concept": "CSP"
+      },
+      {
+        "front": "HSTS",
+        "back": "Força uso de HTTPS após primeira política válida.",
+        "concept": "HSTS"
+      },
+      {
+        "front": "frame-ancestors",
+        "back": "Diretiva CSP para controlar incorporação em frames.",
+        "concept": "frame-ancestors"
+      },
+      {
+        "front": "nosniff",
+        "back": "Evita interpretação MIME especulativa.",
+        "concept": "nosniff"
+      },
+      {
+        "front": "Defesa",
+        "back": "Adote CSP progressivamente, HSTS, headers de framing e MIME, com testes de compatibilidade.",
+        "concept": "CSP"
+      },
+      {
+        "front": "Detecção",
+        "back": "Use relatórios CSP, scanners de headers e inventário de páginas sem políticas mínimas.",
+        "concept": "HSTS"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "A política do navegador deve ser explícita e verificável nos headers da resposta.",
+        "concept": "frame-ancestors"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}

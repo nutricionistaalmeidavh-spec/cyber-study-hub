@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 2,
+  "id": 52,
+  "slug": "path-traversal-e-lfi-rfi",
+  "title": "Path Traversal e LFI/RFI",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 90,
+  "pcPractice": true,
+  "summary": "Aprenda a distinguir nomes normalizados de destinos reais, provar uma leitura fora da raiz por symlink e corrigir a decisão sob um contrato explícito de filesystem. Separe path traversal, leitura de arquivo e inclusão LFI/RFI sem presumir execução.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 51,
+      "title": "Command Injection",
+      "reason": "A aula 051 ajuda a distinguir leitura de bytes de execução por interpretador; recomendação sem bloqueio.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Rastrear entrada, resolução de caminho, verificação de contenção, abertura e leitura.",
+    "Explicar por que path.resolve e um prefixo com separador não resolvem links simbólicos.",
+    "Diferenciar path traversal, file read, LFI e RFI pelo consumidor do recurso e pela evidência.",
+    "Executar o experimento local com arquivo externo fictício e comparar versão antiga/corrigida.",
+    "Aplicar realpath e contenção relativa sob raiz protegida, reconhecendo TOCTOU e os limites de O_NOFOLLOW.",
+    "Produzir reteste que preserve o relatório público, rejeite os quatro casos do laboratório e declare o que não foi testado."
+  ],
+  "problem": {
+    "title": "O nome está dentro; o destino está fora",
+    "scenario": "Uma função de downloads permite nomes dentro de public-files. Ela combina a raiz com a entrada por path.resolve e aceita somente strings que começam com raiz + separador. report.txt funciona. Entretanto, link.txt também passa e aponta para outside.txt, criado pelo próprio laboratório ao lado de public-files. O processo consegue ler ambos: sua permissão de sistema operacional é mais ampla que a política do download. A falha está em autorizar o nome lexical como se ele fosse o destino real. Vamos observar somente marcadores fictícios em uma pasta temporária própria; não existe endpoint público, coleta de segredos ou execução de código."
+  },
+  "fundamentals": [
+    {
+      "term": "Path traversal",
+      "explanation": "Entrada influencia um caminho e permite ultrapassar a raiz definida pela aplicação. Segmentos de diretório pai são uma forma de produzir o desvio, mas o limite relevante é o destino autorizado, não a presença de uma substring.",
+      "example": "../outside.txt aponta ao irmão da pasta permitida; link.txt pode chegar ao mesmo destino sem conter ../."
+    },
+    {
+      "term": "File read não equivale a execução",
+      "explanation": "Leitura entrega bytes. O impacto observado depende de quais bytes o processo pode ler e de quem os recebe. Ler texto que contém código não executa esse texto por si só.",
+      "example": "O retorno DADO_EXTERNO_FICTICIO prova exposição do marcador fora da raiz; não prova shell, LFI ou RFI."
+    },
+    {
+      "term": "Normalização lexical",
+      "explanation": "path.resolve combina segmentos e produz um caminho absoluto usando as regras de caminho da plataforma. Ele transforma nomes sem consultar a estrutura de links do filesystem. Normalizar é útil para comparar nomes, mas não demonstra onde open terminará.",
+      "example": "/lab/public-files/link.txt permanece lexicalmente dentro de /lab/public-files."
+    },
+    {
+      "term": "Canonicalização com realpath",
+      "explanation": "realpath consulta o filesystem e resolve links simbólicos de um caminho existente. A comparação deve usar raiz e candidato canonicalizados; o resultado descreve o estado consultado, não bloqueia mudanças posteriores.",
+      "example": "Se link.txt aponta para /lab/outside.txt, o caminho real sai da raiz. Caminho inexistente gera erro, não autorização."
+    },
+    {
+      "term": "Contenção por componentes",
+      "explanation": "Depois de canonicalizar, path.relative(raiz, candidato) descreve como sair da raiz para chegar ao candidato. O contrato aceita apenas descendentes: rejeita vazio, .., início ../ usando path.sep e resultado absoluto. Um prefixo textual sem separador confundiria public-files com public-files-backup.",
+      "example": "O caminho relativo report.txt é aceito; ../outside.txt e a própria raiz, representada por vazio, são rejeitados."
+    },
+    {
+      "term": "Symlink e permissões",
+      "explanation": "Um link simbólico é uma entrada que redireciona a resolução para outro caminho. A leitura antiga segue esse redirecionamento. O laboratório cria o link intencionalmente: ele não demonstra como alguém obteria permissão para plantá-lo em um serviço real.",
+      "example": "Investigue quem pode criar, renomear ou substituir entradas em cada diretório percorrido."
+    },
+    {
+      "term": "TOCTOU",
+      "explanation": "Time of check to time of use é a distância entre verificar um estado e usá-lo. Um nome canonicalizado pode passar na verificação e um ancestral ser substituído antes de open. Repetir realpath não torna a sequência atômica.",
+      "example": "Se public-files/sub for trocado entre a checagem e a abertura, a abertura por nome poderá resolver outro destino."
+    },
+    {
+      "term": "O_NOFOLLOW e descritor",
+      "explanation": "No ambiente POSIX deste exercício, O_NOFOLLOW rejeita symlink no componente final aberto. Ele não bloqueia links em ancestrais. Após open, stat e readFile usam o mesmo FileHandle para não reabrir outro nome. Isso não corrige uma resolução inicial já desviada.",
+      "example": "O contrato exige raiz e ancestrais protegidos de escrita não confiável; o experimento não simula corrida."
+    },
+    {
+      "term": "LFI: inclusão local",
+      "explanation": "Na inclusão, um mecanismo da linguagem carrega um arquivo local como parte do programa ou da página. PHP include é um exemplo de consumidor que inclui e avalia código PHP. Consequências dependem de conteúdo, controle do arquivo e comportamento do interpretador; não se conclui execução apenas a partir de uma leitura.",
+      "example": "Se uma aplicação escolhe um template local usando entrada não autorizada, investigue o sink de inclusão, além da resolução do caminho."
+    },
+    {
+      "term": "RFI: inclusão remota",
+      "explanation": "RFI requer que um mecanismo de inclusão aceite um recurso remoto controlável, com suporte e configuração compatíveis. Uma URL em um campo, um download HTTP e uma leitura Node não demonstram RFI.",
+      "example": "Este laboratório não implementa PHP include, wrappers, carregamento de URL ou execução; LFI/RFI são distinções conceituais nesta unidade."
+    },
+    {
+      "term": "Plataforma e fronteira HTTP",
+      "explanation": "Separadores, drives, caminhos UNC, sensibilidade a maiúsculas e regras de links variam. O experimento usa Node 24 em POSIX ou WSL com filesystem Linux. Não valida Windows nativo. Em uma aplicação HTTP, decodifique conforme o contrato do framework e valide a mesma representação que chegará ao sink.",
+      "example": "paths.mjs recebe strings JavaScript, não URLs. Ele não demonstra filtragem de percent-encoding nem comportamento de proxy."
+    },
+    {
+      "term": "Autorização do recurso",
+      "explanation": "Permanecer na raiz limita localização, mas não identifica quais usuários podem ler cada arquivo. IDs permitidos mapeados pelo servidor reduzem controle sobre nomes; ainda precisam de autorização e armazenamento protegido.",
+      "example": "Um arquivo interno de outro usuário continua indevido mesmo que esteja em public-files."
+    }
+  ],
+  "mechanism": {
+    "summary": "A fronteira de confiança está entre a entrada que escolhe um nome e o processo que tem permissão para abrir arquivos. A versão antiga autoriza uma string. A versão corrigida decide sobre o destino real observado, sob um contrato que impede trocas maliciosas na árvore entre checagem e uso.",
+    "steps": [
+      {
+        "id": "m52-1",
+        "title": "Definir a raiz e a operação permitida",
+        "detail": "A política é ler arquivos regulares existentes, descendentes da raiz, até 4096 bytes no instante do stat. A raiz, seus ancestrais e a árvore percorrida não podem ser alterados por atores não confiáveis. O lab não é sandbox geral para arquivos concorrencialmente mutáveis."
+      },
+      {
+        "id": "m52-2",
+        "title": "Identificar o erro na versão antiga",
+        "detail": "lexicalPath calcula path.resolve(root, input) e testa o prefixo com separador. Isso barra a saída lexical direta, mas link.txt mantém o nome dentro da raiz. open segue o link e a versão antiga retorna o marcador externo."
+      },
+      {
+        "id": "m52-3",
+        "title": "Consultar o destino real e decidir",
+        "detail": "A correção rejeita nome vazio/nulo e byte NUL, canonicaliza raiz e candidato e calcula path.relative. Se houver saída, raiz exata ou relação absoluta, rejeita antes de abrir o conteúdo. realpath já consulta metadados: não diga que a função rejeita antes de qualquer acesso ao filesystem."
+      },
+      {
+        "id": "m52-4",
+        "title": "Abrir com a defesa adicional e usar o mesmo handle",
+        "detail": "A abertura é somente leitura, com O_NOFOLLOW. stat valida tipo e tamanho, e readFile lê pelo mesmo descritor; finally fecha o handle inclusive em erro. O teste de tamanho é pontual: não promete teto forte se houver escritor concorrente capaz de aumentar o arquivo."
+      },
+      {
+        "id": "m52-5",
+        "title": "Comparar o efeito e declarar o limite",
+        "detail": "O relatório permitido continua legível, enquanto link.txt, ../outside.txt, . e NUL são rejeitados. Essa evidência cobre árvore estável própria e os casos executados. Não demonstra corrida contra ancestrais, inclusão PHP, leitura remota, Windows nativo ou autorização por usuário."
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-52-01",
+      "title": "Por que link.txt atravessa a fronteira sem ../",
+      "problem": "Um nome passa no prefixo e ainda lê outside.txt. Demonstre o mecanismo sem acessar arquivos alheios e sem classificar uma leitura como execução.",
+      "solutionSteps": [
+        {
+          "id": "w52-1",
+          "action": "Montar a hipótese antes da execução",
+          "explanation": "Considere /lab/public-files/report.txt com RELATORIO_PUBLICO e /lab/outside.txt com DADO_EXTERNO_FICTICIO. O próprio lab cria public-files/link.txt apontando para outside.txt. Preveja a decisão para report.txt, link.txt e ../outside.txt.",
+          "evidence": "O arquivo externo é irmão da raiz, pertence ao exercício e não contém dados reais."
+        },
+        {
+          "id": "w52-2",
+          "action": "Explicar a aceitação antiga",
+          "explanation": "Para link.txt, lexicalPath retorna /lab/public-files/link.txt. O prefixo inclui o separador correto, portanto não é o bug public-files-backup. O erro é supor que a string normalizada represente o destino final de open.",
+          "evidence": "legacy: DADO_EXTERNO_FICTICIO"
+        },
+        {
+          "id": "w52-3",
+          "action": "Calcular a rejeição corrigida",
+          "explanation": "realpath da raiz permanece /lab/public-files. realpath do link termina em /lab/outside.txt; path.relative produz ../outside.txt. A condição de saída rejeita o candidato antes de sua abertura para leitura.",
+          "evidence": "rejected[0].reason: FORA_DA_RAIZ"
+        },
+        {
+          "id": "w52-4",
+          "action": "Verificar funcionalidade e casos negativos",
+          "explanation": "report.txt resolve para um descendente regular e retorna o marcador público. ../outside.txt e . recebem FORA_DA_RAIZ; NUL recebe NOME_INVALIDO na validação inicial. Não conte um erro inesperado de ambiente como prova de contenção.",
+          "evidence": "happy: RELATORIO_PUBLICO; rejected.length: 4"
+        },
+        {
+          "id": "w52-5",
+          "action": "Redigir a conclusão proporcional",
+          "explanation": "A versão antiga lê fora da raiz por um symlink estático criado pelo teste. A função corrigida bloqueia esse caso e os três outros casos negativos no contrato descrito. Nenhum interpretador de conteúdo foi acionado. A corrida de ancestrais continua fora da garantia.",
+          "evidence": "Reteste deve registrar marcadores, motivos de rejeição, Node/plataforma e contrato da árvore."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Por que acrescentar path.sep ao prefixo evita um problema, mas não resolve o link?",
+        "Em qual operação a versão antiga muda de nome lexical para destino real?",
+        "Por que realpath antes de open ainda precisa de um contrato contra escrita não confiável?",
+        "Qual evidência adicional seria necessária para falar de inclusão ou execução, ausente aqui?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-52-01",
+      "title": "Complete a decisão de contenção",
+      "prompt": "canonicalRoot e candidate já vieram de realpath. Complete a condição para aceitar apenas descendentes, sem confundir a própria raiz com arquivo permitido. Depois explique por que esta condição isolada não impede TOCTOU.",
+      "starterCode": "const rel = path.relative(canonicalRoot, candidate);\nif (/* COMPLETE: quatro condições de rejeição */) {\n  throw new Error('FORA_DA_RAIZ');\n}",
+      "expectedConcepts": [
+        "Raiz exata",
+        "Diretório pai",
+        "Separador da plataforma",
+        "Relação absoluta",
+        "TOCTOU"
+      ],
+      "solution": "!rel || rel === '..' || rel.startsWith('..' + path.sep) || path.isAbsolute(rel). As quatro condições negam raiz exata, pai, descendência externa e outra raiz/drive. A comparação é de nomes obtidos num instante; não trava diretórios. O_NOFOLLOW também não protege ancestrais."
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-52-01",
+      "title": "Construir uma matriz de regressão própria",
+      "prompt": "Em uma cópia local de estudo, importe readWithinProtectedRoot de paths.mjs e crie outra pasta temporária sua com um arquivo regular em subpasta, um diretório vazio, um arquivo de 4097 bytes e um symlink apontando para seu próprio outside.txt. Não altere o lab de referência. Escreva um teste que compare os resultados reais às previsões e remova a pasta própria em finally. Registre ainda um cenário de corrida apenas como análise: não alegue tê-lo testado.",
+      "successCriteria": [
+        "O arquivo regular descendente é lido pelo conteúdo esperado, provando que a defesa não bloqueia toda leitura.",
+        "Diretório interno e arquivo de 4097 bytes recebem TIPO_OU_TAMANHO_INVALIDO; link externo recebe FORA_DA_RAIZ.",
+        "Arquivos pertencem somente à pasta temporária criada por você; cleanup usa o caminho retornado por mkdtemp.",
+        "A explicação diferencia checagem de localização, autorização por usuário e execução de conteúdo.",
+        "O relatório declara que árvore mutável, teto durante escrita concorrente e plataformas adicionais não foram validados."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-52-01",
+      "title": "Leitura sob raiz protegida: correção usada pelo lab",
+      "language": "js",
+      "code": "import { realpath, open } from 'node:fs/promises';\nimport { constants } from 'node:fs';\nimport path from 'node:path';\n\n// Contrato: raiz/ancestrais pertencem ao serviço e não são graváveis por atores não confiáveis.\n// Não promete eliminar corridas contra um atacante capaz de renomear diretórios durante open.\nexport async function readWithinProtectedRoot(root, input) {\n  if (typeof input !== 'string' || !input.length || input.includes('\\0')) throw new Error('NOME_INVALIDO');\n  const canonicalRoot = await realpath(root);\n  const candidate = await realpath(path.resolve(canonicalRoot, input));\n  const rel = path.relative(canonicalRoot, candidate);\n  if (!rel || rel === '..' || rel.startsWith('..' + path.sep) || path.isAbsolute(rel)) throw new Error('FORA_DA_RAIZ');\n  if (typeof constants.O_NOFOLLOW !== 'number') throw new Error('USE_POSIX_OU_WSL_PARA_ESTE_LAB');\n  const handle = await open(candidate, constants.O_RDONLY | constants.O_NOFOLLOW);\n  try {\n    const stat = await handle.stat();\n    if (!stat.isFile() || stat.size > 4096) throw new Error('TIPO_OU_TAMANHO_INVALIDO');\n    return await handle.readFile('utf8');\n  } finally { await handle.close(); }\n}",
+      "explanation": "Trecho da implementação executável em paths.mjs. realpath consulta o destino existente; a relação com a raiz decide a localização; O_NOFOLLOW só trata o componente final; stat/readFile usam o mesmo handle. O contrato de diretórios protegidos faz parte da correção. Não adapte isto como proteção geral para árvores controladas por terceiros."
+    }
+  ],
+  "lab": {
+    "title": "Comparar normalização e destino real no filesystem",
+    "mode": "PC",
+    "safetyScope": "Somente os arquivos fictícios criados pelo próprio paths.mjs em mkdtemp. POSIX ou WSL com Node 24; sem acesso a sistemas reais, servidor HTTP, PHP ou rede. A raiz e seus ancestrais devem impedir substituição por atores não confiáveis.",
+    "setup": [
+      "Abra o terminal na raiz deste projeto; os comandos abaixo usam caminhos relativos a ela.",
+      "Use Node 24 em Linux/macOS ou WSL com filesystem Linux; confirme node --version. A reprodução foi verificada em Node v24.19.0/Linux.",
+      "O experimento paths.mjs usa somente módulos nativos e pode rodar sem npm install. web.test.mjs importa também outros módulos; para o reteste da suíte, instale as dependências fixadas: npm ci --prefix public/course-labs/phase16-web-p0.",
+      "Não crie arquivos manualmente em /tmp: experiment() prepara seu próprio diretório csh-path-* com report.txt, outside.txt e link.txt."
+    ],
+    "happyPath": [
+      "A função corrigida recebe report.txt, encontra um descendente regular da raiz e retorna RELATORIO_PUBLICO.",
+      "A execução também mostra a falha antiga: legacy retorna DADO_EXTERNO_FICTICIO por link.txt. Isso é evidência controlada esperada, não aprovação da leitura indevida."
+    ],
+    "steps": [
+      {
+        "id": "lab-52-1",
+        "instruction": "Confirme runtime e preveja os resultados lendo as duas funções de paths.mjs.",
+        "command": "node --version",
+        "expected": "Versão v24.x; você prevê relatório público aceito e link externo rejeitado apenas na versão corrigida.",
+        "checkpoint": "Explique por que o link criado no lab pode ser lido pelo processo, mas não deve ser autorizado pelo download."
+      },
+      {
+        "id": "lab-52-2",
+        "instruction": "Execute a comparação real com os arquivos fictícios temporários.",
+        "command": "node public/course-labs/phase16-web-p0/paths.mjs",
+        "expected": "happy = RELATORIO_PUBLICO; legacy = DADO_EXTERNO_FICTICIO; rejected contém quatro entradas.",
+        "checkpoint": "Localize o retorno externo na versão antiga e a leitura legítima na função corrigida, sem deduzir execução de código."
+      },
+      {
+        "id": "lab-52-3",
+        "instruction": "Confira cada motivo no array rejected e relacione-o à decisão do código.",
+        "command": "node --input-type=module -e 'import { experiment } from \"./public/course-labs/phase16-web-p0/paths.mjs\"; console.log(JSON.stringify(await experiment(), null, 2));'",
+        "expected": "link.txt, ../outside.txt e . recebem FORA_DA_RAIZ; o caractere NUL recebe NOME_INVALIDO. A entrada NUL aparece escapada na saída.",
+        "checkpoint": "As três primeiras rejeições ocorrem após consultas realpath; NUL é barrado antes. O teste não é um endpoint que decodifica URLs."
+      },
+      {
+        "id": "lab-52-4",
+        "instruction": "Instale as dependências do pacote de testes e execute a regressão específica de paths.",
+        "command": "npm ci --prefix public/course-labs/phase16-web-p0\nnode --test --test-name-pattern='paths:' public/course-labs/phase16-web-p0/web.test.mjs",
+        "expected": "Teste paths aprovado: comparação dos marcadores, quatro rejeições e motivo FORA_DA_RAIZ para o link.",
+        "checkpoint": "O teste automatizado confirma esses invariantes; a inspeção do passo anterior verifica os demais motivos individualmente."
+      },
+      {
+        "id": "lab-52-5",
+        "instruction": "Produza seu reteste com entrada, esperado, observado e limite da conclusão; execute novamente para demonstrar repetibilidade.",
+        "command": "node public/course-labs/phase16-web-p0/paths.mjs",
+        "expected": "Mesmo conteúdo happy/legacy e mesmos quatro motivos; diretório temporário novo é removido ao concluir.",
+        "checkpoint": "Inclua no relatório: raiz protegida; O_NOFOLLOW só componente final; nenhuma corrida, LFI/RFI ou execução validada."
+      }
+    ],
+    "cleanup": [
+      "experiment() fecha os handles e remove apenas seu diretório temporário em finally, inclusive quando há erro dentro do experimento.",
+      "Se o processo foi encerrado abruptamente, confira primeiro qual csh-path-* pertence à sua execução; remova somente essa pasta. Não use remoção ampla de diretórios temporários.",
+      "Encerre o terminal ou mantenha a cópia de estudo; o lab não deixa servidor nem porta abertos."
+    ],
+    "resources": [
+      {
+        "label": "Experimento executável paths.mjs",
+        "href": "/course-labs/phase16-web-p0/paths.mjs"
+      },
+      {
+        "label": "Testes reais do pacote Web",
+        "href": "/course-labs/phase16-web-p0/web.test.mjs"
+      },
+      {
+        "label": "Node 24: filesystem",
+        "href": "https://nodejs.org/docs/latest-v24.x/api/fs.html"
+      },
+      {
+        "label": "OWASP: Path Traversal",
+        "href": "https://owasp.org/www-community/attacks/Path_Traversal"
+      },
+      {
+        "label": "PortSwigger: File path traversal",
+        "href": "https://portswigger.net/web-security/file-path-traversal"
+      },
+      {
+        "label": "PHP: include",
+        "href": "https://www.php.net/manual/en/function.include.php"
+      },
+      {
+        "label": "Linux: open e O_NOFOLLOW",
+        "href": "https://man7.org/linux/man-pages/man2/open.2.html"
+      }
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "USE_POSIX_OU_WSL_PARA_ESTE_LAB ou erro ao criar symlink",
+        "likelyCause": "Windows nativo, filesystem incompatível ou permissões insuficientes para symlink.",
+        "action": "Use Node 24 dentro de WSL com arquivos no filesystem Linux, ou Linux/macOS. Não remova O_NOFOLLOW para fazer passar e não alegue cobertura Windows."
+      },
+      {
+        "symptom": "ERR_MODULE_NOT_FOUND ao abrir paths.mjs",
+        "likelyCause": "Terminal fora da raiz do projeto ou pacote incompleto.",
+        "action": "Confirme a existência de public/course-labs/phase16-web-p0/paths.mjs e execute a partir da raiz. O script direto não depende de pacotes npm."
+      },
+      {
+        "symptom": "Reteste acusa dependência ausente mesmo com filtro paths",
+        "likelyCause": "web.test.mjs importa outros módulos antes de filtrar os testes, incluindo o módulo de senhas.",
+        "action": "Execute npm ci --prefix public/course-labs/phase16-web-p0 e repita o comando de teste. Sem acesso ao registro, rode paths.mjs e declare que a suíte não foi executada."
+      },
+      {
+        "symptom": "ENOENT ou EACCES antes dos marcadores",
+        "likelyCause": "Arquivo alvo/ancestral inexistente, filesystem temporário sem permissão ou interferência externa.",
+        "action": "Rode o experimento sem editar seu setup automático e registre o caminho da falha localmente. Esses erros não comprovam FORA_DA_RAIZ; não conte qualquer exceção como defesa validada."
+      },
+      {
+        "symptom": "Aparece DADO_EXTERNO_FICTICIO na saída e parece que a correção falhou",
+        "likelyCause": "Você está lendo legacy, resultado intencional da versão antiga.",
+        "action": "Verifique que happy é público e que rejected inclui link.txt com FORA_DA_RAIZ. Só considerar a correção aprovada quando ambos os lados coincidirem com a matriz."
+      },
+      {
+        "symptom": "Uma adaptação passa em testes estáticos, mas diretórios são mutáveis por terceiros",
+        "likelyCause": "O contrato do exercício foi removido; realpath e open continuam operações separadas.",
+        "action": "Reprojetar propriedade/isolamento da árvore e estratégia de abertura antes de usar a função. Não resolver com uma segunda checagem textual nem apresentar o teste estático como prova contra TOCTOU."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Provar traversal exige ligar uma entrada a um destino fora da política e ao efeito observado. Strings suspeitas e erros de arquivo orientam a investigação, mas não demonstram leitura ou inclusão sozinhos.",
+    "signals": [
+      "Decisões FORA_DA_RAIZ por identidade e operação; sequência de pedidos rejeitados seguida de leitura autorizada merece comparação de destino.",
+      "Diferença inesperada entre nome solicitado, caminho lexical e caminho real em telemetria interna de teste.",
+      "Alterações de symlinks, renomes e permissões de escrita na árvore de arquivos servidos.",
+      "Erro de inclusão de linguagem tem contexto diferente de erro de leitura; preserve o nome da API/sink no diagnóstico."
+    ],
+    "investigation": [
+      "Estabeleça baseline com report.txt e marque o identificador do recurso, decisão e resultado, sem registrar conteúdo de arquivos nem caminhos internos em respostas públicas.",
+      "Reproduza usando somente outside.txt fictício criado por você; compare o destino lexical e o real. A ausência de ../ não exclui um symlink.",
+      "Confirme o sink: readFile lê bytes; include carrega conteúdo conforme a linguagem. Documente somente a consequência observada.",
+      "Verifique permissões da raiz e de cada ancestral, inclusive capacidade de renomear entradas. Essa revisão é necessária além do teste funcional.",
+      "Preserve motivos distintos: NOME_INVALIDO, FORA_DA_RAIZ, TIPO_OU_TAMANHO_INVALIDO e falhas operacionais. Não use contagem indiferenciada de erros como sucesso."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Preferir IDs autorizados mapeados pelo servidor a caminhos fornecidos pelo cliente; separar autorização do usuário de contenção da localização.",
+      "Para leitura de arquivos existentes, canonicalizar raiz/candidato e verificar a relação por componentes antes da abertura do conteúdo. Não confiar só em remover ../, extensões ou prefixo lexical.",
+      "Manter árvore, raiz e ancestrais protegidos de escrita não confiável; limitar permissões do processo e usar armazenamento isolado para conteúdo enviado por usuários.",
+      "No contrato POSIX do lab, abrir somente para leitura com O_NOFOLLOW, verificar tipo/tamanho e ler pelo mesmo handle, fechando em finally. O_NOFOLLOW não resolve corrida em ancestrais.",
+      "Se o produto precisa atender árvores concorrencialmente controláveis por terceiros, a função didática não basta: exige estratégia de resolução/abertura e isolamento específica da plataforma, revisada para esse modelo.",
+      "Em mecanismos de inclusão, mapear nomes de templates permitidos e impedir entrada arbitrária no sink; verificar suporte e configuração de inclusão remota. Desabilitar inclusão remota não corrige leitura local indevida."
+    ],
+    "verification": [
+      "Reexecutar paths.mjs: happy público, legacy externo fictício e quatro rejeições com os motivos exatos.",
+      "Executar o teste paths de web.test.mjs e registrar versão/plataforma e resultado, além da matriz manual de motivos.",
+      "Adicionar na cópia de estudo descendente legítimo, diretório e arquivo maior que o limite; comprovar funcionalidade e rejeição correta.",
+      "Revisar o contrato de escrita dos diretórios e registrar que corrida não foi demonstrada, portanto não foi eliminada por evidência experimental.",
+      "Classificar o resultado como contenção de leitura em árvore estável. Não afirmar LFI, RFI ou execução sem observar um sink e efeito correspondentes."
+    ]
+  },
+  "review": {
+    "challenge": "Escreva um parecer de seis linhas: causa da leitura antiga, evidência fictícia, decisão corrigida, fluxo legítimo preservado, pré-condição de diretórios e limite da conclusão sobre TOCTOU/LFI/RFI. Depois resolva o exercício independente com sua matriz de resultados.",
+    "quiz": [
+      {
+        "q": "Por que link.txt passa na função antiga mesmo sem ../?",
+        "options": [
+          "O prefixo textual sem separador aceita public-files-backup.",
+          "path.resolve não segue o symlink, enquanto a abertura antiga segue seu destino.",
+          "O_NOFOLLOW resolve todos os links antes do teste de prefixo.",
+          "O arquivo externo está dentro da raiz porque pertence ao mesmo usuário."
+        ],
+        "answer": 1,
+        "why": "O prefixo antigo já inclui path.sep. A divergência está entre o nome normalizado e a resolução do symlink durante open.",
+        "concept": "Normalização e symlink"
+      },
+      {
+        "q": "O que DADO_EXTERNO_FICTICIO em legacy demonstra neste experimento?",
+        "options": [
+          "Inclusão remota de código via URL.",
+          "Execução do conteúdo por um interpretador.",
+          "Escalada das permissões do processo.",
+          "Leitura do arquivo fictício fora da raiz definida pela aplicação."
+        ],
+        "answer": 3,
+        "why": "O processo já podia ler o arquivo; a política da função permitiu exposição fora da raiz. Não há include nem execução.",
+        "concept": "Leitura versus execução"
+      },
+      {
+        "q": "Qual descrição de O_NOFOLLOW é compatível com o contrato do lab?",
+        "options": [
+          "Bloqueia symlink no componente final aberto, sem garantir proteção contra troca de ancestrais.",
+          "Bloqueia todos os links da árvore, inclusive links que sejam criados depois de open.",
+          "Torna realpath e open uma única operação atômica.",
+          "Impede qualquer escrita no arquivo enquanto o handle estiver aberto."
+        ],
+        "answer": 0,
+        "why": "A defesa adicional não prende ancestrais nem congela conteúdo. Proteger a árvore é requisito separado.",
+        "concept": "TOCTOU"
+      },
+      {
+        "q": "Depois de realpath, path.relative retorna string vazia. Qual decisão corresponde à política do lab?",
+        "options": [
+          "Aceitar, pois caminho vazio indica um arquivo novo.",
+          "Abrir a raiz para ler um relatório padrão.",
+          "Rejeitar, pois o candidato é a própria raiz, não um descendente permitido.",
+          "Tratar como URL remota."
+        ],
+        "answer": 2,
+        "why": "A checagem !rel rejeita a própria raiz antes da abertura; o serviço quer arquivos descendentes existentes.",
+        "concept": "Contenção"
+      },
+      {
+        "q": "Qual evidência adicional é necessária para investigar RFI?",
+        "options": [
+          "Uma entrada que contém dois pontos.",
+          "Uma API de inclusão que aceite recurso remoto controlável, com suporte/configuração compatíveis.",
+          "Qualquer função HTTP que faça download de uma imagem.",
+          "Um arquivo local retornado por readFile."
+        ],
+        "answer": 1,
+        "why": "A categoria depende de inclusão remota, não de aparência de URL ou simples leitura/download. Nada disso foi implementado no lab.",
+        "concept": "RFI"
+      },
+      {
+        "q": "Qual reteste sustenta a conclusão mais precisa?",
+        "options": [
+          "Todos os pedidos causam alguma exceção.",
+          "O arquivo externo deixa de existir antes do reteste.",
+          "Um teste estático passa, portanto não existem corridas.",
+          "report.txt mantém o marcador público e os quatro casos negativos têm os motivos previstos, sob árvore protegida."
+        ],
+        "answer": 3,
+        "why": "Preservar o caso legítimo evita falsa correção por quebra geral. Motivos e pré-condições tornam a comparação verificável.",
+        "concept": "Reteste"
+      },
+      {
+        "q": "Um teste customizado recebe ENOENT para um arquivo removido. Como registrar?",
+        "options": [
+          "Como leitura remota bloqueada.",
+          "Como TOCTOU eliminado por realpath.",
+          "Como falha de existência, separada da decisão FORA_DA_RAIZ.",
+          "Como prova suficiente de contenção para qualquer entrada."
+        ],
+        "answer": 2,
+        "why": "Erros operacionais podem impedir a operação sem exercitar a política. O experimento cria alvos conhecidos para comparar a decisão correta.",
+        "concept": "Evidência e falhas operacionais"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "O que path.resolve não observa?",
+        "back": "O destino real dos links simbólicos: ele calcula um nome lexical.",
+        "concept": "Normalização"
+      },
+      {
+        "front": "O que muda ao usar realpath?",
+        "back": "O candidato passa a refletir links resolvidos no filesystem existente; continua sujeito a mudanças posteriores.",
+        "concept": "Canonicalização"
+      },
+      {
+        "front": "Por que raiz + separador ainda falha com link.txt?",
+        "back": "O nome fica dentro do prefixo, mas open antigo segue o link ao outside.txt externo fictício.",
+        "concept": "Symlink"
+      },
+      {
+        "front": "Quais são as quatro rejeições desta prática?",
+        "back": "link.txt, ../outside.txt e .: FORA_DA_RAIZ; NUL: NOME_INVALIDO.",
+        "concept": "Matriz de evidência"
+      },
+      {
+        "front": "O_NOFOLLOW protege quais componentes?",
+        "back": "O componente final da abertura; ancestrais não ficam protegidos por essa flag.",
+        "concept": "Limite POSIX"
+      },
+      {
+        "front": "Qual pré-condição mantém a correção dentro de seu contrato?",
+        "back": "Raiz, ancestrais e árvore percorrida protegidos de alterações por atores não confiáveis.",
+        "concept": "TOCTOU"
+      },
+      {
+        "front": "Qual diferença separa file read e LFI?",
+        "back": "File read retorna bytes; LFI envolve um sink de inclusão local. A consequência depende do consumidor e conteúdo.",
+        "concept": "LFI"
+      },
+      {
+        "front": "RFI foi reproduzida pelo paths.mjs?",
+        "back": "Não. O experimento não usa URL remota, PHP include, wrappers nem interpretador de conteúdo.",
+        "concept": "RFI"
+      },
+      {
+        "front": "Por que stat e readFile usam o mesmo handle?",
+        "back": "Para verificar e ler o mesmo objeto aberto, evitando uma nova abertura por nome. Não desfaz uma abertura inicialmente desviada.",
+        "concept": "Descritor"
+      },
+      {
+        "front": "Qual baseline deve sobreviver à correção?",
+        "back": "report.txt retorna RELATORIO_PUBLICO; bloquear todo acesso não satisfaz o reteste.",
+        "concept": "Regressão"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "prática complementar autorizada",
+      "note": "Explorar path traversal somente em instância local própria; não substitui a evidência do experimento Node desta aula."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "contexto complementar",
+      "note": "Comparar fronteiras de acesso a arquivos em instância local. Não inferir LFI/RFI ou execução a partir do título de um desafio."
+    }
+  ]
+}

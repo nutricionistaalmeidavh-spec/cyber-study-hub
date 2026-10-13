@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 2,
+  "id": 54,
+  "slug": "jwt-security",
+  "title": "JWT Security",
+  "track": "Web",
+  "level": "Intermediário",
+  "durationMin": 60,
+  "pcPractice": true,
+  "summary": "JWT é um formato de token assinado; segurança depende de validação de assinatura, algoritmo, claims, expiração e armazenamento.",
+  "recommendedPrerequisites": [
+    {
+      "kind": "lesson",
+      "id": 53,
+      "title": "File Upload Vulnerabilities",
+      "reason": "Ajuda a conectar o mecanismo desta aula ao tópico anterior, mas não bloqueia o acesso.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "WEB — Web Development para AppSec",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "NET — Redes para Segurança",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "LAB — Laboratório e Ferramentas",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    },
+    {
+      "kind": "concept",
+      "title": "JS/TS — Programação JavaScript/TypeScript",
+      "reason": "Trilha paralela recomendada para aprofundamento opcional.",
+      "blocking": false
+    }
+  ],
+  "objectives": [
+    "Entender o papel de jwt security no contexto de segurança.",
+    "Reconhecer sinais, riscos e decisões defensivas relacionados a Header.",
+    "Conectar o conceito com detecção, mitigação e validação em ambiente autorizado.",
+    "Explicar a diferença entre causa, evidência e mitigação.",
+    "Executar o laboratório e comprovar o resultado esperado.",
+    "Produzir um reteste que demonstre a correção."
+  ],
+  "problem": {
+    "title": "O problema por trás de JWT Security",
+    "scenario": "JWT é um envelope assinado para claims; não é criptografia por padrão e não substitui uma estratégia de sessão/autorização. decode e verify respondem perguntas diferentes."
+  },
+  "fundamentals": [
+    {
+      "term": "Header",
+      "explanation": "Parte do JWT que declara tipo e algoritmo."
+    },
+    {
+      "term": "Claims",
+      "explanation": "Dados como sub, aud, iss e exp."
+    },
+    {
+      "term": "Signature",
+      "explanation": "Prova de integridade/autenticidade do token."
+    },
+    {
+      "term": "Key rotation",
+      "explanation": "Troca planejada de chaves com suporte a múltiplos kid válidos."
+    }
+  ],
+  "mechanism": {
+    "summary": "JWT é um formato de token assinado, não uma sessão mágica. Segurança depende de validação de assinatura, algoritmo, issuer, audience, expiração e estratégia de revogação.",
+    "steps": [
+      {
+        "id": "m54-1",
+        "title": "Servidor emite claims",
+        "detail": "Servidor emite claims"
+      },
+      {
+        "id": "m54-2",
+        "title": "Token é assinado",
+        "detail": "Token é assinado"
+      },
+      {
+        "id": "m54-3",
+        "title": "Cliente apresenta o token",
+        "detail": "Cliente apresenta o token"
+      },
+      {
+        "id": "m54-4",
+        "title": "Servidor valida assinatura e claims",
+        "detail": "Servidor valida assinatura e claims"
+      },
+      {
+        "id": "m54-5",
+        "title": "Autorização usa claims confiáveis, não dados não verificados",
+        "detail": "Autorização usa claims confiáveis, não dados não verificados"
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "id": "worked-54-01",
+      "title": "Raciocínio completo — JWT Security",
+      "problem": "JWT é um formato de token assinado, não uma sessão mágica. Segurança depende de validação de assinatura, algoritmo, issuer, audience, expiração e estratégia de revogação.",
+      "solutionSteps": [
+        {
+          "id": "w54-1",
+          "action": "Servidor emite claims",
+          "explanation": "Comece identificando a entrada ou estado relevante: servidor emite claims.",
+          "evidence": null
+        },
+        {
+          "id": "w54-2",
+          "action": "Token é assinado",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: token é assinado.",
+          "evidence": null
+        },
+        {
+          "id": "w54-3",
+          "action": "Cliente apresenta o token",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: cliente apresenta o token.",
+          "evidence": null
+        },
+        {
+          "id": "w54-4",
+          "action": "Servidor valida assinatura e claims",
+          "explanation": "Esta etapa conecta a condição anterior à próxima decisão técnica: servidor valida assinatura e claims.",
+          "evidence": null
+        },
+        {
+          "id": "w54-5",
+          "action": "Autorização usa claims confiáveis, não dados não verificados",
+          "explanation": "Feche a cadeia observando o efeito e o controle: autorização usa claims confiáveis, não dados não verificados.",
+          "evidence": "Monitore tokens expirados, kid desconhecido, falhas de assinatura e uso simultâneo anômalo."
+        }
+      ],
+      "selfExplanationPrompts": [
+        "Em que etapa a decisão insegura aparece em JWT Security?",
+        "Qual evidência separa hipótese de confirmação nesta aula?",
+        "Qual controle age na causa em vez de apenas reduzir sintomas?"
+      ]
+    }
+  ],
+  "completionExercises": [
+    {
+      "id": "completion-54-01",
+      "title": "Complete o fluxo sem consultar o exemplo",
+      "prompt": "Reconstrua a decisão que falta no modelo mental abaixo e depois compare com a solução de referência.",
+      "starterCode": "Servidor emite claims\n→ Token é assinado\n→ [COMPLETE ESTA DECISÃO]\n→ Servidor valida assinatura e claims\n→ Autorização usa claims confiáveis, não dados não verificados",
+      "expectedConcepts": [
+        "Header",
+        "Claims",
+        "Signature"
+      ],
+      "solution": "Cliente apresenta o token"
+    }
+  ],
+  "independentExercises": [
+    {
+      "id": "independent-54-01",
+      "title": "Explique, valide e reteste",
+      "prompt": "Explique, em poucas linhas, como você diferenciaria Header de Claims e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+      "successCriteria": [
+        "A resposta distingue causa, evidência e impacto.",
+        "O cenário permanece local, próprio ou explicitamente autorizado.",
+        "A correção age na decisão insegura central.",
+        "O reteste compara o mesmo cenário antes e depois."
+      ]
+    }
+  ],
+  "codeExamples": [
+    {
+      "id": "code-54-01",
+      "title": "Validação explícita de claims",
+      "language": "ts",
+      "code": "const payload = await jwtVerify(token, publicKey, {\n  algorithms: [\"RS256\"],\n  issuer: \"https://auth.exemplo.local\",\n  audience: \"cyber-study-api\"\n});\n\nif (!payload.payload.sub) {\n  throw new Error(\"Token sem subject\");\n}",
+      "explanation": "Fixar algoritmo, issuer e audience reduz ambiguidades na validação."
+    }
+  ],
+  "lab": {
+    "title": "Decodificar não é validar",
+    "mode": "Celular + PC",
+    "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
+    "setup": [
+      "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+    ],
+    "happyPath": [
+      "Antes de procurar a falha, execute o fluxo legítimo esperado.",
+      "Registre a resposta/estado correto para ter um baseline comparável."
+    ],
+    "steps": [
+      {
+        "id": "lab-54-1",
+        "instruction": "No celular, identifique header, payload e signature.",
+        "expected": "Etapa 1 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: No celular, identifique header, payload e signature."
+      },
+      {
+        "id": "lab-54-2",
+        "instruction": "Use um token de laboratório/local e apenas decodifique o payload.",
+        "expected": "Etapa 2 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Use um token de laboratório/local e apenas decodifique o payload."
+      },
+      {
+        "id": "lab-54-3",
+        "instruction": "Depois valide assinatura e claims com uma biblioteca.",
+        "expected": "Etapa 3 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Depois valide assinatura e claims com uma biblioteca."
+      },
+      {
+        "id": "lab-54-4",
+        "instruction": "Altere um claim no token de teste e confirme que a validação falha.",
+        "expected": "Etapa 4 concluída sem sair do escopo autorizado; registre a evidência relevante.",
+        "checkpoint": "Você consegue explicar o que mudou/foi observado após: Altere um claim no token de teste e confirme que a validação falha."
+      },
+      {
+        "id": "lab-54-5",
+        "instruction": "Anote diferença entre expiração e revogação.",
+        "expected": "Você deve explicar por que ler o payload não prova autenticidade.",
+        "checkpoint": "Você deve explicar por que ler o payload não prova autenticidade."
+      }
+    ],
+    "cleanup": [
+      "Restaure configurações ou snapshot alterados no laboratório.",
+      "Remova somente dados fictícios/temporários criados para o exercício."
+    ],
+    "troubleshooting": [
+      {
+        "symptom": "Confirme versões, portas, identidade e estado inicial do laboratório.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Colete baseline antes de mudar configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se uma ferramenta “não encontrar”, verifique cobertura e fonte de dados antes de concluir ausência de risco.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Se um finding aparecer, leia a evidência e a pré-condição antes de classificá-lo.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      },
+      {
+        "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
+        "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
+        "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ]
+  },
+  "detection": {
+    "why": "Monitore tokens expirados, kid desconhecido, falhas de assinatura e uso simultâneo anômalo.",
+    "signals": [
+      "Monitore tokens expirados, kid desconhecido, falhas de assinatura e uso simultâneo anômalo."
+    ],
+    "investigation": [
+      "Colete baseline antes de concluir que há uma falha.",
+      "Correlacione entrada, decisão, efeito observável e identidade/contexto.",
+      "Confirme a hipótese com a menor ação necessária dentro do laboratório."
+    ]
+  },
+  "remediation": {
+    "principles": [
+      "Fixe algoritmos aceitos, valide iss/aud/exp, proteja chaves e implemente rotação/revogação conforme o risco."
+    ],
+    "verification": [
+      "Repita exatamente o mesmo cenário após a correção.",
+      "Confirme que a evidência de risco desapareceu sem quebrar o fluxo legítimo.",
+      "Registre o resultado do reteste."
+    ]
+  },
+  "review": {
+    "challenge": "Explique, em poucas linhas, como você diferenciaria Header de Claims e qual evidência usaria primeiro.\n\nAmplie a resposta: diga qual dado coletaria, qual controle aplicaria e como provaria a correção.",
+    "quiz": [
+      {
+        "q": "O que melhor descreve Header?",
+        "options": [
+          "Parte do JWT que declara tipo e algoritmo.",
+          "Processo que substitui autenticação por criptografia simétrica.",
+          "Dados como sub, aud, iss e exp.",
+          "Mecanismo usado apenas para estética da interface."
+        ],
+        "answer": 0,
+        "why": "Parte do JWT que declara tipo e algoritmo.",
+        "concept": "Header"
+      },
+      {
+        "q": "Qual ação defensiva é mais coerente com o risco estudado?",
+        "options": [
+          "Fixe algoritmos aceitos, valide iss/aud/exp, proteja chaves e implemente rotação/revogação conforme o risco.",
+          "Desabilitar logs para reduzir ruído.",
+          "Confiar na entrada do cliente quando houver HTTPS.",
+          "Adiar correções até existir exploração pública confirmada."
+        ],
+        "answer": 0,
+        "why": "Fixe algoritmos aceitos, valide iss/aud/exp, proteja chaves e implemente rotação/revogação conforme o risco.",
+        "concept": "Claims"
+      },
+      {
+        "q": "Qual abordagem de detecção faz mais sentido?",
+        "options": [
+          "Monitore tokens expirados, kid desconhecido, falhas de assinatura e uso simultâneo anômalo.",
+          "Ignorar eventos raros porque normalmente são falsos positivos.",
+          "Analisar apenas o nome do arquivo, sem contexto.",
+          "Considerar somente métricas de desempenho da aplicação."
+        ],
+        "answer": 0,
+        "why": "Monitore tokens expirados, kid desconhecido, falhas de assinatura e uso simultâneo anômalo.",
+        "concept": "Signature"
+      },
+      {
+        "q": "Qual é o melhor critério de sucesso para o laboratório?",
+        "options": [
+          "Você deve explicar por que ler o payload não prova autenticidade.",
+          "Executar a maior quantidade de ações possível.",
+          "Gerar erro 500.",
+          "Obter dados fora do escopo."
+        ],
+        "answer": 0,
+        "why": "O laboratório deve provar o modelo mental e a correção em ambiente autorizado.",
+        "concept": "Key rotation"
+      },
+      {
+        "q": "Qual prática de investigação é mais correta?",
+        "options": [
+          "Registrar baseline, evidência, mudança e reteste.",
+          "Concluir severidade apenas pelo nome da técnica.",
+          "Desabilitar logs para evitar ruído.",
+          "Mudar várias variáveis ao mesmo tempo."
+        ],
+        "answer": 0,
+        "why": "A comparação controlada antes/depois produz evidência reproduzível.",
+        "concept": "Header"
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Header",
+        "back": "Parte do JWT que declara tipo e algoritmo.",
+        "concept": "Header"
+      },
+      {
+        "front": "Claims",
+        "back": "Dados como sub, aud, iss e exp.",
+        "concept": "Claims"
+      },
+      {
+        "front": "Signature",
+        "back": "Prova de integridade/autenticidade do token.",
+        "concept": "Signature"
+      },
+      {
+        "front": "Key rotation",
+        "back": "Troca planejada de chaves com suporte a múltiplos kid válidos.",
+        "concept": "Key rotation"
+      },
+      {
+        "front": "Defesa",
+        "back": "Fixe algoritmos aceitos, valide iss/aud/exp, proteja chaves e implemente rotação/revogação conforme o risco.",
+        "concept": "Header"
+      },
+      {
+        "front": "Detecção",
+        "back": "Monitore tokens expirados, kid desconhecido, falhas de assinatura e uso simultâneo anômalo.",
+        "concept": "Claims"
+      },
+      {
+        "front": "Resultado do laboratório",
+        "back": "Você deve explicar por que ler o payload não prova autenticidade.",
+        "concept": "Signature"
+      }
+    ]
+  },
+  "externalReferences": [
+    {
+      "catalogId": "webgoat",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    },
+    {
+      "catalogId": "juice-shop",
+      "role": "laboratory-or-reference",
+      "note": "Use como referência complementar; execução ativa somente em ambiente local/autorizado."
+    }
+  ]
+}
