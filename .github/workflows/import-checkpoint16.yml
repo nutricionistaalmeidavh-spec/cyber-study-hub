@@ -36,7 +36,7 @@ jobs:
           git rm -- .integration/checkpoint02.tar.xz
           git rm -- .github/workflows/import-checkpoint16.yml
           git add -A
-          git diff --cached --check
+          git -c core.whitespace=-blank-at-eol diff --cached --check
           git diff --cached --quiet && { echo 'No changes to commit'; exit 1; }
           git commit -m 'feat: integrate Cyber Study Hub phases 00-16 checkpoint 02'
           git push origin "HEAD:${GITHUB_REF_NAME}"

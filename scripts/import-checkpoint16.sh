@@ -81,6 +81,7 @@ if (code.includes(oldType)) {
 }
 JS
 npm install --no-audit --no-fund
+# Markdown uses two trailing spaces for hard line breaks; retain them as authored.
 npm run build
 git diff --check
 printf '\nIntegração validada na branch %s. Sem commit/push/merge/deploy.\n' "$branch"
