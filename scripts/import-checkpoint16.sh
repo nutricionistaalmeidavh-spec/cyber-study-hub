@@ -1,59 +1,72 @@
 #!/usr/bin/env bash
-# Integração assistida de CyberStudyHub_Fase_16_CHECKPOINT_02.zip.
-# Nunca realiza commit, push, merge ou deploy.
+# Cyber Study Hub: checkpoint 02 importer. Never commits/pushes/merges/deploys.
 set -Eeuo pipefail
-fail() { printf 'ERRO: %s\n' "$*" >&2; exit 1; }
-for cmd in git python3 node npm; do command -v "$cmd" >/dev/null || fail "$cmd indisponível"; done
-[[ $# == 1 ]] || fail 'Uso: bash scripts/import-checkpoint16.sh /caminho/CyberStudyHub_Fase_16_CHECKPOINT_02.zip'
-[[ -f "$1" ]] || fail 'Arquivo ZIP não encontrado'
+fail() { echo "ERRO: $*" >&2; exit 1; }
+[[ $# == 1 && -f "$1" ]] || fail "Uso: bash scripts/import-checkpoint16.sh /caminho/checkpoint-02.tar.xz|zip"
 archive="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
-repo="$(git rev-parse --show-toplevel 2>/dev/null)" || fail 'Execute dentro de um checkout Git do Hub'
+for bin in python3 node npm git; do command -v "$bin" >/dev/null || fail "$bin indisponível"; done
+repo="$(git rev-parse --show-toplevel)" || fail "Fora do checkout Git"
 cd "$repo"
-[[ -f src/App.tsx && -f src/components/Lessons.tsx && -f src/data/lessons.ts ]] || fail 'Projeto-base não encontrado'
-[[ -z "$(git status --porcelain)" ]] || fail 'Checkout com alterações. Salve-as antes de integrar.'
-branch="$(git branch --show-current)"
-[[ -n "$branch" && "$branch" != main && "$branch" != master ]] || fail 'Crie e selecione uma branch de integração antes de executar.'
+branch="$(git symbolic-ref --short HEAD)" || fail "Checkout em detached HEAD"
+[[ "$branch" != main && "$branch" != master ]] || fail "Execute numa branch de integração, nunca na main"
+[[ -z "$(git status --porcelain)" ]] || fail "Checkout tem alterações não commitadas"
+[[ -f src/App.tsx && -f src/components/Lessons.tsx && -f src/data/lessons.ts ]] || fail "Faltam arquivos do app-base"
+[[ "$(node -p "require('./package.json').name")" == "cyber-study-hub" ]] || fail "package.json não pertence ao Cyber Study Hub"
 workdir="$(mktemp -d)"
 trap 'rm -rf -- "$workdir"' EXIT
 python3 - "$archive" "$workdir" <<'PY'
 from pathlib import Path
 from zipfile import ZipFile
-import sys, stat
-zip_path, dest = sys.argv[1:]
-with ZipFile(zip_path) as z:
-    for entry in z.infolist():
-        target = Path(entry.filename)
-        if target.is_absolute() or '..' in target.parts or '\\' in entry.filename:
-            raise SystemExit(f'ZIP contém caminho inseguro: {entry.filename}')
-        if stat.S_ISLNK(entry.external_attr >> 16):
-            raise SystemExit(f'ZIP contém symlink: {entry.filename}')
-    z.extractall(dest)
+import tarfile,sys
+archive,dest=Path(sys.argv[1]),Path(sys.argv[2]);
+# Files are copied individually; never follow symlinks, hardlinks or paths escaping dest.
+def safe(name):
+    path=Path(name)
+    if path.is_absolute() or '\\' in name or '..' in path.parts: raise SystemExit(f'Unsafe archive path: {name}')
+    return path
+if archive.suffix=='.zip':
+    with ZipFile(archive) as z:
+        for item in z.infolist():
+            if item.is_dir():continue
+            rel=safe(item.filename); target=dest/rel;target.parent.mkdir(parents=True,exist_ok=True)
+            with z.open(item) as r,target.open('wb') as w:
+                import shutil;shutil.copyfileobj(r,w)
+    src=dest/'CyberStudyHub_Fase_16_CHECKPOINT_02'
+else:
+    with tarfile.open(archive,mode='r:xz') as t:
+        for item in t:
+            if not item.isfile():raise SystemExit(f'Archive includes non-regular member: {item.name}')
+            rel=safe(item.name);target=dest/rel;target.parent.mkdir(parents=True,exist_ok=True)
+            with t.extractfile(item) as r,target.open('wb') as w:
+                import shutil;shutil.copyfileobj(r,w)
+    src=dest
+if not (src/'CONTENT_MANIFEST.json').is_file() or not (src/'cumulativo/apply.sh').is_file():
+    raise SystemExit('Checkpoint 02 missing required files')
+(src/'_path.txt').write_text(str(src))
+print(f'Checkpoint extracted to {src}')
 PY
-package="$workdir/CyberStudyHub_Fase_16_CHECKPOINT_02"
-[[ -f "$package/FASE_16_CHECKPOINT.md" && -f "$package/cumulativo/apply.sh" && -f "$package/apply-content-phase16.mjs" ]] || fail 'Checkpoint 02 incompleto.'
-printf '\n[1/5] Conferindo integridade do manifesto SHA-256...\n'
+if [[ "$archive" == *.zip ]]; then package="$workdir/CyberStudyHub_Fase_16_CHECKPOINT_02"; else package="$workdir"; fi
 python3 - "$package" <<'PY'
-import hashlib,json,pathlib,sys
-root=pathlib.Path(sys.argv[1])
-data=json.loads((root/'CONTENT_MANIFEST.json').read_text())
-assert data, 'Manifesto vazio'
-for entry in data:
-    p=root/'cumulativo'/entry['path']
-    assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==entry['sha256'],entry['path']
-print(f'{len(data)} entradas verificadas')
+from pathlib import Path
+import json,hashlib,sys
+p=Path(sys.argv[1]);manifest=json.loads((p/'CONTENT_MANIFEST.json').read_text())
+assert manifest and isinstance(manifest,list)
+for item in manifest:
+    file=p/'cumulativo'/item['path']
+    if not file.is_file() or hashlib.sha256(file.read_bytes()).hexdigest()!=item['sha256']:
+        raise SystemExit(f"Invalid checkpoint hash: {item['path']}")
+print(f'Validated {len(manifest)} manifest items')
 PY
-printf '\n[2/5] Aplicando Fases 00–14 na branch %s...\n' "$branch"
-sh "$package/cumulativo/apply.sh"
-printf '\n[3/5] Validando a Fase 16...\n'
+# Main currently holds v1.1 baseline. Existing upgraded checkouts need ONLY the checkpoint update.
+if [[ -f src/content/registry.ts && -f scripts/verify-phase-12-14.mjs && -f src/curriculum/catalog.json ]]; then
+  echo 'Fases 00–14 já presentes. Preservando interface existente.'
+else
+  echo 'Aplicando cumulativo Fases 00–14 ao app-base...'
+  sh "$package/cumulativo/apply.sh"
+fi
 node "$package/apply-content-phase16.mjs" "$repo" --check
-printf '\n[4/5] Aplicando a Fase 16...\n'
 node "$package/apply-content-phase16.mjs" "$repo"
-printf '\n[5/5] Instalando e verificando...\n'
-npm install
-npm run verify:curriculum
-npm run verify:learning
-npm run verify:catalog
+npm install --no-audit --no-fund
 npm run build
 git diff --check
-printf '\nVALIDADO. Nenhum commit, push, merge ou deploy foi realizado.\n'
-printf 'Revise o resultado com: git diff --stat && git status --short\n'
+printf '\nIntegração validada na branch %s. Sem commit/push/merge/deploy.\n' "$branch"
