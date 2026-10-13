@@ -22,6 +22,7 @@ import {
 } from '../../lib/learningProgress';
 import { recordQuizConceptEvidence } from '../../lib/mastery';
 import { ReferencePanel } from '../references/ReferencePanel';
+import { canRevealQuizFeedback, quizActionLabel } from './quizCommit';
 import './lesson-v2.css';
 
 type LessonViewerV2Props = {
@@ -81,6 +82,7 @@ function LessonViewerV2Content({
   );
   const [quizIndex, setQuizIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const [confirmed, setConfirmed] = useState(false);
   const [quizCorrect, setQuizCorrect] = useState(0);
   const [quizDone, setQuizDone] = useState(false);
   const [copyNotice, setCopyNotice] = useState('');
@@ -171,9 +173,13 @@ function LessonViewerV2Content({
 
   const submitQuizAnswer = () => {
     if (selected === null) return;
+    if (!confirmed) {
+      recordQuizConceptEvidence(lesson.id, quizQuestion.concept, selected === quizQuestion.answer);
+      setConfirmed(true);
+      return;
+    }
 
     const isCorrect = selected === quizQuestion.answer;
-    recordQuizConceptEvidence(lesson.id, quizQuestion.concept, isCorrect);
     const nextCorrect = quizCorrect + (isCorrect ? 1 : 0);
 
     if (quizIndex === lesson.review.quiz.length - 1) {
@@ -197,11 +203,13 @@ function LessonViewerV2Content({
     if (isCorrect) setQuizCorrect(value => value + 1);
     setQuizIndex(value => value + 1);
     setSelected(null);
+    setConfirmed(false);
   };
 
   const resetQuiz = () => {
     setQuizIndex(0);
     setSelected(null);
+    setConfirmed(false);
     setQuizCorrect(0);
     setQuizDone(false);
   };
@@ -502,7 +510,8 @@ function LessonViewerV2Content({
                         <button
                           key={`${optionIndex}-${option}`}
                           className={selected === optionIndex ? 'selected' : ''}
-                          onClick={() => setSelected(optionIndex)}
+                          onClick={() => { if (!confirmed) setSelected(optionIndex); }}
+                          disabled={confirmed}
                         >
                           <b>{String.fromCharCode(65 + optionIndex)}</b>
                           <span>{option}</span>
@@ -510,8 +519,10 @@ function LessonViewerV2Content({
                       ))}
                     </div>
 
-                    {selected !== null && (
+                    {canRevealQuizFeedback(confirmed) && selected !== null && (
                       <div
+                        role="status"
+                        aria-live="polite"
                         className={
                           selected === quizQuestion.answer
                             ? 'lesson-v2-feedback correct'
@@ -532,9 +543,7 @@ function LessonViewerV2Content({
                       disabled={selected === null}
                       onClick={submitQuizAnswer}
                     >
-                      {quizIndex === lesson.review.quiz.length - 1
-                        ? 'Finalizar'
-                        : 'Próxima questão'}
+                      {quizActionLabel(confirmed, quizIndex === lesson.review.quiz.length - 1)}
                     </button>
                   </>
                 )}
