@@ -66,6 +66,20 @@ else
 fi
 node "$package/apply-content-phase16.mjs" "$repo" --check
 node "$package/apply-content-phase16.mjs" "$repo"
+# ts-fsrs Grade excludes Rating.Manual; narrow this map to the four valid review grades.
+node --input-type=module <<'JS'
+import fs from 'node:fs';
+const file = 'src/lib/reviewEngine.ts';
+let code = fs.readFileSync(file, 'utf8');
+const oldType = 'Record<ReviewRating, Rating>';
+const validGrades = 'Record<ReviewRating, Rating.Again | Rating.Hard | Rating.Good | Rating.Easy>';
+if (code.includes(oldType)) {
+  code = code.replace(oldType, validGrades);
+  fs.writeFileSync(file, code);
+} else if (!code.includes(validGrades)) {
+  throw new Error('Unexpected review engine rating map; manual compatibility review required');
+}
+JS
 npm install --no-audit --no-fund
 npm run build
 git diff --check

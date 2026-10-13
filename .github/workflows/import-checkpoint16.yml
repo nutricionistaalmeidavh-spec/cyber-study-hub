@@ -5,6 +5,7 @@ on:
       - chore/prepare-phase16-checkpoint02-integration
     paths:
       - .integration/checkpoint02.tar.xz
+      - scripts/import-checkpoint16.sh
   workflow_dispatch:
 permissions:
   contents: write
