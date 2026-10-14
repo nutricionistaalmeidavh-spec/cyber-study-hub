@@ -1,19 +1,17 @@
-name: Safe Worker runtime bootstrap
-
+name: Platform auth and user isolation
 on:
   pull_request:
     paths:
-      - 'wrangler.toml'
-      - 'src/worker/runtime-bootstrap.mjs'
-      - 'scripts/test-worker-bootstrap.mjs'
-      - '.github/workflows/worker-bootstrap.yml'
+      - 'server/**'
+      - 'src/**'
+      - 'vite.config.ts'
+      - 'package.json'
+      - '.github/workflows/platform-auth.yml'
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -23,6 +21,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: npm run test:platform
       - run: npm run build
       - run: npx wrangler deploy --dry-run --outdir /tmp/hub-worker-check
-      - run: node scripts/test-worker-bootstrap.mjs
+      - run: npm run test:worker

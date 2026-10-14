@@ -1,3 +1,4 @@
+import { accountStorage } from './accountStorage';
 export type QuizAttempt = {
   score: number;
   correct: number;
@@ -30,7 +31,7 @@ function nowIso() {
 }
 
 function store() {
-  return typeof localStorage === 'undefined' ? null : localStorage;
+  return typeof accountStorage === 'undefined' ? null : accountStorage;
 }
 
 function emptyProgress(): LessonLearningProgress {

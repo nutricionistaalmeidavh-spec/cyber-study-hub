@@ -1,9 +1,20 @@
 name = "cyber-study-hub"
 compatibility_date = "2026-09-01"
-main = "src/worker/runtime-bootstrap.mjs"
+main = "src/worker/index.mjs"
 
 [assets]
 directory = "./dist"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
-run_worker_first = ["/__worker/health"]
+run_worker_first = ["/api/*", "/__worker/health"]
+
+[[durable_objects.bindings]]
+name = "HUB_AUTH"
+class_name = "HubAuthObject"
+
+[[migrations]]
+tag = "hub-auth-sqlite-v1"
+new_sqlite_classes = ["HubAuthObject"]
+
+[secrets]
+required = ["HUB_BOOTSTRAP_KEY"]
