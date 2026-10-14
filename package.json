@@ -20,7 +20,8 @@
     "test:pilot-grade-a": "node scripts/test-pilot-grade-a.mjs",
     "test:a-002-008": "node scripts/test-a-002-008-structure.mjs && node scripts/test-a-002-008.mjs",
     "test:a-10-20": "node scripts/test-lessons-10-20.mjs && node --test public/course-labs/a10-20/lab.test.mjs",
-    "test:grade-a-10-20": "node scripts/test-grade-a-10-20.mjs"
+    "test:grade-a-10-20": "node scripts/test-grade-a-10-20.mjs",
+    "test:a-41-50": "node scripts/test-lessons-41-50.mjs && node --test public/course-labs/a41-50/lab.test.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
