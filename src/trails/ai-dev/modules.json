@@ -600,6 +600,366 @@
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
       "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-05.md"
+    },
+    {
+      "moduleId": 6,
+      "version": 1,
+      "title": "Banco de dados e backend",
+      "objective": "Persistir clientes e ordens em SQLite por meio de uma API HTTP local que valida entradas, preserva integridade e não usa serviços externos pagos.",
+      "learningOutcomes": [
+        "Diferenciar estado temporário no React de persistência real em SQLite.",
+        "Construir tabelas e chaves estrangeiras com constraints verificáveis.",
+        "Consumir endpoints REST, interpretar status HTTP e mensagens de erro.",
+        "Reiniciar o servidor e comprovar que os registros fictícios continuam no banco."
+      ],
+      "lessons": [
+        {
+          "stepId": 21,
+          "kind": "microaula",
+          "durationMin": 40,
+          "title": "Banco de dados, modelo e persistência",
+          "lead": "As alterações deixam de existir apenas na memória: agora devem sobreviver a um processo e respeitar relações.",
+          "sections": [
+            {
+              "heading": "Do array para o SQLite",
+              "body": "No módulo 5, recarregar a página restaurava os dados fictícios iniciais. Na v0.4 a API guarda registros em um arquivo SQLite local. Desenhe clientes(id, nome) e ordens(id, client_id, servico, status), diferenciando a identidade da apresentação.",
+              "example": "Crie uma OS para C-001, encerre o processo e reabra. Consultar GET /api/orders deve retornar a mesma OS com id e estado estáveis.",
+              "counterexample": "Guardar apenas os dados em localStorage não resolve persistência multiusuário nem garante integridade no servidor."
+            },
+            {
+              "heading": "Constraints e integridade",
+              "body": "Ative PRAGMA foreign_keys=ON em cada conexão SQLite. Marque nome e serviço como NOT NULL com CHECK trim não vazio; ordem deve apontar para cliente existente; status só pode assumir pendente, em andamento ou concluído. Não confie apenas no formulário React.",
+              "example": "POST com clientId inexistente retorna 422 e o total de ordens permanece igual; DELETE de cliente com OS vinculada retorna conflito 409.",
+              "counterexample": "Desabilitar foreign_keys para fazer o teste passar cria OS órfã e elimina justamente a regra que deveria ser provada."
+            },
+            {
+              "heading": "API local e fronteira de confiança",
+              "body": "Frontend envia requisições HTTP ao Node. API interpreta JSON, valida os valores e devolve códigos: 200/201 para sucesso, 400 para JSON inválido, 404 para recurso ausente, 409 para conflito e 422 para regra de dados. Teste via HTTP, não só pela aparência.",
+              "example": "POST válido retorna 201 com id; GET retorna a lista; status inválido é 422 e nada é gravado.",
+              "counterexample": "Permitir que o cliente escolha SQL arbitrário ou concatenar campos em consulta pode causar injeção e corromper dados."
+            }
+          ],
+          "challenge": {
+            "question": "Como impedir que uma ordem aponte para um cliente inexistente?",
+            "options": [
+              "Ativar foreign keys no SQLite e validar no backend",
+              "Confiar apenas que a interface só mostra clientes existentes",
+              "Deixar a IA decidir qual id parece válido"
+            ],
+            "answer": 0,
+            "feedback": "A integridade precisa existir na fronteira de persistência, mesmo sem a interface."
+          }
+        },
+        {
+          "stepId": 22,
+          "kind": "microaula-ia",
+          "durationMin": 40,
+          "title": "Copiloto para API REST e SQLite com testes",
+          "lead": "A IA pode revisar SQL e rotas, mas cada contrato deve ser submetido a testes HTTP e SQLite reais.",
+          "sections": [
+            {
+              "heading": "Separe responsabilidades",
+              "body": "Descreva ao assistente o estado da v0.3 e peça uma camada de armazenamento independente, endpoints explícitos e migração sem quebrar a interface. Peça esquema e invariantes primeiro, código depois. Prefira node:sqlite nativo em Node 24 e dependências gratuitas locais.",
+              "example": "Solicite implementação de POST /api/orders que inicia como pendente, valida clientId e usa parâmetro SQL; exija um teste que conte linhas antes/depois.",
+              "counterexample": "Criar tabelas em serviço cloud pago e incluir chave de API escondida não atende ao contrato R$ 0."
+            },
+            {
+              "heading": "Evite promessas falsas",
+              "body": "Mudar o frontend de memória para fetch altera carregamento, tratamento de erro e estados de UI. Peça ao assistente estados loading, vazio e falha; não mostre 'salvo' enquanto a API não tiver confirmado a operação.",
+              "example": "Se o servidor estiver parado, a UI deve mostrar erro de conexão e conservar a última lista visível até nova tentativa.",
+              "counterexample": "Exibir sucesso antes da resposta HTTP faz a pessoa acreditar que o dado foi salvo quando houve falha."
+            },
+            {
+              "heading": "Prove persistência e limites",
+              "body": "Depois da alteração, crie cliente fictício e OS, pare/reinicie a API e compare as respostas. Rejeite segredo e dados reais nos prompts. O servidor do laboratório usa loopback por padrão, não internet pública nem OAuth.",
+              "example": "O teste grava em arquivo temporário, reabre a conexão e verifica que o registro criado permanece com o mesmo id/status.",
+              "counterexample": "Um teste apenas em memória, com SQLite :memory:, não comprova recuperação de arquivo após reinicialização."
+            }
+          ],
+          "prompt": "Sou iniciante e já possuo o Meu Gestor v0.3 em React e TypeScript com dados em memória. Quero a v0.4 com Node.js 24, SQLite local via node:sqlite, API HTTP em 127.0.0.1 e frontend Vite. Antes de gerar código, revise schema clientes/ordens, foreign keys, validações e contratos GET/POST/PATCH/DELETE. Proponha casos 201, 400, 404, 409 e 422, um teste de persistência após reabrir arquivo e estratégia de fallback quando a API falhar. Sem API paga, sem nuvem, sem tokens ou dados reais. Faça uma mudança pequena por vez e mostre o teste que prova o resultado.",
+          "reviewQuestions": [
+            "A SQL utiliza parâmetros e foreign keys ativas, em vez de concatenação?",
+            "Há testes HTTP negativos e teste de persistência em arquivo, não somente em memória?",
+            "A interface espera confirmação antes de informar salvamento?"
+          ]
+        },
+        {
+          "stepId": 23,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico — WEB-26",
+          "lead": "Reaproveite esta unidade da biblioteca sem duplicar conteúdo. Leia, compare o fundamento e explique a aplicação no Meu Gestor.",
+          "referenceCode": "WEB-26",
+          "referencePath": "#course/parallel/WEB-26",
+          "challengeText": "Uma OS referência C-999, que não existe na tabela clientes. Explique como foreign key, restrição de domínio do status e transação protegem o banco mesmo que alguém contorne a interface."
+        },
+        {
+          "stepId": 24,
+          "kind": "laboratorio",
+          "durationMin": 100,
+          "title": "Laboratório 06 — Meu Gestor v0.4 com SQLite",
+          "lead": "Execute API e frontend locais, crie registros de demonstração e confira continuidade após reinicialização.",
+          "brief": [
+            "Copie o checkpoint v0.4, instale dependências open source e execute API Node e Vite em dois terminais.",
+            "Crie um cliente fictício, registre uma OS e consulte GET /api/orders; documente status 201 e id recebido.",
+            "Tente serviço vazio e cliente inexistente; verifique HTTP 422/409 conforme contrato e nenhum registro novo.",
+            "Interrompa e reinicie a API com o mesmo arquivo SQLite; reabra a interface e compare os dados preservados."
+          ],
+          "acceptance": [
+            "Executei frontend e API localmente, com origem e porta documentadas.",
+            "SQLite persiste uma OS após reiniciar o processo usando arquivo de banco.",
+            "Requisição inválida retorna erro HTTP e não cria cliente ou ordem órfã.",
+            "Operações válidas funcionam e o contador deriva de ordens persistidas.",
+            "Registrei comandos, observações, teste de falha e limite de uso exclusivamente local."
+          ],
+          "prompt": "Estou executando o Meu Gestor v0.4 com backend Node e SQLite. Ajude a testar POST e GET, reabrir banco e provar persistência após reinício. Peça somente logs sanitizados e payloads fictícios. Para cada falha identifique camada frontend/rede/API/SQL, ação mínima, teste de regressão e comando de reversão. Não solicite tokens nem recomende serviços pagos.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/index.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/README.md",
+          "assessmentPrompt": "Uma ordem foi exibida na tela após POST, mas desapareceu após reiniciar. Diferencie cache de UI, confirmação HTTP e persistência de arquivo; proponha três observações que localizem a falha."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-06.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-06.md"
+    },
+    {
+      "moduleId": 7,
+      "version": 1,
+      "title": "Corrigindo erros e garantindo qualidade",
+      "objective": "Tratar falhas reproduzíveis, automatizar testes de domínio e HTTP e separar bug, regressão e limitação de segurança do laboratório.",
+      "learningOutcomes": [
+        "Reproduzir e classificar um defeito com entrada, saída esperada e observada.",
+        "Criar testes positivos e negativos para regras de domínio e endpoints HTTP.",
+        "Verificar regressão após correção sem alterar dados reais.",
+        "Identificar o que os testes automatizados não comprovam, inclusive segurança de produção."
+      ],
+      "lessons": [
+        {
+          "stepId": 25,
+          "kind": "microaula",
+          "durationMin": 40,
+          "title": "Depuração, evidências e regressão",
+          "lead": "Uma correção sem reprodução pode esconder o problema e quebrar outro fluxo. Primeiro descreva a falha, depois isole a causa.",
+          "sections": [
+            {
+              "heading": "Um bug tem cenário mínimo",
+              "body": "Registre versão, dados fictícios, ação, saída esperada e resultado observado. Reproduza um erro por vez; se uma ordem concluída avança outra vez, determine se foi a UI, o backend ou a regra do banco que permitiu a transição.",
+              "example": "Dado OS-003 concluída, enviar PATCH para avançar deve preservar estado e contador; o resultado observado pode ser comparado via GET.",
+              "counterexample": "Dizer 'o app está ruim' e pedir à IA que reescreva tudo impede compreender a causa e testar regressão."
+            },
+            {
+              "heading": "Pirâmide de evidência",
+              "body": "Funções de domínio têm testes unitários; API com SQLite temporário tem testes de integração; fluxo via navegador envolve interface e rede. Os três níveis observam problemas diferentes. Use teste real de persistência após reabrir arquivo.",
+              "example": "Teste unitário verifica que concluir duas vezes não duplica; integração verifica que o PATCH e GET permanecem coerentes.",
+              "counterexample": "Um print isolado não prova que SQL foi gravado, que a API rejeita entrada inválida ou que o bug não voltou."
+            },
+            {
+              "heading": "Erros são dados, não ordens",
+              "body": "Logs podem conter segredos e dados pessoais; nunca cole isso em serviços externos. Limite mensagens de erro ao necessário e use entradas fictícias. Diferencie falha de validação (422), ausência (404), conflito (409) e servidor indisponível.",
+              "example": "Resposta JSON inválida deve receber 400, sem derrubar processo nem modificar tabelas; cliente recebe feedback claro.",
+              "counterexample": "Mascarar todas as falhas como 200 e 'salvo com sucesso' impede observabilidade e perde confiança."
+            }
+          ],
+          "challenge": {
+            "question": "Um teste só verifica que o formulário abriu. O que falta para validar persistência?",
+            "options": [
+              "Criar uma OS, reiniciar a API e consultar a mesma OS no arquivo SQLite",
+              "Trocar a cor do botão para verde",
+              "Marcar a atividade como concluída sem testar"
+            ],
+            "answer": 0,
+            "feedback": "Persistência precisa de evidência após reabrir a fonte de dados."
+          }
+        },
+        {
+          "stepId": 26,
+          "kind": "microaula-ia",
+          "durationMin": 40,
+          "title": "IA para encontrar e corrigir defeitos sem quebrar contratos",
+          "lead": "A IA é revisora de hipóteses, não substituta de reprodução, teste e inspeção das alterações.",
+          "sections": [
+            {
+              "heading": "Solicite diagnóstico delimitado",
+              "body": "Envie comportamento esperado, observado e log sanitizado; solicite três hipóteses ordenadas por testes baratos, não uma reescrita global. Exija uma única mudança por vez e um teste falhando antes e passando depois.",
+              "example": "'PATCH /api/orders/OS-002/advance retorna 200 duas vezes, mas o contador está errado; proponha um teste que reproduza e um diff mínimo.'",
+              "counterexample": "Copiar console com cookies, tokens ou dados de pacientes viola privacidade, ainda que ajude a investigação."
+            },
+            {
+              "heading": "Prove a regressão",
+              "body": "Após correção, rode node --test e build, verifique pelo menos uma rota válida, uma inválida e a repetição da ação. Uma correção local que quebra exclusão ou filtro não é aprovada. Guarde evidência e commit de pequena abrangência.",
+              "example": "Correção de STATUS conclui sem repetição; testes de ordem órfã, estado inválido e contadores continuam verdes.",
+              "counterexample": "Reexecutar só o teste originalmente falho pode esconder quebra das demais regras."
+            },
+            {
+              "heading": "Explique o limite dos testes",
+              "body": "Testes automáticos do curso cobrem SQL, invariantes, HTTP e caminho feliz do frontend compilado, mas não constituem auditoria externa, pentest, teste com aluno real nem prova de acessibilidade assistiva. Produção exige verificações adicionais.",
+              "example": "Uma suíte passando demonstra somente os cenários executados com o ambiente e fixtures documentados.",
+              "counterexample": "A frase '100% seguro porque os testes passaram' é incorreta e deve ser rejeitada."
+            }
+          ],
+          "prompt": "Estou estudando depuração no Meu Gestor v0.5. Tenho falha reproduzível com dados totalmente fictícios. Antes de alterar código, faça uma tabela: requisito, entrada, esperado, observado, camada suspeita, teste unitário e HTTP de regressão. Em seguida proponha o menor diff; preserve API, SQLite, ids e regras da v0.4. Não peça credenciais, tokens ou dados reais. Não prometa segurança absoluta; mostre limites e como comprovar o resultado depois da correção.",
+          "reviewQuestions": [
+            "Fiz teste falhar antes de corrigir e passar depois, sem mudar o critério?",
+            "Rodei suíte completa e build, inclusive operações inválidas e repetidas?",
+            "Registrei limites da evidência e removi segredos dos logs?"
+          ]
+        },
+        {
+          "stepId": 27,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico — ENG-16",
+          "lead": "Reaproveite esta unidade da biblioteca sem duplicar conteúdo. Leia, compare o fundamento e explique a aplicação no Meu Gestor.",
+          "referenceCode": "ENG-16",
+          "referencePath": "#course/parallel/ENG-16",
+          "challengeText": "Explique por que testes unitários de uma função de estado não bastam para provar que um POST se mantém após reiniciar SQLite. Descreva ao menos um teste HTTP negativo com dados fictícios."
+        },
+        {
+          "stepId": 28,
+          "kind": "laboratorio",
+          "durationMin": 100,
+          "title": "Laboratório 07 — Meu Gestor v0.5 validado",
+          "lead": "Execute suíte estendida, reproduza um defeito controlado e demonstre a correção com testes.",
+          "brief": [
+            "Copie o checkpoint v0.5 e execute testes unitários, integração HTTP e build React/TypeScript.",
+            "Faça uma alteração temporária controlada que quebre uma regra e registre o teste falhando; depois reverta.",
+            "Valide status negativos para JSON inválido, cliente inexistente e tentativa de apagar cliente vinculado.",
+            "Produza relatório com passos de reprodução, diff corrigido, resultados e limitações do teste."
+          ],
+          "acceptance": [
+            "Executei testes de domínio e HTTP com dados fictícios e sem recursos pagos.",
+            "Observei um teste falhar com bug controlado e passar após correção.",
+            "Os cenários inválidos não alteraram o estado persistente da API.",
+            "Rodei build e suíte inteira após corrigir, sem esconder falhas.",
+            "Registrei evidências e reconheci limites de segurança, acessibilidade e produção."
+          ],
+          "prompt": "Vou executar o laboratório de QA v0.5 com um bug deliberado. Ajude a elaborar caso antes/depois e checklist de regressão; preserve a política de clientId e status. Não implemente solução inteira sem eu compartilhar os testes; não use serviços pagos ou dados privados.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/index.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/README.md",
+          "assessmentPrompt": "Uma correção faz o PATCH retornar 200, mas a consulta seguinte mostra estado antigo. Proponha a sequência mínima de testes que distingue falha na API, transação SQL e cache de frontend."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-07.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-07.md"
+    },
+    {
+      "moduleId": 8,
+      "version": 1,
+      "title": "Finalização e publicação",
+      "objective": "Preparar uma entrega local reproduzível, com build, comandos de operação, backup, restauração e explicação dos limites antes de expor o sistema.",
+      "learningOutcomes": [
+        "Diferenciar servidor de desenvolvimento, build e inicialização de produção local.",
+        "Gerar artefatos e documentação de instalação com versões e verificação.",
+        "Criar e testar backup/restauração de SQLite preservando a integridade.",
+        "Apresentar o Meu Gestor como projeto didático local, sem alegar maturidade comercial."
+      ],
+      "lessons": [
+        {
+          "stepId": 29,
+          "kind": "microaula",
+          "durationMin": 40,
+          "title": "Do projeto ao artefato reproduzível",
+          "lead": "Uma entrega não é apenas enviar o código. A pessoa que recebe precisa instalar, executar, conferir resultados e saber recuperar dados.",
+          "sections": [
+            {
+              "heading": "Build e ambiente limpo",
+              "body": "O Vite gera arquivos estáticos em dist; a API Node usa SQLite persistente em um arquivo. Separe arquivos de distribuição, dados de usuário e configuração. Dependências se instalam com npm. Node 24 é exigência didática explícita, sem serviço pago.",
+              "example": "Em máquina limpa, npm install, npm run build, iniciar o servidor local e abrir 127.0.0.1; GET /api/health devolve status saudável.",
+              "counterexample": "Publicar apenas dist sem a API SQLite não entrega as operações de cadastro e persistência."
+            },
+            {
+              "heading": "Backup e recuperação testável",
+              "body": "Backup deve copiar uma versão consistente do banco e seu esquema. SQLite pode manter transações; use mecanismo de backup da biblioteca ou mantenha o app parado durante cópia. Teste restauração em caminho isolado e confira ids/contagens.",
+              "example": "Depois de registrar OS-004, crie backup, restaure em outro arquivo e consulte OS-004 e C-001 com integridade mantida.",
+              "counterexample": "Copiar só parte de um banco durante escrita ou restaurar por cima do arquivo aberto pode perder transações."
+            },
+            {
+              "heading": "Exposição é decisão de segurança",
+              "body": "O projeto final é local e vincula o servidor a 127.0.0.1, sem autenticação multiusuário, TLS ou controles para internet pública. Documente isso e não publique dados reais. Self-hosted aberto à rede exige trabalho posterior de segurança.",
+              "example": "No laboratório, tente conectar por hostname externo: não há porta de rede pública anunciada; documentação diz claramente 'uso local'.",
+              "counterexample": "Não transformar um servidor local de estudo sem login em produto online exposto publicamente."
+            }
+          ],
+          "challenge": {
+            "question": "Qual afirmação descreve corretamente a entrega final?",
+            "options": [
+              "Aplicativo didático local com API, SQLite, backup e limites documentados",
+              "Sistema comercial multiusuário pronto para dados reais",
+              "Frontend estático sozinho com todos os dados automaticamente persistidos"
+            ],
+            "answer": 0,
+            "feedback": "Build, backend, banco e limites de segurança devem ser apresentados juntos."
+          }
+        },
+        {
+          "stepId": 30,
+          "kind": "microaula-ia",
+          "durationMin": 40,
+          "title": "IA como revisora de release e manutenção",
+          "lead": "Peça à IA um checklist de entrega completo, mas confronte-o com comandos executados e documentos locais.",
+          "sections": [
+            {
+              "heading": "Revisão antes de publicar",
+              "body": "Apresente versões, caminhos de arquivos fictícios, contrato de API e resultados da suíte. Solicite um plano: instalação, build, inicialização local, smoke test, backup, restauração, rollback e manutenção. Rejeite etapas que assumam serviço pago.",
+              "example": "Checklist aprovado inclui GET /api/health, cadastro fictício, reinício, backup/restauração em cópia separada, npm run test e npm run build.",
+              "counterexample": "Sugestão de deploy Cloud com banco gerenciado pago é opcional, nunca dependência invisível da entrega."
+            },
+            {
+              "heading": "Documentação para quem não criou o app",
+              "body": "Escreva README com pré-requisitos, comandos, portas, dados fictícios e solução de problemas. Adicione restrição explícita de bind loopback. Não compartilhe arquivo de SQLite contendo dados reais com a IA nem coloque secrets em commits.",
+              "example": "Pessoa diferente da autoria consegue repetir cada comando e verificar GET /api/health sem pedir credenciais à equipe.",
+              "counterexample": "'Basta rodar o projeto' sem explicar backend, build, ambiente e SQLite não é uma entrega reproduzível."
+            },
+            {
+              "heading": "Prepare demonstração e decisão de prontidão",
+              "body": "A apresentação percorre problema, fluxo válido, erro esperado, persistência, teste, backup e limitações. Diferencie sucesso do laboratório de prontidão comercial; inclua plano para autenticação, auditoria e segurança caso surja uso real.",
+              "example": "Ao apagar cliente com OS, mostrar bloqueio 409, provar continuidade da ordem e exibir relatório de teste.",
+              "counterexample": "Não declarar pronto para internet nem aceitar dados de pacientes porque a demonstração funcionou."
+            }
+          ],
+          "prompt": "Estou preparando a entrega didática local v1.0 do Meu Gestor. Gere checklist de instalação reprodutível Node 24/npm, build React, API SQLite loopback, teste HTTP/SQL, backup e restauração em arquivo separado, e rollback simples. Para cada item exija comando e resultado verificável. Revisar README e limitação 'sem autenticação, não expor à internet e não usar dados reais'. Não inclua serviços pagos, credenciais, segredo, publicações automáticas ou etapas cuja execução não possa ser comprovada.",
+          "reviewQuestions": [
+            "O roteiro contém comandos de instalação, build, API e smoke test?",
+            "O backup foi restaurado em arquivo separado e verificado com dados fictícios?",
+            "A entrega declara claramente que não está segura para internet pública?"
+          ]
+        },
+        {
+          "stepId": 31,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico — ENG-21",
+          "lead": "Reaproveite esta unidade da biblioteca sem duplicar conteúdo. Leia, compare o fundamento e explique a aplicação no Meu Gestor.",
+          "referenceCode": "ENG-21",
+          "referencePath": "#course/parallel/ENG-21",
+          "challengeText": "Compare compilar frontend (dist), iniciar servidor Node e registrar dados no SQLite. Explique por que um build bem-sucedido não comprova backup nem restauração."
+        },
+        {
+          "stepId": 32,
+          "kind": "laboratorio",
+          "durationMin": 100,
+          "title": "Laboratório 08 — Meu Gestor v1.0 local e documentado",
+          "lead": "Entregue sistema didático com API SQLite, build, testes, backup/restore e relatório de demonstração.",
+          "brief": [
+            "Execute npm install, testes completos, build e inicialização local; abra a interface servida pelo Node.",
+            "Faça um cadastro fictício, conclua uma OS e confira banco após reiniciar o processo.",
+            "Crie backup, restaure em banco isolado e compare ids, contagens e estados de ordens.",
+            "Escreva README de entrega, roteiro de apresentação e limitações de segurança antes de compartilhar."
+          ],
+          "acceptance": [
+            "Instalação e build do checkpoint v1.0 foram reproduzidos sem API paga.",
+            "API local, SQLite e interface respondem corretamente com dados de teste.",
+            "Backup e restauração em arquivo independente preservaram dados e integridade.",
+            "Relatório inclui um sucesso, um erro esperado e reteste de regressão.",
+            "Documentação proíbe exposição pública e dados reais sem segurança adicional."
+          ],
+          "prompt": "Quero revisar a entrega v1.0 local do Meu Gestor. Faça checklist de operação, smoke test, prova de backup/restore, reversão e aviso de limites. Ajude a explicar decisões para alguém iniciante, sem presumir ambiente cloud, assinatura paga, chaves secretas nem dados reais.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/index.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/README.md",
+          "assessmentPrompt": "Após restaurar um backup em outro arquivo, as ordens somam três mas um clientId não existe. Explique por que contador sozinho não prova backup íntegro e quais consultas/constraints e passos de restauração devem ser repetidos."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-08.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-08.md"
     }
   ]
 }
