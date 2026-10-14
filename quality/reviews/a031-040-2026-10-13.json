@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-031..AULA-040",
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — redação aprofundada assistida por GPT-6",
+  "reviewer": "GPT-6 — segunda passagem editorial crítica e verificação de regressões (IA, não humano)",
+  "humanLearnerTesting": "not_performed",
+  "acceptance": "Nota A de qualidade editorial por IA (seis dimensões, hash e evidência), não observação de eficácia com alunos, teste pentest externo ou certificação",
+  "environment": "Node.js 22+; sem custos obrigatórios; fixtures loopback e em memória",
+  "qaMethod": "Conferência de testes Node, links, novo cenário com seis perguntas, referência individual e integridade SHA-256. Atribuição editorial condicionada ao CI de PR; registros são revisão IA, não revisão humana.",
+  "units": {
+    "AULA-031": {
+      "title": "Metodologia de Pentest",
+      "contentPath": "/course-library/main/031.md",
+      "contentSha256": "b8f9eb4b106b61a088399dc1718d264ebd70b0a8435ef6a8fb71ab69f75fa684",
+      "technicalSources": [
+        "https://wstg.owasp.org/v4.2/2-Introduction/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Escopo da Escola Arco por origem, rota e janela; /admin, outra porta e horário expirado negativos",
+      "observations": "`authorizeScope`: acesso a /health aprovado; /admin, porta 9001 e expiração negados",
+      "limitations": [
+        "Não valida documento jurídico, DNS, redirecionamentos, proxy ou autoridade real",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/031.md :: Mecanismo técnico; https://wstg.owasp.org/v4.2/2-Introduction/",
+          "result": "Escopo da Escola Arco por origem, rota e janela; /admin, outra porta e horário expirado negativos"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/031.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 031; public/course-library/main/031.md :: Laboratório",
+          "result": "`authorizeScope`: acesso a /health aprovado; /admin, porta 9001 e expiração negados"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/031.md :: Detecção, prevenção e reteste",
+          "result": "`authorizeScope`: acesso a /health aprovado; /admin, porta 9001 e expiração negados. Limite: Não valida documento jurídico, DNS, redirecionamentos, proxy ou autoridade real"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/031.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-031.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/031.md; public/course-labs/a031-040/models.mjs",
+          "result": "`authorizeScope`: acesso a /health aprovado; /admin, porta 9001 e expiração negados"
+        }
+      ]
+    },
+    "AULA-032": {
+      "title": "Reconhecimento e Superfície de Ataque",
+      "contentPath": "/course-library/main/032.md",
+      "contentSha256": "078102c659c1804bceb209d829b15a9d9bee90edc6dbd67088b8c5a4920fc664",
+      "technicalSources": [
+        "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/01-Information_Gathering/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Superfície própria de três rotas com porta efêmera e resposta 401 intencional",
+      "observations": "`inventoryOwnApp`: / e /health 200, /api/notes 401, sem consulta a terceiros",
+      "limitations": [
+        "Não exercita autenticação real, roteamento fora do inventário ou portas externas",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/032.md :: Mecanismo técnico; https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/01-Information_Gathering/",
+          "result": "Superfície própria de três rotas com porta efêmera e resposta 401 intencional"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/032.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 032; public/course-library/main/032.md :: Laboratório",
+          "result": "`inventoryOwnApp`: / e /health 200, /api/notes 401, sem consulta a terceiros"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/032.md :: Detecção, prevenção e reteste",
+          "result": "`inventoryOwnApp`: / e /health 200, /api/notes 401, sem consulta a terceiros. Limite: Não exercita autenticação real, roteamento fora do inventário ou portas externas"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/032.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-032.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/032.md; public/course-labs/a031-040/models.mjs",
+          "result": "`inventoryOwnApp`: / e /health 200, /api/notes 401, sem consulta a terceiros"
+        }
+      ]
+    },
+    "AULA-033": {
+      "title": "De Pista a Hipótese",
+      "contentPath": "/course-library/main/033.md",
+      "contentSha256": "6dc2abf6b94a1774459b37dbf45b4c5d4662193eaabc32b095207448e9eab3d2",
+      "technicalSources": [
+        "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Triagem de banner versus prova repetível de autorização por objeto",
+      "observations": "`triageSignal`: INFO, HIPOTESE, CONFIRMADO e CONTROLADO conforme evidência mínima",
+      "limitations": [
+        "Rótulos do modelo não são escala universal de severidade ou confirmação em produção",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/033.md :: Mecanismo técnico; https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/",
+          "result": "Triagem de banner versus prova repetível de autorização por objeto"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/033.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 033; public/course-library/main/033.md :: Laboratório",
+          "result": "`triageSignal`: INFO, HIPOTESE, CONFIRMADO e CONTROLADO conforme evidência mínima"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/033.md :: Detecção, prevenção e reteste",
+          "result": "`triageSignal`: INFO, HIPOTESE, CONFIRMADO e CONTROLADO conforme evidência mínima. Limite: Rótulos do modelo não são escala universal de severidade ou confirmação em produção"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/033.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-033.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/033.md; public/course-labs/a031-040/models.mjs",
+          "result": "`triageSignal`: INFO, HIPOTESE, CONFIRMADO e CONTROLADO conforme evidência mínima"
+        }
+      ]
+    },
+    "AULA-034": {
+      "title": "Validação de Impacto",
+      "contentPath": "/course-library/main/034.md",
+      "contentSha256": "b19ca3d1f523dcf2bc787eb400930a5906688ca5192448be995fe267aeb204c0",
+      "technicalSources": [
+        "https://wstg.owasp.org/v4.2/2-Introduction/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Priorização de impacto por confirmação e sensibilidade, sem CVSS atribuído sem vetor",
+      "observations": "`assessImpact`: não determinado sem confirmação, alto com dado sensível, baixo no caso não sensível",
+      "limitations": [
+        "Não calcula CVSS ou probabilidade por telemetria; exposição sintética",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/034.md :: Mecanismo técnico; https://wstg.owasp.org/v4.2/2-Introduction/",
+          "result": "Priorização de impacto por confirmação e sensibilidade, sem CVSS atribuído sem vetor"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/034.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 034; public/course-library/main/034.md :: Laboratório",
+          "result": "`assessImpact`: não determinado sem confirmação, alto com dado sensível, baixo no caso não sensível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/034.md :: Detecção, prevenção e reteste",
+          "result": "`assessImpact`: não determinado sem confirmação, alto com dado sensível, baixo no caso não sensível. Limite: Não calcula CVSS ou probabilidade por telemetria; exposição sintética"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/034.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-034.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/034.md; public/course-labs/a031-040/models.mjs",
+          "result": "`assessImpact`: não determinado sem confirmação, alto com dado sensível, baixo no caso não sensível"
+        }
+      ]
+    },
+    "AULA-035": {
+      "title": "Relatório Profissional e Reteste",
+      "contentPath": "/course-library/main/035.md",
+      "contentSha256": "f679617c1b322853ed8482f37164804875134094ef4a96b88ef5fb1b71efe250",
+      "technicalSources": [
+        "https://wstg.owasp.org/v4.2/2-Introduction/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Finding LAB-1 e reteste de objeto autorizado versus negado, com proteção de evidência",
+      "observations": "`validateFinding`: resultado positivo, rejeição de Bearer e reprovação quando legítimo 403",
+      "limitations": [
+        "Regex didática não detecta todos os segredos; ausência de execução em produção",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/035.md :: Mecanismo técnico; https://wstg.owasp.org/v4.2/2-Introduction/",
+          "result": "Finding LAB-1 e reteste de objeto autorizado versus negado, com proteção de evidência"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/035.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 035; public/course-library/main/035.md :: Laboratório",
+          "result": "`validateFinding`: resultado positivo, rejeição de Bearer e reprovação quando legítimo 403"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/035.md :: Detecção, prevenção e reteste",
+          "result": "`validateFinding`: resultado positivo, rejeição de Bearer e reprovação quando legítimo 403. Limite: Regex didática não detecta todos os segredos; ausência de execução em produção"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/035.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-035.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/035.md; public/course-labs/a031-040/models.mjs",
+          "result": "`validateFinding`: resultado positivo, rejeição de Bearer e reprovação quando legítimo 403"
+        }
+      ]
+    },
+    "AULA-036": {
+      "title": "Threat Modeling com STRIDE",
+      "contentPath": "/course-library/main/036.md",
+      "contentSha256": "187a688b16bab018d0d5d7f56e3beff9669ba237f88b64276ba7a50b305f6c60",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats"
+      ],
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "STRIDE em fluxo browser→API e API→storage com menor privilégio e controles verificáveis",
+      "observations": "`modelThreat`: Spoofing por actor do browser e Elevation of Privilege por Delete com leitura",
+      "limitations": [
+        "Modelo de ameaças é hipótese sobre desenho, não prova de comprometimento; material original 036 preservado",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/036.md :: Mecanismo técnico; https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats",
+          "result": "STRIDE em fluxo browser→API e API→storage com menor privilégio e controles verificáveis"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/036.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 036; public/course-library/main/036.md :: Laboratório",
+          "result": "`modelThreat`: Spoofing por actor do browser e Elevation of Privilege por Delete com leitura"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/036.md :: Detecção, prevenção e reteste",
+          "result": "`modelThreat`: Spoofing por actor do browser e Elevation of Privilege por Delete com leitura. Limite: Modelo de ameaças é hipótese sobre desenho, não prova de comprometimento; material original 036 preservado"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/036.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-036.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/036.md; public/course-labs/a031-040/models.mjs",
+          "result": "`modelThreat`: Spoofing por actor do browser e Elevation of Privilege por Delete com leitura"
+        }
+      ]
+    },
+    "AULA-037": {
+      "title": "Secure Coding",
+      "contentPath": "/course-library/main/037.md",
+      "contentSha256": "535fe6363fea160c7ffdea60a291fc520f895e86fb071e7f2538baa2d302efe1",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "PATCH /me preserva role no servidor mesmo quando body envia admin",
+      "observations": "`safeProfilePatch`: altera apenas name e mantém role reader",
+      "limitations": [
+        "Não cobre autenticador, ORM, concorrência ou persistência real",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/037.md :: Mecanismo técnico; https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html",
+          "result": "PATCH /me preserva role no servidor mesmo quando body envia admin"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/037.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 037; public/course-library/main/037.md :: Laboratório",
+          "result": "`safeProfilePatch`: altera apenas name e mantém role reader"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/037.md :: Detecção, prevenção e reteste",
+          "result": "`safeProfilePatch`: altera apenas name e mantém role reader. Limite: Não cobre autenticador, ORM, concorrência ou persistência real"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/037.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-037.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/037.md; public/course-labs/a031-040/models.mjs",
+          "result": "`safeProfilePatch`: altera apenas name e mantém role reader"
+        }
+      ]
+    },
+    "AULA-038": {
+      "title": "SAST, DAST, SCA e Secret Scanning",
+      "contentPath": "/course-library/main/038.md",
+      "contentSha256": "ba45255ec6a59fe4a75e1cf2eb777d592ab9667e3e85b5004e226e7f205b6625",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/218/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Separação explícita de SAST, DAST, SCA e scan de segredo somente dummy",
+      "observations": "`categorizeScanner`: lockfile=SCA, code=SAST, http=DAST, dummy-secret=SECRET",
+      "limitations": [
+        "Classificador didático não avalia advisories atuais nem detecta segredos reais",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/038.md :: Mecanismo técnico; https://csrc.nist.gov/pubs/sp/800/218/final",
+          "result": "Separação explícita de SAST, DAST, SCA e scan de segredo somente dummy"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/038.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 038; public/course-library/main/038.md :: Laboratório",
+          "result": "`categorizeScanner`: lockfile=SCA, code=SAST, http=DAST, dummy-secret=SECRET"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/038.md :: Detecção, prevenção e reteste",
+          "result": "`categorizeScanner`: lockfile=SCA, code=SAST, http=DAST, dummy-secret=SECRET. Limite: Classificador didático não avalia advisories atuais nem detecta segredos reais"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/038.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-038.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/038.md; public/course-labs/a031-040/models.mjs",
+          "result": "`categorizeScanner`: lockfile=SCA, code=SAST, http=DAST, dummy-secret=SECRET"
+        }
+      ]
+    },
+    "AULA-039": {
+      "title": "DevSecOps",
+      "contentPath": "/course-library/main/039.md",
+      "contentSha256": "6c30364289863ff1a2f15e9fdd43954ee979da9902d7c4d67f6d42a06a24c935",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/218/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "technicalScope": "Gate de liberação impede build verde com teste quebrado ou finding alto confirmado",
+      "observations": "`releaseGate`: aceita apenas testes verdes, artifactBuilt e zero risco alto confirmado",
+      "limitations": [
+        "Sem integração com deploy, repositório protegido ou workflow de exceções humano",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/039.md :: Mecanismo técnico; https://csrc.nist.gov/pubs/sp/800/218/final",
+          "result": "Gate de liberação impede build verde com teste quebrado ou finding alto confirmado"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/039.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 039; public/course-library/main/039.md :: Laboratório",
+          "result": "`releaseGate`: aceita apenas testes verdes, artifactBuilt e zero risco alto confirmado"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/039.md :: Detecção, prevenção e reteste",
+          "result": "`releaseGate`: aceita apenas testes verdes, artifactBuilt e zero risco alto confirmado. Limite: Sem integração com deploy, repositório protegido ou workflow de exceções humano"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/039.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-039.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/039.md; public/course-labs/a031-040/models.mjs",
+          "result": "`releaseGate`: aceita apenas testes verdes, artifactBuilt e zero risco alto confirmado"
+        }
+      ]
+    },
+    "AULA-040": {
+      "title": "Projeto Final — Pentest Completo de Laboratório",
+      "contentPath": "/course-library/main/040.md",
+      "contentSha256": "6142ef3ec19a57636dca8de75e81eaab3d7d2f6d47da12bb44406d016d25c011",
+      "technicalSources": [
+        "https://wstg.owasp.org/v4.2/2-Introduction/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 95,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 96
+      },
+      "technicalScope": "Projeto integrado da autorização ao inventário, IDOR fictício, remediação, finding e gate",
+      "observations": "`capstone`: scope true; 3 rotas; CONFIRMADO antes, CONTROLADO após; report e release true",
+      "limitations": [
+        "Só sistema sintético de loopback; não comprova ausência de falhas fora do escopo",
+        "Walkthrough e segunda revisão por IA, sem teste humano de aprendizagem."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica por IA sobre mecanismo, contraexemplo, limites e documentação técnica",
+          "reference": "public/course-library/main/040.md :: Mecanismo técnico; https://wstg.owasp.org/v4.2/2-Introduction/",
+          "result": "Projeto integrado da autorização ao inventário, IDOR fictício, remediação, finding e gate"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante presumido por IA, sem interação com estudantes reais",
+          "reference": "public/course-library/main/040.md :: Problema e objetivo; Fundamentos; Checkpoints",
+          "result": "Vocabulário antes de código, previsão antes de execução, erro recuperável e três checkpoints específicos da unidade."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Asserts Node contra fixture local, positivos e negativos em PR GitHub Actions; não assumir prova de produção",
+          "reference": "public/course-labs/a031-040/lab.test.mjs :: 040; public/course-library/main/040.md :: Laboratório",
+          "result": "`capstone`: scope true; 3 rotas; CONFIRMADO antes, CONTROLADO após; report e release true"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão separada do efeito indevido, preservação do caminho autorizado e limitações experimentais",
+          "reference": "public/course-library/main/040.md :: Detecção, prevenção e reteste",
+          "result": "`capstone`: scope true; 3 rotas; CONFIRMADO antes, CONTROLADO após; report e release true. Limite: Só sistema sintético de loopback; não comprova ausência de falhas fora do escopo"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial de transferência com caso novo e seis questões sem resposta antecipada, gabarito separado",
+          "reference": "public/course-library/main/040.md :: Prova final independente; public/course-labs/a031-040/answer-keys/AULA-040.md",
+          "result": "Seis questões inéditas por tema, seis respostas externas, rubrica 100 pontos e critério eliminatório especificado."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de operações, identidade, parâmetros, estados esperados e fonte do caso",
+          "reference": "public/course-library/main/040.md; public/course-labs/a031-040/models.mjs",
+          "result": "`capstone`: scope true; 3 rotas; CONFIRMADO antes, CONTROLADO após; report e release true"
+        }
+      ]
+    }
+  }
+}
