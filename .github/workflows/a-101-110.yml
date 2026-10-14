@@ -1,0 +1,41 @@
+name: Aulas 101-110 QA
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/10*.md'
+      - 'public/course-library/main/110.md'
+      - 'public/course-labs/a101-110/**'
+      - 'quality/**'
+      - 'scripts/test-grade-a-101-110.mjs'
+      - 'package.json'
+      - '.github/workflows/a-101-110.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Python safe models
+        run: python3 -m unittest discover -s public/course-labs/a101-110 -p test_models.py -v
+      - name: GCC local C guard and ownership
+        shell: bash
+        run: |
+          set -euo pipefail
+          cc -std=c11 -Wall -Wextra -Werror -o /tmp/csh-a101 public/course-labs/a101-110/safe_bounds.c
+          test "$(/tmp/csh-a101 4)" = 'aceito:4'
+          if /tmp/csh-a101 260; then echo 'Error: invalid input accepted'; exit 1; fi
+          cc -std=c11 -Wall -Wextra -Werror -o /tmp/csh-a103 public/course-labs/a101-110/safe_lifetime.c
+          test "$(/tmp/csh-a103)" = 'vida_ok'
+      - name: QA integrated with previous editorial reviews and Vite build
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
