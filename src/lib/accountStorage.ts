@@ -1,4 +1,4 @@
-// Persistência isolada por conta; nunca lê o armazenamento legado sem consentimento.
+// Persistência isolada por conta, com fila durável para uso offline.
 export const USER_PROGRESS_KEYS=[
   'cyber-study-lessons-v1','cyber-study-games-v1','cyber-study-recent-items-v1',
   'cyber-study-labs-v1','cyber-study-learning-v2','cyber-study-learning-v2-migration',
@@ -6,13 +6,16 @@ export const USER_PROGRESS_KEYS=[
 ] as const;
 type ProgressKey=typeof USER_PROGRESS_KEYS[number];
 let activeUser:string|null=null;
-const pending=new Map<string,string>();
+const pending=new Map<string,string|null>();
 let flushing:Promise<void>|null=null;
 let lastError='';
 const scoped=(id:string,key:string)=>'hub-account:'+id+':'+key;
+const pendingKey=(id:string)=>scoped(id,'_pending');
 function requireId(){if(!activeUser)throw new Error('Conta não autenticada');return activeUser;}
 function supported(key:string):key is ProgressKey{return (USER_PROGRESS_KEYS as readonly string[]).includes(key);}
-
+function savePending(){
+  if(activeUser)localStorage.setItem(pendingKey(activeUser),JSON.stringify(Object.fromEntries(pending)));
+}
 async function api(path:string,options?:RequestInit) {
   const response=await fetch(path,{credentials:'same-origin',cache:'no-store',...options});
   if(!response.ok)throw new Error('Falha na sincronização ('+response.status+')');
@@ -20,12 +23,19 @@ async function api(path:string,options?:RequestInit) {
 }
 async function sendPending(){
   if(flushing)return flushing;
+  if(!activeUser||!pending.size)return;
+  const accountId=activeUser;
   flushing=(async()=>{
-    while(pending.size){
-      const [key,value]=pending.entries().next().value as [string,string];
+    while(pending.size&&activeUser===accountId){
+      const [key,value]=pending.entries().next().value as [string,string|null];
       try{
-        await api('/api/me/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,value})});
+        await api('/api/me/state',{
+          method:value===null?'DELETE':'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(value===null?{key}:{key,value})
+        });
         if(pending.get(key)===value)pending.delete(key);
+        savePending();
         lastError='';
       }catch(e){lastError=String(e);break;}
     }
@@ -33,20 +43,39 @@ async function sendPending(){
   return flushing;
 }
 export function getSyncError(){return lastError;}
-export function retryProgressSync(){return sendPending();}
+export async function retryProgressSync(){await sendPending();return pending.size===0;}
 export async function activateUserStorage(userId:string){
-  if(activeUser&&activeUser!==userId){await sendPending();if(pending.size)throw Error('Há alterações não sincronizadas de outra conta.');}
-  activeUser=userId;
+  if(activeUser&&activeUser!==userId){
+    await sendPending();
+    if(pending.size)throw Error('Há alterações não sincronizadas de outra conta.');
+  }
+  // Só substitui o cache após obter a versão canônica remota.
   const result=await api('/api/me/state');
+  activeUser=userId;
+  pending.clear();
+  try{
+    const saved=JSON.parse(localStorage.getItem(pendingKey(userId))||'{}');
+    if(saved&&typeof saved==='object'&&!Array.isArray(saved))
+      for(const [key,value] of Object.entries(saved)){
+        if(supported(key)&&(typeof value==='string'||value===null))pending.set(key,value);
+      }
+  }catch{/* fila inválida não afeta as outras contas */}
   for(const key of USER_PROGRESS_KEYS){
-    const value=result.state?.[key];
-    if(typeof value==='string')localStorage.setItem(scoped(userId,key),value);
+    if(pending.has(key)){
+      // Não sobrescrever alterações offline ainda não sincronizadas.
+      const value=pending.get(key);
+      if(value===null)localStorage.removeItem(scoped(userId,key));
+      continue;
+    }
+    const remote=result.state?.[key];
+    if(typeof remote==='string')localStorage.setItem(scoped(userId,key),remote);
     else localStorage.removeItem(scoped(userId,key));
   }
+  void sendPending();
 }
 export async function deactivateUserStorage(){
   await sendPending();
-  if(pending.size!==0)return false; // Não encerra o contexto da conta sem confirmar gravação remota.
+  if(pending.size)return false; // Preserva o contexto enquanto houver mudanças pendentes.
   activeUser=null;
   pending.clear();
   return true;
@@ -54,18 +83,14 @@ export async function deactivateUserStorage(){
 export const accountStorage:Pick<Storage,'getItem'|'setItem'|'removeItem'>={
   getItem(key){if(!activeUser||!supported(key))return null;return localStorage.getItem(scoped(activeUser,key));},
   setItem(key,value){
-    if(!supported(key))throw Error('Chave de progresso não autorizada: '+key);
-    const id=requireId();
-    localStorage.setItem(scoped(id,key),value);
-    pending.set(key,value);
-    void sendPending();
+    if(!supported(key))throw Error('Chave não autorizada: '+key);
+    localStorage.setItem(scoped(requireId(),key),value);
+    pending.set(key,value);savePending();void sendPending();
   },
   removeItem(key){
     if(!supported(key))return;
-    const id=requireId();
-    localStorage.removeItem(scoped(id,key));
-    // Mantém a remoção explícita em estado JSON válido.
-    pending.set(key,'null');void sendPending();
+    localStorage.removeItem(scoped(requireId(),key));
+    pending.set(key,null);savePending();void sendPending();
   }
 };
 export function hasLegacyProgress(){
@@ -76,10 +101,13 @@ export async function importLegacyProgress(){
   let count=0;
   for(const key of USER_PROGRESS_KEYS){
     const old=localStorage.getItem(key);
-    if(old!==null){try{JSON.parse(old);accountStorage.setItem(key,old);count++;}catch{/* legado inválido preservado */}}
+    if(old!==null){
+      try{JSON.parse(old);accountStorage.setItem(key,old);count++;}
+      catch{/* Dados antigos inválidos continuam preservados. */}
+    }
   }
   await sendPending();
-  if(pending.size)throw Error('Importação local feita, mas a sincronização falhou. Tente novamente.');
+  if(pending.size)throw Error('Importação local realizada, mas ainda sem sincronização remota.');
   return count;
 }
 if(typeof window!=='undefined')window.addEventListener('online',()=>{void sendPending();});

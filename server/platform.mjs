@@ -193,6 +193,12 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
           .run(u.id,b.key,b.value,new Date().toISOString());
         return respond(res,200,{ok:true});
       }
+      if(path==='/api/me/state'&&method==='DELETE') {
+        const u=mustUser(req),b=await readJson(req);
+        if(!PROGRESS_KEYS.has(b.key))throw new HttpError(400,'Chave de progresso inválida.');
+        q('DELETE FROM user_state WHERE user_id=? AND key=?').run(u.id,b.key);
+        return respond(res,200,{ok:true});
+      }
       if(path==='/api/admin/users'&&method==='GET') {
         mustAdmin(req);
         return respond(res,200,{users:q('SELECT id,email,name,role,status,created_at FROM users ORDER BY created_at DESC').all().map(safeUser)});

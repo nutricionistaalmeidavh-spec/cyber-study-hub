@@ -111,3 +111,12 @@ test('reject forged origins, weak passwords and invalid progress keys', async ()
   const login = await request('/api/auth/login', { method:'POST', data:{ email:admin.email, password:admin.password } });
   assert.equal((await request('/api/me/state', { method:'PUT', cookie:login.cookie, data:{key:'another-key',value:'{}'} })).status, 400);
 });
+
+test('removing a progress key deletes only that user state',async()=>{
+  const request=await start();
+  const cookie=await boot(request);
+  const key='cyber-study-learning-v2';
+  assert.equal((await request('/api/me/state',{method:'PUT',cookie,data:{key,value:'{"1":{"completed":true}}'}})).status,200);
+  assert.equal((await request('/api/me/state',{method:'DELETE',cookie,data:{key}})).status,200);
+  assert.equal((await request('/api/me/state',{cookie})).payload.state[key],undefined);
+});

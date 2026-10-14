@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode, type FormEvent } from 'react';
-import { activateUserStorage, deactivateUserStorage } from '../lib/accountStorage';
+import { activateUserStorage, deactivateUserStorage, retryProgressSync } from '../lib/accountStorage';
 import './platform.css';
 
 export type PlatformUser={
@@ -12,6 +12,7 @@ export async function platformApi<T>(path:string,method='GET',data?:object):Prom
     method, credentials:'same-origin',cache:'no-store',
     ...(data?{headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}:{})
   });
+  if(!response.headers.get('content-type')?.includes('application/json'))throw new Error('Servidor de contas indisponível neste endereço.');
   let payload:Record<string,unknown>={};
   try{payload=await response.json();}catch{/* resposta não JSON */}
   if(!response.ok)throw new Error(typeof payload.error==='string'?payload.error:'Erro HTTP '+response.status);
@@ -54,9 +55,9 @@ export function PlatformGate({children}:{children:(user:PlatformUser,actions:{lo
   };
   const logout=async()=>{
     setError('');
-    const synced=await deactivateUserStorage();
+    const synced=await retryProgressSync();
     if(!synced){setError('Há progresso pendente de sincronização. Verifique a conexão antes de sair.');return;}
-    try{await platformApi<{ok:boolean}>('/api/auth/logout','POST');setUser(null);window.location.hash='#dashboard';}
+    try{await platformApi<{ok:boolean}>('/api/auth/logout','POST');await deactivateUserStorage();setUser(null);window.location.hash='#dashboard';}
     catch(e){setError(String(e));}
   };
   if(busy)return <div className="platform-gate"><div className="platform-auth"><span className="eyebrow">CYBER STUDY HUB</span><h1>Carregando conta</h1><p>Verificando sua sessão e seu progresso.</p></div></div>;
