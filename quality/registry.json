@@ -8830,6 +8830,582 @@
         }
       ]
     },
+    "AULA-151": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-151 YARA aplicado. Condição booleana de strings benignas e limite de arquivo; padrão textual não comprova malware. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "a9a9d4d3ffc8998b6448fa1dc5bdf31f16e4ebf83a4cc5020e906b0b5297efe1",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/151.md :: Oficina A; https://yara.readthedocs.io/en/stable/writing_yara_rules.html",
+          "result": "Condição booleana de strings benignas e limite de arquivo; padrão textual não comprova malware. Fonte usada para conferir o vocabulário: https://yara.readthedocs.io/en/stable/writing_yara_rules.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/151.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema YARA aplicado; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: yaraFixtureMatch; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: CYBERLAB-DEMO-v1 pequeno casa, marcador diferente ou objeto maior não; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/151.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Condição booleana de strings benignas e limite de arquivo; padrão textual não comprova malware."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/151.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-151.md",
+          "result": "Prova própria de YARA aplicado, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/151.md; public/course-labs/a151-159/lab.test.mjs :: 151",
+          "result": "CYBERLAB-DEMO-v1 pequeno casa, marcador diferente ou objeto maior não. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-152": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-152 Sigma aplicado. Evento estruturado e exceção de automação; logsource e schema devem ser reconciliados. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "be753ec48ebf127c82f56be6d7956285ca62f85ae076e92fb6163f72be2d5693",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/152.md :: Oficina A; https://sigmahq.io/docs/basics/rules.html",
+          "result": "Evento estruturado e exceção de automação; logsource e schema devem ser reconciliados. Fonte usada para conferir o vocabulário: https://sigmahq.io/docs/basics/rules.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/152.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema Sigma aplicado; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: sigmaEventMatch; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: document_editor → script_runner não aprovado alerta, aprovado ou campo ausente muda resultado; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/152.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Evento estruturado e exceção de automação; logsource e schema devem ser reconciliados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/152.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-152.md",
+          "result": "Prova própria de Sigma aplicado, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/152.md; public/course-labs/a151-159/lab.test.mjs :: 152",
+          "result": "document_editor → script_runner não aprovado alerta, aprovado ou campo ausente muda resultado. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-153": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-153 Detection Rules. Hipótese, regra, dados completos, exceção, alertas e gestão de versão. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "f8d446abef9373d697a6846a3db48f477efeb8413bcdce544fa48acabb669566",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/153.md :: Oficina A; https://sigmahq.io/docs/basics/rules.html",
+          "result": "Hipótese, regra, dados completos, exceção, alertas e gestão de versão. Fonte usada para conferir o vocabulário: https://sigmahq.io/docs/basics/rules.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/153.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema Detection Rules; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: assessDetectionRule; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: startup_change não aprovado gera review, dados incompletos impedem veredito; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/153.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Hipótese, regra, dados completos, exceção, alertas e gestão de versão."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/153.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-153.md",
+          "result": "Prova própria de Detection Rules, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/153.md; public/course-labs/a151-159/lab.test.mjs :: 153",
+          "result": "startup_change não aprovado gera review, dados incompletos impedem veredito. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-154": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-154 MITRE Mapping. T1053.005 como técnica candidata derivada de ação e fonte, não de intenção. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "06d16b38ccc0151d000e20730174ad6f93c111421ff2dc3eb4d687df8478949e",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/154.md :: Oficina A; https://attack.mitre.org/techniques/T1053/005/",
+          "result": "T1053.005 como técnica candidata derivada de ação e fonte, não de intenção. Fonte usada para conferir o vocabulário: https://attack.mitre.org/techniques/T1053/005/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/154.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema MITRE Mapping; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: mapMitreEvidence; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: scheduled_task_created com task_audit mapeia, login não mapeia; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/154.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. T1053.005 como técnica candidata derivada de ação e fonte, não de intenção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/154.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-154.md",
+          "result": "Prova própria de MITRE Mapping, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/154.md; public/course-labs/a151-159/lab.test.mjs :: 154",
+          "result": "scheduled_task_created com task_audit mapeia, login não mapeia. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-155": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-155 Persistence Detection. Diff de baseline de inicialização por identidade e digest, com mudança aprovada. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "056c7f00dd13918e7a8c203518721a905ab5a3645ce8fb095d64659a1dce77df",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/155.md :: Oficina A; https://attack.mitre.org/tactics/TA0003/",
+          "result": "Diff de baseline de inicialização por identidade e digest, com mudança aprovada. Fonte usada para conferir o vocabulário: https://attack.mitre.org/tactics/TA0003/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/155.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema Persistence Detection; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: diffStartupEntries; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: startup/B novo sem aprovação gera review; mudança aprovada ou ausente não gera; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/155.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Diff de baseline de inicialização por identidade e digest, com mudança aprovada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/155.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-155.md",
+          "result": "Prova própria de Persistence Detection, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/155.md; public/course-labs/a151-159/lab.test.mjs :: 155",
+          "result": "startup/B novo sem aprovação gera review; mudança aprovada ou ausente não gera. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-156": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-156 Suspicious Execution. Processo pai-filho com contexto de autorização e saúde do sensor. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "cce4d62a7285d5f0c8a60ab4a24581f1a955b21cdf76bbd1be8d1f4338401543",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/156.md :: Oficina A; https://attack.mitre.org/datasources/DS0009/",
+          "result": "Processo pai-filho com contexto de autorização e saúde do sensor. Fonte usada para conferir o vocabulário: https://attack.mitre.org/datasources/DS0009/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/156.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema Suspicious Execution; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: assessExecution; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: Editor iniciando script_runner não aprovado gera revisão, sensor offline fica inconclusivo; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/156.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Processo pai-filho com contexto de autorização e saúde do sensor."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/156.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-156.md",
+          "result": "Prova própria de Suspicious Execution, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/156.md; public/course-labs/a151-159/lab.test.mjs :: 156",
+          "result": "Editor iniciando script_runner não aprovado gera revisão, sensor offline fica inconclusivo. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-157": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-157 Suspicious PowerShell. Parâmetro EncodedCommand como sinal parcial de triagem, sem executar comandos. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "1cd40c14f86204781f6bd4767844d334a206b5ba7599a16fdab4c87b50ff6f35",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/157.md :: Oficina A; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows",
+          "result": "Parâmetro EncodedCommand como sinal parcial de triagem, sem executar comandos. Fonte usada para conferir o vocabulário: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/157.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema Suspicious PowerShell; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: assessPowerShellEvent; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: Argumento codificado não aprovado gera review; comando legítimo ou aprovado não; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/157.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Parâmetro EncodedCommand como sinal parcial de triagem, sem executar comandos."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/157.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-157.md",
+          "result": "Prova própria de Suspicious PowerShell, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/157.md; public/course-labs/a151-159/lab.test.mjs :: 157",
+          "result": "Argumento codificado não aprovado gera review; comando legítimo ou aprovado não. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-158": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-158 Process Injection Detection. Dois sinais sintéticos remotos no mesmo destino e exceção legítima. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "f7d99fbf870fa1279f4e62380236fb141b6e848874b11f5397d4d6aaf3431ac0",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/158.md :: Oficina A; https://attack.mitre.org/techniques/T1055/",
+          "result": "Dois sinais sintéticos remotos no mesmo destino e exceção legítima. Fonte usada para conferir o vocabulário: https://attack.mitre.org/techniques/T1055/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/158.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema Process Injection Detection; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: assessInjectionEvidence; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: remoteWrite e remoteThread coincidentes investigam; ferramenta aprovada não; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/158.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Dois sinais sintéticos remotos no mesmo destino e exceção legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/158.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-158.md",
+          "result": "Prova própria de Process Injection Detection, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/158.md; public/course-labs/a151-159/lab.test.mjs :: 158",
+          "result": "remoteWrite e remoteThread coincidentes investigam; ferramenta aprovada não. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
+    "AULA-159": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não auditor humano)",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão A editorial assistida por IA — AULA-159 SIEM Correlation. Correlação de eventos por host GUID tempo e janela, sem inferir autoria. Oficina defensiva Node offline com casos positivos e negativos; seis questões abertas com rubrica específica e fonte técnica. Nenhum estudo com aprendizes humanos foi realizado.",
+      "contentSha256": "a68412a521127365d596f3838fe0a1a6dfd8dbe1d88e0b8473a90150c3a84fe4",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial IA do mecanismo, limites e fonte especializada",
+          "reference": "public/course-library/main/159.md :: Oficina A; https://sigmahq.io/docs/basics/rules.html",
+          "result": "Correlação de eventos por host GUID tempo e janela, sem inferir autoria. Fonte usada para conferir o vocabulário: https://sigmahq.io/docs/basics/rules.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA da hipótese à previsão e reteste, sem participação de estudantes",
+          "reference": "public/course-library/main/159.md :: Oficina A, caso e exercícios",
+          "result": "Etapas separadas de observação, inferência, hipótese alternativa e reteste aplicado ao tema SIEM Correlation; sem teste de alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Leitura crítica da função de simulação e das asserções positivas/negativas em Node nativo",
+          "reference": "public/course-labs/a151-159/models.mjs :: correlateSiemTimeline; public/course-labs/a151-159/lab.test.mjs",
+          "result": "Fixture documentada e exercitada: process_start e task_created no mesmo GUID e janela geram correlate; divergência não; execução de CI aferida separadamente antes do merge. Não é ferramenta real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA do controle e das condições que impedem conclusão indevida",
+          "reference": "public/course-library/main/159.md :: Experimento guiado, defesa e reteste",
+          "result": "Controle orienta mitigação proporcional e diferencia alerta de comprometimento. Correlação de eventos por host GUID tempo e janela, sem inferir autoria."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão editorial IA das seis questões abertas específicas e gabarito em arquivo distinto",
+          "reference": "public/course-library/main/159.md :: Prova final independente; public/course-labs/a151-159/answer-keys/AULA-159.md",
+          "result": "Prova própria de SIEM Correlation, com seis perguntas, respostas justificadas, rubrica de cem pontos, erro eliminatório e controle negativo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de variável, condição, saída e contraexemplo por tema",
+          "reference": "public/course-library/main/159.md; public/course-labs/a151-159/lab.test.mjs :: 159",
+          "result": "process_start e task_created no mesmo GUID e janela geram correlate; divergência não. O cenário tem campos e resposta próprios, evitando prova genérica por nome de técnica."
+        }
+      ]
+    },
     "AULA-161": {
       "grade": "A",
       "author": "Cyber Study Hub — conteúdo complementar e testes assistidos por GPT-6",

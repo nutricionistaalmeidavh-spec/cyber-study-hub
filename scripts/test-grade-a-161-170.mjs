@@ -27,5 +27,5 @@ for(const n of items){
  console.log('PASS A editorial IA',id,hash.slice(0,12));
 }
 assert.equal(reg.editorialReviews['AULA-166'].grade,'A','nota pré-existente ASLR');
-assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=144,'135 A prévias + 9 novas');
+assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=153,'144 A prévias + 9 novas');
 console.log('PASS: 9 novas notas A + AULA-166 preservada + demais classificações.');

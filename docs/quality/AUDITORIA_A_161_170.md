@@ -22,7 +22,7 @@ A **AULA-166 (ASLR) já era A**, com experimento PIE/ASLR validado anteriormente
 - 9 testes Node.js 22 em memória, sem executar payload, inspecionar processos reais ou acessar rede.
 - Laboratórios C/GCC/Python da fase16-memory intactos; no currículo original são opcionais e requerem Linux/GCC/ASan.
 - Os conteúdos das aulas 161–170 continuam no **catálogo com 218 main e 325 trilhas paralelas = 543 IDs**.
-- Registros A anteriores preservados: 135 (incluindo 166), adicionados: 9, total esperado **144**.
+- Registros A anteriores preservados: 144 (incluindo 166 e as novas A151–159), adicionados: 9, total esperado **153**.
 - SHA-256 de cada um dos 9 documentos alterados, seis dimensões de nota, gates e método no registro `quality/registry.json`.
 
 ## Execução no CI
