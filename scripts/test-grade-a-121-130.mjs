@@ -25,5 +25,5 @@ for(let n=121;n<=130;n++){
 }
 for(let n=1;n<=90;n++)assert.equal(registry.editorialReviews['AULA-'+String(n).padStart(3,'0')]?.grade,'A','historical A regression '+n);
 for(const id of ['AULA-160','AULA-166','LOG-01','NET-25','PY-01'])assert.equal(registry.editorialReviews[id]?.grade,'A');
-assert.ok(Object.values(registry.editorialReviews).filter(x=>x.grade==='A').length>=105);
-console.log('PASS >=105 A editorial, canonical SHA, no human testing claim.');
+assert.ok(Object.values(registry.editorialReviews).filter(x=>x.grade==='A').length>=115);
+console.log('PASS >=115 A editorial, canonical SHA, no human testing claim.');

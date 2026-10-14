@@ -10,7 +10,7 @@ O laboratório Node 22+ contém **21 testes**, incluindo uso real de Ed25519 com
 
 ## Classificação e continuidade
 
-Registro atual: 95 A antes deste lote e pelo menos 105 após. Se houver merges simultâneos, preservar todos os novos registros. Auditoria em seis dimensões com SHA-256 da aula; `humanLearnerTesting: not_performed`. A segunda passagem é IA e não pessoa independente.
+Registro atual: 105 A antes deste lote e pelo menos 115 após. Se houver merges simultâneos, preservar todos os novos registros. Auditoria em seis dimensões com SHA-256 da aula; `humanLearnerTesting: not_performed`. A segunda passagem é IA e não pessoa independente.
 
 ## Execução
 

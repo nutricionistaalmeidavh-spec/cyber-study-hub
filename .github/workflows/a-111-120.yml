@@ -1,0 +1,35 @@
+name: Aulas 111-120 QA
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/11*.md'
+      - 'public/course-library/main/120.md'
+      - 'public/course-labs/a111-120/**'
+      - 'quality/**'
+      - 'docs/quality/**'
+      - 'scripts/test-a-111-120-structure.mjs'
+      - 'scripts/test-grade-a-111-120.mjs'
+      - 'package.json'
+      - '.github/workflows/a-111-120.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quality-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify 10 offline RE labs and lesson references
+        run: npm run test:a-111-120
+      - name: Build and verify all grade A cohorts
+        run: npm run build
