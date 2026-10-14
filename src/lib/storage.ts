@@ -1,3 +1,4 @@
+import { accountStorage } from './accountStorage';
 import type { GameProgress } from '../types';
 import { recordGameEvidence } from './mastery';
 
@@ -9,17 +10,17 @@ const LAB_KEY = 'cyber-study-labs-v1';
 export type LessonState = Record<number, { completed: boolean; favorite: boolean; doubt: boolean; quizBest: number }>;
 
 export function getLessonState(): LessonState {
-  try { return JSON.parse(localStorage.getItem(LESSON_KEY) || '{}'); } catch { return {}; }
+  try { return JSON.parse(accountStorage.getItem(LESSON_KEY) || '{}'); } catch { return {}; }
 }
 
 export function updateLessonState(id: number, patch: Partial<LessonState[number]>) {
   const all = getLessonState();
   all[id] = { ...(all[id] ?? { completed: false, favorite: false, doubt: false, quizBest: 0 }), ...patch };
-  localStorage.setItem(LESSON_KEY, JSON.stringify(all));
+  accountStorage.setItem(LESSON_KEY, JSON.stringify(all));
 }
 
 export function getGameProgress(): GameProgress[] {
-  try { return JSON.parse(localStorage.getItem(GAME_KEY) || '[]'); } catch { return []; }
+  try { return JSON.parse(accountStorage.getItem(GAME_KEY) || '[]'); } catch { return []; }
 }
 
 export function saveGameProgress(next: GameProgress) {
@@ -35,20 +36,20 @@ export function saveGameProgress(next: GameProgress) {
   } else {
     all.push({ ...next, attempts: Math.max(1, next.attempts), bestScore: next.score });
   }
-  localStorage.setItem(GAME_KEY, JSON.stringify(all));
+  accountStorage.setItem(GAME_KEY, JSON.stringify(all));
   recordGameEvidence(next);
 }
 
 export function pickWithRecency<T extends { id: string }>(key: string, pool: T[], count: number): T[] {
   let recent: string[] = [];
-  try { recent = JSON.parse(localStorage.getItem(RECENT_KEY) || '{}')[key] || []; } catch { recent = []; }
+  try { recent = JSON.parse(accountStorage.getItem(RECENT_KEY) || '{}')[key] || []; } catch { recent = []; }
   const fresh = pool.filter(x => !recent.includes(x.id));
   const source = fresh.length >= count ? fresh : pool;
   const shuffled = [...source].sort(() => Math.random() - 0.5).slice(0, count);
   let map: Record<string, string[]> = {};
-  try { map = JSON.parse(localStorage.getItem(RECENT_KEY) || '{}'); } catch { map = {}; }
+  try { map = JSON.parse(accountStorage.getItem(RECENT_KEY) || '{}'); } catch { map = {}; }
   map[key] = [...shuffled.map(x => x.id), ...recent].slice(0, Math.max(count * 2, 12));
-  localStorage.setItem(RECENT_KEY, JSON.stringify(map));
+  accountStorage.setItem(RECENT_KEY, JSON.stringify(map));
   return shuffled;
 }
 
@@ -62,7 +63,7 @@ export type LabProgressState = Record<number, LabProgressRecord>;
 
 export function getLabProgress(): LabProgressState {
   try {
-    return JSON.parse(localStorage.getItem(LAB_KEY) || '{}');
+    return JSON.parse(accountStorage.getItem(LAB_KEY) || '{}');
   } catch {
     return {};
   }
@@ -99,6 +100,6 @@ export function setLabStepCompletion(
   };
 
   all[lessonId] = next;
-  localStorage.setItem(LAB_KEY, JSON.stringify(all));
+  accountStorage.setItem(LAB_KEY, JSON.stringify(all));
   return next;
 }
