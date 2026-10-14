@@ -28,6 +28,13 @@ export default function Dashboard() {
       <div className="shield-visual" aria-hidden="true"><span>+</span></div>
     </section>
 
+    <section className="panel ai-dashboard-cta">
+      <span className="eyebrow">NOVA FORMAÇÃO · PILOTO DISPONÍVEL</span>
+      <h2>Crie seu próprio sistema com ChatGPT ou Claude</h2>
+      <p>Uma trilha prática de 8 módulos e 32 etapas. O primeiro módulo já tem duas microaulas, uma aula da biblioteca e um laboratório executável. IA local é opcional; nenhuma API paga é necessária.</p>
+      <a className="button primary" href="#ai-dev">Começar Desenvolvimento com IA →</a>
+    </section>
+
     <section className="metrics-grid">
       <Metric label="Aulas concluídas" value={`${completed}/${lessons.length}`} sub={`${Math.round(completed / lessons.length * 100)}% do ciclo`} />
       <Metric label="Jogos realizados" value={String(games.length)} sub={`melhor ${best}%`} />
