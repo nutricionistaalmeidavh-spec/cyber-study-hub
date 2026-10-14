@@ -153,7 +153,8 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
         {lesson.brief && <section className="ai-exercise">
           <span className="eyebrow">LABORATÓRIO INCREMENTAL · PROJETO MEU GESTOR</span>
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
-          <div className="ai-actions">{lesson.starterUrl && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
+          <div className="ai-actions">{lesson.starterUrl && moduleId <= 2 && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
+          {moduleId >= 3 && <a className="button primary" href={"https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/tree/main/public/course-labs/ai-dev-meu-gestor/checkpoints/" + ({3:"v0.1",4:"v0.2",5:"v0.3",6:"v0.4",7:"v0.5",8:"v1.0"} as Record<number,string>)[moduleId]} target="_blank" rel="noopener noreferrer">Ver código-fonte no GitHub ↗</a>}
           {lesson.starterSourceUrl && <a className="button ghost" href={lesson.starterSourceUrl} target="_blank" rel="noopener noreferrer">Roteiro do projeto ↗</a>}
           {moduleId === 2 && <a className="button ghost" href="/course-labs/ai-dev-meu-gestor/module-02/spec-template.md" target="_blank" rel="noopener noreferrer">Modelo de requisitos ↗</a>}</div>
           {moduleId >= 3 && <p className="ai-privacy">Os checkpoints React são projetos-fonte: salve a pasta inteira e execute npm install e npm run dev em seu computador. Não basta abrir index.html no navegador. O caminho acima aponta para o repositório de arquivos da aula.</p>}
