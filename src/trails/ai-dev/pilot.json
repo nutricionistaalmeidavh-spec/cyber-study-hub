@@ -1,0 +1,103 @@
+{
+  "moduleId": 1,
+  "version": 1,
+  "objective": "Entender o que é um sistema, aprender a usar IA criticamente e definir a primeira versão do Meu Gestor.",
+  "learningOutcomes": [
+    "Explicar entrada, regra, estado e saída sem depender de uma ferramenta",
+    "Pedir ajuda a ChatGPT ou Claude e verificar possíveis erros",
+    "Decompor uma regra simples antes de gerar código",
+    "Documentar escopo, regras e critérios de aceite do Meu Gestor"
+  ],
+  "lessons": [
+    {
+      "stepId": 1,
+      "kind": "microaula",
+      "durationMin": 20,
+      "title": "O que estamos construindo?",
+      "lead": "Software não é uma imagem bonita: dados entram, regras processam e resultados saem.",
+      "sections": [
+        {
+          "heading": "Um problema concreto",
+          "body": "Uma pequena oficina recebe solicitações de serviços. É fácil esquecer clientes, perder o estado das ordens ou não saber quais trabalhos estão concluídos. O Meu Gestor resolve esse problema com cadastros e acompanhamento de ordens fictícias."
+        },
+        {
+          "heading": "Quatro peças de qualquer sistema",
+          "body": "Entrada: cliente e descrição do serviço. Regra: uma ordem nova começa pendente; uma ordem concluída não pode ser concluída de novo sem uma correção explícita. Estado: lista de ordens com suas situações. Saída: tela de detalhes e contadores confiáveis."
+        },
+        {
+          "heading": "Como aprender com IA",
+          "body": "Você será o responsável por decidir o que deve acontecer. A IA pode explicar, propor e editar código, mas você deve testar e comparar com as regras escritas antes."
+        }
+      ],
+      "challenge": {
+        "question": "Uma ordem de serviço recém-criada deve aparecer como pendente. Qual é a melhor classificação disso?",
+        "options": [
+          "Uma regra de negócio verificável",
+          "Uma cor decorativa do botão",
+          "Uma resposta infalível da IA"
+        ],
+        "answer": 0,
+        "feedback": "É uma regra: o estado inicial da ordem deve ser 'pendente' e pode ser testado."
+      }
+    },
+    {
+      "stepId": 2,
+      "kind": "microaula-ia",
+      "durationMin": 25,
+      "title": "Seu copiloto: ChatGPT, Claude ou IA local",
+      "lead": "Use a IA que estiver disponível, sem conectar o HubEstudos a APIs de terceiros.",
+      "sections": [
+        {
+          "heading": "Pedir tarefas pequenas",
+          "body": "Dê contexto, objetivo, dados fictícios, restrições e formato esperado. Peça uma etapa de cada vez. Solicite explicação do raciocínio observável no código, não apenas uma solução pronta."
+        },
+        {
+          "heading": "Conferir antes de aceitar",
+          "body": "Leia a proposta e procure casos de falha. Compare a resposta aos critérios de aceitação, peça testes e revise tudo o que for alterado. Ferramentas de IA podem errar e inventar detalhes."
+        },
+        {
+          "heading": "Privacidade e custos",
+          "body": "Nunca cole tokens, senhas, dados reais de clientes ou pacientes. ChatGPT e Claude pelo navegador podem oferecer acesso gratuito sujeito a limites e alterações; plano pago não é requisito. A IA local via Ollama é opcional e exige equipamento compatível. O guia e o laboratório permanecem acessíveis mesmo sem IA."
+        }
+      ],
+      "prompt": "Sou iniciante em programação. Estou construindo um projeto didático chamado Meu Gestor: cadastro de clientes fictícios e ordens de serviço. Explique em linguagem simples o que são entrada, estado, regra e saída. Depois ajude a desenhar a menor versão útil, com no máximo 3 funcionalidades. Não use serviços pagos, chaves de API nem dados reais. Para cada regra, dê um caso que funciona e um caso inválido. Não gere um projeto inteiro agora; me ensine passo a passo.",
+      "reviewQuestions": [
+        "A resposta sugeriu alguma funcionalidade fora do escopo?",
+        "As regras podem ser verificadas com exemplos concretos?",
+        "Há alguma afirmação ou mudança que preciso conferir antes de copiar?"
+      ]
+    },
+    {
+      "stepId": 3,
+      "kind": "referencia",
+      "durationMin": 35,
+      "title": "Fundamento existente: LOG-01",
+      "lead": "Estude algoritmos e decomposição de problemas na biblioteca oficial do HubEstudos. Este conteúdo é referenciado, não duplicado.",
+      "referenceCode": "LOG-01",
+      "referencePath": "#course/parallel/LOG-01",
+      "challengeText": "Após ler a aula, explique a sequência para criar uma ordem: validar cliente e serviço → definir estado inicial → salvar → confirmar. O que deve acontecer se não existir cliente?"
+    },
+    {
+      "stepId": 4,
+      "kind": "laboratorio",
+      "durationMin": 55,
+      "title": "Laboratório 01 — planejamento e primeira personalização",
+      "lead": "Você vai produzir um documento curto de requisitos e editar uma prévia simples do Meu Gestor.",
+      "brief": [
+        "Problema: uma oficina de serviços precisa acompanhar ordens fictícias.",
+        "Usuário: responsável por registrar serviços de clientes fictícios.",
+        "Mínimo: listar clientes, listar ordens e mudar o estado pendente → em andamento → concluído.",
+        "Proibido: dados pessoais reais, integrações pagas, autenticação e cobrança nesta versão."
+      ],
+      "acceptance": [
+        "O documento identifica o usuário, o problema e três funcionalidades.",
+        "Define ao menos duas regras verificáveis e um cenário inválido.",
+        "Abre a prévia no navegador e altera o nome do projeto ou o texto de uma ordem.",
+        "Confere que a alteração visual não muda a regra de estado."
+      ],
+      "starterUrl": "/course-labs/ai-dev-meu-gestor/starter.html",
+      "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/README.md",
+      "prompt": "Estou no laboratório inicial do Meu Gestor. Tenho um HTML didático pequeno e quero alterar somente o texto de uma ordem de serviço fictícia. Explique quais linhas preciso procurar e por quê. Antes de sugerir a mudança, peça o trecho relevante. Não instale dependências e não modifique regras de estado. Ao terminar, dê um teste visual e um teste de regra para eu executar. Não use dados reais nem API paga."
+    }
+  ]
+}
