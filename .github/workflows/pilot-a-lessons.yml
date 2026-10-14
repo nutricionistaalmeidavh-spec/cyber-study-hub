@@ -6,6 +6,8 @@ on:
     paths:
       - 'public/course-library/**'
       - 'public/course-labs/pilot-a/**'
+      - 'public/course-labs/a10-20/**'
+      - 'scripts/test-lessons-10-20.mjs'
       - 'src/content/main/047/lesson.json'
       - 'src/components/curriculum/**'
       - 'src/components/lesson-v2/LessonViewerV2.tsx'
@@ -36,6 +38,10 @@ jobs:
           node scripts/test-pilot-a.mjs
           node --experimental-strip-types scripts/test-markdown-support.mjs
           node --experimental-strip-types scripts/test-quiz-commit.mjs
+      - name: Verify lessons 010–020 with local deterministic tests
+        run: |
+          node scripts/test-lessons-10-20.mjs
+          node --test public/course-labs/a10-20/lab.test.mjs
       - name: Execute Python labs and independent tests
         run: |
           python3 public/course-labs/pilot-a/test_pilot.py
@@ -51,7 +57,7 @@ jobs:
         working-directory: public/course-labs/phase16-web-p0
         run: |
           npm ci --no-audit --no-fund
-          node --test --test-name-pattern='CSRF' web.test.mjs
+          node --test --test-name-pattern='CSRF|SSRF|OAuth/OIDC' web.test.mjs
       - name: Web Cache Deception laboratory
         working-directory: public/course-labs/aula-047
         run: |
