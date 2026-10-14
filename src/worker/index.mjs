@@ -146,7 +146,7 @@ export class HubAuthObject extends DurableObject {
         const b=await jsonBody(request);
         if(this.one('SELECT COUNT(*) AS n FROM users').n)throw new ApiError(409,'Plataforma já inicializada.');
         const expected=this.env.HUB_BOOTSTRAP_KEY;
-        if(typeof expected!=='string'||expected.length<24||typeof b.bootstrapKey!=='string'||
+        if(typeof expected!=='string'||expected.length===0||typeof b.bootstrapKey!=='string'||
           (await sha(expected))!==(await sha(b.bootstrapKey)))
           throw new ApiError(403,'Chave de instalação inválida.');
         const user=await this.newUser({...b,role:'admin'},()=>{
@@ -279,8 +279,8 @@ export class HubAuthObject extends DurableObject {
 export default {
   fetch(request,env){
     const url=new URL(request.url);
-    if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
     if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
+    if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
     if(!env.HUB_AUTH)return response(503,{error:'Backend da plataforma não configurado.'});
     return env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(request);
   }
