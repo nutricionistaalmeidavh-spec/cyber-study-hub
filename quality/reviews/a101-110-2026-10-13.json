@@ -1,0 +1,611 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — conteúdo pré-existente Fase 16 e adição aplicada 101–110",
+  "reviewer": "GPT-6 — auditoria crítica editorial assistida por IA (não humana)",
+  "humanLearnerTesting": "not_performed",
+  "acceptance": "A editorial assistido por IA, não avaliação de estudantes nem verificação de Windows em execução.",
+  "units": {
+    "AULA-101": {
+      "title": "C aplicado à Segurança",
+      "contentPath": "/course-library/main/101.md",
+      "contentSha256": "6864538fd157f4b252ecef959348cda371f2094e392942ad183b1d3436614a90",
+      "technicalSources": [
+        "https://wiki.sei.cmu.edu/confluence/display/c/INT02-C.+Understand+integer+conversion+rules",
+        "https://en.cppreference.com/w/c/language/conversion"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/101.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-101.md",
+          "result": "Separa o mecanismo da aula 101 de suposições de privilégio ou execução: Um parser local recebe o tamanho 260, calcula um comprimento em uint8_t (4) e reserva memória menor que o objeto solicitado."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/101.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-101.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 101."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/101.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-101.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: O primeiro retorna `aceito:4` e código zero; o segundo retorna `rejeitado:limite` e código não zero."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/101.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-101.md",
+          "result": "Positivo: A entrada 4 reserva capacidade validada e mantém o comprimento 4. Negativo: A entrada 260 deve ser rejeitada antes de copiar ou de reduzir a precisão; uma mensagem de erro não deve acessar o destino."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/101.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-101.md",
+          "result": "Seis perguntas próprias em public/course-library/main/101.md e rubrica no gabarito AULA-101.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/101.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-101.md",
+          "result": "Caso 101, seus valores/artefatos e resultado verificável: O primeiro retorna `aceito:4` e código zero; o segundo retorna `rejeitado:limite` e código não zero."
+        }
+      ],
+      "summary": "C aplicado à Segurança: Um parser local recebe o tamanho 260, calcula um comprimento em uint8_t (4) e reserva memória menor que o objeto solicitado. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "O exemplo não explora corrupção real e não ensaia compiladores Windows, sanitizers ou caminhos reais de rede.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-102": {
+      "title": "Ponteiros",
+      "contentPath": "/course-library/main/102.md",
+      "contentSha256": "bb27d883d552c65d54c31f842096c1a131318d01adf9b858480d3c3843bed733",
+      "technicalSources": [
+        "https://en.cppreference.com/w/c/language/pointer",
+        "https://wiki.sei.cmu.edu/confluence/display/c/MEM30-C.+Do+not+access+freed+memory"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/102.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-102.md",
+          "result": "Separa o mecanismo da aula 102 de suposições de privilégio ou execução: Uma rotina recebe `char *data` e comprimento declarado; a variável local sobrevive ao fim do escopo somente enquanto o objeto real existir."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/102.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-102.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 102."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/102.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-102.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: `safe_span` aceita `(capacidade=8, comprimento=8)` e rejeita comprimento 9 e ponteiro indisponível; programa próprio imprime `vida_ok`."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/102.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-102.md",
+          "result": "Positivo: Programa utiliza buffer com endereço válido, tamanho explícito e lifetime mantido até a leitura. Negativo: Um comprimento maior do que a capacidade declarada é rejeitado sem tentar dereference fora do objeto."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/102.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-102.md",
+          "result": "Seis perguntas próprias em public/course-library/main/102.md e rubrica no gabarito AULA-102.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/102.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-102.md",
+          "result": "Caso 102, seus valores/artefatos e resultado verificável: `safe_span` aceita `(capacidade=8, comprimento=8)` e rejeita comprimento 9 e ponteiro indisponível; programa próprio imprime `vida_ok`."
+        }
+      ],
+      "summary": "Ponteiros: Uma rotina recebe `char *data` e comprimento declarado; a variável local sobrevive ao fim do escopo somente enquanto o objeto real existir. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "Modelo Python verifica contrato, não prova ausência de dangling pointers no processo nativo; não há teste de debugger Windows.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-103": {
+      "title": "Stack e Heap",
+      "contentPath": "/course-library/main/103.md",
+      "contentSha256": "1544012f002d17b5aee7a27c15a0cee0f04f47c8d38ed66cee459106bb0b7bf7",
+      "technicalSources": [
+        "https://en.cppreference.com/w/c/memory/malloc",
+        "https://clang.llvm.org/docs/AddressSanitizer.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/103.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-103.md",
+          "result": "Separa o mecanismo da aula 103 de suposições de privilégio ou execução: Uma função devolve um apontador para um objeto automático, enquanto outra aloca com malloc mas esquece free em um caminho de erro."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/103.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-103.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 103."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/103.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-103.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: Contador de liberação encerra em 1; `safe_lifetime` imprime `vida_ok` sem acessar memória após free."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/103.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-103.md",
+          "result": "Positivo: A função aloca, verifica retorno de malloc, usa e libera exatamente uma vez; dados válidos chegam ao consumidor enquanto vivos. Negativo: Falha de alocação simulada retorna erro controlado; não tenta dereference nem libera recurso inexistente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/103.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-103.md",
+          "result": "Seis perguntas próprias em public/course-library/main/103.md e rubrica no gabarito AULA-103.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/103.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-103.md",
+          "result": "Caso 103, seus valores/artefatos e resultado verificável: Contador de liberação encerra em 1; `safe_lifetime` imprime `vida_ok` sem acessar memória após free."
+        }
+      ],
+      "summary": "Stack e Heap: Uma função devolve um apontador para um objeto automático, enquanto outra aloca com malloc mas esquece free em um caminho de erro. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "O teste modela ownership; não produz deliberadamente use-after-free ou crash, e ASan fica como verificação opcional.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-104": {
+      "title": "Memória Virtual",
+      "contentPath": "/course-library/main/104.md",
+      "contentSha256": "8d6234f96263988008268391f333ff2330e5cd008e2ade75b1f9133954a4fdf3",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/memory/memory-protection-constants",
+        "https://learn.microsoft.com/en-us/windows/win32/memory/virtual-address-space"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/104.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-104.md",
+          "result": "Separa o mecanismo da aula 104 de suposições de privilégio ou execução: Uma inspeção atribui permissão de escrita a uma faixa apenas porque o endereço está no espaço virtual do processo."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/104.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-104.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 104."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/104.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-104.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: Região 0x1000–0x1fff com permissão R: leitura 0x1100 aceita, escrita 0x1100 e leitura 0x2000 negadas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/104.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-104.md",
+          "result": "Positivo: Leitura na página somente leitura é aceita pelo modelo com `READ`. Negativo: Escrita na mesma página é rejeitada; acesso além da faixa também."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/104.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-104.md",
+          "result": "Seis perguntas próprias em public/course-library/main/104.md e rubrica no gabarito AULA-104.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/104.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-104.md",
+          "result": "Caso 104, seus valores/artefatos e resultado verificável: Região 0x1000–0x1fff com permissão R: leitura 0x1100 aceita, escrita 0x1100 e leitura 0x2000 negadas."
+        }
+      ],
+      "summary": "Memória Virtual: Uma inspeção atribui permissão de escrita a uma faixa apenas porque o endereço está no espaço virtual do processo. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "Modelo não implementa MMU ou Windows; não se executou VirtualProtect; permissões reais variam por OS.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-105": {
+      "title": "Processes e Threads",
+      "contentPath": "/course-library/main/105.md",
+      "contentSha256": "b874071c5a20225c2057904b8b5dac225f756b67142de516e574111224566c24",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads",
+        "https://docs.python.org/3/library/threading.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/105.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-105.md",
+          "result": "Separa o mecanismo da aula 105 de suposições de privilégio ou execução: Dois trabalhadores incrementam um contador compartilhado e um analista atribui isolamento de memória a cada thread."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/105.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-105.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 105."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/105.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-105.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: Duas threads com 100 incrementos sob lock produzem 200; modelo rejeita operações sem papel permitido."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/105.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-105.md",
+          "result": "Positivo: Contador protegido por lock completa 200 operações sem perda no laboratório. Negativo: Um worker sem autorização no modelo de tarefas é rejeitado sem modificar contador."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/105.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-105.md",
+          "result": "Seis perguntas próprias em public/course-library/main/105.md e rubrica no gabarito AULA-105.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/105.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-105.md",
+          "result": "Caso 105, seus valores/artefatos e resultado verificável: Duas threads com 100 incrementos sob lock produzem 200; modelo rejeita operações sem papel permitido."
+        }
+      ],
+      "summary": "Processes e Threads: Dois trabalhadores incrementam um contador compartilhado e um analista atribui isolamento de memória a cada thread. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "O teste usa Python e GIL da implementação padrão; não comprova data races em C/Windows ou processos maliciosos.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-106": {
+      "title": "Windows API",
+      "contentPath": "/course-library/main/106.md",
+      "contentSha256": "4a942887a606aea9f87e33878e1bfbe58bc907b3d42465d6e7383b4a6d6c79a5",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/retrieving-the-last-error-code",
+        "https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/106.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-106.md",
+          "result": "Separa o mecanismo da aula 106 de suposições de privilégio ou execução: Uma ferramenta de inventário abre um handle somente leitura, não checa o valor de retorno e registra um erro tardio como se fosse o erro da chamada original."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/106.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-106.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 106."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/106.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-106.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: Objeto legítimo gera identificador 1 e close retorna sucesso; abertura negada não altera tabela e close duplicado é rejeitado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/106.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-106.md",
+          "result": "Positivo: Simulador abre objeto permitido, lê metadados e libera handle exatamente uma vez. Negativo: Abrir um objeto sem acesso retorna falha sem criar handle; fechar duas vezes é rejeitado no contrato didático."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/106.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-106.md",
+          "result": "Seis perguntas próprias em public/course-library/main/106.md e rubrica no gabarito AULA-106.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/106.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-106.md",
+          "result": "Caso 106, seus valores/artefatos e resultado verificável: Objeto legítimo gera identificador 1 e close retorna sucesso; abertura negada não altera tabela e close duplicado é rejeitado."
+        }
+      ],
+      "summary": "Windows API: Uma ferramenta de inventário abre um handle somente leitura, não checa o valor de retorno e registra um erro tardio como se fosse o erro da chamada original. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "Nenhuma Win32 API real foi executada no CI Linux; objetos e erros são modelo local, não handles do Windows.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-107": {
+      "title": "DLLs",
+      "contentPath": "/course-library/main/107.md",
+      "contentSha256": "3ecd15f4bfd1558a3c80e04021daf2bc77b86da3f97360463e5bcf16a54fd50f",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order",
+        "https://learn.microsoft.com/en-us/windows/desktop/dlls/dynamic-link-library-security"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/107.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-107.md",
+          "result": "Separa o mecanismo da aula 107 de suposições de privilégio ou execução: Um software procura `helper.dll` pelo nome simples e admite diretórios que podem ser escritos pelo usuário comum."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/107.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-107.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 107."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/107.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-107.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: `resolve_library` devolve caminho confiável absoluto só para nome mapeado; pedido de caminho relativo fora da allowlist falha."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/107.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-107.md",
+          "result": "Positivo: Um manifesto permite somente `C:\\Program Files\\Demo\\helper.dll` explicitamente aprovado. Negativo: Requisição por `helper.dll` sem caminho confiável ou por `C:\\Users\\Public\\helper.dll` é recusada no modelo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/107.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-107.md",
+          "result": "Seis perguntas próprias em public/course-library/main/107.md e rubrica no gabarito AULA-107.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/107.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-107.md",
+          "result": "Caso 107, seus valores/artefatos e resultado verificável: `resolve_library` devolve caminho confiável absoluto só para nome mapeado; pedido de caminho relativo fora da allowlist falha."
+        }
+      ],
+      "summary": "DLLs: Um software procura `helper.dll` pelo nome simples e admite diretórios que podem ser escritos pelo usuário comum. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "Modelo não emula loader completo nem demonstra exploração/hijacking; nenhuma DLL de terceiros é carregada.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-108": {
+      "title": "Formato PE",
+      "contentPath": "/course-library/main/108.md",
+      "contentSha256": "8aedae9dd2862511af5992d912e29c2c2a245de12366688c52a6f8b0118f559c",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/108.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-108.md",
+          "result": "Separa o mecanismo da aula 108 de suposições de privilégio ou execução: Um inspetor lê uma amostra educacional MZ e assume que qualquer ocorrência dos bytes `PE` comprova formato Windows válido."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/108.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-108.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 108."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/108.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-108.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: Fixture válida retorna `sections=1` e `machine=0x8664`; fixture com assinatura ausente ou e_lfanew fora do fim gera `ValueError`."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/108.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-108.md",
+          "result": "Positivo: Parser local aceita fixture sintética com MZ, e_lfanew=0x80, assinatura PE e uma seção COFF. Negativo: Arquivo truncado ou e_lfanew para fora do buffer é rejeitado antes de ler estruturas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/108.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-108.md",
+          "result": "Seis perguntas próprias em public/course-library/main/108.md e rubrica no gabarito AULA-108.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/108.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-108.md",
+          "result": "Caso 108, seus valores/artefatos e resultado verificável: Fixture válida retorna `sections=1` e `machine=0x8664`; fixture com assinatura ausente ou e_lfanew fora do fim gera `ValueError`."
+        }
+      ],
+      "summary": "Formato PE: Um inspetor lê uma amostra educacional MZ e assume que qualquer ocorrência dos bytes `PE` comprova formato Windows válido. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "O parser é didático, não interpreta imports, relocations, assinatura Authenticode ou carrega imagem executável.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-109": {
+      "title": "User Mode vs Kernel Mode",
+      "contentPath": "/course-library/main/109.md",
+      "contentSha256": "fc36629bda921ba185a09d2e7080a3651768d2eb309bf7dc89f96c96478163c0",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/user-mode-and-kernel-mode",
+        "https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/using-neither-buffered-nor-direct-i-o"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/109.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-109.md",
+          "result": "Separa o mecanismo da aula 109 de suposições de privilégio ou execução: Um aplicativo em user mode tenta pedir a um driver que escreva em um buffer cujo comprimento foi informado pelo próprio solicitante."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/109.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-109.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 109."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/109.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-109.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: `kernel_boundary` retorna 8 para READ dentro do tamanho, e lança `PermissionError`/`ValueError` para casos inválidos."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/109.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-109.md",
+          "result": "Positivo: Requisição didática para ler 8 bytes de buffer conhecido e com permissão READ é aceita. Negativo: Pedido de 32 bytes para buffer de 8, ou pedido WRITE sem privilégio WRITE, é negado antes da operação."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/109.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-109.md",
+          "result": "Seis perguntas próprias em public/course-library/main/109.md e rubrica no gabarito AULA-109.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/109.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-109.md",
+          "result": "Caso 109, seus valores/artefatos e resultado verificável: `kernel_boundary` retorna 8 para READ dentro do tamanho, e lança `PermissionError`/`ValueError` para casos inválidos."
+        }
+      ],
+      "summary": "User Mode vs Kernel Mode: Um aplicativo em user mode tenta pedir a um driver que escreva em um buffer cujo comprimento foi informado pelo próprio solicitante. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "Não é driver real; não emula IOCTL/IRQL/ACLs do kernel ou proteções de sistema operacional.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    },
+    "AULA-110": {
+      "title": "Windows Internals",
+      "contentPath": "/course-library/main/110.md",
+      "contentSha256": "55483ff9da7b3e367582b935a880e6dd30c6bccd9ac0683d7fbaec1452f9f332",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/secauthz/access-tokens",
+        "https://learn.microsoft.com/en-us/windows/win32/sysinfo/handles-and-objects",
+        "https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads"
+      ],
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Checagem de contratos contra referências técnicas e distinção explícita entre modelo e sistema real",
+          "reference": "public/course-library/main/110.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-110.md",
+          "result": "Separa o mecanismo da aula 110 de suposições de privilégio ou execução: Capstone: suporte técnico investiga falha de acesso de um aplicativo próprio a arquivo fictício, um módulo carregado e um evento de processo com PID que foi reutilizado."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA de entradas, previsões, resultados e explicação de erros; nenhum estudante observado",
+          "reference": "public/course-library/main/110.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-110.md",
+          "result": "Sequência predição → execução → observação → reteste com vocabulário contextual da aula 110."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do conjunto de modelos Python e programas C benignos aplicáveis; procedimentos Windows reais não executados",
+          "reference": "public/course-library/main/110.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-110.md",
+          "result": "Exercício restrito a C próprio ou modelo puro: Ficha com acesso permitido a `report.txt` somente READ, rejeição de WRITE e DLL fora da allowlist; casos de PID repetido separados por horário."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência do controle na causa e do caso legítimo preservado diante do caso negativo",
+          "reference": "public/course-library/main/110.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-110.md",
+          "result": "Positivo: O analista separa identidade, permissões READ, handle válido e DLL conhecida; reconstitui linha do tempo usando PID e instante de criação. Negativo: Arquivo negado pela ACL e módulo fora do manifesto confiável não são aceitos; PID igual em dois horários não demonstra processo idêntico."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Leitura independente do exercício final com seis perguntas específicas e rubrica guardada separadamente",
+          "reference": "public/course-library/main/110.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-110.md",
+          "result": "Seis perguntas próprias em public/course-library/main/110.md e rubrica no gabarito AULA-110.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do exemplo, parâmetros, saída esperada e limites até este tema exato",
+          "reference": "public/course-library/main/110.md :: Oficina A e prova; public/course-labs/a101-110/answer-keys/AULA-110.md",
+          "result": "Caso 110, seus valores/artefatos e resultado verificável: Ficha com acesso permitido a `report.txt` somente READ, rejeição de WRITE e DLL fora da allowlist; casos de PID repetido separados por horário."
+        }
+      ],
+      "summary": "Windows Internals: Capstone: suporte técnico investiga falha de acesso de um aplicativo próprio a arquivo fictício, um módulo carregado e um evento de processo com PID que foi reutilizado. O material apresenta caso positivo, negativo, controle na causa, prova separada e limitações explícitas de experimentos locais.",
+      "limitations": [
+        "Sem observação Windows, ETW, kernel debugger, ProcMon ou bypass; dados e linha do tempo são sintéticos.",
+        "Nenhuma observação de alunos reais, revisão humana externa ou Windows real foi executada pelo CI."
+      ]
+    }
+  }
+}
