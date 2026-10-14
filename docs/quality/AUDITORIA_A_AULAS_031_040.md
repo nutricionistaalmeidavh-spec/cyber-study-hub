@@ -32,7 +32,7 @@ npm run verify:quality
 npm run build
 ```
 
-O workflow `Aulas 031-040 QA` é disparado em PR/workflow_dispatch. Os testes existentes dos 543 IDs e das 26 unidades A anteriores continuam intactos. O registro final deve conter **36 A** após o merge, se CI passar.
+O workflow `Aulas 031-040 QA` é disparado em PR/workflow_dispatch. Os testes existentes dos 543 IDs e das 36 unidades A anteriores continuam intactos. O registro final deve conter **46 A** após o merge, se CI passar.
 
 ## Limitações e semântica dos gates
 

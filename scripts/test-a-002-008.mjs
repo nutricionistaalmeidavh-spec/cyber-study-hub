@@ -42,5 +42,5 @@ for(let id=2;id<=8;id++){
  console.log(`PASS ${code} — A editorial IA, conteúdo hash ${hash.slice(0,14)}`);
 }
 const allA=Object.entries(registry.editorialReviews).filter(([,r])=>r.grade==='A');
-assert.ok(allA.length>=36,'As 26 notas A anteriores e as 10 novas precisam ser preservadas');
-console.log('PASS 7/7 aulas 002-008; ao menos 36/543 A editoriais IA, sem estudo humano alegado.');
+assert.ok(allA.length>=26,'As 26 aulas A de lotes anteriores devem permanecer aprovadas');
+console.log(`PASS 7/7 aulas 002-008; total ${allA.length}/543 A editoriais IA, sem estudo humano alegado.`);

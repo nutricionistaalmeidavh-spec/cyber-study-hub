@@ -51,4 +51,4 @@ Mais onze pareceres A editoriais foram integrados ao registro, totalizando **26 
 
 ## Ampliação A editorial IA — aulas 031 a 040 (13/10/2026)
 
-Dez pareceres editoriais A por IA adicionais foram registrados: **36 A editoriais** no total. Preservam os anteriores 26 e têm hash e evidências individuais em `quality/reviews/a031-040-2026-10-13.json`. A aula 036 foi aprofundada sem descartar a modelagem STRIDE anterior. Testes humanos com estudantes: **não realizados**.
+Dez pareceres A editoriais novos elevam o total canônico a **46 A editoriais** (26 anteriores, 10 de 021–030 e 10 de 031–040). Evidências e hashes em `quality/reviews/a031-040-2026-10-13.json`, sem teste observacional com aprendizes reais. O material e seus laboratórios são locais, com núcleo sem custo obrigatório.
