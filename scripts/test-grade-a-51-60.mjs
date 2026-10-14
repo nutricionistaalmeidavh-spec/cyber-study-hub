@@ -43,7 +43,7 @@ for(let i=51;i<=60;i++){
   console.log(`A editorial IA ${id}: ${hash.slice(0,12)}; 6 transfer questions, six verified dimensions`);
 }
 const grades=Object.values(registry.editorialReviews).filter(x=>x.grade==='A');
-assert.ok(grades.length>=65,`Expected 55 previous A + ten new, got ${grades.length}`);
+assert.ok(grades.length>=75,`Expected 65 previous A + ten new, got ${grades.length}`);
 for(const id of ['AULA-001','AULA-009','AULA-021','AULA-031','AULA-041','AULA-050','LOG-01','PY-01','NET-25']){
  assert.equal(registry.editorialReviews[id]?.grade,'A',`Existing A lost: ${id}`);
 }

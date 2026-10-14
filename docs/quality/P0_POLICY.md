@@ -53,6 +53,10 @@ Mais onze pareceres A editoriais foram integrados ao registro, totalizando **26 
 
 Dez pareceres A editoriais novos elevam o total canônico a **46 A editoriais** (26 anteriores, 10 de 021–030 e 10 de 031–040). Evidências e hashes em `quality/reviews/a031-040-2026-10-13.json`, sem teste observacional com aprendizes reais. O material e seus laboratórios são locais, com núcleo sem custo obrigatório.
 
-## Ampliação A editorial IA — aulas 051 a 060 (13/10/2026)
+## A editorial IA — aulas 061 a 070 (13/10/2026)
 
-Dez unidades receberam oficina aplicada e prova de seis questões específicas com gabarito separado, testes reproduzíveis e parecer por seis dimensões, elevando o registro atual de **55 para 65 classificações A editoriais IA**. Documentação, fontes, limites e SHA por conteúdo: `quality/reviews/a51-60-2026-10-13.json` e `docs/quality/AUDITORIA_A_051_060.md`. Este A é exclusivamente editorial: **não houve observação de aprendizagem com estudantes reais** nem auditoria humana externa. O laboratório da aula 052 demonstra symlink em POSIX, não uma contenção atômica genérica. Nenhum login de produção, segredo ou configuração de Cloudflare foi alterado.
+Dez pareceres A editoriais foram acrescentados (agora **65 A editoriais**, 55 anteriores preservados), com hashes, laboratórios Node em memória/loopback, provas independentes e rubricas. Ferramentas Nmap/Nuclei/PowerShell e Windows/AD são opcionais; core R$0, local. O julgamento é por IA, sem testes humanos com aprendizes. Ver `quality/reviews/a061-070-2026-10-13.json` e `docs/quality/AUDITORIA_A_AULAS_061_070.md`.
+
+## A editorial IA — aulas 051 a 060 (13/10/2026)
+
+Dez pareceres A editoriais foram adicionados, elevando o total de 65 para **75 aulas A editoriais**. Oficinas aplicadas, 60 novas questões de transferência, gabaritos separados, nove testes de modelos locais e laboratório pré-existente de symlink da aula 052; hashes e limitações em `quality/reviews/a51-60-2026-10-13.json`. Trata-se de auditoria editorial assistida por IA, **sem** estudo com alunos reais ou revisor humano externo. Nenhum segredo, fluxo OAuth de produção ou configuração de deploy foi modificado.
