@@ -29,7 +29,8 @@
     "test:a-061-070": "node scripts/test-a-061-070-structure.mjs && node --test public/course-labs/a061-070/lab.test.mjs",
     "test:grade-a-061-070": "node scripts/test-grade-a-061-070.mjs",
     "test:a-071-080": "node scripts/test-a-071-080-structure.mjs && node --test public/course-labs/a071-080/lab.test.mjs",
-    "test:grade-a-071-080": "node scripts/test-grade-a-071-080.mjs"
+    "test:grade-a-071-080": "node scripts/test-grade-a-071-080.mjs",
+    "test:a-81-90": "node scripts/test-lessons-81-90.mjs && node --test public/course-labs/a81-90/lab.test.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

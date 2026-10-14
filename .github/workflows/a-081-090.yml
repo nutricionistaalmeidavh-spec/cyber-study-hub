@@ -1,0 +1,28 @@
+name: Aulas 081–090 QA
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/08*.md'
+      - 'public/course-library/main/090.md'
+      - 'public/course-labs/a81-90/**'
+      - 'scripts/test-lessons-81-90.mjs'
+      - 'scripts/test-grade-a-81-90.mjs'
+      - 'quality/**'
+      - 'package.json'
+      - '.github/workflows/a-081-090.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:a-81-90
+      - run: npm run build
