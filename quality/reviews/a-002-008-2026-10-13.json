@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-002..AULA-008",
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — conteúdo Fase 16 e aprofundamento 002–008",
+  "reviewer": "GPT-6 — passagem crítica editorial técnica e pedagógica (IA, não humano)",
+  "humanLearnerTesting": "not_performed",
+  "acceptance": "A editorial por IA: revisão de material e testes dos cenários suportados, não comprovação de eficácia com estudantes reais.",
+  "sourcesCheckedAgainst": [
+    "https://cheatsheetseries.owasp.org",
+    "https://developer.mozilla.org",
+    "https://www.rfc-editor.org/rfc/rfc9110"
+  ],
+  "units": {
+    "AULA-002": {
+      "title": "HTTP, Requests, Responses e Parâmetros",
+      "contentPath": "/course-library/main/002.md",
+      "contentSha256": "5cc400912355a3a8b21f8849d931b90274e47542b6b5fab94d01799f00155e0e",
+      "technicalSources": [
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods",
+        "https://www.rfc-editor.org/rfc/rfc9110"
+      ],
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/002.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Métodos seguros versus idempotentes, request-target, headers e parâmetros duplicados não são tratados como autenticação."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/002.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "HTTP, Requests, Responses e Parâmetros: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/002.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Node: parsing de método/path/query, GET válido 200, parâmetro duplicado 400 e método não admitido 405."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/002.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "A validação de entrada e a autorização são distintas; positivo legítimo e negativo são testados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/002.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-002.md",
+          "result": "Seis questões sobre POST/201, duplicidade, idempotência, headers, status e relatório sem tokens."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/002.md :: Exemplo resolvido / Lab / Prova",
+          "result": "R10/R11, /pedidos, id duplicado, GET/POST/TRACE, 200/400/405"
+        }
+      ],
+      "summary": "HTTP, Requests, Responses e Parâmetros. Métodos seguros versus idempotentes, request-target, headers e parâmetros duplicados não são tratados como autenticação. Node: parsing de método/path/query, GET válido 200, parâmetro duplicado 400 e método não admitido 405.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    },
+    "AULA-003": {
+      "title": "Autenticação e Autorização",
+      "contentPath": "/course-library/main/003.md",
+      "contentSha256": "5dcb97a49376ef76b585da0acbc394a6f0a8eb3f1e350a15802a8cd2d6df4851",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/003.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Identidade, papel, ação, propriedade e escopo do objeto são decisões diferentes; ausência de sessão 401, ação indevida 403."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/003.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "Autenticação e Autorização: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/003.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Node: matriz Ana/Bia, reader/editor/admin, ownerId e read/edit; desconhecido negado por padrão."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/003.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "Positivos não quebrados pelo bloqueio, e roles do frontend não são confiados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/003.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-003.md",
+          "result": "Seis questões sobre owner, papéis, função admin enviada pelo cliente, tenant e negação global."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/003.md :: Exemplo resolvido / Lab / Prova",
+          "result": "Ana/Bia/R10, editor/reader, 401/403/200, matriz de escopos"
+        }
+      ],
+      "summary": "Autenticação e Autorização. Identidade, papel, ação, propriedade e escopo do objeto são decisões diferentes; ausência de sessão 401, ação indevida 403. Node: matriz Ana/Bia, reader/editor/admin, ownerId e read/edit; desconhecido negado por padrão.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    },
+    "AULA-004": {
+      "title": "Senhas, Hash, Salt e Bcrypt",
+      "contentPath": "/course-library/main/004.md",
+      "contentSha256": "b77bd936a23528feab8461813c65ae8b5fa079da4adfc3cade82a52a02783a03",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 96,
+        "didatica": 93,
+        "pratica": 92,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/004.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Hash lento, salt distinto, limite bcrypt de bytes, aumento de custo e migração sem decifrar hash."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/004.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "Senhas, Hash, Salt e Bcrypt: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/004.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Laboratório Node bcrypt existente: compare de senha fictícia, salts distintos, limite 72 bytes e custos; CI deve executar npm ci no subpacote."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/004.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "Verificação prévia à migração, rehash com senha recebida, persistência concorrente e reteste de custo/latência."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/004.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-004.md",
+          "result": "Seis questões sobre migração ao login, salts, UTF-8 multibyte, usuários inativos e ataques offline."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/004.md :: Exemplo resolvido / Lab / Prova",
+          "result": "cost 10→11, 37 letras é (74 bytes), Argon2id, três contas fictícias"
+        }
+      ],
+      "summary": "Senhas, Hash, Salt e Bcrypt. Hash lento, salt distinto, limite bcrypt de bytes, aumento de custo e migração sem decifrar hash. Laboratório Node bcrypt existente: compare de senha fictícia, salts distintos, limite 72 bytes e custos; CI deve executar npm ci no subpacote.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    },
+    "AULA-005": {
+      "title": "Sessões, Cookies e JWT",
+      "contentPath": "/course-library/main/005.md",
+      "contentSha256": "e17228a10dc03b6dca9deb4030b23c0346b9c279b6ef33ec1de6a136ff958af8",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 94,
+        "pratica": 95,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/005.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Sessão revogável server-side versus JWT assinado, exp/aud/verificação, cookie HttpOnly/Secure/SameSite."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/005.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "Sessões, Cookies e JWT: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/005.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Node: IDs aleatórios distintos, consulta antes/no limite do TTL, revogação, JWT adulterado/expirado/outra audiência."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/005.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "Token validado e política de revogação; cookies não dispensam CSRF ou autorização por objeto."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/005.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-005.md",
+          "result": "Seis questões sobre assinatura versus decoding, fronteira temporal, HttpOnly/CSRF, logout, JWT revocation e SameSite."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/005.md :: Exemplo resolvido / Lab / Prova",
+          "result": "t=2999/3000, cookie __Host-sid, HS256 aud a-002-008 e exp=2000"
+        }
+      ],
+      "summary": "Sessões, Cookies e JWT. Sessão revogável server-side versus JWT assinado, exp/aud/verificação, cookie HttpOnly/Secure/SameSite. Node: IDs aleatórios distintos, consulta antes/no limite do TTL, revogação, JWT adulterado/expirado/outra audiência.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    },
+    "AULA-006": {
+      "title": "IDOR e Broken Access Control",
+      "contentPath": "/course-library/main/006.md",
+      "contentSha256": "e00d588fcc28fed9ff4279e1ac5095854a0c3b4a0771a2458cdc64eda2f490c7",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/006.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Troca de identificador não muda principal; propriedade e action têm de ser verificadas sobre objeto."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/006.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "IDOR e Broken Access Control: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/006.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Node + SQLite em memória: Ana/Bia, recursos R10/R11, papel, ownership e consulta filtrada."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/006.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "Todos os caminhos de leitura/edição/exportação exigem validação; reteste verifica ausência de mudança de estado."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/006.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-006.md",
+          "result": "Seis questões sobre UUID, sessão de outro usuário, consulta escopada, exportação, admin e prova de não mutação."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/006.md :: Exemplo resolvido / Lab / Prova",
+          "result": "R10/Ana, R11/Bia, 403, read/delete e owner filtrado no SQL"
+        }
+      ],
+      "summary": "IDOR e Broken Access Control. Troca de identificador não muda principal; propriedade e action têm de ser verificadas sobre objeto. Node + SQLite em memória: Ana/Bia, recursos R10/R11, papel, ownership e consulta filtrada.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    },
+    "AULA-007": {
+      "title": "SQL Injection",
+      "contentPath": "/course-library/main/007.md",
+      "contentSha256": "185746b4585646c88caed99c7ffefa80559878db9b222536f7813cfa46e1a2b7",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+        "https://docs.python.org/3/library/sqlite3.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 96,
+        "didatica": 93,
+        "pratica": 96,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/007.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Query parametrizada separa estrutura e valores; identificadores não são valores vinculáveis; autorização é controle distinto."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/007.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "SQL Injection: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/007.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Python sqlite3 :memory: — consulta vulnerável retorna 2 linhas em entrada sintética, query ? retorna 0, R10 normal retorna 1, owner filtra Bia."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/007.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "Não concatenar, manter acesso de usuários legítimos, nomes com apóstrofo e menor privilégio."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/007.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-007.md",
+          "result": "Seis questões sobre escape ruim, placeholder, caso sintético, ausência de ownership, erros de SQL e reteste."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/007.md :: Exemplo resolvido / Lab / Prova",
+          "result": "O'Hara, R10/R11, entrada de demonstração e SQLite sem arquivos"
+        }
+      ],
+      "summary": "SQL Injection. Query parametrizada separa estrutura e valores; identificadores não são valores vinculáveis; autorização é controle distinto. Python sqlite3 :memory: — consulta vulnerável retorna 2 linhas em entrada sintética, query ? retorna 0, R10 normal retorna 1, owner filtra Bia.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    },
+    "AULA-008": {
+      "title": "Cross-Site Scripting — XSS",
+      "contentPath": "/course-library/main/008.md",
+      "contentSha256": "6f0e9af539e0f827c0fcd79bcabb84723d3dc6c92b5b401a4fa149460010cdb9",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 93,
+        "pratica": 90,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Releitura técnica por IA e confronto conceitual com fontes oficiais, distinguindo mecanismos e limites",
+          "reference": "public/course-library/main/008.md :: Mecanismo, conceitos e limites / Fontes técnicas",
+          "result": "Source→sink, conteúdo literal em textContent versus interpretação por innerHTML; encoding contextual, CSP como defesa adicional."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA a partir de conhecimentos iniciais mínimos; não houve teste com alunos reais",
+          "reference": "public/course-library/main/008.md :: Problema concreto / Exemplo resolvido / recuperação",
+          "result": "Cross-Site Scripting — XSS: cenário contextualizado; progressão orientar, completar, resolver sozinho; erros e retomada sem depender de serviço pago."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução e validação de casos determinísticos em ambiente local/CI; atividades manuais não executadas identificadas",
+          "reference": "public/course-library/main/008.md :: Laboratório; public/course-labs/a-002-008/*",
+          "result": "Node testa HTML encoding especial e identifica sinks; exercício de browser local benigno recomendado mas não executado no CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Comparação de casos positivos e negativos, análise de limites e reteste após controle",
+          "reference": "public/course-library/main/008.md :: Defesa, evidências e reteste / Casos positivos, negativos",
+          "result": "Contexto de HTML/texto versus atributo/JS/URL; reteste mantém texto com caracteres especiais sem interpretá-lo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de questões de transferência e rubrica em documento separado da aula, com erros eliminatórios",
+          "reference": "public/course-library/main/008.md :: Prova final; public/course-labs/a-002-008/answer-keys/AULA-008.md",
+          "result": "Seis questões sobre textContent, source/sink, encoding em atributo JS, CSP, stored e regressões."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção cruzada de identificadores, dados do lab, semântica dos comandos e resultados esperados",
+          "reference": "public/course-library/main/008.md :: Exemplo resolvido / Lab / Prova",
+          "result": "<b>olá</b>, O'Hara & equipe, textContent e innerHTML"
+        }
+      ],
+      "summary": "Cross-Site Scripting — XSS. Source→sink, conteúdo literal em textContent versus interpretação por innerHTML; encoding contextual, CSP como defesa adicional. Node testa HTML encoding especial e identifica sinks; exercício de browser local benigno recomendado mas não executado no CI.",
+      "limitations": [
+        "Revisão editorial por IA, sem eficácia testada em estudantes reais.",
+        "Laboratórios são simplificações sintéticas locais, não testes de apps externos.",
+        "Atividades de browser, se aplicáveis, exigem observação humana adicional."
+      ]
+    }
+  }
+}

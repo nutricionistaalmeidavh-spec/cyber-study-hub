@@ -40,3 +40,7 @@ Esta triagem apenas verifica estrutura textual, integridade de referências loca
 ## Escopo de A editorial assistido por IA (piloto)
 
 Oito avaliações realizadas em 13/10/2026 possuem `reviewMethod=ai_editorial_second_pass` e `humanLearnerTesting=not_performed`. `didaticaInicianteValidada` indica walkthrough editorial a partir de pressupostos de conhecimento inicial zero, **não** observação de alunos reais. `revisorIndependente` indica segunda passagem crítica separada da autoria, com identidade do processo IA documentada, **não** revisor humano. O indicador de eficácia pedagógica observada permanece em aberto e não deve ser inventado. A metodologia, fontes e resultados estão em `quality/reviews/pilot-a-2026-10-13.json` e `docs/quality/AUDITORIA_A_PILOTO.md`.
+
+## Extensão A editorial IA — aulas 002 a 008 (13/10/2026)
+
+Mais sete pareceres A editoriais foram registrados, totalizando quinze. Cada um contém seis notas e evidências, hash SHA-256 do Markdown final, prova separada e laboratório local. A identificação `revisorIndependente=true` mantém a semântica adotada pelo piloto: **segunda passagem crítica de IA**, não certificação humana externa. `humanLearnerTesting=not_performed` continua obrigatório. Conferir `quality/reviews/a-002-008-2026-10-13.json` e `docs/quality/AUDITORIA_A_002_008.md`.
