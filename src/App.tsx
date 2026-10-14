@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import { PlatformGate, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
@@ -58,6 +59,7 @@ function parseHash(): Route {
 }
 
 export default function App() {
+  if (isAcademyPath(window.location.pathname)) return <AcademyLanding />;
   return <PlatformGate>{(user, actions) => <Workspace key={user.id} user={user} actions={actions} />}</PlatformGate>;
 }
 
