@@ -2,18 +2,18 @@
 
 **Natureza:** segunda revisão técnica/didática por IA. Sem testes observacionais com aprendizes ou certificação humana externa.
 
-| Aula | Tema | Prática | Estado |
+| Aula | Tema | Prática local | Nota |
 |---|---|---|---|
-| 021 | Redes: IP, Portas, TCP e UDP | Execute `python3 public/course-labs/a-021-030/network_lab | A editorial IA |
-| 022 | Linux para Segurança | Execute `python3 public/course-labs/a-021-030/permissions_lab | A editorial IA |
-| 023 | Nmap — Mapeamento de Portas e Serviços | Execute `python3 public/course-labs/a-021-030/scan_lab | A editorial IA |
-| 024 | Wireshark — Observando Pacotes | Execute `python3 public/course-labs/a-021-030/make_capture | A editorial IA |
-| 025 | Programas Compilados, CPU e Registradores | No Linux: `cc -O0 -fno-inline -o /tmp/csh_compile public/cours | A editorial IA |
-| 026 | Memória: Stack, Heap e Buffer Overflow | Compile `cc -std=c11 -Wall -Wextra -fsanitize=address,undefine | A editorial IA |
-| 027 | Assembly — Comparações e Saltos | Use `cc -O0 -fno-inline -o /tmp/csh_flags public/course-labs/a | A editorial IA |
-| 028 | Ghidra e Engenharia Reversa | Compile `cc -O0 -o /tmp/csh_reverse public/course-labs/a-021-0 | A editorial IA |
-| 029 | Malware — Conceitos e Análise Segura | Execute `python3 public/course-labs/a-021-030/triage | A editorial IA |
-| 030 | Stuxnet e Sistemas Industriais | Execute `python3 public/course-labs/a-021-030/ics_lab | A editorial IA |
+| 021 | IP, portas, TCP e UDP | `network_lab.py`: sockets em loopback | A editorial IA |
+| 022 | Linux para Segurança | `permissions_lab.py`: permissões em diretório temporário | A editorial IA |
+| 023 | Nmap e sondagens | `scan_lab.py`: portas locais, Nmap opcional | A editorial IA |
+| 024 | Wireshark e captura | `make_capture.py`: PCAP sintético, GUI opcional | A editorial IA |
+| 025 | Compilação, CPU, registradores | `compiled.c`: binário próprio compilado com `cc` | A editorial IA |
+| 026 | Stack, heap, buffer | `bounds.c`: limites de vetor; sem exploração | A editorial IA |
+| 027 | Assembly e saltos | `flags.c`: cenários C e análise dos saltos | A editorial IA |
+| 028 | Ghidra e engenharia reversa | `reverse.c`: binário próprio, GUI opcional | A editorial IA |
+| 029 | Análise estática segura | `triage.py`: fixture benigno, sem executar malware | A editorial IA |
+| 030 | Stuxnet e segurança OT | `ics_lab.py`: apenas telemetria sintética | A editorial IA |
 
 ## Escopo de validação
 
@@ -28,7 +28,7 @@
 
 ```sh
 python3 -m unittest discover -s public/course-labs/a-021-030 -p "test_*.py" -v
-node scripts/verify-a-021-030.mjs
+node scripts/test-a-021-030.mjs
 npm run verify:quality
 npm run build
 ```
