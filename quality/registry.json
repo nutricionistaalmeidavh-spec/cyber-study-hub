@@ -6269,6 +6269,646 @@
           "result": "Exemplo tem nomes, invariantes e condições próprias: Uma aplicação fictícia expõe uma listagem pública, depois permite leitura não autorizada de documento e finalmente uma função de edição excessiva. A concatenação só é pla"
         }
       ]
+    },
+    "AULA-111": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Assembly x86/x64: decodificação de 83 C0 ib (x86/EAX) e 48 83 C0 ib (x64/RAX), modo obrigatório. Evidência prática: decodeOwnBytes produz ADD EAX ou RAX com length 3/4 e recusa modo incompatível. Limites explicitados: Whitelist mínima de duas instruções, não decoder x86 completo. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "d726834c005148aed6e99445529d74843ffd989564ef62616958f0798751bf96",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/111.md :: 2–3; https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+          "result": "Explica decodificação de 83 C0 ib (x86/EAX) e 48 83 C0 ib (x64/RAX), modo obrigatório; ressalva: Whitelist mínima de duas instruções, não decoder x86 completo"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/111.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-111; public/course-labs/a111-120/models.mjs",
+          "result": "decodeOwnBytes produz ADD EAX ou RAX com length 3/4 e recusa modo incompatível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/111.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Whitelist mínima de duas instruções, não decoder x86 completo"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/111.md :: 6; public/course-labs/a111-120/answer-keys/AULA-111.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/111.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "decodeOwnBytes produz ADD EAX ou RAX com length 3/4 e recusa modo incompatível"
+        }
+      ]
+    },
+    "AULA-112": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Registradores e Instruções: rastreio de MOV, ADD, CMP, registrador RAX e flag ZF, sem escrita pelo CMP. Evidência prática: executeRegisterTrace acompanha estados 4→6→6; ZF true após comparação igual e false no negativo. Limites explicitados: Inteiros JS, sem overflow/carry/RIP/RSP/flags completas. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "eab25dcbb9a0c24153f8a21ac5c2284d406568a457baded0e90697e095b5d563",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/112.md :: 2–3; https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+          "result": "Explica rastreio de MOV, ADD, CMP, registrador RAX e flag ZF, sem escrita pelo CMP; ressalva: Inteiros JS, sem overflow/carry/RIP/RSP/flags completas"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/112.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-112; public/course-labs/a111-120/models.mjs",
+          "result": "executeRegisterTrace acompanha estados 4→6→6; ZF true após comparação igual e false no negativo"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/112.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Inteiros JS, sem overflow/carry/RIP/RSP/flags completas"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/112.md :: 6; public/course-labs/a111-120/answer-keys/AULA-112.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/112.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "executeRegisterTrace acompanha estados 4→6→6; ZF true após comparação igual e false no negativo"
+        }
+      ]
+    },
+    "AULA-113": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Stack Frames e Calling Conventions: ABI System V AMD64 versus Microsoft x64 e shadow space Win64 de 32 bytes. Evidência prática: assignCallingArguments confirma seis registradores SysV, quatro Win64 e excedentes lógicos. Limites explicitados: Não representa layout físico da pilha, float, varargs, structs, prólogo/epílogo. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "bdcd0bd1d4fd638f2e30367aa1dd8a22a6d76453e1fd09ab47d735b76544eac3",
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/113.md :: 2–3; https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170",
+          "result": "Explica ABI System V AMD64 versus Microsoft x64 e shadow space Win64 de 32 bytes; ressalva: Não representa layout físico da pilha, float, varargs, structs, prólogo/epílogo"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/113.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-113; public/course-labs/a111-120/models.mjs",
+          "result": "assignCallingArguments confirma seis registradores SysV, quatro Win64 e excedentes lógicos"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/113.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Não representa layout físico da pilha, float, varargs, structs, prólogo/epílogo"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/113.md :: 6; public/course-labs/a111-120/answer-keys/AULA-113.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/113.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "assignCallingArguments confirma seis registradores SysV, quatro Win64 e excedentes lógicos"
+        }
+      ]
+    },
+    "AULA-114": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Jumps, Calls e Control Flow: CFG de categorias de entrada com blocos de reject/small/large e fronteira n=10. Evidência prática: traceBranches(-1,2,10) percorre somente blocos compatíveis com o predicado. Limites explicitados: Não modela RIP, otimização do compilador, branches indiretos e todas entradas. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "317ed9acc6dc28151e878c5b4eaed4c92ce92da273dae399b3c6ee1426a81740",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/114.md :: 2–3; https://ghidra-sre.org/",
+          "result": "Explica CFG de categorias de entrada com blocos de reject/small/large e fronteira n=10; ressalva: Não modela RIP, otimização do compilador, branches indiretos e todas entradas"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/114.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-114; public/course-labs/a111-120/models.mjs",
+          "result": "traceBranches(-1,2,10) percorre somente blocos compatíveis com o predicado"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/114.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Não modela RIP, otimização do compilador, branches indiretos e todas entradas"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/114.md :: 6; public/course-labs/a111-120/answer-keys/AULA-114.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/114.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "traceBranches(-1,2,10) percorre somente blocos compatíveis com o predicado"
+        }
+      ]
+    },
+    "AULA-115": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Ghidra: consistência entre entry/listing, destino de chamada e hipótese no Ghidra. Evidência prática: reviewStaticFunction aceita entry e targets alinhados; rejeita entry ausente no listing. Limites explicitados: Não executa Ghidra nem comprova equivalência do decompiler. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "990c4ac4bc22df5309be3f428ad0d8d7e15227054f8f9d86bf5d822e32ffdcfc",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/115.md :: 2–3; https://ghidra-sre.org/",
+          "result": "Explica consistência entre entry/listing, destino de chamada e hipótese no Ghidra; ressalva: Não executa Ghidra nem comprova equivalência do decompiler"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/115.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-115; public/course-labs/a111-120/models.mjs",
+          "result": "reviewStaticFunction aceita entry e targets alinhados; rejeita entry ausente no listing"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/115.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Não executa Ghidra nem comprova equivalência do decompiler"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/115.md :: 6; public/course-labs/a111-120/answer-keys/AULA-115.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/115.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "reviewStaticFunction aceita entry e targets alinhados; rejeita entry ausente no listing"
+        }
+      ]
+    },
+    "AULA-116": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "x64dbg: estado de breakpoint antes da operação e estado final de programa próprio. Evidência prática: traceBreakpoint com [1,2,3] em PC lógico=1 mostra acum.1 antes, 6 depois. Limites explicitados: Simula bytecode e não depura executável x64dbg/Windows nativo. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "ec5a3e36662b5ddf6003d994e16e69b811d5f022dcad9c35b3e122e822991825",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/116.md :: 2–3; https://help.x64dbg.com/en/latest/index.html",
+          "result": "Explica estado de breakpoint antes da operação e estado final de programa próprio; ressalva: Simula bytecode e não depura executável x64dbg/Windows nativo"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/116.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-116; public/course-labs/a111-120/models.mjs",
+          "result": "traceBreakpoint com [1,2,3] em PC lógico=1 mostra acum.1 antes, 6 depois"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/116.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Simula bytecode e não depura executável x64dbg/Windows nativo"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/116.md :: 6; public/course-labs/a111-120/answer-keys/AULA-116.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/116.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "traceBreakpoint com [1,2,3] em PC lógico=1 mostra acum.1 antes, 6 depois"
+        }
+      ]
+    },
+    "AULA-117": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Decompilation: semântica de pseudocódigo e erro de limite entre n>=10 e n>10. Evidência prática: checkDecompilation aceita n>9 como equivalente na amostra e revela divergência n=10. Limites explicitados: Equivalência de casos testados não é prova formal; não modela UB/overflow. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "0e85aa36d1e9a7ad6868c6d1582d5e26f2de15799c5b1d7f460f7106c0a3f438",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/117.md :: 2–3; https://ghidra-sre.org/",
+          "result": "Explica semântica de pseudocódigo e erro de limite entre n>=10 e n>10; ressalva: Equivalência de casos testados não é prova formal; não modela UB/overflow"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/117.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-117; public/course-labs/a111-120/models.mjs",
+          "result": "checkDecompilation aceita n>9 como equivalente na amostra e revela divergência n=10"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/117.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Equivalência de casos testados não é prova formal; não modela UB/overflow"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/117.md :: 6; public/course-labs/a111-120/answer-keys/AULA-117.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/117.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "checkDecompilation aceita n>9 como equivalente na amostra e revela divergência n=10"
+        }
+      ]
+    },
+    "AULA-118": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Xrefs, Strings e Imports: referências cruzadas e reachability estática de funções que usam strings/imports. Evidência prática: findReferences encontra entry→parse→logError e não encontra unused. Limites explicitados: Call graph sintético não implica execução efetiva e não cobre calls indiretos. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "b595bd028165df1af42a900c33885262584e729cee350da25ceee534b738703e",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/118.md :: 2–3; https://ghidra-sre.org/",
+          "result": "Explica referências cruzadas e reachability estática de funções que usam strings/imports; ressalva: Call graph sintético não implica execução efetiva e não cobre calls indiretos"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/118.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-118; public/course-labs/a111-120/models.mjs",
+          "result": "findReferences encontra entry→parse→logError e não encontra unused"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/118.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Call graph sintético não implica execução efetiva e não cobre calls indiretos"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/118.md :: 6; public/course-labs/a111-120/answer-keys/AULA-118.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/118.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "findReferences encontra entry→parse→logError e não encontra unused"
+        }
+      ]
+    },
+    "AULA-119": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Debugging dos próprios executáveis: regressão de desconto >=100 versus bug >100 em programa próprio. Evidência prática: investigateOwnBug([99,100,101]) identifica somente falha no 100; corrigido 0/10/10.1. Limites explicitados: Modelo didático de ponto flutuante arredondado, não motor financeiro real. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "9b43b94b24fccb0bfab044cdea99051454c4d1ecbf71842e38f8d36e099e081a",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/119.md :: 2–3; https://sourceware.org/gdb/current/onlinedocs/gdb.html",
+          "result": "Explica regressão de desconto >=100 versus bug >100 em programa próprio; ressalva: Modelo didático de ponto flutuante arredondado, não motor financeiro real"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/119.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-119; public/course-labs/a111-120/models.mjs",
+          "result": "investigateOwnBug([99,100,101]) identifica somente falha no 100; corrigido 0/10/10.1"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/119.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Modelo didático de ponto flutuante arredondado, não motor financeiro real"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/119.md :: 6; public/course-labs/a111-120/answer-keys/AULA-119.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/119.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "investigateOwnBug([99,100,101]) identifica somente falha no 100; corrigido 0/10/10.1"
+        }
+      ]
+    },
+    "AULA-120": {
+      "grade": "A",
+      "author": "Cyber Study Hub — elaboração de conteúdo e laboratório assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial de IA (não revisor humano externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Reconstrução de lógica: reconstrução de política invalid/standard/priority a partir de traço e testes ocultos. Evidência prática: evaluateReconstruction rejeita hipótese n<=10 quando oracle n<10; contraexemplo 10. Limites explicitados: Cinco inputs não provam equivalência global nem recuperar source literal. Auditoria editorial por IA sem validação com estudantes reais.",
+      "contentSha256": "f9149b20456c9891000a2df5332dec85e93e05d73daec4e0e89e9749c0c680e5",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 95,
+        "defesa": 90,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão crítica IA de mecanismo, exemplos reais da ISA/ABI e limitações",
+          "reference": "public/course-library/main/120.md :: 2–3; https://ghidra-sre.org/",
+          "result": "Explica reconstrução de política invalid/standard/priority a partir de traço e testes ocultos; ressalva: Cinco inputs não provam equivalência global nem recuperar source literal"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso editorial simulado de iniciante (não houve estudantes humanos)",
+          "reference": "public/course-library/main/120.md :: 1, 2 e 4",
+          "result": "Vocabulário explicado, exemplo antes da prática, três checkpoints e erro de raciocínio específico."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste Node para caso positivo, negativo e condição de fronteira, a verificar no PR",
+          "reference": "public/course-labs/a111-120/lab.test.mjs :: AULA-120; public/course-labs/a111-120/models.mjs",
+          "result": "evaluateReconstruction rejeita hipótese n<=10 quando oracle n<10; contraexemplo 10"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de não extrapolação de comportamento observado e caso negativo",
+          "reference": "public/course-library/main/120.md :: 5. Investigação, correção e regressão",
+          "result": "Rastreabilidade e limitação explícita: Cinco inputs não provam equivalência global nem recuperar source literal"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência com cenário diferente e seis respostas externas ao enunciado",
+          "reference": "public/course-library/main/120.md :: 6; public/course-labs/a111-120/answer-keys/AULA-120.md",
+          "result": "Seis perguntas independentes com seis respostas, rubrica de 100 pontos e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto editorial de byte/ABI/CFG/trace com asserções identificadas",
+          "reference": "public/course-library/main/120.md :: 3–4; public/course-labs/a111-120/lab.test.mjs",
+          "result": "evaluateReconstruction rejeita hipótese n<=10 quando oracle n<10; contraexemplo 10"
+        }
+      ]
     }
   },
   "policy": {
