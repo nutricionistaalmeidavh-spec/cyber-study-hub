@@ -22,10 +22,16 @@ test('deep links, incremental search and empty-state recovery', () => {
   const browser = read('src/components/curriculum/CurriculumBrowser.tsx');
   assert.match(app, /params\.get\('mode'\)/);
   assert.match(app, /initialMode=\{route\.mode\}/);
+  assert.match(app, /initialModule=\{route\.module\}/);
   assert.match(browser, /initialMode = 'main'/);
+  assert.match(browser, /selectedMain/);
+  assert.match(browser, /selectedParallel/);
   assert.match(browser, /slice\(0, visibleCount\)/);
   assert.match(browser, /count => count \+ 24/);
   assert.match(browser, /Limpar busca e filtros/);
+  assert.match(browser, /'Escolha um módulo para estudar'/);
+  assert.match(browser, /AULAS DO MÓDULO/);
+  assert.match(browser, /Voltar aos módulos/);
   assert.match(browser, /Mostrando /);
 });
 

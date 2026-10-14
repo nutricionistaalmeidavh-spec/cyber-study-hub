@@ -6,7 +6,7 @@ On first login, point learners to main lesson 001. For a returning learner, pref
 
 Dashboard metrics state their actual denominators: total catalog items, supported interactive completions and due FSRS review cards. User progress always comes from the authenticated account via accountStorage, not anonymous browser state.
 
-Catalog journey: choose main or parallel mode from hash deep link, apply track and search filters, show first 24 entries, explicitly load more, show results and a no-results reset. Changing search or mode resets the visible window without dropping account state.
+Catalog journey: first render the 17 canonical main modules (grouped by catalog.main.block) or 13 parallel subject modules (grouped by catalog.parallel.track), not a flat list of 543 units. Selecting a module uses #lessons?mode=...&module=... and reveals only its lessons. Existing deep links with track are interpreted as the corresponding module. Search on the module index matches both module names and lesson titles; inside a module it filters only its lessons. The first 24 results appear, with explicit load-more, result count and no-results recovery. Back-to-modules and browser history restore higher-level navigation without changing account state. The document viewer returns to the correct module. Parallel activity flags continue to be stored in curriculumState by original trackCode, including groups with more than one code.
 
 Mobile navigation: six labeled and reachable routes on desktop and phone; native links and visible focus; safe area and bottom padding so content remains reachable. Account/admin security and all API routes are unchanged.
 
