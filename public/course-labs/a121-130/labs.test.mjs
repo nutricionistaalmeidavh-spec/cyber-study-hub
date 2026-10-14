@@ -36,7 +36,7 @@ test('123: saída diferente exige confirmação em múltiplas amostras',()=>{
 });
 test('124: presença de marca de VM é só informação de inventário',()=>{
  const r=compareEnvironment({hypervisor:true,cpus:2},{hypervisor:false,cpus:8});
- assert.deepEqual(r.differences,['hypervisor','cpus']);
+ assert.deepEqual(r.differences,['cpus','hypervisor']);
  assert.equal(r.provesEvasion,false);
 });
 test('124: ambientes equivalentes produzem diferença vazia',()=>{
