@@ -1,54 +1,36 @@
-# Trilha Desenvolvimento de Sistemas com IA — P0 e P1
+# Trilha Desenvolvimento de Sistemas com IA — estado M01–M05
 
-**Estado:** módulo 01 disponível como piloto, módulos 02–08 planejados. Escopo da branch: conteúdo educacional, página da trilha, protótipo Meu Gestor e validações. Autenticação, contas, OAuth, APIs e deploy não são modificados.
+**Implementação nesta branch (não publicada em produção):**
+- 8 módulos no roadmap / 32 etapas previstas.
+- **M01–M05 completos:** 20 etapas disponíveis, 10 microaulas novas, 5 referências canônicas e 5 laboratórios incrementais.
+- **M06–M08 planejados**, sem links para conteúdo inexistente.
+- As 543 unidades da biblioteca permanecem com os mesmos IDs e arquivos originais.
+- Classificação A é **editorial assistida por IA**, com evidências e limites em `docs/quality/AUDITORIA_A_TRILHA_IA_M01_M05.md` e `quality/trails/ai-dev/reviews.json`.
 
-## Regra canônica
+## Ferramentas e acesso
 
-A trilha é uma **sequência pedagógica** que referencia oito unidades existentes em `src/curriculum/catalog.json`. Não aumenta artificialmente as 543 unidades da biblioteca. São **16 microaulas novas + 8 referências canônicas + 8 laboratórios novos = 32 etapas**. A numeração `01–32` identifica etapas da nova trilha, nunca IDs `AULA-XXX`.
+O caminho principal ensina a usar **ChatGPT ou Claude pelo navegador**, sem chave de API nem integração invisível ao HubEstudos. Disponibilidade dos planos gratuitos sujeita a limites e mudanças do fornecedor. IA local com Ollama é **opção** de quem possui hardware adequado. Todo laboratório e material de avaliação funciona **sem IA obrigatória**, com ferramentas abertas e sem serviços pagos essenciais.
 
-- Aulas originais permanecem em `public/course-library/parallel/*.md`.
-- Apenas o módulo 1 está pronto para uso. Exibir os outros como *em breve*, sem links inexistentes.
-- Sem bloqueio rígido por pré-requisito; permitir revisão livre.
-- Cada laboratório entrega um incremento do mesmo projeto, nunca um exercício desconectado.
-- Não capturar conversa de IA, chave de API, tokens ou dados pessoais. Apenas progresso local simples e texto de planejamento fictício podem ser armazenados no dispositivo.
+## Matriz A editorial
 
-## Matriz e validação do reaproveitamento
+| Módulo | Unidade referenciada | Artefato incremental |
+|---|---|---|
+| M01 | LOG-01 | protótipo HTML e regras observáveis |
+| M02 | LOG-11 | documento de requisitos e contrato da OS |
+| M03 | ENG-01 | React+TS+Vite v0.1 local |
+| M04 | WEB-11 | React v0.2, interface e responsividade |
+| M05 | JS-02 | React v0.3, CRUD e testes unitários |
 
-| Módulo | Aula canônica | Conteúdo real verificado | Por que se conecta | Ponte didática |
-|---|---|---|---|---|
-| 01 — Primeiros passos | LOG-01 | Algoritmos e decomposição de problemas | Entradas, decisões e invariantes | Criar regra de estado das ordens |
-| 02 — Da ideia ao sistema | LOG-11 | Entrada → processamento → saída | Contratos de entradas e resultados | Converter requisitos de serviço em comportamento testável |
-| 03 — Preparar projeto | ENG-01 | Git | Versionar mudanças | Primeiros commits do Meu Gestor |
-| 04 — Interfaces | WEB-11 | HTML | Estrutura/semântica do documento | Base acessível para React e formulários |
-| 05 — Funcionalidade | JS-02 | Objetos e arrays | Listas e dados no navegador | CRUD de clientes e ordens |
-| 06 — Banco e backend | WEB-26 | Databases | Persistência, constraints e transações | Mapear tabelas e garantir integridade |
-| 07 — Qualidade | ENG-16 | Testes | Evidenciar comportamento | Testar estados inválidos e regressão |
-| 08 — Publicar | ENG-21 | Build | Gerar artefatos verificáveis | Preparar e instalar a versão local |
+As provas e gabaritos independentes estão em `public/course-labs/ai-dev-meu-gestor/assessments/` e `answer-keys/`.
 
-**Correção sobre a proposta inicial:** LOG-15 aborda validação de entrada e não definição de requisitos; fica como **aprofundamento** para os módulos 02/05, e LOG-11 ocupa a referência principal do módulo 02.
+## Garantias técnicas e limitações
 
-## Uso de IA: navegador primeiro, local opcional
+O pipeline `npm run verify:ai-dev` confere 5 pareceres A, seis dimensões, hash SHA-256 por módulo, integridade de provas e respostas, referências canônicas, 20 etapas e testes locais. O workflow compila os três checkpoints React e executa o build do HubEstudos mais testes de autenticação.
 
-1. **Caminho recomendado:** ChatGPT ou Claude pelo navegador, usando prompts copiáveis, sem instalar extensões e sem o site do curso enviar dados ao provedor. Recursos gratuitos podem ter limites ou indisponibilidade; não prometer acesso ilimitado.
-2. **Caminho local (facultativo):** Ollama com modelo aberto que o computador comportar. Não estimar mínimos universais de RAM/VRAM nem presumir que o modelo edita um projeto inteiro. Nenhum requisito desse caminho para a conclusão.
-3. **Caminho sem IA:** roteiro conceitual, exemplo de resposta, documento de planejamento e protótipo HTML. É uma alternativa para a gratuidade obrigatória quando serviços externos não estiverem disponíveis.
-4. **Pagamento:** nenhuma API, assinatura, chave, crédito, chamada de serviço paga ou conta comercial obrigatória. Eventuais planos pagos de ChatGPT/Claude só podem aparecer como opção claramente identificada, fora do núcleo.
-5. **Segurança:** dados 100% fictícios, sem segredos ou informações clínicas/comerciais reais. A verificação de código e comportamento é do aluno; IA não é fonte de verdade.
+**O registro de progresso da nova trilha permanece local**, separado do sistema sincronizado original. A etapa registrada não significa que a resposta foi aprovada por professor, e o parecer A da aula não significa resultado de aprendizagem observado. Nenhum conteúdo usa dados reais de clientes ou pacientes.
 
-## Laboratório 01 — roteiro de QA pedagógico
+**Autenticação, OAuth, permissões, secrets e deploy não são modificados.** O PR continua em rascunho para QA de UI e revisão pedagógica antes de merge.
 
-- Um aluno sem ambiente de desenvolvimento abre o HTML e consegue observar três ordens e o contador.
-- Avançar `pendente → em andamento → concluído` atualiza contador apenas uma vez.
-- Serviço `concluído` não oferece ação para continuar.
-- Trocar somente o texto fictício de um serviço preserva indicadores.
-- A etapa 01 só pode ser registrada após resposta correta; a etapa 02 exige revisão de três itens; a etapa 03 exige declaração de estudo da referência; a etapa 04 exige texto e critérios de aceite marcados. Essas últimas são **autodeclarações**; não certificam aprendizado.
-- A página funciona com teclado/mobile e respeita a autenticação preexistente. Nenhuma integração de IA automática está presente.
-- O progresso do piloto é **local por identificador de conta**, sem sincronização entre dispositivos. Não alegar equivalência ao progresso sincronizado das aulas do currículo.
-- A prévia é HTML/JS sem bibliotecas para reduzir fricção inicial; no módulo 03 o aluno migrará para React, TypeScript e Vite.
-- **Pendente antes do lançamento geral:** estudo com iniciantes, acessibilidade assistiva, auditoria de contraste e confirmação de build/QA automatizada.
+## Pendências futuras
 
-## Próximas fases
-
-- P2: conteúdo completo dos módulos 02–08 e seus laboratórios.
-- P3: versão sincronizada de progresso no modelo de contas existente, com migração e testes específicos de autorização; não incluída nesta branch para proteger o sistema de login.
-- P4: testes com alunos, QA visual mobile e validação pedagógica das entregas.
+M06–M08, estudo com aprendizes reais, avaliação de acessibilidade assistiva e sincronização de progresso com migração explicitamente testada.
