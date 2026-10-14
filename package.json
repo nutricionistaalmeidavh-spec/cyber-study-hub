@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:learning && npm run verify:catalog && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && tsc --noEmit && vite build",
+    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:learning && npm run verify:catalog && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:hub-editorial && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -60,7 +60,7 @@
     "test:hub-ux": "node --test scripts/test-hub-learning-experience.mjs scripts/test-curriculum-modules.mjs",
     "verify:ai-dev": "node scripts/verify-ai-dev.mjs",
     "test:editorial": "node --test scripts/test-artisys-editorial.mjs",
-    "test:hub-editorial": "node --test scripts/test-hub-editorial.mjs"
+    "test:hub-editorial": "node --test scripts/test-artisys-hub-editorial.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
