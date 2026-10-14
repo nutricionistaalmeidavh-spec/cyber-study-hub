@@ -48,3 +48,18 @@ test('motion core uses only self-hosted browser primitives and no paid dependenc
   const motion = read('src/components/useAcademyMotion.ts');
   assert.doesNotMatch(motion, /https?:\/\/|fetch\(|import\(.*https?:/);
 });
+
+
+test('hero preview stays straight at every viewport; floating note stays in flow', () => {
+  const base = read('src/components/academy.css');
+  const motionCss = read('src/components/academy-motion.css');
+  const motion = read('src/components/useAcademyMotion.ts');
+
+  assert.doesNotMatch(base, /\.academy-preview-shell\{[^}]*rotate\(/, 'CSS must not rotate the preview');
+  assert.doesNotMatch(motion, /preview\.style\.transform\s*=\s*[^;\n]*rotate\(/, 'scroll animation must not rotate the preview');
+  assert.match(motion, /matchMedia\(['"]\(max-width:\s*820px\)['"]\)/, 'mobile has distinct scroll handling');
+  assert.match(motion, /compact\.matches[\s\S]*?preview\.style\.removeProperty\('transform'\)/, 'mobile preview cannot be scrolled out of its layout slot');
+  assert.match(base, /\.academy-float-note\{[^}]*position:relative/, 'note must participate in normal flow');
+  assert.doesNotMatch(motionCss, /\.academy-float-note\{animation:academy-float/, 'note must not float over content');
+  assert.match(motion, /Math\.min\(\s*28/, 'desktop scroll offset should be capped');
+});

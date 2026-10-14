@@ -15,6 +15,7 @@ export function useAcademyMotion(rootRef: RefObject<HTMLDivElement | null>) {
 
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const pointerFine = window.matchMedia('(pointer: fine)');
+    const compact = window.matchMedia('(max-width: 820px)');
     const hero = root.querySelector<HTMLElement>('.academy-hero');
     const preview = root.querySelector<HTMLElement>('.academy-preview-shell');
     const glow = root.querySelector<HTMLElement>('.academy-hero-glow');
@@ -81,10 +82,18 @@ export function useAcademyMotion(rootRef: RefObject<HTMLDivElement | null>) {
         progressTrack.style.transform = 'scaleX(' + clamp(window.scrollY / total, 0, 1).toFixed(4) + ')';
       }
 
-      if (hero && hero.getBoundingClientRect().bottom > -100) {
-        const offset = clamp(window.scrollY * 0.12, 0, 92);
-        if (preview) preview.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0) rotate(2deg)';
-        if (glow) glow.style.transform = 'translate3d(0,' + (offset * -0.45).toFixed(1) + 'px,0)';
+      if (preview) {
+        // On phones the preview must remain in document flow, upright and
+        // never overlap the following section when scrolling.
+        if (compact.matches) preview.style.removeProperty('transform');
+        else if (hero && hero.getBoundingClientRect().bottom > -100) {
+          const offset = Math.min(28, Math.max(0, window.scrollY * 0.06));
+          preview.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+        }
+      }
+      if (glow && hero && hero.getBoundingClientRect().bottom > -100) {
+        const offset = Math.min(28, Math.max(0, window.scrollY * 0.06));
+        glow.style.transform = 'translate3d(0,' + (offset * -0.45).toFixed(1) + 'px,0)';
       }
 
       for (const line of kinetic) {
