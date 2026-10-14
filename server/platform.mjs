@@ -136,10 +136,10 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         if(typeof bootstrapKey!=='string'||bootstrapKey.length===0)
           throw new HttpError(503,'Chave de instalação não configurada no servidor.');
         const attemptKey=sha('bootstrap:'+(req.socket.remoteAddress??'unknown'));
-        enforceLoginLimit(attemptKey);
+        limit(attemptKey);
         if(typeof b.bootstrapKey!=='string'||
            !timingSafeEqual(Buffer.from(sha(bootstrapKey),'hex'),Buffer.from(sha(b.bootstrapKey),'hex'))){
-          failedLogin(attemptKey);
+          fail(attemptKey);
           throw new HttpError(403,'Chave de instalação inválida.');
         }
         q('DELETE FROM login_attempts WHERE key=?').run(attemptKey);
