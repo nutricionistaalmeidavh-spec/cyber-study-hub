@@ -1,5 +1,5 @@
 import { resolveCourseLink, parsePipeRow, isTableSeparator } from './markdownSupport';
-import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { Fragment, isValidElement, useEffect, useMemo, useState, type ReactNode } from 'react';
 import catalogData from '../../curriculum/catalog.json';
 import type {
   CurriculumCatalog,
@@ -87,9 +87,8 @@ export function CourseDocumentViewer(props: Props) {
         </span>
         <h1>{item.title}</h1>
         <p>
-          Conteúdo editorial carregado sob demanda a partir do MASTER. Esta rota
-          serve como acesso completo durante a migração gradual para experiências
-          interativas V2.
+          Estude os fundamentos, acompanhe os exemplos e pratique no seu ritmo.
+          Os capítulos destacados ajudam a reconhecer problemas, aplicações e revisões.
         </p>
         {item.kind === 'main' && item.id >= 43 && item.id <= 100 && (
           <a className="button primary" href={`#lesson/${item.id}`}>
@@ -125,7 +124,48 @@ export function CourseDocumentViewer(props: Props) {
 
 function MarkdownDocument({ markdown }: { markdown: string }) {
   const blocks = useMemo(() => parseMarkdown(markdown), [markdown]);
-  return <article className="markdown-document">{blocks}</article>;
+  return <article className="markdown-document">{groupEditorialChapters(blocks)}</article>;
+}
+
+// Keep the existing Markdown nodes, including tables, links and code.
+// Semantic chapters avoid arbitrary every-other-page coloration.
+function editorialHeadingText(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(editorialHeadingText).join('');
+  if (isValidElement<{ children?: ReactNode }>(node)) return editorialHeadingText(node.props.children);
+  return '';
+}
+
+function groupEditorialChapters(nodes: ReactNode[]): ReactNode[] {
+  const chapters: ReactNode[] = [];
+  let current: ReactNode[] = [];
+  let chapterTitle = '';
+  const flush = () => {
+    if (!current.length) return;
+    const normalized = chapterTitle.toLocaleLowerCase('pt-BR')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const practical = /\b(problema|escopo|pratica|laboratorio|desafio|caso|projeto|mecanismo|avaliacao|revisao|seguranca|diagnostico)\b/.test(normalized);
+    chapters.push(
+      <section
+        className={practical ? 'editorial-chapter editorial-chapter--dark' : 'editorial-chapter'}
+        key={'chapter-' + chapters.length}
+        aria-label={chapterTitle || 'Introdução da aula'}
+      >
+        {current}
+      </section>
+    );
+    current = [];
+  };
+
+  nodes.forEach(node => {
+    if (isValidElement(node) && (node.type === 'h1' || node.type === 'h2')) {
+      flush();
+      chapterTitle = editorialHeadingText(node);
+    }
+    current.push(node);
+  });
+  flush();
+  return chapters;
 }
 
 function parseMarkdown(markdown: string) {
