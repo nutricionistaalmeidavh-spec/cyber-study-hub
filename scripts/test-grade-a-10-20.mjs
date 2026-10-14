@@ -27,5 +27,5 @@ for(let n=10;n<=20;n++){
  assert.ok(a.technicalSources.length>0);
  console.log('PASS A editorial assistido por IA:',code,sha.slice(0,12));
 }
-assert.equal(Object.values(registry.editorialReviews).filter(r=>r.grade==='A').length,26);
-console.log('PASS 11 aulas 010-020 + 7 aulas 002-008 + 8 piloto = 26 A, sem teste humano alegado.');
+assert.ok(Object.values(registry.editorialReviews).filter(r=>r.grade==='A').length>=36);
+console.log('PASS 11 aulas 010-020 + 7 aulas 002-008 + 8 piloto + 10 aulas 031-040 = pelo menos 36 A, sem teste humano alegado.');
