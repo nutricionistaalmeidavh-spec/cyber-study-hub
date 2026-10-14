@@ -41,7 +41,12 @@
     "test:grade-a-121-130": "node scripts/test-grade-a-121-130.mjs",
     "test:a-91-100": "node --test public/course-labs/a91-100/lab.test.mjs",
     "test:grade-a-91-100": "node scripts/test-grade-a-91-100.mjs",
-    "test:grade-a-101-110": "node scripts/test-grade-a-101-110.mjs"
+    "test:grade-a-101-110": "node scripts/test-grade-a-101-110.mjs",
+    "start": "node server/start.mjs",
+    "dev:api": "node server/start.mjs",
+    "test:platform": "node --test server/*.test.mjs",
+    "dev:worker": "wrangler dev --local",
+    "test:worker": "node scripts/test-cloudflare.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
