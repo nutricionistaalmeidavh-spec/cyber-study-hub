@@ -18,7 +18,7 @@ type Route =
   | { page: 'dashboard' }
   | { page: 'account' }
   | { page: 'admin-users' }
-  | { page: 'lessons'; track?: string }
+  | { page: 'lessons'; track?: string; mode?: 'main' | 'parallel' }
   | { page: 'lesson'; id: number }
   | { page: 'course-main'; id: number }
   | { page: 'course-parallel'; code: string }
@@ -39,8 +39,10 @@ function parseHash(): Route {
   }
   if (raw.startsWith('lessons')) {
     const query = raw.split('?')[1] || '';
-    const track = new URLSearchParams(query).get('track') || undefined;
-    return { page: 'lessons', track };
+    const params = new URLSearchParams(query);
+    const track = params.get('track') || undefined;
+    const mode = params.get('mode') === 'parallel' ? 'parallel' : 'main';
+    return { page: 'lessons', track, mode };
   }
   if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
   if (raw === 'account') return { page: 'account' };
@@ -81,13 +83,13 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
     <aside className="sidebar">
       <a className="brand" href="#dashboard"><span className="brand-mark">+</span><div><strong>Cyber Study</strong><small>Hub</small></div></a>
       <nav>
-        <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Dashboard" />
-        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="▤" label="Aulas" />
-        <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Cyber Games" />
-        <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
-        <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />
-        <Nav href="#account" active={route.page==='account'} icon="◎" label="Minha conta" />
-        {user.role==='admin' && <Nav href="#admin/users" active={route.page==='admin-users'} icon="♙" label="Usuários" />}
+        <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
+        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+        <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
+        <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
+        <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
+        <Nav href="#account" active={route.page==='account'} icon="account" label="Minha conta" />
+        {user.role==='admin' && <Nav href="#admin/users" active={route.page==='admin-users'} icon="users" label="Usuários" />}
       </nav>
       <div className="account-sidebar"><strong>{user.name}</strong><small>{user.email}</small><button onClick={() => void actions.logout()}>Sair da conta</button></div>
       {!isStandalone && <button className="install-card" onClick={install}><span>＋</span><div><strong>Instalar app</strong><small>Use como PWA</small></div></button>}
@@ -95,10 +97,10 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
     </aside>
 
     <main className="main-content">
-      {route.page==='dashboard' && <Dashboard />}
+      {route.page==='dashboard' && <Dashboard user={user} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
-      {route.page==='lessons' && <LessonList initialTrack={route.track} />}
+      {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} />}
       {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
       {route.page==='course-main' && <CourseDocumentViewer kind="main" id={route.id} />}
       {route.page==='course-parallel' && <CourseDocumentViewer kind="parallel" code={route.code} />}
@@ -110,18 +112,30 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
     </main>
 
     <nav className="mobile-nav">
-      <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Início" />
-      <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="▤" label="Aulas" />
-      <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Jogos" />
-      <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
-      <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />
-      <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="◎" label="Conta" />
+      <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
+      <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+      <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
+      <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
+      <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
+      <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
     </nav>
 
     {showIos && <div className="modal-backdrop" onClick={()=>setShowIos(false)}><div className="modal" onClick={(e:any)=>e.stopPropagation()}><span className="eyebrow">INSTALAR NO IPHONE</span><h2>Adicionar à Tela de Início</h2><ol><li>Toque em <b>Compartilhar</b> no Safari.</li><li>Escolha <b>Adicionar à Tela de Início</b>.</li><li>Confirme em <b>Adicionar</b>.</li></ol><button className="button primary" onClick={()=>setShowIos(false)}>Entendi</button></div></div>}
   </div>;
 }
 
-function Nav({href,active,icon,label}:{href:string;active:boolean;icon:string;label:string}) {
-  return <a href={href} className={active?'nav-item active':'nav-item'}><span>{icon}</span><b>{label}</b></a>;
+type NavIconName = 'home' | 'book' | 'games' | 'materials' | 'review' | 'account' | 'users';
+function NavIcon({ name }: { name: NavIconName }) {
+  return <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {name==='home' && <><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></>}
+    {name==='book' && <><path d="M4 5.5C7 4 10 4 12 6v14c-2-2-5-2-8-.5z"/><path d="M20 5.5C17 4 14 4 12 6v14c2-2 5-2 8-.5z"/></>}
+    {name==='games' && <><path d="M6 8h12a4 4 0 0 1 3.8 3l1 5a3 3 0 0 1-4.7 3L15 17H9l-3.1 2A3 3 0 0 1 1.2 16l1-5A4 4 0 0 1 6 8z"/><path d="M8 11v5M5.5 13.5h5"/><circle cx="16" cy="12" r=".7" fill="currentColor" stroke="none"/><circle cx="19" cy="14" r=".7" fill="currentColor" stroke="none"/></>}
+    {name==='materials' && <><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></>}
+    {name==='review' && <><path d="M20 10a8 8 0 1 0 .1 4"/><path d="M20 4v6h-6"/></>}
+    {name==='account' && <><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></>}
+    {name==='users' && <><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 5a3 3 0 0 1 0 6M17 15a6 6 0 0 1 4 5"/></>}
+  </svg>;
+}
+function Nav({href,active,icon,label}:{href:string;active:boolean;icon:NavIconName;label:string}) {
+  return <a href={href} aria-current={active?'page':undefined} className={active?'nav-item active':'nav-item'}><span className="nav-icon"><NavIcon name={icon}/></span><b>{label}</b></a>;
 }
