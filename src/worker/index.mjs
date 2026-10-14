@@ -280,6 +280,7 @@ export default {
   fetch(request,env){
     const url=new URL(request.url);
     if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
+    if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
     if(!env.HUB_AUTH)return response(503,{error:'Backend da plataforma não configurado.'});
     return env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(request);
   }
