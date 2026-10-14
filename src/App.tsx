@@ -8,6 +8,7 @@ import Review from './components/Review';
 import { MaterialsHub, MaterialViewer } from './components/Materials';
 import type { GameType } from './types';
 import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
+import AiDevelopmentTrail from './trails/ai-dev/AiDevelopmentTrail';
 
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -26,6 +27,7 @@ type Route =
   | { page: 'game'; packId: number; type: GameType }
   | { page: 'review' }
   | { page: 'materials' }
+  | { page: 'ai-dev' }
   | { page: 'material'; id: string };
 
 function parseHash(): Route {
@@ -49,6 +51,7 @@ function parseHash(): Route {
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
   if (raw === 'materials') return { page: 'materials' };
+  if (raw === 'ai-dev') return { page: 'ai-dev' };
   if (raw === 'games') return { page: 'games' };
   if (raw === 'review') return { page: 'review' };
   return { page: 'dashboard' };
@@ -86,6 +89,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
         <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+        <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
@@ -105,6 +109,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
       {route.page==='course-main' && <CourseDocumentViewer kind="main" id={route.id} />}
       {route.page==='course-parallel' && <CourseDocumentViewer kind="parallel" code={route.code} />}
+      {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
       {route.page==='games' && <GamesHub />}
       {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
       {route.page==='materials' && <MaterialsHub />}
@@ -125,7 +130,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   </div>;
 }
 
-type NavIconName = 'home' | 'book' | 'games' | 'materials' | 'review' | 'account' | 'users';
+type NavIconName = 'home' | 'book' | 'games' | 'materials' | 'review' | 'account' | 'users' | 'ai';
 function NavIcon({ name }: { name: NavIconName }) {
   return <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     {name==='home' && <><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></>}
@@ -134,6 +139,7 @@ function NavIcon({ name }: { name: NavIconName }) {
     {name==='materials' && <><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></>}
     {name==='review' && <><path d="M20 10a8 8 0 1 0 .1 4"/><path d="M20 4v6h-6"/></>}
     {name==='account' && <><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></>}
+    {name==='ai' && <><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/><path d="m19 17 .7 2.3L22 20l-2.3.7L19 23l-.7-2.3L16 20l2.3-.7z"/></>}
     {name==='users' && <><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 5a3 3 0 0 1 0 6M17 15a6 6 0 0 1 4 5"/></>}
   </svg>;
 }

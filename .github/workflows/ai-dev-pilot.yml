@@ -1,0 +1,55 @@
+name: Trilha IA M01-M05 QA
+on:
+  pull_request:
+    paths:
+      - 'src/trails/ai-dev/**'
+      - 'public/course-labs/ai-dev-meu-gestor/**'
+      - 'quality/trails/ai-dev/**'
+      - 'src/App.tsx'
+      - 'src/components/Dashboard.tsx'
+      - 'scripts/verify-ai-dev.mjs'
+      - 'src/curriculum/catalog.json'
+      - 'package.json'
+      - '.github/workflows/ai-dev-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-trail:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Pareceres A, hashes, conteúdo e testes dos laboratórios
+        run: npm run verify:ai-dev
+      - name: Build completo e validações existentes
+        run: npm run build
+      - name: Regressão de autenticação e isolamento de usuários
+        run: npm run test:platform
+  checkpoints:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      matrix:
+        checkpoint: ['v0.1', 'v0.2', 'v0.3']
+    defaults:
+      run:
+        working-directory: public/course-labs/ai-dev-meu-gestor/checkpoints/${{ matrix.checkpoint }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Instalar dependências abertas do checkpoint
+        run: npm install --no-audit --no-fund
+      - name: Typecheck e build Vite
+        run: npm run build
+      - name: Testes do domínio (somente v0.3)
+        if: matrix.checkpoint == 'v0.3'
+        run: npm run test

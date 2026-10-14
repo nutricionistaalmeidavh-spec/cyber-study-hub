@@ -66,3 +66,5 @@
  .hub-home-note{padding:18px}
 }
 @media(prefers-reduced-motion:reduce){.hub-journey,.hub-home-stat{transition:none}.hub-home-stat:hover,.hub-journey:hover{transform:none}}
+
+.hub-home-ai-cta{display:flex;justify-content:space-between;align-items:center;gap:22px;padding:25px 28px;border:1px solid rgba(25,211,189,.28);border-radius:21px;background:linear-gradient(100deg,rgba(25,211,189,.12),rgba(139,92,246,.1))}.hub-home-ai-cta>div{max-width:670px}.hub-home-ai-cta h2{font-size:21px;margin:8px 0 7px}.hub-home-ai-cta p{font-size:14px;margin:0}.hub-home-ai-cta .button{flex-shrink:0}@media(max-width:700px){.hub-home-ai-cta{flex-direction:column;align-items:stretch;padding:19px}.hub-home-ai-cta .button{width:100%}}

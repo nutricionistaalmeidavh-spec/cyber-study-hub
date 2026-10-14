@@ -74,6 +74,12 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
         <span>Aprender</span><span>Praticar</span><span>Revisar</span>
       </div>
     </section>
+    <section className="hub-home-ai-cta" aria-label="Nova trilha Desenvolvimento com IA">
+      <div><span className="eyebrow">DESENVOLVIMENTO COM IA · 5 MÓDULOS A EDITORIAL</span>
+      <h2>Construa o Meu Gestor com ChatGPT, Claude ou sem IA.</h2>
+      <p>Do planejamento ao CRUD: 20 etapas disponíveis, laboratórios reais e provas independentes. IA local é facultativa; API paga nunca é requisito.</p></div>
+      <a href="#ai-dev" className="button primary">Estudar trilha com IA →</a>
+    </section>
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
       <a href="#lessons" className="hub-home-stat">
         <small>Módulos de estudo</small><strong>{totalModules}</strong>

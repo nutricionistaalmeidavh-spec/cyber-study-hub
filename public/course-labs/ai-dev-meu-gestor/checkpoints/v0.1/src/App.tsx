@@ -1,0 +1,1 @@
+export default function App(){return <main><header><p className="hint">MEU GESTOR · CHECKPOINT V0.1</p><h1>Meu Gestor</h1><p>Seu primeiro componente React com TypeScript.</p></header><section className="panel"><h2>Primeira versão funcionando</h2><p>Altere somente este título, salve e confira o resultado. Ainda não existem cadastros nem banco de dados.</p></section></main>}
