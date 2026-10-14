@@ -15,7 +15,7 @@
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
     "verify:catalog": "node scripts/verify-phase-12-14.mjs",
     "test:quality": "node scripts/test-quality-p0.mjs",
-    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a && npm run test:a-002-008 && npm run test:grade-a-10-20 && npm run test:a-021-030 && npm run test:grade-a-031-040 && npm run test:grade-a-41-50 && npm run test:grade-a-061-070 && npm run test:grade-a-071-080 && npm run test:grade-a-81-90 && npm run test:a-51-60 && npm run test:grade-a-51-60 && npm run test:grade-a-continuity && npm run test:grade-a-111-120 && npm run test:grade-a-121-130 && npm run test:a-91-100 && npm run test:grade-a-91-100 && npm run test:grade-a-101-110 && npm run test:a-151-159 && npm run test:grade-a-151-160 && npm run test:grade-a-161-170",
+    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a && npm run test:a-002-008 && npm run test:grade-a-10-20 && npm run test:a-021-030 && npm run test:grade-a-031-040 && npm run test:grade-a-41-50 && npm run test:grade-a-061-070 && npm run test:grade-a-071-080 && npm run test:grade-a-81-90 && npm run test:a-51-60 && npm run test:grade-a-51-60 && npm run test:grade-a-continuity && npm run test:grade-a-111-120 && npm run test:grade-a-121-130 && npm run test:a-91-100 && npm run test:grade-a-91-100 && npm run test:grade-a-101-110 && npm run test:a-151-159 && npm run test:grade-a-151-160 && npm run test:grade-a-161-170 && npm run test:grade-a-131-140",
     "report:quality": "node scripts/quality-p0.mjs --write",
     "test:pilot-grade-a": "node scripts/test-pilot-grade-a.mjs",
     "test:a-002-008": "node scripts/test-a-002-008-structure.mjs && node scripts/test-a-002-008.mjs",
@@ -50,7 +50,9 @@
     "test:a-151-159": "node --test public/course-labs/a151-159/lab.test.mjs",
     "test:grade-a-151-160": "node scripts/test-grade-a-151-160.mjs",
     "test:a-161-170": "node scripts/test-a-161-170-structure.mjs && node --test public/course-labs/a161-170/lab.test.mjs",
-    "test:grade-a-161-170": "node scripts/test-grade-a-161-170.mjs"
+    "test:grade-a-161-170": "node scripts/test-grade-a-161-170.mjs",
+    "test:a-131-140": "node scripts/test-a-131-140-structure.mjs && node --test public/course-labs/a131-140/labs.test.mjs",
+    "test:grade-a-131-140": "node scripts/test-grade-a-131-140.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

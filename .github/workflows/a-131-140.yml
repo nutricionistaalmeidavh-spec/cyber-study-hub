@@ -1,0 +1,34 @@
+name: Aulas 131-140 QA
+
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/13*.md'
+      - 'public/course-library/main/140.md'
+      - 'public/course-labs/a131-140/**'
+      - 'quality/**'
+      - 'scripts/test-a-131-140-structure.mjs'
+      - 'scripts/test-grade-a-131-140.mjs'
+      - 'package.json'
+      - '.github/workflows/a-131-140.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Validate lab and lesson acceptance contract
+        run: npm run test:a-131-140
+      - name: Validate grade and SHA-256
+        run: npm run test:grade-a-131-140
+      - name: Full regression build
+        run: npm run build
