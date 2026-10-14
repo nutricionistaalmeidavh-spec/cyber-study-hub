@@ -1,5 +1,5 @@
 import {DatabaseSync} from 'node:sqlite';
-import {mkdirSync} from 'node:fs';
+import {mkdirSync,existsSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 export class DomainError extends Error {
  constructor(status,code,message){super(message);this.status=status;this.code=code;}
@@ -8,6 +8,7 @@ const fail=(status,code,message)=>{throw new DomainError(status,code,message);};
 const check=(v,label,max=160)=>{if(typeof v!=='string'||!v.trim()||v.trim().length>max)fail(422,'INVALID_FIELD',label+' exige texto de 1 a '+max+' caracteres');return v.trim();};
 const identifier=(v,prefix)=>{if(typeof v!=='string'||!new RegExp('^'+prefix+'-[0-9]{3,}$').test(v))fail(422,'INVALID_ID','Identificador inválido');return v;};
 export function openStore(file=':memory:',options={}){
+ const isNew=file===':memory:'||!existsSync(resolve(file));
  if(file!==':memory:')mkdirSync(dirname(resolve(file)),{recursive:true});
  const db=new DatabaseSync(file);
  db.exec('PRAGMA foreign_keys=ON');
@@ -17,7 +18,7 @@ export function openStore(file=':memory:',options={}){
  "CREATE TABLE IF NOT EXISTS orders(id TEXT PRIMARY KEY,client_id TEXT NOT NULL REFERENCES clients(id) ON DELETE RESTRICT,service TEXT NOT NULL CHECK(length(trim(service)) BETWEEN 1 AND 160),status TEXT NOT NULL DEFAULT 'pendente' CHECK(status IN ('pendente','em andamento','concluído')));",
  'CREATE INDEX IF NOT EXISTS orders_client_idx ON orders(client_id);'
  ].join('\n'));
- if(options.seed!==false && db.prepare('SELECT COUNT(*) AS n FROM clients').get().n===0){
+ if(options.seed!==false && isNew){
   db.exec('BEGIN IMMEDIATE');
   try{
    db.prepare('INSERT INTO clients(id,name) VALUES (?,?)').run('C-001','Cliente Exemplo A');
