@@ -85,14 +85,14 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
       <div><span className="eyebrow">FORMAÇÃO PRÁTICA · MEU GESTOR</span>
         <h1>Desenvolvimento de Sistemas com IA</h1>
         <p>Construa um sistema por etapas. Use ChatGPT ou Claude pelo navegador; IA local, apenas se o computador comportar. Laboratórios e explicações não exigem serviços pagos.</p>
-        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>5 módulos disponíveis</span><span>8 módulos · 32 etapas planejadas</span></div>
+        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>8 módulos disponíveis</span><span>8 módulos · 32 etapas</span></div>
       </div>
-      <div className="ai-meter"><strong>{allCount}/20</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{ width: allCount * 5 + '%' }} /></div></div>
+      <div className="ai-meter"><strong>{allCount}/32</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{ width: allCount * 100 / 32 + '%' }} /></div></div>
     </header>
 
     <section className="ai-roadmap" aria-label="Módulos da formação">
       {manifest.modules.map(m => {
-        const released = m.id <= 5;
+        const released = m.status === 'available';
         const count = released ? modules[m.id - 1].lessons.filter(s => progress.completed.includes(s.stepId)).length : 0;
         return released
           ? <button type="button" key={m.id} className={'ai-module available ' + (moduleId === m.id ? 'selected' : '')} aria-pressed={moduleId === m.id} onClick={() => choose(m.id, 0)}>
