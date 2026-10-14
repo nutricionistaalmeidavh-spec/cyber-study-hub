@@ -35,39 +35,39 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Verificação de estrutura e exemplos",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=1",
-          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+          "method": "Inspeção de código e contrato com exemplos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/tests/starter.test.mjs",
+          "result": "Protótipo: contadores derivados de três OS, 1 concluída; regras pendente→em andamento→concluído"
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "method": "Walkthrough editorial de iniciante, sem alunos humanos",
           "reference": "src/trails/ai-dev/modules.json#moduleId=1",
-          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+          "result": "Entrada, regra, estado e saída são explicados antes da primeira alteração, com previsão e contraexemplo"
         },
         {
           "dimension": "pratica",
-          "method": "Análise do contrato de laboratório e exercícios verificáveis",
-          "reference": "/course-labs/ai-dev-meu-gestor/README.md",
-          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+          "method": "Execução automatizada ou inspeção verificável de laboratório",
+          "reference": "public/course-labs/ai-dev-meu-gestor/tests/starter.test.mjs",
+          "result": "Teste HTML: avanço intermediário mantém 1 concluída, conclusão avança para 2 e repetição não duplica"
         },
         {
           "dimension": "defesa",
-          "method": "Revisão de limites e privacidade do percurso",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=1",
-          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+          "method": "Revisão de privacidade, limites e ausência de dependências pagas",
+          "reference": "public/course-labs/ai-dev-meu-gestor/starter.html",
+          "result": "O projeto inicial usa somente dados fictícios e script local; assistentes externos não recebem dados pelo app"
         },
         {
           "dimension": "avaliacao",
-          "method": "Segunda passagem editorial de avaliação de transferência",
-          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
-          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+          "method": "Segunda passagem crítica da prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
+          "result": "Seis cenários novos: conclusão repetida, cliente ausente, prompt fora de escopo e alteração visual; gabarito apartado"
         },
         {
           "dimension": "especificidade",
-          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "method": "Rastreio do resultado ao artefato e critérios de aceitação",
           "reference": "src/trails/ai-dev/modules.json#moduleId=1",
-          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+          "result": "Critérios de aceite ligados à edição de serviço sem mudança de regra e relatório antes/depois"
         }
       ],
       "limitations": [
@@ -78,7 +78,8 @@
       "labEvidence": [
         "/course-labs/ai-dev-meu-gestor/README.md",
         "/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
-        "/course-labs/ai-dev-meu-gestor/answer-keys/module-01.md"
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-01.md",
+        "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334"
       ]
     },
     {
@@ -109,39 +110,39 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Verificação de estrutura e exemplos",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
-          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+          "method": "Inspeção de código e contrato com exemplos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-template.md",
+          "result": "Contrato Cliente(id,nome) e Ordem(id,clientId,serviço,status), vínculo obrigatório e estado inicial pendente"
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "method": "Walkthrough editorial de iniciante, sem alunos humanos",
           "reference": "src/trails/ai-dev/modules.json#moduleId=2",
-          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+          "result": "Etapas separam persona/necessidade, requisitos e walkthrough Given/When/Then antes da implementação"
         },
         {
           "dimension": "pratica",
-          "method": "Análise do contrato de laboratório e exercícios verificáveis",
-          "reference": "/course-labs/ai-dev-meu-gestor/README.md",
-          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+          "method": "Execução automatizada ou inspeção verificável de laboratório",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.test.mjs",
+          "result": "Testes de regras: cliente ausente e serviço vazio rejeitados sem mutação; exclusão com OS bloqueada"
         },
         {
           "dimension": "defesa",
-          "method": "Revisão de limites e privacidade do percurso",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
-          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+          "method": "Revisão de privacidade, limites e ausência de dependências pagas",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-template.md",
+          "result": "Modelo obriga cliente fictício e declara login/pagamentos fora do escopo; não utiliza serviços de IA pagos"
         },
         {
           "dimension": "avaliacao",
-          "method": "Segunda passagem editorial de avaliação de transferência",
-          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
-          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+          "method": "Segunda passagem crítica da prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
+          "result": "Seis cenários independentes pedem requisitos testáveis, fonte da verdade, política de exclusão e hipóteses"
         },
         {
           "dimension": "especificidade",
-          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
-          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+          "method": "Rastreio do resultado ao artefato e critérios de aceitação",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-template.md",
+          "result": "A especificação fixa cinco RF com caso inválido correspondente e política para OS órfã"
         }
       ],
       "limitations": [
@@ -152,7 +153,8 @@
       "labEvidence": [
         "/course-labs/ai-dev-meu-gestor/README.md",
         "/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
-        "/course-labs/ai-dev-meu-gestor/answer-keys/module-02.md"
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-02.md",
+        "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334"
       ]
     },
     {
@@ -183,39 +185,39 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Verificação de estrutura e exemplos",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=3",
-          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+          "method": "Inspeção de código e contrato com exemplos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/package.json",
+          "result": "Checkpoint React+TS+Vite instala, compila e gera dist; confirmação via workflow de QA"
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "method": "Walkthrough editorial de iniciante, sem alunos humanos",
           "reference": "src/trails/ai-dev/modules.json#moduleId=3",
-          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+          "result": "Exercícios diferenciam Node/npm, Vite, Git, editor, build e diagnóstico passo a passo"
         },
         {
           "dimension": "pratica",
-          "method": "Análise do contrato de laboratório e exercícios verificáveis",
-          "reference": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
-          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+          "method": "Execução automatizada ou inspeção verificável de laboratório",
+          "reference": "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334",
+          "result": "GitHub Actions executou npm install e npm run build de v0.1 com sucesso; erro controlado e reversão são prática guiada"
         },
         {
           "dimension": "defesa",
-          "method": "Revisão de limites e privacidade do percurso",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=3",
-          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+          "method": "Revisão de privacidade, limites e ausência de dependências pagas",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
+          "result": "Orientação impede exposição de tokens e .env no assistente; dependências são abertas e gratuitas"
         },
         {
           "dimension": "avaliacao",
-          "method": "Segunda passagem editorial de avaliação de transferência",
-          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
-          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+          "method": "Segunda passagem crítica da prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
+          "result": "Prova nova exige diagnóstico de build falho, segurança de .env e distinção de git status/commit"
         },
         {
           "dimension": "especificidade",
-          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "method": "Rastreio do resultado ao artefato e critérios de aceitação",
           "reference": "src/trails/ai-dev/modules.json#moduleId=3",
-          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+          "result": "Entregável verifica título alterado, build local e commit separado de node_modules"
         }
       ],
       "limitations": [
@@ -226,7 +228,8 @@
       "labEvidence": [
         "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
         "/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
-        "/course-labs/ai-dev-meu-gestor/answer-keys/module-03.md"
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-03.md",
+        "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334"
       ]
     },
     {
@@ -257,39 +260,39 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Verificação de estrutura e exemplos",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
-          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+          "method": "Inspeção de código e contrato com exemplos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/App.tsx",
+          "result": "Checkpoint v0.2 React usa navegação por botões, aria-pressed, labels e métricas derivadas"
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "method": "Walkthrough editorial de iniciante, sem alunos humanos",
           "reference": "src/trails/ai-dev/modules.json#moduleId=4",
-          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+          "result": "Três aulas contextualizam HTML semântico, acessibilidade, componentes e responsividade em 360px"
         },
         {
           "dimension": "pratica",
-          "method": "Análise do contrato de laboratório e exercícios verificáveis",
-          "reference": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
-          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+          "method": "Execução automatizada ou inspeção verificável de laboratório",
+          "reference": "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334",
+          "result": "Build v0.2 passou no CI; manual exige Tab/Enter, zoom, estado vazio e contador consistente"
         },
         {
           "dimension": "defesa",
-          "method": "Revisão de limites e privacidade do percurso",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
-          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+          "method": "Revisão de privacidade, limites e ausência de dependências pagas",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/App.tsx",
+          "result": "A interface informa explicitamente dados demonstrativos e ausência de gravação/persistência"
         },
         {
           "dimension": "avaliacao",
-          "method": "Segunda passagem editorial de avaliação de transferência",
-          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
-          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+          "method": "Segunda passagem crítica da prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
+          "result": "Seis casos independentes cobrem labels, contador inconsistente, viewport estreita e estado vazio"
         },
         {
           "dimension": "especificidade",
-          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
-          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+          "method": "Rastreio do resultado ao artefato e critérios de aceitação",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/demo.ts",
+          "result": "Dashboard, Clientes e Serviços reutilizam as fixtures sem valores agregados artificiais"
         }
       ],
       "limitations": [
@@ -300,7 +303,8 @@
       "labEvidence": [
         "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
         "/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
-        "/course-labs/ai-dev-meu-gestor/answer-keys/module-04.md"
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-04.md",
+        "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334"
       ]
     },
     {
@@ -331,39 +335,39 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Verificação de estrutura e exemplos",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=5",
-          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+          "method": "Inspeção de código e contrato com exemplos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/src/domain.ts",
+          "result": "Funções de domínio para cliente/OS incluem validação, integridade referencial e transição terminal"
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "method": "Walkthrough editorial de iniciante, sem alunos humanos",
           "reference": "src/trails/ai-dev/modules.json#moduleId=5",
-          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+          "result": "Explicações comparam objetos/arrays, IDs estáveis, estado imutável, edição, busca e filtros"
         },
         {
           "dimension": "pratica",
-          "method": "Análise do contrato de laboratório e exercícios verificáveis",
-          "reference": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
-          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+          "method": "Execução automatizada ou inspeção verificável de laboratório",
+          "reference": "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334",
+          "result": "15 testes Node de CRUD e tipos/build v0.3 aprovados no CI; rejeitam vazio, id ausente, conclusão repetida"
         },
         {
           "dimension": "defesa",
-          "method": "Revisão de limites e privacidade do percurso",
-          "reference": "src/trails/ai-dev/modules.json#moduleId=5",
-          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+          "method": "Revisão de privacidade, limites e ausência de dependências pagas",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
+          "result": "Cadastros são fictícios e temporários; recarregar repõe fixtures, sem API nem banco oculto"
         },
         {
           "dimension": "avaliacao",
-          "method": "Segunda passagem editorial de avaliação de transferência",
-          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
-          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+          "method": "Segunda passagem crítica da prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
+          "result": "Seis cenários novos focam índice filtrado incorreto, exclusão com vínculos e estados duplicados"
         },
         {
           "dimension": "especificidade",
-          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "method": "Rastreio do resultado ao artefato e critérios de aceitação",
           "reference": "src/trails/ai-dev/modules.json#moduleId=5",
-          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+          "result": "Critérios de aceitação diferenciam CRUD em memória de persistência em SQLite, reservada ao M06"
         }
       ],
       "limitations": [
@@ -374,7 +378,8 @@
       "labEvidence": [
         "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
         "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
-        "/course-labs/ai-dev-meu-gestor/answer-keys/module-05.md"
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-05.md",
+        "https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38588586334"
       ]
     }
   ]
