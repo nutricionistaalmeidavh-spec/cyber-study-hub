@@ -1,0 +1,33 @@
+name: Aulas 061-070 QA
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/06*.md'
+      - 'public/course-library/main/070.md'
+      - 'public/course-labs/a061-070/**'
+      - 'quality/**'
+      - 'scripts/test-a-061-070-structure.mjs'
+      - 'scripts/test-grade-a-061-070.mjs'
+      - 'package.json'
+      - '.github/workflows/a-061-070.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies without audit network
+        run: npm ci --no-audit --no-fund
+      - name: Validate lesson documents, answer keys and offline tests
+        run: npm run test:a-061-070
+      - name: Build with canonical registry and all previous A cohorts
+        run: npm run build
