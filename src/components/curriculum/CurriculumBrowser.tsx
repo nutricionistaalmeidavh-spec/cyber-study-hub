@@ -172,8 +172,8 @@ export function CurriculumBrowser({
       <div className="curriculum-module-detail">
         <div>
           <span className="eyebrow">AULAS DO MÓDULO</span>
-          <h2>{initialMode === 'main' ? 'Conteúdos deste módulo' : 'Conteúdos desta trilha'}</h2>
-          <p>Abra qualquer unidade para estudar. O acesso não depende da conclusão das anteriores.</p>
+          <h2>{initialMode === 'main' ? 'Sumário deste módulo' : 'Sumário desta trilha'}</h2>
+          <p>Um sumário de estudo: escolha uma aula pelo assunto, sem etapas bloqueadas.</p>
         </div>
         {selectedParallel && <button type="button" className={allActive ? 'parallel-toggle active' : 'parallel-toggle'}
           onClick={toggleModule} aria-pressed={allActive}>
@@ -230,7 +230,7 @@ function MainItemCard({ item, native, legacy }:{
     <div className="curriculum-row-body">
       <div className="curriculum-meta"><span>{item.track}</span><span>{item.durationMin} min</span></div>
       <h3>{item.title}</h3>
-      <p>{interactive ? 'Aula com atividades interativas' : 'Conteúdo de leitura'}</p>
+      <p>{interactive ? 'Teoria, prática e revisão' : 'Estudo e consulta'}</p>
     </div>
     <div className={'curriculum-status ' + (native ? 'native' : interactive ? 'legacy' : 'document')}>
       {interactive ? 'Interativa' : 'Leitura'}
@@ -247,7 +247,7 @@ function ParallelItemCard({item, active, onToggle}:{
       <div className="curriculum-row-body">
         <div className="curriculum-meta"><span>{item.track}</span></div>
         <h3>{item.title}</h3>
-        <p>Conteúdo completo disponível para leitura</p>
+        <p>Estudo e consulta</p>
       </div>
     </a>
     <button className={active ? 'parallel-toggle active' : 'parallel-toggle'}

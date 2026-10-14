@@ -8,41 +8,94 @@ const gameLabels: Record<GameType,string> = {
   crossword:'Cruzadinha', matching:'Associação', ordering:'Ordenação', scenario:'Cenários'
 };
 
+type GameModeChoice = { type: GameType; number: string; title: string; description: string };
+const gameModes: GameModeChoice[] = [
+  { type: 'crossword', number: '01', title: 'Cruzadinha', description: 'Fixe os termos essenciais.' },
+  { type: 'matching', number: '02', title: 'Associação', description: 'Relacione conceitos e funções.' },
+  { type: 'ordering', number: '03', title: 'Ordenação', description: 'Reconstrua etapas e processos.' },
+  { type: 'scenario', number: '04', title: 'Cenários', description: 'Treine decisões com evidências.' }
+];
+
 export function GamesHub() {
   const [track,setTrack]=useState('Todas');
+  const [mode,setMode]=useState<GameType | null>(null);
   const progress=getGameProgress();
   const tracks=['Todas','Web','Sistemas','Active Directory','Blue Team','Antivírus/EDR'];
   const packs=reviewPacks.filter(p=>track==='Todas'||p.track===track);
   const avg=progress.length?Math.round(progress.reduce((a,b)=>a+b.bestScore,0)/progress.length):0;
   const accuracy=progress.length?Math.round(progress.reduce((a,b)=>a+b.correct,0)/Math.max(1,progress.reduce((a,b)=>a+b.correct+b.mistakes,0))*100):0;
-  return <div className="page stack-lg">
-    <section className="page-title games-title"><div><span className="eyebrow">CYBER GAMES</span><h1>Jogue para lembrar. Decida para aprender.</h1><p>Quatro formatos com funções diferentes: vocabulário, relações, processos e julgamento técnico.</p></div></section>
-    <section className="metrics-grid">
-      <Metric label="Partidas registradas" value={String(progress.length)} />
-      <Metric label="Média" value={`${avg}%`} />
-      <Metric label="Accuracy" value={`${accuracy}%`} />
-      <Metric label="Packs" value={String(reviewPacks.length)} />
+
+  return <div className="page stack-lg games-page">
+    <header className="games-intro" aria-labelledby="games-title">
+      <div>
+        <span className="eyebrow">ARTISYS / PRÁTICA GUIADA</span>
+        <h1 id="games-title">Treine o que aprendeu.</h1>
+        <p>Escolha um formato e aplique seus conhecimentos em atividades curtas.</p>
+      </div>
+      <span className="games-intro-aside" aria-hidden="true">APRENDER / PRATICAR / REVISAR</span>
+    </header>
+    <section className="games-modes" aria-labelledby="games-modes-title">
+      <div className="games-section-heading">
+        <div><span className="eyebrow">01 / TIPO DE TREINO</span><h2 id="games-modes-title">Como você quer praticar?</h2></div>
+        {mode && <button className="games-reset" type="button" onClick={()=>setMode(null)}>Ver todos os formatos</button>}
+      </div>
+      <div className="games-mode-grid">
+        {gameModes.map(item=><button key={item.type} type="button"
+          className={'games-mode-card ' + (mode===item.type?'selected':'')}
+          aria-pressed={mode===item.type} onClick={()=>setMode(current=>current===item.type?null:item.type)}>
+          <span className="games-mode-top"><b>{item.number} / TREINO</b><span aria-hidden="true">↗</span></span>
+          <strong>{item.title}</strong><small>{item.description}</small>
+        </button>)}
+      </div>
     </section>
-    <section className="panel stack">
-      <div className="section-head"><div><span className="eyebrow">FILTROS</span><h2>Escolha uma trilha</h2></div></div>
-      <div className="chips">{tracks.map(t=><button className={track===t?'chip active':'chip'} onClick={()=>setTrack(t)} key={t}>{t}</button>)}</div>
+    <section className="games-progress-strip" aria-label="Progresso de jogos salvo neste dispositivo">
+      <Metric label="Partidas" value={String(progress.length)} />
+      <Metric label="Melhor média" value={avg+'%'} />
+      <Metric label="Precisão" value={accuracy+'%'} />
+      <Metric label="Pacotes" value={String(reviewPacks.length)} />
     </section>
-    <section className="pack-grid">
-      {packs.map(pack=><PackCard pack={pack} key={pack.id} progress={progress} />)}
+    <section className="games-catalog" aria-labelledby="games-packs-title">
+      <div className="games-section-heading">
+        <div><span className="eyebrow">02 / ESCOLHA O CONTEÚDO</span><h2 id="games-packs-title">{mode ? 'Escolha um pacote para '+gameLabels[mode].toLowerCase() : 'Pacotes disponíveis'}</h2></div>
+        <span className="games-result-count" role="status">{packs.length} {packs.length===1?'pacote':'pacotes'}</span>
+      </div>
+      <div className="games-track-filters" role="group" aria-label="Filtrar jogos por trilha">
+        {tracks.map(t=><button type="button" className={track===t?'chip active':'chip'} aria-pressed={track===t} onClick={()=>setTrack(t)} key={t}>{t}</button>)}
+      </div>
+      {packs.length ? <div className="pack-grid">
+        {packs.map(pack=><PackCard pack={pack} key={pack.id} progress={progress} mode={mode} />)}
+      </div> : <p className="games-empty">Nenhum pacote nesta trilha. Selecione outra área.</p>}
     </section>
   </div>;
 }
 
-function Metric({label,value}:{label:string;value:string}) { return <div className="metric-card"><span>{label}</span><strong>{value}</strong><small>salvo neste dispositivo</small></div> }
+function Metric({label,value}:{label:string;value:string}) {
+  return <div className="games-progress-item"><span>{label}</span><strong>{value}</strong></div>;
+}
 
-function PackCard({pack,progress}:{pack:ReviewPack;progress:ReturnType<typeof getGameProgress>}) {
+function PackCard({pack,progress,mode}:{pack:ReviewPack;progress:ReturnType<typeof getGameProgress>;mode:GameType|null}) {
   const types:GameType[]=['crossword','matching','ordering','scenario'];
-  const scores=types.map(t=>progress.find(g=>g.gameId===`pack-${pack.id}`&&g.gameType===t)?.bestScore||0);
-  const avg=scores.some(Boolean)?Math.round(scores.reduce((a,b)=>a+b,0)/scores.filter(Boolean).length):0;
+  const scores=types.map(t=>progress.find(g=>g.gameId==='pack-'+pack.id&&g.gameType===t)?.bestScore||0);
+  const played=scores.filter(Boolean);
+  const avg=played.length?Math.round(played.reduce((a,b)=>a+b,0)/played.length):0;
+  const available=mode?[mode]:types;
   return <article className="pack-card">
-    <div className="pack-head"><div><span className="eyebrow">PACK {String(pack.id).padStart(2,'0')}</span><h2>{pack.title}</h2><p>Aulas {pack.lessons[0]}–{pack.lessons[1]} · {pack.track}</p></div><div className="score-ring"><strong>{avg}</strong><span>média</span></div></div>
-    <div className="game-buttons">{types.map((t,i)=><a href={`#game/${pack.id}/${t}`} className="game-button" key={t}><span>{['⌨','↔','↕','◈'][i]}</span><div><strong>{gameLabels[t]}</strong><small>{scores[i]?`melhor ${scores[i]}%`:'não iniciado'}</small></div></a>)}</div>
-  </article>
+    <div className="pack-head">
+      <div><span className="eyebrow">PACOTE {String(pack.id).padStart(2,'0')} · AULAS {pack.lessons[0]}–{pack.lessons[1]}</span>
+        <h3>{pack.title}</h3><p>{pack.track}</p></div>
+      <div className="pack-score"><strong>{played.length?avg+'%':'—'}</strong><span>{played.length?'média':'novo'}</span></div>
+    </div>
+    <div className={'game-buttons ' + (mode?'game-buttons-selected':'')}>
+      {available.map(t=>{
+        const i=types.indexOf(t);
+        return <a href={'#game/'+pack.id+'/'+t} className="game-button" key={t}>
+          <span aria-hidden="true">{['⌨','↔','↕','◈'][i]}</span>
+          <div><strong>{gameLabels[t]}</strong><small>{scores[i]?'Melhor: '+scores[i]+'%':'Iniciar treino'}</small></div>
+          <b className="game-button-arrow" aria-hidden="true">→</b>
+        </a>;
+      })}
+    </div>
+  </article>;
 }
 
 export function GamePlayer({packId,type,onRefresh}:{packId:number;type:GameType;onRefresh:()=>void}) {

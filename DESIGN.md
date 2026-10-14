@@ -67,3 +67,15 @@ Scoped lesson-only design tokens live in `src/components/lesson-editorial.css`, 
 The learning surface (native V2, legacy, Markdown and AI development trail) uses dark hero/problem/mechanism/lab/review chapters and light text-heavy reading/practice chapters. Markdown groups content into semantic chapters at H1/H2 boundaries; dark treatments follow subject terms rather than arbitrary even/odd position. Dark code snippets retain syntax legibility even inside light reading chapters. All inputs, links, completion state, quizzes and deep links remain functional and keyboard-focused. The shell, navigation, catalog, account and API are not part of this visual change.
 
 The **core is R$ 0, open source and self-hostable**; free third-party services or paid AI may only be identified as optional, never as silent dependencies.
+
+## ArtiSys Hub — navegação editorial (branch `feat/artisys-hub-editorial-navigation-20261014`)
+
+As áreas **Início**, **Aulas** (catálogo de módulos e sumário), **Materiais** e **Jogos** usam a folha `src/components/hub-editorial.css`, importada após `lesson-editorial.css`. O shell da plataforma continua escuro, agora com destaques violeta/roxo, enquanto cards de navegação e listagens recebem papel claro de alto contraste. Não alterar os componentes de autenticação, Workers, API, dados do catálogo, cache de conteúdo, persistência de progresso ou controle de acesso para aplicar esta identidade.
+
+Hierarquia de navegação:
+- Início mostra a aula recomendada, depois a escolha entre formação principal/trilhas/revisão e em seguida indicadores reais.
+- Aulas mostra **módulos primeiro**; somente o módulo selecionado mostra a lista compacta de aulas e seus tipos reais (leitura/interativa).
+- Jogos dá destaque aos quatro tipos de treino, filtra a lista por formato e trilha sem criar dados de progresso artificiais.
+- Materiais reúne categorias com contagem baseada em `src/data/materials.ts` e arquivos reais acessíveis pelas rotas originais. A origem do Drive fica em painel recolhível.
+
+Fontes preferenciais são locais com fallback de sistema; sem fontes remotas, novas bibliotecas, integrações comerciais ou dependências pagas. Deploy de produção permanece exclusivamente **Cloudflare Workers**, por meio de `wrangler.toml` e `npm run deploy`.
