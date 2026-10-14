@@ -146,9 +146,23 @@ export class HubAuthObject extends DurableObject {
         const b=await jsonBody(request);
         if(this.one('SELECT COUNT(*) AS n FROM users').n)throw new ApiError(409,'Plataforma já inicializada.');
         const expected=this.env.HUB_BOOTSTRAP_KEY;
-        if(typeof expected!=='string'||expected.length===0||typeof b.bootstrapKey!=='string'||
-          (await sha(expected))!==(await sha(b.bootstrapKey)))
+        if(typeof expected!=='string'||!expected.length)
+          throw new ApiError(503,'Chave de instalação não configurada neste Worker.');
+        const attemptKey=await sha('bootstrap:'+String(request.headers.get('cf-connecting-ip')||'unknown'));
+        const previous=this.one('SELECT count,reset_at FROM login_attempts WHERE key=?',attemptKey);
+        if(previous&&previous.reset_at>Date.now()&&previous.count>=5)
+          throw new ApiError(429,'Muitas tentativas. Aguarde 15 minutos.');
+        const candidate=typeof b.bootstrapKey==='string'&&b.bootstrapKey.length<=512?b.bootstrapKey:'';
+        const wanted=await sha(expected),received=await sha(candidate);
+        let mismatch=0;
+        for(let i=0;i<wanted.length;i++)mismatch|=wanted.charCodeAt(i)^received.charCodeAt(i);
+        if(!candidate||mismatch){
+          const active=previous&&previous.reset_at>Date.now();
+          this.sql.exec('INSERT INTO login_attempts(key,count,reset_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET count=excluded.count,reset_at=excluded.reset_at',
+            attemptKey,active?previous.count+1:1,active?previous.reset_at:Date.now()+900000);
           throw new ApiError(403,'Chave de instalação inválida.');
+        }
+        this.sql.exec('DELETE FROM login_attempts WHERE key=?',attemptKey);
         const user=await this.newUser({...b,role:'admin'},()=>{
           if(this.one('SELECT COUNT(*) AS n FROM users').n)throw new ApiError(409,'Plataforma já inicializada.');
         });
