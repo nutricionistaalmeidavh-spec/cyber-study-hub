@@ -5629,6 +5629,646 @@
           "result": "integridade relativa entre evidência e cópia com SHA-256. Positivo e negativo dependem de campos próprios do tópico."
         }
       ]
+    },
+    "AULA-051": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Command Injection: Separar entrada do usuário, seleção de operação, executável autorizado e argumentos efetivos; defender contra injeção de shell e injeção de argumentos. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "46148d2994563e3262904f9a95db1db4c5c8123b661f0801722368936f4dbbca",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/051.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Na versão vulnerável, uma string atravessa a fronteira de dados para a gramática do interpretador. Mesmo que `execFile` dispense shell, opções inesperadas podem mudar a semântica do binário chama"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/051.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para Command Injection."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: plannedProcess",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/051.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Uma entrada com caracteres de metacomando deve ser rejeitada **antes** de iniciar qualquer processo; uma operação legítima deve continuar disponível. `shell:fal"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-051.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/051.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Um painel de diagnóstico aceita `action=health`. Um programador monta `sh -c \"node --version \" + action` embora só precise obter a versão do Node. A entrada controla sint"
+        }
+      ]
+    },
+    "AULA-052": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Path Traversal e LFI/RFI: Diferenciar nome lexical, destino real e objeto efetivamente aberto, além de separar leitura de inclusão e execução. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "417a9edb1ba386cb26a6fbe8256e22ea787982d49a7f726b6084c682cfb4b2c2",
+      "scores": {
+        "conteudoTecnico": 96,
+        "didatica": 94,
+        "pratica": 94,
+        "defesa": 96,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/052.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: `path.resolve` normaliza o caminho em texto. `realpath` resolve links *no momento da consulta*. `path.relative` de raízes canonizadas ajuda a decidir contenção, mas há TOCTOU se ancestrais pudere"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/052.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para Path Traversal e LFI/RFI."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: canonicalization",
+          "result": "Prática local node public/course-labs/phase16-web-p0/paths.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/052.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: O novo controle deve rejeitar travessia lexical, symlink externo e tipo não regular sem bloquear `report.txt`. A aplicação real ainda deve autorizar **cada** ar"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-052.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/052.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Um app oferece relatório público `report.txt` dentro de uma raiz. O nome `link.txt` está dentro dessa raiz, mas o symlink aponta ao arquivo fictício `outside.txt` fora de"
+        }
+      ]
+    },
+    "AULA-053": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "File Upload Vulnerabilities: Modelar separadamente aceitação, quarentena, processamento e entrega, com validação de nome, tipo, assinatura, tamanho e autorização. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "bf8fb0d78964729630ab605a4897b7bb602c3315cfcee831cf72423a031bb48e",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/053.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Extensão e MIME declarados são pistas, não garantia. Magic bytes identificam uma assinatura inicial, mas até conteúdo válido pode esconder payloads; o contrato de produção exige decodificar/reenc"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/053.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para File Upload Vulnerabilities."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: acceptsDocument",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/053.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Altere apenas o MIME para `image/png`: rejeitar. Altere só o conteúdo para `not a gif`: rejeitar. O arquivo válido deve passar, mas permanecer em quarentena; **"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-053.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/053.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Uma clínica fictícia aceita avatar GIF. O browser envia `Content-Type: image/gif`, mas o nome e esse header podem ser escolhidos pelo cliente. O armazenamento deve gerar "
+        }
+      ]
+    },
+    "AULA-054": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "JWT Security: Explicar verificação criptográfica, chave permitida, algoritmo fixo, emissor, audiência, expiração e autorização por recurso. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "d98bafd3edf7cf481adc96c4c48523afe823a52658b92973f1566e3c34584192",
+      "scores": {
+        "conteudoTecnico": 96,
+        "didatica": 92,
+        "pratica": 95,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/054.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Um JWS possui header, payload e assinatura. O verificador deve escolher algoritmos aceitos por configuração confiável, nunca confiar em `alg` sozinho; validar assinatura antes de confiar em `sub`"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/054.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para JWT Security."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: verifyJwt",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/054.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Mesmo com assinatura válida, `aud=api-outro` deve falhar. Uma API não pode usar apenas `sub=aluno` para autorizar qualquer objeto: isso é outra camada de contro"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-054.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/054.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: A API da escola aceita JWTs do emissor `https://issuer.local`, para `aud=api-demo`, com `alg=HS256`. Ler base64 do payload é trivial e não prova que o emissor assinou as "
+        }
+      ]
+    },
+    "AULA-055": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "OAuth e OIDC Security: Separar delegação OAuth de autenticação OIDC e identificar vínculos de redirect URI, state/PKCE, emissor, nonce e tokens. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "859c21038bbacd8d59bbf672ac1dbe826189a2f3eef09e1be555fb7ff7eb3a08",
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 95,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/055.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: PKCE S256 envia `code_challenge` derivado de um `code_verifier` aleatório e revela o verifier somente no token endpoint. State vincula o callback à transação quando empregado; OIDC nonce vincula "
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/055.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para OAuth e OIDC Security."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: pkcePair",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/055.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Trocar `state` ou `issuer` deve reprovar, assim como repetir o callback. O fluxo com transação válida deve permanecer permitido uma vez. PKCE não dispensa valid"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-055.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/055.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Uma aplicação começa Authorization Code + PKCE para uma conta fictícia. O cliente guarda em sessão a transação com `state`, provedor esperado e `code_verifier`; o callbac"
+        }
+      ]
+    },
+    "AULA-056": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "API Security avançada — BOLA, BFLA, Mass Assignment: Checar separadamente função permitida, objeto específico e conjunto de atributos editáveis. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "4e4af320012b032edf83ee4b5412ae4885c905fa8eb8c544fde591a4f39faa64",
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 92,
+        "pratica": 95,
+        "defesa": 94,
+        "avaliacao": 94,
+        "especificidade": 97
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/056.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Autenticação identifica o sujeito, autorização de função limita a operação e autorização por objeto limita o alvo. Campo recebido não implica permissão para escrevê-lo; use DTO explícito e whitel"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/056.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para API Security avançada — BOLA, BFLA, Mass Assignment."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: updateCase",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/056.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Teste duas contas, duas funções e dois campos. Para cada negação, preserve o caso legítimo; não inferir permissão por ausência de botão na UI."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-056.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/056.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Uma API de chamados permite que `alice` edite a descrição do próprio chamado. Uma requisição de `bob` ao mesmo identificador exercita BOLA. Uma chamada `approve` por usuá"
+        }
+      ]
+    },
+    "AULA-057": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Rate Limit, Race Conditions e Business Logic Flaws: Distinguir limites de taxa, idempotência, atomicidade e invariantes de negócio sob concorrência. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "13f073ec8ba8de03ff4ee12a4cbf69a393d1db7c68e7456665e79101d7697781",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/057.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Rate limit reduz volume por chave e janela, mas não corrige uma condição de corrida dentro da unidade permitida. Idempotency key evita repetir uma mesma intenção; não impede duas intenções difere"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/057.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para Rate Limit, Race Conditions e Business Logic Flaws."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: reserveOnce",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/057.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Dispare duas intenções com chaves diferentes e comprove uma aprovação; repita a primeira chave e confirme ausência de nova baixa. Rejeitar requisições duplicada"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-057.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/057.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Uma loja fictícia possui uma unidade de estoque. Duas compras válidas de clientes diferentes chegam quase juntas. Ler saldo e gravar depois, sem exclusão mútua ou transaç"
+        }
+      ]
+    },
+    "AULA-058": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "CORS e Same-Origin Policy: Identificar diferença entre resposta HTTP do servidor, leitura permitida pelo navegador e credenciais enviadas. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "e129c2979a4ce515f4147a6bdc0614369dbd4c3a7a029a668f53b80a0981c72c",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 93,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/058.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Same-Origin Policy define limites de leitura entre scheme, host e port. CORS é política comunicada pelo servidor por headers, aplicada por navegadores compatíveis. Enviar cookies depende de crede"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/058.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para CORS e Same-Origin Policy."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: corsPolicy",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/058.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Pré-requisição OPTIONS com origem rejeitada não deve ganhar ACAO permissivo; permitir app.local não significa permitir admin de outro subdomínio se não estiver "
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-058.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/058.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: O frontend confiável está em `https://app.local` e a API em `https://api.local`. Uma segunda origem `https://evil.local` tenta ler a resposta usando JavaScript. Responder"
+        }
+      ]
+    },
+    "AULA-059": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "CSP, Security Headers e Browser Protections: Escolher mecanismos de defesa adequados para scripts, conteúdo, framing e transporte, sem tratar CSP como sanitizador. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "03c39b7c510d656e9142db05c10ab19aefa0a9e76086b2c69a55c9b546de8b2f",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/059.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: CSP restringe recursos e comportamentos no navegador; `script-src` e `default-src` são camadas, não substituem escaping contextual. `frame-ancestors` controla incorporação de páginas e não é equi"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/059.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para CSP, Security Headers e Browser Protections."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: securityHeaders",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/059.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Tirar `frame-ancestors` deve aparecer na auditoria; usar `unsafe-inline` sem necessidade exige justificativa. Manter recursos legítimos permitidos por políticas"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-059.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/059.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Uma aplicação quer bloquear script inline acidental e iframe não autorizado. O time copia `default-src *` e acredita que isso mitiga XSS. Na prática a política é muito am"
+        }
+      ]
+    },
+    "AULA-060": {
+      "grade": "A",
+      "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial IA, sem revisor humano",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Encadeamento de Vulnerabilidades Web: Desenhar uma cadeia de pré-condições e capacidades, comparar impacto condicional e priorizar o primeiro elo de defesa verificável. Casos verificáveis, prova de seis questões e reteste; fronteiras de validade declaradas.",
+      "contentSha256": "65f06d0a57012c88220288d55c47daa1c6cfcba648b1a3549733ef8496479092",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 94,
+        "pratica": 92,
+        "defesa": 95,
+        "avaliacao": 95,
+        "especificidade": 97
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confrontação editorial com referência primária e casos positivos/negativos",
+          "reference": "public/course-library/main/060.md :: Oficina A — mecanismo e fonte",
+          "result": "Revisão de mecanismo, controle e escopo: Modelagem de cadeia registra estado de entrada, condição do elo, capacidade obtida, próximo caminho, controle e evidência. A cadeia não equivale a execução de exploração: simular dependências per"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do iniciante, sem estudante humano",
+          "reference": "public/course-library/main/060.md :: oficina guiada, vocabulário e exemplo",
+          "result": "Walkthrough editorial IA do iniciante: cenário, exemplo guiado, passos observáveis e recuperação de falha para Encadeamento de Vulnerabilidades Web."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução local do caso aplicável e inspeção de resultados",
+          "reference": "public/course-labs/a051-060/labs.test.mjs :: assessChain",
+          "result": "Prática local node --test public/course-labs/a051-060/labs.test.mjs; caso positivo e negativo; limitações declaradas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão independente do controle, reteste negativo e positivo",
+          "reference": "public/course-library/main/060.md :: defesa, limites e reteste",
+          "result": "Relação entre controle principal e reteste: Não atribua impacto se falta comprovação de um elo; teste controle de autorização mantendo leitura permitida ao dono. Outra sequência de falhas pode surgir: pri"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Avaliação de questões independentes e distratores, gabarito separado",
+          "reference": "public/course-labs/a051-060/answer-keys/AULA-060.md :: rubrica de correção",
+          "result": "Prova de seis perguntas específicas do caso novo, gabarito separado e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do dado, componente, decisão, condição e resultado",
+          "reference": "public/course-library/main/060.md :: caso profissional e transferência",
+          "result": "Exemplo tem nomes, invariantes e condições próprias: Uma aplicação fictícia expõe uma listagem pública, depois permite leitura não autorizada de documento e finalmente uma função de edição excessiva. A concatenação só é pla"
+        }
+      ]
     }
   },
   "policy": {
