@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "kind": "separate-learning-trail",
+  "note": "Nota editorial assistida por IA; não altera o registro das 543 unidades; não comprova aprendizagem de estudantes.",
+  "reviewDate": "2026-10-14",
+  "reviewMethod": "ai_editorial_critical_second_pass",
+  "humanLearnerTesting": "not_performed",
+  "modules": {
+    "01": {
+      "moduleId": 1,
+      "title": "Primeiros passos com IA",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "34c3c5900f48a10fa2751db35b479ba0c8498e168e9f9a07988cc578a985c1ab",
+      "examSha256": "73bf18f55fe289b0ed4f030b42ba68bf98568f42ae0490b35c34311aa7be2213",
+      "answerKeySha256": "d9f25af03009ff928fad8ecfee248b56c2574ee81cd18778e99360a3a239d983",
+      "labSha256": "3e176e19fe88ddb2e4ae8743f98f9bb42681cd8719237c8b0d6e07324223ae03",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/starter.html",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 89,
+        "defesa": 91,
+        "avaliacao": 89,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "releitura crítica de contrato e contraexemplos",
+          "reference": "src/trails/ai-dev/modules.json#module-01",
+          "result": "Fundamentos e estados: 3 blocos por microaula conceitual, previsões concretas e contraexemplos; sem alegar persistência onde não existe."
+        },
+        {
+          "dimension": "didatica",
+          "method": "walkthrough editorial assumindo iniciante absoluto",
+          "reference": "src/trails/ai-dev/modules.json#module-01/learningOutcomes",
+          "result": "Objetivo, linguagem acessível, exemplos, erro a evitar, base canônica e entrega incremental explícitos; não houve walkthrough com aluno real."
+        },
+        {
+          "dimension": "pratica",
+          "method": "inspeção de código/roteiro e construção de regressões locais",
+          "reference": "public/course-labs/ai-dev-meu-gestor/starter.html",
+          "result": "Protótipo HTML com transições e teste automatizado de repetição. Execução automatizada verificada pelo workflow CI desta PR."
+        },
+        {
+          "dimension": "defesa",
+          "method": "inspeção de segurança didática e comportamento de falha",
+          "reference": "public/course-labs/ai-dev-meu-gestor/starter.html",
+          "result": "Núcleo gratuito, somente dados fictícios, sem API paga ou envio automático à IA; entradas inválidas e estados proibidos são discutidos/testados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "segundo passe crítico sobre seis cenários novos e rubrica de reteste",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
+          "result": "Seis perguntas abertas de transferência, gabarito separado public/course-labs/ai-dev-meu-gestor/answer-keys/module-01.md, 0/1/2 pontos, mínimo 10/12 e erro eliminatório por competência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "rastreio de exemplos aos estados reais do projeto",
+          "reference": "public/course-labs/ai-dev-meu-gestor/starter.html",
+          "result": "Fundamentos e estados utiliza entidades C-001, OS-002, estado pendente/em andamento/concluído, previsão e observação verificável, sem tópicos genéricos desconectados."
+        }
+      ],
+      "limitations": [
+        "Nenhuma observação de aprendizagem com estudantes reais.",
+        "Sem revisão humana externa ou prova de acessibilidade com leitores de tela.",
+        "A nota é editorial; conclusão do aluno é autodeclarada e não representa aprovação corrigida."
+      ]
+    },
+    "02": {
+      "moduleId": 2,
+      "title": "Da ideia ao sistema",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "1a8597bb1e592a87b1a4119ca2cab3a790750a439f0c5cacca10e2e2a1f5349a",
+      "examSha256": "75a22064c3df389b3da769031d444af21049334f337edf7a0a0a2ae95ee6ef90",
+      "answerKeySha256": "df20b19ca90105b7ad90182bd7f6bea9ebdd1bd90a2ba614cd6a7598be81ef74",
+      "labSha256": "ea55cd5a3e45e5ae8b7dc0c5c38ca7696ae8aad86e0e374f22827ba28dd7b58f",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.mjs",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 88,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "releitura crítica de contrato e contraexemplos",
+          "reference": "src/trails/ai-dev/modules.json#module-02",
+          "result": "Requisitos e contratos: 3 blocos por microaula conceitual, previsões concretas e contraexemplos; sem alegar persistência onde não existe."
+        },
+        {
+          "dimension": "didatica",
+          "method": "walkthrough editorial assumindo iniciante absoluto",
+          "reference": "src/trails/ai-dev/modules.json#module-02/learningOutcomes",
+          "result": "Objetivo, linguagem acessível, exemplos, erro a evitar, base canônica e entrega incremental explícitos; não houve walkthrough com aluno real."
+        },
+        {
+          "dimension": "pratica",
+          "method": "inspeção de código/roteiro e construção de regressões locais",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.mjs",
+          "result": "Modelo em papel, 5 contratos Given/When/Then e modelo de regras com entradas inválidas. Execução automatizada verificada pelo workflow CI desta PR."
+        },
+        {
+          "dimension": "defesa",
+          "method": "inspeção de segurança didática e comportamento de falha",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.mjs",
+          "result": "Núcleo gratuito, somente dados fictícios, sem API paga ou envio automático à IA; entradas inválidas e estados proibidos são discutidos/testados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "segundo passe crítico sobre seis cenários novos e rubrica de reteste",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
+          "result": "Seis perguntas abertas de transferência, gabarito separado public/course-labs/ai-dev-meu-gestor/answer-keys/module-02.md, 0/1/2 pontos, mínimo 10/12 e erro eliminatório por competência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "rastreio de exemplos aos estados reais do projeto",
+          "reference": "public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.mjs",
+          "result": "Requisitos e contratos utiliza entidades C-001, OS-002, estado pendente/em andamento/concluído, previsão e observação verificável, sem tópicos genéricos desconectados."
+        }
+      ],
+      "limitations": [
+        "Nenhuma observação de aprendizagem com estudantes reais.",
+        "Sem revisão humana externa ou prova de acessibilidade com leitores de tela.",
+        "A nota é editorial; conclusão do aluno é autodeclarada e não representa aprovação corrigida."
+      ]
+    },
+    "03": {
+      "moduleId": 3,
+      "title": "Preparando e criando o projeto",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "c77705f5921b14487549b88d807ea3087084c565cb23a697e6598034650e6f10",
+      "examSha256": "0192082bd2e347074c2b63deb3b677148d158c7ef815dfaa6ce5d11c7a37714a",
+      "answerKeySha256": "663677fd2366416038dcd4eeeb2649d4d99a0fcc6c36321393076cc5f5b8befc",
+      "labSha256": "bf21ce693b10043829910e7bf88bcf1441cac4260ef57b45b7051d03d10fe92d",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/src/App.tsx",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 88,
+        "pratica": 90,
+        "defesa": 89,
+        "avaliacao": 90,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "releitura crítica de contrato e contraexemplos",
+          "reference": "src/trails/ai-dev/modules.json#module-03",
+          "result": "Ferramentas, Git e build: 3 blocos por microaula conceitual, previsões concretas e contraexemplos; sem alegar persistência onde não existe."
+        },
+        {
+          "dimension": "didatica",
+          "method": "walkthrough editorial assumindo iniciante absoluto",
+          "reference": "src/trails/ai-dev/modules.json#module-03/learningOutcomes",
+          "result": "Objetivo, linguagem acessível, exemplos, erro a evitar, base canônica e entrega incremental explícitos; não houve walkthrough com aluno real."
+        },
+        {
+          "dimension": "pratica",
+          "method": "inspeção de código/roteiro e construção de regressões locais",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/src/App.tsx",
+          "result": "Checkpoint React v0.1 com instruções de dev/build e erro controlado. Execução automatizada verificada pelo workflow CI desta PR."
+        },
+        {
+          "dimension": "defesa",
+          "method": "inspeção de segurança didática e comportamento de falha",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/src/App.tsx",
+          "result": "Núcleo gratuito, somente dados fictícios, sem API paga ou envio automático à IA; entradas inválidas e estados proibidos são discutidos/testados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "segundo passe crítico sobre seis cenários novos e rubrica de reteste",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
+          "result": "Seis perguntas abertas de transferência, gabarito separado public/course-labs/ai-dev-meu-gestor/answer-keys/module-03.md, 0/1/2 pontos, mínimo 10/12 e erro eliminatório por competência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "rastreio de exemplos aos estados reais do projeto",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/src/App.tsx",
+          "result": "Ferramentas, Git e build utiliza entidades C-001, OS-002, estado pendente/em andamento/concluído, previsão e observação verificável, sem tópicos genéricos desconectados."
+        }
+      ],
+      "limitations": [
+        "Nenhuma observação de aprendizagem com estudantes reais.",
+        "Sem revisão humana externa ou prova de acessibilidade com leitores de tela.",
+        "A nota é editorial; conclusão do aluno é autodeclarada e não representa aprovação corrigida."
+      ]
+    },
+    "04": {
+      "moduleId": 4,
+      "title": "Criando as telas com IA",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "1717ab67a84a598a584187c82f1256955d23f5c4823072fa7bbedd00931f01f0",
+      "examSha256": "8b5d44c59ec9043d5a0d791e07ed723b5c41b7ca6144d15fe2e7f87e27f2ba5b",
+      "answerKeySha256": "e6a948473dbed470a57b4111fd5a591afc34f2d505364e5384cd4cbeb7c20e5e",
+      "labSha256": "dfc6811786c5654bf1177cf5c5f861b047749b148249112da7e3fd52e5c08c58",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/App.tsx",
+      "scores": {
+        "conteudoTecnico": 89,
+        "didatica": 90,
+        "pratica": 88,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "releitura crítica de contrato e contraexemplos",
+          "reference": "src/trails/ai-dev/modules.json#module-04",
+          "result": "Interfaces acessíveis: 3 blocos por microaula conceitual, previsões concretas e contraexemplos; sem alegar persistência onde não existe."
+        },
+        {
+          "dimension": "didatica",
+          "method": "walkthrough editorial assumindo iniciante absoluto",
+          "reference": "src/trails/ai-dev/modules.json#module-04/learningOutcomes",
+          "result": "Objetivo, linguagem acessível, exemplos, erro a evitar, base canônica e entrega incremental explícitos; não houve walkthrough com aluno real."
+        },
+        {
+          "dimension": "pratica",
+          "method": "inspeção de código/roteiro e construção de regressões locais",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/App.tsx",
+          "result": "Checkpoint React v0.2 com navegação semântica, fixtures e responsividade. Execução automatizada verificada pelo workflow CI desta PR."
+        },
+        {
+          "dimension": "defesa",
+          "method": "inspeção de segurança didática e comportamento de falha",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/App.tsx",
+          "result": "Núcleo gratuito, somente dados fictícios, sem API paga ou envio automático à IA; entradas inválidas e estados proibidos são discutidos/testados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "segundo passe crítico sobre seis cenários novos e rubrica de reteste",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
+          "result": "Seis perguntas abertas de transferência, gabarito separado public/course-labs/ai-dev-meu-gestor/answer-keys/module-04.md, 0/1/2 pontos, mínimo 10/12 e erro eliminatório por competência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "rastreio de exemplos aos estados reais do projeto",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/src/App.tsx",
+          "result": "Interfaces acessíveis utiliza entidades C-001, OS-002, estado pendente/em andamento/concluído, previsão e observação verificável, sem tópicos genéricos desconectados."
+        }
+      ],
+      "limitations": [
+        "Nenhuma observação de aprendizagem com estudantes reais.",
+        "Sem revisão humana externa ou prova de acessibilidade com leitores de tela.",
+        "A nota é editorial; conclusão do aluno é autodeclarada e não representa aprovação corrigida."
+      ]
+    },
+    "05": {
+      "moduleId": 5,
+      "title": "Fazendo o sistema funcionar",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "8793109b564ea3a5bbc463e1b1c13e54ec51785edb0c12e6f1f9ec3ce4f73392",
+      "examSha256": "c9cd74222a97f2cc4255e565e42f44c6b6095af51f965b59f207fcc35d1088f0",
+      "answerKeySha256": "9fc09ca8eb38877030177116cd5c9bc24a774d895437c15d71110d3f847e8d24",
+      "labSha256": "12529d5fe06ffbde4f68eeb551967e3e7a4678c0c90e5b0a204f164284dedf8b",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/src/domain.ts",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 93,
+        "defesa": 91,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "releitura crítica de contrato e contraexemplos",
+          "reference": "src/trails/ai-dev/modules.json#module-05",
+          "result": "CRUD e integridade: 3 blocos por microaula conceitual, previsões concretas e contraexemplos; sem alegar persistência onde não existe."
+        },
+        {
+          "dimension": "didatica",
+          "method": "walkthrough editorial assumindo iniciante absoluto",
+          "reference": "src/trails/ai-dev/modules.json#module-05/learningOutcomes",
+          "result": "Objetivo, linguagem acessível, exemplos, erro a evitar, base canônica e entrega incremental explícitos; não houve walkthrough com aluno real."
+        },
+        {
+          "dimension": "pratica",
+          "method": "inspeção de código/roteiro e construção de regressões locais",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/src/domain.ts",
+          "result": "Checkpoint v0.3 com CRUD em memória e 15 testes de domínio. Execução automatizada verificada pelo workflow CI desta PR."
+        },
+        {
+          "dimension": "defesa",
+          "method": "inspeção de segurança didática e comportamento de falha",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/src/domain.ts",
+          "result": "Núcleo gratuito, somente dados fictícios, sem API paga ou envio automático à IA; entradas inválidas e estados proibidos são discutidos/testados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "segundo passe crítico sobre seis cenários novos e rubrica de reteste",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
+          "result": "Seis perguntas abertas de transferência, gabarito separado public/course-labs/ai-dev-meu-gestor/answer-keys/module-05.md, 0/1/2 pontos, mínimo 10/12 e erro eliminatório por competência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "rastreio de exemplos aos estados reais do projeto",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/src/domain.ts",
+          "result": "CRUD e integridade utiliza entidades C-001, OS-002, estado pendente/em andamento/concluído, previsão e observação verificável, sem tópicos genéricos desconectados."
+        }
+      ],
+      "limitations": [
+        "Nenhuma observação de aprendizagem com estudantes reais.",
+        "Sem revisão humana externa ou prova de acessibilidade com leitores de tela.",
+        "A nota é editorial; conclusão do aluno é autodeclarada e não representa aprovação corrigida."
+      ]
+    }
+  }
+}
