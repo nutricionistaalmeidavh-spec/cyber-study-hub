@@ -40,7 +40,7 @@ export function PlatformProfile({user,onUpdated,onSignOut}:{user:PlatformUser;on
         <button className="button ghost" disabled={busy} onClick={()=>{if(window.confirm('Importar o progresso antigo para esta conta?'))void action(async()=>{const n=await importLegacyProgress();setMessage(n+' registros importados.');},'Importação concluída.');}}>Importar progresso antigo</button>
       </div>}
       {user.role==='admin'&&<a className="button ghost" href="#admin/users">Gerenciar usuários</a>}
-      <button className="button ghost" onClick={()=>void action(retryProgressSync,'Sincronização verificada.')}>Sincronizar agora</button>
+      <button className="button ghost" onClick={()=>void action(async()=>{if(!(await retryProgressSync()))throw Error('Ainda há registros aguardando envio.');},'Sincronização verificada.')}>Sincronizar agora</button>
       {message&&<p role="status">{message}</p>}
     </section>
   </div>;
