@@ -22,5 +22,5 @@ for(let n=131;n<=140;n++){
 }
 for(let n=1;n<=130;n++)assert.equal(registry.editorialReviews['AULA-'+String(n).padStart(3,'0')]?.grade,'A','Lost A '+n);
 for(const id of ['AULA-160','AULA-166','LOG-01','NET-25','PY-01'])assert.equal(registry.editorialReviews[id]?.grade,'A');
-assert.ok(Object.values(registry.editorialReviews).filter(x=>x.grade==='A').length>=145);
+assert.ok(Object.values(registry.editorialReviews).filter(x=>x.grade==='A').length>=163);
 console.log('PASS 145+ A editoriais, hash íntegro, 135 anteriores preservadas.');
