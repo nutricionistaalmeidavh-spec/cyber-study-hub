@@ -46,10 +46,10 @@ export async function activateUserStorage(userId:string){
 }
 export async function deactivateUserStorage(){
   await sendPending();
-  const ok=pending.size===0;
+  if(pending.size!==0)return false; // Não encerra o contexto da conta sem confirmar gravação remota.
   activeUser=null;
   pending.clear();
-  return ok;
+  return true;
 }
 export const accountStorage:Pick<Storage,'getItem'|'setItem'|'removeItem'>={
   getItem(key){if(!activeUser||!supported(key))return null;return localStorage.getItem(scoped(activeUser,key));},
