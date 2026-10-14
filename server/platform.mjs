@@ -131,7 +131,7 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       if(path==='/api/auth/bootstrap'&&method==='POST') {
         const b=await readJson(req);
         if(q('SELECT count(*) AS n FROM users').get().n>0)throw new HttpError(409,'Plataforma já inicializada.');
-        if(typeof bootstrapKey!=='string'||bootstrapKey.length<24||typeof b.bootstrapKey!=='string'||
+        if(typeof bootstrapKey!=='string'||bootstrapKey.length===0||typeof b.bootstrapKey!=='string'||
            !timingSafeEqual(Buffer.from(sha(bootstrapKey),'hex'),Buffer.from(sha(b.bootstrapKey),'hex')))
           throw new HttpError(403,'Chave de instalação inválida.');
         return loginSession(res,newUser({...b,role:'admin'}),201);

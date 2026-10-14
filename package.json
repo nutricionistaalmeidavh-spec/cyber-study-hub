@@ -48,7 +48,8 @@
     "dev:worker": "wrangler dev --local",
     "test:worker": "node scripts/test-cloudflare.mjs",
     "test:a-151-159": "node --test public/course-labs/a151-159/lab.test.mjs",
-    "test:grade-a-151-160": "node scripts/test-grade-a-151-160.mjs"
+    "test:grade-a-151-160": "node scripts/test-grade-a-151-160.mjs",
+    "prebuild": "node scripts/check-cloudflare-worker.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
