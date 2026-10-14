@@ -91,6 +91,7 @@ export class HubAuthObject extends DurableObject {
     if(typeof name!=='string'||name.trim().length<2||name.trim().length>100)
       throw new ApiError(400,'Nome inválido.');
     if(!['admin','teacher','student'].includes(role))throw new ApiError(400,'Perfil inválido.');
+    checkPassword(password);
     const digest=await passwordHash(password);
     const u={id:rand(),email:mail,name:name.trim(),role,status:'active',created_at:new Date().toISOString()};
     // Race-free account creation: after asynchronous password hashing, guard and insert are synchronous.
@@ -206,6 +207,7 @@ export class HubAuthObject extends DurableObject {
         const stored=this.one('SELECT password_hash FROM users WHERE id=?',u.id);
         if(!(await passwordMatches(b.currentPassword,stored.password_hash)))
           throw new ApiError(403,'Senha atual incorreta.');
+        checkPassword(b.newPassword);
         const digest=await passwordHash(b.newPassword);
         this.sql.exec('UPDATE users SET password_hash=? WHERE id=?',digest,u.id);
         this.sql.exec('DELETE FROM sessions WHERE user_id=?',u.id);
