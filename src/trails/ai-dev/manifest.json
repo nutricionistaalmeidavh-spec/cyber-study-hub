@@ -205,7 +205,7 @@
       ],
       "outcome": "Dados persistidos entre reinicializações",
       "duration": "6–8 h",
-      "status": "planned"
+      "status": "available"
     },
     {
       "id": 7,
@@ -236,7 +236,7 @@
       ],
       "outcome": "Testes válidos, inválidos e regressão",
       "duration": "3–5 h",
-      "status": "planned"
+      "status": "available"
     },
     {
       "id": 8,
@@ -267,7 +267,7 @@
       ],
       "outcome": "Código, instruções e demonstração",
       "duration": "3–5 h",
-      "status": "planned"
+      "status": "available"
     }
   ]
 }

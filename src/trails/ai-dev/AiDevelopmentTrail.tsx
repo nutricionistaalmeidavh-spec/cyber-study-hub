@@ -85,14 +85,14 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
       <div><span className="eyebrow">FORMAÇÃO PRÁTICA · MEU GESTOR</span>
         <h1>Desenvolvimento de Sistemas com IA</h1>
         <p>Construa um sistema por etapas. Use ChatGPT ou Claude pelo navegador; IA local, apenas se o computador comportar. Laboratórios e explicações não exigem serviços pagos.</p>
-        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>5 módulos disponíveis</span><span>8 módulos · 32 etapas planejadas</span></div>
+        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>8 módulos disponíveis</span><span>8 módulos · 32 etapas</span></div>
       </div>
-      <div className="ai-meter"><strong>{allCount}/20</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{ width: allCount * 5 + '%' }} /></div></div>
+      <div className="ai-meter"><strong>{allCount}/32</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{ width: allCount * 100 / 32 + '%' }} /></div></div>
     </header>
 
     <section className="ai-roadmap" aria-label="Módulos da formação">
       {manifest.modules.map(m => {
-        const released = m.id <= 5;
+        const released = m.status === 'available';
         const count = released ? modules[m.id - 1].lessons.filter(s => progress.completed.includes(s.stepId)).length : 0;
         return released
           ? <button type="button" key={m.id} className={'ai-module available ' + (moduleId === m.id ? 'selected' : '')} aria-pressed={moduleId === m.id} onClick={() => choose(m.id, 0)}>
@@ -153,7 +153,8 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
         {lesson.brief && <section className="ai-exercise">
           <span className="eyebrow">LABORATÓRIO INCREMENTAL · PROJETO MEU GESTOR</span>
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
-          <div className="ai-actions">{lesson.starterUrl && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
+          <div className="ai-actions">{lesson.starterUrl && moduleId <= 2 && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
+          {moduleId >= 3 && <a className="button primary" href={"https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/tree/main/public/course-labs/ai-dev-meu-gestor/checkpoints/" + ({3:"v0.1",4:"v0.2",5:"v0.3",6:"v0.4",7:"v0.5",8:"v1.0"} as Record<number,string>)[moduleId]} target="_blank" rel="noopener noreferrer">Ver código-fonte no GitHub ↗</a>}
           {lesson.starterSourceUrl && <a className="button ghost" href={lesson.starterSourceUrl} target="_blank" rel="noopener noreferrer">Roteiro do projeto ↗</a>}
           {moduleId === 2 && <a className="button ghost" href="/course-labs/ai-dev-meu-gestor/module-02/spec-template.md" target="_blank" rel="noopener noreferrer">Modelo de requisitos ↗</a>}</div>
           {moduleId >= 3 && <p className="ai-privacy">Os checkpoints React são projetos-fonte: salve a pasta inteira e execute npm install e npm run dev em seu computador. Não basta abrir index.html no navegador. O caminho acima aponta para o repositório de arquivos da aula.</p>}

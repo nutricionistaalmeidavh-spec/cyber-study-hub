@@ -20,13 +20,13 @@ assert.equal(catalog.main.length,218,'Catálogo principal alterado');
 assert.equal(catalog.parallel.length,325,'Catálogo paralelo alterado');
 assert.equal(manifest.modules.length,8);
 assert.equal(manifest.totalSteps,32);
-assert.equal(course.modules.length,5,'Só os cinco primeiros módulos são liberados nesta fase');
+assert.equal(course.modules.length,8,'Os oito módulos devem estar liberados');
 assert.equal(manifest.newMicroLessons,16);
 assert.equal(manifest.reusedReferences,8);
 assert.equal(manifest.newLabs,8);
-assert.deepEqual(Object.keys(grades.modules).sort(),['01','02','03','04','05']);
-assert.deepEqual(manifest.modules.filter(m=>m.status==='available').map(m=>m.id),[1,2,3,4,5]);
-assert.deepEqual(manifest.modules.filter(m=>m.status==='planned').map(m=>m.id),[6,7,8]);
+assert.deepEqual(Object.keys(grades.modules).sort(),['01','02','03','04','05','06','07','08']);
+assert.deepEqual(manifest.modules.filter(m=>m.status==='available').map(m=>m.id),[1,2,3,4,5,6,7,8]);
+assert.deepEqual(manifest.modules.filter(m=>m.status==='planned').map(m=>m.id),[]);
 const ids=[];
 for(const [index,module] of course.modules.entries()){
   const id=String(index+1).padStart(2,'0');
@@ -81,14 +81,17 @@ for(const [index,module] of course.modules.entries()){
   }
   for(const gate of gates)assert.equal(review.gates[gate],true,'Gate editorial pendente: '+id+'/'+gate);
 }
-assert.deepEqual(ids,Array.from({length:20},(_,i)=>i+1));
+assert.deepEqual(ids,Array.from({length:32},(_,i)=>i+1));
 for(const m of manifest.modules)assert.deepEqual(m.steps.map(x=>x.type),stepKinds);
 const testPaths=[
   rootLab+'/tests/starter.test.mjs',
   rootLab+'/module-02/spec-rules.test.mjs',
-  rootLab+'/checkpoints/v0.3/tests/domain.test.mjs'
+  rootLab+'/checkpoints/v0.3/tests/domain.test.mjs',
+  rootLab+'/checkpoints/v0.4/tests/api.test.mjs',
+  rootLab+'/checkpoints/v0.5/tests/regression.test.mjs',
+  rootLab+'/checkpoints/v1.0/tests/backup.test.mjs'
 ];
 for(const path of testPaths)assert.ok(existsSync(resolve(root,path)),'Teste prático ausente: '+path);
-console.log('Módulos IA: 5/5 pareceres A editoriais IA com hashes, 20 etapas, 30 questões e 5 laboratórios.');
+console.log('Módulos IA: 8/8 pareceres A editoriais IA com hashes, 32 etapas, 48 questões e 8 laboratórios.');
 if(!process.argv.includes('--structure-only'))execFileSync(process.execPath,['--test',...testPaths],{cwd:root,stdio:'inherit'});
 

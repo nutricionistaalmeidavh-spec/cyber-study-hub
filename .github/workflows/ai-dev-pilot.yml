@@ -1,4 +1,4 @@
-name: Trilha IA M01-M05 QA
+name: Trilha IA M01-M08 QA
 on:
   pull_request:
     paths:
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        checkpoint: ['v0.1', 'v0.2', 'v0.3']
+        checkpoint: ['v0.1', 'v0.2', 'v0.3', 'v0.4', 'v0.5', 'v1.0']
     defaults:
       run:
         working-directory: public/course-labs/ai-dev-meu-gestor/checkpoints/${{ matrix.checkpoint }}
@@ -51,5 +51,5 @@ jobs:
       - name: Typecheck e build Vite
         run: npm run build
       - name: Testes do domínio (somente v0.3)
-        if: matrix.checkpoint == 'v0.3'
+        if: matrix.checkpoint == 'v0.3' || matrix.checkpoint == 'v0.4' || matrix.checkpoint == 'v0.5' || matrix.checkpoint == 'v1.0'
         run: npm run test
