@@ -52,7 +52,8 @@
     "test:a-161-170": "node scripts/test-a-161-170-structure.mjs && node --test public/course-labs/a161-170/lab.test.mjs",
     "test:grade-a-161-170": "node scripts/test-grade-a-161-170.mjs",
     "test:a-131-140": "node scripts/test-a-131-140-structure.mjs && node --test public/course-labs/a131-140/labs.test.mjs",
-    "test:grade-a-131-140": "node scripts/test-grade-a-131-140.mjs"
+    "test:grade-a-131-140": "node scripts/test-grade-a-131-140.mjs",
+    "prebuild": "node scripts/check-cloudflare-worker.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

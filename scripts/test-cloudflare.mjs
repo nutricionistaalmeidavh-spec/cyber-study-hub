@@ -5,7 +5,9 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 
-const key='integration-test-bootstrap-key-123456789012345';
+// Integração: chaves existentes de qualquer tamanho devem ser comparadas literalmente.
+const key='test-key11';
+assert.ok(key.length<24);
 const port=8879;
 const origin='http://127.0.0.1:'+port;
 const temp=await mkdtemp(join(tmpdir(),'hub-worker-test-'));
