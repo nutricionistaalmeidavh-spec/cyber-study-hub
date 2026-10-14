@@ -10621,6 +10621,646 @@
           "result": "Pré-condições, artefatos e limitação: Aplicativo próprio simulado inicia, grava log e gera evento de rede com ambiente bridged e snapshot. Só cronologia JSON, sem VM, tráfego real ou código malicioso."
         }
       ]
+    },
+    "AULA-141": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Process e Child Process Analysis: PID 10 nasceu em t0 e criou 11 em t1; um evento separado cita PID 10 iniciado em t2. O analista deve impedir que a reciclagem do PID fabrique parentesco. Mecanismo: Chave da instância é PID + processStart. PPID sozinho não prova genealogia; assinatura, usuário, GUID e command line são contexto para reconstrução forense. Positivo: linked=1 e orphans=0 para 11@t1 -> 10@t0. Negativo: orphans=1 quando o evento cita 10@t2 ausente. Defesa: Correlacionar ProcessGuid, instante de início, usuário, linha de comando e execução autorizada; validar origem no endpoint antes de alertar. Limite: Não há coleta Sysmon, leitura de linha de comando ou inspeção do Windows: somente eventos sintéticos.",
+      "contentSha256": "27470775939971cbf475d6afe77eef2e854647d6a50ed586528d1ea8fefe88c7",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/141.md :: Oficina A; https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+          "result": "Mecanismo Chave da instância é PID + processStart. PPID sozinho não prova genealogia; assinatura, usuário, GUID e command line são contexto para reconstrução forense.; contraprova orphans=1 quando o evento cita 10@t2 ausente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/141.md :: exemplo e checkpoints",
+          "result": "Cenário PID 10 nasceu em t0 e criou 11 em t1; um evento separado cita PID 10 iniciado em t2. O analista deve impedir que a reciclagem do PID fabrique parentesco. Previsão positiva linked=1 e orphans=0 para 11@t1 -> 10@t0."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(141); lab.test.mjs",
+          "result": "Positivo: linked=1 e orphans=0 para 11@t1 -> 10@t0. Negativo: orphans=1 quando o evento cita 10@t2 ausente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/141.md :: Defesas, reteste e limites",
+          "result": "Defesa Correlacionar ProcessGuid, instante de início, usuário, linha de comando e execução autorizada; validar origem no endpoint antes de alertar.; limite Não há coleta Sysmon, leitura de linha de comando ou inspeção do Windows: somente eventos sintéticos."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-141.md",
+          "result": "Seis perguntas transferíveis em Process e Child Process Analysis, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/141.md :: exemplo resolvido",
+          "result": "Caso PID 10 nasceu em t0 e criou 11 em t1; um evento separado cita PID 10 iniciado em t2. O analista deve impedir que a reciclagem do PID fabrique parentesco.; limite Não há coleta Sysmon, leitura de linha de comando ou inspeção do Windows: somente eventos sintéticos."
+        }
+      ]
+    },
+    "AULA-142": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Registry e File System Artifacts: Uma fixture de atualização autorizada mantém /lab/report inalterado. Em contraste surge chave HKCU\\Lab e não existe evento que atribua a mudança a um processo. Mecanismo: Comparação de objetos type:path e digest distingue criação, remoção e alteração; presença não atribui autoria, intenção ou persistência. Positivo: changed=0 e added=0 ao comparar baseline consigo mesmo. Negativo: added=1 para a chave nova, com malwareProven=false. Defesa: Guardar before/after, hash de objeto, autor, timestamps e aprovação da instalação, verificar autorun e restaurar apenas estado não autorizado. Limite: Não acessa registro de máquinas, arquivos reais ou instaladores; diffs são inteiramente sintéticos.",
+      "contentSha256": "20399f3155677f8f6f206c91363a7ae75516ae19132f6e87bf1230e7ab798644",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/142.md :: Oficina A; https://attack.mitre.org/techniques/T1547/001/",
+          "result": "Mecanismo Comparação de objetos type:path e digest distingue criação, remoção e alteração; presença não atribui autoria, intenção ou persistência.; contraprova added=1 para a chave nova, com malwareProven=false."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/142.md :: exemplo e checkpoints",
+          "result": "Cenário Uma fixture de atualização autorizada mantém /lab/report inalterado. Em contraste surge chave HKCU\\Lab e não existe evento que atribua a mudança a um processo. Previsão positiva changed=0 e added=0 ao comparar baseline consigo mesmo."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(142); lab.test.mjs",
+          "result": "Positivo: changed=0 e added=0 ao comparar baseline consigo mesmo. Negativo: added=1 para a chave nova, com malwareProven=false."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/142.md :: Defesas, reteste e limites",
+          "result": "Defesa Guardar before/after, hash de objeto, autor, timestamps e aprovação da instalação, verificar autorun e restaurar apenas estado não autorizado.; limite Não acessa registro de máquinas, arquivos reais ou instaladores; diffs são inteiramente sintéticos."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-142.md",
+          "result": "Seis perguntas transferíveis em Registry e File System Artifacts, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/142.md :: exemplo resolvido",
+          "result": "Caso Uma fixture de atualização autorizada mantém /lab/report inalterado. Em contraste surge chave HKCU\\Lab e não existe evento que atribua a mudança a um processo.; limite Não acessa registro de máquinas, arquivos reais ou instaladores; diffs são inteiramente sintéticos."
+        }
+      ]
+    },
+    "AULA-143": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Network Behavior: Uma consulta DNS simulada vem de PID 7 iniciado em t0. Uma segunda observação diz PID 7/t1, mas o inventário contém somente 7/t0. Mecanismo: Junção processo-fluxo depende de início, PID, janela e 5-tupla. Resolução DNS não comprova TCP/TLS concluído nem exfiltração. Positivo: matched=1 para processo e fluxo 7@t0. Negativo: unmatched=1 para fluxo 7@t1, sem atribuição inventada. Defesa: Triangular DNS, processo, evento de conexão, porta, destino e política de egress com baseline de agentes aprovados. Limite: Nenhuma conexão ou DNS real ocorre; hosts .invalid e eventos são fixtures em memória.",
+      "contentSha256": "6859d56824597c788118b392dc239bcac58d57ed1395e4cb3ca58fd71ddf048e",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/143.md :: Oficina A; https://www.rfc-editor.org/rfc/rfc2606",
+          "result": "Mecanismo Junção processo-fluxo depende de início, PID, janela e 5-tupla. Resolução DNS não comprova TCP/TLS concluído nem exfiltração.; contraprova unmatched=1 para fluxo 7@t1, sem atribuição inventada."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/143.md :: exemplo e checkpoints",
+          "result": "Cenário Uma consulta DNS simulada vem de PID 7 iniciado em t0. Uma segunda observação diz PID 7/t1, mas o inventário contém somente 7/t0. Previsão positiva matched=1 para processo e fluxo 7@t0."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(143); lab.test.mjs",
+          "result": "Positivo: matched=1 para processo e fluxo 7@t0. Negativo: unmatched=1 para fluxo 7@t1, sem atribuição inventada."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/143.md :: Defesas, reteste e limites",
+          "result": "Defesa Triangular DNS, processo, evento de conexão, porta, destino e política de egress com baseline de agentes aprovados.; limite Nenhuma conexão ou DNS real ocorre; hosts .invalid e eventos são fixtures em memória."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-143.md",
+          "result": "Seis perguntas transferíveis em Network Behavior, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/143.md :: exemplo resolvido",
+          "result": "Caso Uma consulta DNS simulada vem de PID 7 iniciado em t0. Uma segunda observação diz PID 7/t1, mas o inventário contém somente 7/t0.; limite Nenhuma conexão ou DNS real ocorre; hosts .invalid e eventos são fixtures em memória."
+        }
+      ]
+    },
+    "AULA-144": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "FakeNet-NG: Antes de emular uma resposta HTTP de fixture inerte, o responsável checa a configuração A com egress bloqueado e B com egress permitido. Mecanismo: Emulação requer fronteiras rígidas: roteamento, DNS redirecionado, ausência de serviços externos e credenciais reais. Checklist teórico não garante isolamento físico ou virtual. Positivo: ready=true com egressBlocked e dnsRedirect verdadeiros e nenhum recurso real exposto. Negativo: ready=false quando egressBlocked=false, mesmo com DNS redirecionado. Defesa: Usar fixture própria, rede desconectada, snapshot, revisão de rotas e listeners, não permitir malware desconhecido no roteiro. Limite: Não instala ou executa FakeNet-NG, não testa rede real nem dá autorização para usar amostras ativas.",
+      "contentSha256": "fb8852880690e1a90eec23d60ac1ca2fdddecfc7a36fa7fed2415f84d5087397",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/144.md :: Oficina A; https://github.com/mandiant/flare-fakenet-ng",
+          "result": "Mecanismo Emulação requer fronteiras rígidas: roteamento, DNS redirecionado, ausência de serviços externos e credenciais reais. Checklist teórico não garante isolamento físico ou virtual.; contraprova ready=false quando egressBlocked=false, mesmo com DNS redirecionado."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/144.md :: exemplo e checkpoints",
+          "result": "Cenário Antes de emular uma resposta HTTP de fixture inerte, o responsável checa a configuração A com egress bloqueado e B com egress permitido. Previsão positiva ready=true com egressBlocked e dnsRedirect verdadeiros e nenhum recurso real exposto."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(144); lab.test.mjs",
+          "result": "Positivo: ready=true com egressBlocked e dnsRedirect verdadeiros e nenhum recurso real exposto. Negativo: ready=false quando egressBlocked=false, mesmo com DNS redirecionado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/144.md :: Defesas, reteste e limites",
+          "result": "Defesa Usar fixture própria, rede desconectada, snapshot, revisão de rotas e listeners, não permitir malware desconhecido no roteiro.; limite Não instala ou executa FakeNet-NG, não testa rede real nem dá autorização para usar amostras ativas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-144.md",
+          "result": "Seis perguntas transferíveis em FakeNet-NG, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/144.md :: exemplo resolvido",
+          "result": "Caso Antes de emular uma resposta HTTP de fixture inerte, o responsável checa a configuração A com egress bloqueado e B com egress permitido.; limite Não instala ou executa FakeNet-NG, não testa rede real nem dá autorização para usar amostras ativas."
+        }
+      ]
+    },
+    "AULA-145": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Malware Traffic: Um conjunto inerte registra requisições a lab.invalid nos instantes 0,100,200 e outro fluxo de atualização autorizada em 0,13,96 segundos. Mecanismo: Agrupar por host e calcular diferenças entre tempos ordenados revela padrões candidatos de periodicidade. Cadência é característica compartilhada por software legítimo e atividade suspeita. Positivo: intervals=[100,100] para os três registros de lab.invalid. Negativo: intervals=[13,83] no contraste irregular sem conclusão de malware. Defesa: Correlacionar processo, versão, destino autorizado, manutenção, intervalos, volume e janelas de origem antes de gerar bloqueios. Limite: Sem PCAP, payload e I/O de rede; análise estatística simplificada não detecta C2 nem infecção.",
+      "contentSha256": "065e11eb60f3d474a1120230de7459d10673f7856e7ad569ca4142cf01294552",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/145.md :: Oficina A; https://attack.mitre.org/techniques/T1071/001/",
+          "result": "Mecanismo Agrupar por host e calcular diferenças entre tempos ordenados revela padrões candidatos de periodicidade. Cadência é característica compartilhada por software legítimo e atividade suspeita.; contraprova intervals=[13,83] no contraste irregular sem conclusão de malware."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/145.md :: exemplo e checkpoints",
+          "result": "Cenário Um conjunto inerte registra requisições a lab.invalid nos instantes 0,100,200 e outro fluxo de atualização autorizada em 0,13,96 segundos. Previsão positiva intervals=[100,100] para os três registros de lab.invalid."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(145); lab.test.mjs",
+          "result": "Positivo: intervals=[100,100] para os três registros de lab.invalid. Negativo: intervals=[13,83] no contraste irregular sem conclusão de malware."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/145.md :: Defesas, reteste e limites",
+          "result": "Defesa Correlacionar processo, versão, destino autorizado, manutenção, intervalos, volume e janelas de origem antes de gerar bloqueios.; limite Sem PCAP, payload e I/O de rede; análise estatística simplificada não detecta C2 nem infecção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-145.md",
+          "result": "Seis perguntas transferíveis em Malware Traffic, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/145.md :: exemplo resolvido",
+          "result": "Caso Um conjunto inerte registra requisições a lab.invalid nos instantes 0,100,200 e outro fluxo de atualização autorizada em 0,13,96 segundos.; limite Sem PCAP, payload e I/O de rede; análise estatística simplificada não detecta C2 nem infecção."
+        }
+      ]
+    },
+    "AULA-146": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "PCAP + Wireshark: O analista recebe registros sintéticos de stream 1 (DNS) e stream 2 (TCP), ambos em localhost; precisa filtrar sem afirmar que capturou pacotes reais. Mecanismo: Display filter só seleciona registros visíveis, não altera a captura. Protocolo e stream não são equivalentes; sem payload não se infere conteúdo TLS. Positivo: Filtro protocol=dns produz packets.length=1 e parsedPcap=false. Negativo: Filtro protocol=http sobre um registro apenas DNS gera zero, mas não comprova ausência de HTTP real. Defesa: Preservar hash e origem do PCAP, verificar cobertura de sensores, protocolo, stream, horário, conversas e sinais de perda antes de conclusão. Limite: Não lê bytes de PCAP nem executa Wireshark; filtra arrays JSON, sem rede.",
+      "contentSha256": "16d1090208096a350b0de3fbad2ab8fe0b98a21adebdcb04e2ebbf8ac4f96c3e",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/146.md :: Oficina A; https://www.wireshark.org/docs/wsug_html_chunked/ChapterIntroduction.html",
+          "result": "Mecanismo Display filter só seleciona registros visíveis, não altera a captura. Protocolo e stream não são equivalentes; sem payload não se infere conteúdo TLS.; contraprova Filtro protocol=http sobre um registro apenas DNS gera zero, mas não comprova ausência de HTTP real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/146.md :: exemplo e checkpoints",
+          "result": "Cenário O analista recebe registros sintéticos de stream 1 (DNS) e stream 2 (TCP), ambos em localhost; precisa filtrar sem afirmar que capturou pacotes reais. Previsão positiva Filtro protocol=dns produz packets.length=1 e parsedPcap=false."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(146); lab.test.mjs",
+          "result": "Positivo: Filtro protocol=dns produz packets.length=1 e parsedPcap=false. Negativo: Filtro protocol=http sobre um registro apenas DNS gera zero, mas não comprova ausência de HTTP real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/146.md :: Defesas, reteste e limites",
+          "result": "Defesa Preservar hash e origem do PCAP, verificar cobertura de sensores, protocolo, stream, horário, conversas e sinais de perda antes de conclusão.; limite Não lê bytes de PCAP nem executa Wireshark; filtra arrays JSON, sem rede."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-146.md",
+          "result": "Seis perguntas transferíveis em PCAP + Wireshark, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/146.md :: exemplo resolvido",
+          "result": "Caso O analista recebe registros sintéticos de stream 1 (DNS) e stream 2 (TCP), ambos em localhost; precisa filtrar sem afirmar que capturou pacotes reais.; limite Não lê bytes de PCAP nem executa Wireshark; filtra arrays JSON, sem rede."
+        }
+      ]
+    },
+    "AULA-147": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "C2 e Beaconing — análise defensiva: Um heartbeat autorizado ocorre em 0,60,120,180 segundos; uma série alternativa não autorizada varia de 0 a 20,95,180. Mecanismo: Jitter relativo ao intervalo médio diferencia séries regulares, mas a cadência isolada não prova comando e controle; processo, destino, política e manutenção definem contexto. Positivo: periodicCandidate=true e c2Confirmed=false para o heartbeat aprovado. Negativo: periodicCandidate=false para série irregular; não significa ausência de ameaça. Defesa: Validar política de heartbeat, assinatura, processo, endereço, janela, DNS e evidência de endpoint antes de disparar resposta. Limite: Não resolve C2, envia heartbeat ou inspeciona equipamentos; timestamps são inventados.",
+      "contentSha256": "2ae51ba4107e73703de907f840f3382190d26570095a652a9b42636e29889f67",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/147.md :: Oficina A; https://attack.mitre.org/techniques/T1071/",
+          "result": "Mecanismo Jitter relativo ao intervalo médio diferencia séries regulares, mas a cadência isolada não prova comando e controle; processo, destino, política e manutenção definem contexto.; contraprova periodicCandidate=false para série irregular; não significa ausência de ameaça."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/147.md :: exemplo e checkpoints",
+          "result": "Cenário Um heartbeat autorizado ocorre em 0,60,120,180 segundos; uma série alternativa não autorizada varia de 0 a 20,95,180. Previsão positiva periodicCandidate=true e c2Confirmed=false para o heartbeat aprovado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(147); lab.test.mjs",
+          "result": "Positivo: periodicCandidate=true e c2Confirmed=false para o heartbeat aprovado. Negativo: periodicCandidate=false para série irregular; não significa ausência de ameaça."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/147.md :: Defesas, reteste e limites",
+          "result": "Defesa Validar política de heartbeat, assinatura, processo, endereço, janela, DNS e evidência de endpoint antes de disparar resposta.; limite Não resolve C2, envia heartbeat ou inspeciona equipamentos; timestamps são inventados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-147.md",
+          "result": "Seis perguntas transferíveis em C2 e Beaconing — análise defensiva, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/147.md :: exemplo resolvido",
+          "result": "Caso Um heartbeat autorizado ocorre em 0,60,120,180 segundos; uma série alternativa não autorizada varia de 0 a 20,95,180.; limite Não resolve C2, envia heartbeat ou inspeciona equipamentos; timestamps são inventados."
+        }
+      ]
+    },
+    "AULA-148": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Memory Forensics: Uma ficha descreve PID 5 com memória r-x de origem aprovada e PID 7 com região rwx de origem desconhecida. Mecanismo: Permissões de escrita e execução simultâneas exigem contexto; JIT e depuradores podem exibir padrões semelhantes. Permissões não são autoria nem atividade maliciosa confirmada. Positivo: A região r-x aprovada não integra review, malwareProven=false. Negativo: A região rwx de origem unknown entra em review, sem diagnóstico de malware. Defesa: Preservar proveniência da imagem, mapear regiões e módulos, correlacionar processos, threads e runtime legítimo antes de responder. Limite: Não lê RAM, não cria dump e não confirma injeção ou exploração.",
+      "contentSha256": "f6f3b17ac7dbe7f8b7355ae16971676b3c703385eb6f00fbd84a925e902e53d1",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/148.md :: Oficina A; https://csrc.nist.gov/pubs/sp/800/86/final",
+          "result": "Mecanismo Permissões de escrita e execução simultâneas exigem contexto; JIT e depuradores podem exibir padrões semelhantes. Permissões não são autoria nem atividade maliciosa confirmada.; contraprova A região rwx de origem unknown entra em review, sem diagnóstico de malware."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/148.md :: exemplo e checkpoints",
+          "result": "Cenário Uma ficha descreve PID 5 com memória r-x de origem aprovada e PID 7 com região rwx de origem desconhecida. Previsão positiva A região r-x aprovada não integra review, malwareProven=false."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(148); lab.test.mjs",
+          "result": "Positivo: A região r-x aprovada não integra review, malwareProven=false. Negativo: A região rwx de origem unknown entra em review, sem diagnóstico de malware."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/148.md :: Defesas, reteste e limites",
+          "result": "Defesa Preservar proveniência da imagem, mapear regiões e módulos, correlacionar processos, threads e runtime legítimo antes de responder.; limite Não lê RAM, não cria dump e não confirma injeção ou exploração."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-148.md",
+          "result": "Seis perguntas transferíveis em Memory Forensics, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/148.md :: exemplo resolvido",
+          "result": "Caso Uma ficha descreve PID 5 com memória r-x de origem aprovada e PID 7 com região rwx de origem desconhecida.; limite Não lê RAM, não cria dump e não confirma injeção ou exploração."
+        }
+      ]
+    },
+    "AULA-149": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Volatility: Pslist de fixture registra PID 5 iniciado em t0; netscan t0 corresponde. Outra origem registra o mesmo PID iniciado t1, exigindo rejeitar junção falsa. Mecanismo: Plugins mostram artefatos distintos e nem sempre atuais. Para correlacionar processos entre pslist, pstree e netscan a identidade temporal é necessária, e ausência de uma linha não comprova ocultação. Positivo: correlated.length=1 quando PID e instante são os mesmos. Negativo: unmatched.length=1 quando PID coincide mas a instância temporal difere. Defesa: Validar integridade do dump e símbolos, versão dos plugins, fonte de tempo, processos e metadados de aquisição antes de reportar. Limite: Não instala Volatility nem abre dump; compara objetos inertes.",
+      "contentSha256": "ee50f93a469d16b6b2644ce4a96d2a066b1344d0d05009ef673a07ddf3bdff9b",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/149.md :: Oficina A; https://volatility3.readthedocs.io/en/latest/",
+          "result": "Mecanismo Plugins mostram artefatos distintos e nem sempre atuais. Para correlacionar processos entre pslist, pstree e netscan a identidade temporal é necessária, e ausência de uma linha não comprova ocultação.; contraprova unmatched.length=1 quando PID coincide mas a instância temporal difere."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/149.md :: exemplo e checkpoints",
+          "result": "Cenário Pslist de fixture registra PID 5 iniciado em t0; netscan t0 corresponde. Outra origem registra o mesmo PID iniciado t1, exigindo rejeitar junção falsa. Previsão positiva correlated.length=1 quando PID e instante são os mesmos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(149); lab.test.mjs",
+          "result": "Positivo: correlated.length=1 quando PID e instante são os mesmos. Negativo: unmatched.length=1 quando PID coincide mas a instância temporal difere."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/149.md :: Defesas, reteste e limites",
+          "result": "Defesa Validar integridade do dump e símbolos, versão dos plugins, fonte de tempo, processos e metadados de aquisição antes de reportar.; limite Não instala Volatility nem abre dump; compara objetos inertes."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-149.md",
+          "result": "Seis perguntas transferíveis em Volatility, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/149.md :: exemplo resolvido",
+          "result": "Caso Pslist de fixture registra PID 5 iniciado em t0; netscan t0 corresponde. Outra origem registra o mesmo PID iniciado t1, exigindo rejeitar junção falsa.; limite Não instala Volatility nem abre dump; compara objetos inertes."
+        }
+      ]
+    },
+    "AULA-150": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA, não revisor humano",
+      "reviewedOn": "2026-10-14",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Extração de IOCs: LAB.INVALID aparece duas vezes com caixa diferente e fonte conhecida; old.invalid tem validade expirada antes da data de referência. Mecanismo: Normalizar tipo/valor e exigir proveniência, contexto e expiração impede duplicatas e reuso de sinais obsoletos; indicador não é prova de comprometimento. Positivo: LAB.INVALID e lab.invalid geram um único IOC ativo e contextualizado. Negativo: old.invalid é movido para expired, sem atividade maliciosa provada. Defesa: Documentar fonte, confiança, data, escopo, proprietário, allowlist e impacto, revisar indicadores antes de divulgar ou bloquear. Limite: Sem feeds externos, DNS ou bloqueio real; o IOC é dado de treinamento.",
+      "contentSha256": "a9034f2402669b848997e521c515f1803feb8461d8b77886e908c2b8c3b2b67e",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda passagem editorial IA de causalidade e fonte técnica",
+          "reference": "public/course-library/main/150.md :: Oficina A; https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+          "result": "Mecanismo Normalizar tipo/valor e exigir proveniência, contexto e expiração impede duplicatas e reuso de sinais obsoletos; indicador não é prova de comprometimento.; contraprova old.invalid é movido para expired, sem atividade maliciosa provada."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough pedagógico IA com previsão e falso positivo; sem estudantes reais",
+          "reference": "public/course-library/main/150.md :: exemplo e checkpoints",
+          "result": "Cenário LAB.INVALID aparece duas vezes com caixa diferente e fonte conhecida; old.invalid tem validade expirada antes da data de referência. Previsão positiva LAB.INVALID e lab.invalid geram um único IOC ativo e contextualizado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Oficina Node offline com fixtures e controles negativo e positivo",
+          "reference": "public/course-labs/a141-150/models.mjs :: runWorkshop(150); lab.test.mjs",
+          "result": "Positivo: LAB.INVALID e lab.invalid geram um único IOC ativo e contextualizado. Negativo: old.invalid é movido para expired, sem atividade maliciosa provada."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise editorial IA de defesa, reteste e limites",
+          "reference": "public/course-library/main/150.md :: Defesas, reteste e limites",
+          "result": "Defesa Documentar fonte, confiança, data, escopo, proprietário, allowlist e impacto, revisar indicadores antes de divulgar ou bloquear.; limite Sem feeds externos, DNS ou bloqueio real; o IOC é dado de treinamento."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões próprias com rubrica e resposta independente",
+          "reference": "public/course-labs/a141-150/answer-keys/AULA-150.md",
+          "result": "Seis perguntas transferíveis em Extração de IOCs, com rubrica e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Revisão IA de cenário, contexto, risco e evidência",
+          "reference": "public/course-library/main/150.md :: exemplo resolvido",
+          "result": "Caso LAB.INVALID aparece duas vezes com caixa diferente e fonte conhecida; old.invalid tem validade expirada antes da data de referência.; limite Sem feeds externos, DNS ou bloqueio real; o IOC é dado de treinamento."
+        }
+      ]
     }
   },
   "policy": {
