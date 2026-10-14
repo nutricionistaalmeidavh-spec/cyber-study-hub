@@ -17,7 +17,7 @@
 .academy-page .academy-preview-shell{transition:box-shadow .7s var(--academy-soft)}
 .academy-page .academy-hero-visual:hover .academy-preview-shell{box-shadow:0 45px 120px rgba(0,0,0,.57),0 0 110px rgba(145,94,241,.2)}
 .academy-page .academy-hero-glow{will-change:transform}
-.academy-page .academy-float-note{animation:academy-float 5.5s ease-in-out infinite}
+.academy-page .academy-float-note{animation:none}
 .academy-page .academy-preview-live{animation:academy-live 2.8s ease-in-out infinite}
 .academy-page .academy-path-card.active .academy-path-icon{animation:academy-glow 3.5s ease-in-out infinite}
 .academy-page .academy-scroll-cue{display:inline-flex;gap:12px;align-items:center;margin-top:31px;font-size:10px;font-weight:830;letter-spacing:.18em;color:#b9bad8;text-transform:uppercase}
@@ -79,7 +79,7 @@
 @media(max-width:720px){
   .academy-page .academy-module-card:hover,.academy-page .academy-plan-card:hover{transform:translate3d(0,-3px,0)}
   .academy-page .academy-hero-visual{perspective:none}
-  .academy-page .academy-float-note{animation-duration:7s}
+  
   .academy-page .academy-scroll-cue{margin-top:24px}
   .academy-page .academy-hero-glow{will-change:auto}
 }
