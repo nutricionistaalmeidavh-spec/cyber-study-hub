@@ -56,3 +56,7 @@ Dez pareceres A editoriais novos elevam o total canônico a **46 A editoriais** 
 ## A editorial IA — aulas 061 a 070 (13/10/2026)
 
 Dez pareceres A editoriais foram acrescentados (agora **65 A editoriais**, 55 anteriores preservados), com hashes, laboratórios Node em memória/loopback, provas independentes e rubricas. Ferramentas Nmap/Nuclei/PowerShell e Windows/AD são opcionais; core R$0, local. O julgamento é por IA, sem testes humanos com aprendizes. Ver `quality/reviews/a061-070-2026-10-13.json` e `docs/quality/AUDITORIA_A_AULAS_061_070.md`.
+
+## A editorial IA — aulas 111–120 (13/10/2026)
+
+Mais 10 unidades A (Assembly & Reverse Engineering) com laboratórios Node, provas independentes, gabaritos e hashes SHA-256. São **105 classificações A editoriais IA** no total (95 anteriores preservadas). Ferramentas Ghidra/x64dbg e compiladores nativos são opcionais. Não houve teste observacional com alunos nem revisão humana externa. Conferir `quality/reviews/a111-120-2026-10-13.json` e `docs/quality/AUDITORIA_A_AULAS_111_120.md`.
