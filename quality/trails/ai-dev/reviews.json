@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "separate-learning-trail",
-  "note": "Nota editorial assistida por IA; não altera o registro das 543 unidades; não comprova aprendizagem de estudantes.",
+  "note": "Notas A editoriais de 8 módulos: auditoria por IA sem teste com alunos reais, sem alteração das 543 unidades canônicas.",
   "reviewDate": "2026-10-14",
   "reviewMethod": "ai_editorial_critical_second_pass",
   "humanLearnerTesting": "not_performed",
@@ -374,6 +374,228 @@
         "Nenhuma observação de aprendizagem com estudantes reais.",
         "Sem revisão humana externa ou prova de acessibilidade com leitores de tela.",
         "A nota é editorial; conclusão do aluno é autodeclarada e não representa aprovação corrigida."
+      ]
+    },
+    "06": {
+      "moduleId": 6,
+      "title": "Banco de dados e backend",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "cc5b7296f8851aa767cba86cbbee60878a9578736307ed829cea4a9ed6c76f9d",
+      "examSha256": "b9e357cbfedd1e44aecf0fd52e6237e7874e59e03407067f6482ee7455a5ce75",
+      "answerKeySha256": "180484fcf4ab7d83e14db63e08b540144b9d3a4f908c4c91f425ec11144a4ec2",
+      "labSha256": "5cee3260e75a9f8c53054180109d639a43ff398b5151deaeebc8edc0f059eee8",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/tests/api.test.mjs",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 91,
+        "defesa": 91,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão de conceitos e invariantes com contraexemplos de erro",
+          "reference": "src/trails/ai-dev/modules.json#module-06",
+          "result": "M06: Persistência SQLite e API REST; três seções conceituais e três de prática IA, todas com exemplos, riscos e verificações concretas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial partindo de pré-requisitos iniciais explícitos",
+          "reference": "src/trails/ai-dev/modules.json#module-06/learningOutcomes",
+          "result": "M06: objetivo e resultados de aprendizagem explícitos, conceitos sequenciais, modos ChatGPT/Claude/não IA e revisão de casos negativos; sem alunos reais."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de laboratório executável e cenários positivos/negativos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/tests/api.test.mjs",
+          "result": "M06: checkpoint v0.4 (SQLite e HTTP) com testes automatizados locais e instruções sem recurso pago; confirmação de execução é responsabilidade do CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de fronteira de confiança e falhas de segurança do laboratório",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/tests/api.test.mjs",
+          "result": "M06: dados fictícios, loopback estrito, constraints SQLite, erros HTTP sem vazamento e declaração explícita de não prontidão para internet pública."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial separada com prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-06.md",
+          "result": "M06: seis questões diferentes dos exemplos guiados, gabarito independente, rubrica 0–2, 10/12, erro eliminatório e exigência de reteste."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência da aderência dos artefatos ao Meu Gestor e suas versões",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/tests/api.test.mjs",
+          "result": "M06: usa explicitamente clientes C-001, ordens OS-002, status pendente/em andamento/concluído e o checkpoint concreto v0.4."
+        }
+      ],
+      "limitations": [
+        "Não houve estudo observacional com estudantes nem revisão externa por professor humano.",
+        "QA automatizado não comprova segurança em produção ou acessibilidade assistiva.",
+        "Classificação A é editorial assistida por IA, não certificação do aluno."
+      ]
+    },
+    "07": {
+      "moduleId": 7,
+      "title": "Corrigindo erros e garantindo qualidade",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "92a31bca2e08ee79b7a3c51c2d4ab36ea1f7ffbbd6d635229552e7d40252f840",
+      "examSha256": "5b9193fd45345e04ae1c63beffb289e946b62865732b188a80daf0d0b4b03a1c",
+      "answerKeySha256": "1573512e4aa35a5e60c4862daef6e5ead17f646e0b23dc04dcda32aef68292e3",
+      "labSha256": "fb932cb85537d2b92ff8ba64e911e7fa2ec3d91746dfc1544763b583e97813a5",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/tests/regression.test.mjs",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão de conceitos e invariantes com contraexemplos de erro",
+          "reference": "src/trails/ai-dev/modules.json#module-07",
+          "result": "M07: Testes, depuração e regressão; três seções conceituais e três de prática IA, todas com exemplos, riscos e verificações concretas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial partindo de pré-requisitos iniciais explícitos",
+          "reference": "src/trails/ai-dev/modules.json#module-07/learningOutcomes",
+          "result": "M07: objetivo e resultados de aprendizagem explícitos, conceitos sequenciais, modos ChatGPT/Claude/não IA e revisão de casos negativos; sem alunos reais."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de laboratório executável e cenários positivos/negativos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/tests/regression.test.mjs",
+          "result": "M07: checkpoint v0.5 (regressão e build) com testes automatizados locais e instruções sem recurso pago; confirmação de execução é responsabilidade do CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de fronteira de confiança e falhas de segurança do laboratório",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/tests/regression.test.mjs",
+          "result": "M07: dados fictícios, loopback estrito, constraints SQLite, erros HTTP sem vazamento e declaração explícita de não prontidão para internet pública."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial separada com prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-07.md",
+          "result": "M07: seis questões diferentes dos exemplos guiados, gabarito independente, rubrica 0–2, 10/12, erro eliminatório e exigência de reteste."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência da aderência dos artefatos ao Meu Gestor e suas versões",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/tests/regression.test.mjs",
+          "result": "M07: usa explicitamente clientes C-001, ordens OS-002, status pendente/em andamento/concluído e o checkpoint concreto v0.5."
+        }
+      ],
+      "limitations": [
+        "Não houve estudo observacional com estudantes nem revisão externa por professor humano.",
+        "QA automatizado não comprova segurança em produção ou acessibilidade assistiva.",
+        "Classificação A é editorial assistida por IA, não certificação do aluno."
+      ]
+    },
+    "08": {
+      "moduleId": 8,
+      "title": "Finalização e publicação",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "author": "IA — autoria de material",
+      "reviewer": "IA — segunda passagem crítica editorial",
+      "reviewedOn": "2026-10-14",
+      "contentSha256": "e54285381c8cd8e2c4f0ccf17d35683ebc40e179f0333e216cd49e82533158c1",
+      "examSha256": "a8ad9335e3cb95fe0da8763f0b6c0f7f30e8d5d508802d19caa665186a7d72eb",
+      "answerKeySha256": "1e6d2b228b17477981a940282643cf40801e81b664c5d059cf09b434059e946c",
+      "labSha256": "e73ee77ca00ae7acab18fab12aaccedc3a84f28ce4e7b4b83d3643220b1ac5d2",
+      "labPath": "public/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/ops/backup.mjs",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "humanLearnerTesting": "not_performed",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão de conceitos e invariantes com contraexemplos de erro",
+          "reference": "src/trails/ai-dev/modules.json#module-08",
+          "result": "M08: Entrega local, backup e restauração; três seções conceituais e três de prática IA, todas com exemplos, riscos e verificações concretas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial partindo de pré-requisitos iniciais explícitos",
+          "reference": "src/trails/ai-dev/modules.json#module-08/learningOutcomes",
+          "result": "M08: objetivo e resultados de aprendizagem explícitos, conceitos sequenciais, modos ChatGPT/Claude/não IA e revisão de casos negativos; sem alunos reais."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de laboratório executável e cenários positivos/negativos",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/ops/backup.mjs",
+          "result": "M08: checkpoint v1.0 (backup e restauração) com testes automatizados locais e instruções sem recurso pago; confirmação de execução é responsabilidade do CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de fronteira de confiança e falhas de segurança do laboratório",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/ops/backup.mjs",
+          "result": "M08: dados fictícios, loopback estrito, constraints SQLite, erros HTTP sem vazamento e declaração explícita de não prontidão para internet pública."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial separada com prova de transferência e rubrica",
+          "reference": "public/course-labs/ai-dev-meu-gestor/assessments/module-08.md",
+          "result": "M08: seis questões diferentes dos exemplos guiados, gabarito independente, rubrica 0–2, 10/12, erro eliminatório e exigência de reteste."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência da aderência dos artefatos ao Meu Gestor e suas versões",
+          "reference": "public/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/ops/backup.mjs",
+          "result": "M08: usa explicitamente clientes C-001, ordens OS-002, status pendente/em andamento/concluído e o checkpoint concreto v1.0."
+        }
+      ],
+      "limitations": [
+        "Não houve estudo observacional com estudantes nem revisão externa por professor humano.",
+        "QA automatizado não comprova segurança em produção ou acessibilidade assistiva.",
+        "Classificação A é editorial assistida por IA, não certificação do aluno."
       ]
     }
   }
