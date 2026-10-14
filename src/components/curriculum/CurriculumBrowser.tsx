@@ -145,7 +145,7 @@ export function CurriculumBrowser({
       </div>
       <section className="curriculum-module-grid" aria-label={initialMode === 'main' ? 'Módulos da formação principal' : 'Módulos paralelos'}>
         {initialMode === 'main'
-          ? mainModules.filter(group => visibleModules.some(item => item.name === group.name)).map((group, i) => {
+          ? mainModules.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
               const ordinal = mainModules.findIndex(item => item.name === group.name) + 1;
               const first = group.items[0];
               const last = group.items[group.items.length - 1];
