@@ -50,7 +50,7 @@
       ],
       "outcome": "Projeto descrito, regra de negócio testada e primeira personalização",
       "duration": "2–3 h",
-      "status": "pilot"
+      "status": "available"
     },
     {
       "id": 2,
@@ -81,7 +81,7 @@
       ],
       "outcome": "Requisitos e fluxos documentados",
       "duration": "3–4 h",
-      "status": "planned"
+      "status": "available"
     },
     {
       "id": 3,
@@ -112,7 +112,7 @@
       ],
       "outcome": "App local e primeiro commit",
       "duration": "4–6 h",
-      "status": "planned"
+      "status": "available"
     },
     {
       "id": 4,
@@ -143,7 +143,7 @@
       ],
       "outcome": "Telas navegáveis com dados fictícios",
       "duration": "5–7 h",
-      "status": "planned"
+      "status": "available"
     },
     {
       "id": 5,
@@ -174,7 +174,7 @@
       ],
       "outcome": "Funcionalidades com dados temporários",
       "duration": "5–6 h",
-      "status": "planned"
+      "status": "available"
     },
     {
       "id": 6,

@@ -1,4 +1,4 @@
-name: Trilha IA Pilot QA
+name: Trilha IA — Módulos 01 a 05
 on:
   pull_request:
     paths:
@@ -6,7 +6,6 @@ on:
       - 'public/course-labs/ai-dev-meu-gestor/**'
       - 'src/App.tsx'
       - 'src/components/Dashboard.tsx'
-      - 'src/curriculum/catalog.json'
       - 'scripts/verify-ai-dev.mjs'
       - 'package.json'
       - '.github/workflows/ai-dev-pilot.yml'
@@ -14,9 +13,9 @@ on:
 permissions:
   contents: read
 jobs:
-  verify-pilot:
+  quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 22
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,9 +23,22 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Conferir referências e projeto-base
+      - name: Matriz curricular e auditorias A
         run: npm run verify:ai-dev
-      - name: Build e validadores preexistentes
+      - name: Laboratório M01
+        run: node --test public/course-labs/ai-dev-meu-gestor/tests/starter.test.mjs
+      - name: Laboratório M02
+        run: node --test public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.test.mjs
+      - name: Meu Gestor v0.1 - build
+        working-directory: public/course-labs/ai-dev-meu-gestor/checkpoints/v0.1
+        run: npm install --no-audit --no-fund && npm run build
+      - name: Meu Gestor v0.2 - build
+        working-directory: public/course-labs/ai-dev-meu-gestor/checkpoints/v0.2
+        run: npm install --no-audit --no-fund && npm run build
+      - name: Meu Gestor v0.3 - testes e build
+        working-directory: public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3
+        run: npm install --no-audit --no-fund && npm test && npm run build
+      - name: Build HubEstudos
         run: npm run build
-      - name: Testes de plataforma (sem alterações de login)
+      - name: Regressão autenticação
         run: npm run test:platform

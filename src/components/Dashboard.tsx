@@ -29,9 +29,9 @@ export default function Dashboard() {
     </section>
 
     <section className="panel ai-dashboard-cta">
-      <span className="eyebrow">NOVA FORMAÇÃO · PILOTO DISPONÍVEL</span>
+      <span className="eyebrow">FORMAÇÃO COM IA · 5 MÓDULOS DISPONÍVEIS</span>
       <h2>Crie seu próprio sistema com ChatGPT ou Claude</h2>
-      <p>Uma trilha prática de 8 módulos e 32 etapas. O primeiro módulo já tem duas microaulas, uma aula da biblioteca e um laboratório executável. IA local é opcional; nenhuma API paga é necessária.</p>
+      <p>Uma trilha prática de 8 módulos e 32 etapas. Os módulos 1 a 5 já têm aulas, referências canônicas, laboratórios e provas independentes. IA local é opcional; nenhuma API paga é necessária.</p>
       <a className="button primary" href="#ai-dev">Começar Desenvolvimento com IA →</a>
     </section>
 
