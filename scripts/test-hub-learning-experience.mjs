@@ -14,6 +14,9 @@ test('canonical curriculum and real beginner entry', () => {
   assert.match(home, /getReviewStats\(\)/);
   assert.match(home, /getActiveParallelTracks\(\)/);
   assert.match(home, /interactiveLessons\.length/);
+  assert.match(home, /mainModuleCount/);
+  assert.match(home, /parallelModuleCount/);
+  assert.match(home, /Módulos de estudo/);
   assert.doesNotMatch(home, /Aulas 43[–-]100|Continuar na aula 43/);
 });
 

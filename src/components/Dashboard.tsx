@@ -43,7 +43,9 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   }).filter((item): item is {code:string;name:string} => item !== null);
   const firstName = user.name.trim().split(/\s+/)[0] || 'Estudante';
   const percent = interactiveLessons.length ? Math.round(completedInteractive / interactiveLessons.length * 100) : 0;
-  const totalUnits = catalog.main.length + catalog.parallel.length;
+  const mainModuleCount = new Set(catalog.main.map(item => item.block)).size;
+  const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
+  const totalModules = mainModuleCount + parallelModuleCount;
   return <div className="page hub-home stack-lg">
     <header className="hub-home-topline">
       <div><span className="eyebrow">SEU ESPAÇO DE ESTUDOS</span><h1>Olá, {firstName}.</h1><p>Escolha o próximo passo e avance no seu ritmo.</p></div>
@@ -74,8 +76,8 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     </section>
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
       <a href="#lessons" className="hub-home-stat">
-        <small>Biblioteca de estudos</small><strong>{totalUnits}</strong>
-        <span>{catalog.main.length} principais + {catalog.parallel.length} paralelas</span>
+        <small>Módulos de estudo</small><strong>{totalModules}</strong>
+        <span>{mainModuleCount} da formação principal + {parallelModuleCount} trilhas paralelas</span>
       </a>
       <a href="#lessons?mode=main" className="hub-home-stat">
         <small>Aulas interativas concluídas</small><strong>{completedInteractive}<em> / {interactiveLessons.length}</em></strong>
@@ -95,11 +97,11 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       <div className="hub-journey-grid">
         <a href="#lessons?mode=main" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">01</span>
-          <div><strong>Formação principal</strong><p>{catalog.main.length} aulas em sequência. Comece pelos fundamentos ou escolha uma área.</p><span>Abrir formação <b aria-hidden="true">↗</b></span></div>
+          <div><strong>Formação principal</strong><p>{mainModuleCount} módulos · {catalog.main.length} aulas. Comece pelos fundamentos ou escolha uma área.</p><span>Explorar módulos <b aria-hidden="true">↗</b></span></div>
         </a>
         <a href="#lessons?mode=parallel" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">02</span>
-          <div><strong>Trilhas paralelas</strong><p>{catalog.parallel.length} unidades de lógica, programação e especialidades.</p><span>Explorar trilhas <b aria-hidden="true">↗</b></span></div>
+          <div><strong>Trilhas paralelas</strong><p>{parallelModuleCount} trilhas · {catalog.parallel.length} unidades de lógica, programação e especialidades.</p><span>Explorar trilhas <b aria-hidden="true">↗</b></span></div>
         </a>
         <a href="#review" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">03</span>
