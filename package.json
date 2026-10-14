@@ -54,6 +54,7 @@
     "test:a-131-140": "node scripts/test-a-131-140-structure.mjs && node --test public/course-labs/a131-140/labs.test.mjs",
     "test:grade-a-131-140": "node scripts/test-grade-a-131-140.mjs",
     "prebuild": "node scripts/check-cloudflare-worker.mjs",
+    "test:kdf": "node --test scripts/test-password-kdf.mjs",
     "verify:ai-dev": "node scripts/verify-ai-dev.mjs"
   },
   "dependencies": {
