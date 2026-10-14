@@ -15,7 +15,7 @@
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
     "verify:catalog": "node scripts/verify-phase-12-14.mjs",
     "test:quality": "node scripts/test-quality-p0.mjs",
-    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a && npm run test:a-002-008 && npm run test:grade-a-10-20 && npm run test:a-021-030 && npm run test:grade-a-031-040 && npm run test:grade-a-41-50",
+    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a && npm run test:a-002-008 && npm run test:grade-a-10-20 && npm run test:a-021-030 && npm run test:grade-a-031-040 && npm run test:grade-a-41-50 && npm run test:grade-a-071-080",
     "report:quality": "node scripts/quality-p0.mjs --write",
     "test:pilot-grade-a": "node scripts/test-pilot-grade-a.mjs",
     "test:a-002-008": "node scripts/test-a-002-008-structure.mjs && node scripts/test-a-002-008.mjs",
@@ -25,7 +25,9 @@
     "test:a-031-040": "node scripts/test-a-031-040-structure.mjs && node --test public/course-labs/a031-040/lab.test.mjs",
     "test:grade-a-031-040": "node scripts/test-grade-a-031-040.mjs",
     "test:a-41-50": "node scripts/test-lessons-41-50.mjs && node --test public/course-labs/a41-50/lab.test.mjs",
-    "test:grade-a-41-50": "node scripts/test-grade-a-41-50.mjs"
+    "test:grade-a-41-50": "node scripts/test-grade-a-41-50.mjs",
+    "test:a-071-080": "node scripts/test-a-071-080-structure.mjs && node --test public/course-labs/a071-080/lab.test.mjs",
+    "test:grade-a-071-080": "node scripts/test-grade-a-071-080.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
