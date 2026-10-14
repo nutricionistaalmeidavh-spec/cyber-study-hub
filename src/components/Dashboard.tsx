@@ -75,7 +75,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       </div>
     </section>
     <a className="hub-ai-banner" href="#ai-dev">
-      <span><small>FORMAÇÃO PRÁTICA · 5 MÓDULOS DISPONÍVEIS</small><strong>Construa o Meu Gestor com ChatGPT ou Claude</strong><em>20 etapas com laboratórios e provas independentes. IA local opcional, sem API paga obrigatória.</em></span>
+      <span><small>FORMAÇÃO PRÁTICA · 8 MÓDULOS DISPONÍVEIS</small><strong>Construa o Meu Gestor com ChatGPT ou Claude</strong><em>32 etapas com laboratórios e provas independentes. IA local opcional, sem API paga obrigatória.</em></span>
       <b>Abrir trilha →</b>
     </a>
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
