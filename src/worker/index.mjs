@@ -141,14 +141,27 @@ export class HubAuthObject extends DurableObject {
       if(path==='/api/health'&&method==='GET')return response(200,{ok:true});
       if(path==='/api/auth/config'&&method==='GET')
         return response(200,{ready:this.one('SELECT COUNT(*) AS n FROM users').n>0,
+          bootstrapConfigured:typeof this.env.HUB_BOOTSTRAP_KEY==='string'&&this.env.HUB_BOOTSTRAP_KEY.length>0,
           openRegistration:this.env.HUB_OPEN_REGISTRATION==='1'});
       if(path==='/api/auth/bootstrap'&&method==='POST'){
         const b=await jsonBody(request);
         if(this.one('SELECT COUNT(*) AS n FROM users').n)throw new ApiError(409,'Plataforma já inicializada.');
         const expected=this.env.HUB_BOOTSTRAP_KEY;
-        if(typeof expected!=='string'||expected.length<24||typeof b.bootstrapKey!=='string'||
-          (await sha(expected))!==(await sha(b.bootstrapKey)))
+        // A correspondência exata com o segredo configurado é a autoridade.
+        // O limite arbitrário de 24 caracteres rejeitava chaves corretas.
+        if(typeof expected!=='string'||expected.length===0)
+          throw new ApiError(503,'Chave de instalação não configurada no Worker.');
+        const attemptKey=await sha('bootstrap:'+(request.headers.get('cf-connecting-ip')||'unknown'));
+        const attempt=this.one('SELECT count,reset_at FROM login_attempts WHERE key=?',attemptKey);
+        if(attempt&&attempt.reset_at>Date.now()&&attempt.count>=8)
+          throw new ApiError(429,'Muitas tentativas de instalação. Tente novamente em 15 minutos.');
+        if(typeof b.bootstrapKey!=='string'||(await sha(expected))!==(await sha(b.bootstrapKey))){
+          const ongoing=attempt&&attempt.reset_at>Date.now();
+          this.sql.exec('INSERT INTO login_attempts(key,count,reset_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET count=excluded.count,reset_at=excluded.reset_at',
+            attemptKey,ongoing?attempt.count+1:1,ongoing?attempt.reset_at:Date.now()+900000);
           throw new ApiError(403,'Chave de instalação inválida.');
+        }
+        this.sql.exec('DELETE FROM login_attempts WHERE key=?',attemptKey);
         const user=await this.newUser({...b,role:'admin'},()=>{
           if(this.one('SELECT COUNT(*) AS n FROM users').n)throw new ApiError(409,'Plataforma já inicializada.');
         });
@@ -279,8 +292,8 @@ export class HubAuthObject extends DurableObject {
 export default {
   fetch(request,env){
     const url=new URL(request.url);
-    if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
     if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
+    if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
     if(!env.HUB_AUTH)return response(503,{error:'Backend da plataforma não configurado.'});
     return env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(request);
   }

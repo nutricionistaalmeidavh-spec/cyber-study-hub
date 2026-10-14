@@ -127,13 +127,22 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       if(!path.startsWith('/api/'))throw new HttpError(404,'Rota não encontrada.');
       if(method!=='GET'&&req.headers.origin!==canonicalOrigin)throw new HttpError(403,'Origem não permitida.');
       if(path==='/api/auth/config'&&method==='GET')
-        return respond(res,200,{ready:q('SELECT count(*) AS n FROM users').get().n>0,openRegistration:Boolean(openRegistration)});
+        return respond(res,200,{ready:q('SELECT count(*) AS n FROM users').get().n>0,
+          bootstrapConfigured:typeof bootstrapKey==='string'&&bootstrapKey.length>0,
+          openRegistration:Boolean(openRegistration)});
       if(path==='/api/auth/bootstrap'&&method==='POST') {
         const b=await readJson(req);
         if(q('SELECT count(*) AS n FROM users').get().n>0)throw new HttpError(409,'Plataforma já inicializada.');
-        if(typeof bootstrapKey!=='string'||bootstrapKey.length<24||typeof b.bootstrapKey!=='string'||
-           !timingSafeEqual(Buffer.from(sha(bootstrapKey),'hex'),Buffer.from(sha(b.bootstrapKey),'hex')))
+        if(typeof bootstrapKey!=='string'||bootstrapKey.length===0)
+          throw new HttpError(503,'Chave de instalação não configurada no servidor.');
+        const attemptKey=sha('bootstrap:'+(req.socket.remoteAddress??'unknown'));
+        enforceLoginLimit(attemptKey);
+        if(typeof b.bootstrapKey!=='string'||
+           !timingSafeEqual(Buffer.from(sha(bootstrapKey),'hex'),Buffer.from(sha(b.bootstrapKey),'hex'))){
+          failedLogin(attemptKey);
           throw new HttpError(403,'Chave de instalação inválida.');
+        }
+        q('DELETE FROM login_attempts WHERE key=?').run(attemptKey);
         return loginSession(res,newUser({...b,role:'admin'}),201);
       }
       if(path==='/api/auth/register'&&method==='POST') {

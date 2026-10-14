@@ -6,7 +6,7 @@ export type PlatformUser={
   id:string; name:string; email:string; role:'admin'|'teacher'|'student'; status:'active'|'suspended'; createdAt:string;
 };
 type AuthResponse={user:PlatformUser};
-type Settings={ready:boolean;openRegistration:boolean};
+type Settings={ready:boolean;openRegistration:boolean;bootstrapConfigured?:boolean};
 export async function platformApi<T>(path:string,method='GET',data?:object):Promise<T>{
   const response=await fetch(path,{
     method, credentials:'same-origin',cache:'no-store',
@@ -98,6 +98,8 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
         mode==='register'?'Complete o cadastro para começar a estudar.':
         'Entre para continuar suas aulas, revisões e laboratórios.'}</p>
       {(error||outerError)&&<div className="platform-error" role="alert">{error||outerError}</div>}
+      {mode==='bootstrap'&&settings?.bootstrapConfigured===false&&
+        <div className="platform-error" role="alert">O Worker ainda não recebeu HUB_BOOTSTRAP_KEY. Confira a variável Secret na versão publicada do Cloudflare.</div>}
       {settings&&<form onSubmit={submit} className="platform-form">
         {mode!=='login'&&<label>Nome completo<input required autoComplete="name" minLength={2} maxLength={100} value={name} onChange={e=>setName(e.target.value)}/></label>}
         <label>E-mail<input type="email" required autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)}/></label>

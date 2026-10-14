@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const config=readFileSync(new URL('../wrangler.toml',import.meta.url),'utf8');
+const script=readFileSync(new URL('../src/worker/index.mjs',import.meta.url),'utf8');
+assert.match(config,/main\s*=\s*"src\/worker\/index\.mjs"/,'Deploy must use account-aware Worker');
+assert.match(config,/class_name\s*=\s*"HubAuthObject"/,'Persistent binding must not be removed');
+assert.match(config,/new_sqlite_classes\s*=\s*\["HubAuthObject"\]/,'SQLite migration must exist');
+assert.match(config,/run_worker_first\s*=\s*\[[^\]]*"\/api\/\*"/,'API requests must reach Worker');
+assert.match(script,/export class HubAuthObject extends DurableObject/,'Worker must export persistent Durable Object class');
+assert.match(script,/env\.HUB_AUTH/,'Worker must route to persistent binding');
+console.log('Cloudflare Worker class/binding regression gate passed.');

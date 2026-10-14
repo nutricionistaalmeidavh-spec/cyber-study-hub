@@ -5,7 +5,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 
-const key='integration-test-bootstrap-key-123456789012345';
+// Regressão: segredo mais curto previamente rejeitado mesmo quando correto.
+const key='ShortK_1234';
 const port=8879;
 const origin='http://127.0.0.1:'+port;
 const temp=await mkdtemp(join(tmpdir(),'hub-worker-test-'));
@@ -37,7 +38,9 @@ async function ready(){
 }
 try{
   await ready();
-  assert.equal((await request('/api/auth/config')).payload.ready,false);
+  const config=(await request('/api/auth/config')).payload;
+  assert.equal(config.ready,false);
+  assert.equal(config.bootstrapConfigured,true);
   assert.equal((await request('/api/me')).status,401);
   const admin={name:'Admin',email:'admin@example.test',password:'GoodPassword1234!',bootstrapKey:key};
   assert.equal((await request('/api/auth/bootstrap',{method:'POST',body:{...admin,bootstrapKey:'invalid'}})).status,403);
@@ -74,6 +77,9 @@ try{
   assert.equal((await request('/api/me',{cookie:student.cookie})).status,401);
   assert.equal((await request('/api/auth/logout',{method:'POST',cookie:created.cookie})).status,200);
   assert.equal((await request('/api/me',{cookie:created.cookie})).status,401);
+  const probe=await request('/__worker/health');
+  assert.equal(probe.status,200,probe.text);
+  assert.equal(probe.payload.runtime,'worker');
   const app=await fetch(origin+'/');
   assert.equal(app.status,200);
   console.log('Cloudflare Worker local: login, roles, progress isolation, suspend, logout, assets OK');

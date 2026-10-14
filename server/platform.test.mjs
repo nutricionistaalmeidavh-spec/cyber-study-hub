@@ -16,13 +16,13 @@ afterEach(async () => {
   }
 });
 
-async function start({ openRegistration = false } = {}) {
+async function start({ openRegistration = false, bootstrapKey = 'this-is-a-one-time-secret-123456789' } = {}) {
   const dir = mkdtempSync(join(tmpdir(), 'study-hub-auth-'));
   const origin = 'http://127.0.0.1';
   const app = createPlatformHandler({
     dbPath: join(dir, 'platform.db'),
     origin,
-    bootstrapKey: 'this-is-a-one-time-secret-123456789',
+    bootstrapKey,
     openRegistration
   });
   const server = createServer(app.handle);
@@ -119,4 +119,17 @@ test('removing a progress key deletes only that user state',async()=>{
   assert.equal((await request('/api/me/state',{method:'PUT',cookie,data:{key,value:'{"1":{"completed":true}}'}})).status,200);
   assert.equal((await request('/api/me/state',{method:'DELETE',cookie,data:{key}})).status,200);
   assert.equal((await request('/api/me/state',{cookie})).payload.state[key],undefined);
+});
+
+test('an exactly matching, shorter installed key can bootstrap once', async () => {
+  const shortKey='ShortK_1234';
+  const request=await start({bootstrapKey:shortKey});
+  assert.equal((await request('/api/auth/config')).payload.bootstrapConfigured,true);
+  const created=await request('/api/auth/bootstrap',{
+    method:'POST',data:{...admin,bootstrapKey:shortKey}
+  });
+  assert.equal(created.status,201);
+  assert.equal((await request('/api/auth/bootstrap',{
+    method:'POST',data:{...admin,bootstrapKey:shortKey}
+  })).status,409);
 });
