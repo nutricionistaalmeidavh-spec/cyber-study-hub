@@ -1,9 +1,11 @@
-node_modules/
-dist/
-.wrangler/
+node_modules
+dist
 .env
 .env.*
 !.env.example
+.wrangler
+.hub-data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
 .DS_Store
-*.log
-reports/quality/
