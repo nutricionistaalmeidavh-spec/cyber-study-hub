@@ -48,3 +48,7 @@ Mais sete pareceres A editoriais foram registrados, totalizando quinze. Cada um 
 ## Ampliação A editorial IA — aulas 010 a 020 (13/10/2026)
 
 Mais onze pareceres A editoriais foram integrados ao registro, totalizando **26 unidades A** (8 pilotos + 7 de 002–008 + 11 de 010–020). Evidências e hashes constam em `quality/reviews/a10-20-2026-10-13.json`. O resultado é uma avaliação por IA, não estudo observacional com estudantes reais. O core e os laboratórios continuam gratuitos e locais.
+
+## Ampliação A editorial IA — aulas 031 a 040 (13/10/2026)
+
+Dez pareceres A editoriais novos elevam o total canônico a **46 A editoriais** (26 anteriores, 10 de 021–030 e 10 de 031–040). Evidências e hashes em `quality/reviews/a031-040-2026-10-13.json`, sem teste observacional com aprendizes reais. O material e seus laboratórios são locais, com núcleo sem custo obrigatório.
