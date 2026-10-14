@@ -1,0 +1,33 @@
+name: Aulas 021-030 QA
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/02*.md'
+      - 'public/course-library/main/030.md'
+      - 'public/course-labs/a-021-030/**'
+      - 'quality/registry.json'
+      - 'quality/reviews/a-021-030-2026-10-13.json'
+      - 'scripts/test-a-021-030.mjs'
+      - 'package.json'
+      - '.github/workflows/a-021-030.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute only local synthetic labs and compile own examples
+        run: python3 -m unittest discover -s public/course-labs/a-021-030 -p 'test_*.py' -v
+      - name: Verify complete curriculum, editorial hashes and build
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build

@@ -1853,6 +1853,646 @@
           "result": "login alice; state, PKCE, nonce, token incorreto e código reutilizado rejeitados nos testes."
         }
       ]
+    },
+    "AULA-021": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Explicar a diferença entre endereço IP, porta, transporte e processo; observar TCP e UDP no próprio computador. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Novo cenário: um DNS local responde em UDP/5300, mas a ferramenta que tenta TCP/5300 recebe recusa. O que isso prova? Desenhe uma tabela [IP, transporte, porta, processo, evidência",
+      "contentSha256": "035202667fa808ccf2a4767225f66d6c659b42856234d05b7b6edc0f7e08ac7c",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/021.md :: Mecanismo técnico passo a passo",
+          "result": "O cliente seleciona IP e porta de destino. O sistema operacional consulta rotas e decide por qual interface enviar. Em TCP ocorre o estabelecimento da conexão; o serviço precisa fazer bind e listen. O servidor devolve by"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/021.md :: Exemplo resolvido",
+          "result": "Um processo P inicia um servidor TCP ligado em 127.0.0.1:0 (porta escolhida pelo SO) e imprime a porta efetiva. Cliente no mesmo host estabelece conexão e recebe PONG. A tentativa de usar o IP de outra interface falharia"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/021.md :: Laboratório reproduzível",
+          "result": "Execute `python3 public/course-labs/a-021-030/network_lab.py` no seu próprio computador. O script abre somente loopback em porta aleatória, usa TCP e UDP e fecha os sockets. Registre portas escolhidas, resultado de respo"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/021.md :: Defesa, detecção e reteste",
+          "result": "Documentar binds intencionais, controlar interfaces expostas e regras de acesso, inventariar sockets e registrar mudanças. Corrigir bind de forma contextual — mover para 0.0.0.0 abre todas as interfaces IPv4 e NÃO é corr"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/021.md :: Prova final independente",
+          "result": "Novo cenário: um DNS local responde em UDP/5300, mas a ferramenta que tenta TCP/5300 recebe recusa. O que isso prova? Desenhe uma tabela [IP, transporte, porta, processo, evidência] e proponha uma medida que preserve o D"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/021.md :: Problema real e por que aprender",
+          "result": "Uma API de testes responde em 127.0.0.1:porta_alta, mas outro computador não consegue conectar. A equipe conclui que o serviço caiu. Você precisa distinguir bind local, processo em escuta, firewall e roteamento."
+        }
+      ]
+    },
+    "AULA-022": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Ler caminho, permissões e processos, criando uma trilha de evidência sem comprometer a máquina. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Uma equipe configura `640` para um log, mas o serviço não consegue lê-lo. Que hipóteses adicionais ao modo do próprio arquivo você verificaria? Monte um diagnóstico com dono, grupo",
+      "contentSha256": "90ad85ff651926a652912aa0bdf9678f952dc64f1d84c0ed71354aee8c523cd4",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/022.md :: Mecanismo técnico passo a passo",
+          "result": "Em cada acesso o processo resolve o caminho e o kernel aplica credenciais efetivas, bits de modo, ACLs e outras políticas (por exemplo SELinux, se presente). Em diretórios, traversar exige permissão x e listar nomes exig"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/022.md :: Exemplo resolvido",
+          "result": "Crie pasta própria `private` (modo 700) e um arquivo `note.txt` (modo 600). O `stat` mostra bits octais e dono, e `cat note.txt` funciona para o proprietário. Trocar permissões para 644 torna o arquivo potencialmente leg"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/022.md :: Laboratório reproduzível",
+          "result": "Execute `python3 public/course-labs/a-021-030/permissions_lab.py`. O script usa `tempfile.TemporaryDirectory()`, chmod 700/600 e `stat`, sem `sudo` nem alteração em outras pastas. Reproduza `pwd`, `ls -la`, `stat`, `ps -"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/022.md :: Defesa, detecção e reteste",
+          "result": "Aplicar menor privilégio, proprietário/grupo corretos e permissões estritamente necessárias; revisar ACL e política do sistema quando o resultado divergir."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/022.md :: Prova final independente",
+          "result": "Uma equipe configura `640` para um log, mas o serviço não consegue lê-lo. Que hipóteses adicionais ao modo do próprio arquivo você verificaria? Monte um diagnóstico com dono, grupo, diretórios pais e UID efetivo antes de"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/022.md :: Problema real e por que aprender",
+          "result": "Um analista vê um arquivo de configuração e uma pasta compartilhada. Um script falha com Permission denied, mas a equipe deseja evitar um `chmod 777` que expõe dados."
+        }
+      ]
+    },
+    "AULA-023": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Executar varredura de portas apenas em 127.0.0.1, interpretando open, closed e filtered sem conclusões indevidas. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Novo cenário: o scanner A dentro da VM marca open; o scanner B fora marca filtered. Indique no mínimo três hipóteses e quais evidências distinguem rede, bind, firewall e tempo.",
+      "contentSha256": "3ef3c85fe9820362dff8bedcd93efa4754c2ce9650a62f52805c511f3c87c100",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/023.md :: Mecanismo técnico passo a passo",
+          "result": "Uma varredura transmite sondas para o alvo autorizado e classifica respostas. O mesmo socket pode aparecer open de dentro do host e filtered de outro caminho; SYN/ACK, RST e ICMP são evidências distintas. Num laboratório"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/023.md :: Exemplo resolvido",
+          "result": "Abra um TCP server temporário em 127.0.0.1 com porta atribuída pelo SO e um segundo destino que você sabe estar sem listener. Com `nmap -sT -Pn -p PORTA_ABERTA,PORTA_FECHADA 127.0.0.1`, observe open/closed se instalado, "
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/023.md :: Laboratório reproduzível",
+          "result": "Execute `python3 public/course-labs/a-021-030/scan_lab.py`. Ele testa exclusivamente duas portas no **loopback** com uma lista fechada, sem sockets contra redes externas. Caso tenha Nmap, replique somente com `nmap -sT -"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/023.md :: Defesa, detecção e reteste",
+          "result": "Inventariar serviços e superfície exposta, reduzir binds desnecessários, autenticar serviços e monitorar mudanças sem derrubar conectividade legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/023.md :: Prova final independente",
+          "result": "Novo cenário: o scanner A dentro da VM marca open; o scanner B fora marca filtered. Indique no mínimo três hipóteses e quais evidências distinguem rede, bind, firewall e tempo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/023.md :: Problema real e por que aprender",
+          "result": "Um relatório diz \"porta 7001 filtered significa serviço comprometido\". A conclusão é apressada: estado observado depende do caminho e do tipo de sonda."
+        }
+      ]
+    },
+    "AULA-024": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Ler uma captura de pacotes artificial e aplicar filtros sem confundir pacote, fluxo e conteúdo cifrado. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Um técnico executou `tcp port 443` na barra de display e não encontrou resultados. O arquivo tem TLS. Identifique o erro de sintaxe, indique o filtro correto e explique o que não p",
+      "contentSha256": "086714fdac57317be69982daf295703038cfb33673daa0094e2eed1ad8df90f2",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 88,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/024.md :: Mecanismo técnico passo a passo",
+          "result": "O analisador decodifica quadros de link, depois IP, protocolo de transporte e aplicação quando há informação suficiente. Em um arquivo PCAP pode faltar a origem real, dados podem estar truncados e tráfego TLS permanece c"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/024.md :: Exemplo resolvido",
+          "result": "No pacote sintético: quadro Ethernet → IPv4 source 127.0.0.1 destino 127.0.0.1 → TCP source port 40000, destino 18080 → payload `GET /demo HTTP/1.1`. O arquivo demonstra parsing de camadas e a diferença entre porta de or"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/024.md :: Laboratório reproduzível",
+          "result": "Execute `python3 public/course-labs/a-021-030/make_capture.py`, gerando `/tmp/csh_demo.pcap` ou o caminho passado. No Wireshark, abra o arquivo, aplique `tcp.port == 18080`, expanda Ethernet/IP/TCP e registre as portas e"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/024.md :: Defesa, detecção e reteste",
+          "result": "Guardar captura com escopo e retenção, filtrar campos minimizando PII, usar criptografia em trânsito e correlação por logs de aplicação quando payload não é visível."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/024.md :: Prova final independente",
+          "result": "Um técnico executou `tcp port 443` na barra de display e não encontrou resultados. O arquivo tem TLS. Identifique o erro de sintaxe, indique o filtro correto e explique o que não poderá ler sem segredos autorizados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/024.md :: Problema real e por que aprender",
+          "result": "Num incidente, alguém viu um segmento TCP com PSH e declarou ter encontrado a senha enviada. O segmento sozinho não prova que houve senha; o conteúdo pode estar cifrado ou ser somente parte de um fluxo."
+        }
+      ]
+    },
+    "AULA-025": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Relacionar código C próprio a instruções e registradores sem atribuir semântica falsa ao assembly. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Novo programa retorna `3*x + 1` para inteiros pequenos. Compare saídas de -O0/-O2, indique como confirmar comportamento apesar de o assembly ter ordem diferente e por que a compara",
+      "contentSha256": "230b89c6980bb0ef282b0e0091a07720d0754f3343b7974bdce58777d9e6cb85",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/025.md :: Mecanismo técnico passo a passo",
+          "result": "Compilação não é transcrição literal do C: níveis -O0 e -O2 podem eliminar variáveis locais, mover código, usar registradores diferentes ou inline funções. Linker resolve símbolos e cria executável para arquitetura/ABI e"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/025.md :: Exemplo resolvido",
+          "result": "O programa próprio `int twice(int x) { return x * 2; }` com função `main` compara saída para `5` e `-2`. Compilado `-O0`, o disassembly pode usar `lea`/`add` em vez de `imul`. A obrigação é provar equivalência comportame"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/025.md :: Laboratório reproduzível",
+          "result": "No Linux: `cc -O0 -fno-inline -o /tmp/csh_compile public/course-labs/a-021-030/compiled.c` e execute `/tmp/csh_compile`. Opcional: `objdump -d /tmp/csh_compile | less`. Recompile com `-O2`; compare instruções e saídas, r"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/025.md :: Defesa, detecção e reteste",
+          "result": "Preferir builds reprodutíveis, flags de hardening apropriadas e assinatura/hash de artefatos, lembrando que disassembly por si não prova ausência de falhas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/025.md :: Prova final independente",
+          "result": "Novo programa retorna `3*x + 1` para inteiros pequenos. Compare saídas de -O0/-O2, indique como confirmar comportamento apesar de o assembly ter ordem diferente e por que a comparação não prova segurança da memória."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/025.md :: Problema real e por que aprender",
+          "result": "Você observa `eax` num disassembly e conclui que ele sempre contém o resultado do programa. Sem saber arquitetura, ABI, otimização e ponto da execução, a conclusão não é válida."
+        }
+      ]
+    },
+    "AULA-026": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Distinguir durações/locais de armazenamento e verificar limites de buffer com casos seguros e controlados. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Uma função recebe `char *dst` e usa `sizeof(dst)` para limitar a cópia; qual informação se perdeu? Reescreva contrato com `capacity`, teste 0, capacity-1 e capacity e diga como rel",
+      "contentSha256": "aedc9a3ec7781a337311e950d0a7bd9a92c1026c569b99234ab56103ce148cdd",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/026.md :: Mecanismo técnico passo a passo",
+          "result": "Uma cópia segura precisa conhecer a capacidade de destino, a quantidade de bytes recebidos e se será incluído byte NUL. Validar apenas comprimento de caracteres é inadequado quando protocolo envia bytes. `sizeof` de arra"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/026.md :: Exemplo resolvido",
+          "result": "Para char buf[8], entrada de 7 letras ASCII ocupa 7 bytes + terminador NUL (8 total) e cabe; entrada de 8 letras precisaria 9 bytes com NUL e deve ser recusada para esta API de string. O laboratório recebe comprimentos 0"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/026.md :: Laboratório reproduzível",
+          "result": "Compile `cc -std=c11 -Wall -Wextra -fsanitize=address,undefined -o /tmp/csh_bounds public/course-labs/a-021-030/bounds.c` e execute. Sem suporte a sanitizers, compile sem as flags e justifique perda de cobertura. O exemp"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/026.md :: Defesa, detecção e reteste",
+          "result": "Verificar limites no limite da confiança, preferir APIs com capacidade explícita e testes de fronteira; habilitar instrumentação e fuzzing em software próprio durante QA."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/026.md :: Prova final independente",
+          "result": "Uma função recebe `char *dst` e usa `sizeof(dst)` para limitar a cópia; qual informação se perdeu? Reescreva contrato com `capacity`, teste 0, capacity-1 e capacity e diga como relatar erro."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/026.md :: Problema real e por que aprender",
+          "result": "Um programa copia uma string para buffer de 8 bytes. Um desenvolvedor usa `<= sizeof(buf)` no laço e acredita que está seguro. Você precisa identificar o acesso fora do limite sem criar payload ofensivo."
+        }
+      ]
+    },
+    "AULA-027": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Reconstruir o fluxo de um if/else a partir de cmp/test e saltos sem confundir flags assinadas com não assinadas. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: O pseudocódigo usa `if ((unsigned)x > 10)`. O que ocorre para `x=-1` (32 bits)? Desenhe os ramos; proponha validação de domínio para rejeitar negativos.",
+      "contentSha256": "835b1d9f47c600b2799980a6da7a631cff23ab42b8b44eb260c05d9e1c9a234c",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/027.md :: Mecanismo técnico passo a passo",
+          "result": "Na sintaxe Intel `cmp a, b` calcula flags como se fizesse a - b. `je` salta quando ZF=1; `jg` envolve ZF/SF/OF e representa maior **com sinal**; `ja` representa maior **sem sinal**. Na sintaxe AT&T a ordem de operandos m"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/027.md :: Exemplo resolvido",
+          "result": "No programa próprio `classify(int x)`, valores -1, 0 e 1 devem resultar em NEG, ZERO, POS. Compile sem otimização e identifique blocos no disassembly, mas cheque fluxo pela execução antes de atribuir nomes a registradore"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/027.md :: Laboratório reproduzível",
+          "result": "Use `cc -O0 -fno-inline -o /tmp/csh_flags public/course-labs/a-021-030/flags.c` e execute. Opcional: `objdump -M intel -d /tmp/csh_flags` para marcar testes e saltos. Em ARM64 o assembly é diferente; avalie contrato de a"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/027.md :: Defesa, detecção e reteste",
+          "result": "Em auditoria de código de segurança, conferir tipos, conversões e caminho negativo; validar equivalência com teste de fronteira."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/027.md :: Prova final independente",
+          "result": "O pseudocódigo usa `if ((unsigned)x > 10)`. O que ocorre para `x=-1` (32 bits)? Desenhe os ramos; proponha validação de domínio para rejeitar negativos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/027.md :: Problema real e por que aprender",
+          "result": "Um analista vê `ja` depois de `cmp` e o traduz como \"maior\" com sinal, classificando um valor negativo como grande. A confusão entre signed e unsigned muda o significado da regra."
+        }
+      ]
+    },
+    "AULA-028": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Analisar estaticamente um executável próprio, relacionando símbolos, strings, xrefs e pseudocódigo com limites da inferência. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Novo binário sem símbolos contém a string `STATUS_OK`. Quais passos relacionam a string a uma função? Por que a presença da string não prova execução? Proponha verificação em binár",
+      "contentSha256": "1a3a963cb6103c25cb26f0e03bc04a5abbe670fa24ca6b5a1832d88241bb4ff0",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 88,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/028.md :: Mecanismo técnico passo a passo",
+          "result": "Importar arquivo de binário **próprio**, conferir formato e arquitetura, executar autoanalysis, ver função no Listing, comparar com decompiler, navegar xrefs e validar hipótese com o código-fonte que o laboratório fornec"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/028.md :: Exemplo resolvido",
+          "result": "O binário compilado de `classify(score)` escolhe APROVADO ou REVER. Em Ghidra, encontre a string APROVADO, siga uma referência e localize ramo que retorna a mensagem. Compare score 7/8 com saída real e descreva se a desc"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/028.md :: Laboratório reproduzível",
+          "result": "Compile `cc -O0 -o /tmp/csh_reverse public/course-labs/a-021-030/reverse.c` e execute. Opcionalmente importe apenas esse binário no Ghidra. Registre hash, versão do Ghidra, arquitetura e ao menos uma xref. Se Ghidra não "
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/028.md :: Defesa, detecção e reteste",
+          "result": "Manter análise separada da execução, preservar hash do artefato, validar hipóteses por múltiplas fontes de evidência."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/028.md :: Prova final independente",
+          "result": "Novo binário sem símbolos contém a string `STATUS_OK`. Quais passos relacionam a string a uma função? Por que a presença da string não prova execução? Proponha verificação em binário local conhecido."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/028.md :: Problema real e por que aprender",
+          "result": "O decompilador exibe `FUN_00101220` e variável `local_14`. Uma revisão conclui que esses são os nomes originais e que o código sempre executa aquele ramo. Isso excede a evidência."
+        }
+      ]
+    },
+    "AULA-029": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Construir relatório defensivo com evidências de amostra BENIGNA e decidir quando escalar isolamento sem executar software não confiável. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Um arquivo PDF do suporte contém `cmd.exe` em uma captura de tela. Relate por que isso é IOC fraco, que evidência investigar e qual decisão imediata evita dano sem apagar dados úte",
+      "contentSha256": "d797b0bf7501a1e3db74ef0186c40843af5111af8ed49b6e3728fcbdc427c813",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/029.md :: Mecanismo técnico passo a passo",
+          "result": "Classificação triagem começa com preservação da evidência: registrar origem autorizada, hash SHA-256 e cópia imutável. Formato, imports e strings aumentam ou reduzem hipóteses, não são prova de comportamento. Análise din"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/029.md :: Exemplo resolvido",
+          "result": "Um arquivo de texto de treino diz \"ransomware\" mas contém apenas documentação sobre incidentes. Um detector baseado em palavra sinaliza falso positivo; um classificador robusto exige evidência adicional. O script `triage"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/029.md :: Laboratório reproduzível",
+          "result": "Execute `python3 public/course-labs/a-021-030/triage.py` apenas sobre o fixture fictício incluído. Compare a saída e proponha duas evidências adicionais que poderiam corroborar ou refutar a hipótese de risco sem executar"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/029.md :: Defesa, detecção e reteste",
+          "result": "Bloquear execução por política, revisar inventário, isolar amostras por cadeia de custódia e escalar análise especializada quando evidência justificar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/029.md :: Prova final independente",
+          "result": "Um arquivo PDF do suporte contém `cmd.exe` em uma captura de tela. Relate por que isso é IOC fraco, que evidência investigar e qual decisão imediata evita dano sem apagar dados úteis."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/029.md :: Problema real e por que aprender",
+          "result": "Uma planilha de triagem marca \"malware confirmado\" só porque um binário contém `powershell` numa string. Você precisa distinguir IOC, hipótese e confirmação."
+        }
+      ]
+    },
+    "AULA-030": {
+      "grade": "A",
+      "author": "Cyber Study Hub — reescrita pedagógica e laboratórios do lote 021–030",
+      "reviewer": "GPT-6 — revisão editorial crítica de conteúdo, casos e critérios (IA; não profissional externo)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Explicar risco ciberfísico por meio de telemetria sintética, distinguir comando, estado real e valor exibido e propor defesa por camadas. Inclui caso específico, exame do contraexemplo, revisão defensiva e exercício independente: Nova planta fictícia: painel 600, sensores 600 e 730 na primeira leitura; depois painel 600, sensores 735 e 733. Avalie confiança, redundância e quando escalar; identifique evidênc",
+      "contentSha256": "1e19f9d9e347749164565fc715093147c1a38663096d6a8a3fb2c91eb7e4bca6",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Mecanismo, distinção entre fatos e inferências; confronto conceitual com fontes técnicas primárias",
+          "reference": "public/course-library/main/030.md :: Mecanismo técnico passo a passo",
+          "result": "Um sistema industrial combina engenharia do processo, sensores, controladores, atuadores, estação de operação e redes OT. Em incidentes ciberfísicos, comprometer a lógica de controle ou a visualização pode criar discrepâ"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Sequência de problema, glossário, exemplo resolvido, prática parcialmente guiada e transferência",
+          "reference": "public/course-library/main/030.md :: Exemplo resolvido",
+          "result": "Considere setpoint de 1000 rpm, HMI=1000, sensor A=1250 e sensor B=1248 em três amostras. Regra de triagem: |mediana(sensores)-HMI| > 100 em dois instantes consecutivos aciona investigação; não há atuação automática. Iss"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Passos, caso positivo/negativo, fixture local ou análise de mesa; testes de regressão quando executáveis",
+          "reference": "public/course-library/main/030.md :: Laboratório reproduzível",
+          "result": "Execute `python3 public/course-labs/a-021-030/ics_lab.py`. Ele avalia dados sintéticos e emite INVESTIGAR quando persiste divergência em duas leituras, OK em cenário normal e INSUFICIENTE quando falta dado. Nenhum endere"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Controle, telemetria e reteste com atividade legítima preservada",
+          "reference": "public/course-library/main/030.md :: Defesa, detecção e reteste",
+          "result": "Separar rede corporativa e OT conforme arquitetura aprovada, inventariar ativos, monitorar mudanças autorizadas, redundância de medição e planos de resposta alinhados à segurança operacional."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões específicas inéditas com gabarito externo e rubrica não circular",
+          "reference": "public/course-library/main/030.md :: Prova final independente",
+          "result": "Nova planta fictícia: painel 600, sensores 600 e 730 na primeira leitura; depois painel 600, sensores 735 e 733. Avalie confiança, redundância e quando escalar; identifique evidências faltantes sem mandar atuar em equipa"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Cenário, termos e dados concretos do mecanismo desta aula, sem placeholders repetidos",
+          "reference": "public/course-library/main/030.md :: Problema real e por que aprender",
+          "result": "Uma tela HMI exibe 1000 rpm, mas sensor independente indica 1250 rpm. A equipe deve investigar divergência, calibração, atraso e integridade sem inferir ataque automaticamente."
+        }
+      ]
     }
   },
   "policy": {
