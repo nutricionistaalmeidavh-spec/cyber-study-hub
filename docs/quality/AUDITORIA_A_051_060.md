@@ -2,7 +2,7 @@
 
 **Data de revisão:** 13/10/2026. **Qualificação:** A editorial auditado por IA, **não** certificação humana nem teste de eficácia com alunos reais.
 
-A revisão preserva todos os 543 IDs canônicos e os 65 pareceres A que já existiam. Para as dez aulas novas, o conteúdo passou a incluir oficina guiada, mecanismo com causa e consequência, caso positivo, caso negativo, defesa e reteste, seis perguntas de transferência inéditas e gabarito separado. A aula 052 mantém integralmente a análise avançada preexistente de symlink/canonicalização/TOCTOU; o exercício adicional verifica transferência.
+A revisão preserva todos os 543 IDs canônicos e os 75 pareceres A que já existiam. Para as dez aulas novas, o conteúdo passou a incluir oficina guiada, mecanismo com causa e consequência, caso positivo, caso negativo, defesa e reteste, seis perguntas de transferência inéditas e gabarito separado. A aula 052 mantém integralmente a análise avançada preexistente de symlink/canonicalização/TOCTOU; o exercício adicional verifica transferência.
 
 | Aula | Tema | Artefato verificável | Limite explícito |
 |---|---|---|---|

@@ -59,4 +59,4 @@ Dez pareceres A editoriais foram acrescentados (agora **65 A editoriais**, 55 an
 
 ## A editorial IA — aulas 051 a 060 (13/10/2026)
 
-Dez pareceres A editoriais foram adicionados, elevando o total de 65 para **75 aulas A editoriais**. Oficinas aplicadas, 60 novas questões de transferência, gabaritos separados, nove testes de modelos locais e laboratório pré-existente de symlink da aula 052; hashes e limitações em `quality/reviews/a51-60-2026-10-13.json`. Trata-se de auditoria editorial assistida por IA, **sem** estudo com alunos reais ou revisor humano externo. Nenhum segredo, fluxo OAuth de produção ou configuração de deploy foi modificado.
+Dez pareceres novos elevam o registro de **75 para 85 A editoriais**. As 60 questões novas, laboratórios locais, fontes técnicas, limites declarados e SHA dos arquivos revisados estão em `quality/reviews/a51-60-2026-10-13.json` e `docs/quality/AUDITORIA_A_051_060.md`. Esta é análise editorial IA; não houve avaliação humana externa ou observação pedagógica com alunos reais.
