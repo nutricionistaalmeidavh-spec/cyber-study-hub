@@ -1,0 +1,33 @@
+name: Aulas 071-080 QA
+
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/07*.md'
+      - 'public/course-library/main/080.md'
+      - 'public/course-labs/a071-080/**'
+      - 'scripts/test-a-071-080*.mjs'
+      - 'quality/**'
+      - 'package.json'
+      - '.github/workflows/a-071-080.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Structural criteria and local behavioral cases
+        run: npm run test:a-071-080
+      - name: Editorial review SHA-256 and historic-grade preservation
+        run: npm run test:grade-a-071-080
+      - name: Verify full curriculum and build
+        run: npm run build

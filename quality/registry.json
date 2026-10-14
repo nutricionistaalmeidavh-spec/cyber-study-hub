@@ -4349,6 +4349,646 @@
           "result": "adEffectiveGroups: Readers→Reviewers→Auditors, ciclo termina e usuário fora permanece sem membership"
         }
       ]
+    },
+    "AULA-071": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "LDAP, Kerberos e NTLM. O time encontrou eventos 4768, 4769, 4776 e uma consulta LDAP. Alguém rotulou todos como 'autenticação LDAP' e quer bloquear NTLM sem inventário. Caso positivo: 4768 e 4769 são fases distintas do Kerberos; consulta LDAP é classificada separadamente. Caso negativo: 4776 evidencia autenticação NTLM legada, não deve ser confundido com TGT nem automaticamente chamado de ataque. Correção e ressalva: Inventariar dependências NTLM, monitorar eventos e migrar com rollback; reforçar LDAP signing e channel binding conforme o tipo de bind, sem confundir com TLS. Limite: Não há KDC, DC real, teste criptográfico ou sessão LDAP; apenas classificação estática de registros fictícios.",
+      "contentSha256": "c24e9d2b66272f837201d06c1a5eefb24cd158ce129b0efc150dcf448170b034",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/071.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+          "result": "LDAP consulta dados do diretório; 4768 solicita TGT Kerberos, 4769 ticket de serviço, 4776 valida credenciais NTLM. Nenhum deles prova sozinho autorização no serviço. Não há KDC, DC real, teste criptográfico ou sessão LDAP; apenas classificação estática de registros fictícios."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/071.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (4768 e 4769 são fases distintas do Kerberos; consulta LDAP é classificada separadamente.) e contraste (4776 evidencia autenticação NTLM legada, não deve ser confundido com TGT nem automaticamente chamado de ataque.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 71; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma 4768 e 4769 são fases distintas do Kerberos; consulta LDAP é classificada separadamente.; 4776 evidencia autenticação NTLM legada, não deve ser confundido com TGT nem automaticamente chamado de ataque. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/071.md :: Diagnóstico e correção",
+          "result": "Defesa: Inventariar dependências NTLM, monitorar eventos e migrar com rollback; reforçar LDAP signing e channel binding conforme o tipo de bind, sem confundir com TLS. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/071.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-071.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/071.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: O time encontrou eventos 4768, 4769, 4776 e uma consulta LDAP. Alguém rotulou todos como 'autenticação LDAP' e quer bloquear NTLM sem inventário."
+        }
+      ]
+    },
+    "AULA-072": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Enumeração AD read-only. A conta svc-report pertence à OU Services e ao grupo Readers, expõe SPN HTTP/reports.lab.test; a exportação anterior também publicou um campo password sintético. Caso positivo: A ficha autorizada mostra id, tipo, OU, SPNs e grupos, mas nunca o campo password. Caso negativo: Inventário não autorizado e dados com tipos inválidos são recusados antes da apresentação. Correção e ressalva: Projetar apenas atributos necessários, documentar escopo e menor privilégio; nunca exportar segredos e validar grupos aninhados separadamente. Limite: Array JSON local não oferece consultas LDAP reais, trusts, paginação, ACL efetiva ou nested groups.",
+      "contentSha256": "f05048c31f2ed53c88d387f68e29d2734a7ddb101fc4e52a83c5275a7319acef",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/072.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+          "result": "A leitura autorizada de metadados de AD não implica autorização para segredos; SPN e membership são relações diferentes de privilégios efetivos. Array JSON local não oferece consultas LDAP reais, trusts, paginação, ACL efetiva ou nested groups."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/072.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (A ficha autorizada mostra id, tipo, OU, SPNs e grupos, mas nunca o campo password.) e contraste (Inventário não autorizado e dados com tipos inválidos são recusados antes da apresentação.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 72; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma A ficha autorizada mostra id, tipo, OU, SPNs e grupos, mas nunca o campo password.; Inventário não autorizado e dados com tipos inválidos são recusados antes da apresentação. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/072.md :: Diagnóstico e correção",
+          "result": "Defesa: Projetar apenas atributos necessários, documentar escopo e menor privilégio; nunca exportar segredos e validar grupos aninhados separadamente. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/072.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-072.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/072.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: A conta svc-report pertence à OU Services e ao grupo Readers, expõe SPN HTTP/reports.lab.test; a exportação anterior também publicou um campo password sintético."
+        }
+      ]
+    },
+    "AULA-073": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Misconfigurations em AD. A OU=Admins contém ACE WriteDACL para helpdesk e ACE Read para audit. O relatório anterior chamou ambas de vulnerabilidades críticas. Caso positivo: Read para audit continua sem alerta crítico e preserva consulta legítima. Caso negativo: WriteDACL de helpdesk não aprovado é registrado para investigação de delegação excessiva. Correção e ressalva: Revisar ACE e dono, obter aprovação, restringir permissão sensível e confirmar operações legítimas após rollback controlado. Limite: Não calcula DACL real, herança, deny, AdminSDHolder ou SDProp; filtro de ACL sintético.",
+      "contentSha256": "5e83840a84eed110bbb9c7199f0f4bafd0af5119cfc1d0b27e2e597eb0e39c69",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/073.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing",
+          "result": "WriteDACL em objeto sensível pode alterar acesso; Read não é equivalente. Permissões efetivas dependem de objeto, herança, grupos e justificativa. Não calcula DACL real, herança, deny, AdminSDHolder ou SDProp; filtro de ACL sintético."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/073.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Read para audit continua sem alerta crítico e preserva consulta legítima.) e contraste (WriteDACL de helpdesk não aprovado é registrado para investigação de delegação excessiva.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 73; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Read para audit continua sem alerta crítico e preserva consulta legítima.; WriteDACL de helpdesk não aprovado é registrado para investigação de delegação excessiva. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/073.md :: Diagnóstico e correção",
+          "result": "Defesa: Revisar ACE e dono, obter aprovação, restringir permissão sensível e confirmar operações legítimas após rollback controlado. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/073.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-073.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/073.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: A OU=Admins contém ACE WriteDACL para helpdesk e ACE Read para audit. O relatório anterior chamou ambas de vulnerabilidades críticas."
+        }
+      ]
+    },
+    "AULA-074": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Privilege paths no AD. O grafo de inventário mostra ana→ops (memberOf) e ops→admins (WriteDACL); é necessário encontrar e quebrar o alcance sem executar exploração. Caso positivo: Ana continua tendo relação memberOf com ops, necessária às tarefas autorizadas. Caso negativo: O caminho ana→ops→admins desaparece quando WriteDACL é removida; ciclos não produzem caminho falso. Correção e ressalva: Remover delegação excessiva após aprovação e medir caminhos alternativos; preservar grupo funcional e revisar mudanças de ACL. Limite: Grafo simplificado ignora ACL efetiva, credenciais, negações e pré-condições do AD real.",
+      "contentSha256": "344a432a63512aa56c7c9939c8370be4cdcc3259cde0154c76a12a81947491a3",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/074.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing",
+          "result": "Membership e controle de ACL são arestas de semânticas distintas; alcance no grafo é risco potencial, não sessão privilegiada. Grafo simplificado ignora ACL efetiva, credenciais, negações e pré-condições do AD real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/074.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Ana continua tendo relação memberOf com ops, necessária às tarefas autorizadas.) e contraste (O caminho ana→ops→admins desaparece quando WriteDACL é removida; ciclos não produzem caminho falso.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 74; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Ana continua tendo relação memberOf com ops, necessária às tarefas autorizadas.; O caminho ana→ops→admins desaparece quando WriteDACL é removida; ciclos não produzem caminho falso. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/074.md :: Diagnóstico e correção",
+          "result": "Defesa: Remover delegação excessiva após aprovação e medir caminhos alternativos; preservar grupo funcional e revisar mudanças de ACL. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/074.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-074.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/074.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: O grafo de inventário mostra ana→ops (memberOf) e ops→admins (WriteDACL); é necessário encontrar e quebrar o alcance sem executar exploração."
+        }
+      ]
+    },
+    "AULA-075": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Lateral movement — telemetria. Ops usa jump→server-a via logon tipo 3 autorizado; surge workstation→server-b via tipo 10 não previsto na allowlist. Caso positivo: jump→server-a recebe allowed; logon local tipo 2 permanece local. Caso negativo: workstation→server-b tipo 10 recebe review, sem presunção automática de intrusão. Correção e ressalva: Preservar jump host aprovado, revisar credenciais, segmentar acesso remoto e correlacionar eventos com mudanças e logs de processo. Limite: Não cria sessão SMB, RDP, WinRM nem executa hosts; não comprova movimento lateral.",
+      "contentSha256": "27ad3ca7bd74783ada47fe9c1f3ed3af0145e073c4228b4c531247e49afa608e",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/075.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+          "result": "Logon remoto pode ser administração legítima. Classificação depende de conta, origem, destino, logon type e política autorizada. Não cria sessão SMB, RDP, WinRM nem executa hosts; não comprova movimento lateral."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/075.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (jump→server-a recebe allowed; logon local tipo 2 permanece local.) e contraste (workstation→server-b tipo 10 recebe review, sem presunção automática de intrusão.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 75; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma jump→server-a recebe allowed; logon local tipo 2 permanece local.; workstation→server-b tipo 10 recebe review, sem presunção automática de intrusão. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/075.md :: Diagnóstico e correção",
+          "result": "Defesa: Preservar jump host aprovado, revisar credenciais, segmentar acesso remoto e correlacionar eventos com mudanças e logs de processo. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/075.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-075.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/075.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: Ops usa jump→server-a via logon tipo 3 autorizado; surge workstation→server-b via tipo 10 não previsto na allowlist."
+        }
+      ]
+    },
+    "AULA-076": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "GPO e permissões. GPO Workstations baseline vinculada a OU=Workstations, securityFilter Employees; helpdesk possui edição não aprovada, e Guests não devem receber essa política. Caso positivo: Employees na OU correta aplica GPO; Guests fora do filtro não aplicam. Caso negativo: helpdesk aparece em unapprovedEditors mesmo quando applies=false para Guests. Correção e ressalva: Corrigir delegação de edição e preservar escopo de aplicação; confirmar resultado real com gpresult/RSOP e precedência LSDOU. Limite: Não modela LSDOU, links enforced, bloqueio de herança, WMI, loopback ou precedência completa.",
+      "contentSha256": "5b842c8254b19a086f01953e14011f6cf4985bff8f8364d09b3edb2f5eec967a",
+      "scores": {
+        "conteudoTecnico": 88,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/076.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing",
+          "result": "Receber política depende de link e filtro; poder editar GPO é relação de risco separada da aplicação. Não modela LSDOU, links enforced, bloqueio de herança, WMI, loopback ou precedência completa."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/076.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Employees na OU correta aplica GPO; Guests fora do filtro não aplicam.) e contraste (helpdesk aparece em unapprovedEditors mesmo quando applies=false para Guests.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 76; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Employees na OU correta aplica GPO; Guests fora do filtro não aplicam.; helpdesk aparece em unapprovedEditors mesmo quando applies=false para Guests. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/076.md :: Diagnóstico e correção",
+          "result": "Defesa: Corrigir delegação de edição e preservar escopo de aplicação; confirmar resultado real com gpresult/RSOP e precedência LSDOU. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/076.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-076.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/076.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: GPO Workstations baseline vinculada a OU=Workstations, securityFilter Employees; helpdesk possui edição não aprovada, e Guests não devem receber essa política."
+        }
+      ]
+    },
+    "AULA-077": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "AD hardening gradual. A equipe implantou LAPS e tiering, mas não concluiu gMSA, inventário NTLM nem teste de rollback; querem desabilitar legado imediatamente. Caso positivo: Baseline com LAPS, gMSA, tiering, inventário NTLM e rollback resulta em prontidão sintética para plano gradual. Caso negativo: Sem os três controles, gaps=['gMSA','NTLM inventory','rollback test'] e readyForEnforcement=false. Correção e ressalva: Fazer inventário e pilotos, migrar serviços, validar cobertura do Windows LAPS e restaurar via rollback antes de restringir NTLM. Limite: Checklist não comprova configuração efetiva de AD, Windows LAPS ou compatibilidade de serviços.",
+      "contentSha256": "3066d5f603cb5fa553fb9939c55801d19cc7bd8aae49e50dbd0664f270b4eacd",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/077.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-concepts-overview",
+          "result": "Planejamento precisa de cobertura de contas, dependências, monitoramento e capacidade de recuperação antes de impor mudanças. Checklist não comprova configuração efetiva de AD, Windows LAPS ou compatibilidade de serviços."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/077.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Baseline com LAPS, gMSA, tiering, inventário NTLM e rollback resulta em prontidão sintética para plano gradual.) e contraste (Sem os três controles, gaps=['gMSA','NTLM inventory','rollback test'] e readyForEnforcement=false.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 77; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Baseline com LAPS, gMSA, tiering, inventário NTLM e rollback resulta em prontidão sintética para plano gradual.; Sem os três controles, gaps=['gMSA','NTLM inventory','rollback test'] e readyForEnforcement=false. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/077.md :: Diagnóstico e correção",
+          "result": "Defesa: Fazer inventário e pilotos, migrar serviços, validar cobertura do Windows LAPS e restaurar via rollback antes de restringir NTLM. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/077.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-077.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/077.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: A equipe implantou LAPS e tiering, mas não concluiu gMSA, inventário NTLM nem teste de rollback; querem desabilitar legado imediatamente."
+        }
+      ]
+    },
+    "AULA-078": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Detection in AD. Às 13:00Z 4728 registra Ana adicionada a Domain Admins; às 13:05Z 4624 mostra logon de Ana. O ticket CHG-27, quando presente, contextualiza a mudança. Caso positivo: Com CHG-27 a correlação continua registrada como expected para revisão de mudança. Caso negativo: Sem ticket a correlação na janela de 10 minutos é review; logon desconexo fora da janela não é correlacionado. Correção e ressalva: Centralizar auditoria e validar NTP, ticket e origem; revisar sinais 4728/4624 e grupos equivalentes de acordo com política. Limite: Não há DC real nem SIEM; não modela atraso, 4732, 4756, falhas de cobertura ou logon types.",
+      "contentSha256": "c82b2633faaaf5cc99455068b22ab5c72068df31b5bdd8ba268dd97405fb86a4",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/078.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+          "result": "4728 marca alteração de membership em grupo de segurança global, 4624 registra logon. Sequência temporal é indício, não culpa. Não há DC real nem SIEM; não modela atraso, 4732, 4756, falhas de cobertura ou logon types."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/078.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Com CHG-27 a correlação continua registrada como expected para revisão de mudança.) e contraste (Sem ticket a correlação na janela de 10 minutos é review; logon desconexo fora da janela não é correlacionado.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 78; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Com CHG-27 a correlação continua registrada como expected para revisão de mudança.; Sem ticket a correlação na janela de 10 minutos é review; logon desconexo fora da janela não é correlacionado. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/078.md :: Diagnóstico e correção",
+          "result": "Defesa: Centralizar auditoria e validar NTP, ticket e origem; revisar sinais 4728/4624 e grupos equivalentes de acordo com política. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/078.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-078.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/078.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: Às 13:00Z 4728 registra Ana adicionada a Domain Admins; às 13:05Z 4624 mostra logon de Ana. O ticket CHG-27, quando presente, contextualiza a mudança."
+        }
+      ]
+    },
+    "AULA-079": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Logs Windows e Linux. Um logon Windows às 13:00Z e sudo Linux às 10:05-03 foram ordenados pelo relógio de parede, fazendo Linux aparecer antes indevidamente. Caso positivo: Windows vem antes de Linux após normalização: 13:00Z e 13:05Z. Caso negativo: Timestamp sem Z ou offset é recusado em vez de convertido por fuso adivinhado. Correção e ressalva: Normalizar datas com offset explícito, conservar horário original e verificar NTP, retenção, lacunas e campos essenciais. Limite: Somente ordenação sintética, sem drift NTP, atraso de ingestão, EVTX ou syslog real.",
+      "contentSha256": "b33ed9b6ddcc9a08f887f4328f06a22f8402cd2153f741b8c7e809bd644a132a",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/079.md :: Modelo mental e fonte https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+          "result": "Timestamp sem fuso não é instante global comparável; normalizar UTC preservando origem, cobertura e latência. Somente ordenação sintética, sem drift NTP, atraso de ingestão, EVTX ou syslog real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/079.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Windows vem antes de Linux após normalização: 13:00Z e 13:05Z.) e contraste (Timestamp sem Z ou offset é recusado em vez de convertido por fuso adivinhado.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 79; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Windows vem antes de Linux após normalização: 13:00Z e 13:05Z.; Timestamp sem Z ou offset é recusado em vez de convertido por fuso adivinhado. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/079.md :: Diagnóstico e correção",
+          "result": "Defesa: Normalizar datas com offset explícito, conservar horário original e verificar NTP, retenção, lacunas e campos essenciais. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/079.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-079.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/079.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: Um logon Windows às 13:00Z e sudo Linux às 10:05-03 foram ordenados pelo relógio de parede, fazendo Linux aparecer antes indevidamente."
+        }
+      ]
+    },
+    "AULA-080": {
+      "grade": "A",
+      "author": "Cyber Study Hub — oficinas elaboradas com GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial IA (não revisor humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Sysmon: processos e conexões. Event ID 1 cria cmd.exe ProcessGuid P-7; Event 3 registra rede de P-7. Outro processo tem mesmo PID=123, mas GUID P-8. Caso positivo: Conexão de P-7 é vinculada apenas ao Event 1 de P-7. Caso negativo: P-8 com PID igual não contamina P-7 e vai para unmatchedConnections. Correção e ressalva: Versionar configuração de Sysmon, habilitar eventos com escopo e medir ruído; unir eventos por ProcessGuid e verificar retenção. Limite: Não executa Sysmon/EVTX nem mede Event 7, impacto da filtragem, cobertura EDR ou driver real.",
+      "contentSha256": "218102b6d8c5377f28eb4322c85b2edf4a62e9723c09c03b1ab482ed8bd58884",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 89,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura editorial técnica por IA, verificando mecanismo, fronteiras e fonte Microsoft Learn",
+          "reference": "public/course-library/main/080.md :: Modelo mental e fonte https://learn.microsoft.com/pt-br/sysinternals/downloads/sysmon",
+          "result": "ProcessGuid distingue instância, ParentProcessGuid relaciona processos, Event 3 precisa estar habilitado para telemetria de rede (desabilitado por padrão). Não executa Sysmon/EVTX nem mede Event 7, impacto da filtragem, cobertura EDR ou driver real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough iniciante por IA, não observação de estudante humano",
+          "reference": "public/course-library/main/080.md :: Caso e quatro checkpoints",
+          "result": "Problema concreto, previsão, positivo (Conexão de P-7 é vinculada apenas ao Event 1 de P-7.) e contraste (P-8 com PID igual não contamina P-7 e vai para unmatchedConnections.), sem teste com alunos."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Teste local Node em cenário legítimo, contraste e reteste; execução verificada por CI",
+          "reference": "public/course-labs/a071-080/models.mjs :: cenário 80; public/course-labs/a071-080/lab.test.mjs",
+          "result": "O teste determinístico do caso confirma Conexão de P-7 é vinculada apenas ao Event 1 de P-7.; P-8 com PID igual não contamina P-7 e vai para unmatchedConnections. sob limites declarados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão do controle, risco de falso positivo e compatibilidade com operação legítima",
+          "reference": "public/course-library/main/080.md :: Diagnóstico e correção",
+          "result": "Defesa: Versionar configuração de Sysmon, habilitar eventos com escopo e medir ruído; unir eventos por ProcessGuid e verificar retenção. Preserva operação legítima."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem crítica por IA: seis questões de transferência e respostas separadas",
+          "reference": "public/course-library/main/080.md :: Prova; public/course-labs/a071-080/answer-keys/AULA-080.md",
+          "result": "Seis questões próprias de transferência, gabarito externo e rubrica com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência dos campos, protocolos, identidades e hipóteses específicas do caso",
+          "reference": "public/course-library/main/080.md; public/course-labs/a071-080/models.mjs",
+          "result": "O caso inclui IDs/atores/observáveis do tema: Event ID 1 cria cmd.exe ProcessGuid P-7; Event 3 registra rede de P-7. Outro processo tem mesmo PID=123, mas GUID P-8."
+        }
+      ]
     }
   },
   "policy": {
