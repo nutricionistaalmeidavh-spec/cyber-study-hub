@@ -1,3 +1,4 @@
+import { accountStorage } from './accountStorage';
 import {
   createEmptyCard,
   fsrs,
@@ -44,7 +45,7 @@ const ratingMap: Record<ReviewRating, Rating.Again | Rating.Hard | Rating.Good |
 };
 
 function store() {
-  return typeof localStorage === 'undefined' ? null : localStorage;
+  return typeof accountStorage === 'undefined' ? null : accountStorage;
 }
 
 export function getReviewCards(): StoredReviewCard[] {

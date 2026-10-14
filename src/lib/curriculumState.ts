@@ -1,7 +1,8 @@
+import { accountStorage } from './accountStorage';
 const ACTIVE_PARALLEL_KEY = 'cyber-study-active-parallel-tracks-v1';
 
 function store() {
-  return typeof localStorage === 'undefined' ? null : localStorage;
+  return typeof accountStorage === 'undefined' ? null : accountStorage;
 }
 
 export function getActiveParallelTracks(): string[] {

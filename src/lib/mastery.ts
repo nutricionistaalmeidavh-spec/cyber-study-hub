@@ -1,3 +1,4 @@
+import { accountStorage } from './accountStorage';
 import type { GameProgress } from '../types';
 
 export type MasterySource =
@@ -22,7 +23,7 @@ export type MasteryState = Record<string, ConceptMastery>;
 const MASTERY_KEY = 'cyber-study-concept-mastery-v1';
 
 function store() {
-  return typeof localStorage === 'undefined' ? null : localStorage;
+  return typeof accountStorage === 'undefined' ? null : accountStorage;
 }
 
 export function getMasteryState(): MasteryState {
