@@ -48,6 +48,8 @@ try{
   assert.equal(created.payload.user.role,'admin');
   assert.equal((await request('/api/auth/bootstrap',{method:'POST',body:admin})).status,409);
   assert.equal((await request('/api/auth/config')).payload.ready,true);
+  const rejected=await request('/api/auth/login',{method:'POST',body:{email:admin.email,password:'WrongPassword12!'}});
+  assert.equal(rejected.status,401,rejected.text);
   const signin=await request('/api/auth/login',{method:'POST',body:{email:admin.email,password:admin.password}});
   assert.equal(signin.status,200,signin.text);
   assert.equal((await request('/api/me',{cookie:signin.cookie})).payload.user.email,admin.email);

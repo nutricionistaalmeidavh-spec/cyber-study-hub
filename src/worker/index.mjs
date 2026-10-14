@@ -1,4 +1,5 @@
 import { DurableObject } from 'cloudflare:workers';
+import { passwordHash, passwordMatches } from './password-kdf.mjs';
 
 const DAY = 86400000;
 const KEYS = new Set([
@@ -23,30 +24,6 @@ class ApiError extends Error { constructor(status,message){super(message);this.s
 function checkPassword(value){
   if(typeof value!=='string'||value.length<12||value.length>128)
     throw new ApiError(400,'A senha precisa ter entre 12 e 128 caracteres.');
-}
-async function derived(password,salt,iterations){
-  const material=await crypto.subtle.importKey('raw',enc.encode(password),'PBKDF2',false,['deriveBits']);
-  return hex(await crypto.subtle.deriveBits({
-    name:'PBKDF2',hash:'SHA-256',iterations,salt:bytes(salt)
-  },material,256));
-}
-async function passwordHash(value){
-  checkPassword(value);
-  const salt=hex(crypto.getRandomValues(new Uint8Array(16)));
-  const iterations=600000;
-  const digest=await derived(value,salt,iterations);
-  return ['pbkdf2-sha256',iterations,salt,digest].join('$');
-}
-async function passwordMatches(value,stored){
-  if(typeof value!=='string'||typeof stored!=='string')return false;
-  const parts=stored.split('$'),iterations=Number(parts[1]);
-  if(parts.length!==4||parts[0]!=='pbkdf2-sha256'||!Number.isSafeInteger(iterations)||
-     iterations<100000||iterations>1000000||!(/^[a-f0-9]{64}$/.test(parts[3])))return false;
-  const actual=await derived(value,parts[2],iterations);
-  // Fixed-size digests; avoid early returns while comparing.
-  let diff=0;
-  for(let i=0;i<actual.length;i++)diff|=actual.charCodeAt(i)^parts[3].charCodeAt(i);
-  return diff===0;
 }
 function response(status,payload,headers={}){
   return new Response(JSON.stringify(payload),{status,headers:{
