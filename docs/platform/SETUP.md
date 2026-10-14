@@ -61,3 +61,15 @@ Os materiais e aulas estáticos sob /course-library e /materials continuam públ
 - npm run build: testes de currículo e qualidade já presentes no projeto.
 - CI do PR: Node.js 22 executando os dois comandos.
 - QA manual necessário: primeiro acesso, cadastro por convite, login, logout, suspensão, troca de senha, convite usado, teste de dois navegadores e sincronização offline.
+
+## Cloudflare Workers — implantação no mesmo Worker (preferencial)
+A branch também implementa a API diretamente em `src/worker/index.mjs`, com classe `HubAuthObject` baseada em Durable Objects SQLite. O `wrangler.toml` configura `/api/*` para o Worker, mantendo os demais assets e a SPA. O namespace SQLite é criado automaticamente no primeiro deploy; não há banco D1 a criar ou servidor Node a contratar. Este backend usa os recursos do plano Free (com limites de requisições/armazenamento do plano), e o backend Node/SQLite permanece disponível para self-hosting sem Cloudflare.
+
+**Preparação obrigatória antes de publicar o login na produção:** cadastrar uma chave forte como segredo do Worker sob o nome `HUB_BOOTSTRAP_KEY`, preferencialmente via painel Cloudflare > Workers > cyber-study-hub > Settings > Variables and Secrets, ou pelo comando `npx wrangler secret put HUB_BOOTSTRAP_KEY`. Não registrar o valor no GitHub, em `wrangler.toml`, nas variáveis públicas do Vite nem no chat.
+
+Depois, o comando `npm run deploy` constrói e publica frontend + Worker API + namespace SQLite juntos. O primeiro acesso pede a chave para criar o administrador. Com o primeiro admin registrado, não é possível usar novamente o bootstrap. O cadastro de alunos fica restrito a convites criados no painel. A primeira publicação exige verificar que a API e o segredo realmente estão ativos antes de passar o tráfego do site.
+
+Testes específicos de Cloudflare: `npm run test:worker` (Wrangler local, autenticação e SQLite em Durable Object), `npx wrangler deploy --dry-run` (empacotamento Cloudflare). Não criar secrets em CI nem depender de serviços pagos.
+
+### Revisão do aviso antigo
+A seção acima substitui o bloqueio por falta de backend Node externo descrito anteriormente: agora existe backend nativo no mesmo Worker. Permanece somente a etapa de provisionar o segredo inicial e testar o deploy/autenticação sem interromper acesso existente. 

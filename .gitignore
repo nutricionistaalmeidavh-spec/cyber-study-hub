@@ -9,3 +9,5 @@ dist
 *.sqlite-shm
 *.sqlite-wal
 .DS_Store
+
+.dev.vars*
