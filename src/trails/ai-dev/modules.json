@@ -1,0 +1,605 @@
+{
+  "version": 2,
+  "modules": [
+    {
+      "moduleId": 1,
+      "version": 2,
+      "title": "Primeiros passos com IA",
+      "objective": "Descrever um problema, reconhecer entradas e estados, perguntar à IA sem delegar decisões e verificar um protótipo simples.",
+      "learningOutcomes": [
+        "Diferenciar interface, regras de negócio, dados e resultado.",
+        "Produzir um prompt com contexto, restrições e teste negativo.",
+        "Explicar um algoritmo de estado com dados fictícios.",
+        "Realizar uma alteração visual preservando uma regra de negócio."
+      ],
+      "lessons": [
+        {
+          "stepId": 1,
+          "kind": "microaula",
+          "durationMin": 25,
+          "title": "O que é um sistema e como ele funciona",
+          "lead": "O Meu Gestor nasce de uma necessidade verificável, não de uma tela bonita.",
+          "sections": [
+            {
+              "heading": "O problema antes do código",
+              "body": "Uma oficina fictícia recebe ordens, precisa identificar o serviço, acompanhar o estado e saber o que foi concluído. O requisito não é 'criar um dashboard': é não perder o andamento dos serviços. Formule: ator, dor, ação necessária e evidência de sucesso.",
+              "example": "Ator: atendente; dor: não sabe o que está pendente; ação: registrar OS com estado; evidência: listar pendentes e conferir totais.",
+              "counterexample": "Problema mal formulado: 'fazer um app moderno'. Não define usuário nem comportamento testável."
+            },
+            {
+              "heading": "Entrada → regra → estado → saída",
+              "body": "Entrada é a descrição de serviço e a identificação do cliente fictício. Regra valida a entrada e inicia a ordem como pendente. Estado é a lista de ordens no momento. Saída é o cartão e o contador que refletem esse estado. Interface não deve inventar fatos diferentes dos dados.",
+              "example": "Antes: 2 OS, 1 concluída. Marcar a pendente como concluída após passagem por 'em andamento' produz 2 concluídas, sem alterar o número total.",
+              "counterexample": "Se o botão mudar o texto para 'Concluído', mas o contador permanecer em 1, tela e estado ficaram inconsistentes."
+            },
+            {
+              "heading": "Prever antes de clicar",
+              "body": "Faça três previsões antes de abrir a prévia: quantas ordens existem, qual transição uma ordem pendente aceita e o que deve acontecer se alguém tenta avançar uma ordem já concluída. Execute e compare.",
+              "example": "Duas ordens abertas e uma concluída: ao avançar a pendente uma vez, ela fica em andamento; a contagem de concluídos permanece 1.",
+              "counterexample": "Marcar duas vezes como concluída não pode incrementar duas vezes o indicador."
+            }
+          ],
+          "challenge": {
+            "question": "O contador de concluídos deve ser calculado a partir de qual fonte?",
+            "options": [
+              "Das ordens cujo estado é concluído",
+              "De quantas vezes alguém clicou nos botões",
+              "De uma previsão feita pela IA"
+            ],
+            "answer": 0,
+            "feedback": "O indicador precisa ser derivado do estado das ordens, não de ações acumuladas."
+          }
+        },
+        {
+          "stepId": 2,
+          "kind": "microaula-ia",
+          "durationMin": 30,
+          "title": "Usando ChatGPT ou Claude com senso crítico",
+          "lead": "ChatGPT e Claude são assistentes externos usados no navegador; IA local e trabalho sem IA são alternativas.",
+          "sections": [
+            {
+              "heading": "Monte um pedido verificável",
+              "body": "Inclua: contexto (oficina fictícia), objetivo (três funcionalidades), restrições (sem dinheiro, sem dados reais, sem API), resultado esperado (tabela de regras), teste positivo e negativo. Evite pedir um sistema inteiro de uma vez.",
+              "example": "'Descreva a regra pendente → em andamento → concluído, um exemplo válido e um inválido. Não escreva código antes de eu aprovar a regra.'",
+              "counterexample": "'Faça o melhor CRM completo com banco, cobrança e login' pula decisões e adiciona custo e risco."
+            },
+            {
+              "heading": "A IA erra; você precisa detectar",
+              "body": "Se a IA sugerir que uma ordem concluída volte sozinha a pendente, confronte com o requisito. Se sugerir instalar pacote, pergunte por que seria necessário. A resposta é hipótese até haver observação executável.",
+              "example": "Experimente pedir três cenários. Compare o comportamento observado no HTML do laboratório. Registre uma divergência real ou escreva 'nenhuma encontrada nos casos testados'.",
+              "counterexample": "Uma resposta eloquente não confirma que os casos de fronteira funcionam."
+            },
+            {
+              "heading": "Dados, custos e plano B",
+              "body": "Não envie credenciais, código confidencial, dados de pacientes ou clientes reais. Use contas gratuitas quando disponíveis; limites mudam. Ollama pode ser usado em hardware adequado, mas não é exigido. O material, o projeto-base e as tarefas podem ser concluídos sem IA.",
+              "example": "Se o serviço estiver indisponível, use a tabela de regras desta aula e formule você mesmo três critérios de aceitação.",
+              "counterexample": "Não presuma que uma conta gratuita fornece acesso ilimitado nem que uma API de terceiros é grátis."
+            }
+          ],
+          "prompt": "Estou aprendendo a desenvolver software. Meu projeto didático é Meu Gestor: clientes fictícios e ordens de serviço. Antes de escrever código, ajude a definir 3 funcionalidades e a regra pendente → em andamento → concluído. Produza uma tabela com entrada, saída, caso válido, caso inválido e como eu testaria cada regra. Não use dados reais, API, serviços pagos nem bibliotecas. Pergunte o que não souber e me ensine por etapas.",
+          "reviewQuestions": [
+            "O pedido contém objetivo e limita o escopo a três funções?",
+            "Há teste inválido para ordem já concluída?",
+            "Consigo explicar a regra sem repetir as palavras da IA?"
+          ]
+        },
+        {
+          "stepId": 3,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico: LOG-01",
+          "lead": "Estude a unidade original, aplique o conceito ao Meu Gestor e explique a resposta com palavras suas. A biblioteca original permanece intacta.",
+          "referenceCode": "LOG-01",
+          "referencePath": "#course/parallel/LOG-01",
+          "challengeText": "Uma solicitação sem cliente ou sem serviço pode ser adicionada? Escreva a ordem das validações e diga qual estado deve permanecer igual após a rejeição."
+        },
+        {
+          "stepId": 4,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório 01 — observar, explicar e alterar",
+          "lead": "Use o protótipo HTML sem instalar dependências. Mude somente um texto fictício e comprove que a regra de estado continua funcionando.",
+          "brief": [
+            "Abra starter.html e registre o total inicial de serviços e de concluídos.",
+            "Avance a OS pendente para em andamento e depois concluída; confronte a contagem.",
+            "Edite um título de serviço fictício no HTML em um editor de texto e recarregue.",
+            "Redija um escopo curto: usuário, problema, três funções, duas regras e um caso inválido."
+          ],
+          "acceptance": [
+            "O plano identifica um usuário, problema e três funcionalidades objetivas.",
+            "Apresenta pelo menos duas regras e uma entrada inválida rejeitada.",
+            "O título de serviço fictício foi alterado sem quebrar os contadores.",
+            "Uma ordem concluída não avança de novo e o contador não duplica.",
+            "Registrei o resultado observado e uma hipótese que rejeitei."
+          ],
+          "prompt": "Tenho o arquivo HTML starter.html do Meu Gestor. Quero editar somente o texto de um serviço fictício. Solicite primeiro o trecho e indique a mudança mínima, sem alterar estados, sem criar dependências e sem usar API. Proponha testes para a OS pendente e concluída. Explique como reverter se algo falhar.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/starter.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/README.md",
+          "assessmentPrompt": "Transferência: uma OS já concluída recebe um clique duplo ou uma chamada repetida para avançar. Qual deve ser o estado final, quantos concluídos devem existir e por que? Registre entrada, ação, saída e invariantes."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-01.md"
+    },
+    {
+      "moduleId": 2,
+      "version": 1,
+      "title": "Da ideia ao sistema",
+      "objective": "Converter necessidades de uma oficina fictícia em requisitos verificáveis, fluxos e critérios de aceite sem construir funcionalidades fora de escopo.",
+      "learningOutcomes": [
+        "Separar necessidade do usuário de uma solução visual.",
+        "Definir entidades e fluxos de criação/consulta de ordens.",
+        "Criticar requisitos sugeridos pela IA usando critérios de aceitação.",
+        "Produzir especificação testável sem dados reais."
+      ],
+      "lessons": [
+        {
+          "stepId": 5,
+          "kind": "microaula",
+          "durationMin": 35,
+          "title": "Transforme o problema em requisitos",
+          "lead": "A interface só deve ser construída quando usuário, problema e regras forem explícitos.",
+          "sections": [
+            {
+              "heading": "Persona e tarefa concreta",
+              "body": "Considere Joana, atendente de uma oficina fictícia. Ela precisa localizar uma ordem sem perguntar a colegas e atualizar seu estado sem apagar o histórico do serviço. Uma persona útil descreve ação, contexto e dificuldade, não hobbies inventados.",
+              "example": "Necessidade: encontrar em segundos as OS pendentes de 'Cliente Exemplo A'. Requisito: pesquisa pelo cliente e filtro por estado.",
+              "counterexample": "'Joana gosta de azul, logo a interface deve ser azul' não é requisito funcional."
+            },
+            {
+              "heading": "Entidades e decisões",
+              "body": "Clientes têm id e nome fictício. Ordens têm id, clientId, serviço e estado. Uma ordem deve apontar para um cliente que existe; ids permanecem estáveis mesmo se o nome for editado. Especifique o que significa excluir um cliente com ordens: na versão inicial, bloquear remoção ou exigir tratamento explícito.",
+              "example": "OS-002 → clientId C-001; se não houver C-001, rejeitar a criação sem mudar a lista.",
+              "counterexample": "Salvar cliente como texto duplicado em toda OS pode produzir nomes divergentes após edição."
+            },
+            {
+              "heading": "Escreva critérios mensuráveis",
+              "body": "Cada funcionalidade deve conter condição inicial, ação e resultado observável. Inclua casos negativos, estados vazios e dados fictícios. Não escreva 'o app deve ser rápido' sem medida nem ambiente.",
+              "example": "Dado cliente inexistente, quando tento criar OS, então o formulário mostra erro e nenhuma OS nova surge.",
+              "counterexample": "'O botão funciona perfeitamente' não permite reproduzir uma falha."
+            }
+          ],
+          "challenge": {
+            "question": "Qual requisito pode ser testado sem adivinhar a intenção?",
+            "options": [
+              "Rejeitar OS com clientId inexistente sem alterar a lista",
+              "Ter aparência moderna e inteligente",
+              "Usar a melhor tecnologia"
+            ],
+            "answer": 0,
+            "feedback": "Há entrada inválida, ação e saída observável."
+          }
+        },
+        {
+          "stepId": 6,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Use IA para levantar requisitos sem inventar escopo",
+          "lead": "Compare a proposta de ChatGPT ou Claude com as decisões já tomadas; você aprova cada requisito.",
+          "sections": [
+            {
+              "heading": "Prompt como contrato",
+              "body": "Descreva usuários, entidade cliente, entidade ordem, fluxo e restrições. Peça 'requisitos funcionais', 'não funcionais' e 'fora de escopo' separados. Exija identificadores RF-01 etc. e teste para cada item.",
+              "example": "RF-02: Dado cliente C-001 e serviço válido, criar uma OS pendente; após operação o total aumenta em 1.",
+              "counterexample": "'O sistema terá login por reconhecimento facial' é extrapolação fora do escopo e viola a restrição de núcleo leve."
+            },
+            {
+              "heading": "Use perguntas de esclarecimento",
+              "body": "Se a IA assumir que 'concluída' pode virar 'pendente', peça que mostre em que requisito isso está definido. Conflitos devem ficar registrados como pendentes, nunca resolvidos por suposição automática.",
+              "example": "Pergunta: 'Ao excluir um cliente com OS, bloqueamos ou excluímos em cascata?'. Decisão inicial: bloquear, justificar com integridade.",
+              "counterexample": "Inventar respostas como se fossem decisões do solicitante destrói a rastreabilidade."
+            },
+            {
+              "heading": "Faça um walkthrough manual",
+              "body": "Simule uma ordem com ficha em papel: inserir, validar, salvar, consultar, avançar e excluir. Liste o que muda e o que não pode mudar em cada passo.",
+              "example": "Após formulário vazio, a quantidade de OS não aumenta e um erro é mostrado junto ao campo.",
+              "counterexample": "Avaliar somente o caminho feliz não cobre a ausência de cliente nem os campos em branco."
+            }
+          ],
+          "prompt": "Atue como analista de requisitos, não como gerador de sistema inteiro. Projeto: Meu Gestor para uma oficina fictícia. Entidades: Cliente(id,nome) e Ordem(id,clientId,servico,status). Status: pendente → em andamento → concluído; sem retrocesso automático. Proponha no máximo 5 RF, com pré-condição, ação, resultado e teste negativo, mais 3 decisões para confirmar comigo. Não adicione login, cobrança, dados reais ou API paga. Marque explicitamente hipóteses não confirmadas.",
+          "reviewQuestions": [
+            "Requisitos possuem pré-condição e resultado observável?",
+            "Uma decisão de integridade referencial está explicitada?",
+            "Removi qualquer funcionalidade não autorizada?"
+          ]
+        },
+        {
+          "stepId": 7,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico: LOG-11",
+          "lead": "Estude a unidade original, aplique o conceito ao Meu Gestor e explique a resposta com palavras suas. A biblioteca original permanece intacta.",
+          "referenceCode": "LOG-11",
+          "referencePath": "#course/parallel/LOG-11",
+          "challengeText": "Para a entrada 'serviço vazio', descreva entrada, validação, processamento, saída de erro e estado preservado. Explique por que uma mensagem bonita não substitui a regra."
+        },
+        {
+          "stepId": 8,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório 02 — especificação executável no papel",
+          "lead": "Produza o documento de requisitos e uma matriz de testes antes de gerar a interface React.",
+          "brief": [
+            "Abra o modelo de especificação e descreva a jornada da atendente.",
+            "Defina Cliente e Ordem com ids, campos obrigatórios e estados permitidos.",
+            "Escreva 5 requisitos com um caso válido e um inválido cada.",
+            "Faça a simulação: inserir ordem válida, rejeitar uma sem cliente e concluir a primeira."
+          ],
+          "acceptance": [
+            "Identifiquei ator, problema, objetivo e o que está fora de escopo.",
+            "Documentei os campos das duas entidades e a ligação via clientId.",
+            "Registrei cinco critérios Given/When/Then e pelo menos dois casos inválidos.",
+            "Expliquei a política para cliente com ordem associada.",
+            "Comparei dois fluxos observados no protótipo com o documento."
+          ],
+          "prompt": "Meu Gestor é didático; quero revisar uma especificação de Cliente e Ordem. Analise apenas consistência, completude e casos negativos. Para cada requisito aponte uma pergunta e um teste de aceitação; não acrescente funcionalidades não autorizadas. Ao fim peça minha aprovação antes de sugerir código.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/starter.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/README.md",
+          "assessmentPrompt": "Transferência: um cliente C-001 tem OS-003; alguém tenta excluir C-001. Escreva duas políticas possíveis, escolha uma para v0.1 e explique como verificar que a ordem não fica órfã."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-02.md"
+    },
+    {
+      "moduleId": 3,
+      "version": 1,
+      "title": "Preparando e criando o projeto",
+      "objective": "Instalar ferramentas gratuitas, compreender diretórios e executar um projeto React + TypeScript + Vite reproduzível e versionado.",
+      "learningOutcomes": [
+        "Distinguir terminal, runtime, pacote e servidor de desenvolvimento.",
+        "Executar build e identificar erros de dependências.",
+        "Revisar mudanças sugeridas por IA antes de aplicá-las.",
+        "Criar commit Git com projeto executável."
+      ],
+      "lessons": [
+        {
+          "stepId": 9,
+          "kind": "microaula",
+          "durationMin": 35,
+          "title": "Ambiente: editor, Node, terminal e dependências",
+          "lead": "O navegador exibe a página; Node executa ferramentas de construção; Git preserva mudanças.",
+          "sections": [
+            {
+              "heading": "Papel de cada ferramenta",
+              "body": "VSCodium edita arquivos. Terminal executa comandos. Node.js e npm instalam dependências declaradas em package.json. Vite inicia servidor de desenvolvimento e gera a pasta dist. React define componentes e TypeScript verifica tipos durante a construção.",
+              "example": "Com projeto aberto: npm install → npm run dev → abrir endereço local exibido pelo terminal. Separadamente, npm run build deve gerar dist sem erro.",
+              "counterexample": "Copiar código React em um arquivo .html sem bundler não garante que importações npm sejam entendidas."
+            },
+            {
+              "heading": "Diagnóstico antes de instalar",
+              "body": "Verifique 'node --version', 'npm --version' e 'git --version'. Leia mensagens do terminal e não execute comandos desconhecidos. Se npm não estiver instalado, pare e instale Node de fonte oficial antes de continuar.",
+              "example": "Se aparece 'command not found: npm', o problema é ambiente, não qualidade da resposta da IA.",
+              "counterexample": "Executar um comando que apaga pastas para 'consertar tudo' sem entender o efeito é arriscado."
+            },
+            {
+              "heading": "Primeiro arquivo e erro controlado",
+              "body": "Em src/App.tsx, altere apenas o título e observe atualização. Depois introduza temporariamente um erro de JSX, rode build, registre a mensagem e desfaça a mudança. Comprove que a construção volta a passar.",
+              "example": "Alterar título e rodar npm run build: sem erros de TypeScript e pasta dist gerada.",
+              "counterexample": "Uma tela aparentemente correta não significa que a compilação passou."
+            }
+          ],
+          "challenge": {
+            "question": "Qual comando deve falhar quando há erro de sintaxe TypeScript/JSX no projeto?",
+            "options": [
+              "npm run build, quando inclui verificação de tipos",
+              "git status, que apenas mostra alterações",
+              "Abrir uma pasta no explorador"
+            ],
+            "answer": 0,
+            "feedback": "O build combina verificação/compilação e é evidência mais forte do que aparência."
+          }
+        },
+        {
+          "stepId": 10,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Como pedir mudanças de código à IA com segurança",
+          "lead": "Assistentes devem trabalhar por arquivos e alterações pequenas, com plano, diff e testes.",
+          "sections": [
+            {
+              "heading": "Peça contexto, não mágica",
+              "body": "Forneça árvore curta do projeto, arquivos relevantes e problema. Peça passos verificáveis e comando de teste. Reforce que a IA não deve modificar login, secrets, dependências sem autorização nem instalar pacotes pagos.",
+              "example": "'Quero mudar o título no App.tsx. Mostre somente as linhas afetadas, por quê e como validar com npm run build.'",
+              "counterexample": "'Reescreva toda a aplicação para ficar melhor' pode apagar funções e dificultar revisão."
+            },
+            {
+              "heading": "Faça uma mudança por vez",
+              "body": "Use Git antes da mudança, confira git diff após cada alteração e faça commit com mensagem específica. Se surgir erro, isole e reverta a menor alteração possível.",
+              "example": "git status → editar componente → npm run build → git diff → git add . → git commit -m 'feat: título inicial'.",
+              "counterexample": "Colar um arquivo completo sem checar o diff pode remover acessibilidade ou regras."
+            },
+            {
+              "heading": "Limites de serviços",
+              "body": "ChatGPT/Claude no navegador são atalhos de explicação e revisão. Você copia trechos manualmente, preserva privacidade e não depende de ferramentas de automação pagas. IA local permanece opcional.",
+              "example": "Use somente arquivos didáticos e dados falsos. Se não houver acesso à IA, use o tutorial e mensagens de erro locais.",
+              "counterexample": "Nunca enviar .env, token npm, senha Git ou chave privada à IA."
+            }
+          ],
+          "prompt": "Estou em um projeto React+TypeScript+Vite gratuito. Quero apenas alterar o título de App.tsx. Primeiro explique quais arquivos pedir e quais comandos de terminal são seguros. Ao ver um trecho do arquivo, proponha um diff mínimo e diga como validar com npm run build. Não reescreva arquivos não relacionados, não instale dependências sem explicar e nunca solicite tokens, .env ou dados pessoais.",
+          "reviewQuestions": [
+            "Limitei a alteração a um arquivo relevante?",
+            "Sei qual comando confirma e qual comando reverte?",
+            "Revisei o diff antes de aceitar a mudança?"
+          ]
+        },
+        {
+          "stepId": 11,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico: ENG-01",
+          "lead": "Estude a unidade original, aplique o conceito ao Meu Gestor e explique a resposta com palavras suas. A biblioteca original permanece intacta.",
+          "referenceCode": "ENG-01",
+          "referencePath": "#course/parallel/ENG-01",
+          "challengeText": "Explique por que salvar arquivo e fazer commit são coisas diferentes. O que deve aparecer em git status após editar App.tsx e antes do commit?"
+        },
+        {
+          "stepId": 12,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório 03 — Meu Gestor v0.1 React",
+          "lead": "Faça o projeto iniciar localmente, altere o texto, crie um commit e capture evidências do build.",
+          "brief": [
+            "Baixe/copIe os arquivos da pasta v0.1 mantendo package.json, index.html e src.",
+            "Execute npm install e npm run dev; abra o endereço localhost indicado.",
+            "Altere um título fictício, rode npm run build e registre o resultado.",
+            "Inicialize Git localmente e faça commit da alteração (sem incluir node_modules)."
+          ],
+          "acceptance": [
+            "Verifiquei as versões de Node, npm e Git e registrei os comandos usados.",
+            "O projeto abriu no navegador e exibiu o título Meu Gestor.",
+            "Alterei somente o título e o build TypeScript/Vite passou.",
+            "Consegui explicar um erro controlado e restaurei o código funcional.",
+            "Criei commit local sem publicar secrets nem node_modules."
+          ],
+          "prompt": "Tenho um checkpoint React + TypeScript + Vite do Meu Gestor. Oriente meu primeiro 'npm install', 'npm run dev' e 'npm run build'. Se der erro, faça perguntas sobre versão, diretório e mensagem, sem sugerir apagar arquivos imediatamente. Quero um único ajuste por vez, com diff mínimo.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/index.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
+          "assessmentPrompt": "Transferência: uma pessoa diz 'a página abriu, então está tudo pronto', mas npm run build falha por JSX inválido. O que você considera válido, o que considera falho e quais evidências deve guardar?"
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-03.md"
+    },
+    {
+      "moduleId": 4,
+      "version": 1,
+      "title": "Criando as telas com IA",
+      "objective": "Construir uma interface React navegável com dados fictícios, formulário acessível, layout responsivo e distinção entre protótipo e persistência.",
+      "learningOutcomes": [
+        "Explicar HTML semântico, componente React, props e layout responsivo.",
+        "Montar interfaces de três seções sem inventar dados.",
+        "Revisar acessibilidade e estados vazios em uma sugestão de IA.",
+        "Diferenciar navegação visual de CRUD funcional."
+      ],
+      "lessons": [
+        {
+          "stepId": 13,
+          "kind": "microaula",
+          "durationMin": 35,
+          "title": "Interfaces semânticas: HTML, CSS e React",
+          "lead": "Uma interface ajuda o usuário a decidir e agir; não deve esconder dados importantes em decorações.",
+          "sections": [
+            {
+              "heading": "Estrutura: o que cada elemento significa",
+              "body": "Use header para contexto, nav para destinos, main para conteúdo central, form com label para entradas e button para ações. Use texto visível nos estados das ordens; cores devem ser apoio, não único sinal.",
+              "example": "Três destinos: Visão geral, Clientes, Serviços. Cada botão de navegação muda a seção exibida; o título da página acompanha a seleção.",
+              "counterexample": "Div clicável sem teclado ou campo sem label prejudica acesso e testes."
+            },
+            {
+              "heading": "Componentes e dados demonstrativos",
+              "body": "Cards de métricas e linha de OS podem ser componentes com props, mas os números devem ser derivados de uma única lista de ordens. Na v0.2 os dados são apenas demonstrativos; inclua essa informação no layout.",
+              "example": "Com 3 ordens e 1 concluída, mostrar 3 no total e 1 concluída; modificar a fixture deve recalcular o resumo.",
+              "counterexample": "Escrever números fixos 24, 18 e 12 no dashboard diverge da lista real."
+            },
+            {
+              "heading": "Responsive e estados",
+              "body": "Teste viewport pequena, zoom e teclado. Cards passam de três para uma coluna quando necessário. O formulário precisa de rótulos e mensagens claras; não anuncie 'salvo' se não há armazenamento.",
+              "example": "A 360 px o menu deve continuar acessível e textos não podem exigir rolagem horizontal.",
+              "counterexample": "Uma prévia estática não deve afirmar que cadastro foi persistido."
+            }
+          ],
+          "challenge": {
+            "question": "Na v0.2, de onde deve vir o número de ordens concluídas?",
+            "options": [
+              "Da lista fictícia filtrada por status concluído",
+              "De um texto fixo na tela",
+              "Da preferência do modelo de IA"
+            ],
+            "answer": 0,
+            "feedback": "A mesma fonte precisa alimentar listagem e indicadores."
+          }
+        },
+        {
+          "stepId": 14,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Criar telas com IA sem sacrificar usabilidade",
+          "lead": "Use prompts delimitados, valide acessibilidade e aceite apenas mudanças rastreáveis.",
+          "sections": [
+            {
+              "heading": "Especifique o comportamento em vez do estilo apenas",
+              "body": "Dê um inventário das telas e das informações necessárias. Solicite HTML semântico, foco visível, labels, estados vazios e contrastes apropriados. Separe identidade visual de regras.",
+              "example": "'Crie navegação entre Visão geral, Clientes e Serviços sem roteador externo; preserve o contador derivado.'",
+              "counterexample": "'Deixe premium' sem conteúdo nem regras pode produzir UI bonita e falsa."
+            },
+            {
+              "heading": "Revisão com cenário de uso",
+              "body": "Tarefa: encontrar OS-002 no celular e identificar seu estado. Faça caminho com teclado; confira headings e botões. Teste listas vazias, nome comprido e largura estreita.",
+              "example": "Quando não há clientes, mostrar mensagem 'Nenhum cliente demonstrativo', não uma área em branco.",
+              "counterexample": "Um card bonito não substitui feedback de campo obrigatório."
+            },
+            {
+              "heading": "Mudanças mínimas",
+              "body": "Peça que a IA liste arquivos e descreva como testar. Inspecione o diff. Não acrescente bibliotecas UI pagas, analytics ou URLs de imagens que expõem dados do projeto.",
+              "example": "Mudança visual isolada em src/App.tsx e src/styles.css; npm run build e inspeção mobile como confirmação.",
+              "counterexample": "Não aceitar uma integração externa silenciosa para desenhar botões."
+            }
+          ],
+          "prompt": "Use React + TypeScript + CSS sem bibliotecas de UI externas. Preciso das telas Visão geral, Clientes e Serviços para o Meu Gestor com dados fictícios. Proponha estrutura semântica, headings únicos, navegação por botões com foco visível, labels, estado vazio e CSS para 360 px. Números do dashboard devem vir dos arrays, nunca hardcoded. Produza mudanças pequenas e plano de QA; não inclua login, pagamentos, tracking ou serviços pagos.",
+          "reviewQuestions": [
+            "A navegação funciona por teclado e no celular?",
+            "O dashboard deriva valores de dados demonstrativos?",
+            "A UI informa que ainda não há cadastro persistente?"
+          ]
+        },
+        {
+          "stepId": 15,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico: WEB-11",
+          "lead": "Estude a unidade original, aplique o conceito ao Meu Gestor e explique a resposta com palavras suas. A biblioteca original permanece intacta.",
+          "referenceCode": "WEB-11",
+          "referencePath": "#course/parallel/WEB-11",
+          "challengeText": "Na tela de Clientes, por que usar form, label e button em vez de apenas div? Como inspecionar se um campo possui nome acessível?"
+        },
+        {
+          "stepId": 16,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório 04 — Meu Gestor v0.2 com telas",
+          "lead": "Compare a interface da v0.2 com a especificação do módulo 2 e valide visual, responsividade e estados vazios.",
+          "brief": [
+            "Copie o checkpoint v0.2 para sua pasta e execute npm install e npm run dev.",
+            "Navegue pelas três seções sem recarregar; compare dados e métricas.",
+            "Verifique no teclado (Tab/Enter), no celular ou viewport de 360 px e com zoom.",
+            "Mude um item da fixture e confirme contagem; não anuncie persistência."
+          ],
+          "acceptance": [
+            "As três seções são navegáveis com botões semanticamente corretos.",
+            "O resumo deriva da lista de ordens fictícias e reflete alterações nos dados.",
+            "Labels, foco visível e mensagens de vazio estão presentes.",
+            "Não há rolagem horizontal indesejada no viewport estreito.",
+            "Documentei as limitações: dados de exemplo, sem CRUD e sem banco."
+          ],
+          "prompt": "Analise meu checkpoint v0.2 React/CSS do Meu Gestor como revisor de acessibilidade e responsividade. Diga como testar navegação por teclado, viewport estreito, estados vazios e coerência dos totais. Sugira no máximo três mudanças de pequeno risco, sempre indicando como reproduzir e confirmar.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/index.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
+          "assessmentPrompt": "Transferência: no dashboard aparece 12 concluídos, mas a lista tem uma OS concluída. Mostre como detectar a divergência, qual fonte de verdade usar e qual teste evita regressão."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-04.md"
+    },
+    {
+      "moduleId": 5,
+      "version": 1,
+      "title": "Fazendo o sistema funcionar",
+      "objective": "Transformar a interface estática em CRUD real em memória, com validações, filtros, regras e testes negativos antes de introduzir o banco.",
+      "learningOutcomes": [
+        "Implementar funções puras para criar, alterar, concluir e excluir ordens.",
+        "Entender estado React, objetos/arrays, IDs e imutabilidade.",
+        "Validar entradas e preservar o estado após rejeições.",
+        "Testar CRUD e filtros sem confundir memória com persistência."
+      ],
+      "lessons": [
+        {
+          "stepId": 17,
+          "kind": "microaula",
+          "durationMin": 40,
+          "title": "Dados, estado e regras em JavaScript/TypeScript",
+          "lead": "A mesma lista deve controlar formulário, cards e indicadores, com regras que não dependem do visual.",
+          "sections": [
+            {
+              "heading": "Modelo e identidade",
+              "body": "Cliente: id e nome. Ordem: id, clientId, serviço e status. IDs não devem ser escolhidos pelo índice no array; remoções mudam índices. Estado é imutável na atualização React: gere nova lista, não edite objeto compartilhado.",
+              "example": "Ao editar OS-002, mantenha id OS-002 e substitua só os campos permitidos.",
+              "counterexample": "Usar index como id causa conflito depois de excluir o primeiro item."
+            },
+            {
+              "heading": "Operações e invariantes",
+              "body": "Criar rejeita campos vazios e clientId inexistente. Editar preserva id e status. Excluir cliente com ordens vinculadas é bloqueado. Avançar estado aceita somente pendente→em andamento→concluído; depois permanece concluído.",
+              "example": "Se OS-003 já está concluída, avançar retorna resultado sem mudança de estado nem contador.",
+              "counterexample": "Atualizar contador com '+1' a cada clique cria dupla contagem."
+            },
+            {
+              "heading": "Estado derivado e filtros",
+              "body": "Pesquisa procura nome do cliente e texto do serviço; filtro por status mostra um subconjunto sem apagar registros. O contador calcula todos os dados canônicos, mesmo que o filtro esteja ativo.",
+              "example": "Filtro 'pendente' exibe somente ordens pendentes, mas total geral permanece a quantidade real.",
+              "counterexample": "Aplicar filtro mutando o array principal causa perda visual e lógica."
+            }
+          ],
+          "challenge": {
+            "question": "Qual comportamento evita uma ordem órfã?",
+            "options": [
+              "Bloquear exclusão de cliente que possui ordens vinculadas",
+              "Apagar somente o cliente e manter ordens apontando para ele",
+              "Trocar todos os clientId por índice zero"
+            ],
+            "answer": 0,
+            "feedback": "A integridade referencial exige preservar o vínculo ou tratar explicitamente a dependência."
+          }
+        },
+        {
+          "stepId": 18,
+          "kind": "microaula-ia",
+          "durationMin": 40,
+          "title": "IA para CRUD: código pequeno, regras explícitas e testes",
+          "lead": "A IA pode sugerir uma função, mas cada alteração precisa de contrato, erro previsto e verificação.",
+          "sections": [
+            {
+              "heading": "Exija uma função por tarefa",
+              "body": "Solicite uma função pura que recebe lista e comando e devolve nova lista ou erro, preservando o estado original em entrada inválida. Só depois integre ao React.",
+              "example": "'Implemente addOrder(state, clientId, description) com teste vazio, cliente ausente e sucesso; não altere estado original'.",
+              "counterexample": "'Crie todo banco e backend' antes do módulo 6 mistura responsabilidade e aumenta erros."
+            },
+            {
+              "heading": "Teste antes de confiar",
+              "body": "Compare operação válida, inválida e repetida. Confirme que uma falha não modifica o estado; confira que editar não troca o id nem status; verifique se filtros não removem dados.",
+              "example": "Com 2 OS e 1 concluída, clicar novamente na concluída mantém os mesmos dados e números.",
+              "counterexample": "Um teste que apenas confere 'não lançou erro' não prova integridade."
+            },
+            {
+              "heading": "O que a versão v0.3 ainda não faz",
+              "body": "Dados vivem em memória do navegador; recarregar restaura fixtures iniciais. Banco e API virão no módulo 6. Evite prometer gravação. Não exponha dados reais e não use API externa para guardar informações.",
+              "example": "A página deve exibir 'dados temporários' e documentar reset por atualização.",
+              "counterexample": "Chamar estado React de 'banco de dados' induz o aluno a uma conclusão falsa."
+            }
+          ],
+          "prompt": "Estou no Meu Gestor v0.3 com React+TypeScript. Quero implementar UMA operação de CRUD por vez usando funções puras e estado imutável. Regras: campos não vazios, clientId existente, IDs estáveis, exclusão de cliente com OS bloqueada, conclusão não pode duplicar contador e filtro não modifica a fonte. Primeiro proponha contrato e casos válidos, inválidos e repetidos; só depois sugira código. Não use API paga, banco de dados, dados reais ou pacotes desnecessários.",
+          "reviewQuestions": [
+            "A função recusa entradas inválidas sem mutar arrays?",
+            "O teste cobre repetição e ids estáveis?",
+            "A UI descreve corretamente que dados não são persistentes?"
+          ]
+        },
+        {
+          "stepId": 19,
+          "kind": "referencia",
+          "durationMin": 35,
+          "title": "Fundamento canônico: JS-02",
+          "lead": "Estude a unidade original, aplique o conceito ao Meu Gestor e explique a resposta com palavras suas. A biblioteca original permanece intacta.",
+          "referenceCode": "JS-02",
+          "referencePath": "#course/parallel/JS-02",
+          "challengeText": "Explique a diferença entre map, filter e mutação em um cadastro. Se uma ordem é excluída, por que os IDs das demais não devem mudar?"
+        },
+        {
+          "stepId": 20,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório 05 — Meu Gestor v0.3 com CRUD",
+          "lead": "Execute o projeto, crie/edite/exclua com erros controlados e comprove que filtros e indicadores preservam a fonte.",
+          "brief": [
+            "Abra v0.3 e execute npm install, npm run dev e os testes de domínio.",
+            "Cadastre cliente fictício e OS; tente salvar campos vazios e clientId inexistente.",
+            "Edite uma ordem e conclua outra; repita a conclusão e observe invariantes.",
+            "Filtre por estado, limpe filtros e recarregue; registre por que o estado é temporário."
+          ],
+          "acceptance": [
+            "Consegui criar, editar, consultar e excluir clientes/ordens conforme regras.",
+            "Campos vazios e vínculos inválidos foram rejeitados sem alterar dados.",
+            "Uma OS concluída não avança novamente nem duplica contador.",
+            "Pesquisa/filtro não apaga a fonte nem muda os IDs.",
+            "Rodei casos positivos/negativos e documentei que o recarregamento restaura fixtures."
+          ],
+          "prompt": "Estou depurando o CRUD v0.3. Sugira casos de teste unitário e manual para cliente inválido, serviço vazio, exclusão de cliente com OS, filtro sem mutação e conclusão repetida. Mostre mudanças mínimas, explique os erros, preserve os IDs e não introduza backend ou API externa.",
+          "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/index.html",
+          "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
+          "assessmentPrompt": "Transferência: após filtrar por 'pendente', alguém clica excluir e uma ordem diferente desaparece. Diagnostique o risco de usar índice visual como identificador e escreva o teste de regressão."
+        }
+      ],
+      "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
+      "answerKeyPath": "/course-labs/ai-dev-meu-gestor/answer-keys/module-05.md"
+    }
+  ]
+}
