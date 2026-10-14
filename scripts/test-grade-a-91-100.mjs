@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const reg=JSON.parse(fs.readFileSync('quality/registry.json','utf8'));
+const audit=JSON.parse(fs.readFileSync('quality/reviews/a91-100-2026-10-13.json','utf8'));
+const dims=['conteudoTecnico','didatica','pratica','defesa','avaliacao','especificidade'];
+const gates=['precisaoRevisada','didaticaInicianteValidada','praticaVerificada','avaliacaoIndependenteRevisada','escopoSeguroVerificado','revisorIndependente'];
+assert.equal(Object.keys(audit.units).length,10);
+assert.equal(audit.humanLearnerTesting,'not_performed');
+for(let i=91;i<=100;i++){
+ const n=String(i).padStart(3,'0'),id='AULA-'+n;
+ const doc=fs.readFileSync('public/course-library/main/'+n+'.md','utf8');
+ const hash=createHash('sha256').update(doc).digest('hex');
+ const review=reg.editorialReviews[id],entry=audit.units[id];
+ assert.equal(review?.grade,'A',id);
+ assert.equal(review.contentSha256,hash,id+' registry');
+ assert.equal(entry.contentSha256,hash,id+' audit');
+ assert.equal(review.reviewMethod,'ai_editorial_second_pass');
+ assert.equal(review.humanLearnerTesting,'not_performed');
+ assert.notEqual(review.author,review.reviewer);
+ assert.ok(doc.length>=8500,id+' doc truncated');
+ assert.ok(doc.includes('## 18. Oficina A editorial'),id+' workshop');
+ assert.ok(doc.includes('## Prova final independente'),id+' exam');
+ assert.ok(!doc.includes('Qual afirmação melhor resume o foco desta aula?'),id+' generic quiz');
+ assert.ok(doc.includes('/course-labs/a91-100/answer-keys/'+id+'.md'),id+' key reference');
+ const exam=doc.split('## Prova final independente')[1]?.split('### Fonte')[0]??'';
+ assert.equal((exam.match(/^\d+\. \*\*/gm)??[]).length,6,id+' six open questions');
+ const key=fs.readFileSync('public/course-labs/a91-100/answer-keys/'+id+'.md','utf8');
+ assert.match(key,/rubrica/i);
+ assert.match(key,/erro eliminat[oó]rio/i);
+ assert.equal(review.evidence.length,6);
+ assert.equal(entry.technicalSources.length,1);
+ for(const d of dims){assert.ok(review.scores[d]>=80&&review.scores[d]<=100,id+' score '+d);assert.ok(review.evidence.some(e=>e.dimension===d&&e.method?.length>20&&e.reference?.length>15&&e.result?.length>35),id+' evidence '+d);}
+ for(const g of gates)assert.equal(review.gates[g],true,id+' gate '+g);
+ console.log('PASS '+id+' '+hash.slice(0,12));
+}
+const previous=[...Array.from({length:90},(_,i)=>'AULA-'+String(i+1).padStart(3,'0')),...Array.from({length:20},(_,i)=>'AULA-'+String(i+111).padStart(3,'0')),'AULA-160','AULA-166','LOG-01','NET-25','PY-01'];
+for(const id of previous)assert.equal(reg.editorialReviews[id]?.grade,'A','Grade lost: '+id);
+assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=125);
+console.log('PASS: 125 A editoriais, 115 anteriores preservados.');

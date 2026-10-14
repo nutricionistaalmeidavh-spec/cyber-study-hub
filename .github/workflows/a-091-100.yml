@@ -1,0 +1,30 @@
+name: Aulas 091-100 QA
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/09*.md'
+      - 'public/course-library/main/100.md'
+      - 'public/course-labs/a91-100/**'
+      - 'quality/registry.json'
+      - 'quality/reviews/a91-100-2026-10-13.json'
+      - 'scripts/test-grade-a-91-100.mjs'
+      - 'package.json'
+      - '.github/workflows/a-091-100.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Testar modelos offline
+        run: node --test public/course-labs/a91-100/lab.test.mjs
+      - name: Validar conteudo, qualidade e bundle
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
