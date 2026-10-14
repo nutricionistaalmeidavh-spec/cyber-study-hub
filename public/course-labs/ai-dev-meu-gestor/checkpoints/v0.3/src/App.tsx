@@ -8,9 +8,9 @@ export default function App(){
   const [orderService,setOrderService]=useState(''),[orderClient,setOrderClient]=useState('C-001'),[orderEdit,setOrderEdit]=useState<string|null>(null);
   const [query,setQuery]=useState(''),[filter,setFilter]=useState<Status|'todas'>('todas');
   const [error,setError]=useState(''),[notice,setNotice]=useState('');
-  const act=(fn:(old:State)=>State,success:string)=>{try{setState(old=>fn(old));setError('');setNotice(success);}catch(e){setError(e instanceof Error?e.message:'Erro na ação');setNotice('');}};
-  const saveClient=(event:FormEvent)=>{event.preventDefault();act(old=>clientEdit?editClient(old,clientEdit,clientName):addClient(old,clientName),clientEdit?'Cliente alterado em memória':'Cliente criado em memória');if(clientName.trim()){setClientName('');setClientEdit(null);}};
-  const saveOrder=(event:FormEvent)=>{event.preventDefault();act(old=>orderEdit?editOrder(old,orderEdit,orderService):addOrder(old,orderClient,orderService),orderEdit?'Serviço alterado em memória':'Ordem criada em memória');if(orderService.trim()){setOrderService('');setOrderEdit(null);}};
+  const act=(fn:(old:State)=>State,success:string):boolean=>{try{const next=fn(state);setState(next);setError('');setNotice(success);return true;}catch(e){setError(e instanceof Error?e.message:'Erro na ação');setNotice('');return false;}};
+  const saveClient=(event:FormEvent)=>{event.preventDefault();const ok=act(old=>clientEdit?editClient(old,clientEdit,clientName):addClient(old,clientName),clientEdit?'Cliente alterado em memória':'Cliente criado em memória');if(ok){setClientName('');setClientEdit(null);}};
+  const saveOrder=(event:FormEvent)=>{event.preventDefault();const ok=act(old=>orderEdit?editOrder(old,orderEdit,orderService):addOrder(old,orderClient,orderService),orderEdit?'Serviço alterado em memória':'Ordem criada em memória');if(ok){setOrderService('');setOrderEdit(null);}};
   const visible=findOrders(state,query,filter);
   return <main><header><p className="hint">MEU GESTOR · CHECKPOINT V0.3</p><h1>Meu Gestor</h1><p className="note">Dados fictícios e temporários. Ao recarregar, as alterações são perdidas. SQLite será introduzido no módulo 6.</p></header>
     <div className="layout"><nav className="side" aria-label="Navegação do Meu Gestor">{([['resumo','Visão geral'],['clientes','Clientes'],['servicos','Serviços']] as const).map(([id,label])=><button key={id} type="button" aria-pressed={view===id} onClick={()=>{setView(id);setError('');setNotice('');}}>{label}</button>)}</nav>
