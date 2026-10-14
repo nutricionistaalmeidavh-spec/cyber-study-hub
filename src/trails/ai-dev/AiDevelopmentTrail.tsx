@@ -1,193 +1,64 @@
-import { useEffect, useState } from 'react';
+import {useEffect,useState} from 'react';
 import manifest from './manifest.json';
-import pilot from './pilot.json';
+import data from './modules.json';
 import './ai-dev.css';
 
-type PilotProgress = { completed: number[]; plan: string; checked: number[] };
-const emptyProgress: PilotProgress = { completed: [], plan: '', checked: [] };
-
-function stored(userId: string): PilotProgress {
-  try {
-    const parsed = JSON.parse(localStorage.getItem('hub-ai-dev-pilot:' + userId) || 'null');
-    if (parsed && Array.isArray(parsed.completed) && Array.isArray(parsed.checked) && typeof parsed.plan === 'string') {
-      return { completed: parsed.completed.filter((id: unknown) => Number.isInteger(id) && Number(id) >= 1 && Number(id) <= 4), checked: parsed.checked.filter((id: unknown) => Number.isInteger(id)), plan: parsed.plan.slice(0, 3000) };
+type Section={heading:string;body:string;example?:string;counterexample?:string};
+type Challenge={question:string;options:string[];answer:number;feedback:string};
+type Lesson={stepId:number;kind:'microaula'|'microaula-ia'|'referencia'|'laboratorio';durationMin:number;title:string;lead:string;sections?:Section[];challenge?:Challenge;prompt?:string;reviewQuestions?:string[];referenceCode?:string;referencePath?:string;challengeText?:string;brief?:string[];acceptance?:string[];starterUrl?:string;starterSourceUrl?:string;assessmentPrompt?:string};
+type Module={moduleId:number;title:string;objective:string;learningOutcomes:string[];assessmentPath:string;answerKeyPath:string;lessons:Lesson[]};
+type Progress={completed:number[];notes:string;answer:string;checked:number[];referenceAnswer:string};
+type Store=Record<string,Progress>;
+const modules=(data as {modules:Module[]}).modules;
+const blank=():Progress=>({completed:[],notes:'',answer:'',checked:[],referenceAnswer:''});
+function load(id:string):Store{
+  try{
+    const saved=JSON.parse(localStorage.getItem('hub-ai-dev-v2:'+id)||'null') as Record<string,unknown>|null;
+    if(saved&&typeof saved==='object'){
+      const result:Store={};
+      for(const m of modules){const p=saved[String(m.moduleId)] as Progress|undefined;
+        if(p&&Array.isArray(p.completed)&&Array.isArray(p.checked)&&typeof p.notes==='string'&&typeof p.answer==='string'&&typeof p.referenceAnswer==='string'){
+          result[String(m.moduleId)]={completed:p.completed.filter(x=>m.lessons.some(l=>l.stepId===x)),notes:p.notes.slice(0,4000),answer:p.answer.slice(0,4000),checked:p.checked.filter(x=>Number.isInteger(x)&&x>=0&&x<5),referenceAnswer:p.referenceAnswer.slice(0,2000)};
+        }
+      }
+      return result;
     }
-  } catch { /* armazenamento local indisponível */ }
-  return emptyProgress;
+    const old=JSON.parse(localStorage.getItem('hub-ai-dev-pilot:'+id)||'null') as {completed?:number[];checked?:number[];plan?:string}|null;
+    if(old)return {'1':{...blank(),completed:(old.completed||[]).filter(x=>x>=1&&x<=4),checked:(old.checked||[]).filter(x=>x>=0&&x<5),notes:(old.plan||'').slice(0,4000)}};
+  }catch{/* segue sem armazenamento */}
+  return {};
 }
-
-export default function AiDevelopmentTrail({ userId }: { userId: string }) {
-  const [progress, setProgress] = useState<PilotProgress>(() => stored(userId));
-  const [selected, setSelected] = useState(1);
-  const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
-  const [quizChecked, setQuizChecked] = useState(false);
-  const [mode, setMode] = useState<'chatgpt' | 'claude' | 'local' | 'offline'>('chatgpt');
-  const [copied, setCopied] = useState(false);
-  const [referenceRead, setReferenceRead] = useState(false);
-  const [reviewed, setReviewed] = useState<number[]>([]);
-
-  useEffect(() => {
-    try { localStorage.setItem('hub-ai-dev-pilot:' + userId, JSON.stringify(progress)); }
-    catch { /* a trilha pode ser estudada mesmo com armazenamento bloqueado */ }
-  }, [progress, userId]);
-
-  const lesson = pilot.lessons[selected - 1];
-  const done = new Set(progress.completed);
-  const isComplete = done.has(selected);
-  const ready = selected === 1
-    ? quizChecked && quizAnswer === pilot.lessons[0].challenge?.answer
-    : selected === 2 ? reviewed.length === 3
-    : selected === 3 ? referenceRead
-    : progress.plan.trim().length >= 100 && progress.checked.length === 4;
-
-  const mark = () => {
-    if (!ready && !isComplete) return;
-    setProgress(previous => ({
-      ...previous,
-      completed: isComplete ? previous.completed : [...new Set([...previous.completed, selected])]
-    }));
-    if (selected < 4) setSelected(selected + 1);
-  };
-
-  const copyPrompt = async () => {
-    const prompt = lesson.prompt;
-    if (!prompt) return;
-    try { await navigator.clipboard.writeText(prompt); setCopied(true); }
-    catch { setCopied(false); }
-  };
-
-  const pick = (step: number) => {
-    setSelected(step);
-    setCopied(false);
-    setQuizAnswer(null);
-    setQuizChecked(false);
-    setReviewed([]);
-    setReferenceRead(false);
-  };
-
+export default function AiDevelopmentTrail({userId}:{userId:string}){
+  const [store,setStore]=useState<Store>(()=>load(userId)),[moduleId,setModuleId]=useState(1),[stepId,setStepId]=useState(1);
+  const [choice,setChoice]=useState<number|null>(null),[verified,setVerified]=useState(false),[reviewed,setReviewed]=useState<number[]>([]),[read,setRead]=useState(false),[copied,setCopied]=useState(false),[storageError,setStorageError]=useState(false);
+  const [ai,setAi]=useState<'chatgpt'|'claude'|'local'|'offline'>('chatgpt');
+  const module=modules.find(x=>x.moduleId===moduleId)||modules[0],step=module.lessons.find(x=>x.stepId===stepId)||module.lessons[0];
+  const p=store[String(moduleId)]||blank(),done=p.completed.includes(step.stepId);
+  const completed=modules.reduce((sum,m)=>sum+m.lessons.filter(l=>store[String(m.moduleId)]?.completed.includes(l.stepId)).length,0);
+  const ready=step.kind==='microaula'?verified&&choice===step.challenge?.answer:step.kind==='microaula-ia'?reviewed.length===(step.reviewQuestions?.length||3):step.kind==='referencia'?read&&p.referenceAnswer.trim().length>=75:p.notes.trim().length>=180&&p.answer.trim().length>=120&&p.checked.length===(step.acceptance?.length||5);
+  useEffect(()=>{try{localStorage.setItem('hub-ai-dev-v2:'+userId,JSON.stringify(store));setStorageError(false);}catch{setStorageError(true);}},[store,userId]);
+  const change=(patch:Partial<Progress>)=>setStore(prev=>({...prev,[String(moduleId)]:{...(prev[String(moduleId)]||blank()),...patch}}));
+  const select=(id:number)=>{const dest=modules.find(m=>m.lessons.some(l=>l.stepId===id));if(!dest)return;setModuleId(dest.moduleId);setStepId(id);setChoice(null);setVerified(false);setReviewed([]);setRead(false);setCopied(false);};
+  const save=()=>{if(done){if(step.stepId%4!==0)select(step.stepId+1);return;}if(!ready)return;change({completed:[...new Set([...p.completed,step.stepId])]});if(step.stepId%4!==0)select(step.stepId+1);};
+  const copy=async()=>{try{await navigator.clipboard.writeText(step.prompt||'');setCopied(true);}catch{setCopied(false);}};
   return <div className="page ai-track">
-    <div className="ai-hero">
-      <div>
-        <span className="eyebrow">NOVA TRILHA · PILOTO MÓDULO 01</span>
-        <h1>Desenvolvimento de sistemas com IA</h1>
-        <p>Aprenda a construir o Meu Gestor desde a ideia. Trabalhe com ChatGPT ou Claude pelo navegador, verifique cada resultado e use IA local apenas se desejar.</p>
-        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>8 módulos · 32 etapas</span></div>
-      </div>
-      <div className="ai-meter" aria-label={String(done.size) + ' de 4 etapas do piloto concluídas'}>
-        <strong>{done.size}/4</strong><span>etapas do piloto</span>
-        <div className="progress"><i style={{ width: String(done.size * 25) + '%' }} /></div>
-      </div>
-    </div>
-
-    <section className="ai-roadmap" aria-label="Módulos da trilha">
-      {manifest.modules.map(module => <div className={'ai-module ' + (module.id === 1 ? 'available' : 'planned')} key={module.id}>
-        <span className="ai-module-number">{String(module.id).padStart(2, '0')}</span>
-        <div><strong>{module.title}</strong><small>{module.duration} · {module.id === 1 ? '4 etapas disponíveis' : 'conteúdo em produção'}</small></div>
-        <span className="ai-status">{module.id === 1 ? 'Piloto' : 'Em breve'}</span>
-      </div>)}
-    </section>
-
-    <div className="ai-section-heading">
-      <span className="eyebrow">MÓDULO 01 · PRIMEIROS PASSOS</span>
-      <h2>{pilot.objective}</h2>
-      <p>Comece com conceitos, pratique uma conversa orientada com IA, aprofunde na aula original e finalize um laboratório com evidência verificável.</p>
-    </div>
-
+    <header className="ai-hero"><div><span className="eyebrow">TRILHA PRÁTICA · MEU GESTOR</span><h1>Desenvolvimento de sistemas com IA</h1><p>ChatGPT ou Claude pelo navegador; IA local opcional conforme hardware; sem API paga e com prática realizável sem IA.</p><div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chaves de API</span><span>543 unidades originais preservadas</span></div></div><div className="ai-meter"><strong>{completed}/20</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{width:String(completed*5)+'%'}}/></div></div></header>
+    <section className="ai-roadmap" aria-label="Escolher módulo">{manifest.modules.map(m=>{const available=m.id<=5;const count=modules.find(x=>x.moduleId===m.id)?.lessons.filter(l=>store[String(m.id)]?.completed.includes(l.stepId)).length||0;return <button type="button" disabled={!available} className={'ai-module ai-module-button '+(m.id===moduleId?'available':'planned')} onClick={()=>select((m.id-1)*4+1)} key={m.id}><span className="ai-module-number">{String(m.id).padStart(2,'0')}</span><span className="ai-module-details"><strong>{m.title}</strong><small>{m.duration} · {available?String(count)+'/4 etapas':'Em produção'}</small></span><span className="ai-status">{available?'Disponível':'Em breve'}</span></button>;})}</section>
+    <section className="ai-section-heading"><span className="eyebrow">MÓDULO {String(moduleId).padStart(2,'0')}</span><h2>{module.title}</h2><p>{module.objective}</p><div className="ai-objectives"><strong>Ao terminar, você deve conseguir:</strong><ul>{module.learningOutcomes.map(x=><li key={x}>{x}</li>)}</ul></div></section>
     <div className="ai-learning-layout">
-      <nav className="ai-steps" aria-label="Etapas do módulo 1">
-        {pilot.lessons.map((step, index) => <button
-          type="button" key={step.stepId}
-          className={'ai-step ' + (selected === step.stepId ? 'selected ' : '') + (done.has(step.stepId) ? 'completed' : '')}
-          onClick={() => pick(step.stepId)}
-          aria-current={selected === step.stepId ? 'step' : undefined}
-        >
-          <span>{String(index + 1).padStart(2, '0')}</span>
-          <div><strong>{step.title}</strong><small>{step.durationMin} min · {done.has(step.stepId) ? 'Concluída' : 'Disponível'}</small></div>
-        </button>)}
-      </nav>
-
+      <nav className="ai-steps" aria-label="Etapas deste módulo">{module.lessons.map(l=><button type="button" key={l.stepId} className={'ai-step '+(l.stepId===step.stepId?'selected ':'')+(p.completed.includes(l.stepId)?'completed':'')} aria-current={l.stepId===step.stepId?'step':undefined} onClick={()=>select(l.stepId)}><span>{String(l.stepId).padStart(2,'0')}</span><span className="ai-step-text"><strong>{l.title}</strong><small>{l.durationMin} min · {p.completed.includes(l.stepId)?'Registrada':'A estudar'}</small></span></button>)}</nav>
       <article className="ai-lesson panel">
-        <div className="ai-lesson-top"><span className="eyebrow">ETAPA {String(selected).padStart(2, '0')} / 04</span><span>{lesson.durationMin} min</span></div>
-        <h2>{lesson.title}</h2>
-        <p className="ai-lead">{lesson.lead}</p>
-
-        {'sections' in lesson && Array.isArray(lesson.sections) && lesson.sections.map((section, index) => <section className="ai-reading" key={index}>
-          <h3>{section.heading}</h3><p>{section.body}</p>
-        </section>)}
-
-        {selected === 1 && pilot.lessons[0].challenge && <section className="ai-exercise">
-          <span className="eyebrow">CHECAGEM DE APRENDIZAGEM</span>
-          <h3>{pilot.lessons[0].challenge.question}</h3>
-          {pilot.lessons[0].challenge.options.map((option, index) => <label key={option} className="ai-answer">
-            <input type="radio" name="ai-pilot-concept" checked={quizAnswer === index} onChange={() => { setQuizAnswer(index); setQuizChecked(false); }} />
-            <span>{option}</span>
-          </label>)}
-          <button type="button" className="button ghost" disabled={quizAnswer === null} onClick={() => setQuizChecked(true)}>Verificar resposta</button>
-          {quizChecked && <p role="status" className={quizAnswer === pilot.lessons[0].challenge.answer ? 'ai-success' : 'ai-warning'}>
-            {quizAnswer === pilot.lessons[0].challenge.answer ? pilot.lessons[0].challenge.feedback : 'Revise a diferença entre uma regra testável e um detalhe visual. Tente novamente.'}
-          </p>}
-        </section>}
-
-        {(selected === 2 || selected === 4) && <section className="ai-exercise">
-          <span className="eyebrow">ASSISTENTE DE IA · SEM API</span>
-          <h3>Escolha como deseja estudar</h3>
-          <div className="ai-choices">
-            {([['chatgpt', 'ChatGPT'], ['claude', 'Claude'], ['local', 'IA local (opcional)'], ['offline', 'Sem IA']] as const).map(([value, label]) =>
-              <button key={value} type="button" className={mode === value ? 'ai-choice active' : 'ai-choice'} onClick={() => setMode(value)} aria-pressed={mode === value}>{label}</button>)}
-          </div>
-          {mode === 'chatgpt' && <p>Use o <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT no navegador ↗</a>. Acesso gratuito pode ter limites; não exige API ou assinatura para seguir o roteiro.</p>}
-          {mode === 'claude' && <p>Use o <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude no navegador ↗</a>. Disponibilidade gratuita e limites dependem do serviço e da região.</p>}
-          {mode === 'local' && <p>Opcional: use Ollama com modelo compatível com seu computador. Não é pré-requisito e não há garantia de que um modelo leve consiga gerar código completo.</p>}
-          {mode === 'offline' && <p>Leia o exemplo, resolva as perguntas e siga o roteiro do laboratório sem IA. Os critérios de conclusão são os mesmos.</p>}
-          <label htmlFor="ai-prompt" className="ai-field-label">Prompt sugerido — revise antes de enviar</label>
-          <textarea id="ai-prompt" className="ai-prompt" readOnly value={lesson.prompt || ''} rows={8} />
-          <button type="button" className="button ghost" onClick={() => void copyPrompt()}>{copied ? 'Prompt copiado' : 'Copiar prompt'}</button>
-          <p className="ai-privacy">Não cole senhas, tokens, dados reais de clientes/pacientes ou conteúdo confidencial. O HubEstudos não envia suas respostas a nenhum provedor de IA.</p>
-        </section>}
-
-        {selected === 2 && 'reviewQuestions' in lesson && Array.isArray(lesson.reviewQuestions) && <section className="ai-exercise">
-          <h3>Revise a resposta por conta própria</h3>
-          <p>Marque os três itens após revisar uma resposta de IA ou o roteiro sem IA.</p>
-          {lesson.reviewQuestions.map((question, index) => <label className="ai-check" key={question}>
-            <input type="checkbox" checked={reviewed.includes(index)} onChange={event => setReviewed(previous => event.target.checked ? [...previous, index] : previous.filter(x => x !== index))} />
-            <span>{question}</span>
-          </label>)}
-          <details><summary>Exemplo de conclusão sem IA</summary><p>Uma resposta adequada descreve só clientes, ordens e estados, inclui a regra de estado inicial pendente e rejeita clientes inexistentes. Nunca aceite código sem verificar os exemplos.</p></details>
-        </section>}
-
-        {selected === 3 && <section className="ai-exercise">
-          <span className="eyebrow">BIBLIOTECA EXISTENTE · SEM DUPLICAÇÃO</span>
-          <h3>LOG-01 — Algoritmos e decomposição de problemas</h3>
-          <p>Abra a aula canônica, resolva o exercício de decomposição e retorne ao piloto. Pré-requisito recomendado, não bloqueio técnico.</p>
-          <a href="#course/parallel/LOG-01" className="button ghost">Abrir aula LOG-01 ↗</a>
-          <p>{'challengeText' in lesson ? lesson.challengeText : ''}</p>
-          <label className="ai-check"><input type="checkbox" checked={referenceRead} onChange={e => setReferenceRead(e.target.checked)} /><span>Li a referência e consigo explicar o caso inválido sem copiar uma resposta.</span></label>
-        </section>}
-
-        {selected === 4 && <section className="ai-exercise">
-          <span className="eyebrow">LABORATÓRIO 01 · PROJETO MEU GESTOR</span>
-          <h3>Seu primeiro artefato</h3>
-          {'brief' in lesson && Array.isArray(lesson.brief) && <ul>{lesson.brief.map(item => <li key={item}>{item}</li>)}</ul>}
-          <div className="ai-actions"><a href="/course-labs/ai-dev-meu-gestor/starter.html" target="_blank" rel="noopener noreferrer" className="button primary">Abrir prévia do Meu Gestor ↗</a><a href="/course-labs/ai-dev-meu-gestor/README.md" target="_blank" rel="noopener noreferrer" className="button ghost">Instruções e código-base ↗</a></div>
-          <p className="ai-privacy">Esta prévia funciona sem conta, API, instalação ou dados reais. Ao atualizar a página, os estados retornam aos valores fictícios iniciais.</p>
-          <label htmlFor="ai-plan" className="ai-field-label">Registre seu plano: usuário, problema, funcionalidades e regras (mínimo 100 caracteres)</label>
-          <textarea id="ai-plan" className="ai-notes" rows={7} maxLength={3000} placeholder="Ex.: O responsável pela oficina precisa acompanhar ordens... Uma ordem recém-criada começa pendente..." value={progress.plan} onChange={event => setProgress(previous => ({ ...previous, plan: event.target.value }))} />
-          <small className="muted">{progress.plan.trim().length}/100 caracteres mínimos · salvo neste dispositivo</small>
-          <h3>Critérios de aceitação</h3>
-          {'acceptance' in lesson && Array.isArray(lesson.acceptance) && lesson.acceptance.map((item, index) => <label className="ai-check" key={item}>
-            <input type="checkbox" checked={progress.checked.includes(index)} onChange={event => setProgress(previous => ({ ...previous, checked: event.target.checked ? [...previous.checked, index] : previous.checked.filter(x => x !== index) }))} />
-            <span>{item}</span>
-          </label>)}
-        </section>}
-
-        <div className="ai-lesson-footer">
-          {isComplete ? <p className="ai-success" role="status">Etapa registrada como concluída neste dispositivo.</p> : <p className="muted">Conclusão exige a atividade de verificação desta etapa. É um registro do aluno, não uma certificação automática.</p>}
-          <button type="button" className="button primary" disabled={!ready && !isComplete} onClick={isComplete && selected < 4 ? () => pick(selected + 1) : mark}>
-            {isComplete ? (selected < 4 ? 'Próxima etapa →' : 'Módulo concluído') : 'Registrar conclusão e avançar →'}
-          </button>
-        </div>
+        <div className="ai-lesson-top"><span className="eyebrow">ETAPA {String(step.stepId).padStart(2,'0')} · {step.kind}</span><span>{step.durationMin} min</span></div>
+        <h2>{step.title}</h2><p className="ai-lead">{step.lead}</p>
+        {step.sections?.map((s,i)=><section className="ai-reading" key={i}><h3>{s.heading}</h3><p>{s.body}</p>{s.example&&<div className="ai-example"><strong>Exemplo verificável</strong><p>{s.example}</p></div>}{s.counterexample&&<div className="ai-counter"><strong>Erro a evitar</strong><p>{s.counterexample}</p></div>}</section>)}
+        {step.kind==='microaula'&&step.challenge&&<section className="ai-exercise"><span className="eyebrow">CHECAGEM DE ENTENDIMENTO</span><h3>{step.challenge.question}</h3>{step.challenge.options.map((opt,i)=><label className="ai-answer" key={opt}><input name="ai-concept" type="radio" checked={choice===i} onChange={()=>{setChoice(i);setVerified(false);}}/>{opt}</label>)}<button type="button" className="button ghost" disabled={choice===null} onClick={()=>setVerified(true)}>Verificar</button>{verified&&<p role="status" className={choice===step.challenge.answer?'ai-success':'ai-warning'}>{choice===step.challenge.answer?step.challenge.feedback:'Revise o contrato e tente novamente.'}</p>}</section>}
+        {step.kind==='microaula-ia'&&<section className="ai-exercise"><span className="eyebrow">COPILOTO EXTERNO, SEM API</span><h3>Escolha seu modo</h3><div className="ai-choices">{([['chatgpt','ChatGPT'],['claude','Claude'],['local','IA local'],['offline','Sem IA']] as const).map(([value,label])=><button type="button" aria-pressed={ai===value} key={value} className={ai===value?'ai-choice active':'ai-choice'} onClick={()=>setAi(value)}>{label}</button>)}</div><p>{ai==='chatgpt'?<>Use <a href="https://chatgpt.com/" rel="noopener noreferrer" target="_blank">ChatGPT no navegador ↗</a>, conforme limites gratuitos disponíveis.</>:ai==='claude'?<>Use <a href="https://claude.ai/" rel="noopener noreferrer" target="_blank">Claude no navegador ↗</a>, conforme limites e região.</>:ai==='local'?'Ollama e modelo aberto podem ser utilizados no seu computador, se o hardware comportar. Não são obrigatórios.':'Siga os exemplos e responda às verificações sem serviço de IA.'}</p><label className="ai-field-label" htmlFor="ai-prompt">Prompt que pode copiar</label><textarea id="ai-prompt" className="ai-prompt" rows={8} value={step.prompt||''} readOnly/><button className="button ghost" type="button" onClick={()=>void copy()}>{copied?'Copiado':'Copiar prompt'}</button><p className="ai-privacy">Não envie senhas, segredos, tokens ou informações reais de clientes/pacientes. O HubEstudos não transmite suas respostas à IA.</p><h3>Revise criticamente</h3>{step.reviewQuestions?.map((question,i)=><label className="ai-check" key={question}><input type="checkbox" checked={reviewed.includes(i)} onChange={e=>setReviewed(old=>e.target.checked?[...old,i]:old.filter(x=>x!==i))}/>{question}</label>)}</section>}
+        {step.kind==='referencia'&&<section className="ai-exercise"><span className="eyebrow">UNIDADE CANÔNICA EXISTENTE</span><h3>{step.referenceCode}</h3><p>Referência à biblioteca existente, sem cópia do conteúdo.</p><a className="button ghost" href={step.referencePath}>Abrir aula {step.referenceCode} ↗</a><p className="ai-reference-task">{step.challengeText}</p><label htmlFor="ai-reference" className="ai-field-label">Explique o caso (mínimo 75 caracteres)</label><textarea className="ai-notes" id="ai-reference" rows={4} maxLength={2000} value={p.referenceAnswer} onChange={e=>change({referenceAnswer:e.target.value})}/><label className="ai-check"><input type="checkbox" checked={read} onChange={e=>setRead(e.target.checked)}/>Li e comparei o fundamento com Meu Gestor.</label></section>}
+        {step.kind==='laboratorio'&&<section className="ai-exercise"><span className="eyebrow">LABORATÓRIO INCREMENTAL</span><h3>O que fazer</h3><ol>{step.brief?.map(item=><li key={item}>{item}</li>)}</ol><div className="ai-actions">{moduleId===1&&<a className="button primary" target="_blank" rel="noopener noreferrer" href={step.starterUrl}>Abrir protótipo HTML ↗</a>}{moduleId===2&&<a className="button primary" target="_blank" rel="noopener noreferrer" href="/course-labs/ai-dev-meu-gestor/module-02/spec-template.md">Abrir modelo da especificação ↗</a>}{moduleId>=3&&<a className="button primary" target="_blank" rel="noopener noreferrer" href={step.starterSourceUrl}>Abrir instruções e arquivos do checkpoint ↗</a>}</div>{moduleId>=3&&<p className="ai-privacy">Para executar React, copie os arquivos do checkpoint para o computador, instale dependências gratuitas com npm e abra a URL localhost do Vite. Abrir index.html diretamente não executa TypeScript.</p>}<label className="ai-field-label" htmlFor="ai-notes">Minha previsão, execução, evidência e correção (mínimo 180 caracteres)</label><textarea id="ai-notes" rows={7} className="ai-notes" maxLength={4000} value={p.notes} onChange={e=>change({notes:e.target.value})}/><h3>Critérios de aceite</h3>{step.acceptance?.map((item,i)=><label className="ai-check" key={item}><input type="checkbox" checked={p.checked.includes(i)} onChange={e=>change({checked:e.target.checked?[...new Set([...p.checked,i])]:p.checked.filter(x=>x!==i)})}/>{item}</label>)}<h3>Prova independente</h3><p>{step.assessmentPrompt}</p><a className="button ghost" href={module.assessmentPath} target="_blank" rel="noopener noreferrer">Abrir prova com 6 cenários ↗</a><label className="ai-field-label" htmlFor="ai-transfer">Minha resposta ao cenário novo (mínimo 120 caracteres, sem gabarito)</label><textarea id="ai-transfer" className="ai-notes" maxLength={4000} rows={6} value={p.answer} onChange={e=>change({answer:e.target.value})}/>{done&&<p className="ai-success"><a href={module.answerKeyPath} target="_blank" rel="noopener noreferrer">Consultar gabarito separado após salvar tentativa ↗</a></p>}<p className="ai-privacy">O registro de conclusão é autodeclarado, não uma prova corrigida automaticamente nem certificação humana. A eventual classificação A refere-se à qualidade editorial do conteúdo.</p></section>}
+        <footer className="ai-lesson-footer"><p role="status" className={done?'ai-success':'muted'}>{done?'Etapa registrada neste dispositivo.':ready?'Condições de registro preenchidas.':'Complete as verificações e evidências antes de registrar.'}</p><button type="button" className="button primary" disabled={!ready&&!done} onClick={save}>{done?(step.stepId%4===0?'Etapa concluída':'Próxima etapa →'):'Registrar conclusão e avançar →'}</button></footer>
       </article>
     </div>
-    <p className="ai-disclaimer">Progresso do piloto armazenado apenas neste dispositivo, separado das 543 unidades do currículo original. Não há sincronização entre dispositivos nesta versão.</p>
+    {storageError&&<p role="alert" className="ai-warning">Não foi possível armazenar progresso. Copie as respostas antes de sair.</p>}
+    <p className="ai-disclaimer">Progresso salvo somente neste dispositivo, separado das 543 unidades originais; sem sincronização entre dispositivos nesta fase. IA local é opcional e planos pagos não são necessários.</p>
   </div>;
 }
