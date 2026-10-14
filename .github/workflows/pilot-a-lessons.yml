@@ -8,6 +8,8 @@ on:
       - 'public/course-labs/pilot-a/**'
       - 'public/course-labs/a10-20/**'
       - 'scripts/test-lessons-10-20.mjs'
+      - 'scripts/test-grade-a-10-20.mjs'
+      - 'quality/reviews/a10-20-2026-10-13.json'
       - 'src/content/main/047/lesson.json'
       - 'src/components/curriculum/**'
       - 'src/components/lesson-v2/LessonViewerV2.tsx'
@@ -41,6 +43,7 @@ jobs:
       - name: Verify lessons 010–020 with local deterministic tests
         run: |
           node scripts/test-lessons-10-20.mjs
+          node scripts/test-grade-a-10-20.mjs
           node --test public/course-labs/a10-20/lab.test.mjs
       - name: Execute Python labs and independent tests
         run: |
