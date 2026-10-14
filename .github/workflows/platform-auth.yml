@@ -24,6 +24,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: npm run test:hub-ux
       - run: npm run test:kdf
       - run: npm run test:platform
       - run: npm run build
