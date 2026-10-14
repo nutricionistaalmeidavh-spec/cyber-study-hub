@@ -141,7 +141,7 @@
     "AULA-047": {
       "title": "Web Cache Deception",
       "contentPath": "/course-library/main/047.md",
-      "contentSha256": "0d423457d7d8cec5fe3fbd77f7d28206de2e7e04595feb653e4644226031556a",
+      "contentSha256": "5af1944851c47617ab03929448b12b9d29d233217cca596f90f064899e40dee4",
       "technicalSources": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Web_Cache_Security_Cheat_Sheet.html",
         "https://www.rfc-editor.org/rfc/rfc9111"
@@ -192,7 +192,7 @@
           "result": "Usa rotas de perfil, sufixo CSS/CSV, dois usuários, controles da CDN e evidências do HIT/MISS."
         }
       ],
-      "summary": "roteamento, elegibilidade e chave do cache; Distingue Deception/Poisoning, Vary Cookie não é autorização e purge de itens antigos. Origin/proxy vulnerável e corrigido, HIT/MISS, conteúdo público preservado e caso inédito CSV.",
+      "summary": "roteamento, elegibilidade e chave do cache; Distingue Deception/Poisoning, Vary Cookie não é autorização e purge de itens antigos. Origin/proxy vulnerável e corrigido, HIT/MISS, conteúdo público preservado e caso inédito CSV. Oficina extra com prova de 6 itens e simulação de política BYPASS.",
       "limitations": [
         "Revisão editorial por IA e testes reproduzíveis; não há teste de eficácia com estudantes humanos.",
         "Validação em Linux/Python/Node/GCC; não extrapolar para Windows, produção ou terceiros."
