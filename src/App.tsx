@@ -8,6 +8,7 @@ import Review from './components/Review';
 import { MaterialsHub, MaterialViewer } from './components/Materials';
 import type { GameType } from './types';
 import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
+import AiDevelopmentTrail from './trails/ai-dev/AiDevelopmentTrail';
 
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -26,6 +27,7 @@ type Route =
   | { page: 'game'; packId: number; type: GameType }
   | { page: 'review' }
   | { page: 'materials' }
+  | { page: 'ai-dev' }
   | { page: 'material'; id: string };
 
 function parseHash(): Route {
@@ -46,6 +48,7 @@ function parseHash(): Route {
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
   if (raw === 'materials') return { page: 'materials' };
+  if (raw === 'ai-dev') return { page: 'ai-dev' };
   if (raw === 'games') return { page: 'games' };
   if (raw === 'review') return { page: 'review' };
   return { page: 'dashboard' };
@@ -83,6 +86,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="⌂" label="Dashboard" />
         <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="▤" label="Aulas" />
+        <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="✦" label="Desenvolver com IA" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="◈" label="Cyber Games" />
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="▣" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="↻" label="Revisão" />
@@ -102,6 +106,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
       {route.page==='course-main' && <CourseDocumentViewer kind="main" id={route.id} />}
       {route.page==='course-parallel' && <CourseDocumentViewer kind="parallel" code={route.code} />}
+      {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
       {route.page==='games' && <GamesHub />}
       {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
       {route.page==='materials' && <MaterialsHub />}
