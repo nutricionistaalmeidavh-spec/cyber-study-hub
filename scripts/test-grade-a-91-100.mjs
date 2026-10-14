@@ -34,7 +34,7 @@ for(let i=91;i<=100;i++){
  for(const g of gates)assert.equal(review.gates[g],true,id+' gate '+g);
  console.log('PASS '+id+' '+hash.slice(0,12));
 }
-const previous=[...Array.from({length:90},(_,i)=>'AULA-'+String(i+1).padStart(3,'0')),'AULA-160','AULA-166','LOG-01','NET-25','PY-01'];
+const previous=[...Array.from({length:90},(_,i)=>'AULA-'+String(i+1).padStart(3,'0')),...Array.from({length:20},(_,i)=>'AULA-'+String(i+111).padStart(3,'0')),'AULA-160','AULA-166','LOG-01','NET-25','PY-01'];
 for(const id of previous)assert.equal(reg.editorialReviews[id]?.grade,'A','Grade lost: '+id);
-assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=105);
-console.log('PASS: 105 A editoriais, 95 anteriores preservados.');
+assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=125);
+console.log('PASS: 125 A editoriais, 115 anteriores preservados.');

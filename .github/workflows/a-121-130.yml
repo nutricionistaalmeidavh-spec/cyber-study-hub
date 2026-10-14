@@ -1,0 +1,34 @@
+name: Aulas 121-130 QA
+
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/12*.md'
+      - 'public/course-library/main/130.md'
+      - 'public/course-labs/a121-130/**'
+      - 'quality/**'
+      - 'scripts/test-a-121-130*.mjs'
+      - 'scripts/test-grade-a-121-130.mjs'
+      - 'package.json'
+      - '.github/workflows/a-121-130.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Check individual lessons and lab behavior
+        run: npm run test:a-121-130
+      - name: Validate editorial SHA-256 and prior grade continuity
+        run: npm run test:grade-a-121-130
+      - name: Full build and QA
+        run: npm run build

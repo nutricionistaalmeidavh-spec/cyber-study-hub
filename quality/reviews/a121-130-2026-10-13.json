@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-121..AULA-130",
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "humanLearnerTesting": "not_performed",
+  "author": "Cyber Study Hub — GPT-6",
+  "reviewer": "GPT-6 — revisão IA não humana",
+  "notes": [
+    "21 testes Node sintéticos; Ed25519 real em testes com chaves efêmeras",
+    "Capstone Linux/ELF da aula 130 preservado",
+    "Sem teste humano, operacional de RE ou revisão externa"
+  ],
+  "units": {
+    "AULA-121": {
+      "title": "Packing e Unpacking",
+      "contentPath": "/course-library/main/121.md",
+      "contentSha256": "4eae0f4f12e3103a16f42b1c73309ea19e20beec4ce2748a3823228db5014d78",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"
+      ],
+      "summary": "Packing e Unpacking: Um aplicativo próprio conhecido foi empacotado e gera entropia 7,8, quatro imports e build reproduzível; outro binário igualmente denso não tem origem confirmada. Interpretação correta: Primeiro: compatible-with-legitimate-packing, sem classificar infecção. Negativo: Segundo: review; maliciousProven=false porque não há execução nem cadeia de custódia. Mitigação: Exigir proveniência, assinatura e inspeção estática de binário próprio, mantendo release compacta autorizada. Limite: Não mede entropia de arquivo nem executa unpacking; indicadores não provam execução maliciosa.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/121.md :: mecanismo e https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+          "result": "Mecanismo: Alta entropia e poucos imports podem resultar de compressão legítima; stub de restauração não comprova malware. Limite: Não mede entropia de arquivo nem executa unpacking; indicadores não provam execução maliciosa."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/121.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: Primeiro: compatible-with-legitimate-packing, sem classificar infecção. / Segundo: review; maliciousProven=false porque não há execução nem cadeia de custódia."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(121); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 121: Primeiro: compatible-with-legitimate-packing, sem classificar infecção., contraste Segundo: review; maliciousProven=false porque não há execução nem cadeia de custódia."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/121.md :: defesa e reteste",
+          "result": "Mitigação: Exigir proveniência, assinatura e inspeção estática de binário próprio, mantendo release compacta autorizada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-121.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Packing e Unpacking"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/121.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Um aplicativo próprio conhecido foi empacotado e gera entropia 7,8, quatro imports e build reproduzível; outro binário igualmente denso não tem origem confirmada."
+        }
+      ],
+      "limit": "Não mede entropia de arquivo nem executa unpacking; indicadores não provam execução maliciosa."
+    },
+    "AULA-122": {
+      "title": "Obfuscation e Deobfuscation",
+      "contentPath": "/course-library/main/122.md",
+      "contentSha256": "9ab248b238645c403809960be46d076deabead1900eb99bc92a9a46fefc30d1b",
+      "technicalSources": [
+        "https://developer.mozilla.org/en-US/docs/Glossary/Base64"
+      ],
+      "summary": "Obfuscation e Deobfuscation: Um dado próprio representa OK em hexadecimal 4f4b; um colega confunde encoding com criptografia e quer executar o texto decodificado. Interpretação correta: 4f4b vira OK e executed=false, sem executar texto. Negativo: 4g é hex inválido; tamanhos excessivos são rejeitados. Mitigação: Validar formato e tamanho, preservar dados originais, nunca executar a saída da decodificação. Limite: O modelo só decodifica strings inertes; não analisa CFG nem desfaz proteção de programas.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/122.md :: mecanismo e https://developer.mozilla.org/en-US/docs/Glossary/Base64",
+          "result": "Mecanismo: Encoding muda representação e pode ser revertido sem segredo; ofuscação do fluxo de controle não é mera conversão de bytes. Limite: O modelo só decodifica strings inertes; não analisa CFG nem desfaz proteção de programas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/122.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: 4f4b vira OK e executed=false, sem executar texto. / 4g é hex inválido; tamanhos excessivos são rejeitados."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(122); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 122: 4f4b vira OK e executed=false, sem executar texto., contraste 4g é hex inválido; tamanhos excessivos são rejeitados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/122.md :: defesa e reteste",
+          "result": "Mitigação: Validar formato e tamanho, preservar dados originais, nunca executar a saída da decodificação."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-122.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Obfuscation e Deobfuscation"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/122.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Um dado próprio representa OK em hexadecimal 4f4b; um colega confunde encoding com criptografia e quer executar o texto decodificado."
+        }
+      ],
+      "limit": "O modelo só decodifica strings inertes; não analisa CFG nem desfaz proteção de programas."
+    },
+    "AULA-123": {
+      "title": "Anti-Debugging",
+      "contentPath": "/course-library/main/123.md",
+      "contentSha256": "100a21e0836073aa1e3fba9134e0a552ca7d164d7c8dd50a31e2e633f666f6c0",
+      "technicalSources": [
+        "https://sourceware.org/gdb/current/onlinedocs/gdb.html"
+      ],
+      "summary": "Anti-Debugging: Programa próprio imprime OK em 120 ms no baseline e em 350 ms com instrumentação; outra rodada muda a saída. Interpretação correta: 120 e 121 ms com OK produzem saída igual e sem timingShift. Negativo: 120 e 350 ms e saída alterada geram duas flags, mas provesAntiDebug=false. Mitigação: Repetir coleta com baseline, jitter, versão e fonte de exceções, sem alterar proteções. Limite: Tempos são sintéticos, sem debugger real e sem causalidade estabelecida.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/123.md :: mecanismo e https://sourceware.org/gdb/current/onlinedocs/gdb.html",
+          "result": "Mecanismo: Atraso pode vir de scheduler, carga ou debugger e não prova lógica de proteção; observar diferença é distinto de fazer bypass. Limite: Tempos são sintéticos, sem debugger real e sem causalidade estabelecida."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/123.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: 120 e 121 ms com OK produzem saída igual e sem timingShift. / 120 e 350 ms e saída alterada geram duas flags, mas provesAntiDebug=false."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(123); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 123: 120 e 121 ms com OK produzem saída igual e sem timingShift., contraste 120 e 350 ms e saída alterada geram duas flags, mas provesAntiDebug=false."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/123.md :: defesa e reteste",
+          "result": "Mitigação: Repetir coleta com baseline, jitter, versão e fonte de exceções, sem alterar proteções."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-123.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Anti-Debugging"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/123.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Programa próprio imprime OK em 120 ms no baseline e em 350 ms com instrumentação; outra rodada muda a saída."
+        }
+      ],
+      "limit": "Tempos são sintéticos, sem debugger real e sem causalidade estabelecida."
+    },
+    "AULA-124": {
+      "title": "Anti-VM / Anti-Analysis",
+      "contentPath": "/course-library/main/124.md",
+      "contentSha256": "ac9fd891f8b4777482f1c90ae43e20d4c64001bd4fd90b50ebb02041478cd52a",
+      "technicalSources": [
+        "https://www.kernel.org/doc/html/latest/virt/kvm/index.html"
+      ],
+      "summary": "Anti-VM / Anti-Analysis: Inventário sintético da VM informa hypervisor=true e duas CPUs, enquanto o host informa hypervisor=false e oito CPUs. Interpretação correta: VM comparada a si mesma retorna differences=[]. Negativo: VM comparada ao host gera diferenças de CPU e hypervisor sem provar evasão. Mitigação: Padronizar metadados de ensaio, versões, relógio e execução de software próprio. Limite: Não instrumenta VM, sandbox, malware ou técnicas de ocultação.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/124.md :: mecanismo e https://www.kernel.org/doc/html/latest/virt/kvm/index.html",
+          "result": "Mecanismo: Propriedades diferentes não provam que um programa as consulta ou mude comportamento; fingerprint de ambiente é apenas observação. Limite: Não instrumenta VM, sandbox, malware ou técnicas de ocultação."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/124.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: VM comparada a si mesma retorna differences=[]. / VM comparada ao host gera diferenças de CPU e hypervisor sem provar evasão."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(124); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 124: VM comparada a si mesma retorna differences=[]., contraste VM comparada ao host gera diferenças de CPU e hypervisor sem provar evasão."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/124.md :: defesa e reteste",
+          "result": "Mitigação: Padronizar metadados de ensaio, versões, relógio e execução de software próprio."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-124.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Anti-VM / Anti-Analysis"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/124.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Inventário sintético da VM informa hypervisor=true e duas CPUs, enquanto o host informa hypervisor=false e oito CPUs."
+        }
+      ],
+      "limit": "Não instrumenta VM, sandbox, malware ou técnicas de ocultação."
+    },
+    "AULA-125": {
+      "title": "Anti-Tamper",
+      "contentPath": "/course-library/main/125.md",
+      "contentSha256": "874b60d52408af2c26c90c7390567b1abc3362e3a72ec3f2b927e91202249895",
+      "technicalSources": [
+        "https://nodejs.org/api/crypto.html"
+      ],
+      "summary": "Anti-Tamper: Release própria tem bytes e hash de manifesto confiável; uma cópia muda os bytes; outra muda arquivo e hash de fonte não autenticada. Interpretação correta: Bytes correspondentes ao manifesto previamente confiado têm status match-trusted-reference. Negativo: Alteração retorna mismatch; hash correspondente não autenticado produz integrity-only-no-provenance. Mitigação: Assinar releases e autenticar canal de manifesto, sem rejeitar atualizações autorizadas. Limite: A confiança no manifesto é booleano didático, sem PKI nem protocolo real de update.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/125.md :: mecanismo e https://nodejs.org/api/crypto.html",
+          "result": "Mecanismo: Digest compara bytes à referência; se a referência foi trocada, igualdade de hashes não comprova autoria. Limite: A confiança no manifesto é booleano didático, sem PKI nem protocolo real de update."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/125.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: Bytes correspondentes ao manifesto previamente confiado têm status match-trusted-reference. / Alteração retorna mismatch; hash correspondente não autenticado produz integrity-only-no-provenance."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(125); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 125: Bytes correspondentes ao manifesto previamente confiado têm status match-trusted-reference., contraste Alteração retorna mismatch; hash correspondente não autenticado produz integrity-only-no-provenance."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/125.md :: defesa e reteste",
+          "result": "Mitigação: Assinar releases e autenticar canal de manifesto, sem rejeitar atualizações autorizadas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-125.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Anti-Tamper"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/125.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Release própria tem bytes e hash de manifesto confiável; uma cópia muda os bytes; outra muda arquivo e hash de fonte não autenticada."
+        }
+      ],
+      "limit": "A confiança no manifesto é booleano didático, sem PKI nem protocolo real de update."
+    },
+    "AULA-126": {
+      "title": "Code Integrity",
+      "contentPath": "/course-library/main/126.md",
+      "contentSha256": "42a9cee15f229e36bbe4cad1aee05fd74c7cb9cfba2e6d3fbe3bca904f2cdc51",
+      "technicalSources": [
+        "https://nodejs.org/api/crypto.html"
+      ],
+      "summary": "Code Integrity: Release própria Ed25519 é assinada com chave efêmera; a validação dispõe de bytes, assinatura e fingerprint da chave pública previamente confiada. Interpretação correta: Assinatura válida com chave confiável retorna trusted-signature-valid. Negativo: Assinatura válida por chave estranha retorna untrusted-public-key; bytes modificados invalidam assinatura. Mitigação: Proteger a âncora confiável e o processo de assinatura fora do pacote; usar chaves efêmeras no laboratório. Limite: Não implementa PKI, X.509, revogação, carimbo temporal ou política de SO.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 94,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/126.md :: mecanismo e https://nodejs.org/api/crypto.html",
+          "result": "Mecanismo: Assinatura criptográfica e confiança no editor são verificações diferentes; pin de chave é modelo simplificado de âncora de confiança. Limite: Não implementa PKI, X.509, revogação, carimbo temporal ou política de SO."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/126.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: Assinatura válida com chave confiável retorna trusted-signature-valid. / Assinatura válida por chave estranha retorna untrusted-public-key; bytes modificados invalidam assinatura."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(126); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 126: Assinatura válida com chave confiável retorna trusted-signature-valid., contraste Assinatura válida por chave estranha retorna untrusted-public-key; bytes modificados invalidam assinatura."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/126.md :: defesa e reteste",
+          "result": "Mitigação: Proteger a âncora confiável e o processo de assinatura fora do pacote; usar chaves efêmeras no laboratório."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-126.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Code Integrity"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/126.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Release própria Ed25519 é assinada com chave efêmera; a validação dispõe de bytes, assinatura e fingerprint da chave pública previamente confiada."
+        }
+      ],
+      "limit": "Não implementa PKI, X.509, revogação, carimbo temporal ou política de SO."
+    },
+    "AULA-127": {
+      "title": "Proteções de licença em software próprio",
+      "contentPath": "/course-library/main/127.md",
+      "contentSha256": "8294cc7d26339efaff7db7c6d1634997582d63f53ecbeb044063241a20c83977",
+      "technicalSources": [
+        "https://nodejs.org/api/crypto.html"
+      ],
+      "summary": "Proteções de licença em software próprio: Um produto fictício study-lab disponibiliza reports com entitlement JSON Ed25519 contendo product, feature e expiresAt. Interpretação correta: Token íntegro study-lab/reports antes de 2027-01-01 retorna allowed. Negativo: Token expirado retorna expired; produto diferente wrong-scope; adulteração invalid-signature. Mitigação: Aplicar decisão crítica no servidor próprio quando disponível, com modo offline limitado, sem SaaS obrigatório. Limite: Não implementa revogação, clock rollback, serviço comercial nem bypass de licença.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 94,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/127.md :: mecanismo e https://nodejs.org/api/crypto.html",
+          "result": "Mecanismo: Primeiro verificar assinatura, depois escopo e data; licenciamento é cenário de software próprio e não requisito do núcleo educacional. Limite: Não implementa revogação, clock rollback, serviço comercial nem bypass de licença."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/127.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: Token íntegro study-lab/reports antes de 2027-01-01 retorna allowed. / Token expirado retorna expired; produto diferente wrong-scope; adulteração invalid-signature."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(127); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 127: Token íntegro study-lab/reports antes de 2027-01-01 retorna allowed., contraste Token expirado retorna expired; produto diferente wrong-scope; adulteração invalid-signature."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/127.md :: defesa e reteste",
+          "result": "Mitigação: Aplicar decisão crítica no servidor próprio quando disponível, com modo offline limitado, sem SaaS obrigatório."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-127.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Proteções de licença em software próprio"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/127.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Um produto fictício study-lab disponibiliza reports com entitlement JSON Ed25519 contendo product, feature e expiresAt."
+        }
+      ],
+      "limit": "Não implementa revogação, clock rollback, serviço comercial nem bypass de licença."
+    },
+    "AULA-128": {
+      "title": "Analisando nossas próprias proteções",
+      "contentPath": "/course-library/main/128.md",
+      "contentSha256": "34c3faac72e1e3d346b59029b6fdc8ccd717e2aaff8afc061b9db7ddeecac944",
+      "technicalSources": [
+        "https://owasp.org/www-project-application-security-verification-standard/"
+      ],
+      "summary": "Analisando nossas próprias proteções: Aplicativo self-hosted esconde botão premium no cliente e pressupõe que isso protege operação sensível no servidor. Interpretação correta: decision=server e serverRechecks=true retorna authority-enforced-on-server. Negativo: decision=client e serverRechecks=false retorna local-decision-can-be-modified. Mitigação: Validar permissão server-side com serviço self-hosted e logs, sem serviço pago externo. Limite: É apenas modelo de arquitetura, não pentest nem fluxo real de autenticação.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/128.md :: mecanismo e https://owasp.org/www-project-application-security-verification-standard/",
+          "result": "Mecanismo: UI não é fronteira de autorização; o servidor precisa revalidar identidade e entitlement antes de executar ação. Limite: É apenas modelo de arquitetura, não pentest nem fluxo real de autenticação."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/128.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: decision=server e serverRechecks=true retorna authority-enforced-on-server. / decision=client e serverRechecks=false retorna local-decision-can-be-modified."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(128); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 128: decision=server e serverRechecks=true retorna authority-enforced-on-server., contraste decision=client e serverRechecks=false retorna local-decision-can-be-modified."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/128.md :: defesa e reteste",
+          "result": "Mitigação: Validar permissão server-side com serviço self-hosted e logs, sem serviço pago externo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-128.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Analisando nossas próprias proteções"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/128.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Aplicativo self-hosted esconde botão premium no cliente e pressupõe que isso protege operação sensível no servidor."
+        }
+      ],
+      "limit": "É apenas modelo de arquitetura, não pentest nem fluxo real de autenticação."
+    },
+    "AULA-129": {
+      "title": "Hardening contra Reverse Engineering",
+      "contentPath": "/course-library/main/129.md",
+      "contentSha256": "e0cc6e66f33033209676c454b3df1b8bf38879d267a341addc183cd570a6785a",
+      "technicalSources": [
+        "https://owasp.org/www-project-mobile-top-10/"
+      ],
+      "summary": "Hardening contra Reverse Engineering: Manifesto de build próprio inclui publicSigningKey e, por engano, fixtureSigningPrivate classificada private-key. Interpretação correta: Manifesto somente com public-key não produz alerta. Negativo: Entrada private-key é sinalizada sem extrair segredo; isso não comprova possibilidade impossível de RE. Mitigação: Retirar segredos do build, rotacionar chave exposta, assinar em ambiente segregado e manter autoridade crítica server-side. Limite: Verifica metadados sintéticos, não binário, strings reais, DLP ou supply chain.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/129.md :: mecanismo e https://owasp.org/www-project-mobile-top-10/",
+          "result": "Mecanismo: Chave pública é distribuível; privada é segredo. Ofuscação de nomes não retira segredo do artefato. Limite: Verifica metadados sintéticos, não binário, strings reais, DLP ou supply chain."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/129.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: Manifesto somente com public-key não produz alerta. / Entrada private-key é sinalizada sem extrair segredo; isso não comprova possibilidade impossível de RE."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(129); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 129: Manifesto somente com public-key não produz alerta., contraste Entrada private-key é sinalizada sem extrair segredo; isso não comprova possibilidade impossível de RE."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/129.md :: defesa e reteste",
+          "result": "Mitigação: Retirar segredos do build, rotacionar chave exposta, assinar em ambiente segregado e manter autoridade crítica server-side."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-129.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Hardening contra Reverse Engineering"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/129.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: Manifesto de build próprio inclui publicSigningKey e, por engano, fixtureSigningPrivate classificada private-key."
+        }
+      ],
+      "limit": "Verifica metadados sintéticos, não binário, strings reais, DLP ou supply chain."
+    },
+    "AULA-130": {
+      "title": "Comparação das técnicas de proteção",
+      "contentPath": "/course-library/main/130.md",
+      "contentSha256": "ff37b1da1f1a082ee08360f7a403deaeb25763f101852f236ec31115e1172764",
+      "technicalSources": [
+        "https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html"
+      ],
+      "summary": "Comparação das técnicas de proteção: O parser próprio escreve name[8] sem reservar terminador; release usa PIE, NX e hash; alguém prefere obfuscar a corrigir o buffer. Interpretação correta: bounds-check mais PIE e NX gera rootCauseFixed=true e hardening=['pie','nx']. Negativo: Obfuscation, hash e PIE mantêm rootCauseFixed=false apesar de defesa em camadas. Mitigação: Corrigir condição de tamanho e retestar parser; manter capstone Linux/ELF e não fingir assinatura ou licença implementada. Limite: A matriz sintética não substitui ensaio Linux real com maps, compilador e parser.",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo e documentação técnica",
+          "reference": "public/course-library/main/130.md :: mecanismo e https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html",
+          "result": "Mecanismo: Mitigadores PIE/NX/canary/RELRO e assinatura não são correção da escrita fora do limite; somente verificação de comprimento elimina a causa. Limite: A matriz sintética não substitui ensaio Linux real com maps, compilador e parser."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough textual IA do cenário, vocabulário e checkpoints; sem alunos reais",
+          "reference": "public/course-library/main/130.md :: oficina e checkpoints",
+          "result": "Exemplo próprio com previsão e checkpoints: bounds-check mais PIE e NX gera rootCauseFixed=true e hardening=['pie','nx']. / Obfuscation, hash e PIE mantêm rootCauseFixed=false apesar de defesa em camadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução de testes determinísticos de decisão e contraste Node 22 no GitHub Actions",
+          "reference": "public/course-labs/a121-130/models.mjs :: runWorkshop(130); labs.test.mjs",
+          "result": "Modelo local e 21 testes; caso 130: bounds-check mais PIE e NX gera rootCauseFixed=true e hardening=['pie','nx']., contraste Obfuscation, hash e PIE mantêm rootCauseFixed=false apesar de defesa em camadas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Avaliação dos controles, conservação da operação legítima e condição de reteste",
+          "reference": "public/course-library/main/130.md :: defesa e reteste",
+          "result": "Mitigação: Corrigir condição de tamanho e retestar parser; manter capstone Linux/ELF e não fingir assinatura ou licença implementada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova independente com seis questões, rubrica de 100 pontos e erro eliminatório",
+          "reference": "public/course-labs/a121-130/answer-keys/AULA-130.md",
+          "result": "Seis questões, respostas comentadas e rubrica separada sobre Comparação das técnicas de proteção"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreamento do cenário, entradas, saídas e limitação por aula",
+          "reference": "public/course-library/main/130.md :: caso e limites",
+          "result": "Dados e decisão rastreáveis: O parser próprio escreve name[8] sem reservar terminador; release usa PIE, NX e hash; alguém prefere obfuscar a corrigir o buffer."
+        }
+      ],
+      "limit": "A matriz sintética não substitui ensaio Linux real com maps, compilador e parser."
+    }
+  }
+}
