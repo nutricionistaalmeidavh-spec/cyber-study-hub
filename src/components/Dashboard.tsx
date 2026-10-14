@@ -48,15 +48,15 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const totalModules = mainModuleCount + parallelModuleCount;
   return <div className="page hub-home stack-lg">
     <header className="hub-home-topline">
-      <div><span className="eyebrow">SEU ESPAÇO DE ESTUDOS</span><h1>Olá, {firstName}.</h1><p>Escolha o próximo passo e avance no seu ritmo.</p></div>
+      <div><span className="eyebrow">ARTISYS / SEU ESPAÇO DE ESTUDOS</span><h1>Olá, {firstName}.</h1><p>Uma formação organizada para aprender, praticar e evoluir.</p></div>
       <a className="hub-home-profile" href="#account" aria-label="Abrir minha conta">
         <span aria-hidden="true">{firstName.slice(0,1).toUpperCase()}</span><span>Minha conta</span>
       </a>
     </header>
     <section className="hub-focus" aria-labelledby="hub-next-title">
       <div className="hub-focus-copy">
-        <span className="hub-focus-kicker">{isNewStudent ? 'COMECE POR AQUI' : 'PRÓXIMO PASSO'}</span>
-        <h2 id="hub-next-title">{isNewStudent ? 'Comece com uma boa base.' : 'Continue de onde parou.'}</h2>
+        <span className="hub-focus-kicker">{isNewStudent ? 'SEU PONTO DE PARTIDA' : 'CONTINUE SEU ESTUDO'}</span>
+        <h2 id="hub-next-title">{isNewStudent ? 'O próximo passo começa aqui.' : 'Retome sua jornada.'}</h2>
         <p>{isNewStudent
           ? 'A formação principal começa pela Aula 001. Você também pode explorar qualquer área, sem bloqueios.'
           : 'Seu próximo estudo leva em conta o progresso registrado nesta conta.'}</p>
@@ -69,30 +69,11 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
           <a className="button ghost" href="#lessons?mode=main">Explorar formação</a>
         </div>
       </div>
-      <div className="hub-focus-figure" aria-hidden="true">
-        <span className="hub-focus-figure-top">CYBER STUDY HUB</span><strong>01<span>/</span>03</strong>
-        <span>Aprender</span><span>Praticar</span><span>Revisar</span>
-      </div>
     </section>
     <a className="hub-ai-banner" href="#ai-dev">
       <span><small>FORMAÇÃO PRÁTICA · 8 MÓDULOS DISPONÍVEIS</small><strong>Construa o Meu Gestor com ChatGPT ou Claude</strong><em>32 etapas com laboratórios e provas independentes. IA local opcional, sem API paga obrigatória.</em></span>
       <b>Abrir trilha →</b>
     </a>
-    <section className="hub-home-stats" aria-label="Seu painel de estudos">
-      <a href="#lessons" className="hub-home-stat">
-        <small>Módulos de estudo</small><strong>{totalModules}</strong>
-        <span>{mainModuleCount} da formação principal + {parallelModuleCount} trilhas paralelas</span>
-      </a>
-      <a href="#lessons?mode=main" className="hub-home-stat">
-        <small>Aulas interativas concluídas</small><strong>{completedInteractive}<em> / {interactiveLessons.length}</em></strong>
-        <span className="hub-mini-progress" role="progressbar" aria-valuenow={completedInteractive} aria-valuemin={0} aria-valuemax={interactiveLessons.length} aria-label="Aulas interativas concluídas"><i style={{width: percent+'%'}} /></span>
-        <span>{percent}% das aulas com conclusão interativa</span>
-      </a>
-      <a href="#review" className="hub-home-stat">
-        <small>Revisões disponíveis</small><strong>{reviews.due}</strong>
-        <span>{reviews.total ? 'Cartões prontos para revisar' : 'Liberadas conforme seu estudo V2'}</span>
-      </a>
-    </section>
     <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><span className="eyebrow">EXPLORE POR OBJETIVO</span><h2 id="hub-journeys-title">O que você quer estudar?</h2></div>
@@ -112,6 +93,21 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
           <div><strong>Revisar e fixar</strong><p>Retome conceitos com revisão espaçada e pratique o que já estudou.</p><span>Ir para revisão <b aria-hidden="true">↗</b></span></div>
         </a>
       </div>
+    </section>
+    <section className="hub-home-stats" aria-label="Seu painel de estudos">
+      <a href="#lessons" className="hub-home-stat">
+        <small>Módulos de estudo</small><strong>{totalModules}</strong>
+        <span>{mainModuleCount} da formação principal + {parallelModuleCount} trilhas paralelas</span>
+      </a>
+      <a href="#lessons?mode=main" className="hub-home-stat">
+        <small>Aulas interativas concluídas</small><strong>{completedInteractive}<em> / {interactiveLessons.length}</em></strong>
+        <span className="hub-mini-progress" role="progressbar" aria-valuenow={completedInteractive} aria-valuemin={0} aria-valuemax={interactiveLessons.length} aria-label="Aulas interativas concluídas"><i style={{width: percent+'%'}} /></span>
+        <span>{percent}% das aulas com conclusão interativa</span>
+      </a>
+      <a href="#review" className="hub-home-stat">
+        <small>Revisões disponíveis</small><strong>{reviews.due}</strong>
+        <span>{reviews.total ? 'Cartões prontos para revisar' : 'Liberadas conforme seu estudo V2'}</span>
+      </a>
     </section>
     <section className="hub-home-bottom" aria-label="Atalhos de aprendizagem">
       <article className="hub-home-note">
