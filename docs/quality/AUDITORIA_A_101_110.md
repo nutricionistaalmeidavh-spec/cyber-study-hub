@@ -24,7 +24,7 @@ A classificação A diz respeito ao material e não constitui certificação, ex
 - **Prática reproduzível:** `python3 -m unittest discover -s public/course-labs/a101-110 -p test_models.py -v`, C compilado com GCC estrito; em Linux não se prova Win32, proteção de kernel, carregamento de DLL nem validação de um PE real.
 - **SHA-256:** os dez pareceres são associados ao conteúdo exato de cada arquivo Markdown; qualquer mudança futura invalida a evidência até nova revisão.
 - **Independência:** distinção entre autoria de conteúdo e segunda passagem editorial IA; isto não equivale a avaliação humana externa.
-- **Preservação:** os 115 pareceres prévios permanecem íntegros; a branch pretende 125 notas A no total.
+- **Preservação:** os 125 pareceres prévios permanecem íntegros; a branch consolida 135 notas A no total.
 
 ## Verificação
 

@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 1,
+  "batch": "AULA-091..AULA-100",
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — conteúdo pedagógico assistido por GPT-6",
+  "reviewer": "GPT-6 — segunda leitura editorial crítica por IA, não auditor humano",
+  "humanLearnerTesting": "not_performed",
+  "scoringNote": "Seis dimensões editoriais assistidas por IA e cenários sintéticos; critérios não representam validação com estudantes nem auditoria humana independente.",
+  "scopeSafety": "Modelos determinísticos Node.js sem chamadas a hosts, serviços pagos, amostras reais ou execução externa.",
+  "units": {
+    "AULA-091": {
+      "title": "Arquitetura de antivírus",
+      "contentPath": "/course-library/main/091.md",
+      "contentSha256": "a3308800172a5c086c0fab21d68e038e41b2035f308a795b009d0147ff0ee650",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-antivirus-windows"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-091 — Arquitetura de antivírus: Precedência do indicador conhecido, resultado de score heurístico e estado do sensor. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Arquivo corporativo novo sem reputação deve ficar em monitoramento; artefato fictício marcado knownBad resulta em block",
+      "limitation": "Ausência de reputação não representa indicador confirmado, e sensor degradado não significa dispositivo seguro",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/091.md :: Seções 3, 18; https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-antivirus-windows",
+          "result": "Precedência do indicador conhecido, resultado de score heurístico e estado do sensor. Limite de extrapolação explicitado: Ausência de reputação não representa indicador confirmado, e sensor degradado não significa dispositivo seguro."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/091.md :: Oficina A editorial e checklist",
+          "result": "Arquivo corporativo novo sem reputação deve ficar em monitoramento; artefato fictício marcado knownBad resulta em block. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 091",
+          "result": "Fixture específica de Arquitetura de antivírus usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/091.md :: Detecção, defesa, oficina e limitações",
+          "result": "Ausência de reputação não representa indicador confirmado, e sensor degradado não significa dispositivo seguro; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/091.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-091.md",
+          "result": "Seis perguntas abertas distintas sobre Arquitetura de antivírus, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/091.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Precedência do indicador conhecido, resultado de score heurístico e estado do sensor; Arquivo corporativo novo sem reputação deve ficar em monitoramento; artefato fictício marcado knownBad resulta em block."
+        }
+      ]
+    },
+    "AULA-092": {
+      "title": "Assinaturas, hashes e reputação",
+      "contentPath": "/course-library/main/092.md",
+      "contentSha256": "2f9882345b2946937e66be2b0b8a778d74c44975db3a48c7cb9b6a1b1afa1ce8",
+      "technicalSources": [
+        "https://nodejs.org/api/crypto.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-092 — Assinaturas, hashes e reputação: SHA-256 dos bytes e confiança na origem do digest esperado. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Arquivo A com hash de referência confiável produz verified_match; arquivo B produz mismatch",
+      "limitation": "Integridade não prova autoria ou benignidade; referência de procedência desconhecida não autoriza confiança",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/092.md :: Seções 3, 18; https://nodejs.org/api/crypto.html",
+          "result": "SHA-256 dos bytes e confiança na origem do digest esperado. Limite de extrapolação explicitado: Integridade não prova autoria ou benignidade; referência de procedência desconhecida não autoriza confiança."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/092.md :: Oficina A editorial e checklist",
+          "result": "Arquivo A com hash de referência confiável produz verified_match; arquivo B produz mismatch. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 092",
+          "result": "Fixture específica de Assinaturas, hashes e reputação usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/092.md :: Detecção, defesa, oficina e limitações",
+          "result": "Integridade não prova autoria ou benignidade; referência de procedência desconhecida não autoriza confiança; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/092.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-092.md",
+          "result": "Seis perguntas abertas distintas sobre Assinaturas, hashes e reputação, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/092.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "SHA-256 dos bytes e confiança na origem do digest esperado; Arquivo A com hash de referência confiável produz verified_match; arquivo B produz mismatch."
+        }
+      ]
+    },
+    "AULA-093": {
+      "title": "Heurística",
+      "contentPath": "/course-library/main/093.md",
+      "contentSha256": "fa29b9f6d303a8a8d8ee9404d9156c8f8e953a093b5827f849d1df29d9312447",
+      "technicalSources": [
+        "https://attack.mitre.org/datasources/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-093 — Heurística: Pontuação por macro, criação de interpretador e escrita sensível com limiar e cobertura. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Três sinais sintéticos geram review; macro isolada gera monitor; campos ausentes são reportados",
+      "limitation": "Score não é probabilidade calibrada; sinais correlacionados podem inflar a evidência",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/093.md :: Seções 3, 18; https://attack.mitre.org/datasources/",
+          "result": "Pontuação por macro, criação de interpretador e escrita sensível com limiar e cobertura. Limite de extrapolação explicitado: Score não é probabilidade calibrada; sinais correlacionados podem inflar a evidência."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/093.md :: Oficina A editorial e checklist",
+          "result": "Três sinais sintéticos geram review; macro isolada gera monitor; campos ausentes são reportados. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 093",
+          "result": "Fixture específica de Heurística usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/093.md :: Detecção, defesa, oficina e limitações",
+          "result": "Score não é probabilidade calibrada; sinais correlacionados podem inflar a evidência; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/093.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-093.md",
+          "result": "Seis perguntas abertas distintas sobre Heurística, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/093.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Pontuação por macro, criação de interpretador e escrita sensível com limiar e cobertura; Três sinais sintéticos geram review; macro isolada gera monitor; campos ausentes são reportados."
+        }
+      ]
+    },
+    "AULA-094": {
+      "title": "Análise comportamental",
+      "contentPath": "/course-library/main/094.md",
+      "contentSha256": "987102484973ebe8a7c63b0c17eb9322313d2da67bcd417b1ebe4b2352e991a6",
+      "technicalSources": [
+        "https://attack.mitre.org/tactics/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-094 — Análise comportamental: Correlação por processGuid, ordem temporal e janela de eventos. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "spawn→persistence→outbound no mesmo GUID e na janela gera investigate; GUID diferente não",
+      "limitation": "Um conjunto de eventos no host sem identidade comum não comprova relação causal",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/094.md :: Seções 3, 18; https://attack.mitre.org/tactics/",
+          "result": "Correlação por processGuid, ordem temporal e janela de eventos. Limite de extrapolação explicitado: Um conjunto de eventos no host sem identidade comum não comprova relação causal."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/094.md :: Oficina A editorial e checklist",
+          "result": "spawn→persistence→outbound no mesmo GUID e na janela gera investigate; GUID diferente não. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 094",
+          "result": "Fixture específica de Análise comportamental usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/094.md :: Detecção, defesa, oficina e limitações",
+          "result": "Um conjunto de eventos no host sem identidade comum não comprova relação causal; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/094.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-094.md",
+          "result": "Seis perguntas abertas distintas sobre Análise comportamental, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/094.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Correlação por processGuid, ordem temporal e janela de eventos; spawn→persistence→outbound no mesmo GUID e na janela gera investigate; GUID diferente não."
+        }
+      ]
+    },
+    "AULA-095": {
+      "title": "Sandboxing",
+      "contentPath": "/course-library/main/095.md",
+      "contentSha256": "76a1f50ff7b0272ef00ebca6bb00ea9dd6fbf9c4f6e875887fa47c45a7bb0fbf",
+      "technicalSources": [
+        "https://docs.oracle.com/en/virtualization/virtualbox/7.1/user/"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-095 — Sandboxing: Gates de isolamento, snapshot, política de rede, telemetria e aprovação. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Ambiente isolado com snapshot e rede none fica ready; bridged ou falta de snapshot fica not_ready",
+      "limitation": "Validador de política não executa programas nem garante contenção operacional",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/095.md :: Seções 3, 18; https://docs.oracle.com/en/virtualization/virtualbox/7.1/user/",
+          "result": "Gates de isolamento, snapshot, política de rede, telemetria e aprovação. Limite de extrapolação explicitado: Validador de política não executa programas nem garante contenção operacional."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/095.md :: Oficina A editorial e checklist",
+          "result": "Ambiente isolado com snapshot e rede none fica ready; bridged ou falta de snapshot fica not_ready. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 095",
+          "result": "Fixture específica de Sandboxing usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/095.md :: Detecção, defesa, oficina e limitações",
+          "result": "Validador de política não executa programas nem garante contenção operacional; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/095.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-095.md",
+          "result": "Seis perguntas abertas distintas sobre Sandboxing, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/095.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Gates de isolamento, snapshot, política de rede, telemetria e aprovação; Ambiente isolado com snapshot e rede none fica ready; bridged ou falta de snapshot fica not_ready."
+        }
+      ]
+    },
+    "AULA-096": {
+      "title": "Exploit Protection",
+      "contentPath": "/course-library/main/096.md",
+      "contentSha256": "e9e3fe82fb549cf41f26e94923d8bb7772911e75f21d01ddb7d99751e8b2093c",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/defender-endpoint/exploit-protection"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-096 — Exploit Protection: Mitigações NX, ASLR e aplicabilidade de CFG por plataforma. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "CFG desativado em plataforma com suporte gera gap; sem suporte e NX/ASLR ativos não gera",
+      "limitation": "Mitigações reduzem exposição mas não removem a causa de corrupção de memória",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/096.md :: Seções 3, 18; https://learn.microsoft.com/en-us/defender-endpoint/exploit-protection",
+          "result": "Mitigações NX, ASLR e aplicabilidade de CFG por plataforma. Limite de extrapolação explicitado: Mitigações reduzem exposição mas não removem a causa de corrupção de memória."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/096.md :: Oficina A editorial e checklist",
+          "result": "CFG desativado em plataforma com suporte gera gap; sem suporte e NX/ASLR ativos não gera. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 096",
+          "result": "Fixture específica de Exploit Protection usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/096.md :: Detecção, defesa, oficina e limitações",
+          "result": "Mitigações reduzem exposição mas não removem a causa de corrupção de memória; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/096.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-096.md",
+          "result": "Seis perguntas abertas distintas sobre Exploit Protection, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/096.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Mitigações NX, ASLR e aplicabilidade de CFG por plataforma; CFG desativado em plataforma com suporte gera gap; sem suporte e NX/ASLR ativos não gera."
+        }
+      ]
+    },
+    "AULA-097": {
+      "title": "EDR e telemetria",
+      "contentPath": "/course-library/main/097.md",
+      "contentSha256": "692c74902210302ac0cc6d4fd51c2b5c785548dd03af9dafb55042bb82f59502",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/defender-endpoint/advanced-hunting-schema-tables"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-097 — EDR e telemetria: Conjunto de campos exigidos e estados usable, coverage_gap e no_telemetry. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Evento completo usable; sem parentGuid coverage_gap; sem evento no_telemetry",
+      "limitation": "Sem dados coletados não há base para afirmar segurança nem calcular detecção",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/097.md :: Seções 3, 18; https://learn.microsoft.com/en-us/defender-endpoint/advanced-hunting-schema-tables",
+          "result": "Conjunto de campos exigidos e estados usable, coverage_gap e no_telemetry. Limite de extrapolação explicitado: Sem dados coletados não há base para afirmar segurança nem calcular detecção."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/097.md :: Oficina A editorial e checklist",
+          "result": "Evento completo usable; sem parentGuid coverage_gap; sem evento no_telemetry. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 097",
+          "result": "Fixture específica de EDR e telemetria usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/097.md :: Detecção, defesa, oficina e limitações",
+          "result": "Sem dados coletados não há base para afirmar segurança nem calcular detecção; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/097.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-097.md",
+          "result": "Seis perguntas abertas distintas sobre EDR e telemetria, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/097.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Conjunto de campos exigidos e estados usable, coverage_gap e no_telemetry; Evento completo usable; sem parentGuid coverage_gap; sem evento no_telemetry."
+        }
+      ]
+    },
+    "AULA-098": {
+      "title": "Process Trees",
+      "contentPath": "/course-library/main/098.md",
+      "contentSha256": "182e5499fa31a4e105719c073a8e2101cd4ee066e49733affbf23e2bb4de1a1c",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-098 — Process Trees: Ancestralidade por GUID e parentGuid com proteção contra órfão e ciclo. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Cadeia a→b→c completa, GUID de pai inexistente orphan e referência circular cycle",
+      "limitation": "GUID ausente não deve ser preenchido por imaginação; PID e nome não comprovam identidade de instância",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/098.md :: Seções 3, 18; https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer",
+          "result": "Ancestralidade por GUID e parentGuid com proteção contra órfão e ciclo. Limite de extrapolação explicitado: GUID ausente não deve ser preenchido por imaginação; PID e nome não comprovam identidade de instância."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/098.md :: Oficina A editorial e checklist",
+          "result": "Cadeia a→b→c completa, GUID de pai inexistente orphan e referência circular cycle. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 098",
+          "result": "Fixture específica de Process Trees usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/098.md :: Detecção, defesa, oficina e limitações",
+          "result": "GUID ausente não deve ser preenchido por imaginação; PID e nome não comprovam identidade de instância; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/098.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-098.md",
+          "result": "Seis perguntas abertas distintas sobre Process Trees, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/098.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Ancestralidade por GUID e parentGuid com proteção contra órfão e ciclo; Cadeia a→b→c completa, GUID de pai inexistente orphan e referência circular cycle."
+        }
+      ]
+    },
+    "AULA-099": {
+      "title": "Falsos positivos e falsos negativos",
+      "contentPath": "/course-library/main/099.md",
+      "contentSha256": "28c867e16a9cdb6e6d3ae92004ddf2b122d7a2b6a915062ec8eb25a7bf684253",
+      "technicalSources": [
+        "https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-099 — Falsos positivos e falsos negativos: Matriz TP/TN/FP/FN e precisão e recall com denominadores explícitos. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Um evento de cada tipo gera 0,5 de precisão/recall; sem alertas a precisão é indefinida",
+      "limitation": "Métricas não medem implantação nem devem transformar denominador zero em nota perfeita",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/099.md :: Seções 3, 18; https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics",
+          "result": "Matriz TP/TN/FP/FN e precisão e recall com denominadores explícitos. Limite de extrapolação explicitado: Métricas não medem implantação nem devem transformar denominador zero em nota perfeita."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/099.md :: Oficina A editorial e checklist",
+          "result": "Um evento de cada tipo gera 0,5 de precisão/recall; sem alertas a precisão é indefinida. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 099",
+          "result": "Fixture específica de Falsos positivos e falsos negativos usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/099.md :: Detecção, defesa, oficina e limitações",
+          "result": "Métricas não medem implantação nem devem transformar denominador zero em nota perfeita; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/099.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-099.md",
+          "result": "Seis perguntas abertas distintas sobre Falsos positivos e falsos negativos, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/099.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Matriz TP/TN/FP/FN e precisão e recall com denominadores explícitos; Um evento de cada tipo gera 0,5 de precisão/recall; sem alertas a precisão é indefinida."
+        }
+      ]
+    },
+    "AULA-100": {
+      "title": "Detection Engineering aplicado",
+      "contentPath": "/course-library/main/100.md",
+      "contentSha256": "4835d4767b76cad034ac43329ae0bd55d207e9b42d485895df6537d9b4296387",
+      "technicalSources": [
+        "https://sigmahq.io/docs/basics/rules.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 89,
+        "pratica": 91,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "summary": "AULA-100 — Detection Engineering aplicado: Hipótese de parent-child não aprovado e estado do sensor como pré-condições. Laboratório offline com positivo e negativo e seis questões específicas, gabarito separado e limites. Auditoria A por IA; sem validação humana independente nem teste com alunos.",
+      "observation": "Editor→executor de script sem aprovação alerta; automação aprovada não alerta; sensor ausente é insufficient_data",
+      "limitation": "Exceção deve ser específica e documentada; simulador não publica regra real em SIEM",
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Comparação editorial por IA do mecanismo, distinções conceituais e documentação de referência",
+          "reference": "public/course-library/main/100.md :: Seções 3, 18; https://sigmahq.io/docs/basics/rules.html",
+          "result": "Hipótese de parent-child não aprovado e estado do sensor como pré-condições. Limite de extrapolação explicitado: Exceção deve ser específica e documentada; simulador não publica regra real em SIEM."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do caso, previsão, verificação, falso positivo e reteste sem participação humana",
+          "reference": "public/course-library/main/100.md :: Oficina A editorial e checklist",
+          "result": "Editor→executor de script sem aprovação alerta; automação aprovada não alerta; sensor ausente é insufficient_data. O roteiro separa previsão, observação e interpretação para iniciante."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão do contrato de função e de fixtures positivas e negativas reproduzíveis em Node 22 offline",
+          "reference": "public/course-labs/a91-100/models.mjs; public/course-labs/a91-100/lab.test.mjs :: cenário 100",
+          "result": "Fixture específica de Detection Engineering aplicado usa entradas sintéticas e resultado esperado. Execução do conjunto prevista na CI; não substitui sensor ou software real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto editorial IA da resposta defensiva com o cenário negativo e a política de decisão",
+          "reference": "public/course-library/main/100.md :: Detecção, defesa, oficina e limitações",
+          "result": "Exceção deve ser específica e documentada; simulador não publica regra real em SIEM; medidas primárias e telemetria compensatória tratadas separadamente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda leitura crítica IA das seis questões de transferência e do gabarito externo ao texto",
+          "reference": "public/course-library/main/100.md :: Prova final independente; public/course-labs/a91-100/answer-keys/AULA-100.md",
+          "result": "Seis perguntas abertas distintas sobre Detection Engineering aplicado, respostas justificadas e rubrica por cinco competências, com erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio de dados, condição, decisão, exceção e efeito observável no caso desta aula",
+          "reference": "public/course-library/main/100.md; public/course-labs/a91-100/lab.test.mjs",
+          "result": "Hipótese de parent-child não aprovado e estado do sensor como pré-condições; Editor→executor de script sem aprovação alerta; automação aprovada não alerta; sensor ausente é insufficient_data."
+        }
+      ]
+    }
+  }
+}
