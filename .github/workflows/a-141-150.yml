@@ -1,0 +1,31 @@
+name: Aulas 141-150 QA
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/14*.md'
+      - 'public/course-library/main/150.md'
+      - 'public/course-labs/a141-150/**'
+      - 'quality/**'
+      - 'scripts/test-a-141-150-structure.mjs'
+      - 'scripts/test-grade-a-141-150.mjs'
+      - 'package.json'
+      - '.github/workflows/a-141-150.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Oficinas e conteúdo
+        run: npm run test:a-141-150
+      - name: Integridade editorial
+        run: npm run test:grade-a-141-150
+      - name: Regressão integral
+        run: npm run build
