@@ -1,0 +1,33 @@
+name: Aulas 031-040 QA
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/03*.md'
+      - 'public/course-library/main/040.md'
+      - 'public/course-labs/a031-040/**'
+      - 'scripts/test-a-031-040-structure.mjs'
+      - 'scripts/test-grade-a-031-040.mjs'
+      - 'quality/**'
+      - 'package.json'
+      - '.github/workflows/a-031-040.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Validate independent content and executable labs
+        run: npm run test:a-031-040
+      - name: Validate app build and all editorial records
+        run: npm run build
