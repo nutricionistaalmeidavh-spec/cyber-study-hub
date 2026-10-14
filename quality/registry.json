@@ -325,8 +325,8 @@
       "reviewedOn": "2026-10-13",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "roteamento, elegibilidade e chave do cache; Distingue Deception/Poisoning, Vary Cookie não é autorização e purge de itens antigos. Origin/proxy vulnerável e corrigido, HIT/MISS, conteúdo público preservado e caso inédito CSV.",
-      "contentSha256": "0d423457d7d8cec5fe3fbd77f7d28206de2e7e04595feb653e4644226031556a",
+      "summary": "roteamento, elegibilidade e chave do cache; Distingue Deception/Poisoning, Vary Cookie não é autorização e purge de itens antigos. Origin/proxy vulnerável e corrigido, HIT/MISS, conteúdo público preservado e caso inédito CSV. Oficina adicional 041–050: /account/profile.css é bypass privado apesar da extensão; /assets/app.css continua cacheável; Modelo complementar ao laboratório HTTP já existente, não CDN real.",
+      "contentSha256": "5af1944851c47617ab03929448b12b9d29d233217cca596f90f064899e40dee4",
       "scores": {
         "conteudoTecnico": 96,
         "didatica": 91,
@@ -372,7 +372,7 @@
           "dimension": "avaliacao",
           "method": "Resolver o cenário novo separadamente e comparar rubrica/gabarito que não aparece na página da aula",
           "reference": "public/course-library/main/047.md :: Prova final independente; gabarito separado; public/course-labs/pilot-a/answer-keys/AULA-047.md",
-          "result": "Seis questões de três decisões distintas com rubrica e controle negativo externo."
+          "result": "Seis questões de três decisões distintas com rubrica e controle negativo externo. Prova extra de 6 itens e gabarito AULA-047 no lote 041–050."
         },
         {
           "dimension": "especificidade",
@@ -1851,6 +1851,582 @@
           "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
           "reference": "public/course-library/main/020.md; public/course-labs/a10-20/lab.test.mjs; https://www.rfc-editor.org/rfc/rfc9700",
           "result": "login alice; state, PKCE, nonce, token incorreto e código reutilizado rejeitados nos testes."
+        }
+      ]
+    },
+    "AULA-041": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 41 — SSTI. Separação entre template confiável e nome recebido; expressão de template fica literal e HTML é escapado. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Modelo sem template engine real.",
+      "contentSha256": "d3e8958eefbd2f021ce95fd0dcede14c3235be7fb36ee16d50c7bba51f281278",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/041.md :: Mecanismo e exemplo resolvido; https://portswigger.net/web-security/server-side-template-injection",
+          "result": "Separação entre template confiável e nome recebido; expressão de template fica literal e HTML é escapado. Ressalva: Modelo sem template engine real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/041.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de SSTI."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de SSTI: Separação entre template confiável e nome recebido; expressão de template fica literal e HTML é escapado. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/041.md :: Detecção, defesa, limites e fontes",
+          "result": "Separação entre template confiável e nome recebido; expressão de template fica literal e HTML é escapado. Limite explícito: Modelo sem template engine real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/041.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-041.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em SSTI."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/041.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Separação entre template confiável e nome recebido; expressão de template fica literal e HTML é escapado."
+        }
+      ]
+    },
+    "AULA-042": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 42 — Insecure Deserialization. Esquema JSON aceita theme/locale e recusa role, __proto__ e tipos inválidos. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Sem gadget chain ou desserializador executável.",
+      "contentSha256": "d46c0acb39db2c2921a64be30adbd9b51db3997a5d49d9188db0ead0cfd68280",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/042.md :: Mecanismo e exemplo resolvido; https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+          "result": "Esquema JSON aceita theme/locale e recusa role, __proto__ e tipos inválidos. Ressalva: Sem gadget chain ou desserializador executável."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/042.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de Insecure Deserialization."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de Insecure Deserialization: Esquema JSON aceita theme/locale e recusa role, __proto__ e tipos inválidos. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/042.md :: Detecção, defesa, limites e fontes",
+          "result": "Esquema JSON aceita theme/locale e recusa role, __proto__ e tipos inválidos. Limite explícito: Sem gadget chain ou desserializador executável."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/042.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-042.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em Insecure Deserialization."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/042.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Esquema JSON aceita theme/locale e recusa role, __proto__ e tipos inválidos."
+        }
+      ]
+    },
+    "AULA-043": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 43 — GraphQL Security. Resolver permite Ana→Ana, bloqueia Bia→Ana e admin entre tenants; retorna projeção limitada. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Sem servidor GraphQL, aliases nem limites reais de custo.",
+      "contentSha256": "284cd75e776f085bc972ded9993c4b9fbb40acb4268f9bbf5c4a0f0a2d237945",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/043.md :: Mecanismo e exemplo resolvido; https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html",
+          "result": "Resolver permite Ana→Ana, bloqueia Bia→Ana e admin entre tenants; retorna projeção limitada. Ressalva: Sem servidor GraphQL, aliases nem limites reais de custo."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/043.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de GraphQL Security."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de GraphQL Security: Resolver permite Ana→Ana, bloqueia Bia→Ana e admin entre tenants; retorna projeção limitada. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/043.md :: Detecção, defesa, limites e fontes",
+          "result": "Resolver permite Ana→Ana, bloqueia Bia→Ana e admin entre tenants; retorna projeção limitada. Limite explícito: Sem servidor GraphQL, aliases nem limites reais de custo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/043.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-043.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em GraphQL Security."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/043.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Resolver permite Ana→Ana, bloqueia Bia→Ana e admin entre tenants; retorna projeção limitada."
+        }
+      ]
+    },
+    "AULA-044": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 44 — WebSocket Security. Mensagem válida passa até expiração, mas canal expirado, revogado ou sala não autorizada falha. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Sem rede WebSocket nem autenticação do handshake real.",
+      "contentSha256": "1317732b8d364be3b95bda576faa08194fb89cb9856730c027697b9a1a169606",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/044.md :: Mecanismo e exemplo resolvido; https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html",
+          "result": "Mensagem válida passa até expiração, mas canal expirado, revogado ou sala não autorizada falha. Ressalva: Sem rede WebSocket nem autenticação do handshake real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/044.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de WebSocket Security."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de WebSocket Security: Mensagem válida passa até expiração, mas canal expirado, revogado ou sala não autorizada falha. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/044.md :: Detecção, defesa, limites e fontes",
+          "result": "Mensagem válida passa até expiração, mas canal expirado, revogado ou sala não autorizada falha. Limite explícito: Sem rede WebSocket nem autenticação do handshake real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/044.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-044.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em WebSocket Security."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/044.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Mensagem válida passa até expiração, mas canal expirado, revogado ou sala não autorizada falha."
+        }
+      ]
+    },
+    "AULA-045": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 45 — HTTP Request Smuggling. Parser aceita Content-Length único e rejeita CL+TE, dois CL ou comprimento inválido. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Sem proxy/backend reais nem trânsito TCP.",
+      "contentSha256": "d6200d75675a0b056a57736db72e1fc1ba921c2a6e4c6958e27d88db312cb8fc",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/045.md :: Mecanismo e exemplo resolvido; https://portswigger.net/web-security/request-smuggling",
+          "result": "Parser aceita Content-Length único e rejeita CL+TE, dois CL ou comprimento inválido. Ressalva: Sem proxy/backend reais nem trânsito TCP."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/045.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de HTTP Request Smuggling."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de HTTP Request Smuggling: Parser aceita Content-Length único e rejeita CL+TE, dois CL ou comprimento inválido. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/045.md :: Detecção, defesa, limites e fontes",
+          "result": "Parser aceita Content-Length único e rejeita CL+TE, dois CL ou comprimento inválido. Limite explícito: Sem proxy/backend reais nem trânsito TCP."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/045.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-045.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em HTTP Request Smuggling."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/045.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Parser aceita Content-Length único e rejeita CL+TE, dois CL ou comprimento inválido."
+        }
+      ]
+    },
+    "AULA-046": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 46 — Web Cache Poisoning. Variantes pt-BR e en-US não colidem na cache key e /account autenticado faz BYPASS. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Sem CDN, HIT real ou cabeçalhos de resposta.",
+      "contentSha256": "3a5f1e22ab28dc0c7b565b60552a69fab1a67f4be56dcda4d015ad3e7a32e427",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/046.md :: Mecanismo e exemplo resolvido; https://portswigger.net/web-security/web-cache-poisoning",
+          "result": "Variantes pt-BR e en-US não colidem na cache key e /account autenticado faz BYPASS. Ressalva: Sem CDN, HIT real ou cabeçalhos de resposta."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/046.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de Web Cache Poisoning."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de Web Cache Poisoning: Variantes pt-BR e en-US não colidem na cache key e /account autenticado faz BYPASS. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/046.md :: Detecção, defesa, limites e fontes",
+          "result": "Variantes pt-BR e en-US não colidem na cache key e /account autenticado faz BYPASS. Limite explícito: Sem CDN, HIT real ou cabeçalhos de resposta."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/046.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-046.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em Web Cache Poisoning."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/046.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Variantes pt-BR e en-US não colidem na cache key e /account autenticado faz BYPASS."
+        }
+      ]
+    },
+    "AULA-048": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 48 — Prototype Pollution. Preferências próprias seguras são materializadas em objeto sem prototype; __proto__ e role falham. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Não percorre deep-merge, gadgets ou dependências concretas.",
+      "contentSha256": "a2e6b3e4d227b6bddf9e260521c91eb815823debf2dc1f379dd1ba88372e0aa2",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/048.md :: Mecanismo e exemplo resolvido; https://portswigger.net/web-security/prototype-pollution",
+          "result": "Preferências próprias seguras são materializadas em objeto sem prototype; __proto__ e role falham. Ressalva: Não percorre deep-merge, gadgets ou dependências concretas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/048.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de Prototype Pollution."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de Prototype Pollution: Preferências próprias seguras são materializadas em objeto sem prototype; __proto__ e role falham. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/048.md :: Detecção, defesa, limites e fontes",
+          "result": "Preferências próprias seguras são materializadas em objeto sem prototype; __proto__ e role falham. Limite explícito: Não percorre deep-merge, gadgets ou dependências concretas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/048.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-048.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em Prototype Pollution."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/048.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Preferências próprias seguras são materializadas em objeto sem prototype; __proto__ e role falham."
+        }
+      ]
+    },
+    "AULA-049": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 49 — Host Header Attacks. Links de reset usam domínio accounts.example.test mesmo se o Host foi adulterado. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Sem SMTP, tokens ou proxy confiável real.",
+      "contentSha256": "bb2b1403264a876be3cf71739ea412ca0e0aceaa7da2acbdbe0a725148fda781",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/049.md :: Mecanismo e exemplo resolvido; https://portswigger.net/web-security/host-header",
+          "result": "Links de reset usam domínio accounts.example.test mesmo se o Host foi adulterado. Ressalva: Sem SMTP, tokens ou proxy confiável real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/049.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de Host Header Attacks."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de Host Header Attacks: Links de reset usam domínio accounts.example.test mesmo se o Host foi adulterado. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/049.md :: Detecção, defesa, limites e fontes",
+          "result": "Links de reset usam domínio accounts.example.test mesmo se o Host foi adulterado. Limite explícito: Sem SMTP, tokens ou proxy confiável real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/049.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-049.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em Host Header Attacks."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/049.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "Links de reset usam domínio accounts.example.test mesmo se o Host foi adulterado."
+        }
+      ]
+    },
+    "AULA-050": {
+      "grade": "A",
+      "author": "Cyber Study Hub — melhoria pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem editorial crítica e conferência dos resultados CI (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão da aula 50 — DOM-based Vulnerabilities. textContent mantém HTML inerte e postMessage compara origem exata. Laboratório Node local com avaliação de controle positivo e adversarial e prova em seis questões. Limite declarado: Modelo Node não executa navegador nem CSP real.",
+      "contentSha256": "f7fa3a6d5aac01a81303a82f192ae2e1575d9ea59982e9d55d3201d157ff5370",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 90,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura temática em segunda passagem IA: mecanismo, separação de confiança e limites confrontados com material técnico de referência",
+          "reference": "public/course-library/main/050.md :: Mecanismo e exemplo resolvido; https://portswigger.net/web-security/cross-site-scripting/dom-based",
+          "result": "textContent mantém HTML inerte e postMessage compara origem exata. Ressalva: Modelo Node não executa navegador nem CSP real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA na perspectiva de iniciante, sem participante humano",
+          "reference": "public/course-library/main/050.md :: Problema e competência verificável; Laboratório guiado",
+          "result": "Predição antes da execução, entrada legítima e adversarial, leitura do JSON e checkpoint de correção no contexto de DOM-based Vulnerabilities."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Execução na CI de 21 testes Node determinísticos e inspeção dos modelos específicos",
+          "reference": "public/course-labs/a41-50/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38496257499",
+          "result": "Teste de DOM-based Vulnerabilities: textContent mantém HTML inerte e postMessage compara origem exata. O passo local de testes aprovou; o build do primeiro ciclo acusou SHA legado da aula 047, agora sincronizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Leitura de controle positivo e negativo, sem desligar serviço legítimo, e delimitação do alcance",
+          "reference": "public/course-library/main/050.md :: Detecção, defesa, limites e fontes",
+          "result": "textContent mantém HTML inerte e postMessage compara origem exata. Limite explícito: Modelo Node não executa navegador nem CSP real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA sobre seis questões de transferência com respostas e rubrica fora da aula",
+          "reference": "public/course-library/main/050.md :: Caso de transferência; public/course-labs/a41-50/answer-keys/AULA-050.md",
+          "result": "6 perguntas abertas, soluções separadas, valor 100 pontos, limite de generalização e erro eliminatório identificável em DOM-based Vulnerabilities."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Inspeção manual de dados de entrada/saída e correspondência com os asserts do laboratório local",
+          "reference": "public/course-library/main/050.md; public/course-labs/a41-50/models.mjs; public/course-labs/a41-50/lab.test.mjs",
+          "result": "textContent mantém HTML inerte e postMessage compara origem exata."
         }
       ]
     }
