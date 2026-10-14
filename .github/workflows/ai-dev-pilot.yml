@@ -1,0 +1,32 @@
+name: Trilha IA Pilot QA
+on:
+  pull_request:
+    paths:
+      - 'src/trails/ai-dev/**'
+      - 'public/course-labs/ai-dev-meu-gestor/**'
+      - 'src/App.tsx'
+      - 'src/components/Dashboard.tsx'
+      - 'src/curriculum/catalog.json'
+      - 'scripts/verify-ai-dev.mjs'
+      - 'package.json'
+      - '.github/workflows/ai-dev-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Conferir referências e projeto-base
+        run: npm run verify:ai-dev
+      - name: Build e validadores preexistentes
+        run: npm run build
+      - name: Testes de plataforma (sem alterações de login)
+        run: npm run test:platform
