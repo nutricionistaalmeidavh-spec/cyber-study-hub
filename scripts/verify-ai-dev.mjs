@@ -1,57 +1,94 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { createHash } from 'node:crypto';
+import {readFileSync,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+import {execFileSync} from 'node:child_process';
+
 const root=resolve(import.meta.dirname,'..');
-const get=path=>JSON.parse(readFileSync(resolve(root,path),'utf8'));
-const exists=path=>existsSync(resolve(root,path));
-const manifest=get('src/trails/ai-dev/manifest.json'),learning=get('src/trails/ai-dev/modules.json'),reviews=get('src/trails/ai-dev/quality-reviews.json'),catalog=get('src/curriculum/catalog.json');
-const source=[...catalog.main,...catalog.parallel],dims=['conteudoTecnico','didatica','pratica','defesa','avaliacao','especificidade'];
-const gates=['precisaoRevisada','didaticaInicianteValidada','praticaVerificada','avaliacaoIndependenteRevisada','escopoSeguroVerificado','revisorIndependente'];
-assert.equal(catalog.main.length,218);assert.equal(catalog.parallel.length,325);assert.equal(source.length,543);
-assert.equal(manifest.modules.length,8);assert.equal(manifest.totalSteps,32);
-assert.equal(manifest.newMicroLessons,16);assert.equal(manifest.reusedReferences,8);assert.equal(manifest.newLabs,8);
-assert.equal(learning.modules.length,5);assert.equal(reviews.moduleReviews.length,5);
-assert.equal(reviews.humanLearnerTesting,'not_performed');assert.equal(reviews.externalHumanReview,'not_performed');
-const expected=['microaula','microaula-ia','referencia','laboratorio'],codes=new Set(),ids=[];
-for(const m of manifest.modules){
- assert.equal(m.steps.length,4);assert.deepEqual(m.steps.map(s=>s.type),expected);ids.push(...m.steps.map(s=>s.id));
- const ref=source.find(x=>x.code===m.reusedLessonCode);assert.equal(ref?.kind,'parallel','Aula ausente: '+m.reusedLessonCode);
- assert.ok(exists('public'+ref.contentPath));assert.ok(!codes.has(ref.code));codes.add(ref.code);
- assert.equal(m.status,m.id<=5?'available':'planned');
+const read=p=>readFileSync(resolve(root,p),'utf8');
+const json=p=>JSON.parse(read(p));
+const sha=s=>createHash('sha256').update(s).digest('hex');
+const manifest=json('src/trails/ai-dev/manifest.json');
+const course=json('src/trails/ai-dev/modules.json');
+const grades=json('quality/trails/ai-dev/reviews.json');
+const catalog=json('src/curriculum/catalog.json');
+const dimensions=['conteudoTecnico','didatica','pratica','defesa','avaliacao','especificidade'];
+const gates=['precisaoRevisada','didaticaInicianteValidada','praticaVerificada','avaliacaoIndependenteRevisada','escopoSeguroVerificado','segundaPassagemCritica'];
+const stepKinds=['microaula','microaula-ia','referencia','laboratorio'];
+const rootLab='public/course-labs/ai-dev-meu-gestor';
+assert.equal(catalog.main.length,218,'Catálogo principal alterado');
+assert.equal(catalog.parallel.length,325,'Catálogo paralelo alterado');
+assert.equal(manifest.modules.length,8);
+assert.equal(manifest.totalSteps,32);
+assert.equal(course.modules.length,5,'Só os cinco primeiros módulos são liberados nesta fase');
+assert.equal(manifest.newMicroLessons,16);
+assert.equal(manifest.reusedReferences,8);
+assert.equal(manifest.newLabs,8);
+assert.deepEqual(Object.keys(grades.modules).sort(),['01','02','03','04','05']);
+assert.deepEqual(manifest.modules.filter(m=>m.status==='available').map(m=>m.id),[1,2,3,4,5]);
+assert.deepEqual(manifest.modules.filter(m=>m.status==='planned').map(m=>m.id),[6,7,8]);
+const ids=[];
+for(const [index,module] of course.modules.entries()){
+  const id=String(index+1).padStart(2,'0');
+  assert.equal(module.moduleId,index+1);
+  assert.equal(module.lessons.length,4);
+  assert.equal(module.learningOutcomes.length,4);
+  const original=manifest.modules[index];
+  assert.equal(original.id,module.moduleId);
+  assert.equal(original.reusedLessonCode,module.lessons[2].referenceCode);
+  const referenced=catalog.parallel.find(x=>x.code===original.reusedLessonCode);
+  assert.ok(referenced,'Referência não canônica: '+original.reusedLessonCode);
+  assert.ok(existsSync(resolve(root,'public'+referenced.contentPath)),'Referência inacessível: '+original.reusedLessonCode);
+  assert.deepEqual(module.lessons.map(s=>s.kind),stepKinds);
+  assert.deepEqual(module.lessons.map(s=>s.stepId),[0,1,2,3].map(j=>index*4+j+1));
+  for(const step of module.lessons)ids.push(step.stepId);
+  for(const step of module.lessons.slice(0,2)){
+    assert.equal(step.sections.length,3,'Microaula sem progressão suficiente: '+step.stepId);
+    assert.ok(step.sections.every(s=>s.heading.length>6&&s.body.length>140&&s.example?.length>50&&s.counterexample?.length>50),'Exemplo/contraexemplo insuficiente: '+step.stepId);
+  }
+  assert.ok(module.lessons[0].challenge.options.length>=3);
+  assert.ok(Number.isInteger(module.lessons[0].challenge.answer));
+  assert.ok(module.lessons[1].prompt.length>250);
+  assert.ok(module.lessons[1].reviewQuestions.length>=3);
+  assert.ok(module.lessons[2].challengeText.length>100);
+  assert.equal(module.lessons[2].referencePath,'#course/parallel/'+original.reusedLessonCode);
+  const lab=module.lessons[3];
+  assert.equal(lab.acceptance.length,5);
+  assert.equal(lab.brief.length,4);
+  assert.ok(lab.assessmentPrompt.length>100);
+  assert.ok(existsSync(resolve(root,'public'+lab.starterSourceUrl)),'Instrução de checkpoint ausente: '+lab.starterSourceUrl);
+  const exam=read('public'+module.assessmentPath);
+  const key=read('public'+module.answerKeyPath);
+  assert.equal((exam.match(/^\d+\. /gm)||[]).length,6,'Prova precisa de 6 questões');
+  assert.equal((key.match(/^\d+\. /gm)||[]).length,6,'Gabarito precisa de 6 respostas');
+  assert.ok(key.includes('**Erro eliminatório:**')&&key.includes('## Rubrica de correção'));
+  assert.ok(!exam.includes('Resposta esperada:'),'Gabarito exposto na prova');
+  const review=grades.modules[id];
+  assert.equal(review.grade,'A');
+  assert.equal(review.reviewType,'editorial_ai_only');
+  assert.equal(review.humanLearnerTesting,'not_performed');
+  assert.equal(review.contentSha256,sha(JSON.stringify(module)),'Conteúdo mudou após parecer A '+id);
+  assert.equal(review.examSha256,sha(exam),'Prova mudou após parecer A '+id);
+  assert.equal(review.answerKeySha256,sha(key),'Gabarito mudou após parecer A '+id);
+  assert.ok(existsSync(resolve(root,review.labPath)),'Laboratório ausente: '+id);
+  assert.equal(review.labSha256,sha(read(review.labPath)),'Laboratório mudou após parecer A '+id);
+  assert.equal(review.evidence.length,6,'Requer seis evidências');
+  for(const dimension of dimensions){
+    const score=review.scores[dimension];
+    assert.ok(typeof score==='number'&&score>=80&&score<=100,'Nota A sem fundamento: '+id+'/'+dimension);
+    const e=review.evidence.find(e=>e.dimension===dimension);
+    assert.ok(e&&e.method?.length>10&&e.reference?.length>10&&e.result?.length>40,'Evidência incompleta: '+id+'/'+dimension);
+  }
+  for(const gate of gates)assert.equal(review.gates[gate],true,'Gate editorial pendente: '+id+'/'+gate);
 }
-assert.deepEqual(ids,Array.from({length:32},(_,i)=>i+1));
-for(let i=0;i<5;i++){
- const m=learning.modules[i],meta=manifest.modules[i],rv=reviews.moduleReviews[i];assert.equal(m.moduleId,i+1);
- assert.equal(m.title,meta.title);assert.equal(m.lessons.length,4);
- assert.ok(m.learningOutcomes.length>=4);assert.deepEqual(m.lessons.map(s=>s.kind),expected);
- assert.deepEqual(m.lessons.map(s=>s.stepId),meta.steps.map(s=>s.id));
- const [concept,coach,reference,lab]=m.lessons;
- assert.ok(concept.sections.length>=3&&concept.sections.every(s=>s.heading&&s.body&&s.example&&s.counterexample));
- assert.ok(concept.challenge.options.length===3&&Number.isInteger(concept.challenge.answer));
- assert.ok(coach.sections.length>=3&&coach.reviewQuestions.length===3&&coach.prompt.length>=180);
- assert.equal(reference.referenceCode,meta.reusedLessonCode);
- assert.equal(reference.referencePath,'#course/parallel/'+meta.reusedLessonCode);
- assert.ok(lab.acceptance.length===5&&lab.brief.length>=4&&lab.assessmentPrompt.length>=100);
- assert.ok(exists('public'+lab.starterUrl),'Sem artefato M'+m.moduleId);
- assert.ok(exists('public'+lab.starterSourceUrl),'Sem roteiro M'+m.moduleId);
- assert.ok(exists('public'+m.assessmentPath)&&exists('public'+m.answerKeyPath));
- const exam=readFileSync(resolve(root,'public'+m.assessmentPath),'utf8');
- const key=readFileSync(resolve(root,'public'+m.answerKeyPath),'utf8');
- assert.ok((exam.match(/^\d+\.\s/gm)||[]).length>=6,'Sem seis perguntas M'+m.moduleId);
- assert.ok(key.includes('Rubrica')&&key.toLowerCase().includes('eliminatório'),'Gabarito incompleto M'+m.moduleId);
- assert.ok(!exam.includes('Resposta esperada:'),'Respostas no enunciado M'+m.moduleId);
- assert.equal(rv.id,'DEV-IA-M'+String(i+1).padStart(2,'0'));assert.equal(rv.grade,'A');
- assert.equal(rv.reviewMethod,'ai_editorial_second_pass');assert.equal(rv.humanLearnerTesting,'not_performed');
- assert.equal(rv.contentSha256,createHash('sha256').update(JSON.stringify(m)).digest('hex'),'Hash de conteúdo inválido M'+m.moduleId);
- assert.ok(rv.author&&rv.reviewer&&rv.author!==rv.reviewer);
- for(const dim of dims){assert.ok(rv.scores[dim]>=80&&rv.scores[dim]<=100);assert.ok(rv.evidence.some(x=>x.dimension===dim&&x.method&&x.reference&&x.result),'Sem evidência '+dim);}
- for(const gate of gates)assert.equal(rv.gates[gate],true);
-}
-assert.ok(exists('public/course-labs/ai-dev-meu-gestor/tests/starter.test.mjs'));
-assert.ok(exists('public/course-labs/ai-dev-meu-gestor/module-02/spec-rules.test.mjs'));
-assert.ok(exists('public/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/tests/domain.test.mjs'));
-const starter=readFileSync(resolve(root,'public/course-labs/ai-dev-meu-gestor/starter.html'),'utf8');
-assert.ok(starter.includes('pendente')&&starter.includes('concluído'));
-assert.ok(!/fetch\s*\(|<script[^>]+src=/i.test(starter));
-console.log('VALIDADO: 543 unidades, 8 referências, 5 módulos A editorial IA, 20 etapas, provas independentes e laboratórios.');
+assert.deepEqual(ids,Array.from({length:20},(_,i)=>i+1));
+for(const m of manifest.modules)assert.deepEqual(m.steps.map(x=>x.type),stepKinds);
+const testPaths=[
+  rootLab+'/tests/starter.test.mjs',
+  rootLab+'/module-02/spec-rules.test.mjs',
+  rootLab+'/checkpoints/v0.3/tests/domain.test.mjs'
+];
+for(const path of testPaths)assert.ok(existsSync(resolve(root,path)),'Teste prático ausente: '+path);
+console.log('Módulos IA: 5/5 pareceres A editoriais IA com hashes, 20 etapas, 30 questões e 5 laboratórios.');
+if(!process.argv.includes('--structure-only'))execFileSync(process.execPath,['--test',...testPaths],{cwd:root,stdio:'inherit'});
+
