@@ -59,3 +59,11 @@ Dashboard owns recommendation and catalog entry points. CurriculumBrowser owns f
 ## Do's and Don'ts
 
 Do present Aula 001 as the beginner entry and use account-owned progress for returning users. Do maintain real deep links and accessible keyboard focus. Do not hardcode Aula 43 for new learners or misrepresent Markdown-only lessons as completed. Do not change private API contracts for a visual improvement.
+
+## ArtiSys Editorial — aula e leitura (2026-10-14)
+
+Scoped lesson-only design tokens live in `src/components/lesson-editorial.css`, imported after `src/styles.css`. Brand references: dark `#0a0716`, purple `#7037ad`, violet `#8745f7` and lilac `#f0eaf8`. Outfit is a preferred local font with system fallback; there are no hosted-font/API dependencies.
+
+The learning surface (native V2, legacy, Markdown and AI development trail) uses dark hero/problem/mechanism/lab/review chapters and light text-heavy reading/practice chapters. Markdown groups content into semantic chapters at H1/H2 boundaries; dark treatments follow subject terms rather than arbitrary even/odd position. Dark code snippets retain syntax legibility even inside light reading chapters. All inputs, links, completion state, quizzes and deep links remain functional and keyboard-focused. The shell, navigation, catalog, account and API are not part of this visual change.
+
+The **core is R$ 0, open source and self-hostable**; free third-party services or paid AI may only be identified as optional, never as silent dependencies.
