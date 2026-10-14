@@ -4990,6 +4990,646 @@
         }
       ]
     },
+    "AULA-081": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-081 — Wireshark: Wireshark display filters vs stream, enquadramento de rede. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Modelo de eventos, não decodificador PCAP. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "c647d73ba90207abe709f6a9806b9b15a65b4261fcae65fb6280895bba304ddd",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/081.md :: Mecanismo; https://www.wireshark.org/docs/man-pages/wireshark-filter.html",
+          "result": "Wireshark display filters vs stream, enquadramento de rede; distinções e limites contextualizados. Fonte técnica para revalidação: https://www.wireshark.org/docs/man-pages/wireshark-filter.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/081.md :: Oficina A editorial",
+          "result": "Caso sintético para Wireshark com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 081, passaram no CI. Simulador não substitui produto real; Modelo de eventos, não decodificador PCAP."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/081.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Modelo de eventos, não decodificador PCAP."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/081.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-081.md",
+          "result": "6 perguntas de transferência sobre Wireshark; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/081.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "Wireshark display filters vs stream, enquadramento de rede. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-082": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-082 — IDS/IPS com Suricata: Suricata SID local GET estabelecido, alerta IDS e distinção IPS. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Modelo não executa engine nem IPS inline. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "144e01cd98af9cdd940f391876d6adfe5a371ea86f155b705f5b27beef233313",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/082.md :: Mecanismo; https://docs.suricata.io/en/latest/rules/intro.html",
+          "result": "Suricata SID local GET estabelecido, alerta IDS e distinção IPS; distinções e limites contextualizados. Fonte técnica para revalidação: https://docs.suricata.io/en/latest/rules/intro.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/082.md :: Oficina A editorial",
+          "result": "Caso sintético para IDS/IPS com Suricata com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 082, passaram no CI. Simulador não substitui produto real; Modelo não executa engine nem IPS inline."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/082.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Modelo não executa engine nem IPS inline."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/082.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-082.md",
+          "result": "6 perguntas de transferência sobre IDS/IPS com Suricata; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/082.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "Suricata SID local GET estabelecido, alerta IDS e distinção IPS. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-083": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-083 — SIEM: janela de falhas por usuário/host, limite do baseline e lacunas de ingestão. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Contador sintético, não SIEM produtivo. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "0ac3a126ce71c5d8ea3f507ff51b468fc43c81fd458bb38245742efde1988a6b",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/083.md :: Mecanismo; https://www.elastic.co/guide/en/security/current/detection-engine-overview.html",
+          "result": "janela de falhas por usuário/host, limite do baseline e lacunas de ingestão; distinções e limites contextualizados. Fonte técnica para revalidação: https://www.elastic.co/guide/en/security/current/detection-engine-overview.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/083.md :: Oficina A editorial",
+          "result": "Caso sintético para SIEM com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 083, passaram no CI. Simulador não substitui produto real; Contador sintético, não SIEM produtivo."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/083.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Contador sintético, não SIEM produtivo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/083.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-083.md",
+          "result": "6 perguntas de transferência sobre SIEM; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/083.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "janela de falhas por usuário/host, limite do baseline e lacunas de ingestão. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-084": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-084 — MITRE ATT&CK: hipótese T1059.001 sob evidência Sysmon, sem atribuição. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Mapeamento parcial, taxonomia pode mudar. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "8396d112056955d8486e22ea44b430af342c5871bef3e1744d5a2a498532f46b",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/084.md :: Mecanismo; https://attack.mitre.org/",
+          "result": "hipótese T1059.001 sob evidência Sysmon, sem atribuição; distinções e limites contextualizados. Fonte técnica para revalidação: https://attack.mitre.org/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/084.md :: Oficina A editorial",
+          "result": "Caso sintético para MITRE ATT&CK com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 084, passaram no CI. Simulador não substitui produto real; Mapeamento parcial, taxonomia pode mudar."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/084.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Mapeamento parcial, taxonomia pode mudar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/084.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-084.md",
+          "result": "6 perguntas de transferência sobre MITRE ATT&CK; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/084.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "hipótese T1059.001 sob evidência Sysmon, sem atribuição. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-085": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-085 — IOC, IOA e TTP: IOC expirado precisa de contexto e IOA observado exige investigação. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Simulador não consulta feed externo. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "3c5b63185496b8b0425ab3546d976834ce447b8a1830856e6f1c35adec8bcb5e",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/085.md :: Mecanismo; https://attack.mitre.org/resources/",
+          "result": "IOC expirado precisa de contexto e IOA observado exige investigação; distinções e limites contextualizados. Fonte técnica para revalidação: https://attack.mitre.org/resources/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/085.md :: Oficina A editorial",
+          "result": "Caso sintético para IOC, IOA e TTP com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 085, passaram no CI. Simulador não substitui produto real; Simulador não consulta feed externo."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/085.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Simulador não consulta feed externo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/085.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-085.md",
+          "result": "6 perguntas de transferência sobre IOC, IOA e TTP; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/085.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "IOC expirado precisa de contexto e IOA observado exige investigação. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-086": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-086 — Sigma: process create Office→PowerShell com parent-child e EventID. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Não há conversão YAML/backend Sigma real. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "6849e1f603e9371012b76eddf7f2b0173fa79d9c0f1c02fa350e5a3e2b07a4a6",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/086.md :: Mecanismo; https://github.com/SigmaHQ/sigma-specification",
+          "result": "process create Office→PowerShell com parent-child e EventID; distinções e limites contextualizados. Fonte técnica para revalidação: https://github.com/SigmaHQ/sigma-specification."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/086.md :: Oficina A editorial",
+          "result": "Caso sintético para Sigma com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 086, passaram no CI. Simulador não substitui produto real; Não há conversão YAML/backend Sigma real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/086.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Não há conversão YAML/backend Sigma real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/086.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-086.md",
+          "result": "6 perguntas de transferência sobre Sigma; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/086.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "process create Office→PowerShell com parent-child e EventID. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-087": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-087 — YARA: duas strings benignas e condição AND para reduzir falso positivo. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Não há motor real YARA, apenas dois marcadores. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "215cea60ceec4abbbb35d6f963d91c041629d8fad0bedab9facc5327f08ebda5",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/087.md :: Mecanismo; https://yara.readthedocs.io/en/latest/writingrules.html",
+          "result": "duas strings benignas e condição AND para reduzir falso positivo; distinções e limites contextualizados. Fonte técnica para revalidação: https://yara.readthedocs.io/en/latest/writingrules.html."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/087.md :: Oficina A editorial",
+          "result": "Caso sintético para YARA com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 087, passaram no CI. Simulador não substitui produto real; Não há motor real YARA, apenas dois marcadores."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/087.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Não há motor real YARA, apenas dois marcadores."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/087.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-087.md",
+          "result": "6 perguntas de transferência sobre YARA; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/087.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "duas strings benignas e condição AND para reduzir falso positivo. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-088": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-088 — Threat Hunting: hipótese Office→PowerShell com host e janela de cinco minutos. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Sem EDR/SIEM real ou avaliação em parque de máquinas. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "c02fdc4c52431eb6531b704c8c65eb598542ac41234eefda95e69b3c50b9730f",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/088.md :: Mecanismo; https://attack.mitre.org/",
+          "result": "hipótese Office→PowerShell com host e janela de cinco minutos; distinções e limites contextualizados. Fonte técnica para revalidação: https://attack.mitre.org/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/088.md :: Oficina A editorial",
+          "result": "Caso sintético para Threat Hunting com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 088, passaram no CI. Simulador não substitui produto real; Sem EDR/SIEM real ou avaliação em parque de máquinas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/088.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Sem EDR/SIEM real ou avaliação em parque de máquinas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/088.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-088.md",
+          "result": "6 perguntas de transferência sobre Threat Hunting; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/088.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "hipótese Office→PowerShell com host e janela de cinco minutos. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-089": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-089 — Incident Response: rastreabilidade de transições, contenção, recuperação e exceções. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: State machine didática não modela resposta real completa. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "b6308a55b1cf76927f9351c75050e9e7c8720ac68def5a32514288756c953135",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/089.md :: Mecanismo; https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+          "result": "rastreabilidade de transições, contenção, recuperação e exceções; distinções e limites contextualizados. Fonte técnica para revalidação: https://csrc.nist.gov/pubs/sp/800/61/r3/final."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/089.md :: Oficina A editorial",
+          "result": "Caso sintético para Incident Response com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 089, passaram no CI. Simulador não substitui produto real; State machine didática não modela resposta real completa."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/089.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. State machine didática não modela resposta real completa."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/089.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-089.md",
+          "result": "6 perguntas de transferência sobre Incident Response; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/089.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "rastreabilidade de transições, contenção, recuperação e exceções. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
+    "AULA-090": {
+      "grade": "A",
+      "author": "Cyber Study Hub — escrita pedagógica assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão editorial crítica em segunda passagem (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Revisão editorial IA da AULA-090 — DFIR básico: integridade relativa entre evidência e cópia com SHA-256. Modelo offline com positivo/negativo, seis perguntas abertas e rubrica independente. Limite explícito: Não constitui imagem forense, proveniência ou cadeia legal. Nenhum teste com estudantes humanos foi feito.",
+      "contentSha256": "479ff2d27864e82a95bd2a6d49d60878050aed791ba7408f7751df53e8e6503a",
+      "scores": {
+        "conteudoTecnico": 90,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 90,
+        "avaliacao": 90,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura crítica assistida por IA de mecanismo, contraste e referência técnica (não auditor humano)",
+          "reference": "public/course-library/main/090.md :: Mecanismo; https://www.swgde.org/documents/",
+          "result": "integridade relativa entre evidência e cópia com SHA-256; distinções e limites contextualizados. Fonte técnica para revalidação: https://www.swgde.org/documents/."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de instruções por IA, da hipótese ao reteste; sem participante humano",
+          "reference": "public/course-library/main/090.md :: Oficina A editorial",
+          "result": "Caso sintético para DFIR básico com perguntas previstas, observação e inferência separadas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da execução GitHub Actions do PR com teste determinístico positivo/negativo",
+          "reference": "public/course-labs/a81-90/lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38499842574",
+          "result": "12 testes do lote, incluindo cenário 090, passaram no CI. Simulador não substitui produto real; Não constitui imagem forense, proveniência ou cadeia legal."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão editorial IA das condições de controle, falso positivo e escopo defensivo",
+          "reference": "public/course-library/main/090.md :: Detecção, defesa, limites e fontes",
+          "result": "Defesa restringe conclusão a evidência observável, com alerta de falso positivo. Não constitui imagem forense, proveniência ou cadeia legal."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA em questões abertas específicas com soluções separadas e rubrica de 100 pontos",
+          "reference": "public/course-library/main/090.md :: Caso de transferência; public/course-labs/a81-90/answer-keys/AULA-090.md",
+          "result": "6 perguntas de transferência sobre DFIR básico; 1 erro eliminatório, critérios de pontuação e limites. Não há nota de aprendiz real."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência manual de fixture, decisão e assert específico, com reteste local reproduzível na CI",
+          "reference": "public/course-library/main/090.md; public/course-labs/a81-90/models.mjs; public/course-labs/a81-90/lab.test.mjs",
+          "result": "integridade relativa entre evidência e cópia com SHA-256. Positivo e negativo dependem de campos próprios do tópico."
+        }
+      ]
+    },
     "AULA-051": {
       "grade": "A",
       "author": "Cyber Study Hub — retrofit F16 e ampliação editorial 51–60",

@@ -56,7 +56,3 @@ Dez pareceres A editoriais novos elevam o total canônico a **46 A editoriais** 
 ## A editorial IA — aulas 061 a 070 (13/10/2026)
 
 Dez pareceres A editoriais foram acrescentados (agora **65 A editoriais**, 55 anteriores preservados), com hashes, laboratórios Node em memória/loopback, provas independentes e rubricas. Ferramentas Nmap/Nuclei/PowerShell e Windows/AD são opcionais; core R$0, local. O julgamento é por IA, sem testes humanos com aprendizes. Ver `quality/reviews/a061-070-2026-10-13.json` e `docs/quality/AUDITORIA_A_AULAS_061_070.md`.
-
-## A editorial IA — aulas 051 a 060 (13/10/2026)
-
-Dez pareceres novos elevam o registro de **75 para 85 A editoriais**. As 60 questões novas, laboratórios locais, fontes técnicas, limites declarados e SHA dos arquivos revisados estão em `quality/reviews/a51-60-2026-10-13.json` e `docs/quality/AUDITORIA_A_051_060.md`. Esta é análise editorial IA; não houve avaliação humana externa ou observação pedagógica com alunos reais.

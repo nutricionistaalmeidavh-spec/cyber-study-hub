@@ -18,6 +18,6 @@ for(let id=71;id<=80;id++){
  for(const g of gates)assert.equal(r.gates[g],true,code+' gate '+g);
  assert.ok(a.technicalSources.length>0);console.log('PASS A editorial IA '+code+' '+actual.slice(0,12));
 }
-assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=75, 'Preservar ao menos as 75 A anteriores');
+assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=75, 'preservar 75 A e permitir novos lotes');
 for(const code of ['AULA-001','AULA-047','AULA-050'])assert.equal(reg.editorialReviews[code].grade,'A');
-console.log('PASS: coorte 071–080 preservada, mínimo histórico de 75 A, sem teste humano alegado.');
+console.log('PASS lote 071–080 e >=75 registros A, sem teste humano alegado.');

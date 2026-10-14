@@ -15,7 +15,7 @@
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
     "verify:catalog": "node scripts/verify-phase-12-14.mjs",
     "test:quality": "node scripts/test-quality-p0.mjs",
-    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a && npm run test:a-002-008 && npm run test:grade-a-10-20 && npm run test:a-021-030 && npm run test:grade-a-031-040 && npm run test:grade-a-41-50 && npm run test:grade-a-061-070 && npm run test:grade-a-071-080 && npm run test:a-51-60 && npm run test:grade-a-51-60",
+    "verify:quality": "node scripts/quality-p0.mjs && npm run test:quality && npm run test:pilot-grade-a && npm run test:a-002-008 && npm run test:grade-a-10-20 && npm run test:a-021-030 && npm run test:grade-a-031-040 && npm run test:grade-a-41-50 && npm run test:grade-a-061-070 && npm run test:grade-a-071-080 && npm run test:grade-a-81-90 && npm run test:a-51-60 && npm run test:grade-a-51-60 && npm run test:grade-a-continuity",
     "report:quality": "node scripts/quality-p0.mjs --write",
     "test:pilot-grade-a": "node scripts/test-pilot-grade-a.mjs",
     "test:a-002-008": "node scripts/test-a-002-008-structure.mjs && node scripts/test-a-002-008.mjs",
@@ -30,8 +30,11 @@
     "test:grade-a-061-070": "node scripts/test-grade-a-061-070.mjs",
     "test:a-071-080": "node scripts/test-a-071-080-structure.mjs && node --test public/course-labs/a071-080/lab.test.mjs",
     "test:grade-a-071-080": "node scripts/test-grade-a-071-080.mjs",
+    "test:a-81-90": "node scripts/test-lessons-81-90.mjs && node --test public/course-labs/a81-90/lab.test.mjs",
+    "test:grade-a-81-90": "node scripts/test-grade-a-81-90.mjs",
     "test:a-51-60": "node --test public/course-labs/a051-060/labs.test.mjs",
-    "test:grade-a-51-60": "node scripts/test-grade-a-51-60.mjs"
+    "test:grade-a-51-60": "node scripts/test-grade-a-51-60.mjs",
+    "test:grade-a-continuity": "node scripts/test-grade-a-continuity.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
