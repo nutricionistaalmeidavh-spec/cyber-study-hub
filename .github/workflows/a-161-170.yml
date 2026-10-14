@@ -1,0 +1,35 @@
+name: Aulas 161-170 QA
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/16*.md'
+      - 'public/course-library/main/170.md'
+      - 'public/course-labs/a161-170/**'
+      - 'quality/**'
+      - 'docs/quality/**'
+      - 'scripts/test-a-161-170-structure.mjs'
+      - 'scripts/test-grade-a-161-170.mjs'
+      - 'package.json'
+      - '.github/workflows/a-161-170.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  defensive-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify memory lab models, independent exams and preserved ASLR
+        run: npm run test:a-161-170
+      - name: Build and all previous A reviews
+        run: npm run build
