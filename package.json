@@ -44,7 +44,7 @@
     "test:grade-a-101-110": "node scripts/test-grade-a-101-110.mjs",
     "start": "node server/start.mjs",
     "dev:api": "node server/start.mjs",
-    "test:platform": "node --test server/platform.test.mjs"
+    "test:platform": "node --test server/*.test.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
