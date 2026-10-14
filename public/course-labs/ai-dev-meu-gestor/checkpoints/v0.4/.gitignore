@@ -3,3 +3,10 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Apenas dados fictícios locais; não versionar banco, WAL ou backups
+/data/
+/backups/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
