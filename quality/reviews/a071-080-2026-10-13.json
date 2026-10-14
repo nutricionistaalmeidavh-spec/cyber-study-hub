@@ -7,7 +7,7 @@
   "reviewer": "GPT-6 — revisão editorial crítica IA (não humana)",
   "qaEvidence": [
     "21 testes determinísticos em public/course-labs/a071-080/lab.test.mjs; execução CI exigida pelo PR",
-    "SHA-256 e preservação das 55 notas anteriores testados em scripts/test-grade-a-071-080.mjs"
+    "SHA-256 e preservação das 65 notas anteriores testados em scripts/test-grade-a-071-080.mjs"
   ],
   "limitations": [
     "Não houve teste com alunos humanos, DC ou Sysmon reais",

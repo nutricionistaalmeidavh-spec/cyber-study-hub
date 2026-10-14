@@ -18,6 +18,6 @@ for(let id=71;id<=80;id++){
  for(const g of gates)assert.equal(r.gates[g],true,code+' gate '+g);
  assert.ok(a.technicalSources.length>0);console.log('PASS A editorial IA '+code+' '+actual.slice(0,12));
 }
-assert.equal(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length,65);
+assert.equal(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length,75);
 for(const code of ['AULA-001','AULA-047','AULA-050'])assert.equal(reg.editorialReviews[code].grade,'A');
-console.log('PASS 65 unidades A, dez novas 071–080, sem teste humano alegado.');
+console.log('PASS 75 unidades A, dez novas 071–080, sem teste humano alegado.');

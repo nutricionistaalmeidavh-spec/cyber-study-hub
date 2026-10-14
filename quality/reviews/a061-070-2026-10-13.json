@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-061..AULA-070",
+  "reviewedOn": "2026-10-13",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — elaboração pedagógica e laboratórios assistidos por GPT-6",
+  "reviewer": "GPT-6 — segunda passagem crítica técnico-pedagógica (IA, não revisor humano)",
+  "humanLearnerTesting": "not_performed",
+  "acceptance": "Parecer editorial A por IA com seis dimensões, hash por conteúdo, cenário próprio de transferência, gabarito externo e teste Node; não valida eficácia com estudantes reais",
+  "environment": "Node.js 22+; testes in-memory e somente 127.0.0.1; R$0 de dependências obrigatórias; OS e scanners externos opcionais",
+  "qaMethod": "Testes dedicados e regressões do registro em GitHub Actions; o CI deverá verificar a execução antes do merge. A revisão editorial não substitui laboratório com estudantes reais.",
+  "units": {
+    "AULA-061": {
+      "title": "Enumeração Linux",
+      "contentPath": "/course-library/main/061.md",
+      "contentSha256": "c4ada2ce453eb4a0b090dc628b09bde44e1dcb975fb15996942a8ec157d736e3",
+      "technicalSources": [
+        "https://www.gnu.org/software/coreutils/manual/html_node/Mode-Structure.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Linux: permissão octal de job root versus SUID legítimo",
+      "observations": "inspectLinux: 0777 consumido por root-cron = HIGH; 04755 SUID isolado = REVIEW",
+      "limitations": [
+        "Não avalia ACL estendida, SELinux, capabilities reais, mounts ou execuções",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/061.md :: 2–3; https://www.gnu.org/software/coreutils/manual/html_node/Mode-Structure.html",
+          "result": "Linux: permissão octal de job root versus SUID legítimo"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/061.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-061; public/course-labs/a061-070/models.mjs",
+          "result": "inspectLinux: 0777 consumido por root-cron = HIGH; 04755 SUID isolado = REVIEW"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/061.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Linux: permissão octal de job root versus SUID legítimo. Limite explicitado: Não avalia ACL estendida, SELinux, capabilities reais, mounts ou execuções"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/061.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-061.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/061.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "inspectLinux: 0777 consumido por root-cron = HIGH; 04755 SUID isolado = REVIEW"
+        }
+      ]
+    },
+    "AULA-062": {
+      "title": "Enumeração Windows",
+      "contentPath": "/course-library/main/062.md",
+      "contentSha256": "487cfd20bc6ee7150dafdfb6125d4ef8a0f88f911c6bf3fb654fdaaed3d170ef",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-lists"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Windows: identidade LocalSystem e ACE Users:Modify versus LocalService com Read",
+      "observations": "inspectWindows: risco HIGH apenas quando binário privilegiado é modificável pelo grupo genérico",
+      "limitations": [
+        "Não inspeciona ACL efetiva, herança, UAC ou binário real",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/062.md :: 2–3; https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-lists",
+          "result": "Windows: identidade LocalSystem e ACE Users:Modify versus LocalService com Read"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/062.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-062; public/course-labs/a061-070/models.mjs",
+          "result": "inspectWindows: risco HIGH apenas quando binário privilegiado é modificável pelo grupo genérico"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/062.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Windows: identidade LocalSystem e ACE Users:Modify versus LocalService com Read. Limite explicitado: Não inspeciona ACL efetiva, herança, UAC ou binário real"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/062.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-062.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/062.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "inspectWindows: risco HIGH apenas quando binário privilegiado é modificável pelo grupo genérico"
+        }
+      ]
+    },
+    "AULA-063": {
+      "title": "Privilege Escalation Linux",
+      "contentPath": "/course-library/main/063.md",
+      "contentSha256": "dd726d5effda1d92c8aefb7bf27499cfb23674d9ee6051bde3746948f042956e",
+      "technicalSources": [
+        "https://www.sudo.ws/docs/man/sudoers.man/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Elevação Linux: configuração e script sudo delegados criam caminho de privilégio condicionado",
+      "observations": "linuxPrivilegePath: root delegated com escrita pelo deploy HIGH; sem escrita LOW",
+      "limitations": [
+        "Não executa sudo nem examina TOCTOU, wrappers ou ambiente real",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/063.md :: 2–3; https://www.sudo.ws/docs/man/sudoers.man/",
+          "result": "Elevação Linux: configuração e script sudo delegados criam caminho de privilégio condicionado"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/063.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-063; public/course-labs/a061-070/models.mjs",
+          "result": "linuxPrivilegePath: root delegated com escrita pelo deploy HIGH; sem escrita LOW"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/063.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Elevação Linux: configuração e script sudo delegados criam caminho de privilégio condicionado. Limite explicitado: Não executa sudo nem examina TOCTOU, wrappers ou ambiente real"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/063.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-063.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/063.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "linuxPrivilegePath: root delegated com escrita pelo deploy HIGH; sem escrita LOW"
+        }
+      ]
+    },
+    "AULA-064": {
+      "title": "Privilege Escalation Windows",
+      "contentPath": "/course-library/main/064.md",
+      "contentSha256": "3e41753c9020213b0cb2718a789c33f7fb40125e490208f9c002cd5c5a1d3f48",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/services/service-programs"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Elevação Windows: unquoted service path só é preocupante com ACL de prefixo e principal elevado",
+      "observations": "windowsServiceRisk: HIGH com prefixo gravável LocalSystem, REVIEW sem escrita, LOW com aspas",
+      "limitations": [
+        "Não implementa resolução SCM real nem ACL efetiva NTFS",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/064.md :: 2–3; https://learn.microsoft.com/en-us/windows/win32/services/service-programs",
+          "result": "Elevação Windows: unquoted service path só é preocupante com ACL de prefixo e principal elevado"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/064.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-064; public/course-labs/a061-070/models.mjs",
+          "result": "windowsServiceRisk: HIGH com prefixo gravável LocalSystem, REVIEW sem escrita, LOW com aspas"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/064.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Elevação Windows: unquoted service path só é preocupante com ACL de prefixo e principal elevado. Limite explicitado: Não implementa resolução SCM real nem ACL efetiva NTFS"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/064.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-064.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/064.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "windowsServiceRisk: HIGH com prefixo gravável LocalSystem, REVIEW sem escrita, LOW com aspas"
+        }
+      ]
+    },
+    "AULA-065": {
+      "title": "Serviços, permissões e configurações inseguras",
+      "contentPath": "/course-library/main/065.md",
+      "contentSha256": "739d32beaea911e624ec21f62121def034a7b98b4a8a3edd71a655819af6125d",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Hardening: retirar escrita de Everyone, preservando Service:Read",
+      "observations": "secureService: remove Everyone:Write e mantém Service:Read e Admin:Modify",
+      "limitations": [
+        "Não implementa ACL nativa, herança ou acesso real do serviço",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/065.md :: 2–3; https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+          "result": "Hardening: retirar escrita de Everyone, preservando Service:Read"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/065.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-065; public/course-labs/a061-070/models.mjs",
+          "result": "secureService: remove Everyone:Write e mantém Service:Read e Admin:Modify"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/065.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Hardening: retirar escrita de Everyone, preservando Service:Read. Limite explicitado: Não implementa ACL nativa, herança ou acesso real do serviço"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/065.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-065.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/065.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "secureService: remove Everyone:Write e mantém Service:Read e Admin:Modify"
+        }
+      ]
+    },
+    "AULA-066": {
+      "title": "Nmap avançado e Service Fingerprinting",
+      "contentPath": "/course-library/main/066.md",
+      "contentSha256": "732edbea247945021ed379ed16d96a01e81cf7dba292f20e186f7d7337e00109",
+      "technicalSources": [
+        "https://nmap.org/book/vscan.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 94,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Fingerprinting: status HTTP e banner sintético não comprovam versão ou CVE",
+      "observations": "identifyLoopback: 127.0.0.1 local, HTTP 200, banner TeachingService/2.0 e HYPOTHESIS",
+      "limitations": [
+        "Não executa Nmap, probes agressivos, nem corrobora versão em pacote",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/066.md :: 2–3; https://nmap.org/book/vscan.html",
+          "result": "Fingerprinting: status HTTP e banner sintético não comprovam versão ou CVE"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/066.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-066; public/course-labs/a061-070/models.mjs",
+          "result": "identifyLoopback: 127.0.0.1 local, HTTP 200, banner TeachingService/2.0 e HYPOTHESIS"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/066.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Fingerprinting: status HTTP e banner sintético não comprovam versão ou CVE. Limite explicitado: Não executa Nmap, probes agressivos, nem corrobora versão em pacote"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/066.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-066.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/066.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "identifyLoopback: 127.0.0.1 local, HTTP 200, banner TeachingService/2.0 e HYPOTHESIS"
+        }
+      ]
+    },
+    "AULA-067": {
+      "title": "Vulnerability Scanning profissional — Nessus/OpenVAS/Nuclei",
+      "contentPath": "/course-library/main/067.md",
+      "contentSha256": "36b45357f70eb588cadbba7515156ebc785f73254c09388b9c416b0715418649",
+      "technicalSources": [
+        "https://owasp.org/www-community/Vulnerability_Scanning_Tools"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Scanning: falso positivo, match parcial e confirmação contextual em laboratório",
+      "observations": "scanFinding: POSSIBLE por assinatura, CONFIRMED_LAB por efeito e versão, FALSE_POSITIVE por correção",
+      "limitations": [
+        "Não usa scanner SaaS, feeds atualizados ou ambiente produtivo; cobertura não é completa",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/067.md :: 2–3; https://owasp.org/www-community/Vulnerability_Scanning_Tools",
+          "result": "Scanning: falso positivo, match parcial e confirmação contextual em laboratório"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/067.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-067; public/course-labs/a061-070/models.mjs",
+          "result": "scanFinding: POSSIBLE por assinatura, CONFIRMED_LAB por efeito e versão, FALSE_POSITIVE por correção"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/067.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Scanning: falso positivo, match parcial e confirmação contextual em laboratório. Limite explicitado: Não usa scanner SaaS, feeds atualizados ou ambiente produtivo; cobertura não é completa"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/067.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-067.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/067.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "scanFinding: POSSIBLE por assinatura, CONFIRMED_LAB por efeito e versão, FALSE_POSITIVE por correção"
+        }
+      ]
+    },
+    "AULA-068": {
+      "title": "CVE, CWE, CVSS e advisories",
+      "contentPath": "/course-library/main/068.md",
+      "contentSha256": "1c3adcad7c02a2b7af190d8bdd0f9bd27fd5a8d85e545eb72ef47b149349460d",
+      "technicalSources": [
+        "https://www.first.org/cvss/"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "CVE/CWE/CVSS: advisory fictício e correlação estrita de produto/versão; CVSS não é prioridade",
+      "observations": "matchAdvisory: 2.3.9 potencial, 2.4.0 não; outro produto não; dev=NEEDS_REVIEW",
+      "limitations": [
+        "Não calcula CVSS, intervalos semver completos, hotfix ou advisories reais",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/068.md :: 2–3; https://www.first.org/cvss/",
+          "result": "CVE/CWE/CVSS: advisory fictício e correlação estrita de produto/versão; CVSS não é prioridade"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/068.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-068; public/course-labs/a061-070/models.mjs",
+          "result": "matchAdvisory: 2.3.9 potencial, 2.4.0 não; outro produto não; dev=NEEDS_REVIEW"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/068.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "CVE/CWE/CVSS: advisory fictício e correlação estrita de produto/versão; CVSS não é prioridade. Limite explicitado: Não calcula CVSS, intervalos semver completos, hotfix ou advisories reais"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/068.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-068.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/068.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "matchAdvisory: 2.3.9 potencial, 2.4.0 não; outro produto não; dev=NEEDS_REVIEW"
+        }
+      ]
+    },
+    "AULA-069": {
+      "title": "Validação segura de PoCs em laboratório",
+      "contentPath": "/course-library/main/069.md",
+      "contentSha256": "ee40b8106b87b2dd9b379a2600ab309e151c34e1259376f3b0c59a0032b4272c",
+      "technicalSources": [
+        "https://owasp.org/www-project-web-security-testing-guide/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "PoC segura: ownership, isolamento, snapshot, limites e proibição de efeitos destrutivos",
+      "observations": "validatePocPlan: permite ação read-fixture limitada, rejeita delete-records e escopo/snapshot inválidos",
+      "limitations": [
+        "Aprovação do plano não valida código de terceiros nem elimina riscos reais",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/069.md :: 2–3; https://owasp.org/www-project-web-security-testing-guide/",
+          "result": "PoC segura: ownership, isolamento, snapshot, limites e proibição de efeitos destrutivos"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/069.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-069; public/course-labs/a061-070/models.mjs",
+          "result": "validatePocPlan: permite ação read-fixture limitada, rejeita delete-records e escopo/snapshot inválidos"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/069.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "PoC segura: ownership, isolamento, snapshot, limites e proibição de efeitos destrutivos. Limite explicitado: Aprovação do plano não valida código de terceiros nem elimina riscos reais"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/069.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-069.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/069.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "validatePocPlan: permite ação read-fixture limitada, rejeita delete-records e escopo/snapshot inválidos"
+        }
+      ]
+    },
+    "AULA-070": {
+      "title": "Active Directory fundamentals",
+      "contentPath": "/course-library/main/070.md",
+      "contentSha256": "d9274ecbd4ee053018a04e5a277e959b32fdb3cddc3d5f5e4dcbf9ce62b0a8ff",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/active-directory-logical-structure"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "technicalScope": "Active Directory: nesting de grupos efetivos com ciclos, distinguindo membership de OU e GPO",
+      "observations": "adEffectiveGroups: Readers→Reviewers→Auditors, ciclo termina e usuário fora permanece sem membership",
+      "limitations": [
+        "Não consulta Domain Controller, token, trusts, SID history ou escopos de grupo reais",
+        "Revisão IA, sem eficácia pedagógica observada com alunos humanos."
+      ],
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura crítica IA de definição, mecanismo causal, distinção de evidência e fonte primária",
+          "reference": "public/course-library/main/070.md :: 2–3; https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/active-directory-logical-structure",
+          "result": "Active Directory: nesting de grupos efetivos com ciclos, distinguindo membership de OU e GPO"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA de iniciante, sem aluno ou avaliador humano",
+          "reference": "public/course-library/main/070.md :: 1, 2, 4 checkpoints",
+          "result": "Cenário contextualizado antes de conceitos, exemplos comentados, previsão anterior ao experimento e três checkpoints com erro de interpretação explicado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Critérios de aceitação RED→GREEN em suíte Node isolada; resultado sujeito a validação de Actions",
+          "reference": "public/course-labs/a061-070/lab.test.mjs :: AULA-070; public/course-labs/a061-070/models.mjs",
+          "result": "adEffectiveGroups: Readers→Reviewers→Auditors, ciclo termina e usuário fora permanece sem membership"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão IA de caminho positivo/negativo, decisão e ausência de inferência de produção",
+          "reference": "public/course-library/main/070.md :: 5 Evidência, defesa e troubleshooting",
+          "result": "Active Directory: nesting de grupos efetivos com ciclos, distinguindo membership de OU e GPO. Limite explicitado: Não consulta Domain Controller, token, trusts, SID history ou escopos de grupo reais"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria editorial de avaliação por transferência independente com seis questões novas e gabarito separado",
+          "reference": "public/course-library/main/070.md :: 6 Prova final; public/course-labs/a061-070/answer-keys/AULA-070.md :: Rubrica",
+          "result": "Seis questões baseadas em novo caso, respostas comentadas em arquivo diferente e critérios eliminatórios específicos."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Confronto IA de sujeito, operação, policy, efeito e exemplos negativos representados em fixtures",
+          "reference": "public/course-library/main/070.md :: 3–5; public/course-labs/a061-070/models.mjs",
+          "result": "adEffectiveGroups: Readers→Reviewers→Auditors, ciclo termina e usuário fora permanece sem membership"
+        }
+      ]
+    }
+  }
+}

@@ -8,7 +8,7 @@
 - **Active Directory:** 071–078; **Blue Team/logs:** 079–080.
 - Laboratórios locais e determinísticos Node 22+ com 21 testes, sem login, acesso externo, Windows ou dependência paga obrigatória.
 - Hash SHA-256 por unidade em `quality/registry.json` e `quality/reviews/a071-080-2026-10-13.json` para invalidar o parecer quando conteúdo mudar.
-- Preservadas 55 notas anteriores e a distribuição histórica; registro passa a 65 notas A editoriais.
+- Preservadas 65 notas anteriores e a distribuição histórica; registro passa a 75 notas A editoriais.
 
 ## Limitações
 
