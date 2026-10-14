@@ -1,75 +1,55 @@
-# Cyber Study Hub — plataforma multiusuário (self-hosted)
+# Cyber Study Hub — plataforma de contas
 
-## Funcionalidades
-- Login com senha, sessão HttpOnly, cookies SameSite=Lax e Secure em HTTPS.
-- Bootstrap do primeiro administrador com chave definida no servidor.
-- Convites de uso único (48h) e cadastro público desativado por padrão.
-- Perfis: aluno, instrutor e administrador; gestão de contas reservada ao admin.
-- Suspensão revoga as sessões do usuário.
-- Nome, troca de senha e invalidação de sessões antigas.
-- Progresso por usuário em SQLite, sincronizado por chaves e com fila local persistente em caso de falha de rede.
-- Importação opcional, não destrutiva, de progresso legado.
+Esta implementação cria contas, sessões, convites, permissões e progresso individual, preservando as 543 unidades do catálogo.
 
-Não há dependência de serviço de autenticação pago, SDK de terceiros nem API de IA. Núcleo R$ 0 com Node.js 22.16+ e SQLite nativo.
+## Produção: Cloudflare Workers e Durable Objects SQLite
 
-## Instalação local
-1. Instale Node.js 22.16+.
-2. Execute npm ci e npm run build.
-3. Gere uma chave aleatória longa (exemplo: openssl rand -hex 32). Não coloque a chave em Git ou no frontend.
-4. Configure variáveis de ambiente para o servidor. Exemplo Linux/macOS:
+A implantação principal agora usa **o mesmo Cloudflare Worker** para frontend e API. O arquivo wrangler.toml declara main=src/worker/index.mjs, assets=dist, run_worker_first para /api/* e a classe Durable Object HubAuthObject com SQLite persistente.
 
-    HUB_ORIGIN=http://localhost:8788 HUB_BOOTSTRAP_KEY='SUA_CHAVE_ALEATORIA' npm start
+**Nenhum backend Node separado ou provisionamento de D1 é necessário.** O Wrangler cria o namespace Durable Objects SQLite no primeiro deploy. O comando de publicação continua npm run deploy, já configurado no package.json e no fluxo existente do GitHub.
 
-5. Acesse http://localhost:8788 e configure o primeiro administrador. Depois disso, o bootstrap fecha.
-6. Como administrador, abra Usuários para gerar convites e compartilhá-los com o destinatário.
+Durable Objects SQLite está disponível no plano Cloudflare Workers Free (sujeito às cotas gratuitas; ao exceder, operações podem falhar). O servidor Node com SQLite permanece como alternativa 100% self-hosted e open source.
 
-Padrões: PORT=8788, HUB_DATA_DIR=./.hub-data. O diretório contém a base SQLite, protegida pelo .gitignore.
+## Chave de instalação obrigatória
 
-### Desenvolvimento com Vite
-Terminal 1:
+Antes de integrar e publicar esta branch, configure no Worker cyber-study-hub um secret de nome HUB_BOOTSTRAP_KEY, com valor aleatório longo (exemplo de geração local: openssl rand -hex 32).
 
-    HUB_ORIGIN=http://localhost:5173 HUB_BOOTSTRAP_KEY='SUA_CHAVE_ALEATORIA' npm run dev:api
+No painel Cloudflare: Workers & Pages > cyber-study-hub > Settings > Variables and Secrets > Add > Secret.
 
-Terminal 2:
+Nunca coloque esse valor no Git, no wrangler.toml, na página web ou nesta conversa. O wrangler.toml declara o secret como obrigatório: se estiver ausente, o deploy deve recusar a publicação em vez de colocar no ar um login impossível de inicializar. O comando wrangler secret put pode publicar uma versão imediatamente; prefira configurar com o cuidado adequado antes do merge.
 
-    npm run dev
+Depois que o secret existir e os testes passarem, o merge para a main seguirá o deploy automático que já existe. No primeiro acesso, use a chave para cadastrar o administrador inicial. O bootstrap é de uso único. Depois, acesse Usuários para gerar convites de aluno, instrutor ou administrador.
 
-Acesse http://localhost:5173. Vite encaminha /api à porta 8788. A variável HUB_ORIGIN precisa corresponder exatamente à origem do navegador, incluindo a porta.
+O cadastro público é desativado por padrão. Convites são válidos por 48 horas.
 
-### Produção
-- Utilize HTTPS com proxy reverso terminando TLS, enviando requisições ao Node. Defina HUB_ORIGIN=https://seudominio.
-- Nunca exponha SQLite diretamente. Faça backup consistente do banco e do WAL.
-- HUB_OPEN_REGISTRATION=1 habilita cadastro público opcional. O padrão é desligado.
-- O instrutor já tem identidade própria, mas ainda não possui área exclusiva para criar conteúdo.
-- Envio de e-mail, MFA e recuperação autônoma de senha são extensões futuras; convites são compartilhados manualmente.
-- A API reconhece o usuário pelo cookie validado no servidor, não por userId fornecido pelo cliente.
+## Validação
 
-## Migração e isolamento de progresso
-O estado anterior ao login (chaves cyber-study-*) não é associado automaticamente a qualquer usuário. A opção Minha conta > Importar progresso antigo só deve ser usada pelo dono dos dados; ela substitui os registros correspondentes na conta escolhida e não remove os dados antigos.
+- npm run test:platform: teste do backend Node e SQLite.
+- npm run build: integridade das aulas, qualidade editorial, tipos e frontend.
+- npx wrangler deploy --dry-run: valida bundling do Worker, sem publicar.
+- npm run test:worker: executa um Worker local real com Durable Objects SQLite e testa autenticação, convite, isolamento do progresso, suspensão, logout e entrega do frontend.
+- O service worker não intercepta nem guarda respostas da API e remove o cache antigo.
 
-O cache novo usa chaves por conta, separadas por ID. O banco usa user_state(user_id,key,value). A fila local de gravações offline é preservada e reenviada depois; o logout é bloqueado se ainda houver dados pendentes. Se o mesmo aluno editar em dois dispositivos ao mesmo tempo, prevalece a gravação mais recente recebida pelo servidor.
+Testes locais e dry-run não substituem QA no domínio publicado. Antes da troca definitiva, validar login, cookies Secure, dois usuários, sincronização e administração em ambiente real.
 
-## Bloqueio de publicação no Cloudflare atual
-A aplicação em produção está configurada apenas como Cloudflare Workers Static Assets. O deploy existente não tem backend Node nem rota /api/*.
+## Alternativa self-hosted gratuita (sem Cloudflare)
 
-**Não mergear esta branch diretamente na main atual**: o login passaria a depender de rotas que não existem no Worker estático. Antes de publicar, configurar uma rota /api/* no mesmo domínio para o servidor Node self-hosted, ou desenvolver, provisionar e testar um backend opcional específico para Cloudflare. Manter intactas as rotas existentes.
+O backend portátil em server/platform.mjs e server/start.mjs funciona com Node.js 22.16+ e SQLite nativo, sem serviços externos.
 
-Os materiais e aulas estáticos sob /course-library e /materials continuam públicos. Esta etapa fornece contas e progresso individual; não constitui bloqueio pago de conteúdo nem autorização por assinatura. Conteúdo privado futuro exige proteção no servidor e auditoria do cache e do service worker.
+Exemplo Linux/macOS:
 
-## Testes
-- npm run test:platform: integração HTTP de login, bootstrap, convites, RBAC, isolamento e estado SQLite.
-- npm run build: testes de currículo e qualidade já presentes no projeto.
-- CI do PR: Node.js 22 executando os dois comandos.
-- QA manual necessário: primeiro acesso, cadastro por convite, login, logout, suspensão, troca de senha, convite usado, teste de dois navegadores e sincronização offline.
+    npm ci
+    npm run build
+    HUB_ORIGIN=http://localhost:8788 HUB_BOOTSTRAP_KEY='CHAVE_ALEATORIA_FORTE' npm start
 
-## Cloudflare Workers — implantação no mesmo Worker (preferencial)
-A branch também implementa a API diretamente em `src/worker/index.mjs`, com classe `HubAuthObject` baseada em Durable Objects SQLite. O `wrangler.toml` configura `/api/*` para o Worker, mantendo os demais assets e a SPA. O namespace SQLite é criado automaticamente no primeiro deploy; não há banco D1 a criar ou servidor Node a contratar. Este backend usa os recursos do plano Free (com limites de requisições/armazenamento do plano), e o backend Node/SQLite permanece disponível para self-hosting sem Cloudflare.
+Acesse http://localhost:8788. O banco local fica em .hub-data/platform.sqlite e não entra no Git. Para produção própria, use HTTPS com proxy reverso, backups consistentes e isolamento do armazenamento.
 
-**Preparação obrigatória antes de publicar o login na produção:** cadastrar uma chave forte como segredo do Worker sob o nome `HUB_BOOTSTRAP_KEY`, preferencialmente via painel Cloudflare > Workers > cyber-study-hub > Settings > Variables and Secrets, ou pelo comando `npx wrangler secret put HUB_BOOTSTRAP_KEY`. Não registrar o valor no GitHub, em `wrangler.toml`, nas variáveis públicas do Vite nem no chat.
+## Regras e limitações
 
-Depois, o comando `npm run deploy` constrói e publica frontend + Worker API + namespace SQLite juntos. O primeiro acesso pede a chave para criar o administrador. Com o primeiro admin registrado, não é possível usar novamente o bootstrap. O cadastro de alunos fica restrito a convites criados no painel. A primeira publicação exige verificar que a API e o segredo realmente estão ativos antes de passar o tráfego do site.
-
-Testes específicos de Cloudflare: `npm run test:worker` (Wrangler local, autenticação e SQLite em Durable Object), `npx wrangler deploy --dry-run` (empacotamento Cloudflare). Não criar secrets em CI nem depender de serviços pagos.
-
-### Revisão do aviso antigo
-A seção acima substitui o bloqueio por falta de backend Node externo descrito anteriormente: agora existe backend nativo no mesmo Worker. Permanece somente a etapa de provisionar o segredo inicial e testar o deploy/autenticação sem interromper acesso existente. 
+- Aluno, instrutor, administrador; apenas administrador gerencia usuários, convites e suspensão.
+- Senhas PBKDF2-SHA256 com salt, sessão aleatória HttpOnly SameSite=Lax e Secure em HTTPS.
+- Progresso e jogos isolados por conta. O aluno precisa confirmar manualmente a importação do progresso antigo.
+- Alterações offline aguardam sincronização em fila local; não é permitido logout com envios pendentes.
+- Não há recuperação de senha por e-mail, MFA ou painel exclusivo de instrutor nesta etapa.
+- URLs públicas de aulas e PDFs continuam públicas: não foi criado controle de assinatura nem paywall.
+- Não há dependência de serviço de IA ou autenticação pago. O núcleo self-hosted permanece gratuito e aberto.
