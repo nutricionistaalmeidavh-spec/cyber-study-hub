@@ -1149,6 +1149,710 @@
           "result": "<b>olá</b>, O'Hara & equipe, textContent e innerHTML"
         }
       ]
+    },
+    "AULA-010": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Proxy/Repeater com duas requisições HTTP reais em 127.0.0.1; baseline e alteração de x-lab-marker medidos com dois status 200. Evidência observada: baseline.echo=original, modified.echo=teste-local; count=2. Limitação declarada: Não reproduz autenticação nem demonstra falha de segurança.",
+      "contentSha256": "1665db279a8b1da8db0118a424884b34d0e2d11efc4c3877a22c19eed4d167ba",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/010.md :: Mecanismo; https://portswigger.net/burp/documentation/desktop/tools/repeater",
+          "result": "Proxy/Repeater com duas requisições HTTP reais em 127.0.0.1; baseline e alteração de x-lab-marker medidos com dois status 200. Ressalva examinada: Não reproduz autenticação nem demonstra falha de segurança."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/010.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/010.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "baseline.echo=original, modified.echo=teste-local; count=2."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/010.md :: Detecção, defesa e investigação",
+          "result": "baseline.echo=original, modified.echo=teste-local; count=2. Limite: Não reproduz autenticação nem demonstra falha de segurança."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/010.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-010.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/010.md; public/course-labs/a10-20/lab.test.mjs; https://portswigger.net/burp/documentation/desktop/tools/repeater",
+          "result": "baseline.echo=original, modified.echo=teste-local; count=2."
+        }
+      ]
+    },
+    "AULA-011": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Mass assignment em PATCH /me; diferencia cópia indiscriminada de campos versus DTO restrito pelo servidor. Evidência observada: role=admin no modelo vulnerável e role=reader no protegido com name atualizado. Limitação declarada: Modelo em memória não representa ORM nem todas as regras de validação do schema.",
+      "contentSha256": "ef476caf77dc5737ada39ac74ea66a0e3b5f3fd9faf66002e7f091680ff0b860",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/011.md :: Mecanismo; https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html",
+          "result": "Mass assignment em PATCH /me; diferencia cópia indiscriminada de campos versus DTO restrito pelo servidor. Ressalva examinada: Modelo em memória não representa ORM nem todas as regras de validação do schema."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/011.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/011.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "role=admin no modelo vulnerável e role=reader no protegido com name atualizado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/011.md :: Detecção, defesa e investigação",
+          "result": "role=admin no modelo vulnerável e role=reader no protegido com name atualizado. Limite: Modelo em memória não representa ORM nem todas as regras de validação do schema."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/011.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-011.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/011.md; public/course-labs/a10-20/lab.test.mjs; https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html",
+          "result": "role=admin no modelo vulnerável e role=reader no protegido com name atualizado."
+        }
+      ]
+    },
+    "AULA-012": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "BOLA multiempresa com F101: usuário de org-b não pode ler fatura de org-a; caso legítimo segue acessível. Evidência observada: org-b=404/body null; org-a=200; versão vulnerável=200 para org-b. Limitação declarada: Fixture não cobre queries reais, cache nem exportações de lote.",
+      "contentSha256": "d4b5a85f80de540b1abf891c054c7b69298826830e1dfce719db0a5cadfdc22e",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/012.md :: Mecanismo; https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+          "result": "BOLA multiempresa com F101: usuário de org-b não pode ler fatura de org-a; caso legítimo segue acessível. Ressalva examinada: Fixture não cobre queries reais, cache nem exportações de lote."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/012.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/012.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "org-b=404/body null; org-a=200; versão vulnerável=200 para org-b."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/012.md :: Detecção, defesa e investigação",
+          "result": "org-b=404/body null; org-a=200; versão vulnerável=200 para org-b. Limite: Fixture não cobre queries reais, cache nem exportações de lote."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/012.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-012.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/012.md; public/course-labs/a10-20/lab.test.mjs; https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+          "result": "org-b=404/body null; org-a=200; versão vulnerável=200 para org-b."
+        }
+      ]
+    },
+    "AULA-013": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Upload de PDF fictício: extensão e MIME não bastam; assinatura parcial e limite de bytes em fixture local. Evidência observada: %PDF- curto aceito para estudo; HTML renomeado e payload >1MiB rejeitados. Limitação declarada: Magic bytes não validam PDF inteiro ou removem conteúdo ativo; exige parser e isolamento em produção.",
+      "contentSha256": "ab752f4392d7bafee16ea01e75b191b46f92496e3a556a0269033cb04a97f6b7",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/013.md :: Mecanismo; https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
+          "result": "Upload de PDF fictício: extensão e MIME não bastam; assinatura parcial e limite de bytes em fixture local. Ressalva examinada: Magic bytes não validam PDF inteiro ou removem conteúdo ativo; exige parser e isolamento em produção."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/013.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/013.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "%PDF- curto aceito para estudo; HTML renomeado e payload >1MiB rejeitados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/013.md :: Detecção, defesa e investigação",
+          "result": "%PDF- curto aceito para estudo; HTML renomeado e payload >1MiB rejeitados. Limite: Magic bytes não validam PDF inteiro ou removem conteúdo ativo; exige parser e isolamento em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/013.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-013.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/013.md; public/course-labs/a10-20/lab.test.mjs; https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
+          "result": "%PDF- curto aceito para estudo; HTML renomeado e payload >1MiB rejeitados."
+        }
+      ]
+    },
+    "AULA-014": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "CORS com origem exata, Vary Origin e rejeição de domínios com sufixos parecidos; diferencia política de navegador de autorização. Evidência observada: allow-origin somente em painel.exemplo.test e Vary Origin; duas outras origens sem permissão. Limitação declarada: Verificação de headers em Node não é teste de leitura de CORS em navegador real.",
+      "contentSha256": "6e13803b358b95fac986c1fe2a1e765eb09daf8f62292521c823ab0c4687a094",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/014.md :: Mecanismo; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+          "result": "CORS com origem exata, Vary Origin e rejeição de domínios com sufixos parecidos; diferencia política de navegador de autorização. Ressalva examinada: Verificação de headers em Node não é teste de leitura de CORS em navegador real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/014.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/014.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "allow-origin somente em painel.exemplo.test e Vary Origin; duas outras origens sem permissão."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/014.md :: Detecção, defesa e investigação",
+          "result": "allow-origin somente em painel.exemplo.test e Vary Origin; duas outras origens sem permissão. Limite: Verificação de headers em Node não é teste de leitura de CORS em navegador real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/014.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-014.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/014.md; public/course-labs/a10-20/lab.test.mjs; https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+          "result": "allow-origin somente em painel.exemplo.test e Vary Origin; duas outras origens sem permissão."
+        }
+      ]
+    },
+    "AULA-015": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "SSRF por redirect 302 em duas origens loopback com contador interno; preservado laboratório de fase 16. Evidência observada: internalHits legado=1 e delta após fix=0; testes SSRF da suíte phase16-web-p0 passaram no Actions. Limitação declarada: Não cobre DNS rebinding, IP dinâmico ou egress policy geral.",
+      "contentSha256": "3e4307a1963702845f60197a45d7394d563de07b1fdf6a21297fead3855977dc",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 90,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/015.md :: Mecanismo; https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+          "result": "SSRF por redirect 302 em duas origens loopback com contador interno; preservado laboratório de fase 16. Ressalva examinada: Não cobre DNS rebinding, IP dinâmico ou egress policy geral."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/015.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/015.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "internalHits legado=1 e delta após fix=0; testes SSRF da suíte phase16-web-p0 passaram no Actions."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/015.md :: Detecção, defesa e investigação",
+          "result": "internalHits legado=1 e delta após fix=0; testes SSRF da suíte phase16-web-p0 passaram no Actions. Limite: Não cobre DNS rebinding, IP dinâmico ou egress policy geral."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/015.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-015.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/015.md; public/course-labs/a10-20/lab.test.mjs; https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+          "result": "internalHits legado=1 e delta após fix=0; testes SSRF da suíte phase16-web-p0 passaram no Actions."
+        }
+      ]
+    },
+    "AULA-016": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Carrinho fictício com preço servidor de 7000 centavos; valida quantidade e estoque, não confia em preço do cliente. Evidência observada: qty 2 retorna 14000; qty negativo e quantidade > estoque rejeitados. Limitação declarada: Modelo isolado não substitui persistência, reversões ou transações de compra real.",
+      "contentSha256": "668a046e1ed91e8e088caa630d281606b2d134cc95a2172144b0c3a5b220f5d2",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/016.md :: Mecanismo; https://owasp.org/www-community/vulnerabilities/Business_logic_vulnerability",
+          "result": "Carrinho fictício com preço servidor de 7000 centavos; valida quantidade e estoque, não confia em preço do cliente. Ressalva examinada: Modelo isolado não substitui persistência, reversões ou transações de compra real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/016.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/016.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "qty 2 retorna 14000; qty negativo e quantidade > estoque rejeitados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/016.md :: Detecção, defesa e investigação",
+          "result": "qty 2 retorna 14000; qty negativo e quantidade > estoque rejeitados. Limite: Modelo isolado não substitui persistência, reversões ou transações de compra real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/016.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-016.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/016.md; public/course-labs/a10-20/lab.test.mjs; https://owasp.org/www-community/vulnerabilities/Business_logic_vulnerability",
+          "result": "qty 2 retorna 14000; qty negativo e quantidade > estoque rejeitados."
+        }
+      ]
+    },
+    "AULA-017": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Race condition simulada por interleaving explícito: duas confirmações para apenas uma vaga, depois uma confirmação no modelo corrigido. Evidência observada: unsafeApproved=2, safeApproved=1, safeStock=0 em execução determinística. Limitação declarada: Não comprova serialização e isolamentos de transações de banco real.",
+      "contentSha256": "c0e4fc5d79bc44fb619516f978c509598b1525c7d206972804d62128f1d8767b",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/017.md :: Mecanismo; https://portswigger.net/web-security/race-conditions",
+          "result": "Race condition simulada por interleaving explícito: duas confirmações para apenas uma vaga, depois uma confirmação no modelo corrigido. Ressalva examinada: Não comprova serialização e isolamentos de transações de banco real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/017.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/017.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "unsafeApproved=2, safeApproved=1, safeStock=0 em execução determinística."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/017.md :: Detecção, defesa e investigação",
+          "result": "unsafeApproved=2, safeApproved=1, safeStock=0 em execução determinística. Limite: Não comprova serialização e isolamentos de transações de banco real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/017.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-017.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/017.md; public/course-labs/a10-20/lab.test.mjs; https://portswigger.net/web-security/race-conditions",
+          "result": "unsafeApproved=2, safeApproved=1, safeStock=0 em execução determinística."
+        }
+      ]
+    },
+    "AULA-018": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Escalada vertical: leitor envia role=admin em edição do próprio perfil; backend preserva papel de sessão. Evidência observada: name atualizado, role=reader; rota admin nega reader e admite admin. Limitação declarada: Modelo não representa revogação de sessão, permissão por objeto nem papel em cache.",
+      "contentSha256": "bb4754ec783f750293fad59baba9f5418a84948342ce7b8b2117027e344fabb2",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/018.md :: Mecanismo; https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+          "result": "Escalada vertical: leitor envia role=admin em edição do próprio perfil; backend preserva papel de sessão. Ressalva examinada: Modelo não representa revogação de sessão, permissão por objeto nem papel em cache."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/018.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/018.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "name atualizado, role=reader; rota admin nega reader e admite admin."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/018.md :: Detecção, defesa e investigação",
+          "result": "name atualizado, role=reader; rota admin nega reader e admite admin. Limite: Modelo não representa revogação de sessão, permissão por objeto nem papel em cache."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/018.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-018.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/018.md; public/course-labs/a10-20/lab.test.mjs; https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+          "result": "name atualizado, role=reader; rota admin nega reader e admite admin."
+        }
+      ]
+    },
+    "AULA-019": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "JWT didático HS256: decode aceita payload alterado, verificador usa timing-safe signature e iss/aud/exp; introduz ciclo de refresh distinto. Evidência observada: sub A17 válido; sub ADMIN somente no decode; assinatura adulterada/expirado rejeitados. Limitação declarada: Fixture tem chave pública de laboratório; não testa rotação de refresh nem provedores externos.",
+      "contentSha256": "3ec74ada40638a076785624e448b85fb0f191d6e0df3919b174592ef6f5dd286",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 91,
+        "avaliacao": 88,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/019.md :: Mecanismo; https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html",
+          "result": "JWT didático HS256: decode aceita payload alterado, verificador usa timing-safe signature e iss/aud/exp; introduz ciclo de refresh distinto. Ressalva examinada: Fixture tem chave pública de laboratório; não testa rotação de refresh nem provedores externos."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/019.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/019.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "sub A17 válido; sub ADMIN somente no decode; assinatura adulterada/expirado rejeitados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/019.md :: Detecção, defesa e investigação",
+          "result": "sub A17 válido; sub ADMIN somente no decode; assinatura adulterada/expirado rejeitados. Limite: Fixture tem chave pública de laboratório; não testa rotação de refresh nem provedores externos."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/019.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-019.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/019.md; public/course-labs/a10-20/lab.test.mjs; https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html",
+          "result": "sub A17 válido; sub ADMIN somente no decode; assinatura adulterada/expirado rejeitados."
+        }
+      ]
+    },
+    "AULA-020": {
+      "grade": "A",
+      "author": "Cyber Study Hub — revisão de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — revisão crítica separada de conteúdo e resultados de QA (IA, não humano)",
+      "reviewedOn": "2026-10-13",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "OAuth/OIDC Authorization Code + PKCE + state + nonce com provas da suíte local; caso adicional de duas abas. Evidência observada: login alice; state, PKCE, nonce, token incorreto e código reutilizado rejeitados nos testes. Limitação declarada: Fluxo em processo único não comprova federação externa, navegador, storage e políticas reais.",
+      "contentSha256": "9aaca4a0aab079b763213fac0f134629af224ceb6893a7c0a59072e9faff3f8a",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 90,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Leitura e crítica por assunto após escrita, cruzando termos, fronteiras e escopo com documentação da tecnologia",
+          "reference": "public/course-library/main/020.md :: Mecanismo; https://www.rfc-editor.org/rfc/rfc9700",
+          "result": "OAuth/OIDC Authorization Code + PKCE + state + nonce com provas da suíte local; caso adicional de duas abas. Ressalva examinada: Fluxo em processo único não comprova federação externa, navegador, storage e políticas reais."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial por IA assumindo estudante iniciante, sem alegar teste com pessoa real",
+          "reference": "public/course-library/main/020.md :: Vocabulário sem pressupostos; Problema; Exemplo",
+          "result": "Parte de um caso com identificadores concretos, introduz três termos e pede previsão antes da execução, comparação e explicação da consequência."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Verificação dos casos locais Node e suíte específica da fase 16 no GitHub Actions com cenários de controle positivo e negativo",
+          "reference": "public/course-library/main/020.md :: Laboratório; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38488529578",
+          "result": "login alice; state, PKCE, nonce, token incorreto e código reutilizado rejeitados nos testes."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Conferência de rejeição do negativo sem bloquear legítimo e leitura explícita dos limites de generalização",
+          "reference": "public/course-library/main/020.md :: Detecção, defesa e investigação",
+          "result": "login alice; state, PKCE, nonce, token incorreto e código reutilizado rejeitados nos testes. Limite: Fluxo em processo único não comprova federação externa, navegador, storage e políticas reais."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem IA do caso de transferência com correção em arquivo separado e erro eliminatório",
+          "reference": "public/course-library/main/020.md :: Caso de transferência; public/course-labs/a10-20/answer-keys/AULA-020.md",
+          "result": "Seis questões sobre tabela de confiança, positivo, negativo isolado, correção, regressão e limites; respostas e rubrica 100 pontos em outro arquivo."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio manual do caso, parâmetros e resultados de execução previstos no documento até o assert executado no CI",
+          "reference": "public/course-library/main/020.md; public/course-labs/a10-20/lab.test.mjs; https://www.rfc-editor.org/rfc/rfc9700",
+          "result": "login alice; state, PKCE, nonce, token incorreto e código reutilizado rejeitados nos testes."
+        }
+      ]
     }
   },
   "policy": {
