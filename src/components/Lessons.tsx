@@ -6,7 +6,7 @@ import { CurriculumBrowser } from './curriculum/CurriculumBrowser';
 import { hasNativeV2Lesson } from '../content/registry';
 import { LessonViewerV2 } from './lesson-v2/LessonViewerV2';
 
-export function LessonList(props:{initialTrack?:string}) {
+export function LessonList(props:{initialTrack?:string;initialMode?:'main'|'parallel'}) {
   return <CurriculumBrowser {...props} />;
 }
 

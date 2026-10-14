@@ -1,4 +1,4 @@
-import { useMemo, useState, type ChangeEvent } from 'react';
+import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
 import catalogData from '../../curriculum/catalog.json';
 import type {
   CurriculumCatalog,
@@ -17,11 +17,18 @@ const catalog = catalogData as CurriculumCatalog;
 
 type ViewMode = 'main' | 'parallel';
 
-export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
-  const [mode, setMode] = useState<ViewMode>('main');
+export function CurriculumBrowser({ initialTrack, initialMode = 'main' }: { initialTrack?: string; initialMode?: ViewMode }) {
+  const [mode, setMode] = useState<ViewMode>(initialMode);
   const [query, setQuery] = useState('');
-  const [mainTrack, setMainTrack] = useState(initialTrack || 'Todas');
-  const [parallelTrack, setParallelTrack] = useState('Todas');
+  const [mainTrack, setMainTrack] = useState(initialMode === 'main' ? initialTrack || 'Todas' : 'Todas');
+  const [parallelTrack, setParallelTrack] = useState(initialMode === 'parallel' ? initialTrack || 'Todas' : 'Todas');
+  const [visibleCount, setVisibleCount] = useState(24);
+  useEffect(() => {
+    setMode(initialMode);
+    if (initialMode === 'parallel') setParallelTrack(initialTrack || 'Todas');
+    else setMainTrack(initialTrack || 'Todas');
+    setVisibleCount(24);
+  }, [initialMode, initialTrack]);
   const [activeParallel, setActiveParallel] = useState<Set<string>>(
     () => new Set(getActiveParallelTracks())
   );
@@ -67,6 +74,15 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
     });
   }, [query, parallelTrack]);
 
+  const resultCount = mode === 'main' ? filteredMain.length : filteredParallel.length;
+  const visibleMain = filteredMain.slice(0, visibleCount);
+  const visibleParallel = filteredParallel.slice(0, visibleCount);
+  const clearFilters = () => {
+    setQuery('');
+    setMainTrack('Todas');
+    setParallelTrack('Todas');
+    setVisibleCount(24);
+  };
   const toggleParallelTrack = (trackCode: string) => {
     setActiveParallel(previous => {
       const next = new Set(previous);
@@ -82,11 +98,10 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
       <header className="curriculum-hero">
         <div>
           <span className="eyebrow">CURRÍCULO COMPLETO</span>
-          <h1>Formação principal + trilhas paralelas</h1>
+          <h1>Encontre sua próxima aula</h1>
           <p>
-            Navegue livremente. Pré-requisitos são recomendações de sequência,
-            nunca bloqueios. O conteúdo completo fica disponível sob demanda para
-            não inflar o carregamento inicial do app.
+            Explore a formação principal ou escolha uma trilha paralela.
+            Você pode começar pela aula 001 e avançar no seu ritmo, sem bloqueios.
           </p>
         </div>
         <div className="curriculum-counts" aria-label="Resumo do currículo">
@@ -102,7 +117,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
             role="tab"
             aria-selected={mode === 'main'}
             className={mode === 'main' ? 'active' : ''}
-            onClick={() => setMode('main')}
+            onClick={() => { setMode('main'); setQuery(''); setVisibleCount(24); }}
           >
             Formação principal
           </button>
@@ -110,7 +125,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
             role="tab"
             aria-selected={mode === 'parallel'}
             className={mode === 'parallel' ? 'active' : ''}
-            onClick={() => setMode('parallel')}
+            onClick={() => { setMode('parallel'); setQuery(''); setVisibleCount(24); }}
           >
             Trilhas paralelas
           </button>
@@ -119,7 +134,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
         <input
           className="search"
           value={query}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => { setQuery(event.target.value); setVisibleCount(24); }}
           placeholder="Buscar aula, conceito, trilha ou código…"
           aria-label="Buscar currículo"
         />
@@ -132,7 +147,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
               <button
                 key={track}
                 className={mainTrack === track ? 'active' : ''}
-                onClick={() => setMainTrack(track)}
+                onClick={() => { setMainTrack(track); setVisibleCount(24); }}
               >
                 {track}
               </button>
@@ -140,7 +155,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
           </div>
 
           <section className="curriculum-list" aria-label="Formação principal">
-            {filteredMain.map(item => (
+            {visibleMain.map(item => (
               <MainItemCard
                 key={item.id}
                 item={item}
@@ -157,7 +172,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
               <button
                 key={track}
                 className={parallelTrack === track ? 'active' : ''}
-                onClick={() => setParallelTrack(track)}
+                onClick={() => { setParallelTrack(track); setVisibleCount(24); }}
               >
                 {track}
               </button>
@@ -177,7 +192,7 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
           </section>
 
           <section className="curriculum-list" aria-label="Trilhas paralelas">
-            {filteredParallel.map(item => (
+            {visibleParallel.map(item => (
               <ParallelItemCard
                 key={item.code}
                 item={item}
@@ -188,6 +203,14 @@ export function CurriculumBrowser({ initialTrack }: { initialTrack?: string }) {
           </section>
         </>
       )}
+      <footer className="curriculum-pagination" aria-live="polite">
+        <p>{resultCount === 0 ? 'Nenhuma unidade encontrada com estes filtros.' :
+          'Mostrando ' + Math.min(visibleCount, resultCount) + ' de ' + resultCount + ' unidades'}</p>
+        {resultCount === 0 && <button className="button ghost" onClick={clearFilters}>Limpar busca e filtros</button>}
+        {resultCount > visibleCount && <button className="button ghost" onClick={() => setVisibleCount(count => count + 24)}>
+          Carregar mais 24 unidades
+        </button>}
+      </footer>
     </div>
   );
 }
