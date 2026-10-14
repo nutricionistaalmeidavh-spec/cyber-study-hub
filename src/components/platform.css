@@ -30,3 +30,5 @@
 .platform-user-row select{min-height:39px;padding:8px;font-size:12px}
 .platform-import{border:1px dashed var(--line);padding:18px;border-radius:15px}
 @media(max-width:850px){.platform-gate{grid-template-columns:1fr}.platform-intro{display:none}.platform-auth{padding:34px 22px}.platform-logo{margin-bottom:50px}.platform-invite{grid-template-columns:1fr}.platform-user-header,.platform-user-row{grid-template-columns:minmax(110px,1.4fr) minmax(95px,1fr) minmax(95px,1fr);gap:8px;padding:12px 0}.platform-user-row select{font-size:11px;padding:6px}.platform-copy{flex-direction:column}}
+
+.account-sidebar{margin-top:auto;padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;gap:4px;min-width:0}.account-sidebar strong{font-size:12px;overflow-wrap:anywhere}.account-sidebar small{color:var(--muted);overflow-wrap:anywhere}.account-sidebar button{margin-top:7px;border:0;background:transparent;color:var(--teal);cursor:pointer;text-align:left;font:inherit;font-size:12px}.account-sidebar+.install-card{margin-top:0}
