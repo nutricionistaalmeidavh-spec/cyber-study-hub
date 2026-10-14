@@ -15,3 +15,6 @@ class_name = "HubAuthObject"
 [[migrations]]
 tag = "hub-auth-sqlite-v1"
 new_sqlite_classes = ["HubAuthObject"]
+
+[secrets]
+required = ["HUB_BOOTSTRAP_KEY"]
