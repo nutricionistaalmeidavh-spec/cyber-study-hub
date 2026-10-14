@@ -5,7 +5,10 @@ on:
       - 'src/App.tsx'
       - 'src/components/AcademyLanding.tsx'
       - 'src/components/academy.css'
+      - 'src/components/academy-motion.css'
+      - 'src/components/useAcademyMotion.ts'
       - 'scripts/test-academy-landing.mjs'
+      - 'scripts/test-academy-motion.mjs'
       - '.github/workflows/academy-landing.yml'
   workflow_dispatch:
 permissions:
@@ -19,4 +22,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test scripts/test-academy-landing.mjs
+      - run: node --test scripts/test-academy-landing.mjs scripts/test-academy-motion.mjs

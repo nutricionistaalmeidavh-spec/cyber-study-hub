@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import catalogData from '../curriculum/catalog.json';
 import type { CurriculumCatalog } from '../curriculum/types';
+import { useAcademyMotion } from './useAcademyMotion';
 import './academy.css';
+import './academy-motion.css';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -26,6 +28,14 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span aria-hidden="true">{diagonal ? '↗' : '→'}</span>;
 }
 
+function KineticText({ leading, accent }: { leading: string; accent: string }) {
+  const words = (value: string) => value.split(' ').map((word, index) =>
+    <span key={index} className="academy-kinetic-word">{word}{' '}</span>);
+  return <span className="academy-kinetic" data-kinetic role="text" aria-label={leading + ' ' + accent}>
+    <span aria-hidden="true">{words(leading)}<em>{words(accent)}</em></span>
+  </span>;
+}
+
 function Brand() {
   return <span className="academy-brand-lockup" aria-label="ArtiSys Academy">
     <span className="academy-brand-symbol" aria-hidden="true"><span /><span /><span /><span /></span>
@@ -34,6 +44,8 @@ function Brand() {
 }
 
 export default function AcademyLanding() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  useAcademyMotion(rootRef);
   const [mode, setMode] = useState<CatalogMode>('main');
   const modules = mode === 'main' ? principal : paralelas;
 
@@ -43,7 +55,7 @@ export default function AcademyLanding() {
     return () => { document.title = originalTitle; };
   }, []);
 
-  return <div className="academy-page" id="inicio">
+  return <div className="academy-page" ref={rootRef} id="inicio">
     <a className="academy-skip-link" href="#conteudo">Ir para o conteúdo</a>
     <header className="academy-header">
       <div className="academy-header-inner">
@@ -69,6 +81,7 @@ export default function AcademyLanding() {
           </nav>
         </details>
       </div>
+      <span className="academy-scroll-progress" data-scroll-progress aria-hidden="true" />
     </header>
 
     <main id="conteudo">
@@ -90,6 +103,7 @@ export default function AcademyLanding() {
             <span className="academy-proof-divider" aria-hidden="true"/>
             <span>Laboratórios e revisões</span>
           </div>
+          <a className="academy-scroll-cue" href="#trilhas"><span aria-hidden="true">↓</span> Role para explorar</a>
         </div>
         <div className="academy-hero-visual" aria-label="Representação ilustrativa da experiência de aprendizado">
           <div className="academy-preview-shell">
@@ -116,18 +130,18 @@ export default function AcademyLanding() {
       </section>
 
       <section className="academy-trust" aria-label="Diferenciais">
-        <div className="academy-container academy-trust-inner">
+        <div className="academy-container academy-trust-inner" data-reveal>
           <span>APRENDIZADO QUE SE ADAPTA À SUA ROTINA</span>
           <p>Conteúdo por módulos <span>◆</span> Prática orientada <span>◆</span> Acesso pelo navegador e celular</p>
         </div>
       </section>
 
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
-        <div className="academy-section-heading">
-          <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title">Seu próximo conhecimento <em>começa aqui.</em></h2></div>
+        <div className="academy-section-heading" data-reveal>
+          <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
           <p>Escolha um assunto, entre no módulo e avance aula por aula. O catálogo é organizado por temas, não por uma lista interminável de conteúdos.</p>
         </div>
-        <div className="academy-catalog-panel">
+        <div className="academy-catalog-panel" data-reveal>
           <div className="academy-catalog-top">
             <div className="academy-tabs" role="group" aria-label="Tipo de formação">
               <button type="button" className={mode === 'main' ? 'active' : ''} aria-pressed={mode === 'main'} onClick={() => setMode('main')}>Formação principal <span>{principal.length}</span></button>
@@ -135,8 +149,8 @@ export default function AcademyLanding() {
             </div>
             <span className="academy-catalog-count">{modules.length} {mode === 'main' ? 'módulos' : 'trilhas'} no catálogo</span>
           </div>
-          <div className="academy-module-grid">
-            {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title}
+          <div className="academy-module-grid" key={mode}>
+            {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title} style={{ '--academy-i': index } as CSSProperties}
               href={'/#lessons?mode=' + mode + '&module=' + encodeURIComponent(module.title)}>
               <span className="academy-module-top"><span className="academy-module-number">{String(index + 1).padStart(2, '0')}</span><span className="academy-module-arrow" aria-hidden="true">↗</span></span>
               <h3>{module.title}</h3>
@@ -148,7 +162,7 @@ export default function AcademyLanding() {
             <a href="/">Entrar na plataforma <Arrow /></a>
           </div>
         </div>
-        <a className="academy-ai-feature" href="/#ai-dev">
+        <a className="academy-ai-feature" data-reveal href="/#ai-dev">
           <div className="academy-ai-orb" aria-hidden="true">✳</div>
           <div><span>TRILHA EM DESTAQUE · IA APLICADA</span><h3>Desenvolva um sistema real com apoio de IA.</h3><p>Do planejamento à implementação, usando ChatGPT, Claude ou IA local opcional. Sem API paga obrigatória.</p></div>
           <strong>Conhecer a trilha <Arrow /></strong>
@@ -157,33 +171,33 @@ export default function AcademyLanding() {
 
       <section className="academy-section academy-method-band" id="metodo" aria-labelledby="academy-method-title">
         <div className="academy-container">
-          <div className="academy-section-heading">
-            <div><span className="academy-section-index">02 / METODOLOGIA</span><h2 id="academy-method-title">Menos teoria solta. <em>Mais prática com direção.</em></h2></div>
+          <div className="academy-section-heading" data-reveal>
+            <div><span className="academy-section-index">02 / METODOLOGIA</span><h2 id="academy-method-title"><KineticText leading="Menos teoria solta." accent="Mais prática com direção." /></h2></div>
             <p>Uma jornada simples para aprender, testar o que entendeu e continuar de onde parou.</p>
           </div>
           <div className="academy-method-grid">
-            <article><span className="academy-method-numeral">01</span><div className="academy-method-icon" aria-hidden="true">▤</div><h3>Aprenda por módulos</h3><p>Explore temas organizados, objetivos claros e aulas em sequência, sem perder o contexto.</p></article>
-            <article><span className="academy-method-numeral">02</span><div className="academy-method-icon" aria-hidden="true">⌘</div><h3>Coloque em prática</h3><p>Consolide o conteúdo com exercícios, laboratórios e atividades para desenvolver autonomia.</p></article>
-            <article><span className="academy-method-numeral">03</span><div className="academy-method-icon" aria-hidden="true">◎</div><h3>Retome e evolua</h3><p>Use revisões e progresso individual para identificar o que já estudou e o próximo passo.</p></article>
+            <article data-reveal><span className="academy-method-numeral">01</span><div className="academy-method-icon" aria-hidden="true">▤</div><h3>Aprenda por módulos</h3><p>Explore temas organizados, objetivos claros e aulas em sequência, sem perder o contexto.</p></article>
+            <article data-reveal><span className="academy-method-numeral">02</span><div className="academy-method-icon" aria-hidden="true">⌘</div><h3>Coloque em prática</h3><p>Consolide o conteúdo com exercícios, laboratórios e atividades para desenvolver autonomia.</p></article>
+            <article data-reveal><span className="academy-method-numeral">03</span><div className="academy-method-icon" aria-hidden="true">◎</div><h3>Retome e evolua</h3><p>Use revisões e progresso individual para identificar o que já estudou e o próximo passo.</p></article>
           </div>
         </div>
       </section>
 
       <section className="academy-section academy-container" id="assinaturas" aria-labelledby="academy-plans-title">
-        <div className="academy-section-heading">
-          <div><span className="academy-section-index">03 / ACESSO E ASSINATURAS</span><h2 id="academy-plans-title">Uma plataforma. <em>O seu ritmo.</em></h2></div>
+        <div className="academy-section-heading" data-reveal>
+          <div><span className="academy-section-index">03 / ACESSO E ASSINATURAS</span><h2 id="academy-plans-title"><KineticText leading="Uma plataforma." accent="O seu ritmo." /></h2></div>
           <p>Estamos preparando os formatos de assinatura. Conheça a proposta de acesso por trilha e ao catálogo completo.</p>
         </div>
-        <div className="academy-plans-notice" role="status"><span aria-hidden="true">◷</span><div><strong>Assinaturas em preparação</strong><p>Valores, condições comerciais e contratação ainda não estão disponíveis nesta página. Nenhuma cobrança é realizada aqui.</p></div></div>
+        <div className="academy-plans-notice" data-reveal role="status"><span aria-hidden="true">◷</span><div><strong>Assinaturas em preparação</strong><p>Valores, condições comerciais e contratação ainda não estão disponíveis nesta página. Nenhuma cobrança é realizada aqui.</p></div></div>
         <div className="academy-plan-grid">
-          <article className="academy-plan-card">
+          <article className="academy-plan-card" data-reveal>
             <div className="academy-plan-top"><span>ACESSO POR TEMA</span><span className="academy-plan-status">Planejado</span></div>
             <h3>Trilha individual</h3><p>Para aprofundar uma área de conhecimento de cada vez.</p>
             <div className="academy-plan-price">Valores a definir</div>
             <ul><li>Foco em uma trilha de estudo</li><li>Organização por módulos e aulas</li><li>Atividades e recursos da trilha</li></ul>
             <a className="academy-button academy-button-outline" href="#trilhas">Conhecer trilhas <Arrow /></a>
           </article>
-          <article className="academy-plan-card academy-plan-featured">
+          <article className="academy-plan-card academy-plan-featured" data-reveal>
             <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Planejado</span></div>
             <h3>Academy completo</h3><p>Para quem quer explorar diferentes áreas e ampliar as possibilidades.</p>
             <div className="academy-plan-price">Valores a definir</div>
@@ -195,19 +209,19 @@ export default function AcademyLanding() {
 
       <section className="academy-section academy-faq-band" id="perguntas" aria-labelledby="academy-faq-title">
         <div className="academy-container academy-faq-layout">
-          <div><span className="academy-section-index">04 / PERGUNTAS FREQUENTES</span><h2 id="academy-faq-title">Antes de <em>começar.</em></h2><p>Informações sobre o formato de estudo e a disponibilidade comercial da plataforma.</p></div>
+          <div data-reveal><span className="academy-section-index">04 / PERGUNTAS FREQUENTES</span><h2 id="academy-faq-title"><KineticText leading="Antes de" accent="começar." /></h2><p>Informações sobre o formato de estudo e a disponibilidade comercial da plataforma.</p></div>
           <div className="academy-faq-items">
-            <details><summary>Já posso contratar uma assinatura?<span aria-hidden="true">+</span></summary><p>Os planos de assinatura ainda estão em preparação. Esta página apresenta a plataforma e os formatos de acesso previstos, sem contratação ou cobrança ativa.</p></details>
-            <details><summary>Preciso pagar uma ferramenta de IA?<span aria-hidden="true">+</span></summary><p>Não há dependência de API paga para a trilha de desenvolvimento com IA. Você pode usar assistentes disponíveis, estudar sem IA ou optar por IA local se tiver hardware adequado. Alguns serviços externos oferecem planos pagos opcionais.</p></details>
-            <details><summary>Consigo estudar pelo celular?<span aria-hidden="true">+</span></summary><p>Sim. O ambiente de estudos funciona no navegador de dispositivos móveis e pode ser instalado como aplicativo web progressivo em dispositivos compatíveis.</p></details>
-            <details><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Neste momento, novos cadastros podem depender de convite do administrador. Se você já possui acesso, use o botão “Já sou aluno”.</p></details>
+            <details data-reveal><summary>Já posso contratar uma assinatura?<span aria-hidden="true">+</span></summary><p>Os planos de assinatura ainda estão em preparação. Esta página apresenta a plataforma e os formatos de acesso previstos, sem contratação ou cobrança ativa.</p></details>
+            <details data-reveal><summary>Preciso pagar uma ferramenta de IA?<span aria-hidden="true">+</span></summary><p>Não há dependência de API paga para a trilha de desenvolvimento com IA. Você pode usar assistentes disponíveis, estudar sem IA ou optar por IA local se tiver hardware adequado. Alguns serviços externos oferecem planos pagos opcionais.</p></details>
+            <details data-reveal><summary>Consigo estudar pelo celular?<span aria-hidden="true">+</span></summary><p>Sim. O ambiente de estudos funciona no navegador de dispositivos móveis e pode ser instalado como aplicativo web progressivo em dispositivos compatíveis.</p></details>
+            <details data-reveal><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Neste momento, novos cadastros podem depender de convite do administrador. Se você já possui acesso, use o botão “Já sou aluno”.</p></details>
           </div>
         </div>
       </section>
 
-      <section className="academy-container academy-last-cta" aria-labelledby="academy-end-title">
+      <section className="academy-container academy-last-cta" data-reveal aria-labelledby="academy-end-title">
         <span className="academy-section-index">ARTISYS ACADEMY</span>
-        <h2 id="academy-end-title">Sua próxima habilidade<br/><em>começa com um passo.</em></h2>
+        <h2 id="academy-end-title"><KineticText leading="Sua próxima habilidade" accent="começa com um passo." /></h2>
         <p>Explore o conteúdo, escolha uma direção e transforme curiosidade em conhecimento aplicado.</p>
         <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#trilhas">Explorar as trilhas <Arrow /></a><a className="academy-button academy-button-outline" href="/">Acessar meus estudos <Arrow /></a></div>
       </section>
