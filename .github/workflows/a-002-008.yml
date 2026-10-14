@@ -1,0 +1,46 @@
+name: Aulas 002-008 QA
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/00[2-8].md'
+      - 'public/course-labs/a-002-008/**'
+      - 'quality/**'
+      - 'scripts/test-a-002-008*.mjs'
+      - 'scripts/test-pilot-grade-a.mjs'
+      - 'package.json'
+      - '.github/workflows/a-002-008.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Estrutura e exames independentes
+        run: |
+          node scripts/test-a-002-008-structure.mjs
+          node scripts/test-a-002-008.mjs
+      - name: Labs sintéticos locais com negativos
+        run: |
+          node --test public/course-labs/a-002-008/core.test.mjs
+          python3 public/course-labs/a-002-008/sql_lab.py
+      - name: Regressão bcrypt da aula 004
+        working-directory: public/course-labs/phase16-web-p0
+        run: |
+          npm ci --no-audit --no-fund
+          node --test --test-name-pattern='bcrypt' web.test.mjs
+      - name: Build integral com registro canônico
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
