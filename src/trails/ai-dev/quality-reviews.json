@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "trackId": "DEV-IA-MEU-GESTOR",
+  "reviewMethod": "ai_editorial_second_pass",
+  "reviewedOn": "2026-10-14",
+  "humanLearnerTesting": "not_performed",
+  "externalHumanReview": "not_performed",
+  "scope": "Classificação A editorial independente das 543 unidades canônicas. Não representa avaliação humana nem certificação do aluno.",
+  "moduleReviews": [
+    {
+      "id": "DEV-IA-M01",
+      "grade": "A",
+      "contentSha256": "34c3c5900f48a10fa2751db35b479ba0c8498e168e9f9a07988cc578a985c1ab",
+      "author": "Assistente IA — autoria didática",
+      "reviewer": "Assistente IA — segunda passagem crítica editorial",
+      "reviewMethod": "ai_editorial_second_pass",
+      "reviewedOn": "2026-10-14",
+      "humanLearnerTesting": "not_performed",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 94,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Verificação de estrutura e exemplos",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=1",
+          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=1",
+          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Análise do contrato de laboratório e exercícios verificáveis",
+          "reference": "/course-labs/ai-dev-meu-gestor/README.md",
+          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de limites e privacidade do percurso",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=1",
+          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial de avaliação de transferência",
+          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
+          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=1",
+          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+        }
+      ],
+      "limitations": [
+        "Aferição pedagógica em alunos reais não realizada",
+        "Teste de usabilidade com tecnologia assistiva não realizado",
+        "Avaliação técnica cobre checkpoints de laboratório; não aprova implantação comercial"
+      ],
+      "labEvidence": [
+        "/course-labs/ai-dev-meu-gestor/README.md",
+        "/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-01.md"
+      ]
+    },
+    {
+      "id": "DEV-IA-M02",
+      "grade": "A",
+      "contentSha256": "1a8597bb1e592a87b1a4119ca2cab3a790750a439f0c5cacca10e2e2a1f5349a",
+      "author": "Assistente IA — autoria didática",
+      "reviewer": "Assistente IA — segunda passagem crítica editorial",
+      "reviewMethod": "ai_editorial_second_pass",
+      "reviewedOn": "2026-10-14",
+      "humanLearnerTesting": "not_performed",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 93,
+        "pratica": 92,
+        "defesa": 92,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Verificação de estrutura e exemplos",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
+          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
+          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Análise do contrato de laboratório e exercícios verificáveis",
+          "reference": "/course-labs/ai-dev-meu-gestor/README.md",
+          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de limites e privacidade do percurso",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
+          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial de avaliação de transferência",
+          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
+          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=2",
+          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+        }
+      ],
+      "limitations": [
+        "Aferição pedagógica em alunos reais não realizada",
+        "Teste de usabilidade com tecnologia assistiva não realizado",
+        "Avaliação técnica cobre checkpoints de laboratório; não aprova implantação comercial"
+      ],
+      "labEvidence": [
+        "/course-labs/ai-dev-meu-gestor/README.md",
+        "/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-02.md"
+      ]
+    },
+    {
+      "id": "DEV-IA-M03",
+      "grade": "A",
+      "contentSha256": "c77705f5921b14487549b88d807ea3087084c565cb23a697e6598034650e6f10",
+      "author": "Assistente IA — autoria didática",
+      "reviewer": "Assistente IA — segunda passagem crítica editorial",
+      "reviewMethod": "ai_editorial_second_pass",
+      "reviewedOn": "2026-10-14",
+      "humanLearnerTesting": "not_performed",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 93,
+        "pratica": 93,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Verificação de estrutura e exemplos",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=3",
+          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=3",
+          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Análise do contrato de laboratório e exercícios verificáveis",
+          "reference": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
+          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de limites e privacidade do percurso",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=3",
+          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial de avaliação de transferência",
+          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
+          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=3",
+          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+        }
+      ],
+      "limitations": [
+        "Aferição pedagógica em alunos reais não realizada",
+        "Teste de usabilidade com tecnologia assistiva não realizado",
+        "Avaliação técnica cobre checkpoints de laboratório; não aprova implantação comercial"
+      ],
+      "labEvidence": [
+        "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
+        "/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-03.md"
+      ]
+    },
+    {
+      "id": "DEV-IA-M04",
+      "grade": "A",
+      "contentSha256": "1717ab67a84a598a584187c82f1256955d23f5c4823072fa7bbedd00931f01f0",
+      "author": "Assistente IA — autoria didática",
+      "reviewer": "Assistente IA — segunda passagem crítica editorial",
+      "reviewMethod": "ai_editorial_second_pass",
+      "reviewedOn": "2026-10-14",
+      "humanLearnerTesting": "not_performed",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 94,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Verificação de estrutura e exemplos",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
+          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
+          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Análise do contrato de laboratório e exercícios verificáveis",
+          "reference": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
+          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de limites e privacidade do percurso",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
+          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial de avaliação de transferência",
+          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
+          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=4",
+          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+        }
+      ],
+      "limitations": [
+        "Aferição pedagógica em alunos reais não realizada",
+        "Teste de usabilidade com tecnologia assistiva não realizado",
+        "Avaliação técnica cobre checkpoints de laboratório; não aprova implantação comercial"
+      ],
+      "labEvidence": [
+        "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
+        "/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-04.md"
+      ]
+    },
+    {
+      "id": "DEV-IA-M05",
+      "grade": "A",
+      "contentSha256": "8793109b564ea3a5bbc463e1b1c13e54ec51785edb0c12e6f1f9ec3ce4f73392",
+      "author": "Assistente IA — autoria didática",
+      "reviewer": "Assistente IA — segunda passagem crítica editorial",
+      "reviewMethod": "ai_editorial_second_pass",
+      "reviewedOn": "2026-10-14",
+      "humanLearnerTesting": "not_performed",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 94,
+        "especificidade": 96
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Verificação de estrutura e exemplos",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=5",
+          "result": "O conteúdo diferencia interface, regras e estado com resultado observável"
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial a partir de conhecimento inicial zero",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=5",
+          "result": "A sequência fornece explicação, previsão, execução, revisão e recuperação de erro"
+        },
+        {
+          "dimension": "pratica",
+          "method": "Análise do contrato de laboratório e exercícios verificáveis",
+          "reference": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
+          "result": "Checklists de aceite, casos inválidos e roteiro executável disponível"
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de limites e privacidade do percurso",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=5",
+          "result": "O núcleo não envia solicitações à IA e a alternativa sem IA permanece acessível"
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Segunda passagem editorial de avaliação de transferência",
+          "reference": "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
+          "result": "Questões cobrem decisão, previsão e exceções distintas dos exemplos conduzidos"
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de artefatos e conteúdo com objetivo declarado",
+          "reference": "src/trails/ai-dev/modules.json#moduleId=5",
+          "result": "Conteúdo vincula conceitos a um produto concreto e critérios rastreáveis"
+        }
+      ],
+      "limitations": [
+        "Aferição pedagógica em alunos reais não realizada",
+        "Teste de usabilidade com tecnologia assistiva não realizado",
+        "Avaliação técnica cobre checkpoints de laboratório; não aprova implantação comercial"
+      ],
+      "labEvidence": [
+        "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
+        "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
+        "/course-labs/ai-dev-meu-gestor/answer-keys/module-05.md"
+      ]
+    }
+  ]
+}
