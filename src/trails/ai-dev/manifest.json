@@ -1,0 +1,273 @@
+{
+  "id": "DEV-IA-MEU-GESTOR",
+  "version": 1,
+  "title": "Desenvolvimento de Sistemas com IA",
+  "subtitle": "Construa um sistema real com assistência de IA, sem API paga obrigatória",
+  "audience": "Iniciantes, inclusive sem experiência anterior em programação",
+  "project": "Meu Gestor",
+  "corePolicy": "R$ 0 obrigatório; app e laboratório self-hosted/open source; nenhum serviço pago é dependência.",
+  "aiPolicy": {
+    "recommended": [
+      "ChatGPT pelo navegador",
+      "Claude pelo navegador"
+    ],
+    "optionalLocal": "Ollama + modelo local adequado, apenas se houver hardware suficiente",
+    "noApiKeys": true,
+    "noExternalSubmission": true,
+    "offlineFallback": true
+  },
+  "totalSteps": 32,
+  "newMicroLessons": 16,
+  "reusedReferences": 8,
+  "newLabs": 8,
+  "modules": [
+    {
+      "id": 1,
+      "title": "Primeiros passos com IA",
+      "category": "Fundamentos",
+      "reusedLessonCode": "LOG-01",
+      "steps": [
+        {
+          "id": 1,
+          "type": "microaula",
+          "title": "O que é software e o que o aluno vai construir"
+        },
+        {
+          "id": 2,
+          "type": "microaula-ia",
+          "title": "Pedir, questionar e verificar respostas da IA"
+        },
+        {
+          "id": 3,
+          "type": "referencia",
+          "title": "Algoritmos e decomposição de problemas"
+        },
+        {
+          "id": 4,
+          "type": "laboratorio",
+          "title": "Plano inicial e primeira alteração guiada"
+        }
+      ],
+      "outcome": "Projeto descrito, regra de negócio testada e primeira personalização",
+      "duration": "2–3 h",
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "title": "Da ideia ao sistema",
+      "category": "Planejamento",
+      "reusedLessonCode": "LOG-11",
+      "steps": [
+        {
+          "id": 5,
+          "type": "microaula",
+          "title": "Problemas, usuários e fluxos"
+        },
+        {
+          "id": 6,
+          "type": "microaula-ia",
+          "title": "Requisitos e critérios de aceitação com IA"
+        },
+        {
+          "id": 7,
+          "type": "referencia",
+          "title": "Entrada → processamento → saída"
+        },
+        {
+          "id": 8,
+          "type": "laboratorio",
+          "title": "Documentar o Meu Gestor"
+        }
+      ],
+      "outcome": "Requisitos e fluxos documentados",
+      "duration": "3–4 h",
+      "status": "available"
+    },
+    {
+      "id": 3,
+      "title": "Preparando e criando o projeto",
+      "category": "Construção",
+      "reusedLessonCode": "ENG-01",
+      "steps": [
+        {
+          "id": 9,
+          "type": "microaula",
+          "title": "Editor, terminal e Node"
+        },
+        {
+          "id": 10,
+          "type": "microaula-ia",
+          "title": "Trabalhando com IA e revisando mudanças"
+        },
+        {
+          "id": 11,
+          "type": "referencia",
+          "title": "Git"
+        },
+        {
+          "id": 12,
+          "type": "laboratorio",
+          "title": "React + TypeScript + Vite em execução"
+        }
+      ],
+      "outcome": "App local e primeiro commit",
+      "duration": "4–6 h",
+      "status": "available"
+    },
+    {
+      "id": 4,
+      "title": "Criando as telas com IA",
+      "category": "Construção",
+      "reusedLessonCode": "WEB-11",
+      "steps": [
+        {
+          "id": 13,
+          "type": "microaula",
+          "title": "HTML, CSS e React"
+        },
+        {
+          "id": 14,
+          "type": "microaula-ia",
+          "title": "IA para interfaces, formulários e responsividade"
+        },
+        {
+          "id": 15,
+          "type": "referencia",
+          "title": "HTML"
+        },
+        {
+          "id": 16,
+          "type": "laboratorio",
+          "title": "Dashboard, clientes e serviços"
+        }
+      ],
+      "outcome": "Telas navegáveis com dados fictícios",
+      "duration": "5–7 h",
+      "status": "available"
+    },
+    {
+      "id": 5,
+      "title": "Fazendo o sistema funcionar",
+      "category": "Construção",
+      "reusedLessonCode": "JS-02",
+      "steps": [
+        {
+          "id": 17,
+          "type": "microaula",
+          "title": "Estado, objetos e regras"
+        },
+        {
+          "id": 18,
+          "type": "microaula-ia",
+          "title": "CRUD, validação, busca e filtros com IA"
+        },
+        {
+          "id": 19,
+          "type": "referencia",
+          "title": "Objetos e arrays"
+        },
+        {
+          "id": 20,
+          "type": "laboratorio",
+          "title": "Formulários e operações de cliente/serviço"
+        }
+      ],
+      "outcome": "Funcionalidades com dados temporários",
+      "duration": "5–6 h",
+      "status": "available"
+    },
+    {
+      "id": 6,
+      "title": "Banco de dados e backend",
+      "category": "Construção",
+      "reusedLessonCode": "WEB-26",
+      "steps": [
+        {
+          "id": 21,
+          "type": "microaula",
+          "title": "SQLite e modelo de dados"
+        },
+        {
+          "id": 22,
+          "type": "microaula-ia",
+          "title": "API REST em Node e ligação com frontend"
+        },
+        {
+          "id": 23,
+          "type": "referencia",
+          "title": "Databases"
+        },
+        {
+          "id": 24,
+          "type": "laboratorio",
+          "title": "Persistência das ordens e clientes"
+        }
+      ],
+      "outcome": "Dados persistidos entre reinicializações",
+      "duration": "6–8 h",
+      "status": "planned"
+    },
+    {
+      "id": 7,
+      "title": "Corrigindo erros e garantindo qualidade",
+      "category": "Qualidade",
+      "reusedLessonCode": "ENG-16",
+      "steps": [
+        {
+          "id": 25,
+          "type": "microaula",
+          "title": "Depurar, ler erros e logs"
+        },
+        {
+          "id": 26,
+          "type": "microaula-ia",
+          "title": "Pedir testes à IA e revisar falhas"
+        },
+        {
+          "id": 27,
+          "type": "referencia",
+          "title": "Testes"
+        },
+        {
+          "id": 28,
+          "type": "laboratorio",
+          "title": "Executar testes e revisar regras"
+        }
+      ],
+      "outcome": "Testes válidos, inválidos e regressão",
+      "duration": "3–5 h",
+      "status": "planned"
+    },
+    {
+      "id": 8,
+      "title": "Finalização e publicação",
+      "category": "Entrega",
+      "reusedLessonCode": "ENG-21",
+      "steps": [
+        {
+          "id": 29,
+          "type": "microaula",
+          "title": "Build, documentação e backup"
+        },
+        {
+          "id": 30,
+          "type": "microaula-ia",
+          "title": "IA para manutenção e instalação própria"
+        },
+        {
+          "id": 31,
+          "type": "referencia",
+          "title": "Build"
+        },
+        {
+          "id": 32,
+          "type": "laboratorio",
+          "title": "Demonstrar e entregar o app local"
+        }
+      ],
+      "outcome": "Código, instruções e demonstração",
+      "duration": "3–5 h",
+      "status": "planned"
+    }
+  ]
+}

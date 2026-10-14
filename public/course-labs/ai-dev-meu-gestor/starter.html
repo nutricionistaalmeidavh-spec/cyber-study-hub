@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Meu Gestor — projeto didático</title>
+  <style>
+    :root{font:16px/1.5 system-ui,-apple-system,sans-serif;color:#203146;background:#f4f7fb}
+    *{box-sizing:border-box}body{margin:0}main{max-width:900px;margin:auto;padding:32px 18px 70px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    h1{font-size:clamp(28px,5vw,40px);letter-spacing:-.04em;margin:0}
+    .hint{color:#526479;margin:5px 0 26px}.pill{background:#dcf4eb;color:#096748;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card,.panel{background:white;border:1px solid #dce4ed;border-radius:17px;padding:18px}
+    .card strong{display:block;font-size:32px}.card span{color:#607187}.panel{margin-top:18px}
+    .order{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid #e4eaf0;padding:15px 0}
+    .order:last-child{padding-bottom:0}.order strong{display:block}.order small{color:#62738a}
+    button{font:inherit;border-radius:11px;border:1px solid #bdd2e3;background:#edf6ff;padding:9px 12px;cursor:pointer;color:#134567}
+    button:hover{background:#daeaff}button:focus-visible{outline:3px solid #086dc5;outline-offset:3px}
+    button:disabled{background:#f3f4f6;color:#7c8797;cursor:not-allowed}
+    .empty{padding:14px;color:#607187}@media(max-width:560px){.cards{grid-template-columns:1fr 1fr}.order{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1 id="projectName">Meu Gestor</h1>
+      <p class="hint">Exemplo didático • apenas dados fictícios • sem login ou API</p>
+    </div>
+    <span class="pill">Projeto de aprendizado</span>
+  </header>
+  <section class="cards" aria-label="Indicadores">
+    <div class="card"><span>Clientes</span><strong id="clientCount">0</strong></div>
+    <div class="card"><span>Serviços</span><strong id="serviceCount">0</strong></div>
+    <div class="card"><span>Concluídos</span><strong id="doneCount">0</strong></div>
+  </section>
+  <section class="panel" aria-label="Ordens de serviço">
+    <h2>Ordens de serviço</h2>
+    <p class="hint">Ao avançar uma ordem, observe a mudança de estado e do contador.</p>
+    <div id="orders"></div>
+  </section>
+</main>
+<script>
+  // LAB 01: altere apenas os textos fictícios abaixo; não edite a lógica ainda.
+  const clients = ["Cliente Exemplo A", "Cliente Exemplo B", "Cliente Exemplo C"];
+  const orders = [
+    { id: "OS-001", service: "Instalação de equipamento", status: "em andamento" },
+    { id: "OS-002", service: "Manutenção preventiva", status: "pendente" },
+    { id: "OS-003", service: "Visita técnica", status: "concluído" }
+  ];
+  const nextStatus = { "pendente": "em andamento", "em andamento": "concluído" };
+  function render() {
+    document.getElementById("clientCount").textContent = String(clients.length);
+    document.getElementById("serviceCount").textContent = String(orders.length);
+    document.getElementById("doneCount").textContent = String(orders.filter(o => o.status === "concluído").length);
+    const container = document.getElementById("orders");
+    container.replaceChildren();
+    if (!orders.length) { const p=document.createElement("p");p.className="empty";p.textContent="Nenhuma ordem cadastrada";container.append(p);return; }
+    for (const order of orders) {
+      const item=document.createElement("div");item.className="order";
+      const copy=document.createElement("div"),name=document.createElement("strong"),meta=document.createElement("small");
+      name.textContent=order.service;meta.textContent=order.id+" • "+order.status;
+      copy.append(name,meta);
+      const button=document.createElement("button");
+      button.type="button";button.textContent=order.status==="concluído"?"Concluído":"Avançar estado";
+      button.disabled=order.status==="concluído";
+      button.addEventListener("click",()=>{
+        const next=nextStatus[order.status];
+        if (!next) return; // nunca avançar estados desconhecidos
+        order.status=next;
+        render();
+      });
+      item.append(copy,button);container.append(item);
+    }
+  }
+  render();
+</script>
+</body>
+</html>
