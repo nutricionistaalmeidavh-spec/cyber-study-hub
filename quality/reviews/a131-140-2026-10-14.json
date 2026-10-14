@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-131..AULA-140",
+  "reviewedOn": "2026-10-14",
+  "reviewType": "ai_editorial_second_pass",
+  "humanLearnerTesting": "not_performed",
+  "notes": [
+    "26 testes Node de oficinas inertes, sem execução de malware real",
+    "Capstone Python/ELF entropia da aula 135 mantido",
+    "Sem validação humana nem experimento com alunos"
+  ],
+  "units": {
+    "AULA-131": {
+      "title": "Introdução a Malware",
+      "contentPath": "/course-library/main/131.md",
+      "contentSha256": "b6120275cc3287509566e841cad0bfbd99be3ff167c630f52cd174b0ef9b415b",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/131.md :: Oficina A; https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+          "result": "Mecanismo: Hash é identidade de bytes; evento de rede isolado não comprova infecção e exige correlação.; negativo: O anexo gera requires-corroboration; hash malformado é recusado."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/131.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Um release próprio com hash conhecido e um anexo desconhecido com evento de rede fictício chegam ao analista.; positivo O release autorizado resulta benign-lab-fixture, malwareProven=false."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(131); labs.test.mjs",
+          "result": "26 testes e runWorkshop(131) validam O release autorizado resulta benign-lab-fixture, malwareProven=false. e O anexo gera requires-corroboration; hash malformado é recusado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/131.md :: Defesas e reteste",
+          "result": "Defesa Preservar hash, origem, horário, cadeia de custódia e evidência volátil; não executar amostras.; limite: Não executa arquivos nem identifica malware; só trata metadados simulados."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-131.md",
+          "result": "Gabarito externo com seis questões específicas de Introdução a Malware, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/131.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Um release próprio com hash conhecido e um anexo desconhecido com evento de rede fictício chegam ao analista. Não executa arquivos nem identifica malware; só trata metadados simulados."
+        }
+      ],
+      "positive": "O release autorizado resulta benign-lab-fixture, malwareProven=false.",
+      "negative": "O anexo gera requires-corroboration; hash malformado é recusado.",
+      "limitations": "Não executa arquivos nem identifica malware; só trata metadados simulados."
+    },
+    "AULA-132": {
+      "title": "Tipos de Malware",
+      "contentPath": "/course-library/main/132.md",
+      "contentSha256": "6a87e2273ae5a3da149c557f40707d505e83af4ab6abf225b9c38008a0eb776f",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/132.md :: Oficina A; https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+          "result": "Mecanismo: Trojan, worm, ransomware e loader descrevem capacidades que podem coexistir; finalidade e autorização importam.; negativo: selfReplicates rotula worm-like e masquerades trojan-like, mas malwareProven=false."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/132.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Cenários inertes de disfarce, auto-replicação e criptografia autorizada devem ser classificados.; positivo Sem capacidades, labels=[] e o fluxo legítimo de cifração pode ser autorizado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(132); labs.test.mjs",
+          "result": "26 testes e runWorkshop(132) validam Sem capacidades, labels=[] e o fluxo legítimo de cifração pode ser autorizado. e selfReplicates rotula worm-like e masquerades trojan-like, mas malwareProven=false."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/132.md :: Defesas e reteste",
+          "result": "Defesa Exigir evidências de mecanismo e consentimento; preservar cifração legítima de backups.; limite: Não cria vírus, worm, cifragem de arquivos ou delivery operacional."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-132.md",
+          "result": "Gabarito externo com seis questões específicas de Tipos de Malware, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/132.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Cenários inertes de disfarce, auto-replicação e criptografia autorizada devem ser classificados. Não cria vírus, worm, cifragem de arquivos ou delivery operacional."
+        }
+      ],
+      "positive": "Sem capacidades, labels=[] e o fluxo legítimo de cifração pode ser autorizado.",
+      "negative": "selfReplicates rotula worm-like e masquerades trojan-like, mas malwareProven=false.",
+      "limitations": "Não cria vírus, worm, cifragem de arquivos ou delivery operacional."
+    },
+    "AULA-133": {
+      "title": "Static Analysis",
+      "contentPath": "/course-library/main/133.md",
+      "contentSha256": "628ef30db121c3d53dfc2a6805ca2da1a087a63493b98388bbce34097c529977",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/133.md :: Oficina A; https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+          "result": "Mecanismo: Magic bytes indicam candidato ao formato; PE completo exige e_lfanew, assinatura e seções consistentes.; negativo: Fixture vazia retorna empty; ELF resulta ELF-header-candidate sem execução."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/133.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Uma fixture tem prefixo MZ e outra ELF, mas um aluno trata o prefixo como prova de PE íntegro.; positivo MZ resulta PE/MZ-header-candidate, executed=false, validPEProven=false."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(133); labs.test.mjs",
+          "result": "26 testes e runWorkshop(133) validam MZ resulta PE/MZ-header-candidate, executed=false, validPEProven=false. e Fixture vazia retorna empty; ELF resulta ELF-header-candidate sem execução."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/133.md :: Defesas e reteste",
+          "result": "Defesa Exigir análise de estrutura, offsets e comprimento antes de laudar binário real.; limite: Não é parser de PE/ELF completo e não inspeciona malware real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-133.md",
+          "result": "Gabarito externo com seis questões específicas de Static Analysis, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/133.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Uma fixture tem prefixo MZ e outra ELF, mas um aluno trata o prefixo como prova de PE íntegro. Não é parser de PE/ELF completo e não inspeciona malware real."
+        }
+      ],
+      "positive": "MZ resulta PE/MZ-header-candidate, executed=false, validPEProven=false.",
+      "negative": "Fixture vazia retorna empty; ELF resulta ELF-header-candidate sem execução.",
+      "limitations": "Não é parser de PE/ELF completo e não inspeciona malware real."
+    },
+    "AULA-134": {
+      "title": "Hashes, Strings, Imports e Metadata",
+      "contentPath": "/course-library/main/134.md",
+      "contentSha256": "6d376d276f2b2b229f03b19877ddd195d22e9ff36cad4caa79a7500b1a839cc5",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/134.md :: Oficina A; https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+          "result": "Mecanismo: Strings e imports são observáveis estáticos, não telemetria; signer declarado não autentica cadeia de confiança.; negativo: Mesmo com import WinHttp.dll, networkContactObserved=false e signerTrustVerified=false."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/134.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Um app próprio traz string demo.local, import WinHttp.dll e signatário declarado; colega afirma conexão real.; positivo SHA-256 do Buffer é calculado e strings imprimíveis aparecem sem contato externo."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(134); labs.test.mjs",
+          "result": "26 testes e runWorkshop(134) validam SHA-256 do Buffer é calculado e strings imprimíveis aparecem sem contato externo. e Mesmo com import WinHttp.dll, networkContactObserved=false e signerTrustVerified=false."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/134.md :: Defesas e reteste",
+          "result": "Defesa Correlacionar assinaturas criptográficas com chave de confiança e logs reais de rede/processo.; limite: Imports e signer vêm da fixture e não de parsing PE real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-134.md",
+          "result": "Gabarito externo com seis questões específicas de Hashes, Strings, Imports e Metadata, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/134.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Um app próprio traz string demo.local, import WinHttp.dll e signatário declarado; colega afirma conexão real. Imports e signer vêm da fixture e não de parsing PE real."
+        }
+      ],
+      "positive": "SHA-256 do Buffer é calculado e strings imprimíveis aparecem sem contato externo.",
+      "negative": "Mesmo com import WinHttp.dll, networkContactObserved=false e signerTrustVerified=false.",
+      "limitations": "Imports e signer vêm da fixture e não de parsing PE real."
+    },
+    "AULA-135": {
+      "title": "Entropy e indicadores de Packing",
+      "contentPath": "/course-library/main/135.md",
+      "contentSha256": "935f6d4257d4bb18163d7194b1f069bbb6a01f94c58e287d2416eb14c460ea59",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 95,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/135.md :: Oficina A; https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+          "result": "Mecanismo: Entropia de Shannon H=-Σp log2(p) mede distribuição de bytes, não sua ordem; uma sequência previsível pode ter H=8.; negativo: Bytes 00..FF produzem H=8 apesar da previsibilidade total."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/135.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Um detector vê H=8 em bytes 00..FF em ordem e considera que isso prova malware cifrado.; positivo AABB tem H=1 e AAAA tem H=0."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(135); labs.test.mjs",
+          "result": "26 testes e runWorkshop(135) validam AABB tem H=1 e AAAA tem H=0. e Bytes 00..FF produzem H=8 apesar da previsibilidade total."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/135.md :: Defesas e reteste",
+          "result": "Defesa Comparar janelas e tamanho de amostra; manter laboratório completo phase16-memory existente.; limite: Não detecta packer, stub, criptografia ou malware apenas por H."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-135.md",
+          "result": "Gabarito externo com seis questões específicas de Entropy e indicadores de Packing, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/135.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Um detector vê H=8 em bytes 00..FF em ordem e considera que isso prova malware cifrado. Não detecta packer, stub, criptografia ou malware apenas por H."
+        }
+      ],
+      "positive": "AABB tem H=1 e AAAA tem H=0.",
+      "negative": "Bytes 00..FF produzem H=8 apesar da previsibilidade total.",
+      "limitations": "Não detecta packer, stub, criptografia ou malware apenas por H."
+    },
+    "AULA-136": {
+      "title": "Laboratório Windows isolado",
+      "contentPath": "/course-library/main/136.md",
+      "contentSha256": "d0cef54682da57db793c990a2adadc0d199967a7a3ec22f875665db8abaff68c",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/136.md :: Oficina A; https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+          "result": "Mecanismo: Host-only ainda permite ligação com host; snapshot não desfaz vazamentos, e compartilhamentos/credenciais ampliam riscos.; negativo: host-only gera host-accessible-network; pasta compartilhada impede readyForSyntheticLab."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/136.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para VM com snapshot e rede host-only usa pasta compartilhada; querem tratá-la como isolamento completo.; positivo network=disabled, snapshot e pastas/clipboard desligados liberam apenas cenário sintético."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(136); labs.test.mjs",
+          "result": "26 testes e runWorkshop(136) validam network=disabled, snapshot e pastas/clipboard desligados liberam apenas cenário sintético. e host-only gera host-accessible-network; pasta compartilhada impede readyForSyntheticLab."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/136.md :: Defesas e reteste",
+          "result": "Defesa Usar rede desativada, dados fictícios e desligar integrações; não executar malware só por checklist.; limite: Não provisiona VM nem verifica isolamento contra malware ao vivo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-136.md",
+          "result": "Gabarito externo com seis questões específicas de Laboratório Windows isolado, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/136.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: VM com snapshot e rede host-only usa pasta compartilhada; querem tratá-la como isolamento completo. Não provisiona VM nem verifica isolamento contra malware ao vivo."
+        }
+      ],
+      "positive": "network=disabled, snapshot e pastas/clipboard desligados liberam apenas cenário sintético.",
+      "negative": "host-only gera host-accessible-network; pasta compartilhada impede readyForSyntheticLab.",
+      "limitations": "Não provisiona VM nem verifica isolamento contra malware ao vivo."
+    },
+    "AULA-137": {
+      "title": "REMnux",
+      "contentPath": "/course-library/main/137.md",
+      "contentSha256": "8a8909269079b3e08133e97321f51ed1d2db9d2c0ccbc2743accecaa26829654",
+      "technicalSources": [
+        "https://docs.remnux.org/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/137.md :: Oficina A; https://docs.remnux.org/",
+          "result": "Mecanismo: REMnux é conjunto gratuito de ferramentas; plano adequado depende de tipo, escopo e risco do artefato.; negativo: Documento não autorizado produz stop-and-request-authorization."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/137.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Uma captura PCAP autorizada e documento de origem desconhecida chegam à equipe de análise.; positivo PCAP autorizado segue verificação de proveniência, leitura offline e relatório."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(137); labs.test.mjs",
+          "result": "26 testes e runWorkshop(137) validam PCAP autorizado segue verificação de proveniência, leitura offline e relatório. e Documento não autorizado produz stop-and-request-authorization."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/137.md :: Defesas e reteste",
+          "result": "Defesa Preservar hash, escopo e análise offline; instalar REMnux é opcional para a oficina Node.; limite: Não roda REMnux nem executa documentos, macros ou rede."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-137.md",
+          "result": "Gabarito externo com seis questões específicas de REMnux, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/137.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Uma captura PCAP autorizada e documento de origem desconhecida chegam à equipe de análise. Não roda REMnux nem executa documentos, macros ou rede."
+        }
+      ],
+      "positive": "PCAP autorizado segue verificação de proveniência, leitura offline e relatório.",
+      "negative": "Documento não autorizado produz stop-and-request-authorization.",
+      "limitations": "Não roda REMnux nem executa documentos, macros ou rede."
+    },
+    "AULA-138": {
+      "title": "Process Monitor e Process Explorer",
+      "contentPath": "/course-library/main/138.md",
+      "contentSha256": "718cb60dc04c8a6b4495774cccbe4c0a0c93030bf9f6371f7f448c27c4616b37",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/138.md :: Oficina A; https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer",
+          "result": "Mecanismo: Correlacionar por PID e início, não por PID isolado; Procmon registra eventos, Process Explorer expõe processos e handles.; negativo: Mesmo PID com início distinto resulta em duas sessões."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/138.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para PID 20 foi usado às 10h e reutilizado às 11h; analista mistura dois processos num mesmo relatório.; positivo Mesmo PID+início é agrupado e ordenado por timestamp."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(138); labs.test.mjs",
+          "result": "26 testes e runWorkshop(138) validam Mesmo PID+início é agrupado e ordenado por timestamp. e Mesmo PID com início distinto resulta em duas sessões."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/138.md :: Defesas e reteste",
+          "result": "Defesa Documentar PID, instante, operação e filtros; preservar arquivo aberto legitimamente.; limite: Eventos são fixtures JSON; nenhuma coleta Sysinternals foi executada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-138.md",
+          "result": "Gabarito externo com seis questões específicas de Process Monitor e Process Explorer, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/138.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: PID 20 foi usado às 10h e reutilizado às 11h; analista mistura dois processos num mesmo relatório. Eventos são fixtures JSON; nenhuma coleta Sysinternals foi executada."
+        }
+      ],
+      "positive": "Mesmo PID+início é agrupado e ordenado por timestamp.",
+      "negative": "Mesmo PID com início distinto resulta em duas sessões.",
+      "limitations": "Eventos são fixtures JSON; nenhuma coleta Sysinternals foi executada."
+    },
+    "AULA-139": {
+      "title": "Autoruns e Persistence",
+      "contentPath": "/course-library/main/139.md",
+      "contentSha256": "66a3b65c24560c28a747254cdb0151dfcf4cb4e0621f5e08fe07bee307d14757",
+      "technicalSources": [
+        "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/139.md :: Oficina A; https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns",
+          "result": "Mecanismo: Autoruns e serviços têm usos legítimos; diff de baseline é sinal de mudança e não prova de intenção.; negativo: Nova entrada unknown aparece em added mas malwareProven=false."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/139.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Instalação autorizada cria entrada de inicialização; equipe quer excluí-la com todas as tarefas.; positivo Baseline igual gera added=[] e removed=[], preservando programa autorizado."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(139); labs.test.mjs",
+          "result": "26 testes e runWorkshop(139) validam Baseline igual gera added=[] e removed=[], preservando programa autorizado. e Nova entrada unknown aparece em added mas malwareProven=false."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/139.md :: Defesas e reteste",
+          "result": "Defesa Verificar autor, assinatura, caminho e justificativa; rollback seletivo, não remoção indiscriminada.; limite: Não edita registro Windows, serviços ou tarefas reais."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-139.md",
+          "result": "Gabarito externo com seis questões específicas de Autoruns e Persistence, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/139.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Instalação autorizada cria entrada de inicialização; equipe quer excluí-la com todas as tarefas. Não edita registro Windows, serviços ou tarefas reais."
+        }
+      ],
+      "positive": "Baseline igual gera added=[] e removed=[], preservando programa autorizado.",
+      "negative": "Nova entrada unknown aparece em added mas malwareProven=false.",
+      "limitations": "Não edita registro Windows, serviços ou tarefas reais."
+    },
+    "AULA-140": {
+      "title": "Dynamic Analysis",
+      "contentPath": "/course-library/main/140.md",
+      "contentSha256": "f83ff86ed4d2139b28c30ab66acbc085650f8c9041c548d5d6de3c8d1bbc24e6",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial IA de causalidade e fonte primária com controle negativo",
+          "reference": "public/course-library/main/140.md :: Oficina A; https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+          "result": "Mecanismo: Análise dinâmica correlaciona processo, arquivo, memória e rede sob contenção; snapshot não desfaz tráfego.; negativo: Com rede bridged e evento network-request, networkIsolationOk=false e safeForLiveMalware=false."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough IA do iniciante incluindo previsão, exemplos e troubleshooting, não estudante real",
+          "reference": "public/course-library/main/140.md :: exemplo e checkpoints",
+          "result": "Walkthrough e checkpoint para Aplicativo próprio simulado inicia, grava log e gera evento de rede com ambiente bridged e snapshot.; positivo Com network disabled e eventos de processo/arquivo, networkIsolationOk=true."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Modelos Node testados com fixtures e 26 asserções funcionais",
+          "reference": "public/course-labs/a131-140/models.mjs :: runWorkshop(140); labs.test.mjs",
+          "result": "26 testes e runWorkshop(140) validam Com network disabled e eventos de processo/arquivo, networkIsolationOk=true. e Com rede bridged e evento network-request, networkIsolationOk=false e safeForLiveMalware=false."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Confronto entre defesa, limitação e preservação de fluxo benigno",
+          "reference": "public/course-library/main/140.md :: Defesas e reteste",
+          "result": "Defesa Definir política de rede, timestamps, coleta e recuperação antes da execução autorizada.; limite: Só cronologia JSON, sem VM, tráfego real ou código malicioso."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis questões de transferência e rubrica externa a cada aula",
+          "reference": "public/course-labs/a131-140/answer-keys/AULA-140.md",
+          "result": "Gabarito externo com seis questões específicas de Dynamic Analysis, critérios de correção e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento de contexto, dados, fronteiras, decisão e evidências",
+          "reference": "public/course-library/main/140.md :: cenário e conclusão",
+          "result": "Pré-condições, artefatos e limitação: Aplicativo próprio simulado inicia, grava log e gera evento de rede com ambiente bridged e snapshot. Só cronologia JSON, sem VM, tráfego real ou código malicioso."
+        }
+      ],
+      "positive": "Com network disabled e eventos de processo/arquivo, networkIsolationOk=true.",
+      "negative": "Com rede bridged e evento network-request, networkIsolationOk=false e safeForLiveMalware=false.",
+      "limitations": "Só cronologia JSON, sem VM, tráfego real ou código malicioso."
+    }
+  }
+}
