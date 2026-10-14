@@ -18,7 +18,7 @@ type Route =
   | { page: 'dashboard' }
   | { page: 'account' }
   | { page: 'admin-users' }
-  | { page: 'lessons'; track?: string; mode?: 'main' | 'parallel' }
+  | { page: 'lessons'; track?: string; mode?: 'main' | 'parallel'; module?: string }
   | { page: 'lesson'; id: number }
   | { page: 'course-main'; id: number }
   | { page: 'course-parallel'; code: string }
@@ -42,7 +42,8 @@ function parseHash(): Route {
     const params = new URLSearchParams(query);
     const track = params.get('track') || undefined;
     const mode = params.get('mode') === 'parallel' ? 'parallel' : 'main';
-    return { page: 'lessons', track, mode };
+    const module = params.get('module') || undefined;
+    return { page: 'lessons', track, mode, module };
   }
   if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
   if (raw === 'account') return { page: 'account' };
@@ -100,7 +101,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='dashboard' && <Dashboard user={user} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
-      {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} />}
+      {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} />}
       {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
       {route.page==='course-main' && <CourseDocumentViewer kind="main" id={route.id} />}
       {route.page==='course-parallel' && <CourseDocumentViewer kind="parallel" code={route.code} />}

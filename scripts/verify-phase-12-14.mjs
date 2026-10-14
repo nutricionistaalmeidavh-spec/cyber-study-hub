@@ -4,7 +4,7 @@ import path from 'node:path';
 const errors = [];
 
 const checks = [
-  ['src/components/curriculum/CurriculumBrowser.tsx', ['218', '325', '543', 'getActiveParallelTracks', 'listNativeV2LessonIds']],
+  ['src/components/curriculum/CurriculumBrowser.tsx', ['groupBy(catalog.main', 'groupBy(catalog.parallel', 'moduleHref', 'getActiveParallelTracks', 'listNativeV2LessonIds']],
   ['src/components/curriculum/CourseDocumentViewer.tsx', ['MarkdownDocument', 'ReferencePanel', 'fetch(item.contentPath', 'contentPath']],
   ['src/content/references/integrations.json', ['web-appsec', 'api-security', 'blue-purple', 'malware-detection']],
   ['src/components/references/ReferencePanel.tsx', ['safeUse', 'license', 'resolveCurriculumReferences']],

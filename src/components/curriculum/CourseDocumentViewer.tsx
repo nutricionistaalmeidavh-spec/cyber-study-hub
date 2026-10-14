@@ -70,11 +70,14 @@ export function CourseDocumentViewer(props: Props) {
   }
 
   const navigation = getNavigation(item);
+  const moduleBackLink = item.kind === 'main'
+    ? '#lessons?mode=main&module=' + encodeURIComponent(item.block)
+    : '#lessons?mode=parallel&module=' + encodeURIComponent(item.track);
 
   return (
     <div className="page course-document-page">
       <header className="course-document-topbar">
-        <a href="#lessons">← Currículo</a>
+        <a href={moduleBackLink}>← Aulas do módulo</a>
         <span>{item.kind === 'main' ? `Aula ${item.id}` : item.code}</span>
       </header>
 
@@ -111,7 +114,7 @@ export function CourseDocumentViewer(props: Props) {
         {navigation.previous ? (
           <a href={hrefFor(navigation.previous)}>← {shortLabel(navigation.previous)}</a>
         ) : <span />}
-        <a href="#lessons">Currículo</a>
+        <a href={moduleBackLink}>Módulo</a>
         {navigation.next ? (
           <a href={hrefFor(navigation.next)}>{shortLabel(navigation.next)} →</a>
         ) : <span />}

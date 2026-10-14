@@ -57,7 +57,7 @@
     "test:kdf": "node --test scripts/test-password-kdf.mjs",
     "test:a-141-150": "node scripts/test-a-141-150-structure.mjs && node --test public/course-labs/a141-150/lab.test.mjs",
     "test:grade-a-141-150": "node scripts/test-grade-a-141-150.mjs",
-    "test:hub-ux": "node --test scripts/test-hub-learning-experience.mjs"
+    "test:hub-ux": "node --test scripts/test-hub-learning-experience.mjs scripts/test-curriculum-modules.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
