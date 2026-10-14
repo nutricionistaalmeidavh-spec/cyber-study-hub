@@ -65,3 +65,7 @@ Mais 10 unidades A (Assembly & Reverse Engineering) com laboratórios Node, prov
 ## A editorial IA — aulas 101–110 (13/10/2026)
 
 Revisão editorial assistida por IA de dez unidades; total registrado na branch: **135 A editoriais**, incluindo as 125 anteriores na main e sem rebaixamentos. Evidências das seis dimensões, 60 questões independentes, rubricas e hashes de conteúdo em `quality/reviews/a101-110-2026-10-13.json` e `docs/quality/AUDITORIA_A_101_110.md`. Nenhum teste humano de aprendizagem, ensaio Win32 real, driver ou DLL externa foi executado. Os laboratórios CI se limitam a programas C próprios e modelos Python com fixtures sintéticas.
+
+## A editorial IA — aulas 161–170 (14/10/2026)
+
+AULA-166 já estava A, com hash e laboratório piloto preservados. As outras **nove aulas** deste lote foram complementadas e promovidas a A por revisão editorial assistida por IA, com 9 modelos/testes locais, 54 perguntas de transferência e rubricas independentes. Total esperado: **144 A editoriais IA**, incluindo as 135 anteriores intactas. `quality/reviews/a161-170-2026-10-14.json` registra seis dimensões e SHA de cada um dos nove documentos novos; `docs/quality/AUDITORIA_A_161_170.md` registra limites. Sem validação de aprendizagem com alunos reais ou execução de payloads.
