@@ -29,3 +29,16 @@ node --test public/course-labs/a201-208/lab.test.mjs
 **Kit de extensão opcional:** `utilidades/modules/artisys-ai-quality`, `artisys-auth-rbac`, `artisys-privacy` e `artisysScan` oferecem referências técnicas e QA; **não** são dependências deste experimento. Um modelo local (Ollama) ou uma conta paga não são necessários.
 
 **Segurança:** sem dados pessoais, chaves, rede externa, execução de comandos de agentes nem alterações de filesystem. Os testes provam apenas as funções determinísticas do harness. Não afirme que comprovam resistência geral a prompt injection em um modelo real.
+
+## Oficinas por ID canônico (P2)
+
+- [AULA-201 — LLM Security Fundamentals](./workshops/AULA-201.md)
+- [AULA-202 — Prompt Injection](./workshops/AULA-202.md)
+- [AULA-203 — Sensitive Information Disclosure](./workshops/AULA-203.md)
+- [AULA-204 — RAG Security](./workshops/AULA-204.md)
+- [AULA-205 — Tool / Agent Abuse](./workshops/AULA-205.md)
+- [AULA-206 — Model & AI Supply Chain](./workshops/AULA-206.md)
+- [AULA-207 — OWASP GenAI / LLM Top 10 2026](./workshops/AULA-207.md)
+- [AULA-208 — Defesa de Agentes e Capstone AI Security](./workshops/AULA-208.md)
+
+Runner: `node public/course-labs/a201-208/run.mjs 201` (substitua 201 pelo ID da aula). Testes: `node --test public/course-labs/a201-208/run.test.mjs`. O runner não executa LLM e não usa rede.
