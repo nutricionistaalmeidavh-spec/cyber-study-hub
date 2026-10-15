@@ -37,4 +37,6 @@ test('apostilas consolidadas só com assinatura ativa; paralelas draft não vaza
  assert.equal(permitted(student,pdf,owner('web-apis'),false),false);
  assert.equal(permitted(student,pdf,[],true),true);
  assert.equal(permitted(student,ownersForPath('/course-library/parallel/PY-01.md'),owner('paralela-py'),false),false);
+ assert.equal(permitted(student,ownersForPath('/course-library/parallel/PY-01.md'),[],true),false);
+ assert.equal(permitted(student,ownersForPath('/course-library/parallel/LOG-01.md'),owner('desenvolvimento-com-ia'),false),true);
 });

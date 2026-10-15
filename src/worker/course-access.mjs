@@ -27,7 +27,8 @@ export function ownersForPath(pathname) {
   const parallel = /^\/course-library\/parallel\/([A-Z0-9-]+)\.md$/.exec(pathname);
   if (parallel && parallelCodes.has(parallel[1])) {
     const id = byLesson.get(parallel[1]);
-    // A referenced unit is never a paid course on its own.
+    if (parallel[1]==='LOG-01' && offers.publishedStandaloneLessonCodes?.includes('LOG-01')) return ['desenvolvimento-com-ia'];
+    // Units in draft courses remain blocked, including for subscribers.
     if (id) return [id];
   }
   const lab = /^\/course-labs\/([a-zA-Z0-9-]+)\/[a-zA-Z0-9_./-]+$/.exec(pathname);
@@ -68,6 +69,7 @@ export function permitted(user, owners, grants, subscriptionActive, now = Date.n
   if (!user || !['active'].includes(user.status)) return false;
   if (user.role === 'admin' || user.role === 'teacher') return true;
   if (!owners.length) return false;
+  if (!owners.some(id => publishedCourseIds.has(id) || id==='@subscription-only')) return false;
   if (subscriptionActive) return true;
   if (owners.includes('@subscription-only')) return false;
   return owners.some(id => publishedCourseIds.has(id) && grants.some(grant =>
