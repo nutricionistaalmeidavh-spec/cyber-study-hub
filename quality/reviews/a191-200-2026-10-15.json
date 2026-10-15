@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-191..AULA-200",
+  "reviewedOn": "2026-10-15",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+  "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+  "humanLearnerTesting": "not_performed",
+  "labMode": "Node.js 22+, deterministic in-memory models, no cloud credentials",
+  "qaMethod": "A suíte de contratos Node executa 10 testes e casos negativos; GitHub Actions prova execução e regressão; extensão Docker/Kubernetes/cloud/Electron real NÃO foi executada nesta rodada.",
+  "units": {
+    "AULA-191": {
+      "title": "Docker Security",
+      "contentPath": "/course-library/main/191.md",
+      "contentSha256": "0a85a0e4534204cb72f139cdca5375e02f344bbc098db3689cf6da5bbc794de1",
+      "technicalSources": [
+        "https://docs.docker.com/engine/security/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Docker daemon socket ligado ao host mesmo com UID não-root; revisão de privilégios de usuário, mounts, capabilities, seccomp e read-only.",
+      "observations": "HARDENED_FIXTURE / ROOT_PROCESS / DAEMON_SOCKET / WRITABLE_ROOT",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-192": {
+      "title": "Kubernetes Security",
+      "contentPath": "/course-library/main/192.md",
+      "contentSha256": "fa71e303aa0d3606824d657b6a51d0875d15fdbf58d6f681af07eb58765bc8cb",
+      "technicalSources": [
+        "https://kubernetes.io/docs/concepts/security/pod-security-standards/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "RBAC verbos curingas e ServiceAccount token desnecessário versus securityContext endurecido e isolamento de rede.",
+      "observations": "MINIMUM_POD_FIXTURE / RBAC_WILDCARD / UNNECESSARY_TOKEN / POD_PRIVILEGED",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-193": {
+      "title": "IAM",
+      "contentPath": "/course-library/main/193.md",
+      "contentSha256": "f36ceeb12030315a362fd9c8a792eb69420db2de766441a2b6303e4fb7911f35",
+      "technicalSources": [
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Actions e ARN de objeto, transporte TLS, deny implícito versus explícito; integração do avaliador Python anterior preservada.",
+      "observations": "ALLOW_READ / IMPLICIT_DENY / DENY_TRANSPORT",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-194": {
+      "title": "Secrets Management",
+      "contentPath": "/course-library/main/194.md",
+      "contentSha256": "ee3cdb16522ae70941f90522b48a898713db967b83c6c5b50dc2aebb67acaa6e",
+      "technicalSources": [
+        "https://owasp.org/www-project-cheat-sheets/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Ciclo de exposição, permissão, escopo, rotação e revogação de segredos; sem valores reais de token.",
+      "observations": "CONTROLLED_FIXTURE / SOURCE_EXPOSURE / ROTATE / EXCESS_SCOPE / LOG_EXPOSURE",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-195": {
+      "title": "CI/CD Security",
+      "contentPath": "/course-library/main/195.md",
+      "contentSha256": "6b66d49d19eee71c179764d0faf4b7a0d7a59493db03978fda9bfc3e7309fc3e",
+      "technicalSources": [
+        "https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Pipeline deve testar e construir mesma revisão, verificar digest e barrar release em falha; lab Node anterior preservado.",
+      "observations": "RELEASE_FIXTURE_APPROVED / UNTESTED_SOURCE / TEST_FAILED / ARTIFACT_MISMATCH",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-196": {
+      "title": "SAST, DAST e SCA",
+      "contentPath": "/course-library/main/196.md",
+      "contentSha256": "02fbb875986ff44740d42c1f8c0688d94c915f9b9c8045a2c562dbb0a79001b6",
+      "technicalSources": [
+        "https://owasp.org/www-project-devsecops-guideline/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Comparação de evidência estática, dinâmica e dependências sem confundir alerta com confirmação de exploração.",
+      "observations": "REQUIRES_TRIAGE / CONFIRMED_IN_FIXTURE / FIXED_IN_FIXTURE / UNKNOWN_SCANNER",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-197": {
+      "title": "Software Supply Chain",
+      "contentPath": "/course-library/main/197.md",
+      "contentSha256": "d4cb001d9c3b1194c66dd1f059816d5361c52ccf27ad700afec8f09da322590d",
+      "technicalSources": [
+        "https://slsa.dev/spec/v1.0/levels"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Integridade de bytes, pinning, provenance e inventário SBOM como propriedades complementares, não equivalentes.",
+      "observations": "VERIFIED_FIXTURE / INTEGRITY_FAILED / ORIGIN_NOT_VERIFIED / UNPINNED_DEPENDENCY",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-198": {
+      "title": "Supabase / Firebase Security",
+      "contentPath": "/course-library/main/198.md",
+      "contentSha256": "06bf2fbd880ac2920dadba2a0f49a024d955b200d6ea1ba2610252687e8719fc",
+      "technicalSources": [
+        "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "USING e WITH CHECK para old/new owner, RLS vs bypass e regras Firestore, com labs PostgreSQL/Emulator preservados.",
+      "observations": "ALLOW / DENY_OWNER / DENY_UNAUTHENTICATED",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-199": {
+      "title": "Serverless Security",
+      "contentPath": "/course-library/main/199.md",
+      "contentSha256": "900d4fffcda9ba88b52af445192d6b8567b1d4b165a6dacd639c0af5c166579b",
+      "technicalSources": [
+        "https://owasp.org/www-project-serverless-top-10/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Autenticação/token verificado, tenant isolation, método e expiração para função sem depender de provedor cloud.",
+      "observations": "ALLOW_FIXTURE / TENANT_MISMATCH / UNVERIFIED_IDENTITY / EXPIRED / METHOD_DENIED",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    },
+    "AULA-200": {
+      "title": "Electron / Desktop Security",
+      "contentPath": "/course-library/main/200.md",
+      "contentSha256": "a1ca76dacac7edae0f50d3d41d325e6d57a105611fa3cca2011e05abefb1b415",
+      "technicalSources": [
+        "https://www.electronjs.org/docs/latest/tutorial/security"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Checagem sender WebContents, frame, schema IPC e propriedade; app Electron e handler original preservados.",
+      "observations": "ALLOW_FIXTURE / SENDER_DENIED / ARGUMENT_DENIED / FORBIDDEN / UNAUTHENTICATED",
+      "limitations": [
+        "A fixture didática não controla Docker, cluster, IAM, cloud, banco ou Electron reais.",
+        "Sem observação com estudantes humanos; verificações nativas prévias mantidas onde existentes."
+      ]
+    }
+  }
+}

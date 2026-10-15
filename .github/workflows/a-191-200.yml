@@ -1,0 +1,36 @@
+name: Aulas 191-200 QA
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/19*.md'
+      - 'public/course-library/main/200.md'
+      - 'public/course-labs/a191-200/**'
+      - 'quality/**'
+      - 'docs/quality/AUDITORIA_A_191_200.md'
+      - 'scripts/test-grade-a-191-200.mjs'
+      - 'package.json'
+      - '.github/workflows/a-191-200.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Reproducible dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Independent laboratory models and negative checks
+        run: npm run test:a-191-200
+      - name: Verify lesson hashes, rubrics and previous reviews
+        run: npm run test:grade-a-191-200
+      - name: Build and full platform curriculum QA
+        run: npm run build

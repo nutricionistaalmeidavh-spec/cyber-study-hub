@@ -32,7 +32,7 @@ test('deep links, incremental search and empty-state recovery', () => {
   assert.match(browser, /slice\(0, visibleCount\)/);
   assert.match(browser, /count => count \+ 24/);
   assert.match(browser, /Limpar busca e filtros/);
-  assert.match(browser, /'Escolha um módulo para estudar'/);
+  assert.match(browser, /'Escolha o que estudar'/);
   assert.match(browser, /AULAS DO MÓDULO/);
   assert.match(browser, /Voltar aos módulos/);
   assert.match(browser, /Mostrando /);
@@ -45,4 +45,26 @@ test('mobile navigation retains all routes and accessible active state', () => {
     assert.ok(app.includes(route), 'Missing route ' + route);
   assert.match(app, /aria-current=\{active\?'page':undefined\}/);
   assert.match(css, /env\(safe-area-inset-bottom/);
+});
+
+test('module cards show only a short title, estimated time and real state', () => {
+  const browser = read('src/components/curriculum/CurriculumBrowser.tsx');
+  const home = read('src/components/Dashboard.tsx');
+  const academy = read('src/components/AcademyLanding.tsx');
+  const presentation = read('src/lib/modulePresentation.ts');
+  const css = read('src/components/hub-editorial.css');
+
+  assert.match(browser, /moduleDisplayTitle\(name\)/);
+  assert.match(browser, /duration=\{mainStudyTime/);
+  assert.match(browser, /duration=\{parallelStudyTime/);
+  assert.doesNotMatch(browser, /count=\{group\.items\.length\} unit=/);
+  assert.doesNotMatch(browser, /Comece por: /);
+  assert.doesNotMatch(home, /\{catalog\.main\.length\} aulas/);
+  assert.doesNotMatch(home, /32 etapas com laboratórios/);
+  assert.match(academy, /moduleDisplayTitle\(module\.title\)/);
+  assert.match(academy, /parallelStudyTime\(module\.count\)/);
+  assert.match(presentation, /unitCount \* 25/);
+  assert.match(presentation, /unitCount \* 40/);
+  assert.match(css, /\.hub-home \.hub-journey:nth-child\(3\),/);
+  assert.match(css, /rgba\(241,233,251,\.94\)/);
 });

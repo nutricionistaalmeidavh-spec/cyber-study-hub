@@ -5,18 +5,21 @@ import { useAcademyMotion } from './useAcademyMotion';
 import './academy.css';
 import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
+import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
 
 const catalog = catalogData as CurriculumCatalog;
 
 type CatalogMode = 'main' | 'parallel';
-type ModulePreview = { title: string; count: number };
-function groupModules(items: Array<{ block?: string; track?: string }>, field: 'block' | 'track'): ModulePreview[] {
-  const grouped = new Map<string, number>();
+type ModulePreview = { title: string; count: number; durationMin: number };
+function groupModules(items: Array<{ block?: string; track?: string; durationMin?: number }>, field: 'block' | 'track'): ModulePreview[] {
+  const grouped = new Map<string, { count: number; durationMin: number }>();
   for (const item of items) {
     const title = item[field];
-    if (title) grouped.set(title, (grouped.get(title) || 0) + 1);
+    if (!title) continue;
+    const previous = grouped.get(title) || { count: 0, durationMin: 0 };
+    grouped.set(title, { count: previous.count + 1, durationMin: previous.durationMin + (item.durationMin ?? 0) });
   }
-  return [...grouped].map(([title, count]) => ({ title, count }));
+  return [...grouped].map(([title, info]) => ({ title, ...info }));
 }
 const principal = groupModules(catalog.main, 'block');
 const paralelas = groupModules(catalog.parallel, 'track');
@@ -149,8 +152,8 @@ export default function AcademyLanding() {
             {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title} style={{ '--academy-i': index } as CSSProperties}
               href={'/#lessons?mode=' + mode + '&module=' + encodeURIComponent(module.title)}>
               <span className="academy-module-top"><span className="academy-module-number">{String(index + 1).padStart(2, '0')}</span><span className="academy-module-arrow" aria-hidden="true">↗</span></span>
-              <h3>{module.title}</h3>
-              <div className="academy-module-bottom"><span>{module.count} {mode === 'main' ? 'aulas' : 'unidades'}</span><span>Explorar módulo <Arrow /></span></div>
+              <h3>{moduleDisplayTitle(module.title)}</h3>
+              <div className="academy-module-bottom"><span>{mode === 'main' ? mainStudyTime(module.durationMin) : parallelStudyTime(module.count)}</span><span>Explorar <Arrow /></span></div>
             </a>)}
           </div>
           <div className="academy-catalog-footer">

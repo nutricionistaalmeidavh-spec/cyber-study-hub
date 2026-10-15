@@ -69,3 +69,10 @@ Revisão editorial assistida por IA de dez unidades; total registrado na branch:
 ## A editorial IA — aulas 161–170 (14/10/2026)
 
 AULA-166 já estava A, com hash e laboratório piloto preservados. As outras **nove aulas** deste lote foram complementadas e promovidas a A por revisão editorial assistida por IA, com 9 modelos/testes locais, 54 perguntas de transferência e rubricas independentes. Total esperado: **153 A editoriais IA**, incluindo as 144 anteriores intactas. `quality/reviews/a161-170-2026-10-14.json` registra seis dimensões e SHA de cada um dos nove documentos novos; `docs/quality/AUDITORIA_A_161_170.md` registra limites. Sem validação de aprendizagem com alunos reais ou execução de payloads.
+
+## A editorial IA — aulas 181 a 190 (15/10/2026)
+
+As dez aulas de Red/Purple Team foram reescritas como material específico, com distinção explícita entre fatos da fixture e inferência de incidente. O núcleo é local e gratuito (Node 22+), sem executar alvos externos, alterar permissões, abrir SSH, criar persistência real ou usar segredos. Existem 10 oficinas de contrastes positivos/negativos, testes de invariantes, seis perguntas de transferência por aula (60 no lote), gabaritos externos e rubricas 5/6.
+
+A classificação **A editorial IA** corresponde às seis dimensões com evidências e hashes em `quality/reviews/a181-190-2026-10-15.json`, auditáveis por `npm run test:grade-a-181-190`. A execução automatizada dos modelos foi concluída no GitHub Actions em 15/10/2026, antes do parecer. **Não houve validação com alunos humanos, nem parecer de especialista humano externo; isso permanece em aberto.** A classificação não significa que as táticas foram executadas em sistemas reais.
+

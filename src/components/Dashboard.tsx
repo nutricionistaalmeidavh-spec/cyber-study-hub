@@ -12,6 +12,7 @@ import { getStudyVisits } from '../lib/studyProgress';
 import { studySectionHref } from '../lib/studyNavigation';
 import { lessonDurationLabel } from '../lib/courseStudyMetadata';
 import ProgressSyncStatus from './ProgressSyncStatus';
+import { moduleDisplayTitle } from '../lib/modulePresentation';
 
 const catalog = catalogData as CurriculumCatalog;
 const interactiveIds = new Set([...lessons.map(lesson => lesson.id), ...listNativeV2LessonIds()]);
@@ -64,14 +65,11 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     </header>
     <section className="hub-focus" aria-labelledby="hub-next-title">
       <div className="hub-focus-copy">
-        <span className="hub-focus-kicker">{isNewStudent ? 'SEU PONTO DE PARTIDA' : 'CONTINUE SEU ESTUDO'}</span>
-        <h2 id="hub-next-title">{isNewStudent ? 'O próximo passo começa aqui.' : 'Continue de onde parou.'}</h2>
-        <p>{isNewStudent
-          ? 'A formação principal começa pela Aula 001. Você também pode explorar qualquer área, sem bloqueios.'
-          : 'Seu próximo estudo leva em conta o progresso registrado nesta conta.'}</p>
+        <span className="hub-focus-kicker">{isNewStudent ? 'COMECE AQUI' : 'SEU PRÓXIMO PASSO'}</span>
+        <h2 id="hub-next-title">{isNewStudent ? 'Comece a estudar.' : 'Continue de onde parou.'}</h2>
         <div className="hub-focus-lesson">
           <span className="hub-focus-number">{latest?.kind === 'ai' ? 'IA' : latest?.key.startsWith('parallel:') ? '↗' : String(latest ? Number(latest.key) : recommended.id).padStart(3,'0')}</span>
-          <div><small>{latest?.sectionLabel || (recommended.track + " · " + lessonDurationLabel(recommended))}</small><strong>{latest?.title || recommended.title}</strong></div>
+          <div><small>{latest?.sectionLabel || (moduleDisplayTitle(recommended.block) + " · " + lessonDurationLabel(recommended))}</small><strong>{latest?.title || recommended.title}</strong></div>
         </div>
         <div className="hub-focus-actions">
           <a className="button primary" href={resumeHref}>{isNewStudent ? 'Começar pela aula 001' : 'Continuar estudo'} <span aria-hidden="true">→</span></a>
@@ -81,8 +79,8 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     </section>
     <ProgressSyncStatus />
     <a className="hub-ai-banner" href="#ai-dev">
-      <span><small>FORMAÇÃO PRÁTICA · 8 MÓDULOS DISPONÍVEIS</small><strong>Construa o Meu Gestor com ChatGPT ou Claude</strong><em>32 etapas com laboratórios e provas independentes. IA local opcional, sem API paga obrigatória.</em></span>
-      <b>Abrir trilha →</b>
+      <span><small>TRILHA PRÁTICA</small><strong>Meu Gestor com IA</strong><em>ChatGPT ou Claude no navegador · IA local opcional · sem API paga.</em></span>
+      <b>Explorar trilha →</b>
     </a>
     <a className="hub-ai-banner hub-channel-banner" href="#channel-dark">
       <span><small>CANAL DARK · 8 MÓDULOS</small><strong>Automatize um canal com IA, do zero</strong><em>Steve AI, Pika, Google Flow, Kokoro, n8n e Modal como opções. Núcleo local gratuito em todas as etapas.</em></span>
@@ -90,21 +88,21 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     </a>
     <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
-        <div><span className="eyebrow">EXPLORE POR OBJETIVO</span><h2 id="hub-journeys-title">O que você quer estudar?</h2></div>
+        <div><h2 id="hub-journeys-title">Explore por assunto</h2></div>
         <a href="#lessons" className="text-link">Ver todo o catálogo →</a>
       </div>
       <div className="hub-journey-grid">
         <a href="#lessons?mode=main" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">01</span>
-          <div><strong>Formação principal</strong><p>{mainModuleCount} módulos · {catalog.main.length} aulas. Comece pelos fundamentos ou escolha uma área.</p><span>Explorar módulos <b aria-hidden="true">↗</b></span></div>
+          <div><strong>Formação principal</strong><p>Do básico ao avançado</p><span>Ver módulos <b aria-hidden="true">↗</b></span></div>
         </a>
         <a href="#lessons?mode=parallel" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">02</span>
-          <div><strong>Trilhas paralelas</strong><p>{parallelModuleCount} trilhas · {catalog.parallel.length} unidades de lógica, programação e especialidades.</p><span>Explorar trilhas <b aria-hidden="true">↗</b></span></div>
+          <div><strong>Trilhas paralelas</strong><p>Lógica, programação e ferramentas</p><span>Ver trilhas <b aria-hidden="true">↗</b></span></div>
         </a>
         <a href="#review" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">03</span>
-          <div><strong>Revisar e fixar</strong><p>Retome conceitos com revisão espaçada e pratique o que já estudou.</p><span>Ir para revisão <b aria-hidden="true">↗</b></span></div>
+          <div><strong>Revisão</strong><p>Fixe o que aprendeu</p><span>Revisar agora <b aria-hidden="true">↗</b></span></div>
         </a>
       </div>
     </section>

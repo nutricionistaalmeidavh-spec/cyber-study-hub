@@ -11261,6 +11261,1286 @@
           "result": "Caso LAB.INVALID aparece duas vezes com caixa diferente e fonte conhecida; old.invalid tem validade expirada antes da data de referência.; limite Sem feeds externos, DNS ou bloqueio real; o IOC é dado de treinamento."
         }
       ]
+    },
+    "AULA-191": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Docker Security — Docker daemon socket ligado ao host mesmo com UID não-root; revisão de privilégios de usuário, mounts, capabilities, seccomp e read-only. Prova de transferência e gabarito próprios; contrato local com resultados HARDENED_FIXTURE / ROOT_PROCESS / DAEMON_SOCKET / WRITABLE_ROOT. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "0a85a0e4534204cb72f139cdca5375e02f344bbc098db3689cf6da5bbc794de1",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/191.md :: Mecanismo técnico; https://docs.docker.com/engine/security/",
+          "result": "Docker daemon socket ligado ao host mesmo com UID não-root; revisão de privilégios de usuário, mounts, capabilities, seccomp e read-only."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/191.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 191 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 191",
+          "result": "Cenários testáveis: HARDENED_FIXTURE / ROOT_PROCESS / DAEMON_SOCKET / WRITABLE_ROOT. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/191.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Docker Security; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/191.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-191.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/191.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 191",
+          "result": "Causa: Docker daemon socket ligado ao host mesmo com UID não-root; revisão de privilégios de usuário, mounts, capabilities, seccomp e read-only.. Oráculo de teste: HARDENED_FIXTURE / ROOT_PROCESS / DAEMON_SOCKET / WRITABLE_ROOT."
+        }
+      ]
+    },
+    "AULA-192": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Kubernetes Security — RBAC verbos curingas e ServiceAccount token desnecessário versus securityContext endurecido e isolamento de rede. Prova de transferência e gabarito próprios; contrato local com resultados MINIMUM_POD_FIXTURE / RBAC_WILDCARD / UNNECESSARY_TOKEN / POD_PRIVILEGED. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "fa71e303aa0d3606824d657b6a51d0875d15fdbf58d6f681af07eb58765bc8cb",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/192.md :: Mecanismo técnico; https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+          "result": "RBAC verbos curingas e ServiceAccount token desnecessário versus securityContext endurecido e isolamento de rede."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/192.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 192 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 192",
+          "result": "Cenários testáveis: MINIMUM_POD_FIXTURE / RBAC_WILDCARD / UNNECESSARY_TOKEN / POD_PRIVILEGED. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/192.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Kubernetes Security; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/192.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-192.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/192.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 192",
+          "result": "Causa: RBAC verbos curingas e ServiceAccount token desnecessário versus securityContext endurecido e isolamento de rede.. Oráculo de teste: MINIMUM_POD_FIXTURE / RBAC_WILDCARD / UNNECESSARY_TOKEN / POD_PRIVILEGED."
+        }
+      ]
+    },
+    "AULA-193": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "IAM — Actions e ARN de objeto, transporte TLS, deny implícito versus explícito; integração do avaliador Python anterior preservada. Prova de transferência e gabarito próprios; contrato local com resultados ALLOW_READ / IMPLICIT_DENY / DENY_TRANSPORT. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "f36ceeb12030315a362fd9c8a792eb69420db2de766441a2b6303e4fb7911f35",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/193.md :: Mecanismo técnico; https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
+          "result": "Actions e ARN de objeto, transporte TLS, deny implícito versus explícito; integração do avaliador Python anterior preservada."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/193.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 193 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 193",
+          "result": "Cenários testáveis: ALLOW_READ / IMPLICIT_DENY / DENY_TRANSPORT. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/193.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em IAM; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/193.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-193.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/193.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 193",
+          "result": "Causa: Actions e ARN de objeto, transporte TLS, deny implícito versus explícito; integração do avaliador Python anterior preservada.. Oráculo de teste: ALLOW_READ / IMPLICIT_DENY / DENY_TRANSPORT."
+        }
+      ]
+    },
+    "AULA-194": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Secrets Management — Ciclo de exposição, permissão, escopo, rotação e revogação de segredos; sem valores reais de token. Prova de transferência e gabarito próprios; contrato local com resultados CONTROLLED_FIXTURE / SOURCE_EXPOSURE / ROTATE / EXCESS_SCOPE / LOG_EXPOSURE. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "ee3cdb16522ae70941f90522b48a898713db967b83c6c5b50dc2aebb67acaa6e",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/194.md :: Mecanismo técnico; https://owasp.org/www-project-cheat-sheets/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+          "result": "Ciclo de exposição, permissão, escopo, rotação e revogação de segredos; sem valores reais de token."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/194.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 194 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 194",
+          "result": "Cenários testáveis: CONTROLLED_FIXTURE / SOURCE_EXPOSURE / ROTATE / EXCESS_SCOPE / LOG_EXPOSURE. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/194.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Secrets Management; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/194.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-194.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/194.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 194",
+          "result": "Causa: Ciclo de exposição, permissão, escopo, rotação e revogação de segredos; sem valores reais de token.. Oráculo de teste: CONTROLLED_FIXTURE / SOURCE_EXPOSURE / ROTATE / EXCESS_SCOPE / LOG_EXPOSURE."
+        }
+      ]
+    },
+    "AULA-195": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "CI/CD Security — Pipeline deve testar e construir mesma revisão, verificar digest e barrar release em falha; lab Node anterior preservado. Prova de transferência e gabarito próprios; contrato local com resultados RELEASE_FIXTURE_APPROVED / UNTESTED_SOURCE / TEST_FAILED / ARTIFACT_MISMATCH. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "6b66d49d19eee71c179764d0faf4b7a0d7a59493db03978fda9bfc3e7309fc3e",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/195.md :: Mecanismo técnico; https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions",
+          "result": "Pipeline deve testar e construir mesma revisão, verificar digest e barrar release em falha; lab Node anterior preservado."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/195.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 195 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 195",
+          "result": "Cenários testáveis: RELEASE_FIXTURE_APPROVED / UNTESTED_SOURCE / TEST_FAILED / ARTIFACT_MISMATCH. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/195.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em CI/CD Security; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/195.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-195.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/195.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 195",
+          "result": "Causa: Pipeline deve testar e construir mesma revisão, verificar digest e barrar release em falha; lab Node anterior preservado.. Oráculo de teste: RELEASE_FIXTURE_APPROVED / UNTESTED_SOURCE / TEST_FAILED / ARTIFACT_MISMATCH."
+        }
+      ]
+    },
+    "AULA-196": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "SAST, DAST e SCA — Comparação de evidência estática, dinâmica e dependências sem confundir alerta com confirmação de exploração. Prova de transferência e gabarito próprios; contrato local com resultados REQUIRES_TRIAGE / CONFIRMED_IN_FIXTURE / FIXED_IN_FIXTURE / UNKNOWN_SCANNER. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "02fbb875986ff44740d42c1f8c0688d94c915f9b9c8045a2c562dbb0a79001b6",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/196.md :: Mecanismo técnico; https://owasp.org/www-project-devsecops-guideline/",
+          "result": "Comparação de evidência estática, dinâmica e dependências sem confundir alerta com confirmação de exploração."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/196.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 196 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 196",
+          "result": "Cenários testáveis: REQUIRES_TRIAGE / CONFIRMED_IN_FIXTURE / FIXED_IN_FIXTURE / UNKNOWN_SCANNER. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/196.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em SAST, DAST e SCA; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/196.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-196.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/196.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 196",
+          "result": "Causa: Comparação de evidência estática, dinâmica e dependências sem confundir alerta com confirmação de exploração.. Oráculo de teste: REQUIRES_TRIAGE / CONFIRMED_IN_FIXTURE / FIXED_IN_FIXTURE / UNKNOWN_SCANNER."
+        }
+      ]
+    },
+    "AULA-197": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Software Supply Chain — Integridade de bytes, pinning, provenance e inventário SBOM como propriedades complementares, não equivalentes. Prova de transferência e gabarito próprios; contrato local com resultados VERIFIED_FIXTURE / INTEGRITY_FAILED / ORIGIN_NOT_VERIFIED / UNPINNED_DEPENDENCY. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "d4cb001d9c3b1194c66dd1f059816d5361c52ccf27ad700afec8f09da322590d",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/197.md :: Mecanismo técnico; https://slsa.dev/spec/v1.0/levels",
+          "result": "Integridade de bytes, pinning, provenance e inventário SBOM como propriedades complementares, não equivalentes."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/197.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 197 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 197",
+          "result": "Cenários testáveis: VERIFIED_FIXTURE / INTEGRITY_FAILED / ORIGIN_NOT_VERIFIED / UNPINNED_DEPENDENCY. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/197.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Software Supply Chain; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/197.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-197.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/197.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 197",
+          "result": "Causa: Integridade de bytes, pinning, provenance e inventário SBOM como propriedades complementares, não equivalentes.. Oráculo de teste: VERIFIED_FIXTURE / INTEGRITY_FAILED / ORIGIN_NOT_VERIFIED / UNPINNED_DEPENDENCY."
+        }
+      ]
+    },
+    "AULA-198": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Supabase / Firebase Security — USING e WITH CHECK para old/new owner, RLS vs bypass e regras Firestore, com labs PostgreSQL/Emulator preservados. Prova de transferência e gabarito próprios; contrato local com resultados ALLOW / DENY_OWNER / DENY_UNAUTHENTICATED. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "06bf2fbd880ac2920dadba2a0f49a024d955b200d6ea1ba2610252687e8719fc",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/198.md :: Mecanismo técnico; https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+          "result": "USING e WITH CHECK para old/new owner, RLS vs bypass e regras Firestore, com labs PostgreSQL/Emulator preservados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/198.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 198 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 198",
+          "result": "Cenários testáveis: ALLOW / DENY_OWNER / DENY_UNAUTHENTICATED. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/198.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Supabase / Firebase Security; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/198.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-198.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/198.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 198",
+          "result": "Causa: USING e WITH CHECK para old/new owner, RLS vs bypass e regras Firestore, com labs PostgreSQL/Emulator preservados.. Oráculo de teste: ALLOW / DENY_OWNER / DENY_UNAUTHENTICATED."
+        }
+      ]
+    },
+    "AULA-199": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Serverless Security — Autenticação/token verificado, tenant isolation, método e expiração para função sem depender de provedor cloud. Prova de transferência e gabarito próprios; contrato local com resultados ALLOW_FIXTURE / TENANT_MISMATCH / UNVERIFIED_IDENTITY / EXPIRED / METHOD_DENIED. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "900d4fffcda9ba88b52af445192d6b8567b1d4b165a6dacd639c0af5c166579b",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/199.md :: Mecanismo técnico; https://owasp.org/www-project-serverless-top-10/",
+          "result": "Autenticação/token verificado, tenant isolation, método e expiração para função sem depender de provedor cloud."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/199.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 199 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 199",
+          "result": "Cenários testáveis: ALLOW_FIXTURE / TENANT_MISMATCH / UNVERIFIED_IDENTITY / EXPIRED / METHOD_DENIED. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/199.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Serverless Security; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/199.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-199.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/199.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 199",
+          "result": "Causa: Autenticação/token verificado, tenant isolation, método e expiração para função sem depender de provedor cloud.. Oráculo de teste: ALLOW_FIXTURE / TENANT_MISMATCH / UNVERIFIED_IDENTITY / EXPIRED / METHOD_DENIED."
+        }
+      ]
+    },
+    "AULA-200": {
+      "grade": "A",
+      "author": "Cyber Study Hub — material técnico e fixtures assistidos por GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial crítica por IA (não revisor humano independente)",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Electron / Desktop Security — Checagem sender WebContents, frame, schema IPC e propriedade; app Electron e handler original preservados. Prova de transferência e gabarito próprios; contrato local com resultados ALLOW_FIXTURE / SENDER_DENIED / ARGUMENT_DENIED / FORBIDDEN / UNAUTHENTICATED. Limites: não comprova enforcement em plataformas reais nem aprendizagem validada com estudantes. Revisão editorial por IA, com testes automatizados sujeitos aos checks do PR.",
+      "contentSha256": "a1ca76dacac7edae0f50d3d41d325e6d57a105611fa3cca2011e05abefb1b415",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 92,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Conferência técnico-editorial IA de causa, pré-condição e limite de mecanismo",
+          "reference": "public/course-library/main/200.md :: Mecanismo técnico; https://www.electronjs.org/docs/latest/tutorial/security",
+          "result": "Checagem sender WebContents, frame, schema IPC e propriedade; app Electron e handler original preservados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Leitura crítica IA com previsão, contraexemplo, atividade reversível e fonte declarada",
+          "reference": "public/course-library/main/200.md :: Resultado, Exemplo e Laboratório",
+          "result": "Exemplo 200 com entrada e saída explícitas; instruções local-only com previsão antes de executar."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contratos Node in-memory positivos e negativos; CI deve confirmar resultado",
+          "reference": "public/course-labs/a191-200/lab.test.mjs :: 200",
+          "result": "Cenários testáveis: ALLOW_FIXTURE / SENDER_DENIED / ARGUMENT_DENIED / FORBIDDEN / UNAUTHENTICATED. Sem acesso a cloud, segredo ou alvo real."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da correção causal e da preservação do comportamento legítimo",
+          "reference": "public/course-library/main/200.md :: Resposta defensiva",
+          "result": "Mitigação e investigação ancoradas em Electron / Desktop Security; a fixture não atesta o sistema de produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Prova de transferência independente, seis perguntas e gabarito separado",
+          "reference": "public/course-library/main/200.md :: Transferência; public/course-labs/a191-200/answer-keys/AULA-200.md",
+          "result": "Rubrica 100 pontos, explicação dos limites, resposta fora da página para evitar spoiler."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de parametrização, saída e cenário distintos das unidades vizinhas",
+          "reference": "public/course-library/main/200.md :: Exemplo resolvido; public/course-labs/a191-200/lab.test.mjs :: 200",
+          "result": "Causa: Checagem sender WebContents, frame, schema IPC e propriedade; app Electron e handler original preservados.. Oráculo de teste: ALLOW_FIXTURE / SENDER_DENIED / ARGUMENT_DENIED / FORBIDDEN / UNAUTHENTICATED."
+        }
+      ]
+    },
+    "AULA-181": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Red Team Methodology. Uma equipe recebe autorização apenas para LAB01 e LAB02, com proibição de alvos externos. O plano tem de demonstrar que cada atividade pode ser interrompida antes de produzir impacto. Mecanismo: Regras de engajamento (ROE) funcionam como um contrato de execução: escopo de ativos, ações permitidas, responsáveis, janela, comunicação, evidências e condições de parada. Uma ação tecnicamente possível não é automaticamente autorizada. Verificação: ALLOW para ROE autorizada em LAB01; DENY para ativo externo, com stop condition prioritária. Escopo: Fixture não autoriza testes reais nem monitora atividades externas. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "1837287ca94631741024dff0b1bf4c921f5fa4d34dec4fae003f21652eae5648",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/181.md :: seções 2, 4, 6; https://csrc.nist.gov/pubs/sp/800/115/final",
+          "result": "Regras de engajamento (ROE) funcionam como um contrato de execução: escopo de ativos, ações permitidas, responsáveis, janela, comunicação, evidências e condições de parada. Uma ação tecnicamente possível não é automaticamente autorizada. Limite explícito: Fixture não autoriza testes reais nem monitora atividades externas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/181.md :: seções 3–8",
+          "result": "Cenário localizado: Uma equipe recebe autorização apenas para LAB01 e LAB02, com proibição de alvos externos. O plano tem de demonstrar que cada atividade pode ser interrompida antes de produzir impacto.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[181], evaluateLesson(181); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "ALLOW para ROE autorizada em LAB01; DENY para ativo externo, com stop condition prioritária."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/181.md :: seções 9–10",
+          "result": "ALLOW para ROE autorizada em LAB01; DENY para ativo externo, com stop condition prioritária. Fixture não autoriza testes reais nem monitora atividades externas."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-181.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/181.md :: seções 2, 7, 13",
+          "result": "Uma equipe recebe autorização apenas para LAB01 e LAB02, com proibição de alvos externos. O plano tem de demonstrar que cada atividade pode ser interrompida antes de produzir impacto. ALLOW para ROE autorizada em LAB01; DENY para ativo externo, com stop condition prioritária."
+        }
+      ]
+    },
+    "AULA-182": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Adversary Emulation. Um serviço fictício `parent-lab` inicia um filho `child-lab`. O time deseja saber se os eventos bastam para reconstruir a relação pai-filho — sem iniciar processos suspeitos reais. Mecanismo: Emulação traduz um comportamento adversário descrito em ATT&CK para uma ação benigna com critério de detecção. A árvore de processos exige PID, PPID, host, origem, ordem temporal e contexto do binário; apenas o nome do processo é insuficiente. Verificação: CHAIN_OK somente com PID/PPID e host coerentes; host diferente exige REVIEW_LINEAGE. Escopo: Correlação simula linhagem, sem iniciar processos ou medir EDR. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "c1d47fbf1803856a69f601ce1fff00f47b10a98fc9b1b78eabafdf3908c2670b",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 94,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/182.md :: seções 2, 4, 6; https://attack.mitre.org/techniques/T1059/",
+          "result": "Emulação traduz um comportamento adversário descrito em ATT&CK para uma ação benigna com critério de detecção. A árvore de processos exige PID, PPID, host, origem, ordem temporal e contexto do binário; apenas o nome do processo é insuficiente. Limite explícito: Correlação simula linhagem, sem iniciar processos ou medir EDR."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/182.md :: seções 3–8",
+          "result": "Cenário localizado: Um serviço fictício `parent-lab` inicia um filho `child-lab`. O time deseja saber se os eventos bastam para reconstruir a relação pai-filho — sem iniciar processos suspeitos reais.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[182], evaluateLesson(182); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "CHAIN_OK somente com PID/PPID e host coerentes; host diferente exige REVIEW_LINEAGE."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/182.md :: seções 9–10",
+          "result": "CHAIN_OK somente com PID/PPID e host coerentes; host diferente exige REVIEW_LINEAGE. Correlação simula linhagem, sem iniciar processos ou medir EDR."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-182.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/182.md :: seções 2, 7, 13",
+          "result": "Um serviço fictício `parent-lab` inicia um filho `child-lab`. O time deseja saber se os eventos bastam para reconstruir a relação pai-filho — sem iniciar processos suspeitos reais. CHAIN_OK somente com PID/PPID e host coerentes; host diferente exige REVIEW_LINEAGE."
+        }
+      ]
+    },
+    "AULA-183": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Initial Access em laboratório. Uma aplicação interna recebe um pacote de demonstração. Antes de abri-lo, o analista precisa confirmar origem local, bytes esperados e integridade com SHA-256 real. Mecanismo: Initial Access designa a entrada inicial em um ambiente; na oficina, o componente de confiança é o validador de artefatos. Autenticidade de origem e integridade são questões distintas: hash coincidente só atesta igualdade de bytes com a referência confiável. Verificação: VALIDATED apenas com SHA-256 calculado dos bytes; bytes alterados geram REVIEW_INTEGRITY. Escopo: SHA-256 atesta integridade da fixture, não segurança ou proveniência por si. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "2ed960ad8ed5653d6bf2a76f9018e3e000a33cbc8b28ee57f9cbec35994a6c00",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 93,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/183.md :: seções 2, 4, 6; https://attack.mitre.org/tactics/TA0001/",
+          "result": "Initial Access designa a entrada inicial em um ambiente; na oficina, o componente de confiança é o validador de artefatos. Autenticidade de origem e integridade são questões distintas: hash coincidente só atesta igualdade de bytes com a referência confiável. Limite explícito: SHA-256 atesta integridade da fixture, não segurança ou proveniência por si."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/183.md :: seções 3–8",
+          "result": "Cenário localizado: Uma aplicação interna recebe um pacote de demonstração. Antes de abri-lo, o analista precisa confirmar origem local, bytes esperados e integridade com SHA-256 real.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[183], evaluateLesson(183); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "VALIDATED apenas com SHA-256 calculado dos bytes; bytes alterados geram REVIEW_INTEGRITY."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/183.md :: seções 9–10",
+          "result": "VALIDATED apenas com SHA-256 calculado dos bytes; bytes alterados geram REVIEW_INTEGRITY. SHA-256 atesta integridade da fixture, não segurança ou proveniência por si."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-183.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/183.md :: seções 2, 7, 13",
+          "result": "Uma aplicação interna recebe um pacote de demonstração. Antes de abri-lo, o analista precisa confirmar origem local, bytes esperados e integridade com SHA-256 real. VALIDATED apenas com SHA-256 calculado dos bytes; bytes alterados geram REVIEW_INTEGRITY."
+        }
+      ]
+    },
+    "AULA-184": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Privilege Escalation — exercício controlado. Um cadastro sintético vai de papel `reader` a `analyst` mediante ticket, e um segundo caso tenta registrar o papel `admin` sem autorização. Nenhuma conta do sistema é modificada. Mecanismo: Privilege Escalation representa aumento de autoridade. O que torna uma elevação aceitável é a relação entre identidade, papel anterior, papel solicitado, aprovador, janela e trilha de auditoria; sucesso operacional não equivale a autorização. Verificação: AUTHORIZED exige ticket, papel e escopo correspondentes; admin excedente gera REVIEW_CHANGE. Escopo: Objetos em memória não alteram permissões de usuários reais. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "7801fd11470ac6ed8ad5bb875f8150e9d28a25fcd3db992ad3837ed4f341c572",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 90,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/184.md :: seções 2, 4, 6; https://attack.mitre.org/tactics/TA0004/",
+          "result": "Privilege Escalation representa aumento de autoridade. O que torna uma elevação aceitável é a relação entre identidade, papel anterior, papel solicitado, aprovador, janela e trilha de auditoria; sucesso operacional não equivale a autorização. Limite explícito: Objetos em memória não alteram permissões de usuários reais."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/184.md :: seções 3–8",
+          "result": "Cenário localizado: Um cadastro sintético vai de papel `reader` a `analyst` mediante ticket, e um segundo caso tenta registrar o papel `admin` sem autorização. Nenhuma conta do sistema é modificada.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[184], evaluateLesson(184); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "AUTHORIZED exige ticket, papel e escopo correspondentes; admin excedente gera REVIEW_CHANGE."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/184.md :: seções 9–10",
+          "result": "AUTHORIZED exige ticket, papel e escopo correspondentes; admin excedente gera REVIEW_CHANGE. Objetos em memória não alteram permissões de usuários reais."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-184.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/184.md :: seções 2, 7, 13",
+          "result": "Um cadastro sintético vai de papel `reader` a `analyst` mediante ticket, e um segundo caso tenta registrar o papel `admin` sem autorização. Nenhuma conta do sistema é modificada. AUTHORIZED exige ticket, papel e escopo correspondentes; admin excedente gera REVIEW_CHANGE."
+        }
+      ]
+    },
+    "AULA-185": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Persistence — ofensivo e defensivo. Uma tarefa agendada fictícia chamada `lab-healthcheck` precisa permanecer visível e removível. A simulação não cria tarefa real: analisa uma definição de agenda e uma lista de autorizações. Mecanismo: Persistência depende de gatilho recorrente e artefato que sobrevive à sessão. Distinguir serviço, tarefa e chave de inicialização exige owner, comando, periodicidade, criador e trilha de remoção; periodicidade sozinha não define risco. Verificação: BASELINE_OK apenas para owner/caminho/rollback conhecidos; caminho não aprovado gera REVIEW_AUTOSTART. Escopo: Nenhuma tarefa, serviço, cron ou registro é modificado. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "ec005af999b7f28a167531408ab91e58e3412ee1e135272d961ae94aecd9c5c1",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 91,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 94,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/185.md :: seções 2, 4, 6; https://attack.mitre.org/techniques/T1053/",
+          "result": "Persistência depende de gatilho recorrente e artefato que sobrevive à sessão. Distinguir serviço, tarefa e chave de inicialização exige owner, comando, periodicidade, criador e trilha de remoção; periodicidade sozinha não define risco. Limite explícito: Nenhuma tarefa, serviço, cron ou registro é modificado."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/185.md :: seções 3–8",
+          "result": "Cenário localizado: Uma tarefa agendada fictícia chamada `lab-healthcheck` precisa permanecer visível e removível. A simulação não cria tarefa real: analisa uma definição de agenda e uma lista de autorizações.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[185], evaluateLesson(185); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "BASELINE_OK apenas para owner/caminho/rollback conhecidos; caminho não aprovado gera REVIEW_AUTOSTART."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/185.md :: seções 9–10",
+          "result": "BASELINE_OK apenas para owner/caminho/rollback conhecidos; caminho não aprovado gera REVIEW_AUTOSTART. Nenhuma tarefa, serviço, cron ou registro é modificado."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-185.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/185.md :: seções 2, 7, 13",
+          "result": "Uma tarefa agendada fictícia chamada `lab-healthcheck` precisa permanecer visível e removível. A simulação não cria tarefa real: analisa uma definição de agenda e uma lista de autorizações. BASELINE_OK apenas para owner/caminho/rollback conhecidos; caminho não aprovado gera REVIEW_AUTOSTART."
+        }
+      ]
+    },
+    "AULA-186": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Credential Access — conceitos e defesa. Uma aplicação simulada grava um evento ao ler um marcador canário inteiramente fictício. O objetivo é separar leitura legítima de um sinal que merece investigação, sem acessar senhas ou tokens. Mecanismo: Credential Access descreve tentativas de obter material de autenticação. O canário não é credencial real: é um identificador propositalmente rastreável. A leitura pode ser legítima ou inesperada; contexto e autorização determinam a investigação. Verificação: EXPECTED_READ é canário fictício autorizado; identidade desconhecida exige REVIEW_CANARY, sem inferir exfiltração. Escopo: Marcador fictício não é segredo utilizável e leitura não demonstra roubo. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "4a9c3a182dd5994b36306e1a8a8142e2fb0d17fd1150db886480ee7db5d5bae3",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/186.md :: seções 2, 4, 6; https://attack.mitre.org/tactics/TA0006/",
+          "result": "Credential Access descreve tentativas de obter material de autenticação. O canário não é credencial real: é um identificador propositalmente rastreável. A leitura pode ser legítima ou inesperada; contexto e autorização determinam a investigação. Limite explícito: Marcador fictício não é segredo utilizável e leitura não demonstra roubo."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/186.md :: seções 3–8",
+          "result": "Cenário localizado: Uma aplicação simulada grava um evento ao ler um marcador canário inteiramente fictício. O objetivo é separar leitura legítima de um sinal que merece investigação, sem acessar senhas ou tokens.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[186], evaluateLesson(186); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "EXPECTED_READ é canário fictício autorizado; identidade desconhecida exige REVIEW_CANARY, sem inferir exfiltração."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/186.md :: seções 9–10",
+          "result": "EXPECTED_READ é canário fictício autorizado; identidade desconhecida exige REVIEW_CANARY, sem inferir exfiltração. Marcador fictício não é segredo utilizável e leitura não demonstra roubo."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-186.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/186.md :: seções 2, 7, 13",
+          "result": "Uma aplicação simulada grava um evento ao ler um marcador canário inteiramente fictício. O objetivo é separar leitura legítima de um sinal que merece investigação, sem acessar senhas ou tokens. EXPECTED_READ é canário fictício autorizado; identidade desconhecida exige REVIEW_CANARY, sem inferir exfiltração."
+        }
+      ]
+    },
+    "AULA-187": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Lateral Movement — laboratório. Duas VMs conceituais, LAB01 e LAB02, aparecem em eventos de sessão SSH fabricados. A avaliação examina autorização de origem, destino e identidade, sem estabelecer rede nem sessão. Mecanismo: Movimento lateral pressupõe atravessar ativos ou identidades. Uma sessão remota legítima precisa ser relacionada a origem, destino, conta, papel, janela e ticket; a presença de SSH sozinha não demonstra movimento malicioso. Verificação: AUTHORIZED_SESSION somente para origem/destino/conta autorizados; saída do LAB gera REVIEW_SESSION. Escopo: Logs fabricados não abrem SSH nem reproduzem movimento real. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "423e5dd9b8891d60e1585ab26530a0b231ab9dd1f6a3f355b1c6aebb42652f6b",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 93,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 93,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/187.md :: seções 2, 4, 6; https://attack.mitre.org/tactics/TA0008/",
+          "result": "Movimento lateral pressupõe atravessar ativos ou identidades. Uma sessão remota legítima precisa ser relacionada a origem, destino, conta, papel, janela e ticket; a presença de SSH sozinha não demonstra movimento malicioso. Limite explícito: Logs fabricados não abrem SSH nem reproduzem movimento real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/187.md :: seções 3–8",
+          "result": "Cenário localizado: Duas VMs conceituais, LAB01 e LAB02, aparecem em eventos de sessão SSH fabricados. A avaliação examina autorização de origem, destino e identidade, sem estabelecer rede nem sessão.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[187], evaluateLesson(187); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "AUTHORIZED_SESSION somente para origem/destino/conta autorizados; saída do LAB gera REVIEW_SESSION."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/187.md :: seções 9–10",
+          "result": "AUTHORIZED_SESSION somente para origem/destino/conta autorizados; saída do LAB gera REVIEW_SESSION. Logs fabricados não abrem SSH nem reproduzem movimento real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-187.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/187.md :: seções 2, 7, 13",
+          "result": "Duas VMs conceituais, LAB01 e LAB02, aparecem em eventos de sessão SSH fabricados. A avaliação examina autorização de origem, destino e identidade, sem estabelecer rede nem sessão. AUTHORIZED_SESSION somente para origem/destino/conta autorizados; saída do LAB gera REVIEW_SESSION."
+        }
+      ]
+    },
+    "AULA-188": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Defense Evasion — conceitos. Um dataset de treinamento registra eventos de `process`, `identity` e `file`; a segunda cópia omite `identity`. A missão é classificar perda de visibilidade sem desabilitar nenhum log real. Mecanismo: Uma lacuna de telemetria pode surgir por falha de coleta, atraso, retenção ou ação intencional. O exercício mede cobertura de fontes e integridade do pipeline; ausência de um evento não sustenta, por si, alegação de evasão. Verificação: GAP_IDENTIFIED ao faltar fonte identity; evento reinserido produz COVERED, sem atribuir evasão. Escopo: Lacuna sintética não demonstra evasão deliberada ou saúde de sensor real. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "39347cb9ca5321a6cd3f39c99f9cef026b4a90afa13b7de8ca0885d32e7b61f0",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 90,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 94,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/188.md :: seções 2, 4, 6; https://attack.mitre.org/tactics/TA0005/",
+          "result": "Uma lacuna de telemetria pode surgir por falha de coleta, atraso, retenção ou ação intencional. O exercício mede cobertura de fontes e integridade do pipeline; ausência de um evento não sustenta, por si, alegação de evasão. Limite explícito: Lacuna sintética não demonstra evasão deliberada ou saúde de sensor real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/188.md :: seções 3–8",
+          "result": "Cenário localizado: Um dataset de treinamento registra eventos de `process`, `identity` e `file`; a segunda cópia omite `identity`. A missão é classificar perda de visibilidade sem desabilitar nenhum log real.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[188], evaluateLesson(188); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "GAP_IDENTIFIED ao faltar fonte identity; evento reinserido produz COVERED, sem atribuir evasão."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/188.md :: seções 9–10",
+          "result": "GAP_IDENTIFIED ao faltar fonte identity; evento reinserido produz COVERED, sem atribuir evasão. Lacuna sintética não demonstra evasão deliberada ou saúde de sensor real."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-188.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/188.md :: seções 2, 7, 13",
+          "result": "Um dataset de treinamento registra eventos de `process`, `identity` e `file`; a segunda cópia omite `identity`. A missão é classificar perda de visibilidade sem desabilitar nenhum log real. GAP_IDENTIFIED ao faltar fonte identity; evento reinserido produz COVERED, sem atribuir evasão."
+        }
+      ]
+    },
+    "AULA-189": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Arquitetura conceitual de C2. Um software corporativo autorizado produz batimentos regulares. Uma outra série tem regularidade semelhante, mas proprietário não identificado. Analisar cadência sem enviar pacotes distingue padrão de contexto. Mecanismo: Command and Control envolve canal de comunicação e instrução; periodicidade de heartbeat é apenas um indício possível. Para investigar, correlacione processo, destino, identidade, DNS, política e sessão. Esta oficina não modela tasking arbitrário. Verificação: APPROVED_HEARTBEAT combina cadência e aprovação; sem proprietário gera CONTEXT_REQUIRED, C2 não provado. Escopo: Timestamps inertes não representam tráfego real e não provam C2. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "e0a9ef6aabcb0ed1e899358d579dadba1626921c630cea74e4676bd499f8a7b0",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 94,
+        "defesa": 94,
+        "avaliacao": 92,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/189.md :: seções 2, 4, 6; https://attack.mitre.org/tactics/TA0011/",
+          "result": "Command and Control envolve canal de comunicação e instrução; periodicidade de heartbeat é apenas um indício possível. Para investigar, correlacione processo, destino, identidade, DNS, política e sessão. Esta oficina não modela tasking arbitrário. Limite explícito: Timestamps inertes não representam tráfego real e não provam C2."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/189.md :: seções 3–8",
+          "result": "Cenário localizado: Um software corporativo autorizado produz batimentos regulares. Uma outra série tem regularidade semelhante, mas proprietário não identificado. Analisar cadência sem enviar pacotes distingue padrão de contexto.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[189], evaluateLesson(189); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "APPROVED_HEARTBEAT combina cadência e aprovação; sem proprietário gera CONTEXT_REQUIRED, C2 não provado."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/189.md :: seções 9–10",
+          "result": "APPROVED_HEARTBEAT combina cadência e aprovação; sem proprietário gera CONTEXT_REQUIRED, C2 não provado. Timestamps inertes não representam tráfego real e não provam C2."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-189.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/189.md :: seções 2, 7, 13",
+          "result": "Um software corporativo autorizado produz batimentos regulares. Uma outra série tem regularidade semelhante, mas proprietário não identificado. Analisar cadência sem enviar pacotes distingue padrão de contexto. APPROVED_HEARTBEAT combina cadência e aprovação; sem proprietário gera CONTEXT_REQUIRED, C2 não provado."
+        }
+      ]
+    },
+    "AULA-190": {
+      "grade": "A",
+      "author": "Cyber Study Hub — autoria de conteúdo assistida por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem técnico-editorial por IA; não é pessoa independente",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Purple Team Exercise. A equipe integra quatro testes benignos: ROE, árvore de processos, canário fictício e lacuna de coleta. O objetivo é medir o que foi realmente visto e investigar alertas sem confundir cobertura, acerto e falso positivo. Mecanismo: Purple Team é a iteração compartilhada de emulação, observação, investigação e melhoria. Uma matriz útil mede telemetria disponível, detecção, triagem e falsos positivos, com denominadores explícitos e reteste idêntico. Verificação: Quatro casos e critérios declarados resultam COVERED; falta de fonte e alerta benigno geram GAP_IDENTIFIED. Escopo: Scorecard sintético não mede SOC real nem eficácia com humanos. Esta é nota editorial assistida por IA, não validação de eficácia com aprendizes reais.",
+      "contentSha256": "615ae3f4c3f9f04adba0d548afd4cd9a518c83ad55129b0575a0bfd6c222d607",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 94,
+        "defesa": 93,
+        "avaliacao": 93,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Confronto crítico editorial da hipótese, mecanismo, decisão, fonte e limites",
+          "reference": "public/course-library/main/190.md :: seções 2, 4, 6; https://attack.mitre.org/resources/working-with-attack/",
+          "result": "Purple Team é a iteração compartilhada de emulação, observação, investigação e melhoria. Uma matriz útil mede telemetria disponível, detecção, triagem e falsos positivos, com denominadores explícitos e reteste idêntico. Limite explícito: Scorecard sintético não mede SOC real nem eficácia com humanos."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante por IA, conferindo termos, previsões e checkpoints; sem aluno humano",
+          "reference": "public/course-library/main/190.md :: seções 3–8",
+          "result": "Cenário localizado: A equipe integra quatro testes benignos: ROE, árvore de processos, canário fictício e lacuna de coleta. O objetivo é medir o que foi realmente visto e investigar alertas sem confundir cobertura, acerto e falso positivo.; separação de caso positivo e negativo e glossário contextual."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Caso positivo, caso negativo e invariantes executados em CI no Node 22; fixtures independentes, sem APIs externas",
+          "reference": "public/course-labs/a181-190/models.mjs :: fixtures[190], evaluateLesson(190); lab.test.mjs; https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/actions/runs/38748677502",
+          "result": "Quatro casos e critérios declarados resultam COVERED; falta de fonte e alerta benigno geram GAP_IDENTIFIED."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Inspeção IA de controle primário, falso positivo, risco residual e reteste",
+          "reference": "public/course-library/main/190.md :: seções 9–10",
+          "result": "Quatro casos e critérios declarados resultam COVERED; falta de fonte e alerta benigno geram GAP_IDENTIFIED. Scorecard sintético não mede SOC real nem eficácia com humanos."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Conferência de seis perguntas de transferência independentes do exemplo e gabarito separado",
+          "reference": "public/course-labs/a181-190/answer-keys/AULA-190.md",
+          "result": "Seis perguntas, seis respostas justificadas e rubrica 5/6 com reprovação para confusão de fixture e incidente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comparação de mecanismo, cenário e caso de contraste exclusivos da aula",
+          "reference": "public/course-library/main/190.md :: seções 2, 7, 13",
+          "result": "A equipe integra quatro testes benignos: ROE, árvore de processos, canário fictício e lacuna de coleta. O objetivo é medir o que foi realmente visto e investigar alertas sem confundir cobertura, acerto e falso positivo. Quatro casos e critérios declarados resultam COVERED; falta de fonte e alerta benigno geram GAP_IDENTIFIED."
+        }
+      ]
     }
   },
   "policy": {
