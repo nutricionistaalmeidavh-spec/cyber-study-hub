@@ -25,6 +25,13 @@ function groupModules(items: Array<{ block?: string; track?: string; durationMin
 }
 const principal = groupModules(catalog.main.filter(item => publishedMainLessonIds.has(item.id)), 'block');
 const paralelas = groupModules(catalog.parallel.filter(item => publishedParallelLessonCodes.has(item.code)), 'track');
+function publicModuleCourseHref(name: string): string {
+  const lessonCodes = new Set(catalog.main.filter(item => item.block === name).map(item => item.code));
+  const parent = publishedCourses.find(course => course.type === 'main' &&
+    course.modules.some(module => module.lessonCodes.some(code => lessonCodes.has(code))));
+  return parent ? '/#courses/' + parent.id : '/#courses';
+}
+
 
 export function isAcademyPath(pathname: string) {
   return /^\/academy\/?$/.test(pathname);
@@ -163,7 +170,7 @@ export default function AcademyLanding() {
           </div>
           <div className="academy-module-grid" key={mode}>
             {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title} style={{ '--academy-i': index } as CSSProperties}
-              href={'/#lessons?mode=' + mode + '&module=' + encodeURIComponent(module.title)}>
+              href={mode === 'main' ? publicModuleCourseHref(module.title) : '/#courses'}>
               <span className="academy-module-top"><span className="academy-module-number">{String(index + 1).padStart(2, '0')}</span><span className="academy-module-arrow" aria-hidden="true">↗</span></span>
               <h3>{moduleDisplayTitle(module.title)}</h3>
               <div className="academy-module-bottom"><span>{mode === 'main' ? mainStudyTime(module.durationMin) : parallelStudyTime(module.count)}</span><span>Explorar <Arrow /></span></div>
