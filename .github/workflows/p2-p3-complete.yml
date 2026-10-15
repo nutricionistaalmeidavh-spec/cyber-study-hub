@@ -1,0 +1,53 @@
+name: P2 P3 Practical Labs and Kits
+on:
+  pull_request:
+    paths:
+      - 'public/course-labs/a181-190/**'
+      - 'public/course-labs/a191-200/**'
+      - 'public/course-labs/a201-208/**'
+      - 'public/course-labs/capstone-final/**'
+      - 'public/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/**'
+      - 'public/course-labs/lab-tools/**'
+      - 'src/lib/labCourseResources.ts'
+      - 'scripts/verify-lab-guides-a.mjs'
+      - 'scripts/test-p2-p3-complete.mjs'
+      - '.github/workflows/p2-p3-complete.yml'
+jobs:
+  validate-labs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: P2 map, content and 607 canonical IDs
+        run: |
+          node scripts/verify-lab-guides-a.mjs
+          node --test scripts/test-p2-p3-complete.mjs
+      - name: Lab engines and negative cases per lesson
+        run: |
+          node --test public/course-labs/a181-190/lab.test.mjs public/course-labs/a181-190/run.test.mjs public/course-labs/a191-200/lab.test.mjs public/course-labs/a191-200/run.test.mjs public/course-labs/a201-208/lab.test.mjs public/course-labs/a201-208/run.test.mjs public/course-labs/capstone-final/lab.test.mjs public/course-labs/capstone-final/stage.test.mjs public/course-labs/lab-tools/lab.test.mjs
+      - name: Main Hub build and canonical ID regression
+        run: |
+          npm ci --no-audit --no-fund
+          npm run test:study-inventory
+          npm run build
+  validate-meu-gestor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: public/course-labs/ai-dev-meu-gestor/checkpoints/v1.0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install v1.0 checkpoint without installing optional paid services
+        run: npm install --no-audit --no-fund
+      - name: Exercise PDF print, CSV, finance, simulated serial and real SQLite diagnostics
+        run: npm test
+      - name: Compile React and TypeScript
+        run: npm run build
