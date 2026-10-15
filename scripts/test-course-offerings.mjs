@@ -53,3 +53,11 @@ test('documenta acesso comercial seguro antes de ativar cobrança',()=> {
  assert.match(s,/URL direta e recursos estáticos públicos não são paywall/);
  assert.match(s,/self-hosted\/open source\/R\$ 0/);
 });
+
+test('referências paralelas avulsas são permitidas somente com nota A',()=>{
+ for(const code of offers.publishedStandaloneLessonCodes){
+  assert.equal(q.editorialReviews[code]?.grade,'A','referência sem A: '+code);
+  assert.ok(source.parallel.some(item=>item.code===code),code);
+ }
+ assert.ok(offers.publishedStandaloneLessonCodes.includes('LOG-01'));
+});
