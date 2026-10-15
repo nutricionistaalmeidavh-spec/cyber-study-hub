@@ -12,7 +12,8 @@ const app=createPlatformHandler({
   dbPath:join(dataDir,'platform.sqlite'),
   origin,
   bootstrapKey:process.env.HUB_BOOTSTRAP_KEY,
-  openRegistration:process.env.HUB_OPEN_REGISTRATION==='1'
+  openRegistration:process.env.HUB_OPEN_REGISTRATION==='1',
+  artisysConnectorSecret:process.env.HUB_ARTISYS_CONNECTOR_SECRET || ''
 });
 const dist=resolve('./dist');
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8',
