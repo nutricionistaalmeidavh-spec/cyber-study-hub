@@ -193,7 +193,7 @@ test('a completed interactive lesson is not presented as the module continuation
   Object.assign(deps, {
     '../../curriculum/catalog.json': catalog,
     '../../data/lessons': { lessons: [] },
-    '../../content/registry': { listNativeV2LessonIds: () => [47] },
+    '../../content/nativeLessonIndex': { listNativeV2LessonIds: () => [47] },
     '../../lib/curriculumState': { getActiveParallelTracks: () => [] },
     '../../lib/learningProgress': { getLearningProgress: () => ({ 47: { completed: true } }) },
     '../../lib/storage': { getLessonState: () => ({}) },
