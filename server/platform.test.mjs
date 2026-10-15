@@ -191,3 +191,19 @@ test('público não cria professor; convite administrativo continua autorizando 
   name:'Intruso',email:'another@example.test',password:'GoodPassword1234!',inviteToken:'X'.repeat(32)
  }})).status,403);
 });
+
+test('cadastro aberto limita tentativas por IP sem alterar login do administrador',async()=>{
+ const request=await start();
+ const adminCookie=await boot(request);
+ for(let i=0;i<10;i++){
+  const created=await request('/api/auth/register',{method:'POST',data:{
+   name:'Aluno '+i,email:'signup'+i+'@example.test',password:'GoodPassword1234!'
+  }});
+  assert.equal(created.status,201,'cadastro '+i);
+ }
+ const denied=await request('/api/auth/register',{method:'POST',data:{
+  name:'Excesso',email:'too-many@example.test',password:'GoodPassword1234!'
+ }});
+ assert.equal(denied.status,429);
+ assert.equal((await request('/api/me',{cookie:adminCookie})).status,200);
+});
