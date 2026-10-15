@@ -46,7 +46,7 @@ export default function CourseCatalog({courseId,admin=false}:{courseId?:string;a
     </div>{selected.type==='trail'&&selected.href&&<a className="button primary" href={selected.href}>Abrir trilha completa →</a>}</section>
     <div className="course-module-stack">{selected.modules.map((module,index)=><section className="course-module" key={module.id}>
       <div className="course-module-top"><span className="course-module-index">M{String(index+1).padStart(2,'0')}</span>
-       <div><h2>{module.title}</h2><p>{module.lessonCodes.length?module.lessonCodes.length+' aulas':'Atividades, referências e laboratório'}</p></div>
+       <div><h2>{module.title}</h2><p>{module.lessonCodes.length?module.lessonCodes.length+(selected.type==='trail'?' etapas':' aulas'):'Atividades, referências e laboratório'}</p></div>
        {selected.type==='trail'&&selected.href&&<a href={selected.href} aria-label={'Abrir '+module.title}>Abrir trilha ↗</a>}
       </div>
       {module.lessonCodes.length>0&&<ol className="course-lesson-list">{module.lessonCodes.map((code,i)=>{
