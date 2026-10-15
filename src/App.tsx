@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import CourseCatalog from './components/curriculum/CourseCatalog';
-import { publishedMainLessonIds, publishedParallelLessonCodes, publishedStandaloneLessonCodes, courseByLessonCode } from './curriculum/courseOfferings';
+import { publishedMainLessonIds, publishedParallelLessonCodes, publishedStandaloneLessonCodes, courseByLessonCode, publishedCourses } from './curriculum/courseOfferings';
 import { PlatformGate, platformApi, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
@@ -178,7 +178,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='course-parallel' && (canReadParallel(route.code) ? <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} /> : denied)}
       {route.page==='ai-dev' && (entitled('desenvolvimento-com-ia')?<AiDevelopmentTrail userId={user.id}/>:denied)}
       {route.page==='channel-dark' && (entitled('automacao-canal-dark')?<ChannelAutomationTrail userId={user.id}/>:denied)}
-      {route.page==='reverse-ai' && (entitled('engenharia-reversa-com-ia')?<ReverseAiTrail userId={user.id}/>:denied)}
+      {route.page==='reverse-ai' && ((staff || (publishedCourses.some(course=>course.id==='engenharia-reversa-com-ia') && entitled('engenharia-reversa-com-ia')))?<ReverseAiTrail userId={user.id}/>:denied)}
       {route.page==='games' && (hasAnyAccess?<GamesHub/>:denied)}
       {route.page==='game' && (hasAnyAccess?<GamePlayer packId={route.packId} type={route.type} onRefresh={refresh}/>:denied)}
       {route.page==='materials' && (hasAnyAccess?<MaterialsHub/>:denied)}
