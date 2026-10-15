@@ -168,6 +168,12 @@ export class HubAuthObject extends DurableObject {
         const b=await jsonBody(request);
         if(!this.one('SELECT COUNT(*) AS n FROM users').n)
           throw new ApiError(403,'Plataforma não inicializada.');
+        const signupKey=await sha('signup:'+String(request.headers.get('cf-connecting-ip')||'unknown'));
+        const prior=this.one('SELECT count,reset_at FROM login_attempts WHERE key=?',signupKey);
+        const active=Boolean(prior&&prior.reset_at>Date.now());
+        if(active&&prior.count>=10)throw new ApiError(429,'Limite de cadastros atingido. Tente novamente mais tarde.');
+        this.sql.exec('INSERT INTO login_attempts(key,count,reset_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET count=excluded.count,reset_at=excluded.reset_at',
+          signupKey,active?prior.count+1:1,active?prior.reset_at:Date.now()+900000);
         let email=b.email,role='student',invite=null,inviteHash=null;
         if(typeof b.inviteToken==='string'&&b.inviteToken.length>=24){
           inviteHash=await sha(b.inviteToken);
