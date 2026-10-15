@@ -26,7 +26,7 @@ export function assessKubernetes(k) {
 
 export function assessIam({ action, resource, secureTransport }) {
   if (secureTransport !== true) return 'DENY_TRANSPORT';
-  if (action === 's3:GetObject' && /^arn:aws:s3:::course-iam-lab\/reports\/[a-zA-Z0-9._/-]+$/.test(resource))
+  if (action === 's3:GetObject' && /^arn:aws:s3:::course-iam-lab\/reports\/[a-zA-Z0-9._-]+$/.test(resource))
     return 'ALLOW_READ';
   return 'IMPLICIT_DENY';
 }
