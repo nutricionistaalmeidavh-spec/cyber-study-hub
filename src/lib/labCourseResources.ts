@@ -7,7 +7,7 @@ export function getMainLabGuide(id:number):CourseLabGuide|null{
   title:'Reproduza e explique o laboratório A'+id,
   description:'Hipótese, entrada válida, contraprova, observação e reteste. Código Node executável; mecanismo de pesquisa sintético, não exploração.',
   guide:'/course-labs/a171-180/workshops/AULA-'+id+'.md',
-  code:'/course-labs/a171-180/models.mjs',tests:'/course-labs/a171-180/lab.test.mjs',
+  code:'/course-labs/a171-180/research-models.mjs',tests:'/course-labs/a171-180/research.test.mjs',
   command:'node public/course-labs/a171-180/run.mjs '+id,safety:local};
  if(id>=181&&id<=190)return{kind:'Red/Purple Team · simulação de telemetria',
   title:'Oficina '+id+' — decisões e evidências',
