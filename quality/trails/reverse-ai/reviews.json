@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trackId": "ENGENHARIA-REVERSA-IA",
+  "reviewMethod": "technical_structure_review_pending_execution",
+  "reviewedOn": null,
+  "humanLearnerTesting": "not_performed",
+  "externalHumanReview": "not_performed",
+  "notes": "Trilha nova, 32 IDs canônicos e laboratórios locais. Sem A editorial atribuída até teste automatizado, revisão técnica de conteúdo e auditoria pedagógica.",
+  "modules": {
+    "01": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "02": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "03": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "04": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "05": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "06": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "07": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    },
+    "08": {
+      "grade": null,
+      "gradeStatus": "pending_editorial_review",
+      "reviewType": "not_graduated",
+      "humanLearnerTesting": "not_performed"
+    }
+  }
+}
