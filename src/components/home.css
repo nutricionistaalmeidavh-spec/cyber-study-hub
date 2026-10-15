@@ -71,3 +71,7 @@
 .hub-ai-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 25px;border-radius:21px;border:1px solid rgba(33,193,177,.4);background:linear-gradient(105deg,#102c3e,#152745 75%,#192b49);text-decoration:none;color:#ecf8ff}
 .hub-ai-banner>span{display:flex;flex-direction:column;gap:6px}.hub-ai-banner small{font-size:10px;font-weight:800;letter-spacing:.11em;color:#55dbc9}.hub-ai-banner strong{font-size:clamp(17px,2vw,24px)}.hub-ai-banner em{font-style:normal;color:#b5c9d6;font-size:13px;line-height:1.5}.hub-ai-banner>b{font-size:13px;white-space:nowrap;color:#63e7d4}.hub-ai-banner:focus-visible{outline:3px solid #60dec7;outline-offset:3px}
 @media(max-width:700px){.hub-ai-banner{flex-direction:column;align-items:flex-start;padding:18px}.hub-ai-banner>b{align-self:flex-start}}
+
+.hub-ai-banner.hub-channel-banner{background:linear-gradient(115deg,#241f39,#1f233d 70%,#302445);border-color:rgba(169,130,210,.46)}
+.hub-channel-banner small,.hub-channel-banner>b{color:#ddc2ff}
+.hub-channel-banner:focus-visible{outline-color:#c9aaf2}
