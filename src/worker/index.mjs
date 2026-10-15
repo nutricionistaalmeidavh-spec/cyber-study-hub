@@ -6,6 +6,7 @@ import { passwordHash, passwordMatches } from './password-kdf.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from './roadmap.mjs';
 import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../billing/artisys.mjs';
+import {issueBuyerIntent} from '../billing/buyer-intent.mjs';
 
 const DAY = 86400000;
 const KEYS = new Set([
@@ -138,6 +139,15 @@ export class HubAuthObject extends DurableObject {
       const url=new URL(request.url),path=url.pathname,method=request.method,secure=url.protocol==='https:';
       if(method!=='GET'&&method!=='HEAD'&&request.headers.get('origin')!==url.origin&&!(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'))
         throw new ApiError(403,'Origem não permitida.');
+      if(path==='/api/billing/purchase-intent'&&method==='POST'){
+        const user=await this.requireUser(request),b=await jsonBody(request,512);
+        const secret=this.env.HUB_ARTISYS_CONNECTOR_SECRET;
+        if(typeof secret!=='string'||secret.length<32)throw new ApiError(503,'Compras ainda não configuradas.');
+        let ticket;
+        try{ticket=await issueBuyerIntent({user,productId:b.productId,saleType:b.saleType,secret});}
+        catch{throw new ApiError(400,'Curso ou modalidade indisponível para compra.');}
+        return response(200,{buyerBinding:ticket});
+      }
       if(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'){
         if(Number(request.headers.get('content-length')||0)>16384)throw new ApiError(413,'Requisição muito grande.');
         const raw=await request.text();
