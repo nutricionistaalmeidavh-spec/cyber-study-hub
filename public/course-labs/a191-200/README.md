@@ -15,3 +15,17 @@ O runner contém dez contratos com cenário legítimo, violação e reteste; nã
 **Procedimento de estudo:** 1) prever saída antes da execução; 2) executar teste local; 3) explicar causa da recusa; 4) propor correção primária; 5) verificar preservação do caso permitido; 6) responder a avaliação de transferência antes de abrir o gabarito.
 
 Gabaritos estão em `answer-keys/AULA-191.md` até `AULA-200.md`, fora das páginas das aulas. Os tests são verificações programáticas dos modelos, e não ensaios com alunos humanos.
+## Oficina por aula (P2)
+
+- [AULA-191 — Docker Security](./workshops/AULA-191.md)
+- [AULA-192 — Kubernetes Security](./workshops/AULA-192.md)
+- [AULA-193 — IAM](./workshops/AULA-193.md)
+- [AULA-194 — Secrets Management](./workshops/AULA-194.md)
+- [AULA-195 — CI/CD Security](./workshops/AULA-195.md)
+- [AULA-196 — SAST, DAST e SCA em pipelines](./workshops/AULA-196.md)
+- [AULA-197 — Software Supply Chain](./workshops/AULA-197.md)
+- [AULA-198 — Supabase / Firebase Security](./workshops/AULA-198.md)
+- [AULA-199 — Serverless Security](./workshops/AULA-199.md)
+- [AULA-200 — Capstone — Electron/Desktop Security](./workshops/AULA-200.md)
+
+Runners: `node public/course-labs/a191-200/run.mjs 191` e `node --test public/course-labs/a191-200/run.test.mjs`. Esses são validadores de **políticas sintéticas**, não instalações dos serviços.
