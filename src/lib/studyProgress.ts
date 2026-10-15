@@ -73,13 +73,16 @@ export function syncCanonicalGuidedProgress(
     ? current.draft as Record<string,unknown>:{};
   const draft={...previousDraft,notes,checked:checks,answer:progress.drafts?.[stepId]};
   const active=stepId===currentStepId;
+  const defaults: Entry={
+   migratedFromLegacy:false,completed:false,favorite:false,doubt:false,
+   visitedSectionIds:[],completedActivityIds:[],completedLabStepIds:[],
+   quizHistory:[],firstSeenAt:now,lastSeenAt:now
+  };
   all[key]={
+   ...defaults,...current,
    migratedFromLegacy:Boolean(current?.migratedFromLegacy||completed||notes||checks.length),
-   completed:Boolean(current?.completed||completed),favorite:current?.favorite??false,doubt:current?.doubt??false,
-   visitedSectionIds:current?.visitedSectionIds??[],completedActivityIds:current?.completedActivityIds??[],
-   completedLabStepIds:current?.completedLabStepIds??[],quizHistory:current?.quizHistory??[],
-   firstSeenAt:current?.firstSeenAt??now,lastSeenAt:active?now:current?.lastSeenAt??now,
-   ...current,completed:Boolean(current?.completed||completed),
+   completed:Boolean(current?.completed||completed),
+   lastSeenAt:active?now:current?.lastSeenAt??now,
    study:active?{title:item.title,href:item.href,kind:'ai',sectionLabel:item.moduleTitle,read:completed,updatedAt:now}:current?.study,
    draft
   };
