@@ -163,6 +163,10 @@ export default function AcademyLanding() {
           <div><span>TRILHA EM DESTAQUE · IA APLICADA</span><h3>Desenvolva um sistema real com apoio de IA.</h3><p>Do planejamento à implementação, usando ChatGPT, Claude ou IA local opcional. Sem API paga obrigatória.</p></div>
           <strong>Conhecer a trilha <Arrow /></strong>
         </a>
+        <a className="academy-channel-feature" data-reveal href="/#channel-dark">
+          <div><span>TRILHA NOVA · AUTOMAÇÃO CRIATIVA</span><strong>Crie e automatize um canal dark com IA.</strong><p>32 etapas: Kokoro, n8n, Node-RED, FFmpeg e comparativos com Pika, Google Flow e Steve AI. Núcleo gratuito.</p></div>
+          <b>Conhecer a trilha <Arrow /></b>
+        </a>
       </section>
 
       <section className="academy-section academy-method-band" id="metodo" aria-labelledby="academy-method-title">
