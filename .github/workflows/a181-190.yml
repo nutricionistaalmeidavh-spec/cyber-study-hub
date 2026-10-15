@@ -1,0 +1,30 @@
+name: Aulas 181–190 — qualidade editorial Red Purple Team
+on:
+  push:
+    branches:
+      - feat/aulas-181-190-grade-a-20261015
+  pull_request:
+    paths:
+      - 'public/course-library/main/18*.md'
+      - 'public/course-library/main/190.md'
+      - 'public/course-labs/a181-190/**'
+      - 'quality/registry.json'
+      - 'quality/reviews/a181-190-2026-10-15.json'
+      - 'scripts/test-grade-a-181-190.mjs'
+      - 'package.json'
+      - '.github/workflows/a181-190.yml'
+  workflow_dispatch:
+jobs:
+  grade-a-181-190:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: node --test public/course-labs/a181-190/lab.test.mjs
+      - run: npm run test:quality
+      - run: npm run build
