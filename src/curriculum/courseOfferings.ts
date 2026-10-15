@@ -15,3 +15,4 @@ export const publishedMainLessonIds = new Set(publishedCourses.filter(c=>c.type=
 export const publishedParallelLessonCodes = new Set(publishedCourses.filter(c=>c.type==='parallel').flatMap(c=>c.modules.flatMap(m=>m.lessonCodes)));
 export const guidedLessonsByCode = new Map(catalog.guided.map(item => [item.code,item]));
 export const publishedGuidedLessonCodes = new Set(publishedCourses.filter(c=>c.type==='trail').flatMap(c=>c.modules.flatMap(m=>m.lessonCodes)));
+export const publishedStandaloneLessonCodes = new Set<string>(data.publishedStandaloneLessonCodes);
