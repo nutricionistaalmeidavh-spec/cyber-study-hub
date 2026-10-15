@@ -1,30 +1,30 @@
-# Avaliação independente — módulo 02 (Investigação orientada por evidências)
+# Avaliação de transferência — Matriz e hipóteses
 
-ID do checkpoint: REV-IA-008. Responda sem consultar o gabarito. Nota editorial A, se houver em outros cursos, não é transferível automaticamente a esta trilha.
+**Módulo 02 — Etapa REV-IA-008**. Execute primeiro o laboratório e responda sem abrir o gabarito. Se não conseguir executar, informe o bloqueio de forma transparente.
 
-1. Qual hipótese específica deste módulo é refutável por teste? Explique entrada, saída e contraexemplo.
+1. Construa os casos severity=8, impact=0/1, blocked=true e apresente resultados distintos.
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-2. Diferencie observação e inferência no caso "Investigação orientada por evidências".
+2. Por que a matriz não deve contabilizar uma exceção como resultado normal?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-3. Qual resultado do comando `node public/course-labs/reverse-ai/lab.mjs --module 2` permitiria validar o controle negativo?
+3. O que acontece com severity=11 e impact=-1?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-4. Por que a aula AULA-111 complementa este laboratório sem produzir conclusão automática?
+4. Qual entrada prova que blocked é validado por tipo e não convertido automaticamente?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-5. Que falha surgiria se você aceitasse um relatório de IA sem verificar o programa local?
+5. Que hipótese seria refutada se score21 fosse rotulado como critical?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-6. Escreva os critérios mínimos da entrega e uma limitação que impede afirmar clone perfeito.
+6. Interprete o total validCases e rejectedCases em 02-coverage.json.
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-## Avaliação
-Cada resposta vale 0–2 pontos: 2 justificada com evidência, 1 parcialmente correta, 0 incorreta. Sugere-se ao menos 9/12 e ausência de erro eliminatório, com revisão independente.
+## Rubrica antes de corrigir
+Cada item vale 2 pontos quando inclui justificativa e evidência verificável; 1 ponto se parcialmente demonstrado; 0 se não demonstrado. **Critério editorial proposto:** no mínimo 10/12, explicação de um controle negativo e nenhuma afirmação de ferramenta não executada. O registro de conclusão no site não corrige automaticamente esta prova.
