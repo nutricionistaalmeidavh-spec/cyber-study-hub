@@ -61,3 +61,11 @@ test('referências paralelas avulsas são permitidas somente com nota A',()=>{
  }
  assert.ok(offers.publishedStandaloneLessonCodes.includes('LOG-01'));
 });
+
+test('frontend mantém gate consultando autorização do servidor antes da leitura',()=>{
+ const app=readFileSync('src/App.tsx','utf8');
+ assert.match(app,/platformApi<\{courseIds:string\[\];subscriptionActive:boolean;staff:boolean\}>\('\/api\/access\/me'\)/);
+ assert.match(app,/canReadMain\(route\.id\)/);
+ assert.match(app,/canReadParallel\(route\.code\)/);
+ assert.match(app,/entitled\('desenvolvimento-com-ia'\)/);
+});
