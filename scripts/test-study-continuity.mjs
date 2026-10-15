@@ -21,6 +21,15 @@ function store(initial = {}) {
   return { getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value), removeItem: key => data.delete(key) };
 }
 const KEY = 'cyber-study-learning-v2';
+const guidedCatalog = JSON.parse(readFileSync('src/curriculum/catalog.json','utf8')).guided;
+const guidedIdentity = {
+ guidedCanonicalId: (source,id) => {
+   const item=guidedCatalog.find(x=>x.source===source&&x.stepId===id);
+   if(!item)throw Error('Unknown guided step');
+   return item.code;
+ },
+ guidedItems: source => guidedCatalog.filter(x=>x.source===source)
+};
 
 test('section links retain lesson, parallel unit and module filters', () => {
   const nav = load('src/lib/studyNavigation.ts');
@@ -67,7 +76,7 @@ test('section navigation scrolls and transfers keyboard focus to the requested s
 
 test('resume updates preserve quiz results, completion and other units', () => {
   const storage = store({ [KEY]: JSON.stringify({ 47: { completed: true, quizHistory: [{ score: 90 }], visitedSectionIds: ['v2-problema'] }, 48: { completed: false } }) });
-  const progress = load('src/lib/studyProgress.ts', { './accountStorage': { accountStorage: storage } });
+  const progress = load('src/lib/studyProgress.ts', { './accountStorage': { accountStorage: storage }, './guidedIdentity': guidedIdentity });
   progress.saveStudyVisit('47', { title: 'Cache', href: '#lesson/47', kind: 'interactive', sectionId: 'v2-lab' });
   const saved = JSON.parse(storage.getItem(KEY));
   assert.equal(saved[47].completed, true);
@@ -79,7 +88,7 @@ test('resume updates preserve quiz results, completion and other units', () => {
 
 test('reading can be recorded and undone without pretending it completed an interactive assessment', () => {
   const storage = store();
-  const progress = load('src/lib/studyProgress.ts', { './accountStorage': { accountStorage: storage } });
+  const progress = load('src/lib/studyProgress.ts', { './accountStorage': { accountStorage: storage }, './guidedIdentity': guidedIdentity });
   const visit = { title: 'Fundamentos', href: '#course/main/1', kind: 'reading', sectionId: 'doc-6' };
   progress.saveStudyVisit('1', visit);
   progress.saveStudyVisit('1', { ...visit, read: true });
@@ -91,7 +100,7 @@ test('reading can be recorded and undone without pretending it completed an inte
 
 test('parallel and AI drafts survive updates from the existing learning subsystem', () => {
   const storage = store();
-  const dependencies = { './accountStorage': { accountStorage: storage } };
+  const dependencies = { './accountStorage': { accountStorage: storage }, './guidedIdentity': guidedIdentity };
   const progress = load('src/lib/studyProgress.ts', dependencies);
   const learning = load('src/lib/learningProgress.ts', dependencies);
   progress.saveStudyVisit('parallel:LOG-01', { title: 'Lógica', href: '#course/parallel/LOG-01', kind: 'reading', sectionId: 'doc-12' });
@@ -143,6 +152,7 @@ test('AI migration retains legacy notes while the account version wins conflicts
     './manifest.json': JSON.parse(readFileSync('src/trails/ai-dev/manifest.json')),
     './modules.json': JSON.parse(readFileSync('src/trails/ai-dev/modules.json')),
     './labContracts.json': JSON.parse(readFileSync('src/trails/ai-dev/labContracts.json')),
+    '../../lib/guidedIdentity': guidedIdentity,
     './ai-dev.css': {}, '../../components/ProgressSyncStatus': {},
     '../../lib/studyProgress': { getStudyDraft: () => remote }
   }, { localStorage: local, window: { location: { hash: '#ai-dev' } } }, '\nexport { initial, initialPosition };');
@@ -193,4 +203,28 @@ test('a completed interactive lesson is not presented as the module continuation
   const html = renderToStaticMarkup(createElement(CurriculumBrowser, { initialMode: 'main', initialModule: 'Web e AppSec avançado' }));
   assert.ok(html.includes('Concluída'));
   assert.ok(!html.includes('class="study-module-continue"'));
+});
+
+test('legacy guided progress migrates into canonical IDs without deleting snapshots or colliding with main/parallel',()=>{
+ const existing={'47':{completed:true,quizHistory:[{score:90}],firstSeenAt:'2026-01-01',lastSeenAt:'2026-01-01'},
+  'LOG-01':{completed:false},
+  'ai-dev':{draft:{completed:[1,4],notes:{4:'previous note'}}}};
+ const storage=store({[KEY]:JSON.stringify(existing)});
+ const progress=load('src/lib/studyProgress.ts',{'./accountStorage':{accountStorage:storage},'./guidedIdentity':guidedIdentity});
+ progress.syncCanonicalGuidedProgress('ai-dev',4,{completed:[1,4],notes:{4:'previous note'},checked:{4:[0,1]},drafts:{}});
+ progress.syncCanonicalGuidedProgress('channel-dark',4,{completed:[4],notes:{4:'video project'},checked:{4:[1]},drafts:{}});
+ const next=JSON.parse(storage.getItem(KEY));
+ assert.equal(next['47'].completed,true);
+ assert.equal(next['47'].quizHistory[0].score,90);
+ assert.equal(next['LOG-01'].completed,false);
+ assert.equal(next['ai-dev'].draft.notes[4],'previous note');
+ assert.equal(next['DEV-IA-001'].completed,true);
+ assert.equal(next['DEV-IA-004'].completed,true);
+ assert.equal(next['CANAL-IA-004'].completed,true);
+ assert.equal(next['DEV-IA-004'].draft.notes,'previous note');
+ assert.deepEqual(Array.from(next['DEV-IA-004'].draft.checked),[0,1]);
+ assert.equal(progress.getCanonicalGuidedCompletion().completed,3);
+ assert.equal(progress.getCanonicalGuidedCompletion().total,64);
+ progress.syncCanonicalGuidedProgress('ai-dev',4,{completed:[],notes:{},checked:{},drafts:{}});
+ assert.equal(JSON.parse(storage.getItem(KEY))['DEV-IA-004'].completed,true,'offline/legacy merge must not undo completed status');
 });
