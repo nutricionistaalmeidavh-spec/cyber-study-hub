@@ -146,7 +146,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         {user.role==='admin' && <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca editorial" />}
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
-        <Nav href="#reverse-ai" active={route.page==='reverse-ai'} icon="ai" label="Engenharia Reversa com IA" />
+        {staff && <Nav href="#reverse-ai" active={route.page==='reverse-ai'} icon="ai" label="Engenharia Reversa com IA" />}
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
