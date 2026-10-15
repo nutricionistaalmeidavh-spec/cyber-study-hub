@@ -20,7 +20,7 @@ import lesson57 from '../content/main/057/lesson.json' with { type: 'json' };
 import lesson58 from '../content/main/058/lesson.json' with { type: 'json' };
 import lesson59 from '../content/main/059/lesson.json' with { type: 'json' };
 import lesson60 from '../content/main/060/lesson.json' with { type: 'json' };
-const native = new Map([47,lesson47],[48,lesson48],[49,lesson49],[50,lesson50],[51,lesson51],[52,lesson52],[53,lesson53],[54,lesson54],[55,lesson55],[56,lesson56],[57,lesson57],[58,lesson58],[59,lesson59],[60,lesson60].map(([id,item])=>[id,item]));
+const native = new Map([[47,lesson47],[48,lesson48],[49,lesson49],[50,lesson50],[51,lesson51],[52,lesson52],[53,lesson53],[54,lesson54],[55,lesson55],[56,lesson56],[57,lesson57],[58,lesson58],[59,lesson59],[60,lesson60]]);
 export const privateCourseSource = {
   getLesson(id) {
     const nativeLesson = native.get(id);
