@@ -11,10 +11,12 @@ const contracts=read('src/lib/practiceContracts.ts');
 const guided=read('src/components/practice/GuidedPracticeOrientation.tsx');
 const canonical=read('src/components/practice/CanonicalLessonContent.tsx');
 
-test('P0: as 607 unidades mantêm ID estável e um caminho de orientação em sua experiência real',()=>{
- assert.equal(catalog.main.length,218);assert.equal(catalog.parallel.length,325);assert.equal(catalog.guided.length,64);
+test('P0: as 639 unidades mantêm ID estável e um caminho de orientação em sua experiência real',()=>{
+ assert.equal(catalog.main.length,218);assert.equal(catalog.parallel.length,325);assert.equal(catalog.guided.length,96);
+ assert.equal(catalog.guided.slice(0,64).length,64);
+ assert.equal(catalog.guided.slice(64).filter(x=>x.source==='reverse-ai').length,32);
  const ids=[...catalog.main,...catalog.parallel,...catalog.guided].map(item=>item.code);
- assert.equal(new Set(ids).size,607);
+ assert.equal(new Set(ids).size,639);
  assert.match(doc,/<PracticeOrientation target=\{item\}/);
  assert.match(legacy,/<MainPracticeOrientation id=\{lesson.id\}/);
  assert.match(v2,/<MainPracticeOrientation id=\{lesson.id\}/);
