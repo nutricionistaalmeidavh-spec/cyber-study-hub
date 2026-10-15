@@ -1,0 +1,989 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "moduleId": 1,
+      "version": 1,
+      "title": "Fundamentos e limites da engenharia reversa",
+      "objective": "Investigar linha de base e autorização com o arquivo verificável 01-baseline.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Distinguir entradas observadas de hipóteses",
+        "Delimitar direito de uso antes da análise",
+        "Repetir a linha de base e documentar exceções",
+        "Entregar 01-baseline.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 1,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Caixa-preta, caixa-branca e proveniência",
+          "lead": "Competência: entender comportamento sem acesso ao código-fonte original.",
+          "sections": [
+            {
+              "heading": "Distinguir entradas observadas de hipóteses",
+              "body": "Explicação técnica com verificação: No cenário inicial, a entrada severity=3, impact=1, blocked=false produz score 7 e prioridade normal. Descreva o contrato do dado antes de ver o código e confira um valor inválido de severity=-1. Uma hipótese não se transforma em certeza por parecer convincente. Nesta seção, concentre-se especificamente em «Distinguir entradas observadas de hipóteses», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Anote a previsão para {severity:8, impact:1, blocked:true}; espere score=22 e prioridade critical; compare com o JSON produzido pelo arquivo 01-baseline.json. Referencie REV-IA-001 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Afirmar que duas telas ou duas saídas iguais provam implementação interna idêntica, ignorando exceções, licenças ou estados não testados. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Delimitar direito de uso antes da análise",
+              "body": "Explicação técnica com verificação: No cenário inicial, a entrada severity=3, impact=1, blocked=false produz score 7 e prioridade normal. Descreva o contrato do dado antes de ver o código e confira um valor inválido de severity=-1. Uma hipótese não se transforma em certeza por parecer convincente. Nesta seção, concentre-se especificamente em «Delimitar direito de uso antes da análise», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Anote a previsão para {severity:8, impact:1, blocked:true}; espere score=22 e prioridade critical; compare com o JSON produzido pelo arquivo 01-baseline.json. Referencie REV-IA-001 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Afirmar que duas telas ou duas saídas iguais provam implementação interna idêntica, ignorando exceções, licenças ou estados não testados. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Repetir a linha de base e documentar exceções",
+              "body": "Explicação técnica com verificação: No cenário inicial, a entrada severity=3, impact=1, blocked=false produz score 7 e prioridade normal. Descreva o contrato do dado antes de ver o código e confira um valor inválido de severity=-1. Uma hipótese não se transforma em certeza por parecer convincente. Nesta seção, concentre-se especificamente em «Repetir a linha de base e documentar exceções», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Anote a previsão para {severity:8, impact:1, blocked:true}; espere score=22 e prioridade critical; compare com o JSON produzido pelo arquivo 01-baseline.json. Referencie REV-IA-001 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Afirmar que duas telas ou duas saídas iguais provam implementação interna idêntica, ignorando exceções, licenças ou estados não testados. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é definir uma hipótese auditável sobre um aplicativo próprio?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 2,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Escopo autorizado e propriedade intelectual",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Distinguir entradas observadas de hipóteses",
+              "body": "Atividade crítica com IA opcional: No cenário inicial, a entrada severity=3, impact=1, blocked=false produz score 7 e prioridade normal. Descreva o contrato do dado antes de ver o código e confira um valor inválido de severity=-1. Uma hipótese não se transforma em certeza por parecer convincente. Nesta seção, concentre-se especificamente em «Distinguir entradas observadas de hipóteses», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Anote a previsão para {severity:8, impact:1, blocked:true}; espere score=22 e prioridade critical; compare com o JSON produzido pelo arquivo 01-baseline.json. Referencie REV-IA-002 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Afirmar que duas telas ou duas saídas iguais provam implementação interna idêntica, ignorando exceções, licenças ou estados não testados. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Delimitar direito de uso antes da análise",
+              "body": "Atividade crítica com IA opcional: No cenário inicial, a entrada severity=3, impact=1, blocked=false produz score 7 e prioridade normal. Descreva o contrato do dado antes de ver o código e confira um valor inválido de severity=-1. Uma hipótese não se transforma em certeza por parecer convincente. Nesta seção, concentre-se especificamente em «Delimitar direito de uso antes da análise», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Anote a previsão para {severity:8, impact:1, blocked:true}; espere score=22 e prioridade critical; compare com o JSON produzido pelo arquivo 01-baseline.json. Referencie REV-IA-002 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Afirmar que duas telas ou duas saídas iguais provam implementação interna idêntica, ignorando exceções, licenças ou estados não testados. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Repetir a linha de base e documentar exceções",
+              "body": "Atividade crítica com IA opcional: No cenário inicial, a entrada severity=3, impact=1, blocked=false produz score 7 e prioridade normal. Descreva o contrato do dado antes de ver o código e confira um valor inválido de severity=-1. Uma hipótese não se transforma em certeza por parecer convincente. Nesta seção, concentre-se especificamente em «Repetir a linha de base e documentar exceções», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Anote a previsão para {severity:8, impact:1, blocked:true}; espere score=22 e prioridade critical; compare com o JSON produzido pelo arquivo 01-baseline.json. Referencie REV-IA-002 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Afirmar que duas telas ou duas saídas iguais provam implementação interna idêntica, ignorando exceções, licenças ou estados não testados. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 1: Fundamentos e limites da engenharia reversa. Tenho o arquivo 01-baseline.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: linha de base e autorização. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 01-baseline.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 3,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 028",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-028",
+          "referencePath": "#course/main/28",
+          "challengeText": "Use AULA-028 como fundamento e contraste-o com 01-baseline.json: distinguir entradas observadas de hipóteses. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 4,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Delimitar escopo e obter primeira linha de base",
+          "lead": "Entrega verificável: Escopo, permissão e linha de base observável.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-01.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 1 --out ./rev-evidencias/m01",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 01-baseline.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 1.",
+          "checkpointAssertion": "O arquivo 01-baseline.json existe na pasta ./rev-evidencias/m01 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-01.md e descreva por escrito a competência: Distinguir entradas observadas de hipóteses. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre linha de base e autorização. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 1 --out ./rev-evidencias/m01' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '01-baseline.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 01-baseline.json: Delimitar direito de uso antes da análise. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-01.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-01.md"
+    },
+    {
+      "moduleId": 2,
+      "version": 1,
+      "title": "Investigação orientada por evidências",
+      "objective": "Investigar matriz e cobertura de hipóteses com o arquivo verificável 02-coverage.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Desenhar uma matriz de hipóteses e refutações",
+        "Investigar os dois lados de um limiar",
+        "Distinguir caso válido, rejeição e falha silenciosa",
+        "Entregar 02-coverage.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 5,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Mapa de entradas e saídas",
+          "lead": "Competência: formular hipóteses, casos de fronteira e controles negativos.",
+          "sections": [
+            {
+              "heading": "Desenhar uma matriz de hipóteses e refutações",
+              "body": "Explicação técnica com verificação: O limite de priorização é inclusivo: score 21 ainda é high, score 22 é critical. Cubra os lados do limiar com severity 8 e impact 0/1, ambos blocked=true. Envie também severity=11, impact=-1 e blocked='true' para investigar a validação. Nesta seção, concentre-se especificamente em «Desenhar uma matriz de hipóteses e refutações», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Compare 02-matrix.json e 02-coverage.json; identifique as entradas que retornam RangeError e TypeError, sem contá-las como resultados normais. Referencie REV-IA-005 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Uma matriz com apenas entradas felizes não descobre problemas no limite nem mostra quando a entrada inválida foi corretamente rejeitada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Investigar os dois lados de um limiar",
+              "body": "Explicação técnica com verificação: O limite de priorização é inclusivo: score 21 ainda é high, score 22 é critical. Cubra os lados do limiar com severity 8 e impact 0/1, ambos blocked=true. Envie também severity=11, impact=-1 e blocked='true' para investigar a validação. Nesta seção, concentre-se especificamente em «Investigar os dois lados de um limiar», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Compare 02-matrix.json e 02-coverage.json; identifique as entradas que retornam RangeError e TypeError, sem contá-las como resultados normais. Referencie REV-IA-005 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Uma matriz com apenas entradas felizes não descobre problemas no limite nem mostra quando a entrada inválida foi corretamente rejeitada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Distinguir caso válido, rejeição e falha silenciosa",
+              "body": "Explicação técnica com verificação: O limite de priorização é inclusivo: score 21 ainda é high, score 22 é critical. Cubra os lados do limiar com severity 8 e impact 0/1, ambos blocked=true. Envie também severity=11, impact=-1 e blocked='true' para investigar a validação. Nesta seção, concentre-se especificamente em «Distinguir caso válido, rejeição e falha silenciosa», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Compare 02-matrix.json e 02-coverage.json; identifique as entradas que retornam RangeError e TypeError, sem contá-las como resultados normais. Referencie REV-IA-005 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Uma matriz com apenas entradas felizes não descobre problemas no limite nem mostra quando a entrada inválida foi corretamente rejeitada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é registrar previsão, observação e hipótese alternativa?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 6,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Casos de fronteira e hipótese refutável",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Desenhar uma matriz de hipóteses e refutações",
+              "body": "Atividade crítica com IA opcional: O limite de priorização é inclusivo: score 21 ainda é high, score 22 é critical. Cubra os lados do limiar com severity 8 e impact 0/1, ambos blocked=true. Envie também severity=11, impact=-1 e blocked='true' para investigar a validação. Nesta seção, concentre-se especificamente em «Desenhar uma matriz de hipóteses e refutações», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Compare 02-matrix.json e 02-coverage.json; identifique as entradas que retornam RangeError e TypeError, sem contá-las como resultados normais. Referencie REV-IA-006 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Uma matriz com apenas entradas felizes não descobre problemas no limite nem mostra quando a entrada inválida foi corretamente rejeitada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Investigar os dois lados de um limiar",
+              "body": "Atividade crítica com IA opcional: O limite de priorização é inclusivo: score 21 ainda é high, score 22 é critical. Cubra os lados do limiar com severity 8 e impact 0/1, ambos blocked=true. Envie também severity=11, impact=-1 e blocked='true' para investigar a validação. Nesta seção, concentre-se especificamente em «Investigar os dois lados de um limiar», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Compare 02-matrix.json e 02-coverage.json; identifique as entradas que retornam RangeError e TypeError, sem contá-las como resultados normais. Referencie REV-IA-006 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Uma matriz com apenas entradas felizes não descobre problemas no limite nem mostra quando a entrada inválida foi corretamente rejeitada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Distinguir caso válido, rejeição e falha silenciosa",
+              "body": "Atividade crítica com IA opcional: O limite de priorização é inclusivo: score 21 ainda é high, score 22 é critical. Cubra os lados do limiar com severity 8 e impact 0/1, ambos blocked=true. Envie também severity=11, impact=-1 e blocked='true' para investigar a validação. Nesta seção, concentre-se especificamente em «Distinguir caso válido, rejeição e falha silenciosa», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Compare 02-matrix.json e 02-coverage.json; identifique as entradas que retornam RangeError e TypeError, sem contá-las como resultados normais. Referencie REV-IA-006 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Uma matriz com apenas entradas felizes não descobre problemas no limite nem mostra quando a entrada inválida foi corretamente rejeitada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 2: Investigação orientada por evidências. Tenho o arquivo 02-coverage.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: matriz e cobertura de hipóteses. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 02-coverage.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 7,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 111",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-111",
+          "referencePath": "#course/main/111",
+          "challengeText": "Use AULA-111 como fundamento e contraste-o com 02-coverage.json: desenhar uma matriz de hipóteses e refutações. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 8,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Construir matriz de comportamento",
+          "lead": "Entrega verificável: Matriz de casos com ao menos um controle negativo.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-02.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 2 --out ./rev-evidencias/m02",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 02-coverage.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 2.",
+          "checkpointAssertion": "O arquivo 02-coverage.json existe na pasta ./rev-evidencias/m02 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-02.md e descreva por escrito a competência: Desenhar uma matriz de hipóteses e refutações. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre matriz e cobertura de hipóteses. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 2 --out ./rev-evidencias/m02' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '02-coverage.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 02-coverage.json: Investigar os dois lados de um limiar. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-02.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-02.md"
+    },
+    {
+      "moduleId": 3,
+      "version": 1,
+      "title": "Binários nativos e Ghidra",
+      "objective": "Investigar mapeamento estático de função e fluxo com o arquivo verificável 03-static-source-map.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Ler formato de binário e cadeias de texto",
+        "Localizar função main e os dois ramos de prioridade",
+        "Separar código decompilado do fonte original",
+        "Entregar 03-static-source-map.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 9,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "ELF/PE e arquitetura do binário",
+          "lead": "Competência: relacionar C compilado, assembly, strings e fluxo de controle.",
+          "sections": [
+            {
+              "heading": "Ler formato de binário e cadeias de texto",
+              "body": "Explicação técnica com verificação: Compile o arquivo sample.c de autoria do curso com cc -O0 -g; inspecione a função main no Ghidra, localize as strings critical/high/normal e compare com a árvore de decisão do C. O motor local apenas documenta evidências do fonte: não executa um decompilador. Nesta seção, concentre-se especificamente em «Ler formato de binário e cadeias de texto», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No arquivo 03-static-source-map.json localize functions=['parse','main'] e decisionPoints=['score>=22','score>=14']; registre depois uma captura real do Ghidra se o tiver instalado. Referencie REV-IA-009 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Dizer que o pseudocódigo do Ghidra é o código original ou que um JSON de inspeção do fonte prova que um binário foi decompilado. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Localizar função main e os dois ramos de prioridade",
+              "body": "Explicação técnica com verificação: Compile o arquivo sample.c de autoria do curso com cc -O0 -g; inspecione a função main no Ghidra, localize as strings critical/high/normal e compare com a árvore de decisão do C. O motor local apenas documenta evidências do fonte: não executa um decompilador. Nesta seção, concentre-se especificamente em «Localizar função main e os dois ramos de prioridade», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No arquivo 03-static-source-map.json localize functions=['parse','main'] e decisionPoints=['score>=22','score>=14']; registre depois uma captura real do Ghidra se o tiver instalado. Referencie REV-IA-009 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Dizer que o pseudocódigo do Ghidra é o código original ou que um JSON de inspeção do fonte prova que um binário foi decompilado. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Separar código decompilado do fonte original",
+              "body": "Explicação técnica com verificação: Compile o arquivo sample.c de autoria do curso com cc -O0 -g; inspecione a função main no Ghidra, localize as strings critical/high/normal e compare com a árvore de decisão do C. O motor local apenas documenta evidências do fonte: não executa um decompilador. Nesta seção, concentre-se especificamente em «Separar código decompilado do fonte original», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No arquivo 03-static-source-map.json localize functions=['parse','main'] e decisionPoints=['score>=22','score>=14']; registre depois uma captura real do Ghidra se o tiver instalado. Referencie REV-IA-009 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Dizer que o pseudocódigo do Ghidra é o código original ou que um JSON de inspeção do fonte prova que um binário foi decompilado. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é investigar um binário compilado de código próprio?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 10,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Strings, funções, xrefs e CFG",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Ler formato de binário e cadeias de texto",
+              "body": "Atividade crítica com IA opcional: Compile o arquivo sample.c de autoria do curso com cc -O0 -g; inspecione a função main no Ghidra, localize as strings critical/high/normal e compare com a árvore de decisão do C. O motor local apenas documenta evidências do fonte: não executa um decompilador. Nesta seção, concentre-se especificamente em «Ler formato de binário e cadeias de texto», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No arquivo 03-static-source-map.json localize functions=['parse','main'] e decisionPoints=['score>=22','score>=14']; registre depois uma captura real do Ghidra se o tiver instalado. Referencie REV-IA-010 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Dizer que o pseudocódigo do Ghidra é o código original ou que um JSON de inspeção do fonte prova que um binário foi decompilado. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Localizar função main e os dois ramos de prioridade",
+              "body": "Atividade crítica com IA opcional: Compile o arquivo sample.c de autoria do curso com cc -O0 -g; inspecione a função main no Ghidra, localize as strings critical/high/normal e compare com a árvore de decisão do C. O motor local apenas documenta evidências do fonte: não executa um decompilador. Nesta seção, concentre-se especificamente em «Localizar função main e os dois ramos de prioridade», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No arquivo 03-static-source-map.json localize functions=['parse','main'] e decisionPoints=['score>=22','score>=14']; registre depois uma captura real do Ghidra se o tiver instalado. Referencie REV-IA-010 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Dizer que o pseudocódigo do Ghidra é o código original ou que um JSON de inspeção do fonte prova que um binário foi decompilado. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Separar código decompilado do fonte original",
+              "body": "Atividade crítica com IA opcional: Compile o arquivo sample.c de autoria do curso com cc -O0 -g; inspecione a função main no Ghidra, localize as strings critical/high/normal e compare com a árvore de decisão do C. O motor local apenas documenta evidências do fonte: não executa um decompilador. Nesta seção, concentre-se especificamente em «Separar código decompilado do fonte original», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No arquivo 03-static-source-map.json localize functions=['parse','main'] e decisionPoints=['score>=22','score>=14']; registre depois uma captura real do Ghidra se o tiver instalado. Referencie REV-IA-010 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Dizer que o pseudocódigo do Ghidra é o código original ou que um JSON de inspeção do fonte prova que um binário foi decompilado. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 3: Binários nativos e Ghidra. Tenho o arquivo 03-static-source-map.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: mapeamento estático de função e fluxo. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 03-static-source-map.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 11,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 115",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-115",
+          "referencePath": "#course/main/115",
+          "challengeText": "Use AULA-115 como fundamento e contraste-o com 03-static-source-map.json: ler formato de binário e cadeias de texto. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 12,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Compilar e mapear uma função no Ghidra",
+          "lead": "Entrega verificável: Relatório estático com função, string e ramo observado.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-03.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 3 --out ./rev-evidencias/m03",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 03-static-source-map.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 3.",
+          "checkpointAssertion": "O arquivo 03-static-source-map.json existe na pasta ./rev-evidencias/m03 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-03.md e descreva por escrito a competência: Ler formato de binário e cadeias de texto. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre mapeamento estático de função e fluxo. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 3 --out ./rev-evidencias/m03' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '03-static-source-map.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 03-static-source-map.json: Localizar função main e os dois ramos de prioridade. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-03.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-03.md"
+    },
+    {
+      "moduleId": 4,
+      "version": 1,
+      "title": "Análise dinâmica controlada",
+      "objective": "Investigar trace controlado com reteste com o arquivo verificável 04-controlled-trace.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Traçar validação, cálculo e ramo de escolha",
+        "Confrontar rastreamento didático e saída efetiva",
+        "Anotar diferenças entre observar e reconstruir um trace",
+        "Entregar 04-controlled-trace.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 13,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Observação versus inferência",
+          "lead": "Competência: contrastar análise estática com execução de testes e traces em sandbox.",
+          "sections": [
+            {
+              "heading": "Traçar validação, cálculo e ramo de escolha",
+              "body": "Explicação técnica com verificação: O trace registra três etapas por execução: validate, score e branch. O teste usa entradas limítrofes, prevê qual ramo foi escolhido e compara a previsão com a saída efetiva da função de referência. O trace é instrumentação didática e não espionagem de outro processo. Nesta seção, concentre-se especificamente em «Traçar validação, cálculo e ramo de escolha», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 04-controlled-trace.json compare uma linha com score 21 e outra com 22; ambas devem ter verified=true, mas escolher prioridades diferentes. Referencie REV-IA-013 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Apresentar um trace reconstruído como se fosse um breakpoint real em processo de terceiro ou ignorar o fato de que a instrumentação modifica a observação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Confrontar rastreamento didático e saída efetiva",
+              "body": "Explicação técnica com verificação: O trace registra três etapas por execução: validate, score e branch. O teste usa entradas limítrofes, prevê qual ramo foi escolhido e compara a previsão com a saída efetiva da função de referência. O trace é instrumentação didática e não espionagem de outro processo. Nesta seção, concentre-se especificamente em «Confrontar rastreamento didático e saída efetiva», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 04-controlled-trace.json compare uma linha com score 21 e outra com 22; ambas devem ter verified=true, mas escolher prioridades diferentes. Referencie REV-IA-013 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Apresentar um trace reconstruído como se fosse um breakpoint real em processo de terceiro ou ignorar o fato de que a instrumentação modifica a observação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Anotar diferenças entre observar e reconstruir um trace",
+              "body": "Explicação técnica com verificação: O trace registra três etapas por execução: validate, score e branch. O teste usa entradas limítrofes, prevê qual ramo foi escolhido e compara a previsão com a saída efetiva da função de referência. O trace é instrumentação didática e não espionagem de outro processo. Nesta seção, concentre-se especificamente em «Anotar diferenças entre observar e reconstruir um trace», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 04-controlled-trace.json compare uma linha com score 21 e outra com 22; ambas devem ter verified=true, mas escolher prioridades diferentes. Referencie REV-IA-013 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Apresentar um trace reconstruído como se fosse um breakpoint real em processo de terceiro ou ignorar o fato de que a instrumentação modifica a observação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é comparar previsões de ramos com comportamento real?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 14,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Breakpoints e fluxo de estados",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Traçar validação, cálculo e ramo de escolha",
+              "body": "Atividade crítica com IA opcional: O trace registra três etapas por execução: validate, score e branch. O teste usa entradas limítrofes, prevê qual ramo foi escolhido e compara a previsão com a saída efetiva da função de referência. O trace é instrumentação didática e não espionagem de outro processo. Nesta seção, concentre-se especificamente em «Traçar validação, cálculo e ramo de escolha», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 04-controlled-trace.json compare uma linha com score 21 e outra com 22; ambas devem ter verified=true, mas escolher prioridades diferentes. Referencie REV-IA-014 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Apresentar um trace reconstruído como se fosse um breakpoint real em processo de terceiro ou ignorar o fato de que a instrumentação modifica a observação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Confrontar rastreamento didático e saída efetiva",
+              "body": "Atividade crítica com IA opcional: O trace registra três etapas por execução: validate, score e branch. O teste usa entradas limítrofes, prevê qual ramo foi escolhido e compara a previsão com a saída efetiva da função de referência. O trace é instrumentação didática e não espionagem de outro processo. Nesta seção, concentre-se especificamente em «Confrontar rastreamento didático e saída efetiva», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 04-controlled-trace.json compare uma linha com score 21 e outra com 22; ambas devem ter verified=true, mas escolher prioridades diferentes. Referencie REV-IA-014 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Apresentar um trace reconstruído como se fosse um breakpoint real em processo de terceiro ou ignorar o fato de que a instrumentação modifica a observação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Anotar diferenças entre observar e reconstruir um trace",
+              "body": "Atividade crítica com IA opcional: O trace registra três etapas por execução: validate, score e branch. O teste usa entradas limítrofes, prevê qual ramo foi escolhido e compara a previsão com a saída efetiva da função de referência. O trace é instrumentação didática e não espionagem de outro processo. Nesta seção, concentre-se especificamente em «Anotar diferenças entre observar e reconstruir um trace», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 04-controlled-trace.json compare uma linha com score 21 e outra com 22; ambas devem ter verified=true, mas escolher prioridades diferentes. Referencie REV-IA-014 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Apresentar um trace reconstruído como se fosse um breakpoint real em processo de terceiro ou ignorar o fato de que a instrumentação modifica a observação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 4: Análise dinâmica controlada. Tenho o arquivo 04-controlled-trace.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: trace controlado com reteste. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 04-controlled-trace.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 15,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 116",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-116",
+          "referencePath": "#course/main/116",
+          "challengeText": "Use AULA-116 como fundamento e contraste-o com 04-controlled-trace.json: traçar validação, cálculo e ramo de escolha. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 16,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Comparar execução e previsão",
+          "lead": "Entrega verificável: Tabela que separa inferência estática e saída observada.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-04.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 4 --out ./rev-evidencias/m04",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 04-controlled-trace.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 4.",
+          "checkpointAssertion": "O arquivo 04-controlled-trace.json existe na pasta ./rev-evidencias/m04 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-04.md e descreva por escrito a competência: Traçar validação, cálculo e ramo de escolha. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre trace controlado com reteste. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 4 --out ./rev-evidencias/m04' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '04-controlled-trace.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 04-controlled-trace.json: Confrontar rastreamento didático e saída efetiva. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-04.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-04.md"
+    },
+    {
+      "moduleId": 5,
+      "version": 1,
+      "title": "JavaScript, Electron e interfaces",
+      "objective": "Investigar diagrama de módulos e limites de evidência com o arquivo verificável 05-js-boundaries.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Localizar import e export no módulo ESM",
+        "Separar interface local de regras e servidor remoto",
+        "Descrever o que bundles e source maps não demonstram",
+        "Entregar 05-js-boundaries.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 17,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Código distribuído e source maps",
+          "lead": "Competência: estudar bundles e rotas de interface sem confundir código cliente com backend.",
+          "sections": [
+            {
+              "heading": "Localizar import e export no módulo ESM",
+              "body": "Explicação técnica com verificação: Os arquivos sample-ui.mjs e sample-rule.mjs são pequenos módulos ESM próprios: a UI importa a função scoreTicket. O mapeamento estático identifica imports e contratos no código disponibilizado, sem pressupor acesso ao backend de uma aplicação externa ou ao código de um Electron proprietário. Nesta seção, concentre-se especificamente em «Localizar import e export no módulo ESM», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Em 05-js-boundaries.json a relação UI→regra aparece como import estático; a relação UI→servidor remoto deve permanecer 'não observado'. Referencie REV-IA-017 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Inferir tokens secretos, endpoints existentes ou implementação de servidor a partir de um import local ou de um source map ausente. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Separar interface local de regras e servidor remoto",
+              "body": "Explicação técnica com verificação: Os arquivos sample-ui.mjs e sample-rule.mjs são pequenos módulos ESM próprios: a UI importa a função scoreTicket. O mapeamento estático identifica imports e contratos no código disponibilizado, sem pressupor acesso ao backend de uma aplicação externa ou ao código de um Electron proprietário. Nesta seção, concentre-se especificamente em «Separar interface local de regras e servidor remoto», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Em 05-js-boundaries.json a relação UI→regra aparece como import estático; a relação UI→servidor remoto deve permanecer 'não observado'. Referencie REV-IA-017 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Inferir tokens secretos, endpoints existentes ou implementação de servidor a partir de um import local ou de um source map ausente. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Descrever o que bundles e source maps não demonstram",
+              "body": "Explicação técnica com verificação: Os arquivos sample-ui.mjs e sample-rule.mjs são pequenos módulos ESM próprios: a UI importa a função scoreTicket. O mapeamento estático identifica imports e contratos no código disponibilizado, sem pressupor acesso ao backend de uma aplicação externa ou ao código de um Electron proprietário. Nesta seção, concentre-se especificamente em «Descrever o que bundles e source maps não demonstram», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Em 05-js-boundaries.json a relação UI→regra aparece como import estático; a relação UI→servidor remoto deve permanecer 'não observado'. Referencie REV-IA-017 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Inferir tokens secretos, endpoints existentes ou implementação de servidor a partir de um import local ou de um source map ausente. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é inspecionar um programa JavaScript próprio e identificar seus limites?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 18,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Diferença entre front-end e API",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Localizar import e export no módulo ESM",
+              "body": "Atividade crítica com IA opcional: Os arquivos sample-ui.mjs e sample-rule.mjs são pequenos módulos ESM próprios: a UI importa a função scoreTicket. O mapeamento estático identifica imports e contratos no código disponibilizado, sem pressupor acesso ao backend de uma aplicação externa ou ao código de um Electron proprietário. Nesta seção, concentre-se especificamente em «Localizar import e export no módulo ESM», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Em 05-js-boundaries.json a relação UI→regra aparece como import estático; a relação UI→servidor remoto deve permanecer 'não observado'. Referencie REV-IA-018 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Inferir tokens secretos, endpoints existentes ou implementação de servidor a partir de um import local ou de um source map ausente. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Separar interface local de regras e servidor remoto",
+              "body": "Atividade crítica com IA opcional: Os arquivos sample-ui.mjs e sample-rule.mjs são pequenos módulos ESM próprios: a UI importa a função scoreTicket. O mapeamento estático identifica imports e contratos no código disponibilizado, sem pressupor acesso ao backend de uma aplicação externa ou ao código de um Electron proprietário. Nesta seção, concentre-se especificamente em «Separar interface local de regras e servidor remoto», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Em 05-js-boundaries.json a relação UI→regra aparece como import estático; a relação UI→servidor remoto deve permanecer 'não observado'. Referencie REV-IA-018 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Inferir tokens secretos, endpoints existentes ou implementação de servidor a partir de um import local ou de um source map ausente. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Descrever o que bundles e source maps não demonstram",
+              "body": "Atividade crítica com IA opcional: Os arquivos sample-ui.mjs e sample-rule.mjs são pequenos módulos ESM próprios: a UI importa a função scoreTicket. O mapeamento estático identifica imports e contratos no código disponibilizado, sem pressupor acesso ao backend de uma aplicação externa ou ao código de um Electron proprietário. Nesta seção, concentre-se especificamente em «Descrever o que bundles e source maps não demonstram», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "Em 05-js-boundaries.json a relação UI→regra aparece como import estático; a relação UI→servidor remoto deve permanecer 'não observado'. Referencie REV-IA-018 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Inferir tokens secretos, endpoints existentes ou implementação de servidor a partir de um import local ou de um source map ausente. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 5: JavaScript, Electron e interfaces. Tenho o arquivo 05-js-boundaries.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: diagrama de módulos e limites de evidência. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 05-js-boundaries.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 19,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 118",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-118",
+          "referencePath": "#course/main/118",
+          "challengeText": "Use AULA-118 como fundamento e contraste-o com 05-js-boundaries.json: localizar import e export no módulo esm. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 20,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Anotar dependências e reconstruir fluxo",
+          "lead": "Entrega verificável: Mapa de chamadas e distinção entre UI e regra.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-05.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 5 --out ./rev-evidencias/m05",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 05-js-boundaries.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 5.",
+          "checkpointAssertion": "O arquivo 05-js-boundaries.json existe na pasta ./rev-evidencias/m05 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-05.md e descreva por escrito a competência: Localizar import e export no módulo ESM. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre diagrama de módulos e limites de evidência. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 5 --out ./rev-evidencias/m05' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '05-js-boundaries.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 05-js-boundaries.json: Separar interface local de regras e servidor remoto. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-05.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-05.md"
+    },
+    {
+      "moduleId": 6,
+      "version": 1,
+      "title": "REA, agentes e MCP com execução local",
+      "objective": "Investigar dossiê de alegações, evidências e limites com o arquivo verificável 06-agent-evidence.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Identificar REA como interface CLI/MCP, não magia",
+        "Configurar ferramenta sob aprovação e sem serviço pago obrigatório",
+        "Contrapor agente e evidência local auditável",
+        "Entregar 06-agent-evidence.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 21,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "REA CLI/MCP e limites de compatibilidade",
+          "lead": "Competência: integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente.",
+          "sections": [
+            {
+              "heading": "Identificar REA como interface CLI/MCP, não magia",
+              "body": "Explicação técnica com verificação: REA é a ferramenta morluto/rea que expõe análise de apps e binários por CLI/MCP. O comando npx rea-agents setup configura agente com autorização, e npx -y rea-agents@latest analyze-javascript-application /caminho/absoluto --json exige uma pasta de aplicativo autorizada. No núcleo local, o aluno audita afirmações sem agente. Nesta seção, concentre-se especificamente em «Identificar REA como interface CLI/MCP, não magia», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 06-agent-evidence.json a frase 'o agente executou Ghidra automaticamente' é marcada not_verified_do_not_claim; uma saída real exige comando e log de execução verificáveis. Referencie REV-IA-021 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Supor que REA copia Photoshop ou jogos automaticamente, que todo provedor é grátis ou que MCP recupera o fonte perfeito; nunca suba arquivos de terceiros sem autorização. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Configurar ferramenta sob aprovação e sem serviço pago obrigatório",
+              "body": "Explicação técnica com verificação: REA é a ferramenta morluto/rea que expõe análise de apps e binários por CLI/MCP. O comando npx rea-agents setup configura agente com autorização, e npx -y rea-agents@latest analyze-javascript-application /caminho/absoluto --json exige uma pasta de aplicativo autorizada. No núcleo local, o aluno audita afirmações sem agente. Nesta seção, concentre-se especificamente em «Configurar ferramenta sob aprovação e sem serviço pago obrigatório», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 06-agent-evidence.json a frase 'o agente executou Ghidra automaticamente' é marcada not_verified_do_not_claim; uma saída real exige comando e log de execução verificáveis. Referencie REV-IA-021 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Supor que REA copia Photoshop ou jogos automaticamente, que todo provedor é grátis ou que MCP recupera o fonte perfeito; nunca suba arquivos de terceiros sem autorização. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Contrapor agente e evidência local auditável",
+              "body": "Explicação técnica com verificação: REA é a ferramenta morluto/rea que expõe análise de apps e binários por CLI/MCP. O comando npx rea-agents setup configura agente com autorização, e npx -y rea-agents@latest analyze-javascript-application /caminho/absoluto --json exige uma pasta de aplicativo autorizada. No núcleo local, o aluno audita afirmações sem agente. Nesta seção, concentre-se especificamente em «Contrapor agente e evidência local auditável», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 06-agent-evidence.json a frase 'o agente executou Ghidra automaticamente' é marcada not_verified_do_not_claim; uma saída real exige comando e log de execução verificáveis. Referencie REV-IA-021 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Supor que REA copia Photoshop ou jogos automaticamente, que todo provedor é grátis ou que MCP recupera o fonte perfeito; nunca suba arquivos de terceiros sem autorização. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é comparar hipótese de um agente com prova manual?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 22,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Ghidra gratuito versus Hopper opcional",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Identificar REA como interface CLI/MCP, não magia",
+              "body": "Atividade crítica com IA opcional: REA é a ferramenta morluto/rea que expõe análise de apps e binários por CLI/MCP. O comando npx rea-agents setup configura agente com autorização, e npx -y rea-agents@latest analyze-javascript-application /caminho/absoluto --json exige uma pasta de aplicativo autorizada. No núcleo local, o aluno audita afirmações sem agente. Nesta seção, concentre-se especificamente em «Identificar REA como interface CLI/MCP, não magia», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 06-agent-evidence.json a frase 'o agente executou Ghidra automaticamente' é marcada not_verified_do_not_claim; uma saída real exige comando e log de execução verificáveis. Referencie REV-IA-022 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Supor que REA copia Photoshop ou jogos automaticamente, que todo provedor é grátis ou que MCP recupera o fonte perfeito; nunca suba arquivos de terceiros sem autorização. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Configurar ferramenta sob aprovação e sem serviço pago obrigatório",
+              "body": "Atividade crítica com IA opcional: REA é a ferramenta morluto/rea que expõe análise de apps e binários por CLI/MCP. O comando npx rea-agents setup configura agente com autorização, e npx -y rea-agents@latest analyze-javascript-application /caminho/absoluto --json exige uma pasta de aplicativo autorizada. No núcleo local, o aluno audita afirmações sem agente. Nesta seção, concentre-se especificamente em «Configurar ferramenta sob aprovação e sem serviço pago obrigatório», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 06-agent-evidence.json a frase 'o agente executou Ghidra automaticamente' é marcada not_verified_do_not_claim; uma saída real exige comando e log de execução verificáveis. Referencie REV-IA-022 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Supor que REA copia Photoshop ou jogos automaticamente, que todo provedor é grátis ou que MCP recupera o fonte perfeito; nunca suba arquivos de terceiros sem autorização. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Contrapor agente e evidência local auditável",
+              "body": "Atividade crítica com IA opcional: REA é a ferramenta morluto/rea que expõe análise de apps e binários por CLI/MCP. O comando npx rea-agents setup configura agente com autorização, e npx -y rea-agents@latest analyze-javascript-application /caminho/absoluto --json exige uma pasta de aplicativo autorizada. No núcleo local, o aluno audita afirmações sem agente. Nesta seção, concentre-se especificamente em «Contrapor agente e evidência local auditável», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "No 06-agent-evidence.json a frase 'o agente executou Ghidra automaticamente' é marcada not_verified_do_not_claim; uma saída real exige comando e log de execução verificáveis. Referencie REV-IA-022 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Supor que REA copia Photoshop ou jogos automaticamente, que todo provedor é grátis ou que MCP recupera o fonte perfeito; nunca suba arquivos de terceiros sem autorização. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 6: REA, agentes e MCP com execução local. Tenho o arquivo 06-agent-evidence.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: dossiê de alegações, evidências e limites. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 06-agent-evidence.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 23,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 117",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-117",
+          "referencePath": "#course/main/117",
+          "challengeText": "Use AULA-117 como fundamento e contraste-o com 06-agent-evidence.json: identificar rea como interface cli/mcp, não magia. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 24,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Gerar dossiê assistido sem API obrigatória",
+          "lead": "Entrega verificável: Dossiê com evidência, confiança e contraexemplo.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-06.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 6 --out ./rev-evidencias/m06",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 06-agent-evidence.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 6.",
+          "checkpointAssertion": "O arquivo 06-agent-evidence.json existe na pasta ./rev-evidencias/m06 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-06.md e descreva por escrito a competência: Identificar REA como interface CLI/MCP, não magia. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre dossiê de alegações, evidências e limites. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 6 --out ./rev-evidencias/m06' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '06-agent-evidence.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 06-agent-evidence.json: Configurar ferramenta sob aprovação e sem serviço pago obrigatório. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-06.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-06.md"
+    },
+    {
+      "moduleId": 7,
+      "version": 1,
+      "title": "Reconstrução e testes diferenciais",
+      "objective": "Investigar matriz diferencial e mutante rejeitado com o arquivo verificável 07-differential-report.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Escrever implementação candidata independente",
+        "Cobrir pares severidade/impacto e estado bloqueado",
+        "Usar mutação para provar sensibilidade da suíte",
+        "Entregar 07-differential-report.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 25,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Separação entre observação e implementação",
+          "lead": "Competência: implementar uma versão independente da regra observada e comparar saídas.",
+          "sections": [
+            {
+              "heading": "Escrever implementação candidata independente",
+              "body": "Explicação técnica com verificação: O motor compara centenas de estados do domínio didático, incluindo severity 0/1/5/7/8/9/10, impact nos mesmos valores e blocked boolean. Além de identificar divergências, ele injeta uma saída priority='high' incorreta quando deveria ser critical; a mutação deve ser detectada. Nesta seção, concentre-se especificamente em «Escrever implementação candidata independente», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "07-differential-report.json traz totalCases e matching iguais quando a candidata está correta, mais mutation.killed=true; mude candidate.mjs e prove que o teste falha antes de corrigir. Referencie REV-IA-025 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Marcar um clone como perfeito ao comparar somente uma tela; um teste que sempre passa mesmo após introduzir uma falha conhecida não mede a qualidade desejada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Cobrir pares severidade/impacto e estado bloqueado",
+              "body": "Explicação técnica com verificação: O motor compara centenas de estados do domínio didático, incluindo severity 0/1/5/7/8/9/10, impact nos mesmos valores e blocked boolean. Além de identificar divergências, ele injeta uma saída priority='high' incorreta quando deveria ser critical; a mutação deve ser detectada. Nesta seção, concentre-se especificamente em «Cobrir pares severidade/impacto e estado bloqueado», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "07-differential-report.json traz totalCases e matching iguais quando a candidata está correta, mais mutation.killed=true; mude candidate.mjs e prove que o teste falha antes de corrigir. Referencie REV-IA-025 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Marcar um clone como perfeito ao comparar somente uma tela; um teste que sempre passa mesmo após introduzir uma falha conhecida não mede a qualidade desejada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Usar mutação para provar sensibilidade da suíte",
+              "body": "Explicação técnica com verificação: O motor compara centenas de estados do domínio didático, incluindo severity 0/1/5/7/8/9/10, impact nos mesmos valores e blocked boolean. Além de identificar divergências, ele injeta uma saída priority='high' incorreta quando deveria ser critical; a mutação deve ser detectada. Nesta seção, concentre-se especificamente em «Usar mutação para provar sensibilidade da suíte», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "07-differential-report.json traz totalCases e matching iguais quando a candidata está correta, mais mutation.killed=true; mude candidate.mjs e prove que o teste falha antes de corrigir. Referencie REV-IA-025 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Marcar um clone como perfeito ao comparar somente uma tela; um teste que sempre passa mesmo após introduzir uma falha conhecida não mede a qualidade desejada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é escrever uma implementação nova sem copiar código ou ativos?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 26,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Teste diferencial por casos representativos",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Escrever implementação candidata independente",
+              "body": "Atividade crítica com IA opcional: O motor compara centenas de estados do domínio didático, incluindo severity 0/1/5/7/8/9/10, impact nos mesmos valores e blocked boolean. Além de identificar divergências, ele injeta uma saída priority='high' incorreta quando deveria ser critical; a mutação deve ser detectada. Nesta seção, concentre-se especificamente em «Escrever implementação candidata independente», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "07-differential-report.json traz totalCases e matching iguais quando a candidata está correta, mais mutation.killed=true; mude candidate.mjs e prove que o teste falha antes de corrigir. Referencie REV-IA-026 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Marcar um clone como perfeito ao comparar somente uma tela; um teste que sempre passa mesmo após introduzir uma falha conhecida não mede a qualidade desejada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Cobrir pares severidade/impacto e estado bloqueado",
+              "body": "Atividade crítica com IA opcional: O motor compara centenas de estados do domínio didático, incluindo severity 0/1/5/7/8/9/10, impact nos mesmos valores e blocked boolean. Além de identificar divergências, ele injeta uma saída priority='high' incorreta quando deveria ser critical; a mutação deve ser detectada. Nesta seção, concentre-se especificamente em «Cobrir pares severidade/impacto e estado bloqueado», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "07-differential-report.json traz totalCases e matching iguais quando a candidata está correta, mais mutation.killed=true; mude candidate.mjs e prove que o teste falha antes de corrigir. Referencie REV-IA-026 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Marcar um clone como perfeito ao comparar somente uma tela; um teste que sempre passa mesmo após introduzir uma falha conhecida não mede a qualidade desejada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Usar mutação para provar sensibilidade da suíte",
+              "body": "Atividade crítica com IA opcional: O motor compara centenas de estados do domínio didático, incluindo severity 0/1/5/7/8/9/10, impact nos mesmos valores e blocked boolean. Além de identificar divergências, ele injeta uma saída priority='high' incorreta quando deveria ser critical; a mutação deve ser detectada. Nesta seção, concentre-se especificamente em «Usar mutação para provar sensibilidade da suíte», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "07-differential-report.json traz totalCases e matching iguais quando a candidata está correta, mais mutation.killed=true; mude candidate.mjs e prove que o teste falha antes de corrigir. Referencie REV-IA-026 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Marcar um clone como perfeito ao comparar somente uma tela; um teste que sempre passa mesmo após introduzir uma falha conhecida não mede a qualidade desejada. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 7: Reconstrução e testes diferenciais. Tenho o arquivo 07-differential-report.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: matriz diferencial e mutante rejeitado. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 07-differential-report.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 27,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 129",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-129",
+          "referencePath": "#course/main/129",
+          "challengeText": "Use AULA-129 como fundamento e contraste-o com 07-differential-report.json: escrever implementação candidata independente. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 28,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Construir e verificar uma reimplementação",
+          "lead": "Entrega verificável: Candidato local e divergências documentadas.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-07.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 7 --out ./rev-evidencias/m07",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 07-differential-report.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 7.",
+          "checkpointAssertion": "O arquivo 07-differential-report.json existe na pasta ./rev-evidencias/m07 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-07.md e descreva por escrito a competência: Escrever implementação candidata independente. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre matriz diferencial e mutante rejeitado. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 7 --out ./rev-evidencias/m07' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '07-differential-report.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 07-differential-report.json: Cobrir pares severidade/impacto e estado bloqueado. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-07.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-07.md"
+    },
+    {
+      "moduleId": 8,
+      "version": 1,
+      "title": "Capstone: auditoria e entrega",
+      "objective": "Investigar dossiê final e hashes dos checkpoints com o arquivo verificável 08-capstone-manifest.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.",
+      "learningOutcomes": [
+        "Preservar proveniência e integridade de artefatos",
+        "Definir critérios explícitos de aceite e limites",
+        "Montar documentação reproduzível de ponta a ponta",
+        "Entregar 08-capstone-manifest.json com resultado e contraexemplo reproduzíveis"
+      ],
+      "lessons": [
+        {
+          "stepId": 29,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Cadeia de evidências e proveniência",
+          "lead": "Competência: apresentar um relatório de engenharia reversa com limitações e código reproduzível.",
+          "sections": [
+            {
+              "heading": "Preservar proveniência e integridade de artefatos",
+              "body": "Explicação técnica com verificação: O capstone recompõe as saídas dos sete módulos anteriores e calcula hashes SHA-256 dos relatórios gerados. Registre sistema operacional, versão Node, origem do fixture, comandos usados e limitações. Um hash demonstra integridade de um arquivo, não prova que sua conclusão é verdadeira. Nesta seção, concentre-se especificamente em «Preservar proveniência e integridade de artefatos», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "08-capstone-manifest.json contém sete capítulos com nomes e hashes; 08-report.md explica os resultados sem alegar equivalência universal nem execução fictícia do REA/Ghidra. Referencie REV-IA-029 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Entregar apenas screenshots sem comandos, marcar ferramenta não executada como executada ou confundir integridade por hash com revisão externa ou certificação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Definir critérios explícitos de aceite e limites",
+              "body": "Explicação técnica com verificação: O capstone recompõe as saídas dos sete módulos anteriores e calcula hashes SHA-256 dos relatórios gerados. Registre sistema operacional, versão Node, origem do fixture, comandos usados e limitações. Um hash demonstra integridade de um arquivo, não prova que sua conclusão é verdadeira. Nesta seção, concentre-se especificamente em «Definir critérios explícitos de aceite e limites», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "08-capstone-manifest.json contém sete capítulos com nomes e hashes; 08-report.md explica os resultados sem alegar equivalência universal nem execução fictícia do REA/Ghidra. Referencie REV-IA-029 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Entregar apenas screenshots sem comandos, marcar ferramenta não executada como executada ou confundir integridade por hash com revisão externa ou certificação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Montar documentação reproduzível de ponta a ponta",
+              "body": "Explicação técnica com verificação: O capstone recompõe as saídas dos sete módulos anteriores e calcula hashes SHA-256 dos relatórios gerados. Registre sistema operacional, versão Node, origem do fixture, comandos usados e limitações. Um hash demonstra integridade de um arquivo, não prova que sua conclusão é verdadeira. Nesta seção, concentre-se especificamente em «Montar documentação reproduzível de ponta a ponta», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "08-capstone-manifest.json contém sete capítulos com nomes e hashes; 08-report.md explica os resultados sem alegar equivalência universal nem execução fictícia do REA/Ghidra. Referencie REV-IA-029 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Entregar apenas screenshots sem comandos, marcar ferramenta não executada como executada ou confundir integridade por hash com revisão externa ou certificação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é entregar artefato, suíte de teste e dossiê final?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 30,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Critérios de aceitação e comunicação de limites",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Preservar proveniência e integridade de artefatos",
+              "body": "Atividade crítica com IA opcional: O capstone recompõe as saídas dos sete módulos anteriores e calcula hashes SHA-256 dos relatórios gerados. Registre sistema operacional, versão Node, origem do fixture, comandos usados e limitações. Um hash demonstra integridade de um arquivo, não prova que sua conclusão é verdadeira. Nesta seção, concentre-se especificamente em «Preservar proveniência e integridade de artefatos», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "08-capstone-manifest.json contém sete capítulos com nomes e hashes; 08-report.md explica os resultados sem alegar equivalência universal nem execução fictícia do REA/Ghidra. Referencie REV-IA-030 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Entregar apenas screenshots sem comandos, marcar ferramenta não executada como executada ou confundir integridade por hash com revisão externa ou certificação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Definir critérios explícitos de aceite e limites",
+              "body": "Atividade crítica com IA opcional: O capstone recompõe as saídas dos sete módulos anteriores e calcula hashes SHA-256 dos relatórios gerados. Registre sistema operacional, versão Node, origem do fixture, comandos usados e limitações. Um hash demonstra integridade de um arquivo, não prova que sua conclusão é verdadeira. Nesta seção, concentre-se especificamente em «Definir critérios explícitos de aceite e limites», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "08-capstone-manifest.json contém sete capítulos com nomes e hashes; 08-report.md explica os resultados sem alegar equivalência universal nem execução fictícia do REA/Ghidra. Referencie REV-IA-030 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Entregar apenas screenshots sem comandos, marcar ferramenta não executada como executada ou confundir integridade por hash com revisão externa ou certificação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            },
+            {
+              "heading": "Montar documentação reproduzível de ponta a ponta",
+              "body": "Atividade crítica com IA opcional: O capstone recompõe as saídas dos sete módulos anteriores e calcula hashes SHA-256 dos relatórios gerados. Registre sistema operacional, versão Node, origem do fixture, comandos usados e limitações. Um hash demonstra integridade de um arquivo, não prova que sua conclusão é verdadeira. Nesta seção, concentre-se especificamente em «Montar documentação reproduzível de ponta a ponta», identifique uma hipótese contestável e indique a evidência que permitiria corrigi-la. A resposta escrita sem IA atende os mesmos critérios, usando os fixtures fornecidos.",
+              "example": "08-capstone-manifest.json contém sete capítulos com nomes e hashes; 08-report.md explica os resultados sem alegar equivalência universal nem execução fictícia do REA/Ghidra. Referencie REV-IA-030 e explique exatamente o que observou e o que ficou fora do teste.",
+              "counterexample": "Entregar apenas screenshots sem comandos, marcar ferramenta não executada como executada ou confundir integridade por hash com revisão externa ou certificação. Se o problema ocorrer, documente entrada, causa provável e uma verificação de recuperação."
+            }
+          ],
+          "prompt": "Você é revisor técnico de um programa autoral didático. Módulo 8: Capstone: auditoria e entrega. Tenho o arquivo 08-capstone-manifest.json, cuja saída só é prova se eu realmente executar o comando correspondente. Não invente execução de REA, Ghidra, nem fatos de softwares de terceiros. Tarefa: dossiê final e hashes dos checkpoints. Proponha uma hipótese, um contraexemplo e uma matriz de entradas com um caso inválido. Separe EVIDÊNCIA OBSERVADA, INFERÊNCIA e NÃO TESTADO. O caminho manual R$ 0 não pode depender de contas, chaves, modelos remotos, servidor proprietário nem de ferramenta paga. Registre restrições e possíveis violações de licença. Sugira comandos reprodutíveis e cite arquivos de origem. Se a evidência não estiver presente, declare não verificado.",
+          "reviewQuestions": [
+            "Qual linha de 08-capstone-manifest.json foi realmente medida?",
+            "Qual interpretação é apenas hipótese e qual entrada a refutaria?",
+            "Que etapa ficaria pendente se REA/Ghidra ou um modelo local não estivesse instalado?",
+            "Qual dado não é permitido enviar para serviços externos?"
+          ]
+        },
+        {
+          "stepId": 31,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 130",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-130",
+          "referencePath": "#course/main/130",
+          "challengeText": "Use AULA-130 como fundamento e contraste-o com 08-capstone-manifest.json: preservar proveniência e integridade de artefatos. Explique em 120 palavras como uma saída medida poderia contrariar sua hipótese, e por que a referência não substitui o laboratório nem a conclusão de outra aula."
+        },
+        {
+          "stepId": 32,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Entregar capstone com relatório e reteste",
+          "lead": "Entrega verificável: Pacote local e relatório técnico que permite auditoria.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-08.md",
+          "labCommand": "node public/course-labs/reverse-ai/engine.mjs --module 8 --out ./rev-evidencias/m08",
+          "testCommand": "node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Arquivo 08-capstone-manifest.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 8.",
+          "checkpointAssertion": "O arquivo 08-capstone-manifest.json existe na pasta ./rev-evidencias/m08 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.",
+          "brief": [
+            "Leia /course-labs/reverse-ai/module-08.md e descreva por escrito a competência: Preservar proveniência e integridade de artefatos. Não abra os arquivos de implementação antes da previsão inicial, salvo em análise estática autorizada.",
+            "Formule uma hipótese e um controle negativo sobre dossiê final e hashes dos checkpoints. Descreva exatamente a entrada e a saída esperada antes de executar.",
+            "Execute 'node public/course-labs/reverse-ai/engine.mjs --module 8 --out ./rev-evidencias/m08' e 'node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs'; localize '08-capstone-manifest.json' e confira a evidência específica deste módulo.",
+            "Registre uma divergência possível e um reteste. Anote se REA/Ghidra realmente foram executados e se a conclusão seria diferente sem eles."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Sem consultar o gabarito, justifique com trechos de 08-capstone-manifest.json: Definir critérios explícitos de aceite e limites. Inclua comando, entrada negativa, comportamento observado, contraexemplo e o limite epistemológico das conclusões. Se não houver execução real, não atribua resultados a ferramentas externas."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-08.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-08.md"
+    }
+  ]
+}

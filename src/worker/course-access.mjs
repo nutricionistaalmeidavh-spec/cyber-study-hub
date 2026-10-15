@@ -36,6 +36,7 @@ export function ownersForPath(pathname) {
     const folder = lab[1].toLowerCase();
     if (folder === 'ai-dev-meu-gestor') return ['desenvolvimento-com-ia'];
     if (folder === 'channel-dark') return ['automacao-canal-dark'];
+    if (folder === 'reverse-ai') return ['engenharia-reversa-com-ia'];
     if (folder === 'capstone-final') return ['projeto-final'];
     if (folder === 'lab-tools') return ['web-apis', 'redes-sistemas', 'pentest-seguro'];
     if (folder === 'phase16-web-p0' || folder === 'phase16-foundations' || folder === 'pilot-a') return ['web-apis'];

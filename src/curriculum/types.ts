@@ -22,7 +22,7 @@ export type ParallelCurriculumItem = {
 export type GuidedCurriculumItem = {
   kind: 'guided';
   code: string;
-  source: 'ai-dev' | 'channel-dark';
+  source: 'ai-dev' | 'channel-dark' | 'reverse-ai';
   stepId: number;
   moduleId: number;
   title: string;

@@ -57,7 +57,8 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
   const aiModuleCount = new Set(catalog.guided.filter(item => item.source === 'ai-dev').map(item => item.moduleId)).size;
   const channelModuleCount = new Set(catalog.guided.filter(item => item.source === 'channel-dark').map(item => item.moduleId)).size;
-  const totalModules = mainModuleCount + parallelModuleCount + aiModuleCount + channelModuleCount;
+  const reverseModuleCount = (user.role==='admin'||user.role==='teacher') ? new Set(catalog.guided.filter(item => item.source === 'reverse-ai').map(item => item.moduleId)).size : 0;
+  const totalModules = mainModuleCount + parallelModuleCount + aiModuleCount + channelModuleCount + reverseModuleCount;
   const guidedCompletion = getCanonicalGuidedCompletion();
   return <div className={"page hub-home stack-lg" + (isNewStudent ? "" : " hub-home--returning")}>
     <header className="hub-home-topline">
@@ -89,7 +90,11 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       <span><small>CANAL DARK · 8 MÓDULOS</small><strong>Automatize um canal com IA, do zero</strong><em>Steve AI, Pika, Google Flow, Kokoro, n8n e Modal como opções. Núcleo local gratuito em todas as etapas.</em></span>
       <b>Explorar trilha →</b>
     </a>
-    <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
+    {(user.role==='admin'||user.role==='teacher') && <a className="hub-ai-banner" href="#courses/engenharia-reversa-com-ia">
+       <span><small>ENGENHARIA REVERSA · 8 MÓDULOS</small><strong>Engenharia Reversa com IA</strong><em>REA, Ghidra, MCP, testes diferenciais e core local R$ 0.</em></span>
+       <b>Prévia administrativa →</b>
+     </a>}
+     <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><h2 id="hub-journeys-title">Explore por assunto</h2></div>
         <a href="#lessons" className="text-link">Ver todo o catálogo →</a>
@@ -112,7 +117,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
       <a href="#lessons" className="hub-home-stat">
         <small>Módulos de estudo</small><strong>{totalModules}</strong>
-        <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + {aiModuleCount} Meu Gestor + {channelModuleCount} Canal Dark</span>
+        <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + {aiModuleCount} Meu Gestor + {channelModuleCount} Canal Dark + {reverseModuleCount} Engenharia Reversa</span>
         <span>{studyInventory.totalSteps} IDs canônicos, incluindo {studyInventory.referenceSteps} referências guiadas</span>
         <span>{guidedCompletion.completed}/{guidedCompletion.total} etapas guiadas registradas na sua conta</span>
       </a>

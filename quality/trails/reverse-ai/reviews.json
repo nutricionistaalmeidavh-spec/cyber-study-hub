@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 1,
+  "trackId": "ENGENHARIA-REVERSA-IA",
+  "reviewMethod": "ai_editorial_critical_second_pass_and_local_ci_contract",
+  "reviewedOn": "2026-10-15",
+  "humanLearnerTesting": "not_performed",
+  "externalHumanReview": "not_performed",
+  "notes": "Segunda passagem crítica corrigiu repetição dos 8 laboratórios, adicionando oito artefatos distintos, um motor local testável e 6 perguntas contextualizadas por módulo. Resultados executados pelo CI e integridade bloqueada por scripts/verify-reverse-ai.mjs; caso CI falhe, a aprovação técnica deve ser reavaliada.",
+  "modules": {
+    "01": {
+      "moduleId": 1,
+      "title": "Fundamentos e limites da engenharia reversa",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "91d1ab5e",
+      "guideFnv32": "25a3d515",
+      "examFnv32": "d9c87bed",
+      "keyFnv32": "c9580aa4",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 90,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 92
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura técnica das explicações e das hipóteses contestáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=1",
+          "result": "O módulo 1 ensina linha de base e autorização com predição observável, exemplo e contraprova. O escopo diferencia resultados realmente observados no programa próprio, inferência e alegações sem execução de ferramentas externas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial para iniciante e organização de objetivos verificáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=1/learningOutcomes",
+          "result": "Quatro resultados de aprendizagem específicos, seis seções com exemplos e contraexemplos, referência AULA-028 e laboratório incremental guiado por hipóteses, observação e correção."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de runner Node e testes de checkpoint com falhas verificáveis",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "A competência de linha de base e autorização produz 01-baseline.json com arquivo distinto, contrato de falha e controle negativo em suíte node:test. Runner é local e offline; não alega executar REA/Ghidra automaticamente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de segurança, privacidade, licença e limites da ferramenta",
+          "reference": "public/course-labs/reverse-ai/module-01.md",
+          "result": "Núcleo obrigatório R$0, projeto autoral e análise autorizada. O roteiro não exige API paga, não permite evasão de DRM/licenças, informa a limitação de evidência e não converte saída de agente em execução verificada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão da prova de seis questões e do gabarito de transferência independente",
+          "reference": "public/course-labs/reverse-ai/assessments/module-01.md",
+          "result": "Seis perguntas próprias de linha de base e autorização, respostas no gabarito separado public/course-labs/reverse-ai/answer-keys/module-01.md, rubrica 0–2 pontos com meta 10/12 e erro eliminatório por conclusão sem evidência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento objetivo–comando–artefato–reteste e comparação entre módulos",
+          "reference": "public/course-labs/reverse-ai/module-01.md",
+          "result": "O aluno executa 'node public/course-labs/reverse-ai/engine.mjs --module 1 --out ./rev-evidencias/m01', abre 01-baseline.json e justifica resultado negativo. Os oito módulos possuem saídas distintas, não oito roteiros com o mesmo JSON apresentado como atividade nova."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-01.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-01.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-01.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é somente editorial IA; não houve avaliação de aprendizagem com estudantes nem revisão humana externa.",
+        "O core offline e seus fixtures próprios foram auditados; REA/Ghidra opcionais não foram executados aqui.",
+        "A conclusão em plataforma é autodeclarada; não representa aprovação automática de código ou equivalência universal."
+      ]
+    },
+    "02": {
+      "moduleId": 2,
+      "title": "Investigação orientada por evidências",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "18de0ab5",
+      "guideFnv32": "6fb20e92",
+      "examFnv32": "f7def25d",
+      "keyFnv32": "d43fffa9",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura técnica das explicações e das hipóteses contestáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=2",
+          "result": "O módulo 2 ensina matriz de fronteiras 21/22 com predição observável, exemplo e contraprova. O escopo diferencia resultados realmente observados no programa próprio, inferência e alegações sem execução de ferramentas externas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial para iniciante e organização de objetivos verificáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=2/learningOutcomes",
+          "result": "Quatro resultados de aprendizagem específicos, seis seções com exemplos e contraexemplos, referência AULA-111 e laboratório incremental guiado por hipóteses, observação e correção."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de runner Node e testes de checkpoint com falhas verificáveis",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "A competência de matriz de fronteiras 21/22 produz 02-coverage.json com arquivo distinto, contrato de falha e controle negativo em suíte node:test. Runner é local e offline; não alega executar REA/Ghidra automaticamente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de segurança, privacidade, licença e limites da ferramenta",
+          "reference": "public/course-labs/reverse-ai/module-02.md",
+          "result": "Núcleo obrigatório R$0, projeto autoral e análise autorizada. O roteiro não exige API paga, não permite evasão de DRM/licenças, informa a limitação de evidência e não converte saída de agente em execução verificada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão da prova de seis questões e do gabarito de transferência independente",
+          "reference": "public/course-labs/reverse-ai/assessments/module-02.md",
+          "result": "Seis perguntas próprias de matriz de fronteiras 21/22, respostas no gabarito separado public/course-labs/reverse-ai/answer-keys/module-02.md, rubrica 0–2 pontos com meta 10/12 e erro eliminatório por conclusão sem evidência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento objetivo–comando–artefato–reteste e comparação entre módulos",
+          "reference": "public/course-labs/reverse-ai/module-02.md",
+          "result": "O aluno executa 'node public/course-labs/reverse-ai/engine.mjs --module 2 --out ./rev-evidencias/m02', abre 02-coverage.json e justifica resultado negativo. Os oito módulos possuem saídas distintas, não oito roteiros com o mesmo JSON apresentado como atividade nova."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-02.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-02.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-02.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é somente editorial IA; não houve avaliação de aprendizagem com estudantes nem revisão humana externa.",
+        "O core offline e seus fixtures próprios foram auditados; REA/Ghidra opcionais não foram executados aqui.",
+        "A conclusão em plataforma é autodeclarada; não representa aprovação automática de código ou equivalência universal."
+      ]
+    },
+    "03": {
+      "moduleId": 3,
+      "title": "Binários nativos e Ghidra",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "d989905a",
+      "guideFnv32": "9f400eb7",
+      "examFnv32": "41034dec",
+      "keyFnv32": "da3565db",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 92,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura técnica das explicações e das hipóteses contestáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=3",
+          "result": "O módulo 3 ensina mapeamento C/Ghidra com predição observável, exemplo e contraprova. O escopo diferencia resultados realmente observados no programa próprio, inferência e alegações sem execução de ferramentas externas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial para iniciante e organização de objetivos verificáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=3/learningOutcomes",
+          "result": "Quatro resultados de aprendizagem específicos, seis seções com exemplos e contraexemplos, referência AULA-115 e laboratório incremental guiado por hipóteses, observação e correção."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de runner Node e testes de checkpoint com falhas verificáveis",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "A competência de mapeamento C/Ghidra produz 03-static-source-map.json com arquivo distinto, contrato de falha e controle negativo em suíte node:test. Runner é local e offline; não alega executar REA/Ghidra automaticamente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de segurança, privacidade, licença e limites da ferramenta",
+          "reference": "public/course-labs/reverse-ai/module-03.md",
+          "result": "Núcleo obrigatório R$0, projeto autoral e análise autorizada. O roteiro não exige API paga, não permite evasão de DRM/licenças, informa a limitação de evidência e não converte saída de agente em execução verificada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão da prova de seis questões e do gabarito de transferência independente",
+          "reference": "public/course-labs/reverse-ai/assessments/module-03.md",
+          "result": "Seis perguntas próprias de mapeamento C/Ghidra, respostas no gabarito separado public/course-labs/reverse-ai/answer-keys/module-03.md, rubrica 0–2 pontos com meta 10/12 e erro eliminatório por conclusão sem evidência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento objetivo–comando–artefato–reteste e comparação entre módulos",
+          "reference": "public/course-labs/reverse-ai/module-03.md",
+          "result": "O aluno executa 'node public/course-labs/reverse-ai/engine.mjs --module 3 --out ./rev-evidencias/m03', abre 03-static-source-map.json e justifica resultado negativo. Os oito módulos possuem saídas distintas, não oito roteiros com o mesmo JSON apresentado como atividade nova."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-03.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-03.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-03.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é somente editorial IA; não houve avaliação de aprendizagem com estudantes nem revisão humana externa.",
+        "O core offline e seus fixtures próprios foram auditados; REA/Ghidra opcionais não foram executados aqui.",
+        "A conclusão em plataforma é autodeclarada; não representa aprovação automática de código ou equivalência universal."
+      ]
+    },
+    "04": {
+      "moduleId": 4,
+      "title": "Análise dinâmica controlada",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "9396d3e8",
+      "guideFnv32": "df56ddf9",
+      "examFnv32": "996179b7",
+      "keyFnv32": "91d913b1",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 93,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 95
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura técnica das explicações e das hipóteses contestáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=4",
+          "result": "O módulo 4 ensina trace controlado com predição observável, exemplo e contraprova. O escopo diferencia resultados realmente observados no programa próprio, inferência e alegações sem execução de ferramentas externas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial para iniciante e organização de objetivos verificáveis",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=4/learningOutcomes",
+          "result": "Quatro resultados de aprendizagem específicos, seis seções com exemplos e contraexemplos, referência AULA-116 e laboratório incremental guiado por hipóteses, observação e correção."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de runner Node e testes de checkpoint com falhas verificáveis",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "A competência de trace controlado produz 04-controlled-trace.json com arquivo distinto, contrato de falha e controle negativo em suíte node:test. Runner é local e offline; não alega executar REA/Ghidra automaticamente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de segurança, privacidade, licença e limites da ferramenta",
+          "reference": "public/course-labs/reverse-ai/module-04.md",
+          "result": "Núcleo obrigatório R$0, projeto autoral e análise autorizada. O roteiro não exige API paga, não permite evasão de DRM/licenças, informa a limitação de evidência e não converte saída de agente em execução verificada."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão da prova de seis questões e do gabarito de transferência independente",
+          "reference": "public/course-labs/reverse-ai/assessments/module-04.md",
+          "result": "Seis perguntas próprias de trace controlado, respostas no gabarito separado public/course-labs/reverse-ai/answer-keys/module-04.md, rubrica 0–2 pontos com meta 10/12 e erro eliminatório por conclusão sem evidência."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Mapeamento objetivo–comando–artefato–reteste e comparação entre módulos",
+          "reference": "public/course-labs/reverse-ai/module-04.md",
+          "result": "O aluno executa 'node public/course-labs/reverse-ai/engine.mjs --module 4 --out ./rev-evidencias/m04', abre 04-controlled-trace.json e justifica resultado negativo. Os oito módulos possuem saídas distintas, não oito roteiros com o mesmo JSON apresentado como atividade nova."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-04.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-04.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-04.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é somente editorial IA; não houve avaliação de aprendizagem com estudantes nem revisão humana externa.",
+        "O core offline e seus fixtures próprios foram auditados; REA/Ghidra opcionais não foram executados aqui.",
+        "A conclusão em plataforma é autodeclarada; não representa aprovação automática de código ou equivalência universal."
+      ]
+    },
+    "05": {
+      "moduleId": 5,
+      "title": "JavaScript, Electron e interfaces",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "1658240a",
+      "guideFnv32": "19662f5a",
+      "examFnv32": "4b6c5b7b",
+      "keyFnv32": "f98568d1",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão técnica cruzada de limites e contraprovas de cada conceito",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=5",
+          "result": "Análise de dependências JavaScript com hipóteses contestáveis e procedimento local que separa medição real de observações que dependem de ferramentas externas. Nenhuma decompilação ou recuperação perfeita é prometida."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso do iniciante, leitura de exemplos concretos e saída verificada",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=5/learningOutcomes",
+          "result": "Quatro competências específicas, exemplos e contraexemplos, referência canônica AULA-118, exercício crítico com IA facultativa e explicação de como verificar sem depender de agente externo."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de engine Node, assertions independentes e casos de rejeição",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "O laboratório 5 produz 05-js-boundaries.json por comando próprio e testa dependências JavaScript; inclui saída observável, limite de prova e controles de falha. Não simula a execução real de Ghidra ou REA."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de licença, consentimento, custo e privacidade de agentes",
+          "reference": "public/course-labs/reverse-ai/module-05.md",
+          "result": "O procedimento obrigatório é inteiramente gratuito/local e usa programa próprio; REA e provedores externos ficam opcionais. O roteiro distingue dados da aplicação de resultados que um modelo remoto poderia receber."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria de seis questões específicas e rubrica de transferência sem gabarito embutido",
+          "reference": "public/course-labs/reverse-ai/assessments/module-05.md",
+          "result": "Seis perguntas contextualizadas sobre dependências JavaScript e respostas separadas em public/course-labs/reverse-ai/answer-keys/module-05.md, pontuação 0/1/2, meta 10/12 e eliminação por alegar execução ou equivalência sem provas."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comprovação de alinhamento de objetivo à execução e arquivo gerado",
+          "reference": "public/course-labs/reverse-ai/module-05.md",
+          "result": "A entrega obriga executar 'node public/course-labs/reverse-ai/engine.mjs --module 5 --out ./rev-evidencias/m05', localizar 05-js-boundaries.json, explicar contraprova e registrar reteste com dados fictícios. Cada um dos oito laboratórios entrega artefato diferente."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-05.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-05.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-05.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Nota A refere-se ao material e testes do fixture próprio; sem estudantes reais ou revisor humano independente.",
+        "REA e Ghidra opcionais não foram executados aqui e estão explicitamente identificados como não testados.",
+        "Uma execução de laboratório não valida clonagem de software externo nem atesta competência de aluno."
+      ]
+    },
+    "06": {
+      "moduleId": 6,
+      "title": "REA, agentes e MCP com execução local",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "a4282ccd",
+      "guideFnv32": "99f6f81b",
+      "examFnv32": "4631084f",
+      "keyFnv32": "a6d453db",
+      "scores": {
+        "conteudoTecnico": 94,
+        "didatica": 92,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão técnica cruzada de limites e contraprovas de cada conceito",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=6",
+          "result": "Análise de REA/MCP com verificações de agente com hipóteses contestáveis e procedimento local que separa medição real de observações que dependem de ferramentas externas. Nenhuma decompilação ou recuperação perfeita é prometida."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso do iniciante, leitura de exemplos concretos e saída verificada",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=6/learningOutcomes",
+          "result": "Quatro competências específicas, exemplos e contraexemplos, referência canônica AULA-117, exercício crítico com IA facultativa e explicação de como verificar sem depender de agente externo."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de engine Node, assertions independentes e casos de rejeição",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "O laboratório 6 produz 06-agent-evidence.json por comando próprio e testa REA/MCP com verificações de agente; inclui saída observável, limite de prova e controles de falha. Não simula a execução real de Ghidra ou REA."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de licença, consentimento, custo e privacidade de agentes",
+          "reference": "public/course-labs/reverse-ai/module-06.md",
+          "result": "O procedimento obrigatório é inteiramente gratuito/local e usa programa próprio; REA e provedores externos ficam opcionais. O roteiro distingue dados da aplicação de resultados que um modelo remoto poderia receber."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria de seis questões específicas e rubrica de transferência sem gabarito embutido",
+          "reference": "public/course-labs/reverse-ai/assessments/module-06.md",
+          "result": "Seis perguntas contextualizadas sobre REA/MCP com verificações de agente e respostas separadas em public/course-labs/reverse-ai/answer-keys/module-06.md, pontuação 0/1/2, meta 10/12 e eliminação por alegar execução ou equivalência sem provas."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comprovação de alinhamento de objetivo à execução e arquivo gerado",
+          "reference": "public/course-labs/reverse-ai/module-06.md",
+          "result": "A entrega obriga executar 'node public/course-labs/reverse-ai/engine.mjs --module 6 --out ./rev-evidencias/m06', localizar 06-agent-evidence.json, explicar contraprova e registrar reteste com dados fictícios. Cada um dos oito laboratórios entrega artefato diferente."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-06.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-06.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-06.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Nota A refere-se ao material e testes do fixture próprio; sem estudantes reais ou revisor humano independente.",
+        "REA e Ghidra opcionais não foram executados aqui e estão explicitamente identificados como não testados.",
+        "Uma execução de laboratório não valida clonagem de software externo nem atesta competência de aluno."
+      ]
+    },
+    "07": {
+      "moduleId": 7,
+      "title": "Reconstrução e testes diferenciais",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "a56a6bb4",
+      "guideFnv32": "efb4f83a",
+      "examFnv32": "c40c391a",
+      "keyFnv32": "cbc44321",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão técnica cruzada de limites e contraprovas de cada conceito",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=7",
+          "result": "Análise de mutação e teste diferencial com hipóteses contestáveis e procedimento local que separa medição real de observações que dependem de ferramentas externas. Nenhuma decompilação ou recuperação perfeita é prometida."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso do iniciante, leitura de exemplos concretos e saída verificada",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=7/learningOutcomes",
+          "result": "Quatro competências específicas, exemplos e contraexemplos, referência canônica AULA-129, exercício crítico com IA facultativa e explicação de como verificar sem depender de agente externo."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de engine Node, assertions independentes e casos de rejeição",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "O laboratório 7 produz 07-differential-report.json por comando próprio e testa mutação e teste diferencial; inclui saída observável, limite de prova e controles de falha. Não simula a execução real de Ghidra ou REA."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de licença, consentimento, custo e privacidade de agentes",
+          "reference": "public/course-labs/reverse-ai/module-07.md",
+          "result": "O procedimento obrigatório é inteiramente gratuito/local e usa programa próprio; REA e provedores externos ficam opcionais. O roteiro distingue dados da aplicação de resultados que um modelo remoto poderia receber."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria de seis questões específicas e rubrica de transferência sem gabarito embutido",
+          "reference": "public/course-labs/reverse-ai/assessments/module-07.md",
+          "result": "Seis perguntas contextualizadas sobre mutação e teste diferencial e respostas separadas em public/course-labs/reverse-ai/answer-keys/module-07.md, pontuação 0/1/2, meta 10/12 e eliminação por alegar execução ou equivalência sem provas."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comprovação de alinhamento de objetivo à execução e arquivo gerado",
+          "reference": "public/course-labs/reverse-ai/module-07.md",
+          "result": "A entrega obriga executar 'node public/course-labs/reverse-ai/engine.mjs --module 7 --out ./rev-evidencias/m07', localizar 07-differential-report.json, explicar contraprova e registrar reteste com dados fictícios. Cada um dos oito laboratórios entrega artefato diferente."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-07.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-07.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-07.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Nota A refere-se ao material e testes do fixture próprio; sem estudantes reais ou revisor humano independente.",
+        "REA e Ghidra opcionais não foram executados aqui e estão explicitamente identificados como não testados.",
+        "Uma execução de laboratório não valida clonagem de software externo nem atesta competência de aluno."
+      ]
+    },
+    "08": {
+      "moduleId": 8,
+      "title": "Capstone: auditoria e entrega",
+      "grade": "A",
+      "gradeStatus": "editorial_reviewed",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "externalHumanReview": "not_performed",
+      "liveReaExecution": "not_performed",
+      "liveGhidraExecution": "not_performed",
+      "moduleFnv32": "b8ccd0ed",
+      "guideFnv32": "92ff1f36",
+      "examFnv32": "a3bf648e",
+      "keyFnv32": "fcf8650b",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão técnica cruzada de limites e contraprovas de cada conceito",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=8",
+          "result": "Análise de capstone com SHA-256 com hipóteses contestáveis e procedimento local que separa medição real de observações que dependem de ferramentas externas. Nenhuma decompilação ou recuperação perfeita é prometida."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Percurso do iniciante, leitura de exemplos concretos e saída verificada",
+          "reference": "src/trails/reverse-ai/modules.json#moduleId=8/learningOutcomes",
+          "result": "Quatro competências específicas, exemplos e contraexemplos, referência canônica AULA-130, exercício crítico com IA facultativa e explicação de como verificar sem depender de agente externo."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Inspeção de engine Node, assertions independentes e casos de rejeição",
+          "reference": "public/course-labs/reverse-ai/engine.test.mjs",
+          "result": "O laboratório 8 produz 08-capstone-manifest.json por comando próprio e testa capstone com SHA-256; inclui saída observável, limite de prova e controles de falha. Não simula a execução real de Ghidra ou REA."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão de licença, consentimento, custo e privacidade de agentes",
+          "reference": "public/course-labs/reverse-ai/module-08.md",
+          "result": "O procedimento obrigatório é inteiramente gratuito/local e usa programa próprio; REA e provedores externos ficam opcionais. O roteiro distingue dados da aplicação de resultados que um modelo remoto poderia receber."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Auditoria de seis questões específicas e rubrica de transferência sem gabarito embutido",
+          "reference": "public/course-labs/reverse-ai/assessments/module-08.md",
+          "result": "Seis perguntas contextualizadas sobre capstone com SHA-256 e respostas separadas em public/course-labs/reverse-ai/answer-keys/module-08.md, pontuação 0/1/2, meta 10/12 e eliminação por alegar execução ou equivalência sem provas."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Comprovação de alinhamento de objetivo à execução e arquivo gerado",
+          "reference": "public/course-labs/reverse-ai/module-08.md",
+          "result": "A entrega obriga executar 'node public/course-labs/reverse-ai/engine.mjs --module 8 --out ./rev-evidencias/m08', localizar 08-capstone-manifest.json, explicar contraprova e registrar reteste com dados fictícios. Cada um dos oito laboratórios entrega artefato diferente."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/reverse-ai/module-08.md",
+        "exam": "public/course-labs/reverse-ai/assessments/module-08.md",
+        "answerKey": "public/course-labs/reverse-ai/answer-keys/module-08.md",
+        "test": "public/course-labs/reverse-ai/engine.test.mjs"
+      },
+      "limitations": [
+        "Nota A refere-se ao material e testes do fixture próprio; sem estudantes reais ou revisor humano independente.",
+        "REA e Ghidra opcionais não foram executados aqui e estão explicitamente identificados como não testados.",
+        "Uma execução de laboratório não valida clonagem de software externo nem atesta competência de aluno."
+      ]
+    }
+  },
+  "reviewType": "editorial_ai_only",
+  "checksumAlgorithm": "fnv1a32_utf16",
+  "liveReaExecution": "not_performed",
+  "liveGhidraExecution": "not_performed",
+  "gradeDefinition": "A editorial por módulo, baseada em conteúdo, didática, prática reproduzível, defesa, seis questões independentes e rastreabilidade. Não significa validação com alunos humanos, execução real de REA/Ghidra, nota individual das etapas, publicação do curso ou garantia de aprendizagem."
+}

@@ -1,0 +1,43 @@
+name: Engenharia Reversa IA - Grade A
+on:
+  pull_request:
+    paths:
+      - 'src/trails/reverse-ai/**'
+      - 'public/course-labs/reverse-ai/**'
+      - 'quality/trails/reverse-ai/**'
+      - 'scripts/verify-reverse-ai.mjs'
+      - 'scripts/test-reverse-ai.mjs'
+      - 'scripts/lib/canonicalInventory.mjs'
+      - 'src/curriculum/**'
+      - 'src/lib/guidedIdentity.ts'
+      - 'src/lib/studyProgress.ts'
+      - 'src/lib/studyInventory.ts'
+      - 'package.json'
+      - '.github/workflows/reverse-ai-grade-a.yml'
+  push:
+    branches:
+      - 'feat/engenharia-reversa-ia-integrada'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run eight distinct reverse-AI labs, grading and canonical tests
+        run: npm run test:reverse-ai
+      - name: Verify no regression in course access and canonical inventory
+        run: |
+          npm run test:course-access
+          node --test scripts/test-study-inventory.mjs scripts/test-course-offerings.mjs
+      - name: Verify TypeScript and production bundle
+        run: |
+          npx tsc --noEmit
+          npx vite build

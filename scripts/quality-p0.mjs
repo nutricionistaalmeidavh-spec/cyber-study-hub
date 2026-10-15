@@ -21,7 +21,8 @@ if (process.argv.includes('--write')) {
   const load=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
   const all=buildCanonicalInventory(catalog,
     load('src/trails/ai-dev/manifest.json'),load('src/trails/channel-dark/manifest.json'),
-    registry,load('quality/trails/ai-dev/reviews.json'),load('quality/trails/channel-dark/reviews.json'));
+    registry,load('quality/trails/ai-dev/reviews.json'),load('quality/trails/channel-dark/reviews.json'),
+    load('src/trails/reverse-ai/manifest.json'),load('quality/trails/reverse-ai/reviews.json'));
   fs.writeFileSync(path.join(output,'canonical-inventory.json'),JSON.stringify(all,null,2)+'\n');
   fs.writeFileSync(path.join(output,'canonical-inventory.csv'),canonicalCsv(all));
   console.log('Relatórios gerados: 543 IDs históricos no status-543 e '+all.summary.all+' IDs no inventário canônico consolidado.');

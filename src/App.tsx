@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import CourseCatalog from './components/curriculum/CourseCatalog';
-import { publishedMainLessonIds, publishedParallelLessonCodes, publishedStandaloneLessonCodes, courseByLessonCode } from './curriculum/courseOfferings';
+import { publishedMainLessonIds, publishedParallelLessonCodes, publishedStandaloneLessonCodes, courseByLessonCode, publishedCourses } from './curriculum/courseOfferings';
 import { PlatformGate, platformApi, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
@@ -15,6 +15,7 @@ import type { GameType } from './types';
 import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
 import AiDevelopmentTrail from './trails/ai-dev/AiDevelopmentTrail';
 import ChannelAutomationTrail from './trails/channel-dark/ChannelAutomationTrail';
+import ReverseAiTrail from './trails/reverse-ai/ReverseAiTrail';
 import { FeedbackBoard, FeedbackComposer } from './components/feedback/FeedbackCenter';
 import { RoadmapPage } from './components/feedback/Roadmap';
 
@@ -40,6 +41,7 @@ type Route =
   | { page: 'review' }
   | { page: 'ai-dev' }
   | { page: 'channel-dark' }
+  | { page: 'reverse-ai' }
   | { page: 'materials' }
   | { page: 'material'; id: string };
 
@@ -69,6 +71,7 @@ function parseHash(): Route {
   if (raw === 'admin/users') return { page: 'admin-users' };
   if (raw.split('?')[0] === 'ai-dev') return { page: 'ai-dev' };
   if (raw.split('?')[0] === 'channel-dark') return { page: 'channel-dark' };
+  if (raw.split('?')[0] === 'reverse-ai') return { page: 'reverse-ai' };
   if (raw === 'materials') return { page: 'materials' };
   if (raw === 'games') return { page: 'games' };
   if (raw === 'review') return { page: 'review' };
@@ -143,6 +146,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         {user.role==='admin' && <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca editorial" />}
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
+        {staff && <Nav href="#reverse-ai" active={route.page==='reverse-ai'} icon="ai" label="Engenharia Reversa com IA" />}
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
@@ -174,6 +178,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='course-parallel' && (canReadParallel(route.code) ? <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} /> : denied)}
       {route.page==='ai-dev' && (entitled('desenvolvimento-com-ia')?<AiDevelopmentTrail userId={user.id}/>:denied)}
       {route.page==='channel-dark' && (entitled('automacao-canal-dark')?<ChannelAutomationTrail userId={user.id}/>:denied)}
+      {route.page==='reverse-ai' && ((staff || (publishedCourses.some(course=>course.id==='engenharia-reversa-com-ia') && entitled('engenharia-reversa-com-ia')))?<ReverseAiTrail userId={user.id}/>:denied)}
       {route.page==='games' && (hasAnyAccess?<GamesHub/>:denied)}
       {route.page==='game' && (hasAnyAccess?<GamePlayer packId={route.packId} type={route.type} onRefresh={refresh}/>:denied)}
       {route.page==='materials' && (hasAnyAccess?<MaterialsHub/>:denied)}
@@ -208,6 +213,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         route.page==='lesson'?'Aula '+String(route.id).padStart(3,'0'):
         route.page==='ai-dev'?'Trilha Desenvolver com IA':
         route.page==='channel-dark'?'Trilha Canal Dark com IA':
+        route.page==='reverse-ai'?'Trilha Engenharia Reversa com IA':
         route.page==='courses'?'Cursos '+(route.courseId??'· catálogo'):
         route.page==='lessons'?'Módulos '+(route.module??'· catálogo'):
         route.page==='material'?'Material '+route.id:route.page==='game'?'Jogo '+route.packId:
