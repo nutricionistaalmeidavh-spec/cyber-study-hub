@@ -46,11 +46,11 @@ x-artisys-delivery-id: <UUID-do-job>
 x-artisys-signature: sha256=<HMAC-SHA256>
 ```
 
-Payload: `{event,orderId,productId,email,customerName,amountCents,currency,saleType,idempotencyKey}`. O MAC cobre o timestamp, um ponto e os **bytes JSON exatos**. Eventos aceitos: `artisys.license.activate`, `artisys.license.renew` (somente assinatura) e `artisys.license.revoke`. O checkout não pode chamar essa rota; somente o motor de entregas assinadas do Pagamento ArtiSys.
+Payload: `{event,orderId,productId,email,customerName,amountCents,currency,saleType,buyerBinding,orderCreatedAt,idempotencyKey}`. `buyerBinding` contém ticket assinado com `userId`, e-mail, produto, modalidade e janela de criação do pedido. `orderCreatedAt` vem do banco do gateway, não do navegador. O MAC cobre o timestamp, um ponto e os **bytes JSON exatos**. Eventos aceitos: `artisys.license.activate`, `artisys.license.renew` (somente assinatura) e `artisys.license.revoke`. O checkout não pode chamar essa rota; somente o motor de entregas assinadas do Pagamento ArtiSys.
 
-Verificações: segredo >= 32 caracteres; HMAC via WebCrypto; janela ±5 min; UUID da entrega igual a `idempotencyKey`; e-mail idêntico ao cadastro existente, ativo; moeda BRL; total positivo; produto A com modalidade permitida. Sem conta correspondente, retorna HTTP 409 (entrega pendente, nunca finge sucesso). Resposta HTTP 200 `{"accepted":true}` apenas depois da transação SQL persistida. Eventos repetidos são seguros; IDs conflitantes são rejeitados.
+Verificações: segredo >= 32 caracteres; HMAC via WebCrypto; janela ±5 min; UUID da entrega igual a `idempotencyKey`; ticket de compra emitido sob sessão autenticada e assinado para ID do usuário, produto, modalidade, e-mail e prazo do pedido; e-mail idêntico ao cadastro existente, ativo; moeda BRL; total positivo; produto A com modalidade permitida. **Não liberar com apenas e-mail coincidente.** Sem conta correspondente, retorna HTTP 409 (entrega pendente, nunca finge sucesso). Resposta HTTP 200 `{"accepted":true}` apenas depois da transação SQL persistida. Eventos repetidos são seguros; IDs conflitantes são rejeitados.
 
-O vínculo da compra é com o **e-mail informado no checkout**, que deve corresponder à conta Hub. **Não há exigência de código enviado por e-mail (OTP)**: foi explicitamente descartada. O Hub valida o e-mail cadastrado, o estado ativo da conta, o produto publicado e o evento HMAC vindo da central financeira. A criação pública de contas segue **desativada por padrão** (`HUB_OPEN_REGISTRATION` não habilitado), reduzindo o risco de terceiros registrarem e-mails alheios. Se cadastro aberto for habilitado, o risco de apropriação de um e-mail não comprovado persiste; não habilitar venda com autocadastro aberto sem outra forma de vincular identidade. Compra com e-mail distinto será destinada à conta correspondente, nunca à sessão local do navegador.
+O vínculo da compra é com o **ID canônico do aluno que iniciou o checkout em sessão autenticada**, confirmado por um ticket assinado pelo Hub. O e-mail ainda deve corresponder à conta Hub, mas não é prova suficiente de titularidade. **Não há exigência de código enviado por e-mail (OTP)**: foi explicitamente descartada. O Hub valida o ID de conta do ticket, o e-mail cadastrado, o estado ativo, o produto e modalidade publicados, a criação do pedido dentro dos 20 minutos válidos do ticket e o evento HMAC vindo da central financeira. A criação pública de contas segue **desativada por padrão** (`HUB_OPEN_REGISTRATION` não habilitado), reduzindo o risco de terceiros registrarem e-mails alheios. O cadastro público de alunos pode ser habilitado sem OTP porque o e-mail sozinho nunca concede acesso financeiro; a conta que inicia o checkout é a destinatária da compra. Compra com e-mail distinto do cadastrado na conta que iniciou o checkout é rejeitada para entrega, nunca redirecionada a outra conta.
 
 ## 3. Conectar os dois serviços (somente quando for ativar)
 
@@ -60,7 +60,7 @@ O vínculo da compra é com o **e-mail informado no checkout**, que deve corresp
 4. Configure `CONNECTOR_ALLOWED_ORIGINS` do Pagamento ArtiSys para incluir a origem HTTPS do Hub, preservando as origens existentes. O gateway recusa conector fora da lista.
 5. Publique oferta no Pagamento ArtiSys somente depois de concluir a migração de conteúdo privado, QA e homologação. Ative `PAYMENTS_ENABLED=true` no gateway **somente** quando a cobrança estiver preparada. Defina preços, tributos, reembolso e prazo contratual da compra individual.
 6. Vitrine Hub (variáveis **públicas** de build): `VITE_ARTISYS_PAYMENTS_URL=https://pagamentos-artisys-central.nutricionistaalmeidavh.workers.dev` (ou domínio HTTPS oficial configurado) e `VITE_ARTISYS_CHECKOUT_ENABLED=true`. Sem essa flag, não existem botões de compra nem acesso ao gateway.
-7. Teste com conta A (comprador) e conta B (sem acesso), inclusive replay, estorno, revogação de curso, renovação, expiração e entrega fora de ordem; depois valide sessão do comprador, redirecionamento, HTTPS e logs sanitizados em produção. Não criar fluxo de verificação de e-mail por código.
+7. Teste com conta A (comprador) e conta B (sem acesso), inclusive tentativa de entregar pelo mesmo e-mail sem ticket, compra iniciada por A com e-mail de B, replay, estorno, revogação de curso, renovação, expiração e entrega fora de ordem; depois valide sessão do comprador, redirecionamento, HTTPS e logs sanitizados em produção. Não criar fluxo de verificação de e-mail por código.
 
 **Formato ilustrativo**, a preencher manualmente e mesclar no JSON já existente, sem colocar segredo em Git:
 
@@ -93,6 +93,7 @@ Repita o mesmo apontamento para os outros 13 IDs de produto publicados. Nunca us
 ## 5. Gates
 
 ```sh
+npm run test:buyer-intent
 npm run test:artisys-billing
 npm run test:course-access
 npm run build
@@ -103,3 +104,9 @@ O build passa a exigir os testes de HMAC/Node e preservação de grants. Verifiq
 **Bloqueio importante:** o repositório de conteúdos do Hub ainda é **público**; uma autorização HTTP não torna exclusivos os arquivos publicados no GitHub. Para comercializar conteúdo restrito, migre os assets educacionais para repositório/storage privado e faça QA do acesso direto antes de habilitar checkout.
 
 Referência do contrato: `pagamentos-artisys/docs/INTEGRACAO.md`. Não transportar chaves do gateway para o Hub; apenas o segredo específico HMAC do conector.
+
+## Compra vinculada sem OTP (PR ArtiSys Pagamentos #24)
+
+A interface do Hub executa `POST /api/billing/purchase-intent` **autenticado**, enviando apenas `productId` e `saleType`. O Hub devolve `buyerBinding` HMAC assinado (validade de **20 minutos para CRIAR o pedido**), codificado sem expor a chave privada. A UI navega para `/comprar?oferta=ID&buyer=...` na central existente. A central guarda o ticket em `order_buyer_bindings`, associando-o ao pedido; o envio ao Hub é assinado pelo HMAC do conector e inclui `orderCreatedAt`. O Hub confere o MAC interno do ticket e ID da conta, jamais confia em `userId` declarado pelo navegador. A assinatura pode renovar meses depois porque a janela do ticket se aplica à **criação do pedido**, não à entrega/renovação.
+
+Os DevKits e demais produtos não usam `buyerBinding` e seus payloads permanecem idênticos. Sem ticket, a oferta Hub falha antes de cobrar. Nenhum código enviado ao e-mail é necessário; o acesso pago é entregue somente à conta autenticada que iniciou a operação.
