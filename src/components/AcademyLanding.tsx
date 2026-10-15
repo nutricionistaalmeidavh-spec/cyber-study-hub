@@ -7,6 +7,7 @@ import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
 import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
 import { studyInventory } from '../lib/studyInventory';
+import { publishedCourses, publishedMainLessonIds, publishedParallelLessonCodes } from '../curriculum/courseOfferings';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -22,8 +23,8 @@ function groupModules(items: Array<{ block?: string; track?: string; durationMin
   }
   return [...grouped].map(([title, info]) => ({ title, ...info }));
 }
-const principal = groupModules(catalog.main, 'block');
-const paralelas = groupModules(catalog.parallel, 'track');
+const principal = groupModules(catalog.main.filter(item => publishedMainLessonIds.has(item.id)), 'block');
+const paralelas = groupModules(catalog.parallel.filter(item => publishedParallelLessonCodes.has(item.code)), 'track');
 
 export function isAcademyPath(pathname: string) {
   return /^\/academy\/?$/.test(pathname);
@@ -97,9 +98,9 @@ export default function AcademyLanding() {
             <a className="academy-button academy-button-outline" href="#metodo">Como funciona <span aria-hidden="true">↓</span></a>
           </div>
           <div className="academy-hero-proof">
-            <span><b>{principal.length}</b> módulos principais</span>
+            <span><b>{publishedCourses.length}</b> cursos publicados</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
-            <span><b>{paralelas.length}</b> trilhas paralelas</span>
+            <span>Formações práticas e projetos reais</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
             <span><b>{studyInventory.totalSteps}</b> etapas de estudo no Hub</span>
           </div>
@@ -139,13 +140,24 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Escolha um assunto e avance módulo por módulo. O inventário reúne {studyInventory.canonical} IDs canônicos: {studyInventory.legacyCanonical} unidades principais/paralelas e {studyInventory.guided} etapas das trilhas guiadas. Referências também têm ID, mas não são aulas inéditas.</p>
+          <p>Escolha um curso, avance por módulos e aprenda com projetos reais. Apenas cursos completos com auditoria editorial A são exibidos. A plataforma registra {studyInventory.canonical} IDs canônicos sem perder as referências originais.</p>
+        </div>
+        <div className="academy-courses-grid" aria-label="Cursos publicados">
+          {publishedCourses.map(course => <a className="academy-course-card" data-reveal key={course.id} href={'/#courses/' + course.id}>
+            <span>{course.type === 'trail' ? 'TRILHA PRÁTICA' : 'CURSO COMPLETO'}</span>
+            <h3>{course.title}</h3><p>{course.description}</p>
+            <strong>{course.modules.length} módulos · Conhecer curso →</strong>
+          </a>)}
+        </div>
+        <div className="academy-available-modules" data-reveal>
+          <h3>Explore também os módulos publicados</h3>
+          <p>Cursos e módulos compartilham os mesmos IDs canônicos de aulas e seus registros de progresso.</p>
         </div>
         <div className="academy-catalog-panel" data-reveal>
           <div className="academy-catalog-top">
             <div className="academy-tabs" role="group" aria-label="Tipo de formação">
               <button type="button" className={mode === 'main' ? 'active' : ''} aria-pressed={mode === 'main'} onClick={() => setMode('main')}>Formação principal <span>{principal.length}</span></button>
-              <button type="button" className={mode === 'parallel' ? 'active' : ''} aria-pressed={mode === 'parallel'} onClick={() => setMode('parallel')}>Trilhas paralelas <span>{paralelas.length}</span></button>
+              {paralelas.length > 0 && <button type="button" className={mode === 'parallel' ? 'active' : ''} aria-pressed={mode === 'parallel'} onClick={() => setMode('parallel')}>Trilhas paralelas <span>{paralelas.length}</span></button>}
             </div>
             <span className="academy-catalog-count">{modules.length} {mode === 'main' ? 'módulos' : 'trilhas'} no catálogo</span>
           </div>
@@ -162,15 +174,7 @@ export default function AcademyLanding() {
             <a href="/">Entrar na plataforma <Arrow /></a>
           </div>
         </div>
-        <a className="academy-ai-feature" data-reveal href="/#ai-dev">
-          <div className="academy-ai-orb" aria-hidden="true">✳</div>
-          <div><span>TRILHA EM DESTAQUE · IA APLICADA</span><h3>Desenvolva um sistema real com apoio de IA.</h3><p>Do planejamento à implementação, usando ChatGPT, Claude ou IA local opcional. Sem API paga obrigatória.</p></div>
-          <strong>Conhecer a trilha <Arrow /></strong>
-        </a>
-        <a className="academy-channel-feature" data-reveal href="/#channel-dark">
-          <div><span>TRILHA NOVA · AUTOMAÇÃO CRIATIVA</span><strong>Crie e automatize um canal dark com IA.</strong><p>32 etapas: Kokoro, n8n, Node-RED, FFmpeg e comparativos com Pika, Google Flow e Steve AI. Núcleo gratuito.</p></div>
-          <b>Conhecer a trilha <Arrow /></b>
-        </a>
+
       </section>
 
       <section className="academy-section academy-method-band" id="metodo" aria-labelledby="academy-method-title">
@@ -196,16 +200,16 @@ export default function AcademyLanding() {
         <div className="academy-plan-grid">
           <article className="academy-plan-card" data-reveal>
             <div className="academy-plan-top"><span>ACESSO POR TEMA</span><span className="academy-plan-status">Planejado</span></div>
-            <h3>Trilha individual</h3><p>Para aprofundar uma área de conhecimento de cada vez.</p>
+            <h3>Curso individual</h3><p>Compra avulsa de uma formação específica, organizada em módulos e aulas.</p>
             <div className="academy-plan-price">Valores a definir</div>
             <ul><li>Foco em uma trilha de estudo</li><li>Organização por módulos e aulas</li><li>Atividades e recursos da trilha</li></ul>
             <a className="academy-button academy-button-outline" href="#trilhas">Conhecer trilhas <Arrow /></a>
           </article>
           <article className="academy-plan-card academy-plan-featured" data-reveal>
             <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Planejado</span></div>
-            <h3>Academy completo</h3><p>Para quem quer explorar diferentes áreas e ampliar as possibilidades.</p>
+            <h3>Assinatura mensal</h3><p>Acesso a todos os cursos publicados e atualizações durante a vigência.</p>
             <div className="academy-plan-price">Valores a definir</div>
-            <ul><li>Proposta de acesso ao catálogo completo</li><li>Trilhas principais e paralelas</li><li>Novos temas conforme publicação</li></ul>
+            <ul><li>Todos os cursos publicados</li><li>Novos cursos e atualizações durante a assinatura</li><li>Progresso individual preservado</li></ul>
             <a className="academy-button academy-button-primary" href="#perguntas">Tirar dúvidas <Arrow /></a>
           </article>
         </div>
