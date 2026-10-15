@@ -57,7 +57,9 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const percent = interactiveLessons.length ? Math.round(completedInteractive / interactiveLessons.length * 100) : 0;
   const mainModuleCount = new Set(catalog.main.map(item => item.block)).size;
   const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
-  const totalModules = mainModuleCount + parallelModuleCount;
+  const aiModuleCount = new Set(catalog.guided.filter(item => item.source === 'ai-dev').map(item => item.moduleId)).size;
+  const channelModuleCount = new Set(catalog.guided.filter(item => item.source === 'channel-dark').map(item => item.moduleId)).size;
+  const totalModules = mainModuleCount + parallelModuleCount + aiModuleCount + channelModuleCount;
   const guidedCompletion = getCanonicalGuidedCompletion();
   return <div className={"page hub-home stack-lg" + (isNewStudent ? "" : " hub-home--returning")}>
     <header className="hub-home-topline">
@@ -112,7 +114,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
       <a href="#lessons" className="hub-home-stat">
         <small>Módulos de estudo</small><strong>{totalModules}</strong>
-        <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + 2 trilhas guiadas</span>
+        <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + {aiModuleCount} Meu Gestor + {channelModuleCount} Canal Dark</span>
         <span>{studyInventory.totalSteps} IDs canônicos, incluindo {studyInventory.referenceSteps} referências guiadas</span>
         <span>{guidedCompletion.completed}/{guidedCompletion.total} etapas guiadas registradas na sua conta</span>
       </a>
