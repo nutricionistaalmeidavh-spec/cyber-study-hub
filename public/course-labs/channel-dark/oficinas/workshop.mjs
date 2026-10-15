@@ -100,6 +100,8 @@ export async function runWorkshop(module,outDir,{analyticsFile=null}={}){
     const plan=normalizeMediaJob({input:'narracao.wav',output:{format:'wav'},
       audio:{mute:false,volume:1}});
     await save(out,prefix+'audio-job.json',JSONText(plan));
+    await save(out,prefix+'piper-tts.sh',await readFile(new URL('./templates/piper-tts.sh',import.meta.url),'utf8'));
+    await save(out,prefix+'narracao.txt','Este texto é apenas um exemplo. Confira as fontes e substitua por seu roteiro autoral.\n');
     await save(out,prefix+'normalizar-audio.sh',
       '#!/usr/bin/env sh\nset -eu\ncd "$(dirname "$0")"\n'+
       'command -v ffmpeg >/dev/null 2>&1 || { echo "Instale FFmpeg"; exit 2; }\n'+
@@ -145,6 +147,8 @@ export async function runWorkshop(module,outDir,{analyticsFile=null}={}){
       workflowId:workflow.instance.workflowId,history:workflow.instance.history,
       nextStep:'Revisão humana de fatos, direitos e originalidade; não publicar automaticamente'}));
     await save(out,prefix+'aprovacao.json',JSONText(makeApproval()));
+    await save(out,prefix+'node-red-flow.json',await readFile(new URL('./templates/node-red-flow.json',import.meta.url),'utf8'));
+    await save(out,prefix+'n8n-workflow.json',await readFile(new URL('./templates/n8n-workflow.json',import.meta.url),'utf8'));
     await save(out,prefix+'LEIA-ME.txt',
       'Aprovação inicia PENDENTE. Use o exemplo createApprovalDemonstration somente para aprender a transição; em sistemas reais, autentique o revisor e registre a decisão com persistência. A fila idempotente está em 07-automacao/fila.json.\n'+REF+'\n');
   }
@@ -158,6 +162,7 @@ export async function runWorkshop(module,outDir,{analyticsFile=null}={}){
       kind:analyticsFile?'USUARIO_IMPORTOU_DADOS':'EXEMPLO_FICTICIO',
       note:'Importação de arquivo local; não acessa YouTube e não atesta a origem dos dados'}));
     await save(out,prefix+'relatorio.csv',exportRows(items,{format:'csv',columns:['id','title','impressions','views','completed'].map(k=>({key:k,label:k==='title'?'titulo':k})),bom:true}));
+    await save(out,prefix+'painel.html',await readFile(new URL('./templates/painel.html',import.meta.url),'utf8'));
   }
   await save(out,prefix+'LEIA-ME-OFICINA.txt',
     'Oficina '+module+' integrada a código MIT do ArtiSys Utilidades. Consulte o guia module-'+

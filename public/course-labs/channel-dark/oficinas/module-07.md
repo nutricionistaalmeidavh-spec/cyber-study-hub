@@ -41,3 +41,10 @@ Sem autenticação e persistência de produção. n8n e Node-RED são camadas de
 Execute `npm run test:channel-dark` para verificar comportamentos e erros. Anote no HubEstudos: arquivo de origem, arquivo que você modificou, comando, antes/depois, saída produzida e uma falha que resolveu.
 
 **Gratuidade:** nenhuma assinatura ou API paga é requisito. Os módulos MIT são públicos; os componentes do `frontEnds` são **privados** e aparecem apenas como referências, não são copiados nem necessários. Não forneça credenciais. Antes de publicar conteúdo verifique fatos, licenças comerciais, consentimento e identificação de mídia sintética quando exigida.
+
+## Fluxos prontos para importar: Node-RED e n8n
+
+- `module-07/node-red-flow.json`: menu Import do Node-RED. Clique duas vezes no nó manual: um job pendente é criado e o segundo evento com mesmo ID é ignorado. Usa `flow.get` em memória; configure persistência antes de produção.
+- `module-07/n8n-workflow.json`: menu Import from File do n8n. O workflow vem inativo, é disparado manualmente e apenas prepara um item pendente para revisão. Não tem upload nem idempotência persistente.
+
+n8n é fair-code (não OSI). O fluxo é um ponto de partida de estudo, não um sistema publicado: para produção é preciso storage durável, autenticação de revisor e tratamento de falhas.

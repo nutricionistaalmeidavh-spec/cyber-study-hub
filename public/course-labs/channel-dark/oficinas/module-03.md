@@ -44,3 +44,15 @@ Nenhum sintetizador de voz é instalado automaticamente; Piper e Kokoro são op�
 Execute `npm run test:channel-dark` para verificar comportamentos e erros. Anote no HubEstudos: arquivo de origem, arquivo que você modificou, comando, antes/depois, saída produzida e uma falha que resolveu.
 
 **Gratuidade:** nenhuma assinatura ou API paga é requisito. Os módulos MIT são públicos; os componentes do `frontEnds` são **privados** e aparecem apenas como referências, não são copiados nem necessários. Não forneça credenciais. Antes de publicar conteúdo verifique fatos, licenças comerciais, consentimento e identificação de mídia sintética quando exigida.
+
+## Piper TTS: transformar roteiro em WAV
+
+O arquivo `module-03/piper-tts.sh` executa o Piper de verdade depois de instalado: lê `narracao.txt` e gera `narracao.wav`. Selecione uma voz pt_BR e confira licença, idioma e consentimento; o kit não baixa pesos automaticamente.
+
+```bash
+cd meu-canal/module-03
+PIPER_MODEL=/caminho/voz-ptbr.onnx sh piper-tts.sh
+sh normalizar-audio.sh
+```
+
+Se não tiver um modelo, grave sua própria voz em Audacity e salve narracao.wav. O script normalizar-audio.sh funciona nos dois casos.

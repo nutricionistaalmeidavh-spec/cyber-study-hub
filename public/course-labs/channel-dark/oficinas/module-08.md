@@ -48,3 +48,9 @@ Sem API YouTube. A amostra padrão é declarada fictícia e importar arquivo nã
 Execute `npm run test:channel-dark` para verificar comportamentos e erros. Anote no HubEstudos: arquivo de origem, arquivo que você modificou, comando, antes/depois, saída produzida e uma falha que resolveu.
 
 **Gratuidade:** nenhuma assinatura ou API paga é requisito. Os módulos MIT são públicos; os componentes do `frontEnds` são **privados** e aparecem apenas como referências, não são copiados nem necessários. Não forneça credenciais. Antes de publicar conteúdo verifique fatos, licenças comerciais, consentimento e identificação de mídia sintética quando exigida.
+
+## Painel frontend pronto para abrir no navegador
+
+Abra `meu-canal/module-08/painel.html` com duplo clique, escolha `resumo.json` e veja os indicadores em cards responsivos. É HTML original autocontido, sem servidor e sem enviar seus dados para fora. O arquivo-fonte está em `oficinas/templates/painel.html` e insere dados com `textContent`.
+
+Para evoluir para React, consulte [frontEnds/dashboard-kit/components.tsx](https://github.com/nutricionistaalmeidavh-spec/frontEnds/blob/7f783aff53959cc716412dd20b2fb753850a1969/library/dashboard-kit/components.tsx). O repositório é privado, opcional e requer autorização do proprietário; o painel HTML funciona sem ele.

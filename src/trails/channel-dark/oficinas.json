@@ -57,7 +57,9 @@
     "whatWorks": "O aluno pode gerar ou gravar voz e transformar o arquivo real usando parâmetros definidos por componente de mídia reutilizável. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
     "artifacts": [
       "module-03/audio-job.json",
-      "module-03/normalizar-audio.sh"
+      "module-03/normalizar-audio.sh",
+      "module-03/piper-tts.sh",
+      "module-03/narracao.txt"
     ],
     "sources": [
       {
@@ -159,7 +161,9 @@
     "artifacts": [
       "module-07/fluxo.json",
       "module-07/aprovacao.json",
-      "07-automacao/fila.json"
+      "07-automacao/fila.json",
+      "module-07/node-red-flow.json",
+      "module-07/n8n-workflow.json"
     ],
     "sources": [
       {
@@ -188,7 +192,8 @@
     "whatWorks": "O aluno transforma dados próprios de entrada em agregações e relatório exportável, sem pagamento ou OAuth. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
     "artifacts": [
       "module-08/resumo.json",
-      "module-08/relatorio.csv"
+      "module-08/relatorio.csv",
+      "module-08/painel.html"
     ],
     "sources": [
       {
