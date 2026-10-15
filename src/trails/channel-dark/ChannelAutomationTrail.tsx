@@ -11,7 +11,8 @@ type Challenge = { question: string; options: string[]; answer: number; feedback
 type Lesson = { stepId: number; kind: string; durationMin: number; title: string; lead: string;
   sections?: Section[]; challenge?: Challenge; reviewQuestions?: string[]; prompt?: string;
   referenceCode?: string; referencePath?: string; challengeText?: string; brief?: string[];
-  acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string };
+  acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string;
+  labCommand?: string; expectedArtifact?: string; testCommand?: string; troubleshooting?: string[]; implementationNote?: string; checkpointAssertion?: string };
 type Tool = { name: string; url: string; tier: 'core' | 'optional'; note: string };
 type Module = { moduleId: number; version: number; title: string; objective: string; tools: Tool[];
   learningOutcomes: string[]; lessons: Lesson[]; assessmentPath: string; answerKeyPath: string };
@@ -121,7 +122,7 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
       <div><span className="eyebrow">FORMAÇÃO PRÁTICA · CANAL PILOTO</span>
         <h1>Automação de Canais Dark com IA</h1>
         <p>Crie um canal piloto autoral: pesquisa, roteiro, narração, visuais, vídeo, Shorts, automação e publicação. Pika, Google Flow, Steve AI e Modal são opcionais. O percurso principal é gratuito e local.</p>
-        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Open source / self-hosted</span><span>8 módulos · 32 etapas</span></div>
+        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Open source / self-hosted</span><span>8 módulos · A editorial</span></div>
       </div>
       <div className="ai-meter"><strong>{allCount}/32</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{ width: allCount * 100 / 32 + '%' }} /></div></div>
     </header>
@@ -201,6 +202,16 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
           <div className="ai-actions">{lesson.starterSourceUrl && <a className="button primary" href={lesson.starterSourceUrl} target="_blank" rel="noopener noreferrer">Abrir roteiro do laboratório ↗</a>}</div>
           <p className="ai-privacy">Trabalhe com arquivos próprios e mídia licenciada. O laboratório pode ser concluído sem GPU, assinatura ou API paga. Ferramentas externas são experimentos opcionais, nunca um desbloqueio.</p>
+          {lesson.labCommand && <div className="channel-executable">
+            <h3>Execute no seu computador</h3>
+            <p>Na pasta do projeto HubEstudos, com Node.js instalado:</p>
+            <code>{lesson.labCommand}</code>
+            <p><strong>Arquivos esperados:</strong> {lesson.expectedArtifact}</p>
+            <p><strong>Como conferir:</strong> {lesson.checkpointAssertion}</p>
+            <p>{lesson.implementationNote}</p>
+            {lesson.troubleshooting && <details><summary>Erros comuns e recuperação</summary><ul>{lesson.troubleshooting.map(item => <li key={item}>{item}</li>)}</ul></details>}
+            <p>Para testar as regras e os casos negativos:</p><code>{lesson.testCommand}</code>
+          </div>}
           {lesson.assessmentPrompt && <p><strong>Desafio adicional:</strong> {lesson.assessmentPrompt}</p>}
           <label htmlFor="ai-lab-notes" className="ai-field-label">Registro: decisão, previsão, resultado e erro corrigido (mínimo 120 caracteres)</label>
           <textarea id="ai-lab-notes" className="ai-notes" rows={7} value={notes} maxLength={4500} onChange={e => updateNotes(e.target.value)} placeholder="Descreva o que você fez, o que esperava e o que observou..."/>
@@ -220,6 +231,6 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
       <div className="ai-actions"><a href={module.assessmentPath} target="_blank" rel="noopener noreferrer" className="button primary">Abrir prova ↗</a><button type="button" className="button ghost" onClick={() => setKeyRevealed(p => ({ ...p, [moduleId]: !p[moduleId] }))}>{keyRevealed[moduleId] ? 'Ocultar gabarito' : 'Já fiz a primeira tentativa'}</button></div>
       {keyRevealed[moduleId] && <p><a href={module.answerKeyPath} target="_blank" rel="noopener noreferrer">Consultar gabarito e rubrica ↗</a> · A confirmação é do aluno e não equivale a revisão humana.</p>}
     </section>
-    <p className="ai-disclaimer">Este novo percurso inclui autoavaliações e provas de transferência, ainda sem auditoria pedagógica A ou testes com alunos reais. O progresso e as anotações são vinculados à sua conta. A publicação de qualquer vídeo requer avaliação editorial humana.</p>
+    <p className="ai-disclaimer">Os oito módulos têm classificação A exclusivamente editorial por IA com testes locais e evidências; isso não representa auditoria humana independente, avaliação com alunos reais nem certificação. Serviços externos e a qualidade final do vídeo exigem conferência humana. O progresso continua vinculado à sua conta.</p>
   </div>;
 }
