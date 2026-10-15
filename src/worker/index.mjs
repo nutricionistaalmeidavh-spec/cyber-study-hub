@@ -347,7 +347,7 @@ export class HubAuthObject extends DurableObject {
   }
 }
 export default {
-  fetch(request,env){
+  async fetch(request,env){
     const url=new URL(request.url);
     if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
     if(protectedPath(url.pathname)){
