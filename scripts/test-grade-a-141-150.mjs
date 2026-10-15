@@ -22,5 +22,5 @@ for(let n=141;n<=150;n++){
 }
 for(let n=1;n<=170;n++){if(n>=141&&n<=150)continue;const id='AULA-'+String(n).padStart(3,'0');assert.equal(reg.editorialReviews[id]?.grade,'A','Lost A '+id);}
 for(const id of ['LOG-01','NET-25','PY-01'])assert.equal(reg.editorialReviews[id]?.grade,'A');
-assert.equal(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length,173);
-console.log('PASS 173 A preservados, hashes e pareceres íntegros.');
+assert.ok(Object.values(reg.editorialReviews).filter(x=>x.grade==='A').length>=173,'preserve 173 previous A and allow subsequent promotions');
+console.log('PASS: 173 A anteriores preservados; novas promoções permitidas.');
