@@ -51,7 +51,7 @@
           "dimension": "pratica",
           "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
           "reference": "public/course-labs/channel-dark/engine.test.mjs",
-          "result": "Falhas de público, promessa e aprovação são rejeitadas."
+          "result": "Falhas de público, promessa e aprovação são rejeitadas. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "defesa",
@@ -127,7 +127,7 @@
           "dimension": "pratica",
           "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
           "reference": "public/course-labs/channel-dark/engine.test.mjs",
-          "result": "Promover fonte a verificada sem revisão humana lança exceção."
+          "result": "Promover fonte a verificada sem revisão humana lança exceção. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "defesa",
@@ -279,7 +279,7 @@
           "dimension": "pratica",
           "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
           "reference": "public/course-labs/channel-dark/engine.test.mjs",
-          "result": "Cenas inválidas são rejeitadas; SVG e imagens procedurais são gerados."
+          "result": "Cenas inválidas são rejeitadas; SVG e imagens procedurais são gerados. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "defesa",
@@ -343,7 +343,7 @@
           "dimension": "conteudoTecnico",
           "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
           "reference": "src/trails/channel-dark/modules.json#moduleId=5",
-          "result": "Pika, Flow e Steve comparados sem excluir alternativa grátis FFmpeg."
+          "result": "Pika, Flow e Steve comparados sem excluir alternativa grátis FFmpeg. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "didatica",
@@ -431,7 +431,7 @@
           "dimension": "pratica",
           "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
           "reference": "public/course-labs/channel-dark/engine.test.mjs",
-          "result": "Legendas demonstrativas e script vertical gerados offline, sem upload."
+          "result": "Legendas demonstrativas e script vertical gerados offline, sem upload. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "defesa",
@@ -495,7 +495,7 @@
           "dimension": "conteudoTecnico",
           "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
           "reference": "src/trails/channel-dark/modules.json#moduleId=7",
-          "result": "n8n é fair-code e não OSI; Node-RED e JS são alternativa livre."
+          "result": "n8n é fair-code e não OSI; Node-RED e JS são alternativa livre. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "didatica",
@@ -583,7 +583,7 @@
           "dimension": "pratica",
           "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
           "reference": "public/course-labs/channel-dark/engine.test.mjs",
-          "result": "Pacote mantém automatedUpload:false e analytics marcados SIMULAÇÃO."
+          "result": "Pacote mantém automatedUpload:false e analytics marcados SIMULAÇÃO. O teste declara entradas válidas e inválidas e exige um resultado observável, não apenas uma descrição teórica."
         },
         {
           "dimension": "defesa",
