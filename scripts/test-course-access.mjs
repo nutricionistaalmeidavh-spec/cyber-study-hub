@@ -47,5 +47,5 @@ test('novo laboratorio reverse-ai e protegido: staff pode, aluno sem curso publi
  assert.equal(permitted(student,owners,[],false),false);
  assert.equal(permitted(student,owners,owner('engenharia-reversa-com-ia'),false),false);
  assert.equal(permitted({...student,role:'admin'},owners,[],false),true);
- assert.equal(ownersForPath('/course-labs/reverse-ai/../secret'),[]);
+ assert.deepEqual(ownersForPath('/course-labs/reverse-ai/../secret'),[]);
 });
