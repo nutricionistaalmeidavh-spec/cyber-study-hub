@@ -108,3 +108,17 @@ test('sem secret o conector fica desligado por padrão',async()=>{
  try{assert.equal((await s.deliver(bodyFor())).status,503);}
  finally{await s.close();}
 });
+
+test('renovação antecipada falha e estorno impede reativação por replay',async()=>{
+ const s=await start();
+ try{
+  const original=bodyFor({productId:'hubestudos-subscription',saleType:'monthly'});
+  const renewal={...original,event:'artisys.license.renew',idempotencyKey:randomUUID()};
+  assert.equal((await s.deliver(renewal)).status,409);
+  assert.equal((await s.deliver(original)).status,200);
+  assert.equal((await s.deliver({...original,event:'artisys.license.revoke',idempotencyKey:randomUUID()})).status,200);
+  assert.equal((await s.deliver({...original,idempotencyKey:randomUUID()})).status,200);
+  assert.equal((await s.deliver({...renewal,idempotencyKey:randomUUID()})).status,409);
+  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.subscriptionActive,false);
+ }finally{await s.close();}
+});
