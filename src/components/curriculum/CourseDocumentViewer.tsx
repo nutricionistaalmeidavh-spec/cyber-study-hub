@@ -13,6 +13,7 @@ import { studySectionHref } from '../../lib/studyNavigation';
 import { getStudyVisit, saveStudyVisit } from '../../lib/studyProgress';
 import ProgressSyncStatus from '../ProgressSyncStatus';
 import { lessonDurationLabel } from '../../lib/courseStudyMetadata';
+import { getMainLabGuide, getParallelLabGuide } from '../../lib/labCourseResources';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -91,6 +92,7 @@ export function CourseDocumentViewer(props: Props) {
   }
 
   const navigation = getNavigation(item);
+  const labGuide = item.kind === 'main' ? getMainLabGuide(item.id) : getParallelLabGuide(item.code);
   const moduleBackLink = item.kind === 'main'
     ? '#lessons?mode=main&module=' + encodeURIComponent(item.block)
     : '#lessons?mode=parallel&module=' + encodeURIComponent(item.track);
@@ -119,10 +121,22 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
-      {item.kind === 'main' && mainLabResource(item.id) && <section className="panel" aria-label="Arquivos reais do laboratório" style={{marginBottom:'18px',padding:'17px 20px'}}>
+      {item.kind === 'main' && !labGuide && mainLabResource(item.id) && <section className="panel" aria-label="Arquivos reais do laboratório" style={{marginBottom:'18px',padding:'17px 20px'}}>
         <strong>{mainLabResource(item.id)?.title}</strong>
         <p style={{margin:'8px 0 12px'}}>Esta atividade usa arquivos de teste e dados fictícios. Consulte os requisitos na aula; um simulador não comprova segurança de sistemas externos e não é um kit de produto pronto.</p>
         <a className="button ghost" href={mainLabResource(item.id)?.href} target="_blank" rel="noopener noreferrer">Abrir código e arquivos ↗</a>
+      </section>}
+      {labGuide && <section className="panel course-lab-resources" aria-label="Laboratório aplicado desta aula">
+        <div className="course-lab-resources-top"><span>PRÁTICA COM ARQUIVOS</span><span>{labGuide.kind}</span></div>
+        <h2>{labGuide.title}</h2>
+        <p>{labGuide.description}</p>
+        <div className="course-lab-resources-links">
+          <a href={labGuide.guide} target="_blank" rel="noopener noreferrer">Roteiro específico ↗</a>
+          <a href={labGuide.code} target="_blank" rel="noopener noreferrer">Código e fixtures ↗</a>
+          <a href={labGuide.tests} target="_blank" rel="noopener noreferrer">Testes ↗</a>
+        </div>
+        <p className="course-lab-resources-command"><strong>Na raiz do repositório, com Node 22+:</strong> <code>{labGuide.command}</code></p>
+        <small>{labGuide.safety}</small>
       </section>}
       <ProgressSyncStatus />
       <div className="course-document-layout">

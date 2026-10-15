@@ -67,3 +67,17 @@
  .curriculum-back-link{width:fit-content}
 }
 @media(prefers-reduced-motion:reduce){.curriculum-module-card{transition:none}.curriculum-module-card:hover{transform:none}}
+
+/* Recursos práticos de cada aula; preserva o Markdown e as notas canônicas. */
+.course-lab-resources{margin-bottom:18px;padding:20px!important;border:1px solid #655483!important;background:linear-gradient(130deg,rgba(110,79,157,.18),rgba(24,32,55,.72))!important;border-radius:18px!important}
+.course-lab-resources h2{font-size:clamp(19px,2.6vw,24px);margin:12px 0 7px}
+.course-lab-resources p{margin:6px 0 13px;font-size:14px;line-height:1.6}
+.course-lab-resources-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.course-lab-resources-top span{font-size:11px;font-weight:750;color:#e3d2ff;text-transform:uppercase;letter-spacing:.04em}
+.course-lab-resources-links{display:flex;flex-wrap:wrap;gap:9px;margin:13px 0}
+.course-lab-resources-links a{display:inline-flex;align-items:center;min-height:42px;padding:9px 13px;border:1px solid #806da6;border-radius:10px;color:#eedcff;text-decoration:none;font-weight:650;font-size:13px}
+.course-lab-resources-links a:hover,.course-lab-resources-links a:focus-visible{border-color:#dbbaff;background:rgba(125,90,162,.25);text-decoration:underline}
+.course-lab-resources-command{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.course-lab-resources-command code{max-width:100%;overflow-wrap:anywhere;padding:7px 9px;border-radius:8px;background:rgba(5,11,21,.5);font-size:12px}
+.course-lab-resources small{color:#c9c4db;line-height:1.5;display:block}
+@media(max-width:680px){.course-lab-resources{padding:14px!important}.course-lab-resources-links{display:grid;grid-template-columns:1fr}.course-lab-resources-links a{justify-content:center}}
