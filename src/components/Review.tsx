@@ -1,4 +1,6 @@
-import { lessons } from '../data/lessons';
+import catalogData from '../curriculum/catalog.json';
+import type { CurriculumCatalog } from '../curriculum/types';
+const lessons=(catalogData as CurriculumCatalog).main.filter(l=>l.id>=43&&l.id<=100);
 import { getGameProgress, getLessonState } from '../lib/storage';
 import { LearningInsights } from './review/LearningInsights';
 

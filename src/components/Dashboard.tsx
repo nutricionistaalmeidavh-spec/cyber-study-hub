@@ -1,12 +1,10 @@
 import catalogData from '../curriculum/catalog.json';
 import type { CurriculumCatalog } from '../curriculum/types';
-import { lessons } from '../data/lessons';
 import { getLessonState, getGameProgress } from '../lib/storage';
 import { getLearningProgress } from '../lib/learningProgress';
 import { getReviewStats } from '../lib/reviewEngine';
 import { getActiveParallelTracks } from '../lib/curriculumState';
 import type { PlatformUser } from './PlatformGate';
-import { listNativeV2LessonIds } from '../content/registry';
 import './home.css';
 import { getStudyVisits } from '../lib/studyProgress';
 import { studySectionHref } from '../lib/studyNavigation';
@@ -17,7 +15,7 @@ import { studyInventory } from '../lib/studyInventory';
 import { getCanonicalGuidedCompletion } from '../lib/studyProgress';
 
 const catalog = catalogData as CurriculumCatalog;
-const interactiveIds = new Set([...lessons.map(lesson => lesson.id), ...listNativeV2LessonIds()]);
+const interactiveIds = new Set(Array.from({length:58},(_,i)=>i+43));
 const interactiveLessons = catalog.main.filter(item => interactiveIds.has(item.id));
 const mainById = new Map(catalog.main.map(item => [item.id, item]));
 function hrefForLesson(id: number) {

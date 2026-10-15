@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
-import { lessons } from '../../data/lessons';
-import { getLessonV2 } from '../../content/registry';
+import { adaptLegacyLesson } from '../../content/legacyAdapter';
 import type {
   CodeExampleV2,
   CompletionExerciseV2,
@@ -55,18 +54,23 @@ const sectionItems: SectionItem[] = [
 ];
 
 export function LessonViewerV2({ id, onRefresh }: LessonViewerV2Props) {
-  const lesson = getLessonV2(id);
-  if (!lesson) {
-    return (
-      <div className="page">
-        <section className="panel">
-          <h1>Aula não encontrada</h1>
-          <p>O conteúdo V2 solicitado ainda não está disponível.</p>
-        </section>
-      </div>
-    );
-  }
-
+  const [payload,setPayload]=useState<{kind:'native'|'legacy';lesson:LessonV2|import('../../types').Lesson;detail?:import('../../data/lessonDetails').LessonDetail|null}|null>(null);
+  const [error,setError]=useState('');
+  useEffect(()=>{
+    const controller=new AbortController();
+    setPayload(null);setError('');
+    fetch('/api/content/lesson/'+id,{signal:controller.signal,credentials:'same-origin',cache:'no-store'})
+      .then(async response=>{if(!response.ok)throw Error('Conteúdo indisponível (HTTP '+response.status+').');return response.json();})
+      .then(data=>setPayload(data))
+      .catch(reason=>{if(!controller.signal.aborted)setError(String(reason));});
+    return ()=>controller.abort();
+  },[id]);
+  if(!payload)return <div className="page"><section className="panel">
+    <h1>{error?'Não foi possível abrir a aula':'Carregando aula segura…'}</h1>
+    <p>{error||'O servidor está verificando a autorização desta conta.'}</p>
+  </section></div>;
+  const lesson=payload.kind==='native' ? payload.lesson as LessonV2 :
+    adaptLegacyLesson(payload.lesson as import('../../types').Lesson,payload.detail??undefined);
   return <LessonViewerV2Content lesson={lesson} onRefresh={onRefresh} />;
 }
 
@@ -97,8 +101,8 @@ function LessonViewerV2Content({
   useEffect(() => {
     migrateLegacyProgress();
   }, []);
-  const prev = lessons.find(item => item.id === lesson.id - 1);
-  const next = lessons.find(item => item.id === lesson.id + 1);
+  const prev = lesson.id>43 ? {id:lesson.id-1} : null;
+  const next = lesson.id<100 ? {id:lesson.id+1} : null;
 
   const availableSections = useMemo(
     () =>
