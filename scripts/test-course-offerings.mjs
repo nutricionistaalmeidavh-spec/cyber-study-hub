@@ -11,8 +11,9 @@ test('curso agrupa IDs canônicos sem duplicar ou alterar aula/progresso',()=>{
   assert.equal(new Set(flatten('main')).size,source.main.length);
   assert.equal(new Set(flatten('parallel')).size,source.parallel.length);
   assert.deepEqual([...flatten('trail')].sort(),source.guided.map(x=>x.code).sort());
-  assert.equal(new Set(flatten('trail')).size,64);
-  assert.equal(new Set([...flatten('main'),...flatten('parallel'),...flatten('trail')]).size,607);
+  assert.equal(new Set(flatten('trail')).size,96);
+  assert.equal(source.guided.filter(x=>x.source==='reverse-ai').length,32);
+  assert.equal(new Set([...flatten('main'),...flatten('parallel'),...flatten('trail')]).size,639);
   assert.equal(new Set(offers.courses.map(c=>c.id)).size,offers.courses.length);
   assert.equal(new Set(offers.courses.flatMap(c=>c.modules.map(m=>m.id))).size,offers.courses.flatMap(c=>c.modules).length);
 });
