@@ -1,6 +1,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { passwordHash, passwordMatches } from './password-kdf.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
+import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from './roadmap.mjs';
 
 const DAY = 86400000;
 const KEYS = new Set([
@@ -66,7 +67,8 @@ export class HubAuthObject extends DurableObject {
       "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL,expires_at INTEGER NOT NULL,used_at INTEGER)",
       "CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL)",
       "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))",
-      ...FEEDBACK_SCHEMA
+      ...FEEDBACK_SCHEMA,
+      ...ROADMAP_SCHEMA
     ])this.sql.exec(ddl);
   }
   one(sql,...args){return this.sql.exec(sql,...args).toArray()[0];}
@@ -235,6 +237,14 @@ export class HubAuthObject extends DurableObject {
         this.sql.exec('DELETE FROM user_state WHERE user_id=? AND key=?',u.id,b.key);
         return response(200,{ok:true});
       }
+      if(roadmapRoute(path))return await handleRoadmap({
+        path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
+        requireUser:()=>this.requireUser(request),requireAdmin:()=>this.requireAdmin(request),
+        getUser:()=>this.authenticated(request),
+        one:(sql,...args)=>this.one(sql,...args),all:(sql,...args)=>this.all(sql,...args),
+        run:(sql,...args)=>this.sql.exec(sql,...args),reply:response,
+        fail:(status,message)=>new ApiError(status,message),uuid:rand
+      });
       if(feedbackRoute(path))return await handleFeedback({
         path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
         requireUser:()=>this.requireUser(request),requireAdmin:()=>this.requireAdmin(request),

@@ -1,6 +1,7 @@
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from 'node:crypto';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from '../src/worker/feedback.mjs';
+import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from '../src/worker/roadmap.mjs';
 
 const DAY = 86400000;
 const PROGRESS_KEYS = new Set([
@@ -66,7 +67,8 @@ function init(db) {
     "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL CHECK(role IN ('admin','teacher','student')),expires_at INTEGER NOT NULL,used_at INTEGER);",
     'CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL);',
     'CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY (user_id,key));',
-    ...FEEDBACK_SCHEMA.map(statement=>statement+';')
+    ...FEEDBACK_SCHEMA.map(statement=>statement+';'),
+    ...ROADMAP_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
 }
 export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=false}) {
@@ -201,6 +203,14 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         q('DELETE FROM user_state WHERE user_id=? AND key=?').run(u.id,b.key);
         return respond(res,200,{ok:true});
       }
+      if(roadmapRoute(path))return await handleRoadmap({
+        path,method,url:new URL(req.url,canonicalOrigin).href,
+        readBody:limit=>readJson(req,limit),requireUser:()=>mustUser(req),requireAdmin:()=>mustAdmin(req),
+        getUser:()=>current(req),
+        one:(sql,...args)=>q(sql).get(...args),all:(sql,...args)=>q(sql).all(...args),
+        run:(sql,...args)=>q(sql).run(...args),reply:(status,data)=>respond(res,status,data),
+        fail:(status,message)=>new HttpError(status,message),uuid:randomUUID
+      });
       if(feedbackRoute(path))return await handleFeedback({
         path,method,url:new URL(req.url,canonicalOrigin).href,
         readBody:limit=>readJson(req,limit),requireUser:()=>mustUser(req),requireAdmin:()=>mustAdmin(req),
