@@ -1,0 +1,121 @@
+[
+  {
+    "moduleId": 1,
+    "kind": "Projeto incremental",
+    "deliverable": "Escopo inicial e alteração comprovada no HTML de exemplo",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/starter.html",
+    "instructions": "/course-labs/ai-dev-meu-gestor/README.md",
+    "verify": "Abra o HTML, avance uma OS, recarregue e registre por que o estado volta ao inicial.",
+    "preflight": "Navegador; editor de texto opcional",
+    "evidence": "Estado inicial, previsão, resultado observado e alteração de texto; dados 100% fictícios.",
+    "optionalKits": [],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 2,
+    "kind": "Especificação",
+    "deliverable": "Contrato de clientes e ordens com critérios Given/When/Then",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/module-02/spec-template.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/README.md",
+    "verify": "Especifique cliente vinculado, simule criação/rejeição e compare com o protótipo do LAB-01.",
+    "preflight": "Navegador ou editor Markdown; nenhum pacote",
+    "evidence": "Cinco requisitos, duas rejeições e decisão sobre exclusão de cliente com OS.",
+    "optionalKits": [],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 3,
+    "kind": "Projeto incremental",
+    "deliverable": "Meu Gestor v0.1 com React + TypeScript e build aprovado",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
+    "verify": "Na pasta v0.1, execute npm install, npm run build e registre o resultado após alterar um texto.",
+    "preflight": "PC com Node 24+ e Git; instale dependências apenas no projeto",
+    "evidence": "Versões do ambiente, terminal de build e diff da mudança no título.",
+    "optionalKits": [],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 4,
+    "kind": "Projeto incremental",
+    "deliverable": "Meu Gestor v0.2 com três telas navegáveis e acessíveis",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
+    "verify": "Execute npm run dev e npm run build; confira navegação por teclado e viewport de 360 px.",
+    "preflight": "PC com Node 24+, navegador e DevTools",
+    "evidence": "Demonstração das telas, estados vazios, indicador derivado das fixtures e verificação móvel.",
+    "optionalKits": [
+      "ui"
+    ],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 5,
+    "kind": "Projeto incremental",
+    "deliverable": "Meu Gestor v0.3 com CRUD e regras de domínio testadas",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
+    "verify": "Execute npm test e npm run build; tente clientId inexistente, campos vazios e conclusão repetida.",
+    "preflight": "PC com Node 24+; sem banco ou serviço externo",
+    "evidence": "Entrada válida, negativa e resultado após remover o filtro; estado não persiste após reiniciar.",
+    "optionalKits": [
+      "reporting"
+    ],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 6,
+    "kind": "Projeto incremental",
+    "deliverable": "Meu Gestor v0.4 com API local e dados persistidos em SQLite",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/README.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/README.md",
+    "verify": "Execute testes e API em localhost; crie OS, reinicie o processo e comprove persistência; teste HTTP inválido.",
+    "preflight": "PC com Node 24+; duas sessões de terminal; portas locais",
+    "evidence": "POST válido, resposta negativa, GET após reinício e integridade do vínculo clientId.",
+    "optionalKits": [
+      "finance"
+    ],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 7,
+    "kind": "Projeto incremental",
+    "deliverable": "Meu Gestor v0.5 com teste falhando, correção e reteste",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/README.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/README.md",
+    "verify": "Execute npm test e npm run build; introduza defeito controlado, observe falha, reverta e reteste.",
+    "preflight": "PC com Node 24+; testes locais do checkpoint",
+    "evidence": "Comando, teste vermelho, diff da correção e suíte verde após o reteste.",
+    "optionalKits": [
+      "scan"
+    ],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  },
+  {
+    "moduleId": 8,
+    "kind": "Projeto integrador",
+    "deliverable": "Meu Gestor v1.0, backup/restauração, documentação e demonstração local",
+    "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/README.md",
+    "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/README.md",
+    "verify": "Execute npm test, npm run build, npm run start:local, backup e restore em arquivo separado.",
+    "preflight": "PC com Node 24+; execução exclusivamente local; dados fictícios",
+    "evidence": "Teste, build, CRUD, reinício, verificação do backup restaurado e limitações de segurança.",
+    "optionalKits": [
+      "pdf",
+      "reporting",
+      "finance",
+      "serial",
+      "ui",
+      "scan"
+    ],
+    "status": "orientado",
+    "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
+  }
+]

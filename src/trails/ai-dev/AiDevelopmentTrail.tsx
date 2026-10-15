@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import manifest from './manifest.json';
 import learning from './modules.json';
+import labContracts from './labContracts.json';
 import './ai-dev.css';
 import { getStudyDraft, saveStudyVisit } from '../../lib/studyProgress';
 import ProgressSyncStatus from '../../components/ProgressSyncStatus';
@@ -66,6 +67,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
   const [keyRevealed, setKeyRevealed] = useState<Record<number, boolean>>({});
   const module = modules.find(m => m.moduleId === moduleId) || modules[0];
   const lesson = module.lessons[stepIndex];
+  const activeLabA = labContracts.find(c => c.moduleId === moduleId);
   const complete = progress.completed.includes(lesson.stepId);
   const check = progress.checked[lesson.stepId] || [];
   const notes = progress.notes[lesson.stepId] || '';
@@ -190,15 +192,15 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
         </section>}
         {lesson.brief && <section className="ai-exercise">
           <span className="eyebrow">LABORATÓRIO PRÁTICO · PROJETO MEU GESTOR</span>
-          {lesson.labA && <div className="ai-lab-contract" aria-label="Contrato do laboratório">
-            <div className="ai-lab-contract-top"><span>{lesson.labA.kind}</span><span>R$ 0 · Execução local</span></div>
-            <h3>O que você vai entregar</h3><p>{lesson.labA.deliverable}</p>
-            <dl><div><dt>Preparação</dt><dd>{lesson.labA.preflight}</dd></div>
-              <div><dt>Como verificar</dt><dd>{lesson.labA.verify}</dd></div>
-              <div><dt>Evidência</dt><dd>{lesson.labA.evidence}</dd></div></dl>
-            <div className="ai-lab-links"><a href={lesson.labA.entrypoint} target="_blank" rel="noopener noreferrer">Abrir arquivos e roteiro ↗</a>
+          {activeLabA && <div className="ai-lab-contract" aria-label="Contrato do laboratório">
+            <div className="ai-lab-contract-top"><span>{activeLabA.kind}</span><span>R$ 0 · Execução local</span></div>
+            <h3>O que você vai entregar</h3><p>{activeLabA.deliverable}</p>
+            <dl><div><dt>Preparação</dt><dd>{activeLabA.preflight}</dd></div>
+              <div><dt>Como verificar</dt><dd>{activeLabA.verify}</dd></div>
+              <div><dt>Evidência</dt><dd>{activeLabA.evidence}</dd></div></dl>
+            <div className="ai-lab-links"><a href={activeLabA.entrypoint} target="_blank" rel="noopener noreferrer">Abrir arquivos e roteiro ↗</a>
               <a href="/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md" target="_blank" rel="noopener noreferrer">Guia dos 8 laboratórios ↗</a></div>
-            {lesson.labA.optionalKits.length > 0 && <div className="ai-lab-kit-row"><strong>Kits opcionais para evoluir o projeto</strong>
+            {activeLabA.optionalKits.length > 0 && <div className="ai-lab-kit-row"><strong>Kits opcionais para evoluir o projeto</strong>
               <p>São extensões, não exigências para concluir esta aula. Cada kit informa maturidade, dependências, origem e testes.</p>
               <a href="/course-labs/ai-dev-meu-gestor/kits/README.md" target="_blank" rel="noopener noreferrer">Abrir biblioteca de kits ↗</a></div>}
             <small>Marcar etapas e registrar anotações não significa que o Hub executou ou validou o seu código.</small>

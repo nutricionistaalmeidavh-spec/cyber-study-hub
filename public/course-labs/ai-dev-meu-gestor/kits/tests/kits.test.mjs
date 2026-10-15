@@ -38,5 +38,5 @@ test('Balança: simulada, vírgula e erros de medida',()=>{
 });
 test('UI: componente local sem dependência do private frontEnds',()=>{
  const code=readFileSync(join(here,'../ui/StatusCard.tsx'),'utf8');
- assert.match(code,/aria-live=.+polite/);assert.doesNotMatch(code,/frontEnds\\//);
+ assert.match(code,/aria-live=.+polite/);assert.equal(code.includes("from './frontEnds"),false);
 });

@@ -2,17 +2,20 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 const read = path => JSON.parse(readFileSync(path,'utf8'));
 const modules=read('src/trails/ai-dev/modules.json').modules;
+const contracts=read('src/trails/ai-dev/labContracts.json');
 const catalog=read('public/course-labs/ai-dev-meu-gestor/kits/catalog.json');
 assert.equal(modules.length,8);
+assert.equal(contracts.length,8);
 assert.equal(catalog.kits.length,6);
 const ids=new Set(catalog.kits.map(k=>k.id));
 for(const module of modules){
  const lab=module.lessons.find(l=>l.kind==='laboratorio');
- assert.ok(lab&&lab.labA, 'Módulo '+module.moduleId+' sem contrato');
- for(const key of ['deliverable','kind','entrypoint','instructions','verify','preflight','evidence','verifiedExecution'])assert.ok(lab.labA[key],key+' ausente em '+module.moduleId);
- assert.ok(existsSync('public'+lab.labA.entrypoint),'Arquivo do laboratório ausente '+lab.labA.entrypoint);
- assert.ok(existsSync('public'+lab.labA.instructions),'Roteiro ausente');
- assert.ok(lab.labA.optionalKits.every(k=>ids.has(k)),'Kit desconhecido');
+ const contract=contracts.find(c=>c.moduleId===module.moduleId);
+ assert.ok(lab&&contract, 'Módulo '+module.moduleId+' sem contrato');
+ for(const key of ['deliverable','kind','entrypoint','instructions','verify','preflight','evidence','verifiedExecution'])assert.ok(contract[key],key+' ausente em '+module.moduleId);
+ assert.ok(existsSync('public'+contract.entrypoint),'Arquivo do laboratório ausente '+contract.entrypoint);
+ assert.ok(existsSync('public'+contract.instructions),'Roteiro ausente');
+ assert.ok(contract.optionalKits.every(k=>ids.has(k)),'Kit desconhecido');
  assert.equal(lab.acceptance.length,5);assert.equal(lab.brief.length,4);
 }
 for(let id=47;id<=60;id++){

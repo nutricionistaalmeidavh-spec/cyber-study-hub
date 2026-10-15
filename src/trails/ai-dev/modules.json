@@ -115,19 +115,7 @@
           "prompt": "Tenho o arquivo HTML starter.html do Meu Gestor. Quero editar somente o texto de um serviço fictício. Solicite primeiro o trecho e indique a mudança mínima, sem alterar estados, sem criar dependências e sem usar API. Proponha testes para a OS pendente e concluída. Explique como reverter se algo falhar.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/starter.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/README.md",
-          "assessmentPrompt": "Transferência: uma OS já concluída recebe um clique duplo ou uma chamada repetida para avançar. Qual deve ser o estado final, quantos concluídos devem existir e por que? Registre entrada, ação, saída e invariantes.",
-          "labA": {
-            "kind": "Projeto incremental",
-            "deliverable": "Escopo inicial e alteração comprovada no HTML de exemplo",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/starter.html",
-            "instructions": "/course-labs/ai-dev-meu-gestor/README.md",
-            "verify": "Abra o HTML, avance uma OS, recarregue e registre por que o estado volta ao inicial.",
-            "preflight": "Navegador; editor de texto opcional",
-            "evidence": "Estado inicial, previsão, resultado observado e alteração de texto; dados 100% fictícios.",
-            "optionalKits": [],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Transferência: uma OS já concluída recebe um clique duplo ou uma chamada repetida para avançar. Qual deve ser o estado final, quantos concluídos devem existir e por que? Registre entrada, ação, saída e invariantes."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-01.md",
@@ -247,19 +235,7 @@
           "prompt": "Meu Gestor é didático; quero revisar uma especificação de Cliente e Ordem. Analise apenas consistência, completude e casos negativos. Para cada requisito aponte uma pergunta e um teste de aceitação; não acrescente funcionalidades não autorizadas. Ao fim peça minha aprovação antes de sugerir código.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/starter.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/README.md",
-          "assessmentPrompt": "Transferência: um cliente C-001 tem OS-003; alguém tenta excluir C-001. Escreva duas políticas possíveis, escolha uma para v0.1 e explique como verificar que a ordem não fica órfã.",
-          "labA": {
-            "kind": "Especificação",
-            "deliverable": "Contrato de clientes e ordens com critérios Given/When/Then",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/module-02/spec-template.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/README.md",
-            "verify": "Especifique cliente vinculado, simule criação/rejeição e compare com o protótipo do LAB-01.",
-            "preflight": "Navegador ou editor Markdown; nenhum pacote",
-            "evidence": "Cinco requisitos, duas rejeições e decisão sobre exclusão de cliente com OS.",
-            "optionalKits": [],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Transferência: um cliente C-001 tem OS-003; alguém tenta excluir C-001. Escreva duas políticas possíveis, escolha uma para v0.1 e explique como verificar que a ordem não fica órfã."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-02.md",
@@ -379,19 +355,7 @@
           "prompt": "Tenho um checkpoint React + TypeScript + Vite do Meu Gestor. Oriente meu primeiro 'npm install', 'npm run dev' e 'npm run build'. Se der erro, faça perguntas sobre versão, diretório e mensagem, sem sugerir apagar arquivos imediatamente. Quero um único ajuste por vez, com diff mínimo.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/index.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
-          "assessmentPrompt": "Transferência: uma pessoa diz 'a página abriu, então está tudo pronto', mas npm run build falha por JSX inválido. O que você considera válido, o que considera falho e quais evidências deve guardar?",
-          "labA": {
-            "kind": "Projeto incremental",
-            "deliverable": "Meu Gestor v0.1 com React + TypeScript e build aprovado",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.1/README.md",
-            "verify": "Na pasta v0.1, execute npm install, npm run build e registre o resultado após alterar um texto.",
-            "preflight": "PC com Node 24+ e Git; instale dependências apenas no projeto",
-            "evidence": "Versões do ambiente, terminal de build e diff da mudança no título.",
-            "optionalKits": [],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Transferência: uma pessoa diz 'a página abriu, então está tudo pronto', mas npm run build falha por JSX inválido. O que você considera válido, o que considera falho e quais evidências deve guardar?"
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-03.md",
@@ -511,21 +475,7 @@
           "prompt": "Analise meu checkpoint v0.2 React/CSS do Meu Gestor como revisor de acessibilidade e responsividade. Diga como testar navegação por teclado, viewport estreito, estados vazios e coerência dos totais. Sugira no máximo três mudanças de pequeno risco, sempre indicando como reproduzir e confirmar.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/index.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
-          "assessmentPrompt": "Transferência: no dashboard aparece 12 concluídos, mas a lista tem uma OS concluída. Mostre como detectar a divergência, qual fonte de verdade usar e qual teste evita regressão.",
-          "labA": {
-            "kind": "Projeto incremental",
-            "deliverable": "Meu Gestor v0.2 com três telas navegáveis e acessíveis",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.2/README.md",
-            "verify": "Execute npm run dev e npm run build; confira navegação por teclado e viewport de 360 px.",
-            "preflight": "PC com Node 24+, navegador e DevTools",
-            "evidence": "Demonstração das telas, estados vazios, indicador derivado das fixtures e verificação móvel.",
-            "optionalKits": [
-              "ui"
-            ],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Transferência: no dashboard aparece 12 concluídos, mas a lista tem uma OS concluída. Mostre como detectar a divergência, qual fonte de verdade usar e qual teste evita regressão."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-04.md",
@@ -645,21 +595,7 @@
           "prompt": "Estou depurando o CRUD v0.3. Sugira casos de teste unitário e manual para cliente inválido, serviço vazio, exclusão de cliente com OS, filtro sem mutação e conclusão repetida. Mostre mudanças mínimas, explique os erros, preserve os IDs e não introduza backend ou API externa.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/index.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
-          "assessmentPrompt": "Transferência: após filtrar por 'pendente', alguém clica excluir e uma ordem diferente desaparece. Diagnostique o risco de usar índice visual como identificador e escreva o teste de regressão.",
-          "labA": {
-            "kind": "Projeto incremental",
-            "deliverable": "Meu Gestor v0.3 com CRUD e regras de domínio testadas",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.3/README.md",
-            "verify": "Execute npm test e npm run build; tente clientId inexistente, campos vazios e conclusão repetida.",
-            "preflight": "PC com Node 24+; sem banco ou serviço externo",
-            "evidence": "Entrada válida, negativa e resultado após remover o filtro; estado não persiste após reiniciar.",
-            "optionalKits": [
-              "reporting"
-            ],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Transferência: após filtrar por 'pendente', alguém clica excluir e uma ordem diferente desaparece. Diagnostique o risco de usar índice visual como identificador e escreva o teste de regressão."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-05.md",
@@ -779,21 +715,7 @@
           "prompt": "Estou executando o Meu Gestor v0.4 com backend Node e SQLite. Ajude a testar POST e GET, reabrir banco e provar persistência após reinício. Peça somente logs sanitizados e payloads fictícios. Para cada falha identifique camada frontend/rede/API/SQL, ação mínima, teste de regressão e comando de reversão. Não solicite tokens nem recomende serviços pagos.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/index.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/README.md",
-          "assessmentPrompt": "Uma ordem foi exibida na tela após POST, mas desapareceu após reiniciar. Diferencie cache de UI, confirmação HTTP e persistência de arquivo; proponha três observações que localizem a falha.",
-          "labA": {
-            "kind": "Projeto incremental",
-            "deliverable": "Meu Gestor v0.4 com API local e dados persistidos em SQLite",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/README.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.4/README.md",
-            "verify": "Execute testes e API em localhost; crie OS, reinicie o processo e comprove persistência; teste HTTP inválido.",
-            "preflight": "PC com Node 24+; duas sessões de terminal; portas locais",
-            "evidence": "POST válido, resposta negativa, GET após reinício e integridade do vínculo clientId.",
-            "optionalKits": [
-              "finance"
-            ],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Uma ordem foi exibida na tela após POST, mas desapareceu após reiniciar. Diferencie cache de UI, confirmação HTTP e persistência de arquivo; proponha três observações que localizem a falha."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-06.md",
@@ -913,21 +835,7 @@
           "prompt": "Vou executar o laboratório de QA v0.5 com um bug deliberado. Ajude a elaborar caso antes/depois e checklist de regressão; preserve a política de clientId e status. Não implemente solução inteira sem eu compartilhar os testes; não use serviços pagos ou dados privados.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/index.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/README.md",
-          "assessmentPrompt": "Uma correção faz o PATCH retornar 200, mas a consulta seguinte mostra estado antigo. Proponha a sequência mínima de testes que distingue falha na API, transação SQL e cache de frontend.",
-          "labA": {
-            "kind": "Projeto incremental",
-            "deliverable": "Meu Gestor v0.5 com teste falhando, correção e reteste",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/README.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v0.5/README.md",
-            "verify": "Execute npm test e npm run build; introduza defeito controlado, observe falha, reverta e reteste.",
-            "preflight": "PC com Node 24+; testes locais do checkpoint",
-            "evidence": "Comando, teste vermelho, diff da correção e suíte verde após o reteste.",
-            "optionalKits": [
-              "scan"
-            ],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Uma correção faz o PATCH retornar 200, mas a consulta seguinte mostra estado antigo. Proponha a sequência mínima de testes que distingue falha na API, transação SQL e cache de frontend."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-07.md",
@@ -1047,26 +955,7 @@
           "prompt": "Quero revisar a entrega v1.0 local do Meu Gestor. Faça checklist de operação, smoke test, prova de backup/restore, reversão e aviso de limites. Ajude a explicar decisões para alguém iniciante, sem presumir ambiente cloud, assinatura paga, chaves secretas nem dados reais.",
           "starterUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/index.html",
           "starterSourceUrl": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/README.md",
-          "assessmentPrompt": "Após restaurar um backup em outro arquivo, as ordens somam três mas um clientId não existe. Explique por que contador sozinho não prova backup íntegro e quais consultas/constraints e passos de restauração devem ser repetidos.",
-          "labA": {
-            "kind": "Projeto integrador",
-            "deliverable": "Meu Gestor v1.0, backup/restauração, documentação e demonstração local",
-            "entrypoint": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/README.md",
-            "instructions": "/course-labs/ai-dev-meu-gestor/checkpoints/v1.0/README.md",
-            "verify": "Execute npm test, npm run build, npm run start:local, backup e restore em arquivo separado.",
-            "preflight": "PC com Node 24+; execução exclusivamente local; dados fictícios",
-            "evidence": "Teste, build, CRUD, reinício, verificação do backup restaurado e limitações de segurança.",
-            "optionalKits": [
-              "pdf",
-              "reporting",
-              "finance",
-              "serial",
-              "ui",
-              "scan"
-            ],
-            "status": "orientado",
-            "verifiedExecution": "Autodeclaração do aluno; o Hub não executa código no dispositivo"
-          }
+          "assessmentPrompt": "Após restaurar um backup em outro arquivo, as ordens somam três mas um clientId não existe. Explique por que contador sozinho não prova backup íntegro e quais consultas/constraints e passos de restauração devem ser repetidos."
         }
       ],
       "assessmentPath": "/course-labs/ai-dev-meu-gestor/assessments/module-08.md",
