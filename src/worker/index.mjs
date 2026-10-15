@@ -5,6 +5,7 @@ import { DurableObject } from 'cloudflare:workers';
 import { passwordHash, passwordMatches } from './password-kdf.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from './roadmap.mjs';
+import { registrationEnabled } from '../auth/registration-policy.mjs';
 
 const DAY = 86400000;
 const KEYS = new Set([
@@ -136,7 +137,7 @@ export class HubAuthObject extends DurableObject {
       if(path==='/api/health'&&method==='GET')return response(200,{ok:true});
       if(path==='/api/auth/config'&&method==='GET')
         return response(200,{ready:this.one('SELECT COUNT(*) AS n FROM users').n>0,
-          openRegistration:this.env.HUB_OPEN_REGISTRATION==='1'});
+          openRegistration:registrationEnabled(this.env.HUB_OPEN_REGISTRATION)});
       if(path==='/api/auth/bootstrap'&&method==='POST'){
         const b=await jsonBody(request);
         if(this.one('SELECT COUNT(*) AS n FROM users').n)throw new ApiError(409,'Plataforma já inicializada.');
@@ -174,7 +175,7 @@ export class HubAuthObject extends DurableObject {
           if(!invite||invite.used_at||invite.expires_at<=Date.now())
             throw new ApiError(403,'Convite inválido ou expirado.');
           email=invite.email;role=invite.role;
-        }else if(this.env.HUB_OPEN_REGISTRATION!=='1'){
+        }else if(!registrationEnabled(this.env.HUB_OPEN_REGISTRATION)){
           throw new ApiError(403,'Cadastro somente por convite.');
         }
         const user=await this.newUser({name:b.name,email,role,password:b.password},()=>{
