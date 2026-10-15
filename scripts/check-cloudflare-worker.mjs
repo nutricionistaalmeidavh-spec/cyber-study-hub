@@ -10,7 +10,8 @@ assert.match(conf,/^main\s*=\s*"src\/worker\/index\.mjs"/m,
 assert.match(conf,/class_name\s*=\s*"HubAuthObject"/);
 assert.match(conf,/name\s*=\s*"HUB_AUTH"/);
 assert.match(conf,/new_sqlite_classes\s*=\s*\["HubAuthObject"\]/);
-assert.match(conf,/run_worker_first\s*=\s*\[[^\]]*"\/api\/\*"/);
+assert.match(conf,/run_worker_first\s*=\s*true/, 'Worker precisa interceptar também caminhos privados e URLs alternativas');
+assert.match(worker,/canonicalAssetPath\(url\.pathname\)/);
 assert.match(conf,/required\s*=\s*\["HUB_BOOTSTRAP_KEY"\]/);
 assert.match(worker,/export\s+class\s+HubAuthObject\s+extends\s+DurableObject/);
 assert.match(worker,/env\.HUB_AUTH/);
