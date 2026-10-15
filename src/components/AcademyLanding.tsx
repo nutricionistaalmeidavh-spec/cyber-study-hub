@@ -140,7 +140,7 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Escolha um curso, avance por módulos e aprenda com projetos reais. Apenas cursos completos com auditoria editorial A são exibidos. A plataforma registra {studyInventory.canonical} IDs canônicos sem perder as referências originais.</p>
+          <p>Escolha um curso, avance por módulos e aprenda com projetos reais. Apenas cursos completos com auditoria editorial A são exibidos. O inventário preserva {studyInventory.totalSteps} etapas, com {studyInventory.canonical} IDs canônicos: {studyInventory.legacyCanonical} unidades tradicionais e {studyInventory.guided} etapas guiadas. Cursos ainda sem A permanecem ocultos da vitrine.</p>
         </div>
         <div className="academy-courses-grid" aria-label="Cursos publicados">
           {publishedCourses.map(course => <a className="academy-course-card" data-reveal key={course.id} href={'/#courses/' + course.id}>
