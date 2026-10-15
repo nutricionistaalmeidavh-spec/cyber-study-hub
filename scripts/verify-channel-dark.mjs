@@ -74,7 +74,7 @@ for(const [i,m] of course.modules.entries()){
   const guide=read(review.paths.guide), exam=read(review.paths.exam),key=read(review.paths.key);
   assert.ok(guide.includes(lab.labCommand),'Guia não ensina executar '+id);
   assert.ok(guide.includes(lab.expectedArtifact),'Artefato esperado não explicado '+id);
-  assert.ok(guide.includes('recuperação')||guide.includes('recuperação'),'Sem diagnóstico '+id);
+  assert.ok(guide.includes('recuperação')||guide.includes('Diagnóstico'),'Sem diagnóstico '+id);
   assert.equal((exam.match(/^\d+\. /gm)||[]).length,6,'Prova precisa seis questões '+id);
   assert.equal((key.match(/^\d+\. /gm)||[]).length,6,'Gabarito precisa seis respostas '+id);
   assert.ok(!exam.includes('## Rubrica de correção'),'Gabarito misturado com prova '+id);
