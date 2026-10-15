@@ -28,4 +28,29 @@ for(let id=47;id<=60;id++){
 const docs=['public/course-labs/a171-180/README.md','public/course-labs/a181-190/README.md','public/course-labs/a201-208/README.md','public/course-labs/capstone-final/README.md','public/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md','public/course-labs/ai-dev-meu-gestor/kits/README.md'];
 for(const doc of docs)assert.ok(readFileSync(doc,'utf8').length>1000);
 for(const file of ['public/course-labs/a201-208/models.mjs','public/course-labs/a201-208/lab.test.mjs','public/course-labs/capstone-final/model.mjs','public/course-labs/capstone-final/lab.test.mjs','public/course-labs/capstone-final/server.mjs'])assert.ok(existsSync(file),file+' ausente');
-console.log('PASS: 8 contratos de laboratório Meu Gestor, 6 kits, 14 aulas V2 com recursos existentes');
+
+const toolCatalog=read('public/course-labs/lab-tools/scenarios.json').scenarios;
+assert.equal(toolCatalog.length,30,'A trilha de ferramentas precisa de 30 casos reais com contraprova');
+const toolCodes=new Set();
+for(const item of toolCatalog){
+ assert.ok(!toolCodes.has(item.code),'LAB duplicado: '+item.code);toolCodes.add(item.code);
+ assert.ok(item.objective&&item.title&&item.limitation);
+ assert.ok(Object.hasOwn(item.positive,item.field)&&Object.hasOwn(item.negative,item.field));
+ assert.equal(typeof item.positive[item.field],typeof item.negative[item.field]);
+ assert.notEqual(item.positive[item.field],item.negative[item.field],'Caso negativo deve alterar decisão: '+item.code);
+ const guide='public/course-labs/lab-tools/workshops/'+item.code+'.md';
+ assert.ok(existsSync(guide),'Roteiro inexistente: '+guide);
+ const text=readFileSync(guide,'utf8');
+ for(const phrase of ['## O problema específico da aula','## O que o aluno precisa fazer','## Critérios de aprovação A','Limitação crucial']){
+  assert.ok(text.includes(phrase),'Seção didática ausente: '+item.code+' -> '+phrase);
+ }
+}
+for(let id=171;id<=180;id++){
+ const guide='public/course-labs/a171-180/workshops/AULA-'+id+'.md';
+ assert.ok(existsSync(guide),'Aula de pesquisa sem laboratório próprio: '+id);
+ assert.ok(readFileSync(guide,'utf8').includes('node public/course-labs/a171-180/run.mjs '+id));
+}
+for(const path of ['public/course-labs/a171-180/models.mjs','public/course-labs/a171-180/run.mjs','public/course-labs/a171-180/lab.test.mjs','public/course-labs/lab-tools/model.mjs','public/course-labs/lab-tools/run.mjs','public/course-labs/lab-tools/lab.test.mjs','src/lib/labCourseResources.ts'])assert.ok(existsSync(path),path+' ausente');
+const app=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf8');
+assert.ok(app.includes('getParallelLabGuide')&&app.includes('getMainLabGuide')&&app.includes('labGuide.guide'),'Aula não mostra o roteiro específico');
+console.log('PASS: 8 contratos Meu Gestor, 6 kits, 14 aulas V2, 10 aulas de pesquisa e 30 oficinas específicas de ferramentas');

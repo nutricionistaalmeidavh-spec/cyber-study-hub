@@ -7,6 +7,9 @@ on:
       - 'public/course-labs/ai-dev-meu-gestor/**'
       - 'public/course-labs/a201-208/**'
       - 'public/course-labs/a171-180/**'
+      - 'public/course-labs/lab-tools/**'
+      - 'src/lib/labCourseResources.ts'
+      - 'src/components/curriculum/**'
       - 'public/course-labs/a181-190/**'
       - 'public/course-labs/capstone-final/**'
       - 'scripts/verify-lab-guides-a.mjs'
@@ -30,6 +33,8 @@ jobs:
         run: node --test public/course-labs/ai-dev-meu-gestor/kits/tests/*.test.mjs
       - name: Verify AI security and capstone locally
         run: node --test public/course-labs/a171-180/lab.test.mjs public/course-labs/a181-190/lab.test.mjs public/course-labs/a201-208/lab.test.mjs public/course-labs/capstone-final/lab.test.mjs
+      - name: Verify 30 labs de ferramentas - casos positivos e negativos
+        run: node --test public/course-labs/lab-tools/lab.test.mjs
       - name: Verify original AI course and checkpoints
         run: node scripts/verify-ai-dev.mjs
       - name: Web app build
