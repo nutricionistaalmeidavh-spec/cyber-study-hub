@@ -1,0 +1,220 @@
+[
+  {
+    "moduleId": 1,
+    "title": "Agenda editorial reutilizável",
+    "guide": "/course-labs/channel-dark/oficinas/module-01.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 1 --out ./meu-canal",
+    "whatWorks": "O aluno obtém um planejamento verdadeiro com dependências e datas verificadas, não apenas lista de ideias. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-01/plano-editorial.json",
+      "module-01/agenda-calendar.json"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-planning/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-planning/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-planning/index.mjs",
+        "access": "public",
+        "why": "Valida tarefas, datas e dependências, produzindo eventos de calendário reaproveitáveis."
+      },
+      {
+        "repo": "frontEnds",
+        "path": "library/marketing-sections/components.tsx",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/frontEnds/blob/7f783aff53959cc716412dd20b2fb753850a1969/library/marketing-sections/components.tsx",
+        "mode": "referência de UI opcional, sem cópia para o HubEstudos",
+        "access": "private",
+        "why": "Ajuda a compor uma landing page futura do canal, sem ser condição do curso."
+      }
+    ]
+  },
+  {
+    "moduleId": 2,
+    "title": "Roteiros com avaliação repetível",
+    "guide": "/course-labs/channel-dark/oficinas/module-02.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 2 --out ./meu-canal",
+    "whatWorks": "O aluno constrói uma matriz de testes para prompts e roteiros em vez de apenas gerar texto sem conferir os fatos. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-02/avaliacao-promptfoo.json",
+      "module-02/LEIA-ME.txt"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-ai-quality/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-ai-quality/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-ai-quality/index.mjs",
+        "access": "public",
+        "why": "Converte casos e expectativas num arquivo de avaliação de prompts para execução local opcional."
+      }
+    ]
+  },
+  {
+    "moduleId": 3,
+    "title": "Narração real e tratamento de WAV",
+    "guide": "/course-labs/channel-dark/oficinas/module-03.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 3 --out ./meu-canal",
+    "whatWorks": "O aluno pode gerar ou gravar voz e transformar o arquivo real usando parâmetros definidos por componente de mídia reutilizável. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-03/audio-job.json",
+      "module-03/normalizar-audio.sh"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-media/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-media/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-media/index.mjs",
+        "access": "public",
+        "why": "Verifica o contrato de áudio e os parâmetros do tratamento; FFmpeg altera de fato o arquivo."
+      }
+    ]
+  },
+  {
+    "moduleId": 4,
+    "title": "Storyboard, cenas e thumbnail própria",
+    "guide": "/course-labs/channel-dark/oficinas/module-04.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 4 --out ./meu-canal",
+    "whatWorks": "O aluno entrega um SVG editável e um manifesto de cenas que alimenta ferramentas de animação, preservando autoria visual. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-04/motion-canvas.json",
+      "module-04/thumbnail.svg"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-media/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-media/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-media/index.mjs",
+        "access": "public",
+        "why": "Monta o manifesto determinístico de cenas com resolução e duração definidas."
+      },
+      {
+        "repo": "frontEnds",
+        "path": "library/marketing-sections/components.tsx",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/frontEnds/blob/7f783aff53959cc716412dd20b2fb753850a1969/library/marketing-sections/components.tsx",
+        "mode": "referência de UI opcional, sem cópia para o HubEstudos",
+        "access": "private",
+        "why": "Pode dar identidade à futura página de apresentação do canal, se houver acesso privado."
+      }
+    ]
+  },
+  {
+    "moduleId": 5,
+    "title": "Edição: contrato ArtiSys + FFmpeg funcionando",
+    "guide": "/course-labs/channel-dark/oficinas/module-05.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 5 --out ./meu-canal",
+    "whatWorks": "O aluno vê a diferença entre descrever um trabalho de vídeo e executá-lo com FFmpeg por meio de um adaptador. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-05/video-job.json",
+      "module-05/corte-final.mp4 (após executar o adaptador)"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-video-engine/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-video-engine/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-video-engine/index.mjs",
+        "access": "public",
+        "why": "Compila contratos de vídeo e permite que um adapter execute um job concreto."
+      },
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-media/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-media/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-media/index.mjs",
+        "access": "public",
+        "why": "Mantém configurações de mídia separadas do executor físico, permitindo outras saídas."
+      }
+    ]
+  },
+  {
+    "moduleId": 6,
+    "title": "Short 9:16 e legendas editáveis",
+    "guide": "/course-labs/channel-dark/oficinas/module-06.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 6 --out ./meu-canal",
+    "whatWorks": "O aluno transforma mídia horizontal em arquivo vertical e aprende a corrigir legendas SRT com a própria narração. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-06/vertical-media.json",
+      "module-06/gerar-short.sh",
+      "06-shorts/legendas.srt"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-media/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-media/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-media/index.mjs",
+        "access": "public",
+        "why": "Define o tamanho 720 por 1280 e duração; FFmpeg efetua a conversão."
+      }
+    ]
+  },
+  {
+    "moduleId": 7,
+    "title": "Fluxo de produção e aprovação",
+    "guide": "/course-labs/channel-dark/oficinas/module-07.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 7 --out ./meu-canal",
+    "whatWorks": "O aluno integra estados e aprovações reutilizáveis para evitar publicação duplicada ou sem revisão. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-07/fluxo.json",
+      "module-07/aprovacao.json",
+      "07-automacao/fila.json"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-workflow-engine/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-workflow-engine/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-workflow-engine/index.mjs",
+        "access": "public",
+        "why": "Implementa transições, guardas e histórico para que a aprovação não seja pulada."
+      },
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-approvals/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-approvals/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-approvals/index.mjs",
+        "access": "public",
+        "why": "Cria solicitação pendente e registra quem decidiu uma aprovação no cenário de estudo."
+      }
+    ]
+  },
+  {
+    "moduleId": 8,
+    "title": "Analytics local e relatório CSV",
+    "guide": "/course-labs/channel-dark/oficinas/module-08.md",
+    "command": "node public/course-labs/channel-dark/oficinas/workshop.mjs --module 8 --out ./meu-canal",
+    "whatWorks": "O aluno transforma dados próprios de entrada em agregações e relatório exportável, sem pagamento ou OAuth. A execução gera os arquivos de saída documentados e permite alterar entradas próprias.",
+    "artifacts": [
+      "module-08/resumo.json",
+      "module-08/relatorio.csv"
+    ],
+    "sources": [
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-reporting/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-reporting/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-reporting/index.mjs",
+        "access": "public",
+        "why": "Agrega métricas numéricas e gera resumos reproduzíveis por episódio."
+      },
+      {
+        "repo": "utilidades",
+        "path": "modules/artisys-exporter/src/index.mjs",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/utilidades/blob/9414210529545fed1995a4dfc90efedf6a04918c/modules/artisys-exporter/src/index.mjs",
+        "mode": "MIT vendorizado em oficinas/vendor/artisys-exporter/index.mjs",
+        "access": "public",
+        "why": "Exporta CSV com cabeçalhos explícitos; antes disso o integrador rejeita títulos com fórmula CSV."
+      },
+      {
+        "repo": "frontEnds",
+        "path": "library/dashboard-kit/components.tsx",
+        "url": "https://github.com/nutricionistaalmeidavh-spec/frontEnds/blob/7f783aff53959cc716412dd20b2fb753850a1969/library/dashboard-kit/components.tsx",
+        "mode": "referência de UI opcional, sem cópia para o HubEstudos",
+        "access": "private",
+        "why": "Fornece componentes React de KPI cards para painel opcional, restrito a pessoas com permissão no repo."
+      }
+    ]
+  }
+]
