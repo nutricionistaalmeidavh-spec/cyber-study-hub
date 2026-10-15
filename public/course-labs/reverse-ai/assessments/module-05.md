@@ -1,30 +1,30 @@
-# Avaliação independente — módulo 05 (JavaScript, Electron e interfaces)
+# Avaliação de transferência — Fronteiras JavaScript
 
-ID do checkpoint: REV-IA-020. Responda sem consultar o gabarito. Nota editorial A, se houver em outros cursos, não é transferível automaticamente a esta trilha.
+**Módulo 05 — Etapa REV-IA-020**. Execute primeiro o laboratório e responda sem abrir o gabarito. Se não conseguir executar, informe o bloqueio de forma transparente.
 
-1. Qual hipótese específica deste módulo é refutável por teste? Explique entrada, saída e contraexemplo.
+1. Qual é a dependência entre sample-ui.mjs e sample-rule.mjs?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-2. Diferencie observação e inferência no caso "JavaScript, Electron e interfaces".
+2. O que você pode inferir de um import estático?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-3. Qual resultado do comando `node public/course-labs/reverse-ai/lab.mjs --module 5` permitiria validar o controle negativo?
+3. Que relação 05-js-boundaries.json classifica como não observada?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-4. Por que a aula AULA-118 complementa este laboratório sem produzir conclusão automática?
+4. Como diferenciar minificação, bundle e código original?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-5. Que falha surgiria se você aceitasse um relatório de IA sem verificar o programa local?
+5. Qual seria erro grave ao estudar uma aplicação Electron de terceiros?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-6. Escreva os critérios mínimos da entrega e uma limitação que impede afirmar clone perfeito.
+6. Que evidência adicional ajudaria investigar um endpoint próprio?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta própria e evidência:* ______________________________________________
 
-## Avaliação
-Cada resposta vale 0–2 pontos: 2 justificada com evidência, 1 parcialmente correta, 0 incorreta. Sugere-se ao menos 9/12 e ausência de erro eliminatório, com revisão independente.
+## Rubrica antes de corrigir
+Cada item vale 2 pontos quando inclui justificativa e evidência verificável; 1 ponto se parcialmente demonstrado; 0 se não demonstrado. **Critério editorial proposto:** no mínimo 10/12, explicação de um controle negativo e nenhuma afirmação de ferramenta não executada. O registro de conclusão no site não corrige automaticamente esta prova.
