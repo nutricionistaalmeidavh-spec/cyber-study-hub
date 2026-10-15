@@ -8,6 +8,10 @@ import { getActiveParallelTracks } from '../lib/curriculumState';
 import type { PlatformUser } from './PlatformGate';
 import { listNativeV2LessonIds } from '../content/registry';
 import './home.css';
+import { getStudyVisits } from '../lib/studyProgress';
+import { studySectionHref } from '../lib/studyNavigation';
+import { lessonDurationLabel } from '../lib/courseStudyMetadata';
+import ProgressSyncStatus from './ProgressSyncStatus';
 
 const catalog = catalogData as CurriculumCatalog;
 const interactiveIds = new Set([...lessons.map(lesson => lesson.id), ...listNativeV2LessonIds()]);
@@ -23,6 +27,8 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const reviews = getReviewStats();
   const activeParallel = new Set(getActiveParallelTracks());
 
+  const studyVisits = getStudyVisits();
+  const readIds = new Set(studyVisits.filter(visit => visit.read).map(visit => Number(visit.key)));
   const isCompleted = (id: number) => Boolean(lessonState[id]?.completed || learning[id]?.completed);
   const completedInteractive = interactiveLessons.filter(item => isCompleted(item.id)).length;
   const recent = Object.entries(learning)
@@ -32,11 +38,14 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
        value.visitedSectionIds?.length || value.completedActivityIds?.length ||
        value.completedLabStepIds?.length || value.quizHistory?.length))
     .sort((a, b) => (Date.parse(b.value.lastSeenAt || '') || 0) - (Date.parse(a.value.lastSeenAt || '') || 0));
-  const unfinished = recent.find(item => !isCompleted(item.id));
+  const unfinished = recent.find(item => !isCompleted(item.id) && !readIds.has(item.id));
   const nextInteractive = completedInteractive > 0 ? interactiveLessons.find(item => !isCompleted(item.id)) : undefined;
-  const recommendedId = unfinished?.id ?? nextInteractive?.id ?? catalog.main[0]?.id;
+  const nextUnread = catalog.main.find(item => !readIds.has(item.id) && !isCompleted(item.id));
+  const recommendedId = unfinished?.id ?? (readIds.size ? nextUnread?.id : nextInteractive?.id) ?? catalog.main[0]?.id;
   const recommended = mainById.get(recommendedId ?? 1) ?? catalog.main[0];
-  const isNewStudent = !recent.length && completedInteractive === 0;
+  const latest = studyVisits.find(visit => !visit.read && !(visit.kind === 'interactive' && isCompleted(Number(visit.key))));
+  const resumeHref = latest ? latest.sectionId ? studySectionHref(latest.sectionId, latest.href) : latest.href : hrefForLesson(recommended.id);
+  const isNewStudent = !latest && !recent.length && completedInteractive === 0;
   const activeLabels = [...activeParallel].map(code => {
     const item = catalog.parallel.find(candidate => candidate.trackCode === code);
     return item ? { code, name: item.track } : null;
@@ -46,7 +55,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const mainModuleCount = new Set(catalog.main.map(item => item.block)).size;
   const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
   const totalModules = mainModuleCount + parallelModuleCount;
-  return <div className="page hub-home stack-lg">
+  return <div className={"page hub-home stack-lg" + (isNewStudent ? "" : " hub-home--returning")}>
     <header className="hub-home-topline">
       <div><span className="eyebrow">ARTISYS / SEU ESPAÇO DE ESTUDOS</span><h1>Olá, {firstName}.</h1><p>Uma formação organizada para aprender, praticar e evoluir.</p></div>
       <a className="hub-home-profile" href="#account" aria-label="Abrir minha conta">
@@ -56,20 +65,21 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     <section className="hub-focus" aria-labelledby="hub-next-title">
       <div className="hub-focus-copy">
         <span className="hub-focus-kicker">{isNewStudent ? 'SEU PONTO DE PARTIDA' : 'CONTINUE SEU ESTUDO'}</span>
-        <h2 id="hub-next-title">{isNewStudent ? 'O próximo passo começa aqui.' : 'Retome sua jornada.'}</h2>
+        <h2 id="hub-next-title">{isNewStudent ? 'O próximo passo começa aqui.' : 'Continue de onde parou.'}</h2>
         <p>{isNewStudent
           ? 'A formação principal começa pela Aula 001. Você também pode explorar qualquer área, sem bloqueios.'
           : 'Seu próximo estudo leva em conta o progresso registrado nesta conta.'}</p>
         <div className="hub-focus-lesson">
-          <span className="hub-focus-number">{String(recommended.id).padStart(3,'0')}</span>
-          <div><small>{recommended.track} · {recommended.durationMin} min estimados</small><strong>{recommended.title}</strong></div>
+          <span className="hub-focus-number">{latest?.kind === 'ai' ? 'IA' : latest?.key.startsWith('parallel:') ? '↗' : String(latest ? Number(latest.key) : recommended.id).padStart(3,'0')}</span>
+          <div><small>{latest?.sectionLabel || (recommended.track + " · " + lessonDurationLabel(recommended))}</small><strong>{latest?.title || recommended.title}</strong></div>
         </div>
         <div className="hub-focus-actions">
-          <a className="button primary" href={hrefForLesson(recommended.id)}>{isNewStudent ? 'Começar pela aula 001' : 'Abrir próxima aula'} <span aria-hidden="true">→</span></a>
+          <a className="button primary" href={resumeHref}>{isNewStudent ? 'Começar pela aula 001' : 'Continuar estudo'} <span aria-hidden="true">→</span></a>
           <a className="button ghost" href="#lessons?mode=main">Explorar formação</a>
         </div>
       </div>
     </section>
+    <ProgressSyncStatus />
     <a className="hub-ai-banner" href="#ai-dev">
       <span><small>FORMAÇÃO PRÁTICA · 8 MÓDULOS DISPONÍVEIS</small><strong>Construa o Meu Gestor com ChatGPT ou Claude</strong><em>32 etapas com laboratórios e provas independentes. IA local opcional, sem API paga obrigatória.</em></span>
       <b>Abrir trilha →</b>

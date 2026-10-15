@@ -1,0 +1,32 @@
+name: Study experience regression
+on:
+  pull_request:
+    paths:
+      - 'src/components/**'
+      - 'src/lib/**'
+      - 'src/trails/ai-dev/**'
+      - 'src/App.tsx'
+      - 'src/main.tsx'
+      - 'index.html'
+      - 'public/manifest.webmanifest'
+      - 'scripts/test-study-continuity.mjs'
+      - '.github/workflows/study-experience.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node --test scripts/test-study-continuity.mjs
+      - run: npm run test:hub-ux
+      - run: npm run test:platform
+      - run: npm run build
+      - run: npm run test:worker

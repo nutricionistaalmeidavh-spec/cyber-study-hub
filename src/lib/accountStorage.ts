@@ -13,8 +13,11 @@ const scoped=(id:string,key:string)=>'hub-account:'+id+':'+key;
 const pendingKey=(id:string)=>scoped(id,'_pending');
 function requireId(){if(!activeUser)throw new Error('Conta não autenticada');return activeUser;}
 function supported(key:string):key is ProgressKey{return (USER_PROGRESS_KEYS as readonly string[]).includes(key);}
+function notifySync(){ if(typeof window!=='undefined')window.dispatchEvent(new Event('hub-progress-sync')); }
+export function getProgressSyncState(){return {pending:pending.size,saving:Boolean(flushing),error:lastError};}
 function savePending(){
   if(activeUser)localStorage.setItem(pendingKey(activeUser),JSON.stringify(Object.fromEntries(pending)));
+  notifySync();
 }
 async function api(path:string,options?:RequestInit) {
   const response=await fetch(path,{credentials:'same-origin',cache:'no-store',...options});
@@ -35,11 +38,11 @@ async function sendPending(){
           body:JSON.stringify(value===null?{key}:{key,value})
         });
         if(pending.get(key)===value)pending.delete(key);
-        savePending();
         lastError='';
-      }catch(e){lastError=String(e);break;}
+        savePending();
+      }catch(e){lastError=String(e);notifySync();break;}
     }
-  })().finally(()=>{flushing=null;});
+  })().finally(()=>{flushing=null;notifySync();});
   return flushing;
 }
 export function getSyncError(){return lastError;}

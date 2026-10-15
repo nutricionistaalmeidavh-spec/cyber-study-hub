@@ -5,6 +5,11 @@ import { lessons } from '../../data/lessons';
 import { listNativeV2LessonIds } from '../../content/registry';
 import { getActiveParallelTracks, setActiveParallelTracks } from '../../lib/curriculumState';
 import './curriculum.css';
+import { getLearningProgress } from '../../lib/learningProgress';
+import { getLessonState } from '../../lib/storage';
+import { lessonDurationLabel, moduleObjectives } from '../../lib/courseStudyMetadata';
+import { studySectionHref } from '../../lib/studyNavigation';
+import { getStudyVisits } from '../../lib/studyProgress';
 
 const catalog = catalogData as CurriculumCatalog;
 type ViewMode = 'main' | 'parallel';
@@ -42,6 +47,16 @@ function matchesParallel(item: ParallelCurriculumItem, query: string) {
 export function CurriculumBrowser({
   initialTrack, initialMode = 'main', initialModule
 }: { initialTrack?: string; initialMode?: ViewMode; initialModule?: string }) {
+  const learning = getLearningProgress();
+  const legacy = getLessonState();
+  const visits = getStudyVisits();
+  const status = (item: MainCurriculumItem | ParallelCurriculumItem) => {
+    const key = item.kind === 'main' ? String(item.id) : 'parallel:' + item.code;
+    const visit = visits.find(entry => entry.key === key);
+    if (item.kind === 'main' && (learning[item.id]?.completed || legacy[item.id]?.completed)) return 'Concluída';
+    if (visit?.read) return 'Leitura registrada';
+    return visit || (item.kind === 'main' && learning[item.id]?.visitedSectionIds?.length) ? 'Em andamento' : 'Não iniciada';
+  };
   const [query, setQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(24);
   const [activeParallel, setActiveParallel] = useState<Set<string>>(() => new Set(getActiveParallelTracks()));
@@ -80,6 +95,9 @@ export function CurriculumBrowser({
   const visibleParallel = filteredParallel.slice(0, visibleCount);
   const detailIndex = selected ? currentModules.findIndex(group => group.name === selected.name) + 1 : -1;
   const activeCodes = selectedParallel ? [...new Set(selectedParallel.items.map(item => item.trackCode))] : [];
+  const selectedVisits = selected ? visits.filter(visit => selected.items.some(item => visit.key === (item.kind === 'main' ? String(item.id) : 'parallel:' + item.code) && status(item) !== 'Concluída') && !visit.read) : [];
+  const resume = selectedVisits[0];
+  const resumeLink = resume ? resume.sectionId ? studySectionHref(resume.sectionId, resume.href) : resume.href : undefined;
   const allActive = activeCodes.length > 0 && activeCodes.every(code => activeParallel.has(code));
 
   const clearFilters = () => { setQuery(''); setVisibleCount(24); };
@@ -151,7 +169,7 @@ export function CurriculumBrowser({
               const last = group.items[group.items.length - 1];
               return <ModuleCard key={group.name} name={group.name} href={moduleHref('main', group.name)}
                 index={ordinal} count={group.items.length} unit="aulas"
-                subtitle={first.track} start={String(first.id).padStart(3,'0') + '–' + String(last.id).padStart(3,'0')}
+                subtitle={moduleObjectives[first.id] || first.track} progress={group.items.filter(item => status(item) !== 'Não iniciada').length} start={String(first.id).padStart(3,'0') + '–' + String(last.id).padStart(3,'0')}
                 example={first.title} />;
             })
           : parallelModules.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
@@ -159,7 +177,7 @@ export function CurriculumBrowser({
               const codes = [...new Set(group.items.map(item => item.trackCode))];
               return <ModuleCard key={group.name} name={group.name} href={moduleHref('parallel', group.name)}
                 index={ordinal} count={group.items.length} unit="unidades"
-                subtitle={codes.join(' · ')} example={group.items[0].title}
+                subtitle={'Conceitos e prática de ' + group.name} progress={group.items.filter(item => status(item) !== 'Não iniciada').length} example={group.items[0].title}
                 studying={codes.some(code => activeParallel.has(code))} />;
             })}
       </section>
@@ -173,7 +191,9 @@ export function CurriculumBrowser({
         <div>
           <span className="eyebrow">AULAS DO MÓDULO</span>
           <h2>{initialMode === 'main' ? 'Sumário deste módulo' : 'Sumário desta trilha'}</h2>
-          <p>Um sumário de estudo: escolha uma aula pelo assunto, sem etapas bloqueadas.</p>
+          <p>{selectedMain ? moduleObjectives[selectedMain.items[0].id] : 'Explore os conceitos e pratique no seu ritmo.'}</p>
+          <small>{selected.items.filter(item => status(item) === 'Concluída').length} concluídas · {selected.items.filter(item => status(item) === 'Leitura registrada').length} leituras registradas</small>
+          {resumeLink && <a className="study-module-continue" href={resumeLink}>Continuar: {resume?.title} →</a>}
         </div>
         {selectedParallel && <button type="button" className={allActive ? 'parallel-toggle active' : 'parallel-toggle'}
           onClick={toggleModule} aria-pressed={allActive}>
@@ -182,9 +202,9 @@ export function CurriculumBrowser({
       </div>
       <section className="curriculum-list" aria-label={'Aulas de ' + selected.name}>
         {initialMode === 'main' ? visibleMain.map(item =>
-          <MainItemCard key={item.id} item={item} native={nativeIds.has(item.id)} legacy={legacyIds.has(item.id)} />
+          <MainItemCard key={item.id} item={item} native={nativeIds.has(item.id)} legacy={legacyIds.has(item.id)} status={status(item)} />
         ) : visibleParallel.map(item =>
-          <ParallelItemCard key={item.code} item={item} active={activeParallel.has(item.trackCode)}
+          <ParallelItemCard key={item.code} item={item} status={status(item)} active={activeParallel.has(item.trackCode)}
             onToggle={() => toggleParallelCode(item.trackCode)} />
         )}
       </section>
@@ -200,9 +220,9 @@ export function CurriculumBrowser({
   </div>;
 }
 
-function ModuleCard({name, href, index, count, unit, subtitle, start, example, studying}:{
+function ModuleCard({name, href, index, count, unit, subtitle, start, example, studying, progress}:{
   name:string; href:string; index:number; count:number; unit:string;
-  subtitle:string; start?:string; example:string; studying?:boolean
+  subtitle:string; start?:string; example:string; studying?:boolean; progress:number
 }) {
   return <a className="curriculum-module-card" href={href}>
     <div className="curriculum-module-top">
@@ -211,7 +231,7 @@ function ModuleCard({name, href, index, count, unit, subtitle, start, example, s
     </div>
     <h2>{name}</h2>
     <p className="curriculum-module-subtitle">{subtitle}</p>
-    <p className="curriculum-module-example">Comece por: {example}</p>
+    <p className="curriculum-module-example">{progress ? progress + "/" + count + " unidades com estudo registrado" : "Comece por: " + example}</p>
     <div className="curriculum-module-footer">
       <strong>{count} {unit}</strong>
       {start && <span>Aulas {start}</span>}
@@ -220,17 +240,17 @@ function ModuleCard({name, href, index, count, unit, subtitle, start, example, s
   </a>;
 }
 
-function MainItemCard({ item, native, legacy }:{
-  item: MainCurriculumItem; native: boolean; legacy: boolean
+function MainItemCard({ item, native, legacy, status }:{
+  item: MainCurriculumItem; native: boolean; legacy: boolean; status: string
 }) {
   const interactive = native || legacy;
   const href = interactive ? '#lesson/' + item.id : '#course/main/' + item.id;
   return <a className="curriculum-row" href={href}>
     <div className="curriculum-code">{String(item.id).padStart(3, '0')}</div>
     <div className="curriculum-row-body">
-      <div className="curriculum-meta"><span>{item.track}</span><span>{item.durationMin} min</span></div>
+      <div className="curriculum-meta"><span>{item.track}</span><span>{lessonDurationLabel(item)}</span></div>
       <h3>{item.title}</h3>
-      <p>{interactive ? 'Teoria, prática e revisão' : 'Estudo e consulta'}</p>
+      <p>{status} · {interactive ? 'Teoria, prática e revisão' : 'Estudo e consulta'}</p>
     </div>
     <div className={'curriculum-status ' + (native ? 'native' : interactive ? 'legacy' : 'document')}>
       {interactive ? 'Interativa' : 'Leitura'}
@@ -238,8 +258,8 @@ function MainItemCard({ item, native, legacy }:{
   </a>;
 }
 
-function ParallelItemCard({item, active, onToggle}:{
-  item: ParallelCurriculumItem; active: boolean; onToggle: () => void
+function ParallelItemCard({item, active, onToggle, status}:{
+  item: ParallelCurriculumItem; active: boolean; onToggle: () => void; status: string
 }) {
   return <article className="curriculum-row parallel">
     <a href={'#course/parallel/' + item.code} className="parallel-open">
@@ -247,7 +267,7 @@ function ParallelItemCard({item, active, onToggle}:{
       <div className="curriculum-row-body">
         <div className="curriculum-meta"><span>{item.track}</span></div>
         <h3>{item.title}</h3>
-        <p>Estudo e consulta</p>
+        <p>{status} · Estudo e consulta</p>
       </div>
     </a>
     <button className={active ? 'parallel-toggle active' : 'parallel-toggle'}

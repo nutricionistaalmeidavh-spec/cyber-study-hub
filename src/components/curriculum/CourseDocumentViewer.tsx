@@ -8,6 +8,11 @@ import type {
 } from '../../curriculum/types';
 import { ReferencePanel } from '../references/ReferencePanel';
 import './curriculum.css';
+import { useStudyPosition, type StudySection } from '../useStudyPosition';
+import { studySectionHref } from '../../lib/studyNavigation';
+import { getStudyVisit, saveStudyVisit } from '../../lib/studyProgress';
+import ProgressSyncStatus from '../ProgressSyncStatus';
+import { lessonDurationLabel } from '../../lib/courseStudyMetadata';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -26,6 +31,22 @@ export function CourseDocumentViewer(props: Props) {
   const [markdown, setMarkdown] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [loadAttempt, setLoadAttempt] = useState(0);
+  const [readRevision, setReadRevision] = useState(0);
+  const [readError, setReadError] = useState('');
+  const [outlineOpen, setOutlineOpen] = useState(() => window.matchMedia('(min-width: 901px)').matches);
+  const unitKey = props.kind === 'main' ? String(props.id) : 'parallel:' + props.code;
+  const unitHref = props.kind === 'main' ? '#course/main/' + props.id : '#course/parallel/' + encodeURIComponent(props.code);
+  const outline = useMemo(() => documentOutline(markdown), [markdown]);
+  const position = useStudyPosition(unitKey, item?.title || '', unitHref, 'reading', outline, Boolean(item) && !loading && !error);
+  const read = useMemo(() => Boolean(getStudyVisit(unitKey)?.read), [unitKey, readRevision]);
+  const recordReading = () => {
+    if (!item) return;
+    try {
+      saveStudyVisit(unitKey, { ...getStudyVisit(unitKey), title: item.title, href: unitHref, kind: 'reading', read: !read });
+      setReadRevision(value => value + 1); setReadError('');
+    } catch { setReadError('Não foi possível registrar a leitura. Seu ponto de parada continua nesta página. Tente novamente.'); }
+  };
 
   useEffect(() => {
     if (!item) {
@@ -59,7 +80,7 @@ export function CourseDocumentViewer(props: Props) {
     return () => {
       cancelled = true;
     };
-  }, [item]);
+  }, [item, loadAttempt]);
 
   if (!item) {
     return (
@@ -86,10 +107,11 @@ export function CourseDocumentViewer(props: Props) {
           {item.kind === 'main' ? item.track : item.track}
         </span>
         <h1>{item.title}</h1>
-        <p>
-          Estude os fundamentos, acompanhe os exemplos e pratique no seu ritmo.
-          Os capítulos destacados ajudam a reconhecer problemas, aplicações e revisões.
-        </p>
+        <p>{item.kind === 'main' ? lessonDurationLabel(item) : 'Leitura e prática no seu ritmo'} · Seu ponto de parada é salvo nesta conta.</p>
+        {!loading && !error && <div className="study-reading-actions">
+          <button type="button" className="button ghost" aria-pressed={read} onClick={recordReading}>{read ? '✓ Leitura registrada — desfazer' : 'Registrar leitura'}</button>
+          <small>Registro pessoal de leitura; a prática e a avaliação são etapas distintas.</small>
+        </div>}
         {item.kind === 'main' && item.id >= 43 && item.id <= 100 && (
           <a className="button primary" href={`#lesson/${item.id}`}>
             Abrir experiência interativa
@@ -97,14 +119,22 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
+      <ProgressSyncStatus />
       <div className="course-document-layout">
         <main className="course-document-content">
           {loading && <p className="muted">Carregando conteúdo…</p>}
-          {error && <div className="feedback bad">{error}</div>}
+          {error && <div className="feedback bad" role="alert">{error} <button type="button" onClick={() => setLoadAttempt(value => value + 1)}>Tentar novamente</button></div>}
+          {position.saveError && <div role="alert">{position.saveError} <button type="button" onClick={position.retry}>Tentar salvar novamente</button></div>}
+          {readError && <div role="alert">{readError} <button type="button" onClick={recordReading}>Tentar registrar novamente</button></div>}
           {!loading && !error && <MarkdownDocument markdown={markdown} />}
         </main>
 
         <aside className="course-document-aside">
+          {outline.length > 0 && <details className="study-outline" open={outlineOpen} onToggle={event => setOutlineOpen(event.currentTarget.open)}>
+            <summary>Roteiro da aula</summary>
+            <nav aria-label="Capítulos da aula">{outline.map(section => <a key={section.id} href={studySectionHref(section.id)} aria-current={position.active === section.id ? 'location' : undefined}>{section.label}</a>)}</nav>
+            <a className="study-outline-module" href={moduleBackLink}>← Aulas do módulo</a>
+          </details>}
           <ReferencePanel curriculumItem={item} />
         </aside>
       </div>
@@ -120,6 +150,18 @@ export function CourseDocumentViewer(props: Props) {
       </nav>
     </div>
   );
+}
+
+function documentOutline(markdown: string): StudySection[] {
+  let fenced = false;
+  const outline: StudySection[] = [];
+  markdown.replace(/\r\n/g, '\n').split('\n').forEach((line, index) => {
+    if (line.startsWith('```')) { fenced = !fenced; return; }
+    if (fenced) return;
+    const heading = /^##\s+(.+)$/.exec(line);
+    if (heading) outline.push({ id: 'doc-' + index, label: heading[1].replace(/[*`]/g, '') });
+  });
+  return outline;
 }
 
 function MarkdownDocument({ markdown }: { markdown: string }) {
@@ -220,8 +262,8 @@ function parseMarkdown(markdown: string) {
       const level = heading[1].length;
       const content = renderInline(heading[2]);
       const key = `h-${index}`;
-      if (level === 1) nodes.push(<h1 key={key}>{content}</h1>);
-      else if (level === 2) nodes.push(<h2 key={key}>{content}</h2>);
+      if (level === 1 && nodes.length === 0) { index += 1; continue; }
+      if (level === 1 || level === 2) nodes.push(<h2 id={'doc-' + index} key={key}>{content}</h2>);
       else if (level === 3) nodes.push(<h3 key={key}>{content}</h3>);
       else nodes.push(<h4 key={key}>{content}</h4>);
       index += 1;

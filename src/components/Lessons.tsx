@@ -5,6 +5,8 @@ import { getLessonState, updateLessonState } from '../lib/storage';
 import { CurriculumBrowser } from './curriculum/CurriculumBrowser';
 import { hasNativeV2Lesson } from '../content/registry';
 import { LessonViewerV2 } from './lesson-v2/LessonViewerV2';
+import { useStudyPosition } from './useStudyPosition';
+import { studySectionHref } from '../lib/studyNavigation';
 
 export function LessonList(props:{initialTrack?:string;initialMode?:'main'|'parallel';initialModule?:string}) {
   return <CurriculumBrowser {...props} />;
@@ -41,6 +43,8 @@ export function LessonViewer(props:{id:number;onRefresh:()=>void}) {
 
 function LegacyLessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
   const lesson=lessons.find(l=>l.id===id) || lessons[0];
+  const position = useStudyPosition(String(lesson.id), lesson.title, '#lesson/' + lesson.id, 'interactive',
+    [{id:'conteudo',label:'Conteúdo'},{id:'fluxo',label:'Como funciona'},{id:'codigo',label:'Código'},{id:'laboratorio',label:'Laboratório'},{id:'conceitos',label:'Conceitos'},{id:'revisao',label:'Revisão'}]);
   const detail=lessonDetails[lesson.id];
   const state=getLessonState()[lesson.id] || {completed:false,favorite:false,doubt:false,quizBest:0};
   const [quizIndex,setQuizIndex]=useState(0);
@@ -88,10 +92,11 @@ function LegacyLessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
       </div>
     </section>
 
+    {position.saveError && <p role="alert">{position.saveError} <button onClick={position.retry}>Tentar novamente</button></p>}
     <section className="panel lesson-outline">
       <span className="eyebrow">ROTEIRO DA AULA</span>
       <div className="outline-grid">
-        <a href="#conteudo">1. Conteúdo</a><a href="#fluxo">2. Como funciona</a><a href="#codigo">3. Código</a><a href="#laboratorio">4. Laboratório</a><a href="#conceitos">5. Conceitos</a><a href="#revisao">6. Revisão</a>
+        <a href={studySectionHref('conteudo')}>1. Conteúdo</a><a href={studySectionHref('fluxo')}>2. Como funciona</a><a href={studySectionHref('codigo')}>3. Código</a><a href={studySectionHref('laboratorio')}>4. Laboratório</a><a href={studySectionHref('conceitos')}>5. Conceitos</a><a href={studySectionHref('revisao')}>6. Revisão</a>
       </div>
     </section>
 

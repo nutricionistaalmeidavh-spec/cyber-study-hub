@@ -1,0 +1,79 @@
+/* ArtiSys Academy: continuity and reading refinements, preserving the editorial world. */
+.study-brand{display:inline-flex;align-items:center;gap:12px;color:#fff;min-width:0}
+.study-brand-symbol{display:grid;grid-template-columns:repeat(2,16px);gap:4px;flex:none}
+.study-brand-symbol i{height:16px;border-radius:4px;background:linear-gradient(145deg,#dfd5ff,#8745f7)}
+.study-brand-symbol i:nth-child(2),.study-brand-symbol i:nth-child(3){background:linear-gradient(145deg,#bfa7f5,#7037ad)}
+.study-brand-name{display:flex;flex-direction:column;gap:5px;line-height:1}
+.study-brand-name strong{font-size:25px;letter-spacing:-.04em}.study-brand-name strong span{color:#d7baff}
+.study-brand-name small{font-size:9px;letter-spacing:.24em;color:#d9caeb}
+.app-shell .brand .study-brand-name{display:flex;flex-direction:column}
+.app-shell .brand .study-brand-name strong{font-size:25px}
+.app-shell .account-sidebar,.app-shell .install-card{background:#1b132b;border-color:#49365c}
+.app-shell .account-sidebar small{overflow-wrap:anywhere}.app-shell .account-sidebar button,.app-shell .install-card>span{color:#d7baff}
+.platform-gate{--bg:#0a0716;--panel:#1b132b;--text:#faf8fd;--muted:#c9badb;--teal:#bd94fa;--line:#49365c;background:radial-gradient(circle at 20% 25%,rgba(135,69,247,.12),transparent 40%),var(--bg)}
+.platform-gate .platform-intro{background:linear-gradient(135deg,#211333,#160e28)}
+.platform-gate .platform-form input{background:#160f23;border-color:#59436d;color:#faf8fd}
+.platform-gate .platform-form label{color:#eee3fa}.platform-gate .button.primary{background:#8745f7;color:#fff;border-color:#a46cf9}
+.platform-gate .platform-logo{margin-bottom:34px;text-decoration:none}
+.platform-gate .platform-logo>.study-brand{display:inline-flex;width:auto;height:auto;background:transparent;border-radius:0;font-size:inherit;color:inherit}.platform-logo .study-brand>span{background:none}
+.platform-gate .eyebrow{color:#d7baff}
+.study-sync{display:flex;align-items:center;flex-wrap:wrap;gap:10px;color:#d2c2e2;font-size:12px;line-height:1.5;margin:10px 0 16px}
+.study-sync button{font:inherit;min-height:40px;border:1px solid #68517f;border-radius:10px;background:#211530;color:#faf8fd;padding:7px 12px;cursor:pointer}
+.study-sync button:disabled{opacity:.65;cursor:wait}
+.course-document-page .course-document-hero{padding:22px 26px;margin:16px 0 12px}
+.course-document-page .course-document-hero h1{font-size:clamp(27px,3.2vw,38px);line-height:1.15;margin:6px 0 10px;letter-spacing:-.025em}
+.course-document-page .course-document-hero p{font-size:14px;margin:0}
+.study-reading-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:14px}
+.study-reading-actions small{color:#d2c2e2;font-size:12px;max-width:410px}
+.study-reading-actions .button{min-height:42px;font-size:12px}
+.course-document-layout{grid-template-columns:minmax(0,760px) minmax(220px,280px);gap:24px}
+.course-document-aside{display:grid;gap:16px;max-height:calc(100vh - 48px);overflow-y:auto;padding:2px}
+.study-outline{border:1px solid #49365c;border-radius:16px;background:#1b132b;padding:16px;min-width:0}
+.study-outline summary{color:#faf8fd;font-weight:750;cursor:pointer;min-height:30px}
+.study-outline nav{display:grid;gap:5px;margin-top:12px}
+.study-outline nav a{display:block;color:#d8c7e8;font-size:12px;line-height:1.5;padding:8px 10px;border-radius:8px;overflow-wrap:anywhere}
+.study-outline nav a[aria-current=location]{background:#3b2459;color:#fff;font-weight:750}
+.study-outline-module{display:block;padding:14px 0 0;color:#d7baff;font-size:12px}
+.study-outline a:focus-visible,.study-module-continue:focus-visible{outline:2px solid #c89dff;outline-offset:3px}
+.course-document-content h2,.lesson-v2-page section[id],.lesson-view section[id]{scroll-margin-top:24px}
+.course-document-page .editorial-chapter h2[id]:focus{outline:2px solid #8745f7;outline-offset:6px}
+.curriculum-page .curriculum-module-detail{padding:13px 18px;background:transparent;border:0;border-radius:0}
+.curriculum-module-detail h2{font-size:18px;margin:0 0 6px}.curriculum-module-detail small{display:block;color:#d2c2e2;margin-top:8px}
+.curriculum-page:has(.curriculum-module-detail){gap:12px}
+.curriculum-page:has(.curriculum-module-detail) .curriculum-tabs{display:none}
+.study-module-continue{display:inline-block;margin-top:12px;color:#e3cfff;font-size:13px;text-decoration:underline;text-underline-offset:4px}
+.curriculum-module-card .curriculum-module-subtitle{line-height:1.55;min-height:3.1em}
+.hub-home--returning .hub-focus{min-height:0;padding:22px 28px}
+.hub-home--returning .hub-focus h2{font-size:clamp(25px,3vw,34px)}
+.hub-home--returning .hub-ai-banner{padding:14px 20px}
+.hub-home--returning .hub-ai-banner strong{font-size:17px}
+.hub-home .study-sync{margin:0;font-size:11px}
+.ai-track .ai-hero{padding:20px 24px;gap:20px}
+.ai-track .ai-hero h1{font-size:clamp(25px,3vw,35px);margin:5px 0 9px}
+.ai-track .ai-hero p{font-size:14px;line-height:1.5}
+.ai-track .ai-pills{margin-top:12px}.ai-track .ai-pills span{padding:5px 8px;font-size:11px}
+.ai-track .ai-meter{padding:13px}.ai-track .ai-meter strong{font-size:28px}
+.ai-resume-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:18px 0 8px;color:#e4d7f2}
+.ai-resume-bar strong{display:block;font-size:12px;color:#d7baff;margin-bottom:5px}.ai-resume-bar .button{flex:none;font-size:12px}
+.ai-track .ai-section-heading{margin:16px 0}.ai-track .ai-section-heading h2{font-size:24px;margin:7px 0}
+.ai-track .ai-section-heading p{font-size:14px;margin-bottom:8px}
+@media(max-width:900px){
+ .course-document-layout{display:flex;flex-direction:column;gap:14px}
+ .course-document-aside{position:static;order:-1;width:100%;max-height:none;overflow:visible}
+ .study-outline nav{max-height:35vh;overflow-y:auto}
+ .course-document-content{width:100%;min-width:0}
+}
+@media(max-width:700px){
+ .course-document-page .course-document-hero{padding:18px;margin-bottom:8px}
+ .study-reading-actions{align-items:flex-start;flex-direction:column}
+ .study-reading-actions .button{width:100%}
+ .curriculum-page .curriculum-module-detail{padding:5px 0}
+ .hub-home--returning .hub-focus{padding:18px}
+ .ai-track .ai-hero{padding:18px;grid-template-columns:1fr}
+ .ai-track .ai-meter{display:none}
+ .ai-resume-bar{align-items:flex-start;flex-direction:column;gap:10px}
+ .ai-resume-bar .button{min-height:44px}
+ .ai-track .ai-section-heading h2{font-size:22px}
+ .study-sync{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.course-document-content,.lesson-v2-page,.lesson-view{scroll-behavior:auto}}

@@ -3,6 +3,8 @@ import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import { PlatformGate, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
+import AcademyBrand from './components/AcademyBrand';
+import { studyRouteHash, studySectionId, scrollStudySection } from './lib/studyNavigation';
 import { LessonList, LessonViewer } from './components/Lessons';
 import { GamePlayer, GamesHub } from './components/Games';
 import Review from './components/Review';
@@ -32,7 +34,7 @@ type Route =
   | { page: 'material'; id: string };
 
 function parseHash(): Route {
-  const raw = window.location.hash.replace(/^#/, '') || 'dashboard';
+  const raw = studyRouteHash(window.location.hash);
   if (raw.startsWith('course/main/')) return { page: 'course-main', id: Number(raw.split('/')[2]) || 1 };
   if (raw.startsWith('course/parallel/')) return { page: 'course-parallel', code: decodeURIComponent(raw.split('/')[2] || 'LOG-01') };
   if (raw.startsWith('lesson/')) return { page: 'lesson', id: Number(raw.split('/')[1]) || 43 };
@@ -51,7 +53,7 @@ function parseHash(): Route {
   if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
-  if (raw === 'ai-dev') return { page: 'ai-dev' };
+  if (raw.split('?')[0] === 'ai-dev') return { page: 'ai-dev' };
   if (raw === 'materials') return { page: 'materials' };
   if (raw === 'games') return { page: 'games' };
   if (raw === 'review') return { page: 'review' };
@@ -72,7 +74,15 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   const isStandalone = useMemo(() => window.matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & {standalone?:boolean}).standalone === true, []);
 
   useEffect(() => {
-    const onHash = () => { setRoute(parseHash()); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+    let previous = studyRouteHash(window.location.hash);
+    const onHash = () => {
+      const next = studyRouteHash(window.location.hash);
+      setRoute(parseHash());
+      const section = studySectionId(window.location.hash);
+      if (section) requestAnimationFrame(() => scrollStudySection(section));
+      else if (next !== previous) window.scrollTo({ top: 0, behavior: 'instant' });
+      previous = next;
+    };
     const onInstall = (e: Event) => { e.preventDefault(); setInstallPrompt(e as InstallPromptEvent); };
     window.addEventListener('hashchange', onHash);
     window.addEventListener('beforeinstallprompt', onInstall);
@@ -87,7 +97,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
 
   return <div className="app-shell">
     <aside className="sidebar">
-      <a className="brand" href="#dashboard"><span className="brand-mark">+</span><div><strong>Cyber Study</strong><small>Hub</small></div></a>
+      <a className="brand" href="#dashboard"><AcademyBrand /></a>
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
         <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
@@ -108,9 +118,9 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
       {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} />}
-      {route.page==='lesson' && <LessonViewer id={route.id} onRefresh={refresh} />}
-      {route.page==='course-main' && <CourseDocumentViewer kind="main" id={route.id} />}
-      {route.page==='course-parallel' && <CourseDocumentViewer kind="parallel" code={route.code} />}
+      {route.page==='lesson' && <LessonViewer key={route.id} id={route.id} onRefresh={refresh} />}
+      {route.page==='course-main' && <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} />}
+      {route.page==='course-parallel' && <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} />}
       {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
       {route.page==='games' && <GamesHub />}
       {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
