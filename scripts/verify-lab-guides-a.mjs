@@ -55,10 +55,11 @@ const app=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf
 assert.ok(app.includes('getParallelLabGuide')&&app.includes('getMainLabGuide')&&app.includes('labGuide.guide'),'Aula não mostra o roteiro específico');
 const mainDoc=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf8');
 const matches=mainDoc.split('\n').filter(line=>line.includes("'/course-labs/") && line.trim().startsWith('[')).map(line=>{
- const a=line.indexOf('['),b=line.indexOf(']');
- const columns=line.slice(a+1,b).split(',');
- return {from:Number(columns[0]),to:Number(columns[1]),file:columns[3]?.trim().replaceAll("'",'')};
-}).filter(item=>Number.isInteger(item.from)&&Number.isInteger(item.to)&&item.file?.startsWith('/course-labs/'));
+ const left=line.indexOf('['),comma1=line.indexOf(',',left),comma2=line.indexOf(',',comma1+1);
+ const from=Number(line.slice(left+1,comma1)),to=Number(line.slice(comma1+1,comma2));
+ const start=line.indexOf("'/course-labs/"),end=line.indexOf("'",start+1);
+ return {from,to,file:line.slice(start+1,end)};
+}).filter(item=>Number.isInteger(item.from)&&Number.isInteger(item.to)&&item.file.startsWith('/course-labs/'));
 assert.ok(matches.length>=25,'Mapa central sem faixas suficientes');
 for(let id=1;id<=218;id++)assert.equal(matches.filter(item=>id>=item.from&&id<=item.to).length,1,'Aula '+id+' com pacote ausente ou ambíguo');
 for(const item of matches)assert.ok(existsSync('public'+item.file),'Link central quebrado: '+item.file);
