@@ -6,7 +6,7 @@
   "humanLearnerTesting": "not_performed",
   "externalHumanReview": "not_performed",
   "gradeDefinition": "A editorial condicionada a conteúdo, didática, prática local, prova independente, salvaguardas, evidências e CI. Não equivale a avaliação humana de aprendizagem.",
-  "checksumAlgorithm": "fnv1a32_utf16 (checagem simples de deriva; não assinatura criptográfica)",
+  "checksumAlgorithm": "sha256_module_and_git_blob_sha1_assets",
   "modules": {
     "01": {
       "moduleId": 1,
@@ -17,7 +17,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "6260d0fb",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -82,7 +81,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "A eficácia com alunos e a performance de um canal real não foram medidas."
-      ]
+      ],
+      "moduleSha256": "5d0ec4bab7abffb247de0e166aa0eca10dff994a6b9b6bfb7d42a7bc8c146d5a",
+      "guideBlobSha1": "b6286fddcd946bc375f6248fd445bb580dd3e6c9",
+      "examBlobSha1": "944514e711498ff2747b40a8b9607ded4d3e00a6",
+      "keyBlobSha1": "15bc91a878cb0a9aa1f733de7888871ca4dbb144"
     },
     "02": {
       "moduleId": 2,
@@ -93,7 +96,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "7d38d87a",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -158,7 +160,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "A eficácia com alunos e a performance de um canal real não foram medidas."
-      ]
+      ],
+      "moduleSha256": "b7e8d6e2360f34d4e8399f67afa32634eaec1eef3c5c7a00baa51fc3a4013769",
+      "guideBlobSha1": "3f2081de7e60d332d265e7763fce8e768bf6afe8",
+      "examBlobSha1": "d52faa281196dfc70266cf23849e0589082369fb",
+      "keyBlobSha1": "d48e07826a72c4429b8b5b8cb963936b9e77e8d7"
     },
     "03": {
       "moduleId": 3,
@@ -169,7 +175,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "3af632da",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -234,7 +239,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "Piper/Kokoro e escuta de áudio real são tarefas do aluno, não testes concluídos por CI."
-      ]
+      ],
+      "moduleSha256": "e8048768974ca996db8f868428fa05c04ddb8952405cca22a214d444ea585c18",
+      "guideBlobSha1": "38ba3a7cc64beb175695020291a5e46a900d16f5",
+      "examBlobSha1": "e8d91d630e99323e8fb4143eff6f5d81a060096b",
+      "keyBlobSha1": "24ecfd062cbe00b66683c2789b3c7ec118c3468d"
     },
     "04": {
       "moduleId": 4,
@@ -245,7 +254,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "eacd05ec",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -310,7 +318,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "A eficácia com alunos e a performance de um canal real não foram medidas."
-      ]
+      ],
+      "moduleSha256": "03b6ab35576a0755c6f51f8e471f489112d0607adb7962a54e7afaa0d933e93e",
+      "guideBlobSha1": "3a361c950a3201e9db7806d474fa5211950cdd94",
+      "examBlobSha1": "de2b7c96c6c69ed54b98aeddc9e158807a4faeaa",
+      "keyBlobSha1": "7affc10f9d5d30be6949b9894ef563aa053b3bef"
     },
     "05": {
       "moduleId": 5,
@@ -321,7 +333,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "014089cc",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -386,7 +397,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "Render local depende de FFmpeg; revisão audiovisual final permanece humana."
-      ]
+      ],
+      "moduleSha256": "1b6e4f372946f89f083cf91383911a89bd1ac1130b983276a01ba0d1b2f0760e",
+      "guideBlobSha1": "278c8bfc2a8abf536a96aa27dd4cf9133b4de30d",
+      "examBlobSha1": "8cc80b5585c04d1305dad4dc5bf9a78003f9d577",
+      "keyBlobSha1": "5d7464be1a6aff8ee2115a4850f10f986c4f4b64"
     },
     "06": {
       "moduleId": 6,
@@ -397,7 +412,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "7f19f528",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -462,7 +476,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "A eficácia com alunos e a performance de um canal real não foram medidas."
-      ]
+      ],
+      "moduleSha256": "2fec2a2bec027614db927e76732600c947ade788d94b89a0c1c1d9603724b2e1",
+      "guideBlobSha1": "e098c7229b40d380ce99bbe4d17b2ac61a08ab9e",
+      "examBlobSha1": "0891efdad91079672a39c5b9c088b7f8d877ded0",
+      "keyBlobSha1": "2930aa9d7b6c21cece1744e67e48e0087fb6d94a"
     },
     "07": {
       "moduleId": 7,
@@ -473,7 +491,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "97e818b4",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -538,7 +555,11 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "A eficácia com alunos e a performance de um canal real não foram medidas."
-      ]
+      ],
+      "moduleSha256": "224b7b51bf297c05c047b979de857d950e04c626e919b373c144aabf8b34210f",
+      "guideBlobSha1": "d3025fef4759f24a6f36c4080d21b342041244f1",
+      "examBlobSha1": "c3967713ae86cb8afeacb1c0a8dbbd79e01b60db",
+      "keyBlobSha1": "fb74d5171f29a29de2de12465ccde06412e7d398"
     },
     "08": {
       "moduleId": 8,
@@ -549,7 +570,6 @@
       "humanLearnerTesting": "not_performed",
       "liveServiceTesting": "not_performed",
       "checksumAlgorithm": "fnv1a32_utf16",
-      "contentChecksum": "7c3e5616",
       "scores": {
         "conteudoTecnico": 91,
         "didatica": 91,
@@ -614,7 +634,13 @@
         "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
         "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
         "A eficácia com alunos e a performance de um canal real não foram medidas."
-      ]
+      ],
+      "moduleSha256": "8e07ddbd4488044cd5f28cab81e4525a88674bd50249ca94e42af5077e40c5b3",
+      "guideBlobSha1": "83e5c36e2c970f79d61de3325778ccbeb518e04c",
+      "examBlobSha1": "f07b16471ccdc2395a128dc74abc067566738ac4",
+      "keyBlobSha1": "f067c16071984b3116ba7a0a216a1e84d0a70c3b"
     }
-  }
+  },
+  "engineBlobSha1": "cc0be08e90c269d4ecc05f1eb40f8b1f0125a03b",
+  "testBlobSha1": "3bb4674de60266ebd9ea9079315d5ea4540037a6"
 }
