@@ -12542,22 +12542,22 @@
         }
       ]
     },
-    "AULA-171": {
+    "AULA-201": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "09e1f8dbdc2a47dc1f681d995db4064e1b24f5d381587c85c2267ff89493fcf2",
+      "summary": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "cdeb4ce2dad0675589ad6e32f259675e36f89f1d6cdb30b0f59e7f91a1761200",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12570,58 +12570,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/171.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
-          "result": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/201.md :: conteudoTecnico",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/171.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-171."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/201.md :: didatica",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 171; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 171 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 201",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/171.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 171; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/201.md :: defesa",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/171.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-171.md",
-          "result": "Seis perguntas do tema Fuzzing, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/201.md; public/course-labs/a201-210/answer-keys/AULA-201.md",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/171.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos; vinculada ao ID AULA-171 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/201.md :: especificidade",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-172": {
+    "AULA-202": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Coverage-guided: distinguir sinal de caminho de verificação de segurança. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "8df5e5fbafe7bb412fdaf56fc3858faa61800cce369851e1d073a29e4c41fbab",
+      "summary": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "e1c4fef7f0117e7fe211c4fcd0b2c95743d46ed1f51c2926985091826eee790b",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12634,58 +12634,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/172.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
-          "result": "Coverage-guided: distinguir sinal de caminho de verificação de segurança. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/202.md :: conteudoTecnico",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/172.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-172."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/202.md :: didatica",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 172; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 172 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 202",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/172.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 172; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/202.md :: defesa",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/172.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-172.md",
-          "result": "Seis perguntas do tema Coverage-Guided Fuzzing, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/202.md; public/course-labs/a201-210/answer-keys/AULA-202.md",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/172.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Coverage-guided: distinguir sinal de caminho de verificação de segurança; vinculada ao ID AULA-172 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/202.md :: especificidade",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-173": {
+    "AULA-203": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "ASan vs UBSan: classes e limites da ausência de relatório. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "fbcfa9d73ee28377e8d0a47263fa58b06a38ec619c251db84562e46c17155459",
+      "summary": "Minimização de dados: projeção antes do prompt e ACL por owner. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "0c7c7bbd9b2be867a6e51e9d10f760c546d871d0682857f234f84954a0c9226b",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12698,58 +12698,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/173.md :: Complemento A 1–2; https://clang.llvm.org/docs/AddressSanitizer.html",
-          "result": "ASan vs UBSan: classes e limites da ausência de relatório. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/203.md :: conteudoTecnico",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/173.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-173."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/203.md :: didatica",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 173; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 173 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 203",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/173.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 173; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/203.md :: defesa",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/173.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-173.md",
-          "result": "Seis perguntas do tema Sanitizers, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/203.md; public/course-labs/a201-210/answer-keys/AULA-203.md",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/173.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "ASan vs UBSan: classes e limites da ausência de relatório; vinculada ao ID AULA-173 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/203.md :: especificidade",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-174": {
+    "AULA-204": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Triage: assinatura provisória de crash, grupo por classe/frame. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "0c857adfd6aaab092f2a56364df33e868a3232f446fcc422ac4c27995c170939",
+      "summary": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "42e509b71f41672779d0ec9738acc4366177f9ca5e7d23b2e7c870f83cb7a1a6",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12762,58 +12762,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/174.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
-          "result": "Triage: assinatura provisória de crash, grupo por classe/frame. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/204.md :: conteudoTecnico",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/174.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-174."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/204.md :: didatica",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 174; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 174 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 204",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/174.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 174; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/204.md :: defesa",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/174.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-174.md",
-          "result": "Seis perguntas do tema Crash Triage, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/204.md; public/course-labs/a201-210/answer-keys/AULA-204.md",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/174.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Triage: assinatura provisória de crash, grupo por classe/frame; vinculada ao ID AULA-174 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/204.md :: especificidade",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-175": {
+    "AULA-205": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Causa primária: comprimento de origem versus capacidade e gatilho. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "f2f7ded45e8e0eed7b93b040df9721a5b14dc527a10d7cb2a7b4c0363be54bd8",
+      "summary": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "9153a8b057b1d7da1ac08bd4720c7a10e74a03d03cdf305466064bffaa5940d6",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12826,58 +12826,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/175.md :: Complemento A 1–2; https://cwe.mitre.org/data/definitions/20.html",
-          "result": "Causa primária: comprimento de origem versus capacidade e gatilho. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/205.md :: conteudoTecnico",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/175.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-175."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/205.md :: didatica",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 175; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 175 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 205",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/175.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 175; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/205.md :: defesa",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/175.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-175.md",
-          "result": "Seis perguntas do tema Root Cause Analysis, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/205.md; public/course-labs/a201-210/answer-keys/AULA-205.md",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/175.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Causa primária: comprimento de origem versus capacidade e gatilho; vinculada ao ID AULA-175 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/205.md :: especificidade",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-176": {
+    "AULA-206": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Reprodução: fixture, seed e oráculo com discrepância explícita. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "eda9038fc23c06a010b260d708979b630681bfc08a363b644083c88c6140fccc",
+      "summary": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "65202970ee79ba638e1ac9d486c791a3c7fe1d6b446382f06af1b6adfc74ada1",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12890,58 +12890,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/176.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
-          "result": "Reprodução: fixture, seed e oráculo com discrepância explícita. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/206.md :: conteudoTecnico",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/176.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-176."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/206.md :: didatica",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 176; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 176 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 206",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/176.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 176; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/206.md :: defesa",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/176.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-176.md",
-          "result": "Seis perguntas do tema Reproduzir Vulnerabilidade, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/206.md; public/course-labs/a201-210/answer-keys/AULA-206.md",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/176.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Reprodução: fixture, seed e oráculo com discrepância explícita; vinculada ao ID AULA-176 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/206.md :: especificidade",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-177": {
+    "AULA-207": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "PoC segura: gate declarativo sem rede ou dados reais. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "98aea3ea2f01c26084617afbba6d7f6b17ddc0638b149d46e5980a0f4c3c607d",
+      "summary": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "02844e4034df46c61822a35e88a7872cce4acaf81c928f08a3dbc689876135da",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -12954,58 +12954,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/177.md :: Complemento A 1–2; https://owasp.org/www-community/",
-          "result": "PoC segura: gate declarativo sem rede ou dados reais. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/207.md :: conteudoTecnico",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/177.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-177."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/207.md :: didatica",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 177; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 177 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 207",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/177.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 177; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/207.md :: defesa",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/177.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-177.md",
-          "result": "Seis perguntas do tema Safe PoC, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/207.md; public/course-labs/a201-210/answer-keys/AULA-207.md",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/177.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "PoC segura: gate declarativo sem rede ou dados reais; vinculada ao ID AULA-177 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/207.md :: especificidade",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-178": {
+    "AULA-208": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Patch diff: checar comportamento antes/depois com positivo e negativo. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "4f9239dbbca1505e2eb758a58a1e367c9db4fc175a38769d5ec848498ddc1b63",
+      "summary": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "b77d262d32c2c2ff87d8b9c0557f2616731de6d6aa46c9d59f3c4595a538ab41",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -13018,58 +13018,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/178.md :: Complemento A 1–2; https://cwe.mitre.org/data/definitions/20.html",
-          "result": "Patch diff: checar comportamento antes/depois com positivo e negativo. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/208.md :: conteudoTecnico",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/178.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-178."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/208.md :: didatica",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 178; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 178 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 208",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/178.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 178; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/208.md :: defesa",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/178.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-178.md",
-          "result": "Seis perguntas do tema Patch Diff, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/208.md; public/course-labs/a201-210/answer-keys/AULA-208.md",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/178.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Patch diff: checar comportamento antes/depois com positivo e negativo; vinculada ao ID AULA-178 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/208.md :: especificidade",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-179": {
+    "AULA-209": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Variant analysis: candidatos por origem e consumo de comprimento. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "2cde815614381f9a00aacf933736bb0fbbdb8780dd8e9e5e177a4d96e037f63f",
+      "summary": "Capstone geral: escopo local, autorização, stop condition e reset. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "41634a3645130be72e16bb20f53b5091a18cf4d9fae30a40268292868e470cbd",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -13082,58 +13082,58 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/179.md :: Complemento A 1–2; https://cwe.mitre.org/data/definitions/20.html",
-          "result": "Variant analysis: candidatos por origem e consumo de comprimento. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/209.md :: conteudoTecnico",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/179.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-179."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/209.md :: didatica",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 179; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 179 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 209",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/179.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 179; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/209.md :: defesa",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/179.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-179.md",
-          "result": "Seis perguntas do tema Variant Analysis, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/209.md; public/course-labs/a201-210/answer-keys/AULA-209.md",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/179.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Variant analysis: candidatos por origem e consumo de comprimento; vinculada ao ID AULA-179 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/209.md :: especificidade",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     },
-    "AULA-180": {
+    "AULA-210": {
       "grade": "A",
-      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
-      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
       "reviewedOn": "2026-10-15",
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
-      "summary": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
-      "contentSha256": "8bae66ea33a9bfeecf6ead8c6fc281b49847bc443b037cfe0a7515b8f7cee54f",
+      "summary": "Capstone geral: DFD, fronteiras, controles e teste negativo. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "834c40cdcb904cace6ae0ead3c02da589e1eca170815e3638d3fbc3aa24f1e67",
       "scores": {
         "conteudoTecnico": 92,
-        "didatica": 91,
-        "pratica": 90,
+        "didatica": 90,
+        "pratica": 93,
         "defesa": 93,
-        "avaliacao": 92,
-        "especificidade": 94
+        "avaliacao": 91,
+        "especificidade": 93
       },
       "gates": {
         "precisaoRevisada": true,
@@ -13146,39 +13146,39 @@
       "evidence": [
         {
           "dimension": "conteudoTecnico",
-          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
-          "reference": "public/course-library/main/180.md :: Complemento A 1–2; https://www.cve.org/About/Overview",
-          "result": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/210.md :: conteudoTecnico",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "didatica",
-          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
-          "reference": "public/course-library/main/180.md :: Complemento A 1–3",
-          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-180."
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/210.md :: didatica",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "pratica",
-          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
-          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 180; public/course-labs/a171-180/models.mjs",
-          "result": "Teste 180 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 210",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "defesa",
-          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
-          "reference": "public/course-library/main/180.md :: Complemento A 2–3",
-          "result": "Correção/reteste de causa própria da fixture 180; sem alegar proteção de produtos ou serviços de terceiros."
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/210.md :: defesa",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "avaliacao",
-          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
-          "reference": "public/course-library/main/180.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-180.md",
-          "result": "Seis perguntas do tema CVE Research, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/210.md; public/course-labs/a201-210/answer-keys/AULA-210.md",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         },
         {
           "dimension": "especificidade",
-          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
-          "reference": "public/course-library/main/180.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
-          "result": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado; vinculada ao ID AULA-180 e evidência SHA-256."
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/210.md :: especificidade",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
         }
       ]
     }
