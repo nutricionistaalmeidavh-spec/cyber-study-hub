@@ -227,9 +227,9 @@ function ChannelAutomationTrailLoaded({ userId, modules, oficinas }: { userId:st
               <a className="button primary" target="_blank" rel="noopener noreferrer" href={oficina.guide}>Abrir guia de integração e arquivos ↗</a>
               <div className="channel-workshop-command"><strong>Execute no seu computador:</strong><code>{oficina.command}</code></div>
               <h4>Arquivos que você vai produzir</h4>
-              <ul>{oficina.artifacts.map(file => <li key={file}><code>{file}</code></li>)}</ul>
+              <ul>{oficina.artifacts.map((file:string) => <li key={file}><code>{file}</code></li>)}</ul>
               <h4>Código existente que você vai usar</h4>
-              <ul className="channel-workshop-sources">{oficina.sources.map(source =>
+              <ul className="channel-workshop-sources">{oficina.sources.map((source:{repo:string;path:string;url:string;access:string;why:string}) =>
                 <li key={source.repo + source.path}>
                   <a href={source.url} target="_blank" rel="noopener noreferrer">{source.repo}/{source.path} ↗</a>
                   <small>{source.access === 'private' ? 'Repositório privado: precisa de acesso · opcional' : 'Origem pública com código MIT'}</small>
