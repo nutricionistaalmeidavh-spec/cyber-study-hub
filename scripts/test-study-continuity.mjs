@@ -185,6 +185,7 @@ test('a completed interactive lesson is not presented as the module continuation
     '../../lib/learningProgress': { getLearningProgress: () => ({ 47: { completed: true } }) },
     '../../lib/storage': { getLessonState: () => ({}) },
     '../../lib/courseStudyMetadata': { lessonDurationLabel: () => '60 min', moduleObjectives: {} },
+    '../../lib/modulePresentation': load('src/lib/modulePresentation.ts'),
     '../../lib/studyProgress': { getStudyVisits: () => [{ key: '47', href: '#lesson/47', title: 'Cache', kind: 'interactive' }] }
   });
   const { CurriculumBrowser } = load('src/components/curriculum/CurriculumBrowser.tsx', deps);

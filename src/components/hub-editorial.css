@@ -547,3 +547,47 @@
   :where(.hub-home,.curriculum-page,.games-page,.materials-page) :is(a,button){transition:none!important}
   .games-mode-card:hover,.hub-journey:hover,.curriculum-module-card:hover{transform:none}
 }
+
+
+/* 2026-10 — cards de estudo: superfície lilás translúcida, mesma cor nas 3 rotas. */
+.hub-home .hub-journey,
+.hub-home .hub-journey:nth-child(2),
+.hub-home .hub-journey:nth-child(3),
+.curriculum-page .curriculum-module-card,
+.curriculum-page .curriculum-module-card:nth-child(3n+2){
+  background:linear-gradient(140deg,rgba(241,233,251,.94),rgba(220,207,239,.91));
+  border:1px solid rgba(202,179,230,.74);
+  color:#281b40;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 24px rgba(7,3,15,.08);
+}
+.hub-home .hub-journey:hover,
+.curriculum-page .curriculum-module-card:hover{
+  background:linear-gradient(140deg,rgba(247,240,255,.97),rgba(229,216,248,.95));
+  border-color:#a873e1;
+}
+.hub-home .hub-journey strong,
+.hub-home .hub-journey:nth-child(3) strong,
+.curriculum-page .curriculum-module-card h2{color:#281b40}
+.hub-home .hub-journey p,
+.hub-home .hub-journey:nth-child(3) p{color:#665575}
+.hub-home .hub-journey>div>span,
+.hub-home .hub-journey:nth-child(3)>div>span{color:#6933a3}
+.hub-home .hub-journey{min-height:118px;align-items:center}
+.hub-home .hub-journey>div{gap:4px}
+.hub-home .hub-journey p{margin:0;font-size:12px}
+.hub-home .hub-journey>div>span{margin-top:8px}
+.curriculum-page .curriculum-module-card{min-height:148px;gap:11px}
+.curriculum-page .curriculum-module-card h2{flex:1;font-size:20px}
+.curriculum-page .curriculum-module-footer{margin-top:auto;border-color:rgba(124,88,160,.19)}
+.curriculum-page .curriculum-module-footer strong{color:#63318e}
+.curriculum-page .curriculum-module-index{font-size:12px}
+@media(max-width:780px){
+  .hub-focus-copy{gap:9px}
+  .hub-focus h2{font-size:clamp(27px,7vw,33px)}
+  .hub-focus-lesson{margin:4px 0 2px}
+  .hub-journey-grid{gap:9px}
+  .hub-home .hub-journey{min-height:104px;padding:15px 17px}
+  .hub-home .hub-journey strong{font-size:17px}
+  .hub-home .hub-journey p{font-size:12px}
+  .curriculum-page .curriculum-module-card{min-height:130px}
+}
