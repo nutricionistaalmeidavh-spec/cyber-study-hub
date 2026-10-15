@@ -13,7 +13,7 @@ assert.equal(cat.parallel.length, 325);
 assert.equal(audit.humanLearnerTesting, 'not_performed');
 assert.equal(audit.externalHumanReview, 'not_performed');
 assert.equal(Object.keys(audit.units).length,10);
-assert.ok(Object.keys(reg.editorialReviews).length>=203,'preserve main A through 200 and add cohort 171–180');
+assert.ok(Object.keys(reg.editorialReviews).length>=213,'preserve main A through 210 and add cohort 171–180');
 for(let n=171;n<=180;n++){
  const id='AULA-'+n;
  const file='public/course-library/main/'+n+'.md';
@@ -44,5 +44,5 @@ for(let n=171;n<=180;n++){
 }
 for(let n=1;n<=170;n++)assert.equal(reg.editorialReviews['AULA-'+String(n).padStart(3,'0')]?.grade,'A','previous A '+n);
 for(const id of ['LOG-01','PY-01','NET-25'])assert.equal(reg.editorialReviews[id]?.grade,'A');
-for(let n=181;n<=200;n++)assert.equal(reg.editorialReviews['AULA-'+n]?.grade,'A','main grade preserved '+n);
-console.log('PASS: at least 203 A records, previous main cohorts preserved and inventory intact.');
+for(let n=181;n<=210;n++)assert.equal(reg.editorialReviews['AULA-'+n]?.grade,'A','main grade preserved '+n);
+console.log('PASS: at least 213 A records, previous main cohorts preserved and inventory intact.');
