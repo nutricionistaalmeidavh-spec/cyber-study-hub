@@ -77,7 +77,7 @@ export default function AcademyLanding() {
         </nav>
         <div className="academy-header-actions">
           <a className="academy-login" href="/">Já sou aluno</a>
-          <a className="academy-button academy-button-primary academy-header-cta" href="#trilhas">Explorar trilhas <Arrow /></a>
+          <a className="academy-button academy-button-primary academy-header-cta" href="/?register=1">Criar conta <Arrow /></a>
         </div>
         <details className="academy-mobile-menu">
           <summary aria-label="Abrir menu">Menu <span aria-hidden="true">☰</span></summary>
@@ -87,7 +87,7 @@ export default function AcademyLanding() {
             <a href="#assinaturas">Assinaturas</a>
             <a href="#perguntas">Perguntas</a>
             <a href="/roadmap">Votar em melhorias</a>
-            <a href="/">Entrar no hub</a>
+            <a href="/?register=1">Criar minha conta</a><a href="/">Entrar no hub</a>
           </nav>
         </details>
       </div>
@@ -103,7 +103,7 @@ export default function AcademyLanding() {
           <p className="academy-hero-lead">Aprenda tecnologia. Desenvolva habilidades. Construa o futuro.</p>
           <p className="academy-hero-description">Trilhas de cibersegurança, programação e inteligência artificial, organizadas em módulos práticos. Estude no seu ritmo, aplique o conhecimento e acompanhe sua evolução.</p>
           <div className="academy-hero-actions">
-            <a className="academy-button academy-button-primary" href="#trilhas">Conhecer as trilhas <Arrow /></a>
+            <a className="academy-button academy-button-primary" href="/?register=1">Criar minha conta <Arrow /></a>
             <a className="academy-button academy-button-outline" href="#metodo">Como funciona <span aria-hidden="true">↓</span></a>
           </div>
           <div className="academy-hero-proof">
@@ -231,7 +231,7 @@ export default function AcademyLanding() {
             <details data-reveal><summary>Já posso contratar uma assinatura?<span aria-hidden="true">+</span></summary><p>Os planos de assinatura ainda estão em preparação. Esta página apresenta a plataforma e os formatos de acesso previstos, sem contratação ou cobrança ativa.</p></details>
             <details data-reveal><summary>Preciso pagar uma ferramenta de IA?<span aria-hidden="true">+</span></summary><p>Sem API paga obrigatória: a trilha de desenvolvimento com IA pode ser concluída com alternativas gratuitas e locais. Você pode usar assistentes disponíveis, estudar sem IA ou optar por IA local se tiver hardware adequado. Alguns serviços externos oferecem planos pagos opcionais.</p></details>
             <details data-reveal><summary>Consigo estudar pelo celular?<span aria-hidden="true">+</span></summary><p>Sim. O ambiente de estudos funciona no navegador de dispositivos móveis e pode ser instalado como aplicativo web progressivo em dispositivos compatíveis.</p></details>
-            <details data-reveal><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Neste momento, novos cadastros podem depender de convite do administrador. Se você já possui acesso, use o botão “Já sou aluno”.</p></details>
+            <details data-reveal><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Alunos podem criar a própria conta sem convite e sem código por e-mail. Professores e administradores recebem convite da equipe. Ter uma conta não libera automaticamente cursos pagos.</p></details>
           </div>
         </div>
       </section>
