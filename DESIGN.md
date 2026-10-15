@@ -79,3 +79,12 @@ Hierarquia de navegação:
 - Materiais reúne categorias com contagem baseada em `src/data/materials.ts` e arquivos reais acessíveis pelas rotas originais. A origem do Drive fica em painel recolhível.
 
 Fontes preferenciais são locais com fallback de sistema; sem fontes remotas, novas bibliotecas, integrações comerciais ou dependências pagas. Deploy de produção permanece exclusivamente **Cloudflare Workers**, por meio de `wrangler.toml` e `npm run deploy`.
+
+
+## Study continuity and Academy identity (2026-10-14)
+
+`study-experience.css` is the final scoped refinement layer. AcademyBrand is shared by the landing, sign-in and workspace. Public course/catalog content and authentication contracts remain unchanged.
+
+Section links retain the route (`#lesson/47?section=v2-lab`). Reading pages use a compact single title and a contextual outline, collapsed initially on narrow screens. Reading registration is reversible and is distinct from practical/assessment completion.
+
+Study visits and AI step drafts extend entries in the existing account-owned `cyber-study-learning-v2` state, preserving legacy flags and quiz history. Parallel entries use `parallel:<code>`; AI uses `ai-dev`. Numeric-only consumers must ignore these namespaced entries. Old AI local notes are preserved and imported without overwriting account notes. Sync feedback reports local pending changes and confirms only completed server synchronization.

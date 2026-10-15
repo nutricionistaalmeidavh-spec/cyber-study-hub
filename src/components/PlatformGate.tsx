@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode, type FormEvent } from 'react';
 import { activateUserStorage, deactivateUserStorage, retryProgressSync } from '../lib/accountStorage';
 import './platform.css';
+import AcademyBrand from './AcademyBrand';
 
 export type PlatformUser={
   id:string; name:string; email:string; role:'admin'|'teacher'|'student'; status:'active'|'suspended'; createdAt:string;
@@ -60,7 +61,7 @@ export function PlatformGate({children}:{children:(user:PlatformUser,actions:{lo
     try{await platformApi<{ok:boolean}>('/api/auth/logout','POST');await deactivateUserStorage();setUser(null);window.location.hash='#dashboard';}
     catch(e){setError(String(e));}
   };
-  if(busy)return <div className="platform-gate"><div className="platform-auth"><span className="eyebrow">CYBER STUDY HUB</span><h1>Carregando conta</h1><p>Verificando sua sessão e seu progresso.</p></div></div>;
+  if(busy)return <div className="platform-gate"><div className="platform-auth"><span className="eyebrow">ARTISYS ACADEMY</span><h1>Carregando conta</h1><p>Verificando sua sessão e seu progresso.</p></div></div>;
   if(user)return <>{error&&<div className="platform-alert" role="alert">{error}</div>}{children(user,{logout,refresh})}</>;
   return <AuthScreen settings={settings} outerError={error} onSuccess={authenticated}/>;
 }
@@ -91,7 +92,7 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
   const allowRegister=Boolean(settings?.openRegistration||invitation);
   return <div className="platform-gate">
     <main className="platform-auth">
-      <div className="platform-logo"><span>+</span><div><strong>Cyber Study Hub</strong><small>Seu espaço de aprendizagem</small></div></div>
+      <a href="/academy" className="platform-logo" aria-label="ArtiSys Academy — apresentação"><AcademyBrand /></a>
       <span className="eyebrow">PLATAFORMA DE ESTUDOS</span>
       <h1>{mode==='bootstrap'?'Configurar plataforma':mode==='register'?'Criar sua conta':'Acesse seus estudos'}</h1>
       <p>{mode==='bootstrap'?'Configure o primeiro administrador com a chave definida no servidor.':
@@ -115,13 +116,13 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
           <span>Cadastros disponíveis por convite do administrador.</span>}
       </div>}
       {!settings&&<p className="platform-help">A API de contas não está configurada neste endereço. Execute a edição self-hosted conforme as instruções do projeto.</p>}
-      <small className="platform-footnote">Aulas e progresso vinculados à sua conta. Núcleo sem serviço de autenticação pago.</small>
+      <small className="platform-footnote">Suas aulas, práticas e revisões em um só lugar.</small>
     </main>
     <aside className="platform-intro">
       <span className="eyebrow">ESTUDE COM CONTINUIDADE</span>
       <h2>Seu aprendizado, organizado.</h2>
       <p>Biblioteca técnica, laboratórios práticos, revisão espaçada e histórico individual em uma única plataforma.</p>
-      <div className="platform-benefits"><span>218 aulas principais</span><span>325 unidades paralelas</span><span>Progresso individual</span></div>
+      <div className="platform-benefits"><span>17 módulos principais</span><span>13 trilhas paralelas</span><span>Progresso individual</span></div>
     </aside>
   </div>;
 }

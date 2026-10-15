@@ -24,6 +24,9 @@ import { recordQuizConceptEvidence } from '../../lib/mastery';
 import { ReferencePanel } from '../references/ReferencePanel';
 import { canRevealQuizFeedback, quizActionLabel } from './quizCommit';
 import './lesson-v2.css';
+import { useStudyPosition } from '../useStudyPosition';
+import { studySectionHref } from '../../lib/studyNavigation';
+import { getLessonLearningProgress } from '../../lib/learningProgress';
 
 type LessonViewerV2Props = {
   id: number;
@@ -78,7 +81,7 @@ function LessonViewerV2Content({
 
   const [activeSection, setActiveSection] = useState(sectionItems[0].id);
   const [visitedSections, setVisitedSections] = useState<Set<string>>(
-    () => new Set([sectionItems[0].id])
+    () => new Set(getLessonLearningProgress(lesson.id).visitedSectionIds)
   );
   const [quizIndex, setQuizIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -108,40 +111,14 @@ function LessonViewerV2Content({
     [lesson]
   );
 
+  const position = useStudyPosition(String(lesson.id), lesson.title, '#lesson/' + lesson.id,
+    'interactive', availableSections);
   useEffect(() => {
-    const observed = availableSections
-      .map(item => document.getElementById(item.id))
-      .filter((element): element is HTMLElement => Boolean(element));
-
-    if (!observed.length || typeof IntersectionObserver === 'undefined') {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      entries => {
-        const visible = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (!visible) return;
-
-        setActiveSection(visible.target.id);
-        markSectionVisited(lesson.id, visible.target.id);
-        setVisitedSections(previous => {
-          const nextVisited = new Set(previous);
-          nextVisited.add(visible.target.id);
-          return nextVisited;
-        });
-      },
-      {
-        rootMargin: '-18% 0px -58% 0px',
-        threshold: [0.08, 0.25, 0.5]
-      }
-    );
-
-    observed.forEach(element => observer.observe(element));
-    return () => observer.disconnect();
-  }, [availableSections, lesson.id]);
+    if (!position.active) return;
+    setActiveSection(position.active);
+    markSectionVisited(lesson.id, position.active);
+    setVisitedSections(previous => new Set([...previous, position.active]));
+  }, [position.active, lesson.id]);
 
   const toggle = (key: 'completed' | 'favorite' | 'doubt') => {
     const nextValue = !savedState[key];
@@ -266,6 +243,7 @@ function LessonViewerV2Content({
         visitedSections={visitedSections}
       />
 
+      {position.saveError && <p role="alert">{position.saveError} <button onClick={position.retry}>Tentar novamente</button></p>}
       <div className="lesson-v2-layout">
         <aside className="lesson-v2-rail" aria-label="Roteiro da aula">
           <span className="eyebrow">ROTEIRO</span>
@@ -273,7 +251,7 @@ function LessonViewerV2Content({
             {availableSections.map((item, index) => (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+                href={studySectionHref(item.id)}
                 className={activeSection === item.id ? 'active' : ''}
               >
                 <b>{String(index + 1).padStart(2, '0')}</b>
@@ -620,7 +598,7 @@ function MobileOutline({
         {sections.map((section, index) => (
           <a
             key={section.id}
-            href={`#${section.id}`}
+            href={studySectionHref(section.id)}
             className={activeSection === section.id ? 'active' : ''}
           >
             <b>{String(index + 1).padStart(2, '0')}</b>

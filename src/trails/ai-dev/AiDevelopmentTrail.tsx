@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import manifest from './manifest.json';
 import learning from './modules.json';
 import './ai-dev.css';
+import { getStudyDraft, saveStudyVisit } from '../../lib/studyProgress';
+import ProgressSyncStatus from '../../components/ProgressSyncStatus';
 
 type Section = { heading: string; body: string; example?: string; counterexample?: string };
 type Challenge = { question: string; options: string[]; answer: number; feedback: string };
@@ -11,7 +13,8 @@ type Lesson = { stepId: number; kind: string; durationMin: number; title: string
   acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string };
 type Module = { moduleId: number; version: number; title: string; objective: string;
   learningOutcomes: string[]; lessons: Lesson[]; assessmentPath: string; answerKeyPath: string };
-type Progress = { completed: number[]; notes: Record<number, string>; checked: Record<number, number[]> };
+type StepDraft = { answer: number | null; checkedAnswer: boolean; referenceRead: boolean; quizAttempt: string };
+type Progress = { moduleId?: number; stepIndex?: number; drafts?: Record<number, StepDraft>; completed: number[]; notes: Record<number, string>; checked: Record<number, number[]> };
 const modules = (learning as unknown as { modules: Module[] }).modules;
 const modes = [
   { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/' },
@@ -22,26 +25,43 @@ const modes = [
 type Mode = (typeof modes)[number]['id'];
 const empty = (): Progress => ({ completed: [], notes: {}, checked: {} });
 const progressKey = (userId: string) => 'hub-ai-dev-learning-v2:' + userId;
+function validProgress(value: unknown): value is Progress {
+  if (!value || typeof value !== 'object') return false;
+  const progress = value as Progress;
+  return Array.isArray(progress.completed) && Boolean(progress.notes && typeof progress.notes === 'object' && !Array.isArray(progress.notes)) && Boolean(progress.checked && typeof progress.checked === 'object' && !Array.isArray(progress.checked));
+}
 function initial(userId: string): Progress {
-  try {
-    const stored = JSON.parse(localStorage.getItem(progressKey(userId)) || 'null');
-    if (stored && Array.isArray(stored.completed) && stored.notes && stored.checked)
-      return { completed: stored.completed.filter((n: unknown) => Number.isInteger(n)), notes: stored.notes, checked: stored.checked };
-    // A conclusão antiga é preservada como referência, sem promovê-la automaticamente.
-  } catch { /* armazenamento desativado */ }
-  return empty();
+  const remote = getStudyDraft('ai-dev');
+  let local: unknown;
+  try { local = JSON.parse(localStorage.getItem(progressKey(userId)) || 'null'); } catch { /* Keep legacy bytes intact. */ }
+  const saved = validProgress(remote) ? remote : empty();
+  const old = validProgress(local) ? local : empty();
+  return { ...old, ...saved, completed: [...new Set([...old.completed, ...saved.completed])].filter(Number.isInteger),
+    notes: { ...old.notes, ...saved.notes }, checked: { ...old.checked, ...saved.checked } };
+}
+function initialPosition(progress: Progress) {
+  const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
+  const moduleId = Number(params.get('module') || progress.moduleId || 1);
+  const module = modules.find(item => item.moduleId === moduleId) || modules[0];
+  const stepIndex = Number(params.get('step') ?? progress.stepIndex ?? 0);
+  return { moduleId: module.moduleId, stepIndex: Number.isInteger(stepIndex) && stepIndex >= 0 && stepIndex < module.lessons.length ? stepIndex : 0 };
 }
 
 export default function AiDevelopmentTrail({ userId }: { userId: string }) {
   const [progress, setProgress] = useState<Progress>(() => initial(userId));
-  const [moduleId, setModuleId] = useState(1);
-  const [stepIndex, setStepIndex] = useState(0);
-  const [answer, setAnswer] = useState<number | null>(null);
-  const [checkedAnswer, setCheckedAnswer] = useState(false);
-  const [referenceRead, setReferenceRead] = useState(false);
+  const [moduleId, setModuleId] = useState(() => initialPosition(progress).moduleId);
+  const [stepIndex, setStepIndex] = useState(() => initialPosition(progress).stepIndex);
+  const initialStep = modules.find(item => item.moduleId === moduleId)!.lessons[stepIndex].stepId;
+  const restored = progress.drafts?.[initialStep];
+  const [saveError, setSaveError] = useState('');
+  const [saveAttempt, setSaveAttempt] = useState(0);
+  const [showRoadmap, setShowRoadmap] = useState(false);
+  const [answer, setAnswer] = useState<number | null>(restored?.answer ?? null);
+  const [checkedAnswer, setCheckedAnswer] = useState(restored?.checkedAnswer ?? false);
+  const [referenceRead, setReferenceRead] = useState(restored?.referenceRead ?? false);
   const [mode, setMode] = useState<Mode>('chatgpt');
   const [copied, setCopied] = useState(false);
-  const [quizAttempt, setQuizAttempt] = useState('');
+  const [quizAttempt, setQuizAttempt] = useState(restored?.quizAttempt ?? '');
   const [keyRevealed, setKeyRevealed] = useState<Record<number, boolean>>({});
   const module = modules.find(m => m.moduleId === moduleId) || modules[0];
   const lesson = module.lessons[stepIndex];
@@ -52,11 +72,25 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
   const allCount = useMemo(() => modules.flatMap(m => m.lessons).filter(l => progress.completed.includes(l.stepId)).length, [progress.completed]);
 
   useEffect(() => {
-    try { localStorage.setItem(progressKey(userId), JSON.stringify(progress)); } catch { /* estudo permanece acessível */ }
-  }, [userId, progress]);
+    const snapshot: Progress = { ...progress, moduleId, stepIndex, drafts: { ...progress.drafts,
+      [lesson.stepId]: { answer, checkedAnswer, referenceRead, quizAttempt } } };
+    try {
+      saveStudyVisit('ai-dev', { title: lesson.title, href: '#ai-dev?module=' + moduleId + '&step=' + stepIndex,
+        kind: 'ai', sectionLabel: module.title }, snapshot);
+      setSaveError('');
+    } catch { setSaveError('Não foi possível salvar esta etapa. Mantenha suas anotações abertas e tente novamente.'); }
+  }, [progress, moduleId, stepIndex, lesson.stepId, lesson.title, module.title, answer, checkedAnswer, referenceRead, quizAttempt, saveAttempt]);
 
   const choose = (m: number, i: number) => {
-    setModuleId(m); setStepIndex(i); setAnswer(null); setCheckedAnswer(false); setCopied(false); setReferenceRead(false); setQuizAttempt('');
+    const target = modules.find(item => item.moduleId === m)?.lessons[i];
+    if (!target) return;
+    if (m === moduleId && i === stepIndex) { setShowRoadmap(false); return; }
+    setProgress(p => ({ ...p, drafts: { ...p.drafts, [lesson.stepId]: { answer, checkedAnswer, referenceRead, quizAttempt } } }));
+    const draft = progress.drafts?.[target.stepId];
+    setModuleId(m); setStepIndex(i); setAnswer(draft?.answer ?? null); setCheckedAnswer(draft?.checkedAnswer ?? false);
+    setCopied(false); setReferenceRead(draft?.referenceRead ?? false); setQuizAttempt(draft?.quizAttempt ?? '');
+    setShowRoadmap(false);
+    history.replaceState(null, '', '#ai-dev?module=' + m + '&step=' + i);
   };
   const toggleCheck = (n: number) => setProgress(p => {
     const old = p.checked[lesson.stepId] || [];
@@ -85,12 +119,15 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
       <div><span className="eyebrow">FORMAÇÃO PRÁTICA · MEU GESTOR</span>
         <h1>Desenvolvimento de Sistemas com IA</h1>
         <p>Construa um sistema por etapas. Use ChatGPT ou Claude pelo navegador; IA local, apenas se o computador comportar. Laboratórios e explicações não exigem serviços pagos.</p>
-        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>8 módulos disponíveis</span><span>8 módulos · 32 etapas</span></div>
+        <div className="ai-pills"><span>R$ 0 obrigatório</span><span>Sem chave de API</span><span>8 módulos · 32 etapas</span></div>
       </div>
       <div className="ai-meter"><strong>{allCount}/32</strong><span>etapas disponíveis registradas</span><div className="progress"><i style={{ width: allCount * 100 / 32 + '%' }} /></div></div>
     </header>
 
-    <section className="ai-roadmap" aria-label="Módulos da formação">
+    <div className="ai-resume-bar"><span><strong>Módulo {String(moduleId).padStart(2, '0')} · Etapa {stepIndex + 1}/4</strong> {lesson.title}</span><button type="button" className="button ghost" aria-expanded={showRoadmap} aria-controls="ai-all-modules" onClick={() => setShowRoadmap(value => !value)}>{showRoadmap ? 'Ocultar módulos' : 'Todos os módulos'}</button></div>
+    <ProgressSyncStatus />
+    {saveError && <p role="alert">{saveError} <button onClick={() => setSaveAttempt(value => value + 1)}>Tentar novamente</button></p>}
+    {showRoadmap && <section id="ai-all-modules" className="ai-roadmap" aria-label="Módulos da formação">
       {manifest.modules.map(m => {
         const released = m.status === 'available';
         const count = released ? modules[m.id - 1].lessons.filter(s => progress.completed.includes(s.stepId)).length : 0;
@@ -100,7 +137,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
             </button>
           : <div key={m.id} className="ai-module planned" aria-disabled="true"><span className="ai-module-number">{String(m.id).padStart(2, '0')}</span><span className="ai-module-label"><strong>{m.title}</strong><small>{m.duration}</small></span><span className="ai-status">Em breve</span></div>;
       })}
-    </section>
+    </section>}
 
     <section className="ai-section-heading">
       <span className="eyebrow">MÓDULO {String(moduleId).padStart(2, '0')} · {doneInModule}/4 ETAPAS REGISTRADAS</span>
@@ -147,7 +184,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
           <a href={lesson.referencePath} className="button ghost">Abrir aula {lesson.referenceCode} ↗</a>
           <p>{lesson.challengeText}</p>
           <label htmlFor="ai-transfer" className="ai-field-label">Explique o caso com suas palavras (mínimo 50 caracteres)</label>
-          <textarea id="ai-transfer" className="ai-notes" rows={4} value={quizAttempt} onChange={e => setQuizAttempt(e.target.value)}/>
+          <textarea id="ai-transfer" className="ai-notes" rows={4} value={quizAttempt} maxLength={4500} onChange={e => setQuizAttempt(e.target.value.slice(0, 4500))}/>
           <label className="ai-check"><input type="checkbox" checked={referenceRead} onChange={e => setReferenceRead(e.target.checked)}/><span>Estudei a aula e consigo prever um caso inválido sem consultar o gabarito.</span></label>
         </section>}
         {lesson.brief && <section className="ai-exercise">
@@ -161,11 +198,11 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
           {lesson.assessmentPrompt && <p><strong>Desafio adicional:</strong> {lesson.assessmentPrompt}</p>}
           <label htmlFor="ai-lab-notes" className="ai-field-label">Registro: decisão, previsão, resultado e erro corrigido (mínimo 120 caracteres)</label>
           <textarea id="ai-lab-notes" className="ai-notes" rows={7} value={notes} maxLength={4500} onChange={e => updateNotes(e.target.value)} placeholder="Descreva o que você fez, o que esperava e o que observou..."/>
-          <small className="muted">{notes.trim().length}/120 caracteres mínimos · salvo apenas neste dispositivo</small>
+          <small className="muted">{notes.trim().length}/120 caracteres mínimos · registro pessoal vinculado à sua conta</small>
           <h3>Critérios de aceitação (autodeclaração)</h3>{lesson.acceptance?.map((item,i) => <label key={item} className="ai-check"><input type="checkbox" checked={check.includes(i)} onChange={() => toggleCheck(i)} /><span>{item}</span></label>)}
         </section>}
         <footer className="ai-lesson-footer">
-          <p className={complete ? 'ai-success' : 'muted'}>{complete ? 'Etapa registrada neste dispositivo.' : 'Conclua a atividade antes de registrar a etapa. O registro não é certificação de competência.'}</p>
+          <p className={complete ? 'ai-success' : 'muted'}>{complete ? 'Etapa registrada na sua conta.' : 'Conclua a atividade antes de registrar a etapa. O registro não é certificação de competência.'}</p>
           <button type="button" className="button primary" disabled={!complete && !isValid} onClick={mark}>{complete ? 'Próxima etapa →' : 'Registrar conclusão →'}</button>
         </footer>
       </article>
@@ -177,6 +214,6 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
       <div className="ai-actions"><a href={module.assessmentPath} target="_blank" rel="noopener noreferrer" className="button primary">Abrir prova ↗</a><button type="button" className="button ghost" onClick={() => setKeyRevealed(p => ({ ...p, [moduleId]: !p[moduleId] }))}>{keyRevealed[moduleId] ? 'Ocultar gabarito' : 'Já fiz a primeira tentativa'}</button></div>
       {keyRevealed[moduleId] && <p><a href={module.answerKeyPath} target="_blank" rel="noopener noreferrer">Consultar gabarito e rubrica ↗</a> · A confirmação é do aluno e não equivale a revisão humana.</p>}
     </section>
-    <p className="ai-disclaimer">As avaliações A são editoriais, assistidas por IA, não certificações do aluno. O progresso desta trilha é local, por identificador de conta, e ainda não é sincronizado entre dispositivos.</p>
+    <p className="ai-disclaimer">As avaliações A são editoriais, assistidas por IA, não certificações do aluno. O progresso e as anotações são salvos na conta. Em caso de conexão interrompida, acompanhe o estado de sincronização acima.</p>
   </div>;
 }

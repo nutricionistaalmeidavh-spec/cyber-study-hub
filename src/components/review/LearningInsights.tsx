@@ -55,7 +55,7 @@ export function LearningInsights() {
       lessonId: Number(lessonId),
       item
     }))
-    .filter(({ item }) =>
+    .filter(({ lessonId, item }) => Number.isInteger(lessonId) &&
       Boolean(
         item.visitedSectionIds.length ||
           item.completedActivityIds.length ||

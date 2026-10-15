@@ -4,6 +4,7 @@ import type { CurriculumCatalog } from '../curriculum/types';
 import { useAcademyMotion } from './useAcademyMotion';
 import './academy.css';
 import './academy-motion.css';
+import AcademyBrand from './AcademyBrand';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -36,12 +37,7 @@ function KineticText({ leading, accent }: { leading: string; accent: string }) {
   </span>;
 }
 
-function Brand() {
-  return <span className="academy-brand-lockup" aria-label="ArtiSys Academy">
-    <span className="academy-brand-symbol" aria-hidden="true"><span /><span /><span /><span /></span>
-    <span className="academy-brand-name"><strong>arti<span>sys</span></strong><small>ACADEMY</small></span>
-  </span>;
-}
+function Brand() { return <AcademyBrand />; }
 
 export default function AcademyLanding() {
   const rootRef = useRef<HTMLDivElement>(null);
