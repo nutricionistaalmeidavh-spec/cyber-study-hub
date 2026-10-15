@@ -1,4 +1,5 @@
 import { publishedCourseIds } from '../worker/course-access.mjs';
+import { verifyBuyerIntent } from './buyer-intent.mjs';
 
 // Shared by Node/SQLite and Cloudflare Durable Objects. Payments are OPTIONAL.
 // This endpoint receives fulfilment events, NEVER raw gateway webhooks or browser claims.
@@ -45,8 +46,11 @@ export async function verifyArtisysDelivery({headers,body,secret,now=Date.now()}
  const product=billingProduct(data.productId,data.saleType);
  if(!product||(data.event==='artisys.license.renew'&&product.kind!=='subscription'))
   reject(400,'Produto ou modalidade não autorizados para o HubEstudos.');
+ let buyer;
+ try{buyer=await verifyBuyerIntent({ticket:data.buyerBinding,productId:data.productId,saleType:data.saleType,email:data.email,orderCreatedAt:data.orderCreatedAt,secret,now});}
+ catch{reject(409,'Pedido sem vínculo seguro com a conta que iniciou a compra.');}
  return {deliveryId,orderId:data.orderId,event:data.event,productId:data.productId,email:data.email,
-   saleType:data.saleType,...product};
+   saleType:data.saleType,userId:buyer.userId,...product};
 }
 // Execute inside a single SQLite transaction (Node BEGIN IMMEDIATE / DO transactionSync).
 // The only source of truth for paid access is this separate ledger, not manual grants.
@@ -56,8 +60,9 @@ export function applyArtisysDelivery(event,{one,run,now=Date.now()}){
   if(old.order_id!==event.orderId||old.event!==event.event)reject(409,'ID de entrega conflitante.');
   return {accepted:true,duplicate:true};
  }
- const user=one('SELECT id,status FROM users WHERE email=?',event.email);
- if(!user||user.status!=='active')reject(409,'Conta de aluno ainda não está disponível para entrega.');
+ const user=one('SELECT id,email,status FROM users WHERE id=?',event.userId);
+ if(!user||user.status!=='active'||user.email!==event.email)
+  reject(409,'Conta da compra indisponível ou diferente da sessão vinculada.');
  const purchase=one('SELECT order_id,user_id,product_id,course_id,period_days,expires_at,revoked_at FROM billing_entitlements WHERE order_id=?',event.orderId);
  if(purchase&&(purchase.user_id!==user.id||purchase.product_id!==event.productId||purchase.course_id!==event.courseId||purchase.period_days!==event.periodDays))
   reject(409,'Identidade da compra conflitante.');
