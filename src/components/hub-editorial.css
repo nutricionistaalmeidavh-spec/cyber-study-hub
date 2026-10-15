@@ -591,3 +591,22 @@
   .hub-home .hub-journey p{font-size:12px}
   .curriculum-page .curriculum-module-card{min-height:130px}
 }
+
+/* Comunidade mobile: overflow menu, preserving the six primary study tabs. */
+@media(max-width:780px){
+  .app-shell .main-content{padding-bottom:155px}
+  .app-shell .mobile-nav-more{position:relative;min-width:0}
+  .app-shell .mobile-nav-more summary{cursor:pointer;list-style:none}
+  .app-shell .mobile-nav-more summary::-webkit-details-marker{display:none}
+  .app-shell .mobile-nav-more summary:focus-visible{outline:3px solid #a86bff;outline-offset:2px}
+  .app-shell .mobile-nav-more .mobile-nav-more-panel{
+    position:absolute;bottom:calc(100% + 14px);right:calc(-100% - 6px);
+    width:min(280px,calc(100vw - 24px));display:grid;gap:3px;padding:8px;
+    border:1px solid #624285;border-radius:16px;background:#1b1230;
+    box-shadow:0 14px 40px rgba(0,0,0,.4);z-index:31
+  }
+  .app-shell .mobile-nav-more-panel .nav-item{
+    flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;padding:13px 12px
+  }
+  .app-shell .mobile-nav-more-panel .nav-item b{font-size:13px}
+}
