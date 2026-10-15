@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { LabV2 } from '../../content/schema';
+import { v2LabResources } from '../../lib/practiceContracts';
 import { markLabStepProgress } from '../../lib/learningProgress';
 import {
   getLabProgressForLesson,
@@ -19,6 +20,7 @@ export function LabRunner({
   );
   const [copiedStep, setCopiedStep] = useState('');
 
+  const resources=v2LabResources(lessonId,lab.resources || []);
   const total = lab.steps.length;
   const completed = completedSteps.size;
   const percent = total ? Math.round((completed / total) * 100) : 0;
@@ -71,11 +73,12 @@ export function LabRunner({
         <p>{lab.safetyScope}</p>
       </div>
 
-      {lab.resources && lab.resources.length > 0 && (
+      {resources.length > 0 && (
         <div className="lesson-v2-lab-resources">
-          <span className="eyebrow">ARQUIVOS DO LAB</span>
+          <span className="eyebrow">ARQUIVOS REAIS DO LAB · PACOTE INDIVIDUAL OU COMPARTILHADO</span>
+          <p>Links para arquivos reais deste laboratório. Se forem compartilhados com outras aulas, consulte o roteiro antes de executar.</p>
           <div>
-            {lab.resources.map(resource => (
+            {resources.map(resource => (
               <a key={resource.href} href={resource.href} target="_blank" rel="noreferrer">
                 {resource.label} ↗
               </a>
@@ -174,9 +177,9 @@ export function LabRunner({
 
       {allComplete && (
         <div className="lesson-v2-lab-complete">
-          <strong>Laboratório concluído</strong>
+          <strong>Todos os checkpoints marcados</strong>
           <p>
-            Todos os checkpoints foram registrados neste dispositivo. O próximo
+            A marcação é uma autodeclaração; não executa testes. O próximo
             passo é comparar evidências, aplicar a correção e executar o reteste.
           </p>
         </div>

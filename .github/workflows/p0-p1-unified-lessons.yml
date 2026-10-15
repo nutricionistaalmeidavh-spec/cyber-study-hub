@@ -1,0 +1,35 @@
+name: P0 P1 Labs and Canonical Lessons
+on:
+  pull_request:
+    paths:
+      - 'src/components/Lessons.tsx'
+      - 'src/components/lesson-v2/**'
+      - 'src/components/curriculum/**'
+      - 'src/components/practice/**'
+      - 'src/lib/practiceContracts.ts'
+      - 'src/trails/ai-dev/**'
+      - 'src/trails/channel-dark/**'
+      - 'scripts/test-p0-p1-unified-lessons.mjs'
+      - '.github/workflows/p0-p1-unified-lessons.yml'
+  push:
+    branches:
+      - fix/p0-p1-unificar-laboratorios-20261015
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify 607 IDs, 58 full-content lessons and real laboratory assets
+        run: node --test scripts/test-p0-p1-unified-lessons.mjs
+      - name: Verify reading and progress regressions
+        run: npm run test:hub-ux
+      - name: Verify current platform build
+        run: npm run build
+      - name: Verify legacy study-continuity and route behavior
+        run: node --test scripts/test-study-continuity.mjs

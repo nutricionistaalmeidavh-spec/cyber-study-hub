@@ -52,8 +52,11 @@ for(let id=171;id<=180;id++){
 }
 for(const path of ['public/course-labs/a171-180/models.mjs','public/course-labs/a171-180/research-models.mjs','public/course-labs/a171-180/run.mjs','public/course-labs/a171-180/lab.test.mjs','public/course-labs/a171-180/research.test.mjs','public/course-labs/lab-tools/model.mjs','public/course-labs/lab-tools/run.mjs','public/course-labs/lab-tools/lab.test.mjs','src/lib/labCourseResources.ts'])assert.ok(existsSync(path),path+' ausente');
 const app=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf8');
-assert.ok(app.includes('getParallelLabGuide')&&app.includes('getMainLabGuide')&&app.includes('labGuide.guide'),'Aula não mostra o roteiro específico');
-const mainDoc=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf8');
+const applied=readFileSync('src/components/practice/PracticeOrientation.tsx','utf8');
+const mapping=readFileSync('src/lib/practiceContracts.ts','utf8');
+assert.ok(app.includes('<PracticeOrientation target={item}')&&applied.includes('practiceFor(target')&&
+ mapping.includes('getParallelLabGuide')&&mapping.includes('getMainLabGuide'),'Aula não mostra o roteiro específico');
+const mainDoc=readFileSync('src/lib/practiceContracts.ts','utf8');
 const matches=mainDoc.split('\n').filter(line=>line.includes("'/course-labs/") && line.trim().startsWith('[')).map(line=>{
  const left=line.indexOf('['),comma1=line.indexOf(',',left),comma2=line.indexOf(',',comma1+1);
  const from=Number(line.slice(left+1,comma1)),to=Number(line.slice(comma1+1,comma2));
