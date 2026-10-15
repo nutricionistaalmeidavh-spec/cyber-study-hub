@@ -58,7 +58,7 @@ test('o roteiro mostra cinco passos e o material canônico continua acessível',
  assert.match(labPath,/contract.verify/);
  assert.match(labPath,/kitPaths.map/);
 });
-test('IDs históricos permanecem estáveis após adicionar trilha'),()=>{
+test('IDs históricos permanecem estáveis após adicionar trilha',()=>{
  const codes=[...catalog.main,...catalog.parallel,...catalog.guided].map(x=>x.code);
  assert.equal(codes.length,639);
  assert.equal(catalog.guided.slice(0,64).filter(x=>['ai-dev','channel-dark'].includes(x.source)).length,64);
