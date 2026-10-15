@@ -51,7 +51,7 @@ export function PlatformGate({children}:{children:(user:PlatformUser,actions:{lo
     await activateUserStorage(value.user.id);
     setUser(value.user);
     setError('');
-    if(window.location.search.includes('invite='))history.replaceState(null,'',window.location.pathname+window.location.hash);
+    if(window.location.search.includes('invite=')||new URLSearchParams(window.location.search).get('register')==='1')history.replaceState(null,'',window.location.pathname+window.location.hash);
     const requested=new URLSearchParams(window.location.search).get('next');
     if(requested==='roadmap')history.replaceState(null,'',window.location.pathname+'#roadmap');
     else window.location.hash='#dashboard';
@@ -68,15 +68,17 @@ export function PlatformGate({children}:{children:(user:PlatformUser,actions:{lo
   return <AuthScreen settings={settings} outerError={error} onSuccess={authenticated}/>;
 }
 function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;outerError:string;onSuccess:(r:AuthResponse)=>Promise<void>}){
-  const invitation=new URLSearchParams(window.location.search).get('invite')??'';
-  const [mode,setMode]=useState<'login'|'register'|'bootstrap'>(!settings?.ready?'bootstrap':invitation?'register':'login');
+  const searchParams=new URLSearchParams(window.location.search);
+  const invitation=searchParams.get('invite')??'';
+  const publicSignup=searchParams.get('register')==='1';
+  const [mode,setMode]=useState<'login'|'register'|'bootstrap'>(!settings?.ready?'bootstrap':invitation||publicSignup?'register':'login');
   const [name,setName]=useState('');
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const [bootstrapKey,setBootstrapKey]=useState('');
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState('');
-  useEffect(()=>{if(settings)setMode(!settings.ready?'bootstrap':invitation?'register':'login');},[settings,invitation]);
+  useEffect(()=>{if(settings)setMode(!settings.ready?'bootstrap':invitation||publicSignup?'register':'login');},[settings,invitation,publicSignup]);
   const submit=async(e:FormEvent)=>{
     e.preventDefault();setLoading(true);setError('');
     try{
@@ -98,7 +100,7 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
       <span className="eyebrow">PLATAFORMA DE ESTUDOS</span>
       <h1>{mode==='bootstrap'?'Configurar plataforma':mode==='register'?'Criar sua conta':'Acesse seus estudos'}</h1>
       <p>{mode==='bootstrap'?'Configure o primeiro administrador com a chave definida no servidor.':
-        mode==='register'?'Complete o cadastro para começar a estudar.':
+        mode==='register'?'Crie sua conta de aluno sem convite. O cadastro não libera cursos pagos automaticamente.':
         'Entre para continuar suas aulas, revisões e laboratórios.'}</p>
       {(error||outerError)&&<div className="platform-error" role="alert">{error||outerError}</div>}
       {settings&&<form onSubmit={submit} className="platform-form">
@@ -114,7 +116,7 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
       </form>}
       {settings?.ready&&<div className="platform-switch">
         {mode==='register'?<button type="button" onClick={()=>setMode('login')}>Já tenho conta. Entrar</button>:
-          allowRegister?<button type="button" onClick={()=>setMode('register')}>Criar uma conta</button>:
+          allowRegister?<button type="button" onClick={()=>setMode('register')}>Criar minha conta</button>:
           <span>Cadastros disponíveis por convite do administrador.</span>}
       </div>}
       {!settings&&<p className="platform-help">A API de contas não está configurada neste endereço. Execute a edição self-hosted conforme as instruções do projeto.</p>}
