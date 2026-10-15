@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-171..AULA-180",
+  "reviewedOn": "2026-10-15",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "Cyber Study Hub — complemento didático preparado com IA",
+  "reviewer": "GPT-6 — auditoria crítica editorial por IA; não revisor humano externo",
+  "humanLearnerTesting": "not_performed",
+  "externalHumanReview": "not_performed",
+  "acceptance": "10 materiais com cenários específicos, laboratório local, seis perguntas de transferência e gabaritos; CI deve confirmar os testes e SHA; nenhum CVE ou impacto real é atribuído.",
+  "environment": "Node.js 22, sem rede, APIs pagas, malware, sistemas externos ou credenciais",
+  "units": {
+    "AULA-171": {
+      "title": "Fuzzing",
+      "contentPath": "/course-library/main/171.md",
+      "contentSha256": "09e1f8dbdc2a47dc1f681d995db4064e1b24f5d381587c85c2267ff89493fcf2",
+      "technicalSources": [
+        "https://llvm.org/docs/LibFuzzer.html"
+      ],
+      "technicalScope": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-172": {
+      "title": "Coverage-Guided Fuzzing",
+      "contentPath": "/course-library/main/172.md",
+      "contentSha256": "8df5e5fbafe7bb412fdaf56fc3858faa61800cce369851e1d073a29e4c41fbab",
+      "technicalSources": [
+        "https://llvm.org/docs/LibFuzzer.html"
+      ],
+      "technicalScope": "Coverage-guided: distinguir sinal de caminho de verificação de segurança",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-173": {
+      "title": "Sanitizers",
+      "contentPath": "/course-library/main/173.md",
+      "contentSha256": "fbcfa9d73ee28377e8d0a47263fa58b06a38ec619c251db84562e46c17155459",
+      "technicalSources": [
+        "https://clang.llvm.org/docs/AddressSanitizer.html"
+      ],
+      "technicalScope": "ASan vs UBSan: classes e limites da ausência de relatório",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-174": {
+      "title": "Crash Triage",
+      "contentPath": "/course-library/main/174.md",
+      "contentSha256": "0c857adfd6aaab092f2a56364df33e868a3232f446fcc422ac4c27995c170939",
+      "technicalSources": [
+        "https://llvm.org/docs/LibFuzzer.html"
+      ],
+      "technicalScope": "Triage: assinatura provisória de crash, grupo por classe/frame",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-175": {
+      "title": "Root Cause Analysis",
+      "contentPath": "/course-library/main/175.md",
+      "contentSha256": "f2f7ded45e8e0eed7b93b040df9721a5b14dc527a10d7cb2a7b4c0363be54bd8",
+      "technicalSources": [
+        "https://cwe.mitre.org/data/definitions/20.html"
+      ],
+      "technicalScope": "Causa primária: comprimento de origem versus capacidade e gatilho",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-176": {
+      "title": "Reproduzir Vulnerabilidade",
+      "contentPath": "/course-library/main/176.md",
+      "contentSha256": "eda9038fc23c06a010b260d708979b630681bfc08a363b644083c88c6140fccc",
+      "technicalSources": [
+        "https://llvm.org/docs/LibFuzzer.html"
+      ],
+      "technicalScope": "Reprodução: fixture, seed e oráculo com discrepância explícita",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-177": {
+      "title": "Safe PoC",
+      "contentPath": "/course-library/main/177.md",
+      "contentSha256": "98aea3ea2f01c26084617afbba6d7f6b17ddc0638b149d46e5980a0f4c3c607d",
+      "technicalSources": [
+        "https://owasp.org/www-community/"
+      ],
+      "technicalScope": "PoC segura: gate declarativo sem rede ou dados reais",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-178": {
+      "title": "Patch Diff",
+      "contentPath": "/course-library/main/178.md",
+      "contentSha256": "4f9239dbbca1505e2eb758a58a1e367c9db4fc175a38769d5ec848498ddc1b63",
+      "technicalSources": [
+        "https://cwe.mitre.org/data/definitions/20.html"
+      ],
+      "technicalScope": "Patch diff: checar comportamento antes/depois com positivo e negativo",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-179": {
+      "title": "Variant Analysis",
+      "contentPath": "/course-library/main/179.md",
+      "contentSha256": "2cde815614381f9a00aacf933736bb0fbbdb8780dd8e9e5e177a4d96e037f63f",
+      "technicalSources": [
+        "https://cwe.mitre.org/data/definitions/20.html"
+      ],
+      "technicalScope": "Variant analysis: candidatos por origem e consumo de comprimento",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    },
+    "AULA-180": {
+      "title": "CVE Research",
+      "contentPath": "/course-library/main/180.md",
+      "contentSha256": "8bae66ea33a9bfeecf6ead8c6fc281b49847bc443b037cfe0a7515b8f7cee54f",
+      "technicalSources": [
+        "https://www.cve.org/About/Overview"
+      ],
+      "technicalScope": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado",
+      "observations": "Contrato definido em lab.test.mjs, com casos limite, positivo e negativo; verificação automatizada no CI do PR; não há afirmação de validação humana",
+      "limitations": [
+        "Simulador Node é modelo local e não comprova exploitability ou operação de ferramentas externas",
+        "Não houve observação de estudantes humanos, revisor humano externo ou análise de produção."
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      }
+    }
+  }
+}
