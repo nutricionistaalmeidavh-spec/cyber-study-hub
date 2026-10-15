@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
+import CourseCatalog from './components/curriculum/CourseCatalog';
 import { PlatformGate, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
@@ -23,6 +24,7 @@ interface InstallPromptEvent extends Event {
 
 type Route =
   | { page: 'dashboard' }
+  | { page: 'courses'; courseId?: string }
   | { page: 'account' }
   | { page: 'admin-users' }
   | { page: 'admin-feedback' }
@@ -42,6 +44,7 @@ type Route =
 
 function parseHash(): Route {
   const raw = studyRouteHash(window.location.hash);
+  if (raw === 'courses' || raw.startsWith('courses/')) return { page: 'courses', courseId: raw.split('/')[1] || undefined };
   if (raw.startsWith('course/main/')) return { page: 'course-main', id: Number(raw.split('/')[2]) || 1 };
   if (raw.startsWith('course/parallel/')) return { page: 'course-parallel', code: decodeURIComponent(raw.split('/')[2] || 'LOG-01') };
   if (raw.startsWith('lesson/')) return { page: 'lesson', id: Number(raw.split('/')[1]) || 43 };
@@ -115,7 +118,8 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <a className="brand" href="#dashboard"><AcademyBrand /></a>
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
-        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+        <Nav href="#courses" active={route.page==='courses'} icon="book" label="Cursos" />
+        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca" />
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
@@ -137,6 +141,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
       </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
+      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='feedback' && <FeedbackBoard user={user} />}
       {route.page==='roadmap' && <RoadmapPage embedded />}
@@ -157,7 +162,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
 
     <nav className="mobile-nav">
       <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
-      <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+      <Nav href="#courses" active={route.page==='courses'||route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Cursos" />
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
       <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
       <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
