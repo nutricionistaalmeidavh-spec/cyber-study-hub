@@ -10,6 +10,9 @@ test('curso agrupa IDs canônicos sem duplicar ou alterar aula/progresso',()=>{
   assert.deepEqual([...flatten('parallel')].sort(),source.parallel.map(x=>x.code).sort());
   assert.equal(new Set(flatten('main')).size,source.main.length);
   assert.equal(new Set(flatten('parallel')).size,source.parallel.length);
+  assert.deepEqual([...flatten('trail')].sort(),source.guided.map(x=>x.code).sort());
+  assert.equal(new Set(flatten('trail')).size,64);
+  assert.equal(new Set([...flatten('main'),...flatten('parallel'),...flatten('trail')]).size,607);
   assert.equal(new Set(offers.courses.map(c=>c.id)).size,offers.courses.length);
   assert.equal(new Set(offers.courses.flatMap(c=>c.modules.map(m=>m.id))).size,offers.courses.flatMap(c=>c.modules).length);
 });
@@ -28,6 +31,7 @@ test('trilhas especiais publicadas só com 8 módulos auditados A',()=>{
  for(const [course,review] of [[offers.courses.find(c=>c.id==='desenvolvimento-com-ia'),ai],[offers.courses.find(c=>c.id==='automacao-canal-dark'),dark]]) {
   assert.equal(course.type,'trail'); assert.equal(course.status,'published');
   assert.equal(course.modules.length,8);
+  assert.equal(course.modules.flatMap(m=>m.lessonCodes).length,32);
   assert.equal(Object.values(review.modules).length,8);
   assert.ok(Object.values(review.modules).every(m=>m.grade==='A'));
  }
