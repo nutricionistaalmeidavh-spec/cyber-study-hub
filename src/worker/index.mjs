@@ -235,7 +235,7 @@ export class HubAuthObject extends DurableObject {
         this.sql.exec('DELETE FROM user_state WHERE user_id=? AND key=?',u.id,b.key);
         return response(200,{ok:true});
       }
-      if(feedbackRoute(path))return handleFeedback({
+      if(feedbackRoute(path))return await handleFeedback({
         path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
         requireUser:()=>this.requireUser(request),requireAdmin:()=>this.requireAdmin(request),
         one:(sql,...args)=>this.one(sql,...args),all:(sql,...args)=>this.all(sql,...args),

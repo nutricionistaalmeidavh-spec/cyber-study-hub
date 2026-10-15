@@ -201,7 +201,7 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         q('DELETE FROM user_state WHERE user_id=? AND key=?').run(u.id,b.key);
         return respond(res,200,{ok:true});
       }
-      if(feedbackRoute(path))return handleFeedback({
+      if(feedbackRoute(path))return await handleFeedback({
         path,method,url:new URL(req.url,canonicalOrigin).href,
         readBody:limit=>readJson(req,limit),requireUser:()=>mustUser(req),requireAdmin:()=>mustAdmin(req),
         one:(sql,...args)=>q(sql).get(...args),all:(sql,...args)=>q(sql).all(...args),
