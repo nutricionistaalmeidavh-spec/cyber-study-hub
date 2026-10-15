@@ -58,10 +58,12 @@ test('aluno vê entrega, link principal e detalhes de testes apenas sob demanda'
  assert.match(aiView,/activeLabA\.evidence/);
  assert.match(aiCss,/\.ai-track \.ai-lab-more summary/);
 });
-test('nenhum ID ou regra de conclusão foi alterado no inventário',()=>{
+test('IDs históricos permanecem estáveis após incluir 32 etapas canônicas',()=>{
  const codes=[...catalog.main,...catalog.parallel,...catalog.guided].map(x=>x.code);
- assert.equal(codes.length,607);
- assert.equal(new Set(codes).size,607);
+ assert.equal(codes.length,639);
+ assert.equal(catalog.guided.slice(0,64).filter(x=>['ai-dev','channel-dark'].includes(x.source)).length,64);
+ assert.equal(catalog.guided.slice(64).filter(x=>x.source==='reverse-ai').length,32);
+ assert.equal(new Set(codes).size,639);
  assert.equal(ai.modules.flatMap(x=>x.lessons).length,32);
  assert.equal(channel.modules.flatMap(x=>x.lessons).length,32);
  assert.equal(ai.modules.flatMap(x=>x.lessons).filter(s=>s.kind==='laboratorio').length,8);
