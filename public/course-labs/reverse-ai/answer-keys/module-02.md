@@ -1,30 +1,32 @@
-# Gabarito reservado — módulo 02 (Investigação orientada por evidências)
+# Gabarito restrito à revisão — Matriz e hipóteses
 
-1. Uma hipótese aceita um teste que poderia dar resultado contrário: preveja, por exemplo, a prioridade para severidade 8, impacto 1, bloqueado verdadeiro; obtenha 22 e categoria critical. Hipóteses além da amostra continuam abertas.
+**Módulo 02**. Compare a resposta do aluno com a prova de execução; equivalentes justificáveis são aceitos.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+1. **Resposta esperada:** score21/high e score22/critical, limiar inclusivo em 22.
 
-2. Observação é o JSON efetivamente produzido pelo runner; inferência é sua interpretação de como o programa chegou ao número e precisa de teste adicional.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+2. **Resposta esperada:** Porque RangeError/TypeError validam rejeição; não representam resultado de negócio.
 
-3. O objeto negativeControl.rejected deve ser true, com reason contendo o erro; entrada inválida jamais é sucesso silencioso.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+3. **Resposta esperada:** Ambos fora do intervalo aceito, rejeitados com RangeError.
 
-4. A AULA-111 fornece fundamentos de referência canônica: aula 111, mas o código e a verificação pertencem ao laboratório REV-IA-008, sem alterar o progresso da fonte.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+4. **Resposta esperada:** blocked='true' deve gerar TypeError, diferente do boolean true.
 
-5. O agente poderia alucinar funções, afirmar que executou Ghidra ou confundir decompilação com fonte. Confronte suas afirmações com o código próprio e a execução documentada.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+5. **Resposta esperada:** Refutaria o contrato de limiar >=22; escrever controle de fronteira 21/22.
 
-6. A entrega inclui escopo autorizado, previsão, comando e ambiente, saídas positiva e negativa, divergência corrigida e limites; os testes não provam equivalência universal.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+6. **Resposta esperada:** Contagens sobre amostras definidas, não cobertura total de todos os estados ou de fonte recuperado.
 
-**Erro eliminatório:** alegar que os testes didáticos garantem clone total, que burlou proteção/licença ou que o agente executou uma ferramenta não executada.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
+
+**Erro eliminatório:** apresentar execução de Ghidra/REA/serviço externo sem prova, induzir bypass de licença/DRM ou confundir resultado didático com clone perfeito.
 
 ## Rubrica de correção
-De 0 a 12 pontos. Recomendar >=9, reexecução com entrada negativa e revisão da limitação; nenhuma aprovação automática pelo simples clique de conclusão. Este gabarito está fora da superfície principal da aula.
+10–12 pontos, sem erro eliminatório: domínio editorial satisfatório. 0–9 pontos: estudar novamente, refazer controle negativo e apresentar reteste. Sem observação com estudantes reais, esta rubrica é proposta e não certificação humana.
