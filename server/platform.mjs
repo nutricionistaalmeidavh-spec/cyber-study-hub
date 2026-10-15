@@ -76,7 +76,7 @@ function init(db) {
     ...ROADMAP_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
 }
-export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=false}) {
+export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true}) {
   if(!dbPath||!origin)throw Error('dbPath and HUB_ORIGIN are required');
   const canonicalOrigin=new URL(origin).origin, secure=canonicalOrigin.startsWith('https://');
   const db=new DatabaseSync(dbPath);
@@ -163,6 +163,12 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       if(path==='/api/auth/register'&&method==='POST') {
         const b=await readJson(req);
         if(!q('SELECT count(*) AS n FROM users').get().n)throw new HttpError(403,'Plataforma não inicializada.');
+        const signupKey=sha('signup:'+String(req.socket.remoteAddress||'unknown'));
+        const previous=q('SELECT count,reset_at FROM login_attempts WHERE key=?').get(signupKey);
+        const active=Boolean(previous&&previous.reset_at>now());
+        if(active&&previous.count>=10)throw new HttpError(429,'Limite de cadastros atingido. Tente novamente mais tarde.');
+        q('INSERT INTO login_attempts(key,count,reset_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET count=excluded.count,reset_at=excluded.reset_at')
+          .run(signupKey,active?previous.count+1:1,active?previous.reset_at:now()+900000);
         let role='student',email=b.email,inv;
         if(typeof b.inviteToken==='string'&&b.inviteToken.length>=24){
           inv=q('SELECT email,role,expires_at,used_at FROM invitations WHERE token_hash=?').get(sha(b.inviteToken));

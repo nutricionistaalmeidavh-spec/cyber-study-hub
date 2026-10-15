@@ -2,6 +2,7 @@ import { createServer } from 'node:http';
 import { readFile, stat, mkdir } from 'node:fs/promises';
 import { resolve, extname, join, sep } from 'node:path';
 import { createPlatformHandler } from './platform.mjs';
+import { registrationEnabled } from '../src/auth/registration-policy.mjs';
 import { protectedPath, canonicalAssetPath } from '../src/worker/course-access.mjs';
 
 const port=Number(process.env.PORT || 8788);
@@ -12,7 +13,7 @@ const app=createPlatformHandler({
   dbPath:join(dataDir,'platform.sqlite'),
   origin,
   bootstrapKey:process.env.HUB_BOOTSTRAP_KEY,
-  openRegistration:process.env.HUB_OPEN_REGISTRATION==='1'
+  openRegistration:registrationEnabled(process.env.HUB_OPEN_REGISTRATION)
 });
 const dist=resolve('./dist');
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8',
