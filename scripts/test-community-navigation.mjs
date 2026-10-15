@@ -25,7 +25,7 @@ test('Hub mobile menu exposes feedback, voting and admin-only feedback moderatio
 
 test('New navigation is mobile-only and does not displace existing important tabs', () => {
   const mobile = app.split('<nav className="mobile-nav">')[1]?.split('</nav>')[0] ?? '';
-  for (const route of ['#dashboard','#lessons','#games','#materials','#review','#account']) {
+  for (const route of ['#dashboard','#courses','#games','#materials','#review','#account']) {
     assert.ok(mobile.includes('href="'+route+'"'), 'Existing mobile tab missing: '+route);
   }
   assert.match(css, /@media\(max-width:780px\)\{[\s\S]*?\.mobile-nav-more/);
