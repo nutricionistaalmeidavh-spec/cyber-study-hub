@@ -20,7 +20,7 @@ test('Hub mobile menu exposes feedback, voting and admin-only feedback moderatio
   assert.match(mobile, /href="#feedback"/);
   assert.match(mobile, /href="#roadmap"/);
   assert.match(mobile, /\{user\.role==='admin'\s*&&\s*<Nav href="#admin\/feedback"/);
-  assert.match(mobile, /<summary[^>]+aria-label="Mais opções: comunidade e suporte"/);
+  assert.match(mobile, /<summary[^>]+aria-label="Mais opções: materiais, revisão e comunidade"/);
 });
 
 test('Mobile bottom bar has exactly five slots; Materials and Review appear only inside Mais', () => {
