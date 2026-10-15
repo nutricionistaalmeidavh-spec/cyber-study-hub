@@ -168,3 +168,27 @@ test('the mobile outline renders route-preserving links too', () => {
   assert.ok(html.includes('href="#lesson/47?section=v2-lab"'));
   assert.ok(!html.includes('href="#v2-lab"'));
 });
+
+
+test('a completed interactive lesson is not presented as the module continuation', () => {
+  const catalog = JSON.parse(readFileSync('src/curriculum/catalog.json'));
+  const source = readFileSync('src/components/curriculum/CurriculumBrowser.tsx', 'utf8');
+  const deps = {};
+  for (const match of source.matchAll(/(?:from |import )'([^']+)'/g)) {
+    if (match[1].startsWith('.')) deps[match[1]] = {};
+  }
+  Object.assign(deps, {
+    '../../curriculum/catalog.json': catalog,
+    '../../data/lessons': { lessons: [] },
+    '../../content/registry': { listNativeV2LessonIds: () => [47] },
+    '../../lib/curriculumState': { getActiveParallelTracks: () => [] },
+    '../../lib/learningProgress': { getLearningProgress: () => ({ 47: { completed: true } }) },
+    '../../lib/storage': { getLessonState: () => ({}) },
+    '../../lib/courseStudyMetadata': { lessonDurationLabel: () => '60 min', moduleObjectives: {} },
+    '../../lib/studyProgress': { getStudyVisits: () => [{ key: '47', href: '#lesson/47', title: 'Cache', kind: 'interactive' }] }
+  });
+  const { CurriculumBrowser } = load('src/components/curriculum/CurriculumBrowser.tsx', deps);
+  const html = renderToStaticMarkup(createElement(CurriculumBrowser, { initialMode: 'main', initialModule: 'Web e AppSec avançado' }));
+  assert.ok(html.includes('Concluída'));
+  assert.ok(!html.includes('class="study-module-continue"'));
+});

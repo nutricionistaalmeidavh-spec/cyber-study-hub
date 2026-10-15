@@ -95,7 +95,7 @@ export function CurriculumBrowser({
   const visibleParallel = filteredParallel.slice(0, visibleCount);
   const detailIndex = selected ? currentModules.findIndex(group => group.name === selected.name) + 1 : -1;
   const activeCodes = selectedParallel ? [...new Set(selectedParallel.items.map(item => item.trackCode))] : [];
-  const selectedVisits = selected ? visits.filter(visit => selected.items.some(item => visit.key === (item.kind === 'main' ? String(item.id) : 'parallel:' + item.code)) && !visit.read) : [];
+  const selectedVisits = selected ? visits.filter(visit => selected.items.some(item => visit.key === (item.kind === 'main' ? String(item.id) : 'parallel:' + item.code) && status(item) !== 'Concluída') && !visit.read) : [];
   const resume = selectedVisits[0];
   const resumeLink = resume ? resume.sectionId ? studySectionHref(resume.sectionId, resume.href) : resume.href : undefined;
   const allActive = activeCodes.length > 0 && activeCodes.every(code => activeParallel.has(code));

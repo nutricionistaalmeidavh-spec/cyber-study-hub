@@ -116,7 +116,10 @@ function LessonViewerV2Content({
   useEffect(() => {
     if (!position.active) return;
     setActiveSection(position.active);
-    markSectionVisited(lesson.id, position.active);
+    // The shared position hook owns persistence and displays save/retry failures.
+    if (!getLessonLearningProgress(lesson.id).visitedSectionIds.includes(position.active)) {
+      try { markSectionVisited(lesson.id, position.active); } catch { /* Preserve the lesson; shared hook exposes recovery. */ }
+    }
     setVisitedSections(previous => new Set([...previous, position.active]));
   }, [position.active, lesson.id]);
 
