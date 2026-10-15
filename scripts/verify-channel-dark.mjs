@@ -92,5 +92,5 @@ for(const [i,m] of course.modules.entries()){
 assert.equal(steps,32);
 console.log('Trilha Canal Dark: 8/8 pareceres A EDITORIAIS com evidências, 32 etapas, 8 kits e 48 questões. Sem validação humana.');
 if(!process.argv.includes('--structure-only')){
-  execFileSync(process.execPath,['--test','public/course-labs/channel-dark/engine.test.mjs','scripts/test-channel-dark.mjs'],{cwd:root,stdio:'inherit'});
+  execFileSync(process.execPath,['--test','public/course-labs/channel-dark/engine.test.mjs','scripts/test-channel-dark.mjs','scripts/test-channel-dark-workshops.mjs'],{cwd:root,stdio:'inherit'});
 }
