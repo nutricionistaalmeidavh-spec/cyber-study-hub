@@ -1,0 +1,281 @@
+{
+  "id": "ENGENHARIA-REVERSA-IA",
+  "version": 1,
+  "title": "Engenharia Reversa com IA",
+  "subtitle": "Investigue, explique e reconstrua funcionalidades próprias com REA, Ghidra e evidências verificáveis.",
+  "project": "Dossiê de Engenharia Reversa",
+  "audience": "Alunos de programação, cibersegurança e desenvolvimento",
+  "corePolicy": "R$ 0 obrigatório, self-hosted e open source, com Node.js, arquivos próprios e testes locais; sem API ou pagamento obrigatório.",
+  "safetyPolicy": "Somente programas de autoria própria ou expressamente autorizados; sem evasão de DRM, quebra de licenças, malware real nem clonagem de ativos proprietários.",
+  "tooling": {
+    "core": [
+      "Node.js",
+      "Código C próprio",
+      "Testes nativos node:test",
+      "Ghidra open source opcional na análise nativa"
+    ],
+    "agentsOptional": [
+      "REA (MIT, configuração opt-in; disponibilidade varia por plataforma)",
+      "Ollama e modelo aberto executado localmente em hardware compatível"
+    ],
+    "paidOptional": [
+      "Hopper",
+      "Serviços externos de modelo"
+    ],
+    "primarySource": "https://github.com/morluto/rea"
+  },
+  "totalSteps": 32,
+  "newMicroLessons": 16,
+  "reusedReferences": 8,
+  "newLabs": 8,
+  "modules": [
+    {
+      "id": 1,
+      "title": "Fundamentos e limites da engenharia reversa",
+      "category": "Fundamentos",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Escopo, permissão e linha de base observável",
+      "reusedLessonCode": "AULA-028",
+      "steps": [
+        {
+          "id": 1,
+          "type": "microaula",
+          "title": "Caixa-preta, caixa-branca e proveniência"
+        },
+        {
+          "id": 2,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Escopo autorizado e propriedade intelectual"
+        },
+        {
+          "id": 3,
+          "type": "referencia",
+          "title": "Referência canônica: aula 028"
+        },
+        {
+          "id": 4,
+          "type": "laboratorio",
+          "title": "Delimitar escopo e obter primeira linha de base"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Investigação orientada por evidências",
+      "category": "Fundamentos",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Matriz de casos com ao menos um controle negativo",
+      "reusedLessonCode": "AULA-111",
+      "steps": [
+        {
+          "id": 5,
+          "type": "microaula",
+          "title": "Mapa de entradas e saídas"
+        },
+        {
+          "id": 6,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Casos de fronteira e hipótese refutável"
+        },
+        {
+          "id": 7,
+          "type": "referencia",
+          "title": "Referência canônica: aula 111"
+        },
+        {
+          "id": 8,
+          "type": "laboratorio",
+          "title": "Construir matriz de comportamento"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Binários nativos e Ghidra",
+      "category": "Investigação",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Relatório estático com função, string e ramo observado",
+      "reusedLessonCode": "AULA-115",
+      "steps": [
+        {
+          "id": 9,
+          "type": "microaula",
+          "title": "ELF/PE e arquitetura do binário"
+        },
+        {
+          "id": 10,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Strings, funções, xrefs e CFG"
+        },
+        {
+          "id": 11,
+          "type": "referencia",
+          "title": "Referência canônica: aula 115"
+        },
+        {
+          "id": 12,
+          "type": "laboratorio",
+          "title": "Compilar e mapear uma função no Ghidra"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Análise dinâmica controlada",
+      "category": "Investigação",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Tabela que separa inferência estática e saída observada",
+      "reusedLessonCode": "AULA-116",
+      "steps": [
+        {
+          "id": 13,
+          "type": "microaula",
+          "title": "Observação versus inferência"
+        },
+        {
+          "id": 14,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Breakpoints e fluxo de estados"
+        },
+        {
+          "id": 15,
+          "type": "referencia",
+          "title": "Referência canônica: aula 116"
+        },
+        {
+          "id": 16,
+          "type": "laboratorio",
+          "title": "Comparar execução e previsão"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "JavaScript, Electron e interfaces",
+      "category": "Investigação",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Mapa de chamadas e distinção entre UI e regra",
+      "reusedLessonCode": "AULA-118",
+      "steps": [
+        {
+          "id": 17,
+          "type": "microaula",
+          "title": "Código distribuído e source maps"
+        },
+        {
+          "id": 18,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Diferença entre front-end e API"
+        },
+        {
+          "id": 19,
+          "type": "referencia",
+          "title": "Referência canônica: aula 118"
+        },
+        {
+          "id": 20,
+          "type": "laboratorio",
+          "title": "Anotar dependências e reconstruir fluxo"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "REA, agentes e MCP com execução local",
+      "category": "Investigação",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Dossiê com evidência, confiança e contraexemplo",
+      "reusedLessonCode": "AULA-117",
+      "steps": [
+        {
+          "id": 21,
+          "type": "microaula",
+          "title": "REA CLI/MCP e limites de compatibilidade"
+        },
+        {
+          "id": 22,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Ghidra gratuito versus Hopper opcional"
+        },
+        {
+          "id": 23,
+          "type": "referencia",
+          "title": "Referência canônica: aula 117"
+        },
+        {
+          "id": 24,
+          "type": "laboratorio",
+          "title": "Gerar dossiê assistido sem API obrigatória"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Reconstrução e testes diferenciais",
+      "category": "Projeto",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Candidato local e divergências documentadas",
+      "reusedLessonCode": "AULA-129",
+      "steps": [
+        {
+          "id": 25,
+          "type": "microaula",
+          "title": "Separação entre observação e implementação"
+        },
+        {
+          "id": 26,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Teste diferencial por casos representativos"
+        },
+        {
+          "id": 27,
+          "type": "referencia",
+          "title": "Referência canônica: aula 129"
+        },
+        {
+          "id": 28,
+          "type": "laboratorio",
+          "title": "Construir e verificar uma reimplementação"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Capstone: auditoria e entrega",
+      "category": "Projeto",
+      "duration": "3–5 h",
+      "status": "available",
+      "outcome": "Pacote local e relatório técnico que permite auditoria",
+      "reusedLessonCode": "AULA-130",
+      "steps": [
+        {
+          "id": 29,
+          "type": "microaula",
+          "title": "Cadeia de evidências e proveniência"
+        },
+        {
+          "id": 30,
+          "type": "microaula-ia",
+          "title": "Agentes de IA: Critérios de aceitação e comunicação de limites"
+        },
+        {
+          "id": 31,
+          "type": "referencia",
+          "title": "Referência canônica: aula 130"
+        },
+        {
+          "id": 32,
+          "type": "laboratorio",
+          "title": "Entregar capstone com relatório e reteste"
+        }
+      ]
+    }
+  ]
+}
