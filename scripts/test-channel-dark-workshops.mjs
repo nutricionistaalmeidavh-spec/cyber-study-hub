@@ -56,6 +56,7 @@ test('M03: pipeline real de normalização exige gravação e FFmpeg',()=>temp(a
   assert.equal(job.input,'narracao.wav');
   assert.match(await read(dir,'module-03/normalizar-audio.sh'),/ffmpeg/);
   assert.match(await read(dir,'module-03/normalizar-audio.sh'),/loudnorm/);
+  assert.match(await read(dir,'module-03/piper-tts.sh'),/PIPER_MODEL/);
 }));
 test('M04: storyboard produz manifesto Motion Canvas e SVG utilizável',()=>temp(async dir=>{
   await runWorkshop(4,dir);
@@ -95,6 +96,11 @@ test('M07: fluxo real mantém aprovação humana, não autoconclui',()=>temp(asy
   const approval=await json(dir,'module-07/aprovacao.json');
   assert.equal(flow.state,'pendente_revisao');
   assert.equal(approval.status,'pending');
+  const nodered=await json(dir,'module-07/node-red-flow.json');
+  const n8n=await json(dir,'module-07/n8n-workflow.json');
+  assert.ok(nodered.some(n=>n.type==='function' && n.func?.includes('flow.get')));
+  assert.ok(n8n.nodes.some(n=>n.type==='n8n-nodes-base.code'));
+  assert.equal(n8n.active,false);
   assert.throws(()=>createApprovalDemonstration({human:false,facts:true,rights:true,originality:true}),/revisão humana/);
   const approved=createApprovalDemonstration({human:true,facts:true,rights:true,originality:true});
   assert.equal(approved.status,'approved');
@@ -105,6 +111,10 @@ test('M08: relatório exportado e não induz execução de fórmula CSV',()=>tem
   assert.equal(stats.kind,'EXEMPLO_FICTICIO');
   assert.equal(stats.episodes,2);
   assert.match(await read(dir,'module-08/relatorio.csv'),/titulo/);
+  const html=await read(dir,'module-08/painel.html');
+  assert.match(html,/type="file"/);
+  assert.match(html,/textContent/);
+  assert.doesNotMatch(html,/innerHTML/);
   assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:11,completed:1}]),/inconsistentes/);
   assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:5,completed:2,title:'=2+2+2+2'}]),/fórmula|CSV/);
 }));
