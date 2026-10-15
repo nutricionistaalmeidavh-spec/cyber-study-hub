@@ -50,7 +50,7 @@ Payload: `{event,orderId,productId,email,customerName,amountCents,currency,saleT
 
 Verificações: segredo >= 32 caracteres; HMAC via WebCrypto; janela ±5 min; UUID da entrega igual a `idempotencyKey`; e-mail idêntico ao cadastro existente, ativo; moeda BRL; total positivo; produto A com modalidade permitida. Sem conta correspondente, retorna HTTP 409 (entrega pendente, nunca finge sucesso). Resposta HTTP 200 `{"accepted":true}` apenas depois da transação SQL persistida. Eventos repetidos são seguros; IDs conflitantes são rejeitados.
 
-O vínculo da compra é com o **e-mail informado no checkout**, que deve corresponder à conta Hub. E-mail de login do Hub ainda não tem verificação por e-mail; configurar política de verificação/identidade antes de operar volume comercial ou liberar contas autogeridas. Compra feita para e-mail distinto será destinada à conta correspondente, não à sessão local do navegador.
+O vínculo da compra é com o **e-mail informado no checkout**, que deve corresponder à conta Hub. **Não há exigência de código enviado por e-mail (OTP)**: foi explicitamente descartada. O Hub valida o e-mail cadastrado, o estado ativo da conta, o produto publicado e o evento HMAC vindo da central financeira. A criação pública de contas segue **desativada por padrão** (`HUB_OPEN_REGISTRATION` não habilitado), reduzindo o risco de terceiros registrarem e-mails alheios. Se cadastro aberto for habilitado, o risco de apropriação de um e-mail não comprovado persiste; não habilitar venda com autocadastro aberto sem outra forma de vincular identidade. Compra com e-mail distinto será destinada à conta correspondente, nunca à sessão local do navegador.
 
 ## 3. Conectar os dois serviços (somente quando for ativar)
 
@@ -60,7 +60,7 @@ O vínculo da compra é com o **e-mail informado no checkout**, que deve corresp
 4. Configure `CONNECTOR_ALLOWED_ORIGINS` do Pagamento ArtiSys para incluir a origem HTTPS do Hub, preservando as origens existentes. O gateway recusa conector fora da lista.
 5. Publique oferta no Pagamento ArtiSys somente depois de concluir a migração de conteúdo privado, QA e homologação. Ative `PAYMENTS_ENABLED=true` no gateway **somente** quando a cobrança estiver preparada. Defina preços, tributos, reembolso e prazo contratual da compra individual.
 6. Vitrine Hub (variáveis **públicas** de build): `VITE_ARTISYS_PAYMENTS_URL=https://pagamentos-artisys-central.nutricionistaalmeidavh.workers.dev` (ou domínio HTTPS oficial configurado) e `VITE_ARTISYS_CHECKOUT_ENABLED=true`. Sem essa flag, não existem botões de compra nem acesso ao gateway.
-7. Teste com conta A (comprador) e conta B (sem acesso), inclusive replay, estorno, revogação de curso, renovação, expiração e entrega fora de ordem; depois valide sessão do comprador, redirecionamento, HTTPS e logs sanitizados em produção.
+7. Teste com conta A (comprador) e conta B (sem acesso), inclusive replay, estorno, revogação de curso, renovação, expiração e entrega fora de ordem; depois valide sessão do comprador, redirecionamento, HTTPS e logs sanitizados em produção. Não criar fluxo de verificação de e-mail por código.
 
 **Formato ilustrativo**, a preencher manualmente e mesclar no JSON já existente, sem colocar segredo em Git:
 
