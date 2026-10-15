@@ -72,7 +72,6 @@ export function CurriculumBrowser({
       ?? (initialTrack ? parallelModules.find(group => group.name === initialTrack) : undefined)
     : undefined;
   const selected = selectedMain ?? selectedParallel;
-  const currentModules = initialMode === 'main' ? mainModules : parallelModules;
   const normalizedQuery = normalize(query);
 
   useEffect(() => {
