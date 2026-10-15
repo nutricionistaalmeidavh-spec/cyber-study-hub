@@ -106,5 +106,5 @@ test('M08: relatório exportado e não induz execução de fórmula CSV',()=>tem
   assert.equal(stats.episodes,2);
   assert.match(await read(dir,'module-08/relatorio.csv'),/titulo/);
   assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:11,completed:1}]),/inconsistentes/);
-  assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:5,completed:2,title:'=2+2'}]),/fórmula|CSV/);
+  assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:5,completed:2,title:'=2+2+2+2'}]),/fórmula|CSV/);
 }));
