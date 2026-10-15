@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:course-access && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && tsc --noEmit && vite build",
+    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -77,7 +77,8 @@
     "test:course-access": "node --test scripts/test-course-access.mjs",
     "test:reverse-ai": "node --test scripts/test-reverse-ai.mjs public/course-labs/reverse-ai/lab.test.mjs public/course-labs/reverse-ai/engine.test.mjs && node scripts/verify-reverse-ai.mjs",
     "test:protected-payloads": "node --test scripts/test-private-course-payloads.mjs scripts/test-private-content-api.mjs",
-    "postbuild": "node scripts/test-private-bundle.mjs"
+    "postbuild": "node scripts/test-private-bundle.mjs",
+    "test:public-signup": "node --test scripts/test-public-signup-policy.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
