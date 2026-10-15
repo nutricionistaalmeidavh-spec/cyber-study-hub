@@ -13830,7 +13830,7 @@
       "reviewMethod": "ai_editorial_second_pass",
       "humanLearnerTesting": "not_performed",
       "summary": "Inventário de ativos e duas rotas, origem e controle de escopo. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
-      "contentSha256": "aac6ceb70c192454a3c03ee3124a286b81795de19fb4a46ec3e48d92c3f32309",
+      "contentSha256": "b2a5f1df68b10584dff1737751480a95514f5a77e17a0eb15d0c193b25658c70",
       "scores": {
         "conteudoTecnico": 93,
         "didatica": 91,
@@ -13882,7 +13882,7 @@
           "dimension": "especificidade",
           "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
           "reference": "src/curriculum/catalog.json :: AULA-211; public/course-library/main/211.md; public/course-labs/capstone-final/templates/",
-          "result": "AULA-211 gera Inventário de ativos e duas rotas, origem e controle de escopo; ligação de artefato e SHA-256 aac6ceb70c19… identificável."
+          "result": "AULA-211 gera Inventário de ativos e duas rotas, origem e controle de escopo; ligação de artefato e SHA-256 b2a5f1df68b1… identificável."
         }
       ]
     },

@@ -12,7 +12,7 @@
     "AULA-211": {
       "title": "Reconhecimento e inventário autorizado",
       "contentPath": "/course-library/main/211.md",
-      "contentSha256": "aac6ceb70c192454a3c03ee3124a286b81795de19fb4a46ec3e48d92c3f32309",
+      "contentSha256": "b2a5f1df68b10584dff1737751480a95514f5a77e17a0eb15d0c193b25658c70",
       "technicalSources": [
         "https://csrc.nist.gov/pubs/sp/800/115/final"
       ],
