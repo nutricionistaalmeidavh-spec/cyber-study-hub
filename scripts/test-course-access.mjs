@@ -40,3 +40,12 @@ test('apostilas consolidadas só com assinatura ativa; paralelas draft não vaza
  assert.equal(permitted(student,ownersForPath('/course-library/parallel/PY-01.md'),[],true),false);
  assert.equal(permitted(student,ownersForPath('/course-library/parallel/LOG-01.md'),owner('desenvolvimento-com-ia'),false),true);
 });
+
+test('novo laboratorio reverse-ai e protegido: staff pode, aluno sem curso publicado nao',()=>{
+ const owners=ownersForPath('/course-labs/reverse-ai/lab.mjs');
+ assert.deepEqual(owners,['engenharia-reversa-com-ia']);
+ assert.equal(permitted(student,owners,[],false),false);
+ assert.equal(permitted(student,owners,owner('engenharia-reversa-com-ia'),false),false);
+ assert.equal(permitted({...student,role:'admin'},owners,[],false),true);
+ assert.equal(ownersForPath('/course-labs/reverse-ai/../secret'),[]);
+});
