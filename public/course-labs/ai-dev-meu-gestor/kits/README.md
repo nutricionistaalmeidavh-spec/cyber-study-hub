@@ -36,3 +36,7 @@ Para executar um adaptador com pacote `@artisys/*`, consulte o README dele e ins
 - Serial real exige equipamento autorizado e driver/protocolo compatíveis. O simulador não homologa hardware.
 - O scanner deve executar somente sobre projetos controlados e com autorização. Falta de ferramenta não equivale a PASS.
 - O `frontEnds` é privado: componentes importados diretamente dele não podem ser publicados no Hub sem pacote e licença de distribuição explicitamente aprovados.
+
+## Implementação integrada no checkpoint Meu Gestor v1.0 (P3)
+
+As seis extensões didáticas aparecem em `checkpoints/v1.0/src/extensions/Extensions.tsx` e utilizam `core.ts`. A rota `GET /api/extensions/quality` verifica integridade SQLite; `GET /api/extensions/orders/:id/print` gera uma folha A4 segura de OS para salvar como PDF no navegador. CSV/financeiro/balança ficam no frontend, sem tocar em dados reais. Execute `npm test && npm run build` em `checkpoints/v1.0`. A [documentação da extensão](../checkpoints/v1.0/README.md) distingue claramente simulador, integração real e tecnologia opcional.
