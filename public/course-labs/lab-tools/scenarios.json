@@ -33,7 +33,7 @@
         "caseId": "LAB-02-POS"
       },
       "negative": {
-        "evidenceId": null,
+        "evidenceId": "",
         "caseId": "LAB-02-NEG"
       },
       "positiveReason": "Evidência EV-001 com origem e hipótese",
