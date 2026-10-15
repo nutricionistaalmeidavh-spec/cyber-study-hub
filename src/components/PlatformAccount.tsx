@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { platformApi, type PlatformUser } from './PlatformGate';
 import { getSyncError, hasLegacyProgress, importLegacyProgress, retryProgressSync } from '../lib/accountStorage';
+import { CourseGrantPanel } from './CourseGrantPanel';
 
 type UserList={users:PlatformUser[]};
 type Invitation={inviteUrl:string;token:string;expiresInHours:number};
@@ -103,5 +104,6 @@ export function PlatformUsers({me}:{me:PlatformUser}){
         </div>)}
       </div>
     </section>
+    <CourseGrantPanel users={users}/>
   </div>;
 }
