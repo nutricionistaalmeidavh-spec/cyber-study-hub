@@ -12,6 +12,7 @@ import { MaterialsHub, MaterialViewer } from './components/Materials';
 import type { GameType } from './types';
 import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
 import AiDevelopmentTrail from './trails/ai-dev/AiDevelopmentTrail';
+import ChannelAutomationTrail from './trails/channel-dark/ChannelAutomationTrail';
 import { FeedbackBoard, FeedbackComposer } from './components/feedback/FeedbackCenter';
 import { RoadmapPage } from './components/feedback/Roadmap';
 
@@ -35,6 +36,7 @@ type Route =
   | { page: 'game'; packId: number; type: GameType }
   | { page: 'review' }
   | { page: 'ai-dev' }
+  | { page: 'channel-dark' }
   | { page: 'materials' }
   | { page: 'material'; id: string };
 
@@ -62,6 +64,7 @@ function parseHash(): Route {
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
   if (raw.split('?')[0] === 'ai-dev') return { page: 'ai-dev' };
+  if (raw.split('?')[0] === 'channel-dark') return { page: 'channel-dark' };
   if (raw === 'materials') return { page: 'materials' };
   if (raw === 'games') return { page: 'games' };
   if (raw === 'review') return { page: 'review' };
@@ -114,6 +117,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
         <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
+        <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
@@ -143,6 +147,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='course-main' && <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} />}
       {route.page==='course-parallel' && <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} />}
       {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
+      {route.page==='channel-dark' && <ChannelAutomationTrail userId={user.id} />}
       {route.page==='games' && <GamesHub />}
       {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
       {route.page==='materials' && <MaterialsHub />}
@@ -165,6 +170,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         route.page==='course-parallel'?'Trilha paralela · '+route.code:
         route.page==='lesson'?'Aula '+String(route.id).padStart(3,'0'):
         route.page==='ai-dev'?'Trilha Desenvolver com IA':
+        route.page==='channel-dark'?'Trilha Canal Dark com IA':
         route.page==='lessons'?'Módulos '+(route.module??'· catálogo'):
         route.page==='material'?'Material '+route.id:route.page==='game'?'Jogo '+route.packId:
         route.page==='dashboard'?'Início do HubEstudos':route.page
