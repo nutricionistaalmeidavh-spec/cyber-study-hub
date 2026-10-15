@@ -11,7 +11,7 @@ Uma decisão rastreável de triagem de telemetria para **Privilege Escalation em
 - `../models.mjs`: implementação do mecanismo de autorização e classificação.
 - `../run.mjs`: executa especificamente AULA-184.
 - `../run.test.mjs` e `../lab.test.mjs`: verificações executáveis.
-- `../../course-library/main/184.md`: teoria e roteiro canônico (abra também dentro do Hub).
+- `public/course-library/main/184.md`: teoria e roteiro canônico (abra também dentro do Hub).
 
 ## Execução reproduzível (na raiz do repositório)
 

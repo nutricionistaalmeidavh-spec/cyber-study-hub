@@ -11,7 +11,7 @@ Uma decisão rastreável de triagem de telemetria para **Adversary Emulation**. 
 - `../models.mjs`: implementação do mecanismo de autorização e classificação.
 - `../run.mjs`: executa especificamente AULA-182.
 - `../run.test.mjs` e `../lab.test.mjs`: verificações executáveis.
-- `../../course-library/main/182.md`: teoria e roteiro canônico (abra também dentro do Hub).
+- `public/course-library/main/182.md`: teoria e roteiro canônico (abra também dentro do Hub).
 
 ## Execução reproduzível (na raiz do repositório)
 

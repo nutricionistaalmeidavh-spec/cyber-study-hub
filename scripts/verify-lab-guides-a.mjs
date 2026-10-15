@@ -66,5 +66,20 @@ const matches=mainDoc.split('\n').filter(line=>line.includes("'/course-labs/") &
 assert.ok(matches.length>=25,'Mapa central sem faixas suficientes');
 for(let id=1;id<=218;id++)assert.equal(matches.filter(item=>id>=item.from&&id<=item.to).length,1,'Aula '+id+' com pacote ausente ou ambíguo');
 for(const item of matches)assert.ok(existsSync('public'+item.file),'Link central quebrado: '+item.file);
-console.log('PASS: 218 aulas mapeadas em pacotes existentes');
+for(const [start,end,folder,runner,testFile] of [
+ [181,190,'a181-190','run.mjs','run.test.mjs'],[191,200,'a191-200','run.mjs','run.test.mjs'],
+ [201,208,'a201-208','run.mjs','run.test.mjs'],[209,218,'capstone-final','stage-runner.mjs','stage.test.mjs']
+]){
+ for(let id=start;id<=end;id++){
+  const guide='public/course-labs/'+folder+'/workshops/AULA-'+id+'.md';
+  assert.ok(existsSync(guide),'Aula sem oficina P2 específica: '+id);
+  const text=readFileSync(guide,'utf8');
+  assert.ok(text.includes('AULA-'+id),'Roteiro ligado a ID errado: '+id);
+  assert.ok(text.includes('node public/course-labs/'+folder+'/'+runner+' '+id),'Comando do ID incorreto: '+id);
+ }
+ for(const file of [runner,testFile])assert.ok(existsSync('public/course-labs/'+folder+'/'+file));
+}
+const perLesson=readFileSync('src/lib/labCourseResources.ts','utf8');
+for(const folder of ['a181-190','a191-200','a201-208','capstone-final'])assert.ok(perLesson.includes("'/course-labs/"+folder+"/workshops/AULA-'"),'UI não aponta oficina individual: '+folder);
+console.log('PASS: 218 aulas mapeadas; P2 contém oficinas individualizadas A171-218, 30 LAB, regressões e gabaritos separados');
 console.log('PASS: 8 contratos Meu Gestor, 6 kits, 14 aulas V2, 10 aulas de pesquisa e 30 oficinas específicas de ferramentas');

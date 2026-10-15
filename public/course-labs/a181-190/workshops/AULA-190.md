@@ -11,7 +11,7 @@ Uma decisão rastreável de análise Purple Team para **Capstone — Purple Team
 - `../models.mjs`: implementação do mecanismo de autorização e classificação.
 - `../run.mjs`: executa especificamente AULA-190.
 - `../run.test.mjs` e `../lab.test.mjs`: verificações executáveis.
-- `../../course-library/main/190.md`: teoria e roteiro canônico (abra também dentro do Hub).
+- `public/course-library/main/190.md`: teoria e roteiro canônico (abra também dentro do Hub).
 
 ## Execução reproduzível (na raiz do repositório)
 
