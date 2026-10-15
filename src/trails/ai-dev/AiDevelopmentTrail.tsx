@@ -5,6 +5,7 @@ import labContracts from './labContracts.json';
 import './ai-dev.css';
 import { getStudyDraft, saveStudyVisit, syncCanonicalGuidedProgress } from '../../lib/studyProgress';
 import { guidedCanonicalId } from '../../lib/guidedIdentity';
+import { GuidedPracticeOrientation } from '../../components/practice/GuidedPracticeOrientation';
 import ProgressSyncStatus from '../../components/ProgressSyncStatus';
 
 type Section = { heading: string; body: string; example?: string; counterexample?: string };
@@ -159,6 +160,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
       <article className="ai-lesson panel" aria-labelledby="ai-lesson-title">
         <div className="ai-lesson-top"><span className="eyebrow">ID {guidedCanonicalId('ai-dev', lesson.stepId)} · ETAPA {String(lesson.stepId).padStart(2, '0')} / 32</span><span>{lesson.durationMin} min</span></div>
         <h2 id="ai-lesson-title">{lesson.title}</h2><p className="ai-lead">{lesson.lead}</p>
+        <GuidedPracticeOrientation code={guidedCanonicalId('ai-dev',lesson.stepId)} source='ai-dev' step={lesson} />
         {lesson.sections?.map((s, i) => <section className="ai-reading" key={i}>
           <h3>{s.heading}</h3><p>{s.body}</p>
           {s.example && <p><strong>Exemplo aplicável:</strong> {s.example}</p>}
