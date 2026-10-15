@@ -1,4 +1,7 @@
 import {practiceFor,type PracticeTarget} from '../../lib/practiceContracts';
+import catalogData from '../../curriculum/catalog.json';
+import type {CurriculumCatalog} from '../../curriculum/types';
+const catalog=catalogData as CurriculumCatalog;
 import './practice.css';
 
 export function PracticeOrientation({target,objective,deliverable}:{target:PracticeTarget;objective?:string;deliverable?:string}){
@@ -16,4 +19,10 @@ export function PracticeOrientation({target,objective,deliverable}:{target:Pract
    </a>)}</div></div>
   <p className="practice-contract-limit">{p.limits}</p>
  </section>;
+}
+
+/** Reusa o contrato da aula oficial, sem criar novo ID ou estado de progresso. */
+export function MainPracticeOrientation({id,objective,deliverable}:{id:number;objective?:string;deliverable?:string}){
+ const item=catalog.main.find(x=>x.id===id);
+ return item?<PracticeOrientation target={item} objective={objective} deliverable={deliverable}/>:null;
 }

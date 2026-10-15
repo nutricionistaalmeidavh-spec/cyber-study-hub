@@ -27,6 +27,8 @@ import './lesson-v2.css';
 import { useStudyPosition } from '../useStudyPosition';
 import { studySectionHref } from '../../lib/studyNavigation';
 import { getLessonLearningProgress } from '../../lib/learningProgress';
+import { CanonicalLessonContent } from '../practice/CanonicalLessonContent';
+import { MainPracticeOrientation } from '../practice/PracticeOrientation';
 
 type LessonViewerV2Props = {
   id: number;
@@ -247,6 +249,8 @@ function LessonViewerV2Content({
       />
 
       {position.saveError && <p role="alert">{position.saveError} <button onClick={position.retry}>Tentar novamente</button></p>}
+      <MainPracticeOrientation id={lesson.id} objective={lesson.lab?.title} deliverable={lesson.lab?.steps?.at(-1)?.checkpoint} />
+      <CanonicalLessonContent id={lesson.id} />
       <div className="lesson-v2-layout">
         <aside className="lesson-v2-rail" aria-label="Roteiro da aula">
           <span className="eyebrow">ROTEIRO</span>

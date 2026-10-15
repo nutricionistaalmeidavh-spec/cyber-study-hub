@@ -7,6 +7,8 @@ import { hasNativeV2Lesson } from '../content/registry';
 import { LessonViewerV2 } from './lesson-v2/LessonViewerV2';
 import { useStudyPosition } from './useStudyPosition';
 import { studySectionHref } from '../lib/studyNavigation';
+import { CanonicalLessonContent } from './practice/CanonicalLessonContent';
+import { MainPracticeOrientation } from './practice/PracticeOrientation';
 
 export function LessonList(props:{initialTrack?:string;initialMode?:'main'|'parallel';initialModule?:string}) {
   return <CurriculumBrowser {...props} />;
@@ -92,9 +94,11 @@ function LegacyLessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
       </div>
     </section>
 
+    <MainPracticeOrientation id={lesson.id} objective={detail?.labTitle} deliverable={detail?.expected} />
+    <CanonicalLessonContent id={lesson.id} />
     {position.saveError && <p role="alert">{position.saveError} <button onClick={position.retry}>Tentar novamente</button></p>}
     <section className="panel lesson-outline">
-      <span className="eyebrow">ROTEIRO DA AULA</span>
+      <span className="eyebrow">RECURSOS INTERATIVOS · CONTEÚDO INTEGRAL ACIMA</span>
       <div className="outline-grid">
         <a href={studySectionHref('conteudo')}>1. Conteúdo</a><a href={studySectionHref('fluxo')}>2. Como funciona</a><a href={studySectionHref('codigo')}>3. Código</a><a href={studySectionHref('laboratorio')}>4. Laboratório</a><a href={studySectionHref('conceitos')}>5. Conceitos</a><a href={studySectionHref('revisao')}>6. Revisão</a>
       </div>
@@ -125,7 +129,7 @@ function LegacyLessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
       <div className="lab-head"><div><span className="eyebrow">LABORATÓRIO GUIADO</span><h2>{detail?.labTitle}</h2></div><span className={`lab-mode ${detail?.labMode.includes('PC')?'pc':''}`}>{detail?.labMode}</span></div>
       <p>Faça somente em equipamento, VM, WSL, aplicação ou domínio que você controla e autorizou para estudo.</p>
       <ol className="lab-steps">{detail?.labSteps.map((step,i)=><li key={step}><b>{i+1}</b><span>{step}</span></li>)}</ol>
-      {id >= 43 && id <= 100 && <a className="button ghost" target="_blank" rel="noopener noreferrer" href={id <= 50 ? '/course-labs/a41-50/lab.test.mjs' : id <= 60 ? '/course-labs/a051-060/labs.test.mjs' : id <= 70 ? '/course-labs/a061-070/lab.test.mjs' : id <= 80 ? '/course-labs/a071-080/lab.test.mjs' : id <= 90 ? '/course-labs/a81-90/lab.test.mjs' : '/course-labs/a91-100/lab.test.mjs'}>Abrir testes do laboratório compartilhado ↗</a>}
+      <p className="muted">Os arquivos de execução e testes específicos ou compartilhados estão no quadro de orientação prática acima.</p>
       <div className="expected-result"><span>RESULTADO ESPERADO</span><p>{detail?.expected}</p></div>
     </section>
 
