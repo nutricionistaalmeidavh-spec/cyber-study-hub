@@ -1,0 +1,7 @@
+.artisys-purchase{display:grid;gap:1rem;padding:1.15rem;border:1px solid var(--border,rgba(130,150,180,.24));border-radius:1rem;background:var(--surface,rgba(20,28,44,.8))}
+.artisys-purchase h2{margin:.3rem 0 .5rem;font-size:1.2rem}
+.artisys-purchase p{margin:0;line-height:1.6}
+.artisys-purchase-actions{display:flex;flex-wrap:wrap;gap:.65rem}
+.artisys-purchase-actions a{display:inline-flex;justify-content:center;align-items:center;min-height:44px;text-align:center;white-space:normal}
+.artisys-purchase-note{font-size:.86rem;opacity:.82}
+@media(max-width:650px){.artisys-purchase-actions{display:grid;grid-template-columns:1fr}.artisys-purchase-actions a{width:100%}}
