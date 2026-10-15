@@ -40,8 +40,10 @@ export async function handleFeedback({
   if(listing&&method==='GET'){
     const pageRaw=Number(new URL(url).searchParams.get('page')||'0');
     const page=Number.isSafeInteger(pageRaw)?Math.max(0,Math.min(1000,pageRaw)):0;
-    const where=adminPath?'':' WHERE f.user_id=?';
-    const params=adminPath?[]:[actor.id];
+    const statusFilter=adminPath?new URL(url).searchParams.get('status'):null;
+    const filterStatus=statusFilter&&STATUSES.includes(statusFilter)?statusFilter:null;
+    const where=adminPath?(filterStatus?' WHERE f.status=?':''):' WHERE f.user_id=?';
+    const params=adminPath?(filterStatus?[filterStatus]:[]):[actor.id];
     const count=one('SELECT count(*) AS n FROM feedback_reports f'+where,...params).n;
     const reports=all(reportSelect+where+' ORDER BY f.created_at DESC,f.id DESC LIMIT 30 OFFSET ?',...params,page*30);
     return reply(200,{feedback:reports,total:count,page,hasMore:(page+1)*30<count});

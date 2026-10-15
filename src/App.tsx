@@ -12,6 +12,7 @@ import { MaterialsHub, MaterialViewer } from './components/Materials';
 import type { GameType } from './types';
 import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
 import AiDevelopmentTrail from './trails/ai-dev/AiDevelopmentTrail';
+import { FeedbackBoard, FeedbackComposer } from './components/feedback/FeedbackCenter';
 
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -22,6 +23,8 @@ type Route =
   | { page: 'dashboard' }
   | { page: 'account' }
   | { page: 'admin-users' }
+  | { page: 'admin-feedback' }
+  | { page: 'feedback' }
   | { page: 'lessons'; track?: string; mode?: 'main' | 'parallel'; module?: string }
   | { page: 'lesson'; id: number }
   | { page: 'course-main'; id: number }
@@ -51,6 +54,8 @@ function parseHash(): Route {
     return { page: 'lessons', track, mode, module };
   }
   if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
+  if (raw === 'feedback') return { page: 'feedback' };
+  if (raw === 'admin/feedback'||(!raw&&window.location.pathname==='/admin/feedback')) return { page: 'admin-feedback' };
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
   if (raw.split('?')[0] === 'ai-dev') return { page: 'ai-dev' };
@@ -70,6 +75,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   const [, setVersion] = useState(0);
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [showIos, setShowIos] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const isIos = useMemo(() => /iphone|ipad|ipod/i.test(navigator.userAgent), []);
   const isStandalone = useMemo(() => window.matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & {standalone?:boolean}).standalone === true, []);
 
@@ -106,6 +112,8 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
         <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
         <Nav href="#account" active={route.page==='account'} icon="account" label="Minha conta" />
+        <Nav href="#feedback" active={route.page==='feedback'} icon="feedback" label="Meus feedbacks" />
+        {user.role==='admin' && <Nav href="#admin/feedback" active={route.page==='admin-feedback'} icon="feedback" label="Central de feedback" />}
         {user.role==='admin' && <Nav href="#admin/users" active={route.page==='admin-users'} icon="users" label="Usuários" />}
       </nav>
       <div className="account-sidebar"><strong>{user.name}</strong><small>{user.email}</small><button onClick={() => void actions.logout()}>Sair da conta</button></div>
@@ -114,8 +122,13 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
     </aside>
 
     <main className="main-content">
+      <div className="feedback-global-action"><button type="button" className="button ghost" onClick={()=>setFeedbackOpen(true)}>
+        {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
+      </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
+      {route.page==='feedback' && <FeedbackBoard user={user} />}
+      {route.page==='admin-feedback' && (user.role==='admin'?<FeedbackBoard user={user} admin />:<FeedbackBoard user={user} />)}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
       {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} />}
       {route.page==='lesson' && <LessonViewer key={route.id} id={route.id} onRefresh={refresh} />}
@@ -138,11 +151,21 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
     </nav>
 
+    {feedbackOpen && <FeedbackComposer onClose={()=>setFeedbackOpen(false)} context={{
+      contextPath:window.location.hash||'#dashboard',
+      contextLabel:route.page==='course-main'?'Aula principal '+String(route.id).padStart(3,'0'):
+        route.page==='course-parallel'?'Trilha paralela · '+route.code:
+        route.page==='lesson'?'Aula '+String(route.id).padStart(3,'0'):
+        route.page==='ai-dev'?'Trilha Desenvolver com IA':
+        route.page==='lessons'?'Módulos '+(route.module??'· catálogo'):
+        route.page==='material'?'Material '+route.id:route.page==='game'?'Jogo '+route.packId:
+        route.page==='dashboard'?'Início do HubEstudos':route.page
+    }}/>}
     {showIos && <div className="modal-backdrop" onClick={()=>setShowIos(false)}><div className="modal" onClick={(e:any)=>e.stopPropagation()}><span className="eyebrow">INSTALAR NO IPHONE</span><h2>Adicionar à Tela de Início</h2><ol><li>Toque em <b>Compartilhar</b> no Safari.</li><li>Escolha <b>Adicionar à Tela de Início</b>.</li><li>Confirme em <b>Adicionar</b>.</li></ol><button className="button primary" onClick={()=>setShowIos(false)}>Entendi</button></div></div>}
   </div>;
 }
 
-type NavIconName = 'home' | 'book' | 'ai' | 'games' | 'materials' | 'review' | 'account' | 'users';
+type NavIconName = 'home' | 'book' | 'ai' | 'games' | 'materials' | 'review' | 'account' | 'users' | 'feedback';
 function NavIcon({ name }: { name: NavIconName }) {
   return <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     {name==='home' && <><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></>}
@@ -152,6 +175,7 @@ function NavIcon({ name }: { name: NavIconName }) {
     {name==='materials' && <><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></>}
     {name==='review' && <><path d="M20 10a8 8 0 1 0 .1 4"/><path d="M20 4v6h-6"/></>}
     {name==='account' && <><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></>}
+    {name==='feedback' && <><path d="M4 5h16v12H9l-5 4z"/><path d="M8 9h8M8 13h5"/></>}
     {name==='users' && <><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 5a3 3 0 0 1 0 6M17 15a6 6 0 0 1 4 5"/></>}
   </svg>;
 }
