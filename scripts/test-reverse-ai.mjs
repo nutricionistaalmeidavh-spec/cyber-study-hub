@@ -49,7 +49,7 @@ test('cada etapa tem conteúdo específico e vínculo com laboratório e referê
 });
 test('UI integra rota, progresso por conta e não altera o registro legado',()=>{
  const app=read('src/App.tsx'),progress=read('src/lib/studyProgress.ts'),ids=read('src/lib/guidedIdentity.ts'),home=read('src/components/Dashboard.tsx');
- assert.match(app,/reverse-ai/);assert.match(home,/#reverse-ai/);
+ assert.match(app,/reverse-ai/);assert.match(home,/#courses\/engenharia-reversa-com-ia/);
  assert.match(ids,/reverse-ai/);assert.match(progress,/reverse-ai/);
  assert.match(read('src/trails/reverse-ai/ReverseAiTrail.tsx'),/syncCanonicalGuidedProgress\('reverse-ai'/);
  assert.match(read('src/trails/reverse-ai/ReverseAiTrail.tsx'),/guidedCanonicalId\('reverse-ai'/);
