@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import manifest from './manifest.json';
-import learning from './modules.json';
-import labContracts from './labContracts.json';
 import './ai-dev.css';
 import { getStudyDraft, saveStudyVisit, syncCanonicalGuidedProgress } from '../../lib/studyProgress';
 import { guidedCanonicalId } from '../../lib/guidedIdentity';
@@ -19,7 +17,6 @@ type Module = { moduleId: number; version: number; title: string; objective: str
   learningOutcomes: string[]; lessons: Lesson[]; assessmentPath: string; answerKeyPath: string };
 type StepDraft = { answer: number | null; checkedAnswer: boolean; referenceRead: boolean; quizAttempt: string };
 type Progress = { moduleId?: number; stepIndex?: number; drafts?: Record<number, StepDraft>; completed: number[]; notes: Record<number, string>; checked: Record<number, number[]> };
-const modules = (learning as unknown as { modules: Module[] }).modules;
 const modes = [
   { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/' },
   { id: 'claude', name: 'Claude', url: 'https://claude.ai/' },
@@ -43,7 +40,7 @@ function initial(userId: string): Progress {
   return { ...old, ...saved, completed: [...new Set([...old.completed, ...saved.completed])].filter(Number.isInteger),
     notes: { ...old.notes, ...saved.notes }, checked: { ...old.checked, ...saved.checked } };
 }
-function initialPosition(progress: Progress) {
+function initialPosition(progress: Progress, modules:Module[]) {
   const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
   const moduleId = Number(params.get('module') || progress.moduleId || 1);
   const module = modules.find(item => item.moduleId === moduleId) || modules[0];
@@ -52,9 +49,26 @@ function initialPosition(progress: Progress) {
 }
 
 export default function AiDevelopmentTrail({ userId }: { userId: string }) {
+  const [content,setContent]=useState<{modules:Module[];labContracts:any[]}|null>(null);
+  const [loadError,setLoadError]=useState('');
+  useEffect(()=>{
+    const controller=new AbortController();
+    fetch('/api/content/trail/ai-dev',{credentials:'same-origin',cache:'no-store',signal:controller.signal})
+      .then(async response=>{if(!response.ok)throw Error('Curso não liberado (HTTP '+response.status+').');return response.json();})
+      .then(payload=>setContent(payload))
+      .catch(reason=>{if(!controller.signal.aborted)setLoadError(String(reason));});
+    return ()=>controller.abort();
+  },[]);
+  if(!content?.modules?.length)return <div className="page"><section className="panel">
+    <h1>Desenvolvimento com IA</h1>
+    <p>{loadError||'Carregando conteúdo autorizado pelo servidor…'}</p>
+  </section></div>;
+  return <AiDevelopmentTrailLoaded userId={userId} modules={content.modules} labContracts={content.labContracts} />;
+}
+function AiDevelopmentTrailLoaded({ userId, modules, labContracts }: { userId:string; modules:Module[]; labContracts:any[] }) {
   const [progress, setProgress] = useState<Progress>(() => initial(userId));
-  const [moduleId, setModuleId] = useState(() => initialPosition(progress).moduleId);
-  const [stepIndex, setStepIndex] = useState(() => initialPosition(progress).stepIndex);
+  const [moduleId, setModuleId] = useState(() => initialPosition(progress,modules).moduleId);
+  const [stepIndex, setStepIndex] = useState(() => initialPosition(progress,modules).stepIndex);
   const initialStep = modules.find(item => item.moduleId === moduleId)!.lessons[stepIndex].stepId;
   const restored = progress.drafts?.[initialStep];
   const [saveError, setSaveError] = useState('');
