@@ -43,7 +43,7 @@ export function validatePauta(p){
 }
 export function pautasDemo(){return [
   {id:'pauta-001',question:'O que é um pedido HTTP e por que seu contexto importa?',source,sourceStatus:'a_verificar',reviewedByHuman:false,stage:'ideia'},
-  {id:'pauta-002',question:'Por que a explicação visual precisa representar dados reais?',source,sourceStatus:'a_verificar',reviewedByHuman:false,stage:'ideia'}
+  {id:'pauta-002',question:'Quais permissões são necessárias ao reutilizar uma imagem Creative Commons?',source:'https://creativecommons.org/share-your-work/cclicenses/',sourceStatus:'a_verificar',reviewedByHuman:false,stage:'ideia'}
 ].map(validatePauta);}
 export function segmentNarration(text){
   const parts=trim(text).replace(/\s+/g,' ').split(/(?<=[.!?])\s+/u).filter(Boolean);
