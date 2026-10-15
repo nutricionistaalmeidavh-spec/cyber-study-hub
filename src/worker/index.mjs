@@ -65,8 +65,8 @@ export class HubAuthObject extends DurableObject {
       "CREATE INDEX IF NOT EXISTS sessions_user ON sessions(user_id)",
       "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL,expires_at INTEGER NOT NULL,used_at INTEGER)",
       "CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL)",
-      "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))"
-    ...FEEDBACK_SCHEMA
+      "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))",
+      ...FEEDBACK_SCHEMA
     ])this.sql.exec(ddl);
   }
   one(sql,...args){return this.sql.exec(sql,...args).toArray()[0];}
