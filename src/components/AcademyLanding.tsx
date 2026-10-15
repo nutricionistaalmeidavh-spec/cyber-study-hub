@@ -73,6 +73,7 @@ export default function AcademyLanding() {
           <a href="#metodo">Como funciona</a>
           <a href="#assinaturas">Assinaturas</a>
           <a href="#perguntas">Perguntas</a>
+          <a href="/roadmap">Votar melhorias</a>
         </nav>
         <div className="academy-header-actions">
           <a className="academy-login" href="/">Já sou aluno</a>
@@ -85,6 +86,7 @@ export default function AcademyLanding() {
             <a href="#metodo">Como funciona</a>
             <a href="#assinaturas">Assinaturas</a>
             <a href="#perguntas">Perguntas</a>
+            <a href="/roadmap">Votar em melhorias</a>
             <a href="/">Entrar no hub</a>
           </nav>
         </details>
