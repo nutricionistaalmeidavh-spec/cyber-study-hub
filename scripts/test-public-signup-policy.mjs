@@ -20,7 +20,7 @@ test('Node e Cloudflare compartilham uma unica política de cadastro, independen
  assert.match(worker,/registrationEnabled\(this\.env\.HUB_OPEN_REGISTRATION\)/);
  assert.doesNotMatch(worker,/openRegistration:\s*this\.env\.HUB_OPEN_REGISTRATION\s*===\s*'1'/);
  assert.match(worker,/role\s*=\s*'student'/);
- assert.match(worker,//api\/admin\/invitations/);
+ assert.match(worker,/\/api\/admin\/invitations/);
 });
 test('landing e login oferecem cadastro público sem confundir inscrição com compra',()=>{
  const landing=read('src/components/AcademyLanding.tsx');
