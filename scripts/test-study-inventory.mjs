@@ -37,7 +37,7 @@ test('96 referências e atividades possuem conteúdo, rotas e contratos de avali
    assert.equal(entry.href,'#'+source+'?module='+entry.moduleId+'&step='+(m.lessons.findIndex(v=>v.stepId===entry.stepId)));
    if(entry.stepType==='referencia'){
     assert.equal(entry.referencePath,step.referencePath);
-    assert.equal(entry.aliasOf,step.referenceCode);
+    if(source!=='channel-dark') assert.equal(entry.aliasOf,step.referenceCode); // Canal Dark mantém referências textuais sem alias canônico histórico.
    }
   }
   assert.equal(list.length,32);
