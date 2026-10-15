@@ -38,7 +38,7 @@ export function RoadmapPage({embedded=false}:{embedded?:boolean}){
   };
   const list=[...(data?.ideas??[])].sort((a,b)=>sort==='votes'?(b.votes-a.votes)||a.title.localeCompare(b.title):
     order.indexOf(a.stage)-order.indexOf(b.stage)||b.votes-a.votes);
-  const content=<div className={'roadmap-shell '+(embedded?'roadmap-embedded':'roadmap-standalone')}>
+  const content=<div className={'roadmap-shell hub-secondary '+(embedded?'roadmap-embedded':'roadmap-standalone')}>
     <header className="roadmap-heading">
       <span className="eyebrow">CONSTRUÍDO COM A COMUNIDADE</span>
       <h1>O que vem por aí no HubEstudos</h1>

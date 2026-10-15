@@ -1,0 +1,490 @@
+/*
+ * HubEstudos — superfícies secundárias no mesmo sistema visual editorial da
+ * home e do catálogo (Outfit, violeta e cards lilás). Somente apresentação.
+ * Sem alteração de componentes de API, autenticação, dados ou persistência.
+ */
+.hub-secondary{
+  --hub-ink:#281b40;
+  --hub-copy:#655775;
+  --hub-violet:#8745f7;
+  --hub-lilac:#f3ecfc;
+  --hub-lilac-line:#d8c3ed;
+  --teal:#c99fff;
+  font-family:Outfit,Inter,ui-sans-serif,system-ui,sans-serif;
+  max-width:1100px;
+  min-width:0;
+}
+.hub-secondary :is(h1,h2,h3,strong,button,label){font-family:Outfit,Inter,ui-sans-serif,system-ui,sans-serif}
+.hub-secondary .eyebrow{
+  color:#d0a6ff;
+  font-size:10px;
+  font-weight:800;
+  line-height:1.45;
+  letter-spacing:.14em;
+}
+.hub-secondary :is(a,button,input,select,textarea,summary):focus-visible{
+  outline:3px solid #c39aff;
+  outline-offset:3px;
+}
+.hub-secondary .button{min-height:42px;border-radius:12px;font-size:12px;letter-spacing:0;transition:background .16s,border-color .16s,box-shadow .16s}
+.hub-secondary .button.primary{color:#fff;background:linear-gradient(115deg,#8d38da,#6232dd 53%,#305df1);border-color:#955ac7}
+.hub-secondary .button.ghost{color:#f5eaff;border-color:#67517f;background:#251736}
+.hub-secondary .button.ghost:hover{border-color:#b490e4;background:#302045}
+.hub-secondary.stack-lg>*+*{margin-top:17px}
+.hub-secondary.page{padding-top:12px}
+.hub-secondary .page-title,
+.hub-secondary .roadmap-heading{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid #553b71;
+  border-radius:22px;
+  background:radial-gradient(ellipse at 95% 4%,rgba(149,85,243,.2),transparent 50%),
+    linear-gradient(125deg,#160e28,#241337 62%,#1d2144);
+  box-shadow:0 12px 36px rgba(4,1,12,.13);
+  padding:25px 29px;
+  margin:0;
+}
+.hub-secondary .page-title::after,
+.hub-secondary .roadmap-heading::after{
+  content:"";
+  width:90px;height:90px;
+  position:absolute;right:-26px;bottom:-39px;z-index:-1;
+  border:1px solid rgba(224,196,255,.1);border-radius:30px;transform:rotate(18deg);
+  pointer-events:none;
+}
+.hub-secondary .page-title h1,
+.hub-secondary .roadmap-heading h1{
+  font-size:clamp(28px,3.5vw,40px);
+  letter-spacing:-.042em;
+  line-height:1.1;
+  margin:6px 0 9px;
+  color:#fff;
+  max-width:750px;
+}
+.hub-secondary .page-title p,
+.hub-secondary .roadmap-heading p{
+  color:#d7c9e8;
+  font-size:clamp(13px,1.4vw,15px);
+  line-height:1.56;
+  max-width:660px;
+  margin:0;
+}
+.hub-secondary .page-title>.button{margin-top:16px}
+.app-shell .main-content:has(.hub-secondary)>.feedback-global-action{
+  max-width:1152px;margin:0 auto;
+  padding:12px 28px 2px;
+}
+.app-shell .main-content:has(.hub-secondary)>.feedback-global-action .button{
+  color:#e9d1ff;
+  background:rgba(45,27,68,.84);
+  border:1px solid #704d8b;
+  min-height:39px;
+  padding:8px 13px;
+  box-shadow:none;
+  border-radius:12px;
+  font-family:Outfit,Inter,ui-sans-serif,system-ui,sans-serif;
+}
+.app-shell .main-content:has(.hub-secondary)>.feedback-global-action .button:hover{border-color:#c298ff;background:#302044}
+
+/* Feedback: leitura editorial, estado vazio de verdade, controles compactos. */
+.feedback-page.hub-secondary .feedback-board,
+.feedback-page.hub-secondary .roadmap-management{
+  border:1px solid #54406b;
+  border-radius:20px;
+  padding:22px 24px;
+  background:linear-gradient(150deg,#20132e,#171329);
+  box-shadow:0 8px 25px rgba(7,3,15,.1);
+  min-width:0;
+}
+.feedback-page.hub-secondary .feedback-board{gap:18px}
+.feedback-page.hub-secondary .feedback-board-head{
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.feedback-page.hub-secondary .feedback-board-head h2{
+  font-size:clamp(19px,2.2vw,23px);
+  line-height:1.25;
+  letter-spacing:-.03em;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#fff;
+}
+.feedback-page.hub-secondary .feedback-counter{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:28px;height:27px;padding:0 8px;
+  background:#3b2458;border:1px solid #704d95;
+  border-radius:9px;color:#e0beff;font-size:13px;
+  font-variant-numeric:tabular-nums;
+}
+.feedback-page.hub-secondary .feedback-filter{
+  display:flex;align-items:center;gap:9px;
+  color:#d1bedf;font-size:12px;
+}
+.feedback-page.hub-secondary .feedback-filter select{
+  min-height:42px;min-width:152px;
+  border:1px solid #624976;background:#2c1c3f;
+  border-radius:11px;color:#f6edff;padding:8px 12px;
+}
+.feedback-page.hub-secondary .feedback-list{gap:8px}
+.feedback-page.hub-secondary .feedback-item{
+  padding:16px 17px;
+  border-radius:14px;
+  border:1px solid #ddcbef;
+  background:linear-gradient(145deg,#faf7ff,#eee5fa);
+  color:#291c40;
+  box-shadow:0 4px 16px rgba(7,3,15,.08);
+}
+.feedback-page.hub-secondary .feedback-item:hover,
+.feedback-page.hub-secondary .feedback-item:focus-visible{border-color:#ac70e5;background:#fff}
+.feedback-page.hub-secondary .feedback-item-main strong{color:#281b40;font-size:15px}
+.feedback-page.hub-secondary .feedback-item-main small{color:#6c5d7c}
+.feedback-page.hub-secondary .feedback-item-main .feedback-unread{color:#662a9f}
+.feedback-page.hub-secondary .feedback-status{font-size:10px}
+.feedback-page.hub-secondary .feedback-empty{
+  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+  min-height:0;padding:24px 26px;
+  border-radius:17px;
+  border:1px solid #d5c1e9;
+  background:linear-gradient(135deg,#faf8fe,#ede2f9);
+}
+.feedback-page.hub-secondary .feedback-empty::before{
+  content:"◎";
+  display:grid;place-items:center;
+  width:37px;height:37px;margin-bottom:13px;
+  background:#e5d7fa;color:#7540b4;border:1px solid #ceb3ed;
+  border-radius:11px;font-size:25px;line-height:1;
+}
+.feedback-page.hub-secondary .feedback-empty strong{
+  color:#281b40;font-size:19px;letter-spacing:-.025em;line-height:1.25;
+}
+.feedback-page.hub-secondary .feedback-empty p{
+  color:#685a79;max-width:520px;
+  margin:8px 0 15px;
+  font-size:13px;line-height:1.55;
+}
+.feedback-page.hub-secondary .feedback-empty .button,
+.roadmap-shell.hub-secondary .roadmap-empty .button{
+  background:#37204f;color:#fff;border:1px solid #6d4695;
+  margin:0;
+}
+.feedback-page.hub-secondary .feedback-empty .button:hover,
+.roadmap-shell.hub-secondary .roadmap-empty .button:hover{background:#522976;border-color:#895db4}
+.feedback-page.hub-secondary .roadmap-management h2,
+.feedback-page.hub-secondary .roadmap-management h3{color:#fff}
+.feedback-page.hub-secondary .roadmap-management :is(p,small){color:#cbb9dc}
+.feedback-page.hub-secondary .roadmap-admin-row{
+  border-color:#584173;border-radius:12px;background:#241833;
+}
+.feedback-page.hub-secondary .feedback-pagination{gap:10px}
+.feedback-page.hub-secondary .feedback-pagination span{color:#d4bfe6}
+
+/* Roadmap: compact heading, two-option tabs and light idea cards. */
+.roadmap-shell.hub-secondary{padding-top:12px;padding-bottom:80px}
+.roadmap-shell.hub-secondary.roadmap-embedded{padding:0;max-width:none}
+.roadmap-page:has(.hub-secondary){max-width:1150px;padding-top:12px}
+.roadmap-shell.hub-secondary .roadmap-heading{margin-bottom:21px;max-width:none}
+.roadmap-shell.hub-secondary .roadmap-heading h1{max-width:590px}
+.roadmap-shell.hub-secondary .roadmap-actions{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;
+}
+.roadmap-shell.hub-secondary .roadmap-tab{
+  min-height:42px;border:1px solid #66497e;
+  padding:9px 16px;border-radius:11px;
+  background:#302044;color:#ded0ee;
+  font-family:Outfit,Inter,ui-sans-serif,system-ui,sans-serif;
+  font-size:13px;font-weight:750;
+}
+.roadmap-shell.hub-secondary .roadmap-tab.active{
+  color:#2e1844;background:#e7d5fb;border-color:#eadcf8;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+}
+.roadmap-shell.hub-secondary .roadmap-sort{
+  min-height:43px;margin-bottom:12px;
+  color:#c8b7da;font-size:12px;
+  flex-wrap:wrap;
+}
+.roadmap-shell.hub-secondary .roadmap-sort label{gap:9px}
+.roadmap-shell.hub-secondary .roadmap-sort select{
+  min-height:38px;border-color:#634a7b;
+  border-radius:10px;background:#291a3b;
+  color:#f7efff;padding:8px 11px;
+}
+.roadmap-shell.hub-secondary .roadmap-empty{
+  max-width:none;min-height:0;
+  border:1px solid #d6c1ed;
+  border-radius:18px;padding:25px 28px;
+  background:linear-gradient(135deg,#faf8ff,#eae0f7);
+  box-shadow:0 6px 23px rgba(10,2,23,.08);
+}
+.roadmap-shell.hub-secondary .roadmap-empty::before{
+  content:"↗";width:37px;height:37px;display:grid;place-items:center;
+  border:1px solid #d3baef;border-radius:11px;
+  color:#7037ad;background:#e8dbf8;
+  font-size:20px;margin-bottom:14px;
+}
+.roadmap-shell.hub-secondary .roadmap-empty h2{
+  color:#2c1b42;font-size:clamp(20px,2.3vw,26px);
+  line-height:1.2;max-width:600px;letter-spacing:-.03em;
+}
+.roadmap-shell.hub-secondary .roadmap-empty p{
+  max-width:550px;color:#655773;
+  font-size:13px;line-height:1.55;margin:10px 0 18px;
+}
+.roadmap-shell.hub-secondary .roadmap-grid{gap:12px}
+.roadmap-shell.hub-secondary .roadmap-idea{
+  border:1px solid #d7c6e9;border-radius:18px;
+  background:linear-gradient(145deg,#f9f6fd,#e9ddf5);
+  color:#2c1b42;padding:19px 21px;
+  box-shadow:0 5px 17px rgba(5,1,12,.06);
+}
+.roadmap-shell.hub-secondary .roadmap-idea h2{color:#281b40}
+.roadmap-shell.hub-secondary .roadmap-idea p{color:#645672;line-height:1.55}
+.roadmap-shell.hub-secondary .roadmap-idea .roadmap-date{color:#695977}
+.roadmap-shell.hub-secondary .roadmap-card-footer{border-color:#d3bce7;color:#645672}
+.roadmap-shell.hub-secondary .roadmap-stage{color:#64447e;background:#e9d7f7}
+.roadmap-shell.hub-secondary .roadmap-stage.stage-in_progress{color:#315795;background:#dce9ff}
+.roadmap-shell.hub-secondary .roadmap-stage.stage-released{color:#23654e;background:#dbf2e7}
+.roadmap-shell.hub-secondary .roadmap-stage.stage-planned{color:#6535a0;background:#eadbfd}
+.roadmap-shell.hub-secondary .roadmap-delivered{color:#226c51}
+.roadmap-shell.hub-secondary .roadmap-note{color:#c9badd;line-height:1.5}
+.roadmap-shell.hub-secondary .roadmap-release h2{color:#fff}
+.roadmap-shell.hub-secondary .roadmap-release p{color:#d4c4e3}
+.roadmap-shell.hub-secondary .roadmap-release-marker{background:#be93ff;border-color:#0e081b}
+
+/* Revisão: uma hierarquia única, métricas no topo e prática sem cartões enormes. */
+.review-page.hub-secondary .learning-insights{gap:13px}
+.review-page.hub-secondary .learning-insights-head{
+  padding:17px 20px;
+  border:1px solid #594171;border-radius:18px;
+  background:linear-gradient(135deg,#21142e,#19182e);
+  align-items:center;
+}
+.review-page.hub-secondary .learning-insights-head h2{
+  margin:6px 0 8px;
+  font-size:clamp(20px,2.8vw,27px);
+  line-height:1.2;letter-spacing:-.035em;
+  color:#fff;max-width:600px;
+}
+.review-page.hub-secondary .learning-insights-head p{
+  max-width:600px;color:#c9b9d8;
+  font-size:12px;line-height:1.6;
+}
+.review-page.hub-secondary .learning-insights-stats{gap:8px;flex:0 0 auto}
+.review-page.hub-secondary .learning-insights-stats>span{
+  border:1px solid #dac6ec;
+  border-radius:13px;
+  min-width:104px;min-height:84px;
+  padding:12px;
+  background:linear-gradient(145deg,#faf8ff,#e9dff7);
+  color:#655673;font-size:11px;
+}
+.review-page.hub-secondary .learning-insights-stats strong{
+  color:#43265f;
+  font-size:28px;letter-spacing:-.04em;
+}
+.review-page.hub-secondary .learning-insights-grid{gap:12px}
+.review-page.hub-secondary .spaced-review-card,
+.review-page.hub-secondary .mastery-card,
+.review-page.hub-secondary .granular-progress-card{
+  border-radius:18px;padding:20px 22px;
+  border:1px solid #58416c;
+  background:linear-gradient(145deg,#20132f,#18172c);
+  min-width:0;
+}
+.review-page.hub-secondary .spaced-review-card h3{color:#fff;font-size:clamp(17px,2vw,22px);line-height:1.3}
+.review-page.hub-secondary .spaced-review-meta span{
+  color:#d6c3eb;background:#322143;border-color:#6d5182;
+}
+.review-page.hub-secondary .spaced-review-answer{
+  border-color:#b17cf5;background:rgba(175,128,242,.12);
+  border-radius:0 12px 12px 0;
+}
+.review-page.hub-secondary .spaced-review-question{color:#d1c2df}
+.review-page.hub-secondary .spaced-review-ratings button{
+  background:#342348;color:#efe3ff;border:1px solid #73508d;min-height:44px;
+}
+.review-page.hub-secondary .spaced-review-ratings button:hover{background:#4b3162;border-color:#ba91f6}
+.review-page.hub-secondary .spaced-review-empty{padding:12px 0}
+.review-page.hub-secondary .spaced-review-empty strong{color:#fff}
+.review-page.hub-secondary .spaced-review-empty p{color:#d0c0dc;font-size:13px}
+.review-page.hub-secondary .mastery-card,
+.review-page.hub-secondary .granular-progress-card{
+  border-color:#dac5eb;
+  background:linear-gradient(145deg,#faf8ff,#ece2f8);
+  color:#2c1b42;
+}
+.review-page.hub-secondary :is(.mastery-card,.granular-progress-card) .eyebrow{color:#7137a3}
+.review-page.hub-secondary .mastery-card h3,
+.review-page.hub-secondary .granular-progress-card h3{color:#281b40}
+.review-page.hub-secondary .mastery-card :is(p,small){color:#655773}
+.review-page.hub-secondary .mastery-list>div{border-color:#ddcbeb}
+.review-page.hub-secondary .mastery-list>div>span{color:#8a2860;border-color:#e0b7ce;background:#faeaf2}
+.review-page.hub-secondary .granular-progress-list a{
+  background:#f6f1fb;border:1px solid #ddcaee;border-radius:11px;
+}
+.review-page.hub-secondary .granular-progress-list a>b{color:#7138a9}
+.review-page.hub-secondary .granular-progress-list small{color:#756481}
+.review-page.hub-secondary>.two-col>.panel,
+.review-page.hub-secondary>.panel{
+  background:linear-gradient(145deg,#faf8ff,#ede2f7);
+  border-color:#d6c2e9;border-radius:18px;
+  padding:20px 22px;
+  color:#281b40;
+}
+.review-page.hub-secondary>.two-col>.panel :is(h2,h3,strong),
+.review-page.hub-secondary>.panel :is(h2,h3,strong){color:#291b40}
+.review-page.hub-secondary>.two-col>.panel .eyebrow,
+.review-page.hub-secondary>.panel .eyebrow{color:#7a38ad}
+.review-page.hub-secondary>.two-col>.panel p,
+.review-page.hub-secondary>.panel p{color:#665773}
+.review-page.hub-secondary .review-link{
+  background:#f4edf9;border-color:#ddcae9;
+  color:#291b40;border-radius:12px;
+}
+.review-page.hub-secondary .review-link b{color:#763bb2}
+.review-page.hub-secondary .tags span{background:#e6d7f7;border-color:#d1b5eb;color:#5f328e}
+.review-page.hub-secondary .lesson-card{
+  background:#f7f1fc;border-color:#d8c3eb;
+}
+.review-page.hub-secondary .lesson-number{background:#e8daf8;color:#7138a6}
+.review-page.hub-secondary .lesson-body h3{color:#281b40}
+.review-page.hub-secondary .lesson-body p{color:#655773}
+
+/* Conta: perfil legível, grupos claros, formulário seguro inalterado. */
+.platform-profile.hub-secondary .two-col{gap:13px}
+.platform-profile.hub-secondary>.panel,
+.platform-profile.hub-secondary .two-col>.panel{
+  border:1px solid #dcc9ed;border-radius:19px;
+  background:linear-gradient(140deg,#faf8ff,#eae1f6);
+  color:#291c3f;padding:22px 24px;
+  box-shadow:0 6px 23px rgba(8,3,19,.08);
+  min-width:0;
+}
+.platform-profile.hub-secondary .panel h2{
+  font-size:clamp(19px,2.3vw,23px);
+  letter-spacing:-.03em;line-height:1.25;
+  margin:0 0 8px;color:#291a42;
+}
+.platform-profile.hub-secondary .panel :is(p,.muted){
+  color:#685877;line-height:1.55;font-size:13px;
+  overflow-wrap:anywhere;
+}
+.platform-profile.hub-secondary .platform-form{
+  display:grid;gap:14px;margin-top:15px;min-width:0;
+}
+.platform-profile.hub-secondary .platform-form label{
+  color:#392651;font-size:12px;font-weight:750;
+  display:grid;gap:7px;min-width:0;
+}
+.platform-profile.hub-secondary .platform-form :is(input,select,textarea){
+  width:100%;min-width:0;
+  min-height:44px;padding:11px 13px;
+  border:1px solid #baa5cf;border-radius:11px;
+  color:#2a193d;background:#fff;
+  box-shadow:inset 0 1px 2px rgba(25,8,38,.04);
+}
+.platform-profile.hub-secondary .platform-form :is(input,select,textarea):focus{
+  border-color:#8745f7;
+  outline:3px solid rgba(135,69,247,.16);outline-offset:1px;
+}
+.platform-profile.hub-secondary .platform-form .button.primary{
+  min-height:44px;color:#fff;border-color:#985dcb;
+}
+.platform-profile.hub-secondary .panel .button.ghost{
+  background:#e5d6f4;color:#543079;border-color:#c6a9e5;
+}
+.platform-profile.hub-secondary .panel .button.ghost:hover{background:#d9c3ed;border-color:#a776d3}
+.platform-profile.hub-secondary .panel>.button{justify-self:start;max-width:100%}
+.platform-profile.hub-secondary .platform-error{
+  border:1px solid #e7aab9;border-radius:12px;padding:14px;
+  color:#81374c;background:#fff0f3;
+}
+.platform-profile.hub-secondary .platform-import{
+  border:1px solid #d2b6e9;border-radius:12px;padding:14px;background:#f5eafe;
+}
+.platform-profile.hub-secondary .panel [role="status"]{color:#5d307e}
+.platform-profile.hub-secondary .panel>p{max-width:760px}
+.platform-profile.hub-secondary>.panel:last-of-type>a.button{margin-right:8px;margin-bottom:8px}
+
+/* Mobile-first: 320/390px, tablet and desktop without bottom-nav overlap. */
+@media(max-width:780px){
+  .hub-secondary.page,.roadmap-page:has(.hub-secondary){
+    padding:9px 14px calc(142px + env(safe-area-inset-bottom,0px));
+  }
+  .hub-secondary.stack-lg>*+*{margin-top:13px}
+  .app-shell .main-content:has(.hub-secondary)>.feedback-global-action{
+    padding:10px 14px 6px;
+  }
+  .app-shell .main-content:has(.hub-secondary)>.feedback-global-action .button{
+    min-height:37px;font-size:12px;
+  }
+  .hub-secondary .page-title,
+  .hub-secondary .roadmap-heading{
+    padding:19px 19px 20px;border-radius:18px;
+  }
+  .hub-secondary .page-title h1,.hub-secondary .roadmap-heading h1{
+    font-size:clamp(26px,7vw,33px);margin:6px 0 8px;
+    line-height:1.12;
+  }
+  .hub-secondary .page-title p,.hub-secondary .roadmap-heading p{
+    font-size:13px;line-height:1.52;
+  }
+  .hub-secondary .page-title>.button{margin-top:14px}
+  .feedback-page.hub-secondary .feedback-board,
+  .feedback-page.hub-secondary .roadmap-management{
+    padding:17px;border-radius:17px;gap:15px;
+  }
+  .feedback-page.hub-secondary .feedback-board-head{align-items:flex-start}
+  .feedback-page.hub-secondary .feedback-board-head h2{font-size:20px}
+  .feedback-page.hub-secondary .feedback-filter{width:100%;justify-content:space-between;gap:12px}
+  .feedback-page.hub-secondary .feedback-filter select{
+    width:auto;max-width:63%;min-width:135px;
+  }
+  .feedback-page.hub-secondary .feedback-empty{
+    padding:20px;border-radius:14px;
+  }
+  .feedback-page.hub-secondary .feedback-empty strong{font-size:18px}
+  .feedback-page.hub-secondary .feedback-empty p{font-size:12px}
+  .feedback-page.hub-secondary .feedback-item{align-items:flex-start;flex-wrap:wrap;padding:14px}
+  .roadmap-shell.hub-secondary.roadmap-embedded{padding:0}
+  .roadmap-shell.hub-secondary .roadmap-heading{margin-bottom:14px}
+  .roadmap-shell.hub-secondary .roadmap-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:17px}
+  .roadmap-shell.hub-secondary .roadmap-tab{
+    min-width:0;padding:9px 8px;font-size:12px;
+  }
+  .roadmap-shell.hub-secondary .roadmap-sort{gap:8px;min-height:0}
+  .roadmap-shell.hub-secondary .roadmap-sort label{gap:6px}
+  .roadmap-shell.hub-secondary .roadmap-empty{padding:21px;border-radius:15px}
+  .roadmap-shell.hub-secondary .roadmap-empty h2{font-size:21px}
+  .roadmap-shell.hub-secondary .roadmap-empty p{font-size:12px}
+  .roadmap-shell.hub-secondary .roadmap-idea{padding:16px}
+  .review-page.hub-secondary .learning-insights-head{padding:17px;gap:15px}
+  .review-page.hub-secondary .learning-insights-head h2{font-size:22px}
+  .review-page.hub-secondary .learning-insights-stats{width:100%;max-width:none;display:grid;grid-template-columns:1fr 1fr}
+  .review-page.hub-secondary .learning-insights-stats>span{min-width:0;min-height:76px}
+  .review-page.hub-secondary .spaced-review-card,
+  .review-page.hub-secondary .mastery-card,
+  .review-page.hub-secondary .granular-progress-card,
+  .review-page.hub-secondary>.two-col>.panel,
+  .review-page.hub-secondary>.panel{padding:17px}
+  .review-page.hub-secondary .spaced-review-ratings{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .platform-profile.hub-secondary .two-col{grid-template-columns:1fr;gap:12px}
+  .platform-profile.hub-secondary>.panel,
+  .platform-profile.hub-secondary .two-col>.panel{padding:20px;border-radius:17px}
+  .platform-profile.hub-secondary .platform-form .button{width:100%}
+  .platform-profile.hub-secondary>.panel:last-of-type>a.button{width:100%;margin:0 0 8px}
+}
+@media(max-width:360px){
+  .hub-secondary.page,.roadmap-page:has(.hub-secondary){padding-left:10px;padding-right:10px}
+  .hub-secondary .page-title,.hub-secondary .roadmap-heading{padding:17px}
+  .roadmap-shell.hub-secondary .roadmap-tab{font-size:11px}
+  .roadmap-shell.hub-secondary .roadmap-sort{align-items:flex-start;flex-direction:column}
+  .feedback-page.hub-secondary .feedback-filter{align-items:flex-start;flex-direction:column}
+  .feedback-page.hub-secondary .feedback-filter select{max-width:100%;width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .hub-secondary :is(.button,.feedback-item,.roadmap-tab){transition:none}
+}
