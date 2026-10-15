@@ -71,7 +71,7 @@
 .guided-practice-copy strong{color:#fff}
 .guided-practice-jump{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  color:#fff!important;background:#61428a;border:1px solid #ad86dd;
+  color:#fff!important;background:#4b286e;border:1px solid #ad86dd;
   border-radius:10px;padding:9px 11px;min-height:44px;
   font-size:12px;font-weight:750;text-decoration:none;
 }

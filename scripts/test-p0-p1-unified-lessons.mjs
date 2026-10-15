@@ -72,7 +72,7 @@ test('P0: todos os links estáticos de arquivo e os conteúdos canônicos têm f
  for(const item of [...catalog.main,...catalog.parallel])
   assert.ok(existsSync('public'+item.contentPath),'Conteúdo canônico quebrado: '+item.code);
  assert.match(contracts,/arquivos/i);
- assert.match(guided,/registro de estudo/i);
+ assert.match(guided,/if\\(step\\.kind!=='laboratorio'\\)return null/); // teoria e referência sem card repetido
 });
 test('P1: fonte editorial única, estados legados e identidade guiada permanecem separados',()=>{
  assert.match(canonical,/cache:'force-cache'/);
