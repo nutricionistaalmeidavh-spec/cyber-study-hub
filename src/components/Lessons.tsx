@@ -125,6 +125,7 @@ function LegacyLessonViewer({id,onRefresh}:{id:number;onRefresh:()=>void}) {
       <div className="lab-head"><div><span className="eyebrow">LABORATÓRIO GUIADO</span><h2>{detail?.labTitle}</h2></div><span className={`lab-mode ${detail?.labMode.includes('PC')?'pc':''}`}>{detail?.labMode}</span></div>
       <p>Faça somente em equipamento, VM, WSL, aplicação ou domínio que você controla e autorizou para estudo.</p>
       <ol className="lab-steps">{detail?.labSteps.map((step,i)=><li key={step}><b>{i+1}</b><span>{step}</span></li>)}</ol>
+      {id >= 43 && id <= 100 && <a className="button ghost" target="_blank" rel="noopener noreferrer" href={id <= 50 ? '/course-labs/a41-50/lab.test.mjs' : id <= 60 ? '/course-labs/a051-060/labs.test.mjs' : id <= 70 ? '/course-labs/a061-070/lab.test.mjs' : id <= 80 ? '/course-labs/a071-080/lab.test.mjs' : id <= 90 ? '/course-labs/a81-90/lab.test.mjs' : '/course-labs/a91-100/lab.test.mjs'}>Abrir testes do laboratório compartilhado ↗</a>}
       <div className="expected-result"><span>RESULTADO ESPERADO</span><p>{detail?.expected}</p></div>
     </section>
 

@@ -119,10 +119,10 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
-      {item.kind === 'main' && item.id >= 171 && item.id <= 218 && <section className="panel" aria-label="Arquivos reais do laboratório" style={{marginBottom:'18px',padding:'17px 20px'}}>
-        <strong>{item.id <= 180 ? 'Vulnerability Research — toy parser' : item.id <= 190 ? 'Purple Team — eventos sintéticos' : item.id <= 208 ? 'Segurança de IA — laboratório local de decisão' : 'Projeto Final — cenário único e artefatos'}</strong>
-        <p style={{margin:'8px 0 12px'}}>A prática usa dados fictícios, casos válidos e negativos. O roteiro abaixo aponta para código testável e critérios de evidência; não exige conta, API paga ou serviço externo.</p>
-        <a className="button ghost" href={item.id <= 180 ? '/course-labs/a171-180/README.md' : item.id <= 190 ? '/course-labs/a181-190/README.md' : item.id <= 208 ? '/course-labs/a201-208/README.md' : '/course-labs/capstone-final/README.md'} target="_blank" rel="noopener noreferrer">Abrir laboratório e código ↗</a>
+      {item.kind === 'main' && mainLabResource(item.id) && <section className="panel" aria-label="Arquivos reais do laboratório" style={{marginBottom:'18px',padding:'17px 20px'}}>
+        <strong>{mainLabResource(item.id)?.title}</strong>
+        <p style={{margin:'8px 0 12px'}}>Esta atividade usa arquivos de teste e dados fictícios. Consulte os requisitos na aula; um simulador não comprova segurança de sistemas externos e não é um kit de produto pronto.</p>
+        <a className="button ghost" href={mainLabResource(item.id)?.href} target="_blank" rel="noopener noreferrer">Abrir código e arquivos ↗</a>
       </section>}
       <ProgressSyncStatus />
       <div className="course-document-layout">
@@ -417,4 +417,40 @@ function hrefFor(item: MainCurriculumItem | ParallelCurriculumItem) {
 
 function shortLabel(item: MainCurriculumItem | ParallelCurriculumItem) {
   return item.kind === 'main' ? `Aula ${item.id}` : item.code;
+}
+
+/** Arquivos existentes no acervo local. A faixa identifica um pacote compartilhado:
+ * não significa que o pacote todo é um laboratório exclusivo daquela aula. */
+function mainLabResource(id: number): {title:string;href:string}|null {
+  const groups: Array<[number,number,string,string]> = [
+    [1,1,'Fundamentos','/course-labs/pilot-a/test_pilot.py'],
+    [2,8,'Web e HTTP','/course-labs/a-002-008/core.test.mjs'],
+    [9,9,'CSRF','/course-labs/phase16-web-p0/web.test.mjs'],
+    [10,20,'APIs e OAuth','/course-labs/a10-20/lab.test.mjs'],
+    [21,30,'Redes, Linux e memória','/course-labs/a-021-030/test_labs.py'],
+    [31,40,'Pentest e desenvolvimento seguro','/course-labs/a031-040/lab.test.mjs'],
+    [41,46,'Web e AppSec avançado','/course-labs/a41-50/lab.test.mjs'],
+    [47,47,'Web Cache Deception','/course-labs/aula-047/README.md'],
+    [48,50,'Web e AppSec avançado','/course-labs/a41-50/lab.test.mjs'],
+    [51,60,'AppSec avançado II','/course-labs/a051-060/labs.test.mjs'],
+    [61,70,'Segurança de sistemas','/course-labs/a061-070/lab.test.mjs'],
+    [71,80,'Active Directory e Blue Team','/course-labs/a071-080/lab.test.mjs'],
+    [81,90,'Blue Team e SOC','/course-labs/a81-90/lab.test.mjs'],
+    [91,100,'EDR e Detection','/course-labs/a91-100/lab.test.mjs'],
+    [101,110,'C e Windows Internals','/course-labs/a101-110/test_models.py'],
+    [111,120,'Assembly e engenharia reversa','/course-labs/a111-120/lab.test.mjs'],
+    [121,130,'Engenharia reversa II','/course-labs/a121-130/labs.test.mjs'],
+    [131,140,'Análise de malware','/course-labs/a131-140/labs.test.mjs'],
+    [141,150,'Malware Analysis II','/course-labs/a141-150/lab.test.mjs'],
+    [151,159,'Detection Engineering','/course-labs/a151-159/lab.test.mjs'],
+    [160,160,'Memória e reversing','/course-labs/phase16-memory/README.md'],
+    [161,170,'Exploit Development','/course-labs/a161-170/lab.test.mjs'],
+    [171,180,'Pesquisa de vulnerabilidades — toy parser','/course-labs/a171-180/README.md'],
+    [181,190,'Red/Purple Team — eventos fictícios','/course-labs/a181-190/README.md'],
+    [191,200,'Cloud e DevSecOps','/course-labs/a191-200/README.md'],
+    [201,208,'Segurança de IA e agentes','/course-labs/a201-208/README.md'],
+    [209,218,'Projeto Final — caso integrado','/course-labs/capstone-final/README.md']
+  ];
+  const item=groups.find(([start,end])=>id>=start&&id<=end);
+  return item ? {title:'Laboratório aplicado: '+item[2],href:item[3]} : null;
 }
