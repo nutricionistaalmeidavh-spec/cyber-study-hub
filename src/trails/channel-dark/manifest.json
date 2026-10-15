@@ -1,6 +1,6 @@
 {
   "id": "CANAL-DARK-IA",
-  "version": 1,
+  "version": 2,
   "title": "Automação de Canais Dark com IA",
   "subtitle": "Do nicho à publicação, com produção autoral e alternativa local gratuita em cada módulo.",
   "project": "Canal Piloto",
@@ -10,7 +10,8 @@
   "notes": [
     "Serviços externos online são opcionais, com termos e créditos sujeitos a mudanças.",
     "n8n é fair-code sob Sustainable Use License e não open source OSI.",
-    "Avaliações e provas propostas não representam validação pedagógica por alunos humanos."
+    "Avaliações e provas propostas não representam validação pedagógica por alunos humanos.",
+    "Os oito módulos oferecem checkpoints locais executáveis com Node.js, testes negativos e artefatos demonstrativos. Operações com TTS e FFmpeg reais dependem de ferramentas gratuitas instaladas pelo aluno."
   ],
   "totalSteps": 32,
   "modules": [

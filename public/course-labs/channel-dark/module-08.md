@@ -33,3 +33,37 @@ O render está pronto, mas uma música não possui prova de licença e a capa si
 ## Segurança e conformidade
 
 Não envie senhas, tokens ou dados privados para assistentes. Verifique licenças de todos os ativos. Publicação depende de aprovação humana. Serviços em nuvem têm limites e cobrança variável; não são necessários ao laboratório.
+
+
+
+## Laboratório executável, versão gratuita e reproduzível
+
+**Pré-requisito:** Node.js 20+ instalado gratuitamente no computador. Abra o terminal na pasta raiz do repositório `cyber-study-hub`. **A mídia e os dados são demonstrativos; não publique o resultado sem revisão.**
+
+Execute:
+
+```bash
+node public/course-labs/channel-dark/engine.mjs --module 8 --out ./meu-canal
+```
+
+**Saída esperada:** `08-publicacao/pacote.json + 08-publicacao/analytics-ficticio.json` dentro de `meu-canal/`. A mensagem no terminal indica onde os arquivos foram criados.
+
+**Critério verificável:** O JSON final contém automatedUpload:false e checklist com todos os itens ainda false.
+
+**Interpretação:** O pacote final permanece bloqueado por padrão. CTR e conclusão são números **fictícios de treino**, nunca estatística de um canal real.
+
+**Teste independente dos exemplos e dos casos negativos:**
+
+```bash
+npm run test:channel-dark
+```
+
+## Diagnóstico e recuperação
+
+- Pacote bloqueado apesar de vídeo pronto
+- É esperado: faltam comprovação de licença, fatos, declaração sintética e aprovação
+- Revisão humana não é substituída por conclusão de render
+
+## Evidência a anexar ao registro da aula
+
+Anote a entrada, o comando executado, o arquivo encontrado, a diferença entre previsão e resultado, a revisão humana pendente e como corrigiria o caso negativo. O teste automatizado demonstra apenas comportamento do kit; não comprova qualidade da narração, direitos comerciais, veracidade das fontes nem aceitação do público.

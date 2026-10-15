@@ -36,3 +36,37 @@ Um vídeo obtém muitas visualizações mas consiste apenas em slides genéricos
 ## Política de publicação
 
 Não publique automaticamente. Confira fatos, consentimento, direitos de mídia, licenças comerciais, eventuais exigências de identificação de IA e aprovação editorial humana. Se usar ferramentas externas, não envie segredos nem dados de terceiros.
+
+
+
+## Laboratório executável, versão gratuita e reproduzível
+
+**Pré-requisito:** Node.js 20+ instalado gratuitamente no computador. Abra o terminal na pasta raiz do repositório `cyber-study-hub`. **A mídia e os dados são demonstrativos; não publique o resultado sem revisão.**
+
+Execute:
+
+```bash
+node public/course-labs/channel-dark/engine.mjs --module 1 --out ./meu-canal
+```
+
+**Saída esperada:** `01-estrategia/brief.json + 01-estrategia/licencas.csv` dentro de `meu-canal/`. A mensagem no terminal indica onde os arquivos foram criados.
+
+**Critério verificável:** A validação impede continuar com revisão humana desabilitada.
+
+**Interpretação:** Defina persona e três temas. Compare a promessa com um exemplo de aula já existente; evite trocar apenas palavras de vídeos alheios.
+
+**Teste independente dos exemplos e dos casos negativos:**
+
+```bash
+npm run test:channel-dark
+```
+
+## Diagnóstico e recuperação
+
+- Erro: revisão humana obrigatória
+- Defina humanApproval: true no brief; não simule aprovação do vídeo
+- Corrija público e promessa até o validador aceitar
+
+## Evidência a anexar ao registro da aula
+
+Anote a entrada, o comando executado, o arquivo encontrado, a diferença entre previsão e resultado, a revisão humana pendente e como corrigiria o caso negativo. O teste automatizado demonstra apenas comportamento do kit; não comprova qualidade da narração, direitos comerciais, veracidade das fontes nem aceitação do público.

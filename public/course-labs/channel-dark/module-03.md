@@ -38,3 +38,37 @@ A narração é realista, mas a licença da voz não está clara. Você deve pub
 ## Política de publicação
 
 Não publique automaticamente. Confira fatos, consentimento, direitos de mídia, licenças comerciais, eventuais exigências de identificação de IA e aprovação editorial humana. Se usar ferramentas externas, não envie segredos nem dados de terceiros.
+
+
+
+## Laboratório executável, versão gratuita e reproduzível
+
+**Pré-requisito:** Node.js 20+ instalado gratuitamente no computador. Abra o terminal na pasta raiz do repositório `cyber-study-hub`. **A mídia e os dados são demonstrativos; não publique o resultado sem revisão.**
+
+Execute:
+
+```bash
+node public/course-labs/channel-dark/engine.mjs --module 3 --out ./meu-canal
+```
+
+**Saída esperada:** `03-audio/narracao.json (manifesto, ainda sem WAV até gravar/rodar TTS)` dentro de `meu-canal/`. A mensagem no terminal indica onde os arquivos foram criados.
+
+**Critério verificável:** Uma voz sem consentimento, licença, português testado ou escuta não recebe aprovação.
+
+**Interpretação:** Este checkpoint **não gera voz sozinho**. Entrega segmentos com pronúncia e duração estimada; Piper pt-BR ou gravação própria são a prática de áudio do estudante.
+
+**Teste independente dos exemplos e dos casos negativos:**
+
+```bash
+npm run test:channel-dark
+```
+
+## Diagnóstico e recuperação
+
+- Piper indisponível ou voz pt-BR ausente
+- Não invente áudio: grave voz própria no Audacity, confirme licença e execute a escuta
+- Se perder a fala, regrave somente o segmento e preserve o original
+
+## Evidência a anexar ao registro da aula
+
+Anote a entrada, o comando executado, o arquivo encontrado, a diferença entre previsão e resultado, a revisão humana pendente e como corrigiria o caso negativo. O teste automatizado demonstra apenas comportamento do kit; não comprova qualidade da narração, direitos comerciais, veracidade das fontes nem aceitação do público.

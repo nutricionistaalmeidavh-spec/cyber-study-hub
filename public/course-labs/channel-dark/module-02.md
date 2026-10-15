@@ -37,3 +37,37 @@ Um assistente gerou um número preciso, mas a fonte está indisponível. Qual es
 ## Política de publicação
 
 Não publique automaticamente. Confira fatos, consentimento, direitos de mídia, licenças comerciais, eventuais exigências de identificação de IA e aprovação editorial humana. Se usar ferramentas externas, não envie segredos nem dados de terceiros.
+
+
+
+## Laboratório executável, versão gratuita e reproduzível
+
+**Pré-requisito:** Node.js 20+ instalado gratuitamente no computador. Abra o terminal na pasta raiz do repositório `cyber-study-hub`. **A mídia e os dados são demonstrativos; não publique o resultado sem revisão.**
+
+Execute:
+
+```bash
+node public/course-labs/channel-dark/engine.mjs --module 2 --out ./meu-canal
+```
+
+**Saída esperada:** `02-roteiros/pautas.csv + 02-roteiros/roteiro.md` dentro de `meu-canal/`. A mensagem no terminal indica onde os arquivos foram criados.
+
+**Critério verificável:** Uma pauta sem revisão permanece a_verificar e não recebe selo de fonte confirmada.
+
+**Interpretação:** A primeira pauta tem documento RFC como fonte a verificar; uma segunda pauta demonstrativa também precisa receber uma fonte pertinente antes de ser considerada pesquisada.
+
+**Teste independente dos exemplos e dos casos negativos:**
+
+```bash
+npm run test:channel-dark
+```
+
+## Diagnóstico e recuperação
+
+- Fonte 'verificada' sem aprovação humana
+- Deixe a_verificar até consultar a fonte original e registrar o revisor
+- Atualize a pergunta sem perder id e histórico
+
+## Evidência a anexar ao registro da aula
+
+Anote a entrada, o comando executado, o arquivo encontrado, a diferença entre previsão e resultado, a revisão humana pendente e como corrigiria o caso negativo. O teste automatizado demonstra apenas comportamento do kit; não comprova qualidade da narração, direitos comerciais, veracidade das fontes nem aceitação do público.

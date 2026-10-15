@@ -37,3 +37,37 @@ Uma imagem gerada parece fotografia de um acontecimento histórico. Como deve se
 ## Política de publicação
 
 Não publique automaticamente. Confira fatos, consentimento, direitos de mídia, licenças comerciais, eventuais exigências de identificação de IA e aprovação editorial humana. Se usar ferramentas externas, não envie segredos nem dados de terceiros.
+
+
+
+## Laboratório executável, versão gratuita e reproduzível
+
+**Pré-requisito:** Node.js 20+ instalado gratuitamente no computador. Abra o terminal na pasta raiz do repositório `cyber-study-hub`. **A mídia e os dados são demonstrativos; não publique o resultado sem revisão.**
+
+Execute:
+
+```bash
+node public/course-labs/channel-dark/engine.mjs --module 4 --out ./meu-canal
+```
+
+**Saída esperada:** `04-visuais/storyboard.json + 04-visuais/thumbnail.svg` dentro de `meu-canal/`. A mensagem no terminal indica onde os arquivos foram criados.
+
+**Critério verificável:** Cenas sem propósito, duração ou licença são rejeitadas pelo verificador.
+
+**Interpretação:** O SVG é um exemplo próprio, não fotografia documental. Compare tamanho de 1280 × 720 e visualização reduzida antes de liberar o thumbnail.
+
+**Teste independente dos exemplos e dos casos negativos:**
+
+```bash
+npm run test:channel-dark
+```
+
+## Diagnóstico e recuperação
+
+- Thumbnail com texto cortado
+- Teste a versão reduzida e reescreva o título com menos palavras
+- Nunca chame cena artificial de fotografia de evento real
+
+## Evidência a anexar ao registro da aula
+
+Anote a entrada, o comando executado, o arquivo encontrado, a diferença entre previsão e resultado, a revisão humana pendente e como corrigiria o caso negativo. O teste automatizado demonstra apenas comportamento do kit; não comprova qualidade da narração, direitos comerciais, veracidade das fontes nem aceitação do público.
