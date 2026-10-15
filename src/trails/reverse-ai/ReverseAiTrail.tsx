@@ -1,6 +1,5 @@
 import {useEffect,useMemo,useState} from 'react';
 import manifest from './manifest.json';
-import learning from './modules.json';
 import '../ai-dev/ai-dev.css';
 import {getStudyDraft,saveStudyVisit,syncCanonicalGuidedProgress} from '../../lib/studyProgress';
 import {guidedCanonicalId} from '../../lib/guidedIdentity';
@@ -14,7 +13,6 @@ type Step={stepId:number;kind:'microaula'|'microaula-ia'|'referencia'|'laborator
  brief?:string[];acceptance?:string[];assessmentPrompt?:string;starterSourceUrl?:string;labCommand?:string;testCommand?:string;expectedArtifact?:string;checkpointAssertion?:string};
 type Module={moduleId:number;title:string;objective:string;learningOutcomes:string[];lessons:Step[];assessmentPath:string;answerKeyPath:string};
 type Progress={moduleId:number;stepIndex:number;completed:number[];notes:Record<number,string>;checks:Record<number,number[]>;answers:Record<number,number|null>};
-const modules=(learning as {modules:Module[]}).modules;
 const initialProgress=():Progress=>({moduleId:1,stepIndex:0,completed:[],notes:{},checks:{},answers:{}});
 function restore(userId:string):Progress{
  let data:unknown;
@@ -34,11 +32,11 @@ function restore(userId:string):Progress{
 function routePosition(progress:Progress){
  const params=new URLSearchParams(window.location.hash.split('?')[1]||'');
  const moduleId=Number(params.get('module')??progress.moduleId);
- const module=modules.find(x=>x.moduleId===moduleId)||modules[0];
+ const safeModule=Number.isInteger(moduleId)&&moduleId>=1&&moduleId<=8?moduleId:1;
  const stepIndex=Number(params.get('step')??progress.stepIndex);
- return {moduleId:module.moduleId,stepIndex:Number.isInteger(stepIndex)&&stepIndex>=0&&stepIndex<4?stepIndex:0};
+ return {moduleId:safeModule,stepIndex:Number.isInteger(stepIndex)&&stepIndex>=0&&stepIndex<4?stepIndex:0};
 }
-export default function ReverseAiTrail({userId}:{userId:string}){
+function ReverseAiTrailContent({userId,modules}:{userId:string;modules:Module[]}){
  const [progress,setProgress]=useState<Progress>(()=>restore(userId));
  const [position,setPosition]=useState(()=>routePosition(progress));
  const [saveError,setSaveError]=useState('');
@@ -140,4 +138,27 @@ export default function ReverseAiTrail({userId}:{userId:string}){
    </article>
   </div>
  </div>;
+}
+
+/** Currículo integral em rota protegida: não embutir conteúdo pago/draft no JS público. */
+export default function ReverseAiTrail({userId}:{userId:string}){
+ const [modules,setModules]=useState<Module[]>([]);
+ const [loadError,setLoadError]=useState('');
+ useEffect(()=>{
+  const controller=new AbortController();
+  void fetch('/course-labs/reverse-ai/modules.json',{credentials:'same-origin',cache:'no-store',signal:controller.signal})
+   .then(async response=>{
+    if(!response.ok)throw Error('Acesso ao conteúdo não liberado ('+response.status+').');
+    return response.json() as Promise<{modules:Module[]}>;
+   })
+   .then(data=>{
+    if(!Array.isArray(data.modules)||data.modules.length!==8||data.modules.some(m=>!Array.isArray(m.lessons)||m.lessons.length!==4))
+      throw Error('Arquivo do curso incompleto.');
+    setModules(data.modules);
+   }).catch(error=>{if(!controller.signal.aborted)setLoadError(String(error));});
+  return ()=>controller.abort();
+ },[]);
+ if(loadError)return <section className="page ai-track"><div className="panel" role="alert"><h1>Não foi possível carregar a trilha</h1><p>{loadError}</p><p>Verifique sua permissão ou assinatura e recarregue a página.</p></div></section>;
+ if(!modules.length)return <section className="page ai-track" aria-busy="true"><p>Carregando etapas autorizadas…</p></section>;
+ return <ReverseAiTrailContent userId={userId} modules={modules}/>;
 }
