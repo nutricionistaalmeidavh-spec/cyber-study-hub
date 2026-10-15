@@ -13,6 +13,7 @@ import { studySectionHref } from '../lib/studyNavigation';
 import { lessonDurationLabel } from '../lib/courseStudyMetadata';
 import ProgressSyncStatus from './ProgressSyncStatus';
 import { moduleDisplayTitle } from '../lib/modulePresentation';
+import { studyInventory } from '../lib/studyInventory';
 
 const catalog = catalogData as CurriculumCatalog;
 const interactiveIds = new Set([...lessons.map(lesson => lesson.id), ...listNativeV2LessonIds()]);
@@ -109,7 +110,8 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
       <a href="#lessons" className="hub-home-stat">
         <small>Módulos de estudo</small><strong>{totalModules}</strong>
-        <span>{mainModuleCount} da formação principal + {parallelModuleCount} trilhas paralelas</span>
+        <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + 2 trilhas guiadas</span>
+        <span>{studyInventory.totalSteps} etapas no Hub, incluindo {studyInventory.referenceSteps} referências guiadas</span>
       </a>
       <a href="#lessons?mode=main" className="hub-home-stat">
         <small>Aulas interativas concluídas</small><strong>{completedInteractive}<em> / {interactiveLessons.length}</em></strong>

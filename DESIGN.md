@@ -34,7 +34,7 @@ Study workspace for Brazilian learners and instructors on mobile PWA and desktop
 
 ## Colors
 
-The runtime variables in src/styles.css are canonical. This document mirrors those values (ownership model B). Use teal for primary actions, activity progress and keyboard focus; purple is an accent, not a completion state. Every count and progress bar requires a corresponding textual explanation. A total of 543 catalog items never means 543 interactive completions are available.
+The runtime variables in src/styles.css are canonical. This document mirrors those values (ownership model B). Use teal for primary actions, activity progress and keyboard focus; purple is an accent, not a completion state. Every count and progress bar requires a corresponding textual explanation. The canonical catalog's 543 units plus two guided trails of 32 stages each currently yield 607 study stages, **including 16 reference stages**. The stage count is derived from data and never used as an interactive completion denominator.
 
 ## Typography
 

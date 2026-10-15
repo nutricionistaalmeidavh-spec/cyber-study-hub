@@ -6,6 +6,7 @@ import './academy.css';
 import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
 import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
+import { studyInventory } from '../lib/studyInventory';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -100,7 +101,7 @@ export default function AcademyLanding() {
             <span className="academy-proof-divider" aria-hidden="true"/>
             <span><b>{paralelas.length}</b> trilhas paralelas</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
-            <span>Laboratórios e revisões</span>
+            <span><b>{studyInventory.totalSteps}</b> etapas de estudo no Hub</span>
           </div>
           <a className="academy-scroll-cue" href="#trilhas"><span aria-hidden="true">↓</span> Role para explorar</a>
         </div>
@@ -138,7 +139,7 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Escolha um assunto, entre no módulo e avance aula por aula. O catálogo é organizado por temas, não por uma lista interminável de conteúdos.</p>
+          <p>Escolha um assunto e avance módulo por módulo. São {studyInventory.canonical} unidades no catálogo mais {studyInventory.guided} etapas nas trilhas guiadas; o total inclui referências e não representa aulas inéditas.</p>
         </div>
         <div className="academy-catalog-panel" data-reveal>
           <div className="academy-catalog-top">
