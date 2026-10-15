@@ -5,6 +5,8 @@ import { DurableObject } from 'cloudflare:workers';
 import { passwordHash, passwordMatches } from './password-kdf.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from './roadmap.mjs';
+import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../billing/artisys.mjs';
+import {issueBuyerIntent} from '../billing/buyer-intent.mjs';
 import { registrationEnabled } from '../auth/registration-policy.mjs';
 
 const DAY = 86400000;
@@ -74,6 +76,7 @@ export class HubAuthObject extends DurableObject {
       "CREATE TABLE IF NOT EXISTS course_grants (user_id TEXT NOT NULL,course_id TEXT NOT NULL,granted_at INTEGER NOT NULL,expires_at INTEGER,revoked_at INTEGER,PRIMARY KEY(user_id,course_id))",
       "CREATE INDEX IF NOT EXISTS grants_user ON course_grants(user_id)",
       "CREATE TABLE IF NOT EXISTS subscription_grants (user_id TEXT PRIMARY KEY,granted_at INTEGER NOT NULL,expires_at INTEGER NOT NULL,revoked_at INTEGER)",
+      ...BILLING_SCHEMA,
       ...FEEDBACK_SCHEMA,
       ...ROADMAP_SCHEMA
     ])this.sql.exec(ddl);
@@ -123,17 +126,42 @@ export class HubAuthObject extends DurableObject {
     return response(status,{user:safeUser(u)},{'Set-Cookie':cookie(token,secure)});
   }
   accessState(user){
-    const grants=this.all('SELECT course_id,expires_at,revoked_at FROM course_grants WHERE user_id=?',user.id);
+    const manual=this.all('SELECT course_id,expires_at,revoked_at FROM course_grants WHERE user_id=?',user.id);
+    const paid=this.all('SELECT course_id,expires_at,revoked_at FROM billing_entitlements WHERE user_id=? AND course_id IS NOT NULL',user.id);
+    const grants=[...manual,...paid];
     const subscription=this.one('SELECT expires_at,revoked_at FROM subscription_grants WHERE user_id=?',user.id);
-    const active=Boolean(subscription&&subscription.revoked_at===null&&subscription.expires_at>Date.now());
-    const activeCourses=grants.filter(g=>g.revoked_at===null&&(g.expires_at===null||g.expires_at>Date.now())&&publishedCourseIds.has(g.course_id)).map(g=>g.course_id);
+    const paidSubscription=this.one('SELECT MAX(expires_at) AS expires_at FROM billing_entitlements WHERE user_id=? AND course_id IS NULL AND revoked_at IS NULL',user.id);
+    const active=Boolean((subscription&&subscription.revoked_at===null&&subscription.expires_at>Date.now())||(paidSubscription&&paidSubscription.expires_at>Date.now()));
+    const activeCourses=[...new Set(grants.filter(g=>g.revoked_at===null&&(g.expires_at===null||g.expires_at>Date.now())&&publishedCourseIds.has(g.course_id)).map(g=>g.course_id))];
     return {grants,subscriptionActive:active,activeCourses};
   }
   async fetch(request){
     try{
       const url=new URL(request.url),path=url.pathname,method=request.method,secure=url.protocol==='https:';
-      if(method!=='GET'&&method!=='HEAD'&&request.headers.get('origin')!==url.origin)
+      if(method!=='GET'&&method!=='HEAD'&&request.headers.get('origin')!==url.origin&&!(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'))
         throw new ApiError(403,'Origem não permitida.');
+      if(path==='/api/health'&&method==='GET')return response(200,{ok:true});
+      if(path==='/api/billing/purchase-intent'&&method==='POST'){
+        const user=await this.requireUser(request),b=await jsonBody(request,512);
+        const secret=this.env.HUB_ARTISYS_CONNECTOR_SECRET;
+        if(typeof secret!=='string'||secret.length<32)throw new ApiError(503,'Compras ainda não configuradas.');
+        let ticket;
+        try{ticket=await issueBuyerIntent({user,productId:b.productId,saleType:b.saleType,secret});}
+        catch{throw new ApiError(400,'Curso ou modalidade indisponível para compra.');}
+        return response(200,{buyerBinding:ticket});
+      }
+      if(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'){
+        if(Number(request.headers.get('content-length')||0)>16384)throw new ApiError(413,'Requisição muito grande.');
+        const raw=await request.text();
+        let event;try{event=await verifyArtisysDelivery({headers:request.headers,body:raw,secret:this.env.HUB_ARTISYS_CONNECTOR_SECRET});}
+        catch(err){if(err instanceof ArtisysDeliveryError)throw new ApiError(err.status,err.message);throw err;}
+        try{
+          const result=this.ctx.storage.transactionSync(()=>applyArtisysDelivery(event,{
+            one:(sql,...args)=>this.one(sql,...args),run:(sql,...args)=>this.sql.exec(sql,...args)
+          }));
+          return response(200,result);
+        }catch(err){if(err instanceof ArtisysDeliveryError)throw new ApiError(err.status,err.message);throw err;}
+      }
       if(path==='/api/health'&&method==='GET')return response(200,{ok:true});
       if(path==='/api/auth/config'&&method==='GET')
         return response(200,{ready:this.one('SELECT COUNT(*) AS n FROM users').n>0,
