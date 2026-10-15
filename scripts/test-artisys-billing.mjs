@@ -139,3 +139,29 @@ test('assinatura expirada bloqueia, sem afetar outra assinatura paga',async()=>{
   assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.subscriptionActive,true);
  }finally{await s.close();}
 });
+
+test('pedido assinado libera somente a conta correspondente, não outra sessão',async()=>{
+ const s=await start();
+ try{
+  const other=await s.request('/api/auth/register','POST',{name:'Outro aluno',email:'other@academy.example',password:'GoodPassword1234!'});
+  assert.equal(other.status,201);
+  const purchase=bodyFor();
+  assert.equal((await s.deliver(purchase)).status,200);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,other.cookie)).payload.courseIds,[]);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+  assert.equal((await s.deliver({...purchase,email:'other@academy.example',idempotencyKey:randomUUID()})).status,409);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,other.cookie)).payload.courseIds,[]);
+ }finally{await s.close();}
+});
+
+test('reenvio da ativação não soma grants e curso draft segue bloqueado',async()=>{
+ const s=await start();
+ try{
+  const paid=bodyFor();
+  assert.equal((await s.deliver(paid)).status,200);
+  assert.equal((await s.deliver({...paid,idempotencyKey:randomUUID()})).status,200);
+  assert.equal((await s.deliver({...paid,productId:'hubestudos-course-paralela-py'})).status,400);
+  assert.equal((await s.deliver({...paid,orderId:randomUUID()})).status,409);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+ }finally{await s.close();}
+});
