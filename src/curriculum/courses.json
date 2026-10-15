@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "gradePolicy": "Publicar somente cursos completos e avaliados A (editorial IA). IDs cobrem 607 unidades, incluindo 64 etapas guiadas; isso não implementa pagamentos ou ACL.",
+  "gradePolicy": "Publicar somente cursos completos e avaliados A (editorial IA). IDs cobrem 639 unidades, incluindo 96 etapas guiadas; isso não implementa pagamentos ou ACL.",
   "commercialAccess": "not_implemented",
   "courses": [
     {
@@ -699,6 +699,97 @@
             "CANAL-IA-030",
             "CANAL-IA-031",
             "CANAL-IA-032"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engenharia-reversa-com-ia",
+      "type": "trail",
+      "title": "Engenharia Reversa com IA",
+      "description": "REA, Ghidra, MCP e reconstrução de funcionalidades próprias com evidências e testes locais. Sem dependência paga.",
+      "status": "draft",
+      "href": "#reverse-ai",
+      "sourceId": "ENGENHARIA-REVERSA-IA",
+      "modules": [
+        {
+          "id": "reverse-ai-m01",
+          "title": "Fundamentos e limites da engenharia reversa",
+          "lessonCodes": [
+            "REV-IA-001",
+            "REV-IA-002",
+            "REV-IA-003",
+            "REV-IA-004"
+          ]
+        },
+        {
+          "id": "reverse-ai-m02",
+          "title": "Investigação orientada por evidências",
+          "lessonCodes": [
+            "REV-IA-005",
+            "REV-IA-006",
+            "REV-IA-007",
+            "REV-IA-008"
+          ]
+        },
+        {
+          "id": "reverse-ai-m03",
+          "title": "Binários nativos e Ghidra",
+          "lessonCodes": [
+            "REV-IA-009",
+            "REV-IA-010",
+            "REV-IA-011",
+            "REV-IA-012"
+          ]
+        },
+        {
+          "id": "reverse-ai-m04",
+          "title": "Análise dinâmica controlada",
+          "lessonCodes": [
+            "REV-IA-013",
+            "REV-IA-014",
+            "REV-IA-015",
+            "REV-IA-016"
+          ]
+        },
+        {
+          "id": "reverse-ai-m05",
+          "title": "JavaScript, Electron e interfaces",
+          "lessonCodes": [
+            "REV-IA-017",
+            "REV-IA-018",
+            "REV-IA-019",
+            "REV-IA-020"
+          ]
+        },
+        {
+          "id": "reverse-ai-m06",
+          "title": "REA, agentes e MCP com execução local",
+          "lessonCodes": [
+            "REV-IA-021",
+            "REV-IA-022",
+            "REV-IA-023",
+            "REV-IA-024"
+          ]
+        },
+        {
+          "id": "reverse-ai-m07",
+          "title": "Reconstrução e testes diferenciais",
+          "lessonCodes": [
+            "REV-IA-025",
+            "REV-IA-026",
+            "REV-IA-027",
+            "REV-IA-028"
+          ]
+        },
+        {
+          "id": "reverse-ai-m08",
+          "title": "Capstone: auditoria e entrega",
+          "lessonCodes": [
+            "REV-IA-029",
+            "REV-IA-030",
+            "REV-IA-031",
+            "REV-IA-032"
           ]
         }
       ]
