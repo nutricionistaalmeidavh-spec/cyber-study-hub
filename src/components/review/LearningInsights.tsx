@@ -1,8 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  getLessonV2,
-  listNativeV2LessonIds
-} from '../../content/registry';
+import type {LessonV2} from '../../content/schema';
 import {
   getLearningProgress,
   migrateLegacyProgress
@@ -26,12 +23,16 @@ export function LearningInsights() {
   useEffect(() => {
     migrateLegacyProgress();
 
-    for (const lessonId of listNativeV2LessonIds()) {
-      const lesson = getLessonV2(lessonId);
-      if (lesson) seedLessonReviewCards(lesson);
-    }
-
-    setRevision(value => value + 1);
+    let active=true;
+    void Promise.all(Array.from({length:14},(_,i)=>i+47).map(async lessonId=>{
+      try {
+        const response=await fetch('/api/content/lesson/'+lessonId,{credentials:'same-origin',cache:'no-store'});
+        if(!response.ok)return;
+        const payload=await response.json() as {kind:string;lesson:LessonV2};
+        if(active&&payload.kind==='native')seedLessonReviewCards(payload.lesson);
+      } catch { /* Conta sem permissão ou temporariamente offline. */ }
+    })).then(()=>{if(active)setRevision(value=>value+1);});
+    return ()=>{active=false;};
   }, []);
 
   const stats = useMemo(() => getReviewStats(), [revision]);

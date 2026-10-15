@@ -1,3 +1,5 @@
+import { privateCourseSource } from './private-course-data.mjs';
+import { contentRoute, securedPayload } from './secure-payload-route.mjs';
 import { ownersForPath, publishedCourseIds, knownCourseIds, protectedPath, canonicalAssetPath, permitted } from './course-access.mjs';
 import { DurableObject } from 'cloudflare:workers';
 import { passwordHash, passwordMatches } from './password-kdf.mjs';
@@ -294,6 +296,13 @@ export class HubAuthObject extends DurableObject {
             b.userId,Date.now(),Date.now()+b.validDays*DAY);
         }else this.sql.exec('UPDATE subscription_grants SET revoked_at=? WHERE user_id=?',Date.now(),b.userId);
         return response(200,{ok:true});
+      }
+      const courseRequest=method==='GET'?contentRoute(path):null;
+      if(courseRequest){
+        const user=await this.requireUser(request),access=this.accessState(user);
+        const payload=securedPayload(courseRequest,user,access.grants,access.subscriptionActive,privateCourseSource);
+        if(!payload)throw new ApiError(403,'Curso não liberado para esta conta.');
+        return response(200,payload);
       }
       if(roadmapRoute(path))return await handleRoadmap({
         path,method,url:url.href,readBody:limit=>jsonBody(request,limit),

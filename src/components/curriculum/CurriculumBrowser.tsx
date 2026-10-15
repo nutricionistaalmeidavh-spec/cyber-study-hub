@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
 import catalogData from '../../curriculum/catalog.json';
+import { listNativeV2LessonIds } from '../../content/nativeLessonIndex';
 import type { CurriculumCatalog, MainCurriculumItem, ParallelCurriculumItem } from '../../curriculum/types';
-import { lessons } from '../../data/lessons';
-import { listNativeV2LessonIds } from '../../content/registry';
 import { getActiveParallelTracks, setActiveParallelTracks } from '../../lib/curriculumState';
 import './curriculum.css';
 import { getLearningProgress } from '../../lib/learningProgress';
@@ -62,7 +61,7 @@ export function CurriculumBrowser({
   const [visibleCount, setVisibleCount] = useState(24);
   const [activeParallel, setActiveParallel] = useState<Set<string>>(() => new Set(getActiveParallelTracks()));
   const nativeIds = useMemo(() => new Set(listNativeV2LessonIds()), []);
-  const legacyIds = useMemo(() => new Set(lessons.map(lesson => lesson.id)), []);
+  const legacyIds = useMemo(() => new Set(Array.from({length:58},(_,i)=>i+43)), []);
   const selectedMain = initialMode === 'main'
     ? mainModules.find(group => group.name === initialModule)
       ?? (initialTrack ? mainModules.find(group => group.name === initialTrack || group.items.some(item => item.track === initialTrack)) : undefined)

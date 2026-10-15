@@ -59,6 +59,14 @@ try{
   const student=await request('/api/auth/register',{method:'POST',
     body:{name:'Student',password:'GoodPassword1234!',inviteToken:invitation.payload.token}});
   assert.equal(student.status,201,student.text);
+  assert.equal((await request('/api/content/lesson/43',{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/content/lesson/43',{cookie:created.cookie})).payload.lesson.id,43);
+  assert.equal((await request('/api/content/trail/ai-dev',{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/admin/access/grants',{method:'POST',cookie:created.cookie,body:{userId:student.payload.user.id,courseId:'web-apis'}})).status,200);
+  assert.equal((await request('/api/content/lesson/43',{cookie:student.cookie})).payload.kind,'legacy');
+  assert.equal((await request('/api/content/trail/ai-dev',{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/admin/access/grants',{method:'DELETE',cookie:created.cookie,body:{userId:student.payload.user.id,courseId:'web-apis'}})).status,200);
+  assert.equal((await request('/api/content/lesson/43',{cookie:student.cookie})).status,403);
   assert.equal(student.payload.user.role,'student');
   assert.equal((await request('/api/auth/register',{method:'POST',
     body:{name:'Replay',password:'GoodPassword1234!',inviteToken:invitation.payload.token}})).status,403);
