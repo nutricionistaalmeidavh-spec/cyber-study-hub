@@ -115,6 +115,6 @@ test('M08: relatório exportado e não induz execução de fórmula CSV',()=>tem
   assert.match(html,/type="file"/);
   assert.match(html,/textContent/);
   assert.doesNotMatch(html,/innerHTML/);
-  assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:11,completed:1}]),/inconsistentes/);
+  assert.throws(()=>validateAnalytics([{id:'ep-1',title:'Vídeo de demonstração',impressions:10,views:11,completed:1}]),/inconsistentes/);
   assert.throws(()=>validateAnalytics([{id:'ep-1',impressions:10,views:5,completed:2,title:'=2+2+2+2'}]),/fórmula|CSV/);
 }));
