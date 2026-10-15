@@ -10,6 +10,7 @@ import { getLessonState } from '../../lib/storage';
 import { lessonDurationLabel, moduleObjectives } from '../../lib/courseStudyMetadata';
 import { studySectionHref } from '../../lib/studyNavigation';
 import { getStudyVisits } from '../../lib/studyProgress';
+import { mainStudyTime, parallelStudyTime, moduleDisplayTitle } from '../../lib/modulePresentation';
 
 const catalog = catalogData as CurriculumCatalog;
 type ViewMode = 'main' | 'parallel';
@@ -93,7 +94,6 @@ export function CurriculumBrowser({
   const resultCount = selected ? initialMode === 'main' ? filteredMain.length : filteredParallel.length : visibleModules.length;
   const visibleMain = filteredMain.slice(0, visibleCount);
   const visibleParallel = filteredParallel.slice(0, visibleCount);
-  const detailIndex = selected ? currentModules.findIndex(group => group.name === selected.name) + 1 : -1;
   const activeCodes = selectedParallel ? [...new Set(selectedParallel.items.map(item => item.trackCode))] : [];
   const selectedVisits = selected ? visits.filter(visit => selected.items.some(item => visit.key === (item.kind === 'main' ? String(item.id) : 'parallel:' + item.code) && status(item) !== 'Concluída') && !visit.read) : [];
   const resume = selectedVisits[0];
@@ -126,12 +126,12 @@ export function CurriculumBrowser({
     <header className="curriculum-hero curriculum-modules-hero">
       <div>
         <span className="eyebrow">BIBLIOTECA DE ESTUDOS</span>
-        <h1>{selected ? selected.name : 'Escolha um módulo para estudar'}</h1>
+        <h1>{selected ? moduleDisplayTitle(selected.name) : 'Escolha o que estudar'}</h1>
         <p>{selected
           ? (initialMode === 'main'
-            ? 'Módulo ' + String(detailIndex).padStart(2, '0') + ' da formação principal · ' + selected.items.length + ' aulas'
-            : 'Trilha paralela · ' + selected.items.length + ' unidades')
-          : mainModules.length + ' módulos principais · ' + parallelModules.length + ' trilhas paralelas. Escolha uma área para ver as aulas.'}</p>
+            ? mainStudyTime(selectedMain!.items.reduce((minutes, item) => minutes + item.durationMin, 0))
+            : parallelStudyTime(selectedParallel!.items.length))
+          : 'Módulos organizados por assunto, no seu ritmo.'}</p>
       </div>
       {selected && <a className="curriculum-back-link" href={moduleHref(initialMode)}>← Voltar aos módulos</a>}
     </header>
@@ -158,26 +158,21 @@ export function CurriculumBrowser({
     </div>
 
     {!selected ? <>
-      <div className="curriculum-module-count" role="status">
-        Mostrando {visibleModules.length} de {currentModules.length} {initialMode === 'main' ? 'módulos' : 'trilhas'}
-      </div>
+      <div className="curriculum-module-count" role="status">{visibleModules.length} {initialMode === 'main' ? 'módulos' : 'trilhas'} · Tempo aproximado por módulo</div>
       <section className="curriculum-module-grid" aria-label={initialMode === 'main' ? 'Módulos da formação principal' : 'Módulos paralelos'}>
         {initialMode === 'main'
           ? mainModules.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
               const ordinal = mainModules.findIndex(item => item.name === group.name) + 1;
-              const first = group.items[0];
-              const last = group.items[group.items.length - 1];
               return <ModuleCard key={group.name} name={group.name} href={moduleHref('main', group.name)}
-                index={ordinal} count={group.items.length} unit="aulas"
-                subtitle={moduleObjectives[first.id] || first.track} progress={group.items.filter(item => status(item) !== 'Não iniciada').length} start={String(first.id).padStart(3,'0') + '–' + String(last.id).padStart(3,'0')}
-                example={first.title} />;
+                index={ordinal} duration={mainStudyTime(group.items.reduce((minutes, item) => minutes + item.durationMin, 0))}
+                progress={group.items.some(item => status(item) !== 'Não iniciada')} />;
             })
           : parallelModules.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
               const ordinal = parallelModules.findIndex(item => item.name === group.name) + 1;
               const codes = [...new Set(group.items.map(item => item.trackCode))];
               return <ModuleCard key={group.name} name={group.name} href={moduleHref('parallel', group.name)}
-                index={ordinal} count={group.items.length} unit="unidades"
-                subtitle={'Conceitos e prática de ' + group.name} progress={group.items.filter(item => status(item) !== 'Não iniciada').length} example={group.items[0].title}
+                index={ordinal} duration={parallelStudyTime(group.items.length)}
+                progress={group.items.some(item => status(item) !== 'Não iniciada')}
                 studying={codes.some(code => activeParallel.has(code))} />;
             })}
       </section>
@@ -192,7 +187,7 @@ export function CurriculumBrowser({
           <span className="eyebrow">AULAS DO MÓDULO</span>
           <h2>{initialMode === 'main' ? 'Sumário deste módulo' : 'Sumário desta trilha'}</h2>
           <p>{selectedMain ? moduleObjectives[selectedMain.items[0].id] : 'Explore os conceitos e pratique no seu ritmo.'}</p>
-          <small>{selected.items.filter(item => status(item) === 'Concluída').length} concluídas · {selected.items.filter(item => status(item) === 'Leitura registrada').length} leituras registradas</small>
+          <small>{selected.items.some(item => status(item) !== 'Não iniciada') ? 'Estudo em andamento' : 'Ainda não iniciado'}</small>
           {resumeLink && <a className="study-module-continue" href={resumeLink}>Continuar: {resume?.title} →</a>}
         </div>
         {selectedParallel && <button type="button" className={allActive ? 'parallel-toggle active' : 'parallel-toggle'}
@@ -220,22 +215,18 @@ export function CurriculumBrowser({
   </div>;
 }
 
-function ModuleCard({name, href, index, count, unit, subtitle, start, example, studying, progress}:{
-  name:string; href:string; index:number; count:number; unit:string;
-  subtitle:string; start?:string; example:string; studying?:boolean; progress:number
+function ModuleCard({name, href, index, duration, studying, progress}:{
+  name:string; href:string; index:number; duration:string; studying?:boolean; progress:boolean
 }) {
-  return <a className="curriculum-module-card" href={href}>
+  return <a className="curriculum-module-card" href={href} aria-label={moduleDisplayTitle(name) + '. ' + duration + '. Abrir módulo'}>
     <div className="curriculum-module-top">
-      <span className="curriculum-module-index">MÓDULO {String(index).padStart(2,'0')}</span>
+      <span className="curriculum-module-index">{String(index).padStart(2,'0')}</span>
       <span className="curriculum-module-arrow" aria-hidden="true">↗</span>
     </div>
-    <h2>{name}</h2>
-    <p className="curriculum-module-subtitle">{subtitle}</p>
-    <p className="curriculum-module-example">{progress ? progress + "/" + count + " unidades com estudo registrado" : "Comece por: " + example}</p>
+    <h2>{moduleDisplayTitle(name)}</h2>
     <div className="curriculum-module-footer">
-      <strong>{count} {unit}</strong>
-      {start && <span>Aulas {start}</span>}
-      {studying && <span className="curriculum-module-active">Em estudo</span>}
+      <strong>{duration}</strong>
+      {(studying || progress) && <span className="curriculum-module-active">Em estudo</span>}
     </div>
   </a>;
 }
