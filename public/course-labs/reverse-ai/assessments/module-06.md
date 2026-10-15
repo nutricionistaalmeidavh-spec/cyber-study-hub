@@ -1,30 +1,30 @@
-# Avaliação independente — módulo 06 (REA, agentes e MCP com execução local)
+# Prova de transferência — módulo 06
 
-ID do checkpoint: REV-IA-024. Responda sem consultar o gabarito. Nota editorial A, se houver em outros cursos, não é transferível automaticamente a esta trilha.
+Responda individualmente após executar `node public/course-labs/reverse-ai/engine.mjs --module 6 --out ./rev-evidencias/m06`. Cite arquivo, previsão, saída observada e caso negativo. Não consulte o gabarito primeiro.
 
-1. Qual hipótese específica deste módulo é refutável por teste? Explique entrada, saída e contraexemplo.
+1. Qual é a diferença entre ferramentas do REA/MCP e palpite do agente?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta e evidência:* ______________________________________________
 
-2. Diferencie observação e inferência no caso "REA, agentes e MCP com execução local".
+2. Que comando configura REA e o que deve ser revisado antes de aprovar?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta e evidência:* ______________________________________________
 
-3. Qual resultado do comando `node public/course-labs/reverse-ai/lab.mjs --module 6` permitiria validar o controle negativo?
+3. Como verificar se Ghidra realmente foi executado no ambiente?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta e evidência:* ______________________________________________
 
-4. Por que a aula AULA-117 complementa este laboratório sem produzir conclusão automática?
+4. Por que não presumir clone automático e código-fonte completo?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta e evidência:* ______________________________________________
 
-5. Que falha surgiria se você aceitasse um relatório de IA sem verificar o programa local?
+5. Mostre a alternativa R$0 sem IA externa e uma evidência independente.
 
-   **Sua resposta:** ______________________________________________
+   *Resposta e evidência:* ______________________________________________
 
-6. Escreva os critérios mínimos da entrega e uma limitação que impede afirmar clone perfeito.
+6. Qual risco de privacidade existe ao usar agente conectado a modelo remoto?
 
-   **Sua resposta:** ______________________________________________
+   *Resposta e evidência:* ______________________________________________
 
-## Avaliação
-Cada resposta vale 0–2 pontos: 2 justificada com evidência, 1 parcialmente correta, 0 incorreta. Sugere-se ao menos 9/12 e ausência de erro eliminatório, com revisão independente.
+## Critério
+Seis perguntas abertas, dois pontos por item fundamentado, um por justificativa parcial, zero por erro. Meta de 10/12 e ausência de alegação de execução inexistente.
