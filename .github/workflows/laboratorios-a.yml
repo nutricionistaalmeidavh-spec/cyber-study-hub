@@ -36,3 +36,11 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Integration smoke - real utilidades modules
+        run: |
+          git clone --depth 1 https://github.com/nutricionistaalmeidavh-spec/utilidades.git /tmp/hub-utilidades
+          npm install --no-save --no-package-lock --legacy-peer-deps             /tmp/hub-utilidades/modules/artisys-reporting             /tmp/hub-utilidades/modules/artisys-finance-domain             /tmp/hub-utilidades/modules/artisys-pdf             @pdfme/generator@^6 @pdfme/schemas@^6
+          node public/course-labs/ai-dev-meu-gestor/kits/reporting/export-orders.mjs /tmp/hub-ordens.csv
+          node public/course-labs/ai-dev-meu-gestor/kits/finance/classify-demo.mjs /tmp/hub-finance.json
+          node public/course-labs/ai-dev-meu-gestor/kits/pdf/generate-pdf.mjs /tmp/hub-ordem.pdf
+          node -e "const fs=require('node:fs');if(fs.readFileSync('/tmp/hub-ordem.pdf').toString('ascii',0,5)!=='%PDF-')process.exit(1);if(!fs.readFileSync('/tmp/hub-ordens.csv','utf8').includes('OS-1'))process.exit(1);if(!JSON.parse(fs.readFileSync('/tmp/hub-finance.json','utf8')).sourceId)process.exit(1);console.log('PASS integrações PDF CSV financeiro')"
