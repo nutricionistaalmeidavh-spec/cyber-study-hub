@@ -31,7 +31,7 @@ test('M01 — brief exige público, identidade e decisão humana',async()=>{
 test('M02 — pauta e fonte nunca são verificadas por automação',async()=>{
   const example=pautasDemo()[0];
   assert.equal(example.sourceStatus,'a_verificar');
-  assert.throws(()=>validatePauta({...example,sourceStatus:'verificada'}),/revisão humana/);
+  assert.throws(()=>validatePauta({...example,sourceStatus:'verificada'}),/checagem factual|revisão humana/);
   assert.throws(()=>validatePauta({...example,source:'url-falso'}),/HTTPS/);
   await withLab(2,async root=>{
     assert.match(await readFile(join(root,paths.queue),'utf8'),/a_verificar/);
