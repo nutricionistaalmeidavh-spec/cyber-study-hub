@@ -1,0 +1,29 @@
+name: Public student signup safety
+
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+      - 'src/auth/**'
+      - 'src/worker/index.mjs'
+      - 'src/components/PlatformGate.tsx'
+      - 'src/components/AcademyLanding.tsx'
+      - 'scripts/test-public-signup-policy.mjs'
+      - 'package.json'
+      - '.github/workflows/public-signup.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-signup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run test:public-signup
+      - run: npm run test:platform
