@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import CourseCatalog from './components/curriculum/CourseCatalog';
+import { publishedMainLessonIds, publishedParallelLessonCodes } from './curriculum/courseOfferings';
 import { PlatformGate, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
@@ -119,7 +120,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
         <Nav href="#courses" active={route.page==='courses'} icon="book" label="Cursos" />
-        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca" />
+        {user.role==='admin' && <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca editorial" />}
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
@@ -147,10 +148,10 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='roadmap' && <RoadmapPage embedded />}
       {route.page==='admin-feedback' && (user.role==='admin'?<FeedbackBoard user={user} admin />:<FeedbackBoard user={user} />)}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
-      {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} />}
-      {route.page==='lesson' && <LessonViewer key={route.id} id={route.id} onRefresh={refresh} />}
-      {route.page==='course-main' && <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} />}
-      {route.page==='course-parallel' && <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} />}
+      {route.page==='lessons' && (user.role==='admin' ? <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} /> : <CourseCatalog />)}
+      {route.page==='lesson' && (user.role==='admin'||publishedMainLessonIds.has(route.id) ? <LessonViewer key={route.id} id={route.id} onRefresh={refresh} /> : <CourseCatalog courseId="unavailable" />)}
+      {route.page==='course-main' && (user.role==='admin'||publishedMainLessonIds.has(route.id) ? <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} /> : <CourseCatalog courseId="unavailable" />)}
+      {route.page==='course-parallel' && (user.role==='admin'||publishedParallelLessonCodes.has(route.code) ? <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} /> : <CourseCatalog courseId="unavailable" />)}
       {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
       {route.page==='channel-dark' && <ChannelAutomationTrail userId={user.id} />}
       {route.page==='games' && <GamesHub />}
@@ -176,6 +177,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         route.page==='lesson'?'Aula '+String(route.id).padStart(3,'0'):
         route.page==='ai-dev'?'Trilha Desenvolver com IA':
         route.page==='channel-dark'?'Trilha Canal Dark com IA':
+        route.page==='courses'?'Cursos '+(route.courseId??'· catálogo'):
         route.page==='lessons'?'Módulos '+(route.module??'· catálogo'):
         route.page==='material'?'Material '+route.id:route.page==='game'?'Jogo '+route.packId:
         route.page==='dashboard'?'Início do HubEstudos':route.page
