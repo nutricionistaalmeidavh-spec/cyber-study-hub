@@ -55,12 +55,13 @@ export function FeedbackComposer({context,onClose}:{context:{contextPath:string;
   const [sentId,setSentId]=useState('');
   const nonce=useRef(crypto.randomUUID());
   const first=useRef<HTMLSelectElement>(null);
+  const safelyClose=()=>{if(busy)return;if(!sentId&&(title||description||attachment)&&!window.confirm('Descartar o feedback ainda não enviado?'))return;onClose();};
   useEffect(()=>{
     first.current?.focus();
-    const key=(e:KeyboardEvent)=>{if(e.key==='Escape'&&!busy)onClose();};
+    const key=(e:KeyboardEvent)=>{if(e.key==='Escape'&&!busy){if(!sentId&&(title||description||attachment)&&!window.confirm('Descartar o feedback ainda não enviado?'))return;onClose();}};
     window.addEventListener('keydown',key);
     return()=>window.removeEventListener('keydown',key);
-  },[busy,onClose]);
+  },[busy,onClose,title,description,attachment,sentId]);
   const chooseFile=async(file?:File)=>{
     if(!file)return;
     setPreparing(true);setError('');
@@ -81,11 +82,11 @@ export function FeedbackComposer({context,onClose}:{context:{contextPath:string;
     }catch(e){setError(errText(e));}
     finally{setBusy(false);}
   };
-  return <div className="feedback-overlay" onMouseDown={e=>{if(e.target===e.currentTarget&&!busy)onClose();}}>
+  return <div className="feedback-overlay" onMouseDown={e=>{if(e.target===e.currentTarget)safelyClose();}}>
     <section className="feedback-dialog" role="dialog" aria-modal="true" aria-labelledby="feedback-dialog-title">
       <header className="feedback-dialog-top">
         <div><span className="eyebrow">HUBESTUDOS</span><h2 id="feedback-dialog-title">{sentId?'Feedback registrado':'Enviar feedback'}</h2></div>
-        <button type="button" className="feedback-close" onClick={onClose} aria-label="Fechar" disabled={busy}>×</button>
+        <button type="button" className="feedback-close" onClick={safelyClose} aria-label="Fechar" disabled={busy}>×</button>
       </header>
       {sentId?<div className="feedback-success" role="status">
         <strong>Seu feedback foi salvo.</strong>
@@ -108,7 +109,7 @@ export function FeedbackComposer({context,onClose}:{context:{contextPath:string;
         {attachment&&<div className="feedback-attachment"><img src={attachment} alt="Prévia do anexo selecionado"/><button type="button" className="button ghost" onClick={()=>setAttachment(null)}>Remover imagem</button></div>}
         <p className="feedback-privacy">Evite incluir senhas, tokens, documentos pessoais ou dados de terceiros na descrição e na imagem.</p>
         {error&&<p className="feedback-error" role="alert">{error}</p>}
-        <div className="feedback-actions"><button className="button ghost" type="button" onClick={onClose} disabled={busy}>Cancelar</button><button className="button primary" disabled={busy||preparing}>{busy?'Enviando…':'Enviar feedback'}</button></div>
+        <div className="feedback-actions"><button className="button ghost" type="button" onClick={safelyClose} disabled={busy}>Cancelar</button><button className="button primary" disabled={busy||preparing}>{busy?'Enviando…':'Enviar feedback'}</button></div>
       </form>}
     </section>
   </div>;

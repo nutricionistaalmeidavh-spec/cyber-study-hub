@@ -35,3 +35,17 @@ npm run test:worker
 Execute QA manual desktop e mobile com aluno e administrador reais, incluindo navegação por teclado, envio offline/falha de rede, retorno a aula, visualização de anexo, resposta/status e acesso negado entre dois alunos.
 
 Notificações são **internas por indicador de nova atualização em Meus feedbacks**. Não há e-mail/push; a página precisa ser aberta para visualizar a novidade.
+
+
+## P2 — Comunidade e evolução
+
+- Página pública /roadmap, com sugestões moderadas, votos por conta e novidades entregues.
+- O formulário original permanece privado. Somente títulos e resumos reescritos pelo administrador vão ao roadmap.
+- Sugestões têm quatro etapas: avaliação, planejado, em desenvolvimento, entregue.
+- Voto é único por usuário, reversível até a entrega; não representa promessa de prazo.
+- Changelog: cada nota é cadastrada pelo administrador e associada a um feedback de origem. A nota mostra apenas textos públicos revisados.
+- Ao publicar uma entrega de sugestão pública, a etapa passa a Entregue.
+- Painel administrativo permite remover publicações, alterar etapas e retirar notas, sem apagar o relato privado.
+- Tabelas SQLite: feedback_public_ideas, feedback_idea_votes, feedback_releases. Sem novas dependências pagas.
+- APIs anônimas nunca contêm nome/e-mail do aluno, mensagens, descrição privada ou anexos.
+- QA Node: server/roadmap.test.mjs; QA de Worker: scripts/test-cloudflare.mjs; processo de revisão inclui build e testes existentes.

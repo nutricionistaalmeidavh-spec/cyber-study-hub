@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import { PlatformGate, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
@@ -80,6 +80,8 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [showIos, setShowIos] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const feedbackTrigger=useRef<HTMLButtonElement>(null);
+  const closeFeedback=()=>{setFeedbackOpen(false);requestAnimationFrame(()=>feedbackTrigger.current?.focus());};
   const isIos = useMemo(() => /iphone|ipad|ipod/i.test(navigator.userAgent), []);
   const isStandalone = useMemo(() => window.matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & {standalone?:boolean}).standalone === true, []);
 
@@ -127,7 +129,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
     </aside>
 
     <main className="main-content">
-      <div className="feedback-global-action"><button type="button" className="button ghost" onClick={()=>setFeedbackOpen(true)}>
+      <div className="feedback-global-action"><button ref={feedbackTrigger} type="button" className="button ghost" onClick={()=>setFeedbackOpen(true)}>
         {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
       </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
@@ -157,7 +159,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
     </nav>
 
-    {feedbackOpen && <FeedbackComposer onClose={()=>setFeedbackOpen(false)} context={{
+    {feedbackOpen && <FeedbackComposer onClose={closeFeedback} context={{
       contextPath:window.location.hash||'#dashboard',
       contextLabel:route.page==='course-main'?'Aula principal '+String(route.id).padStart(3,'0'):
         route.page==='course-parallel'?'Trilha paralela · '+route.code:

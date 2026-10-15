@@ -55,8 +55,8 @@ export function RoadmapPage({embedded=false}:{embedded?:boolean}){
         <h2>{idea.title}</h2><p>{idea.summary}</p>
         <div className="roadmap-card-footer"><span>{idea.votes} {idea.votes===1?'apoio':'apoios'}</span>
           {idea.stage==='released'?<span className="roadmap-delivered">Melhoria entregue</span>:
-            data.authenticated?<button className={idea.voted?'button primary roadmap-vote supported':'button ghost roadmap-vote'} type="button" disabled={busy===idea.id} aria-pressed={Boolean(idea.voted)} onClick={()=>void vote(idea)}>{busy===idea.id?'Salvando…':idea.voted?'Apoiado · remover voto':'Apoiar sugestão'}</button>:
-            <a className="button ghost roadmap-vote" href="/">Entrar para apoiar</a>}
+            data.authenticated?<button className={idea.voted?'button primary roadmap-vote supported':'button ghost roadmap-vote'} type="button" disabled={busy===idea.id} aria-pressed={Boolean(idea.voted)} aria-label={idea.voted?`Retirar apoio a ${idea.title}`:`Apoiar ${idea.title}`} onClick={()=>void vote(idea)}>{busy===idea.id?'Salvando…':idea.voted?'Apoiado · remover voto':'Apoiar sugestão'}</button>:
+            <a className="button ghost roadmap-vote" href="/?next=roadmap">Entrar para apoiar</a>}
         </div>
       </article>)}</div>}
       <p className="roadmap-note">Apoiar uma sugestão sinaliza interesse, não garante prazo nem implementação. Você pode retirar seu apoio a qualquer momento.</p>
