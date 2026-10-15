@@ -1,24 +1,27 @@
-# Laboratórios A171–A180 — Vulnerability Research (ambiente de teste)
+# Laboratórios A171–A180 — pesquisa de vulnerabilidades sem alvos reais
 
-Este é um **toy parser** local, com testes determinísticos e sem alvo externo. Ele permite exercitar fluxo de entrada, crash triage conceitual, corpus, regressão e correção. **Não é fuzzing completo, não executa sanitizer de memória real e não valida CVE**; não o use como prova sobre softwares externos.
+São **10 experimentos determinísticos**, todos com código executável e roteiros específicos. Nenhum testa software de terceiros, cria exploits, baixa CVEs ou se declara prova de segurança de produção. Os laboratórios 171/172 de fuzzing são **modelos finitos de teste**, não motores de fuzzing; 173 mantém referência ao pacote real de sanitizer em `phase16-memory`.
 
-```sh
+| Aula | Prática | Roteiro |
+| --- | --- | --- |
+| 171 | Fuzzing | [AULA-171](./workshops/AULA-171.md) |
+| 172 | Coverage-Guided Fuzzing | [AULA-172](./workshops/AULA-172.md) |
+| 173 | Sanitizers | [AULA-173](./workshops/AULA-173.md) |
+| 174 | Crash Triage | [AULA-174](./workshops/AULA-174.md) |
+| 175 | Root Cause Analysis | [AULA-175](./workshops/AULA-175.md) |
+| 176 | Reproduzir Vulnerabilidade | [AULA-176](./workshops/AULA-176.md) |
+| 177 | Safe PoC | [AULA-177](./workshops/AULA-177.md) |
+| 178 | Patch Diff | [AULA-178](./workshops/AULA-178.md) |
+| 179 | Variant Analysis | [AULA-179](./workshops/AULA-179.md) |
+| 180 | CVE Research | [AULA-180](./workshops/AULA-180.md) |
+
+Da raiz do projeto, com Node 22+:
+
+```bash
+node public/course-labs/a171-180/run.mjs 171
 node --test public/course-labs/a171-180/lab.test.mjs
 ```
 
-| Aula | Prática concreta | Evidência |
-| --- | --- | --- |
-| 171 Fuzzing | Gere variações de `LAB:03:abc` com `mutate`. | Qual entrada foi aceita ou rejeitada? |
-| 172 Coverage-guided | Use `inspectCorpus` para observar ramos FORMAT/LENGTH/CHARSET/ACCEPT. | Diferencie instrumentação didática de cobertura real de LLVM. |
-| 173 Sanitizers | Observe rejeição por limites; compare como complemento com `phase16-memory` (C sanitizers). | Diga por que JS não prova ASan/UBSan. |
-| 174 Crash Triage | Use `triage` e repita exatamente a entrada. | Registre erro, versão e entrada minimizada. |
-| 175 Root Cause | Compare `unguardedAccept` com `parseFrame`. | Demonstre causa e fronteira da validação. |
-| 176 Reprodução | Rode mesma entrada duas vezes sem mudar ambiente. | Resultado repetido; nada sobre software de terceiros. |
-| 177 Safe PoC | Construa um teste mínimo de uma condição inválida fictícia. | Sem exploração nem rede. |
-| 178 Patch Diff | Faça o diff entre check de prefixo e parser corrigido. | Caso válido continua aceito, inválido recusado. |
-| 179 Variant Analysis | Troque tamanho e charset independentemente. | Matriz de variantes com controle negativo. |
-| 180 Capstone | Consolide corpus, causas, correção e reteste. | Relatório de hipótese, evidência e limite. |
+Para cada aula, troque 171 pelo ID da atividade. Os testes cobrem resultado válido, negativo e entrada inválida. Os outputs são sintéticos. Registre entradas e saídas e tente uma alteração própria em cópia local.
 
-**Extensão nativa opcional:** [phase16-memory](../phase16-memory/README.md) contém projetos C para experimentos de memória com regras próprias. Requer toolchain e isolamento adicionais. Ferramentas de teste em `utilidades` e `artisysScan` podem gerar evidências, mas não substituem execução de sanitizer/fuzzer real.
-
-Rubrica editorial sugerida 0–2 em: escopo, hipótese, execução, controle negativo, correção e limite. **Não conceder status A por simples leitura ou clique.**
+A distribuição inclui apenas fontes, sem gabaritos individuais publicamente revelados. Este pacote é um **suplemento** dos conteúdos canônicos em `public/course-library/main`.
