@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { platformApi, type PlatformUser } from '../PlatformGate';
 import './feedback.css';
+import { FeedbackPublication, RoadmapManager } from './Roadmap';
 
 type Category='bug'|'content'|'idea'|'other';
 type Status='new'|'in_review'|'planned'|'resolved'|'closed';
@@ -164,6 +165,7 @@ function FeedbackDetail({id,admin,onClose,onUpdate}:{id:string;admin:boolean;onC
           <label>Situação<select disabled={busy} value={detail.feedback.status} onChange={e=>void patch({status:e.target.value as Status})}>{Object.entries(statuses).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>
           <label>Prioridade<select disabled={busy} value={detail.feedback.priority} onChange={e=>void patch({priority:e.target.value as Priority})}>{Object.entries(priorities).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>
         </div>}
+        {admin&&<FeedbackPublication feedbackId={id} category={detail.feedback.category} sourceTitle={detail.feedback.title} onPublished={onUpdate}/>}
         <section className="feedback-conversation"><h3>Conversa e atualizações</h3>
           {!detail.messages.length&&!detail.history.length&&<p className="muted">Nenhuma atualização ainda.</p>}
           {[...detail.messages.map(m=>({...m,kind:'message',value:m.body})),...detail.history.map((h,i)=>({...h,id:'history-'+i,kind:h.kind}))].sort((a,b)=>a.createdAt.localeCompare(b.createdAt)).map(m=><div key={m.id} className="feedback-message">
@@ -202,7 +204,7 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
     return()=>{active=false;};
   },[endpoint,page,admin,status]);
   return <div className="page stack-lg feedback-page">
-    <section className="page-title"><span className="eyebrow">{admin?'ADMINISTRAÇÃO':'CENTRAL DE FEEDBACK'}</span><h1>{admin?'Feedback dos alunos':'Meus feedbacks'}</h1><p>{admin?'Acompanhe problemas, sugestões e correções solicitadas pelos alunos.':'Acompanhe seus relatos, veja o andamento e converse com a equipe.'}</p></section>
+    <section className="page-title"><span className="eyebrow">{admin?'ADMINISTRAÇÃO':'CENTRAL DE FEEDBACK'}</span><h1>{admin?'Feedback dos alunos':'Meus feedbacks'}</h1><p>{admin?'Acompanhe problemas, sugestões e correções solicitadas pelos alunos.':'Acompanhe seus relatos, veja o andamento e converse com a equipe.'}</p><a className="button ghost" href="#roadmap">Ver roadmap e novidades</a></section>
     <section className="panel feedback-board">
       <div className="feedback-board-head"><h2>{admin?'Relatos recebidos':'Histórico de envios'} <span className="feedback-counter">{total}</span></h2>{admin&&<label className="feedback-filter">Filtrar situação<select value={status} onChange={e=>{setPage(0);setStatus(e.target.value as typeof status);}}><option value="all">Todas</option>{Object.entries(statuses).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>}</div>
       {loading?<p role="status">Carregando feedbacks…</p>:!items.length?<div className="feedback-empty"><strong>{error?'Não foi possível consultar':'Nenhum feedback nesta lista'}</strong><p>{error||'Os relatos aparecerão aqui assim que forem enviados.'}</p><button className="button ghost" onClick={()=>void load().catch(e=>setError(errText(e)))}>Atualizar</button></div>:<div className="feedback-list">
@@ -212,6 +214,7 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
       </div>}
       {total>30&&<div className="feedback-pagination"><button className="button ghost" onClick={()=>setPage(x=>Math.max(0,x-1))} disabled={page===0||loading}>Anterior</button><span>Página {page+1}</span><button className="button ghost" onClick={()=>setPage(x=>x+1)} disabled={!more||loading}>Próxima</button></div>}
     </section>
+    {admin&&<RoadmapManager/>}
     {admin&&<p className="muted">Apenas administradores podem consultar todos os relatos, definir prioridades e alterar situações.</p>}
     {selected&&<FeedbackDetail id={selected} admin={admin&&user.role==='admin'} onClose={()=>setSelected('')} onUpdate={()=>void load().catch(e=>setError(errText(e)))}/>}
   </div>;

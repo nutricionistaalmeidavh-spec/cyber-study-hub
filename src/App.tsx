@@ -13,6 +13,7 @@ import type { GameType } from './types';
 import { CourseDocumentViewer } from './components/curriculum/CourseDocumentViewer';
 import AiDevelopmentTrail from './trails/ai-dev/AiDevelopmentTrail';
 import { FeedbackBoard, FeedbackComposer } from './components/feedback/FeedbackCenter';
+import { RoadmapPage } from './components/feedback/Roadmap';
 
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -25,6 +26,7 @@ type Route =
   | { page: 'admin-users' }
   | { page: 'admin-feedback' }
   | { page: 'feedback' }
+  | { page: 'roadmap' }
   | { page: 'lessons'; track?: string; mode?: 'main' | 'parallel'; module?: string }
   | { page: 'lesson'; id: number }
   | { page: 'course-main'; id: number }
@@ -55,6 +57,7 @@ function parseHash(): Route {
   }
   if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
   if (raw === 'feedback') return { page: 'feedback' };
+  if (raw === 'roadmap') return { page: 'roadmap' };
   if (raw === 'admin/feedback'||(!window.location.hash&&window.location.pathname==='/admin/feedback')) return { page: 'admin-feedback' };
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
@@ -67,6 +70,7 @@ function parseHash(): Route {
 
 export default function App() {
   if (isAcademyPath(window.location.pathname)) return <AcademyLanding />;
+  if (/^\/roadmap\/?$/.test(window.location.pathname)) return <RoadmapPage />;
   return <PlatformGate>{(user, actions) => <Workspace key={user.id} user={user} actions={actions} />}</PlatformGate>;
 }
 
@@ -113,6 +117,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
         <Nav href="#account" active={route.page==='account'} icon="account" label="Minha conta" />
         <Nav href="#feedback" active={route.page==='feedback'} icon="feedback" label="Meus feedbacks" />
+        <Nav href="#roadmap" active={route.page==='roadmap'} icon="roadmap" label="Roadmap público" />
         {user.role==='admin' && <Nav href="#admin/feedback" active={route.page==='admin-feedback'} icon="feedback" label="Central de feedback" />}
         {user.role==='admin' && <Nav href="#admin/users" active={route.page==='admin-users'} icon="users" label="Usuários" />}
       </nav>
@@ -128,6 +133,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='dashboard' && <Dashboard user={user} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='feedback' && <FeedbackBoard user={user} />}
+      {route.page==='roadmap' && <RoadmapPage embedded />}
       {route.page==='admin-feedback' && (user.role==='admin'?<FeedbackBoard user={user} admin />:<FeedbackBoard user={user} />)}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
       {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} />}
@@ -165,7 +171,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   </div>;
 }
 
-type NavIconName = 'home' | 'book' | 'ai' | 'games' | 'materials' | 'review' | 'account' | 'users' | 'feedback';
+type NavIconName = 'home' | 'book' | 'ai' | 'games' | 'materials' | 'review' | 'account' | 'users' | 'feedback' | 'roadmap';
 function NavIcon({ name }: { name: NavIconName }) {
   return <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     {name==='home' && <><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></>}
@@ -175,6 +181,7 @@ function NavIcon({ name }: { name: NavIconName }) {
     {name==='materials' && <><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></>}
     {name==='review' && <><path d="M20 10a8 8 0 1 0 .1 4"/><path d="M20 4v6h-6"/></>}
     {name==='account' && <><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></>}
+    {name==='roadmap' && <><path d="M4 19V5m0 14h16M8 15l4-4 3 2 5-7"/></>}
     {name==='feedback' && <><path d="M4 5h16v12H9l-5 4z"/><path d="M8 9h8M8 13h5"/></>}
     {name==='users' && <><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 5a3 3 0 0 1 0 6M17 15a6 6 0 0 1 4 5"/></>}
   </svg>;
