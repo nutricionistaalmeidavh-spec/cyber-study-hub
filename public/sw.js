@@ -1,5 +1,5 @@
 // Apenas arquivos públicos. Nunca interceptar nem armazenar respostas da API.
-const CACHE = 'cyber-study-hub-v4';
+const CACHE = 'cyber-study-hub-v5-access';
 const APP_SHELL = ['/', '/manifest.webmanifest', '/favicon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(APP_SHELL)));
@@ -14,7 +14,7 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
-  if (url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return;
+  if (url.origin !== self.location.origin || /^\/(?:api|course-library|course-labs|materials)(?:\/|$)/.test(url.pathname)) return;
   event.respondWith(
     fetch(request).then(response => {
       const cacheControl = response.headers.get('cache-control') || '';
