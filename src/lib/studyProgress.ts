@@ -51,7 +51,7 @@ export function saveStudyVisit(key: string, visit: Omit<StudyVisit, 'updatedAt'>
  * As referências reutilizadas não marcam automaticamente suas unidades de origem.
  */
 export function syncCanonicalGuidedProgress(
-  source:'ai-dev'|'channel-dark',
+  source:'ai-dev'|'channel-dark'|'reverse-ai',
   currentStepId:number,
   progress:{completed:number[];notes:Record<number,string>;checked:Record<number,number[]>;drafts?:Record<number,unknown>}
 ){
@@ -92,7 +92,7 @@ export function syncCanonicalGuidedProgress(
 }
 export function getCanonicalGuidedCompletion(){
  const all=entries();
- return {completed: [...guidedItems('ai-dev'),...guidedItems('channel-dark')]
+ return {completed: [...guidedItems('ai-dev'),...guidedItems('channel-dark'),...guidedItems('reverse-ai')]
   .filter(item=>all[item.code]?.completed).length,
-  total:guidedItems('ai-dev').length+guidedItems('channel-dark').length};
+  total:guidedItems('ai-dev').length+guidedItems('channel-dark').length+guidedItems('reverse-ai').length};
 }
