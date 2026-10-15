@@ -13821,6 +13821,518 @@
           "result": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado; vinculada ao ID AULA-180 e evidência SHA-256."
         }
       ]
+    },
+    "AULA-211": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Inventário de ativos e duas rotas, origem e controle de escopo. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "aac6ceb70c192454a3c03ee3124a286b81795de19fb4a46ec3e48d92c3f32309",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/211.md :: Fundamentos e mecanismo causal; https://csrc.nist.gov/pubs/sp/800/115/final",
+          "result": "Inventário de ativos e duas rotas, origem e controle de escopo. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/211.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-211 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 211; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 211 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/211.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Inventário de ativos e duas rotas, origem e controle de escopo; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/211.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-211.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-211; public/course-library/main/211.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-211 gera Inventário de ativos e duas rotas, origem e controle de escopo; ligação de artefato e SHA-256 aac6ceb70c19… identificável."
+        }
+      ]
+    },
+    "AULA-212": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Hipóteses testáveis H1–H4 e status previstos por identidade e modo. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "475d24834e39b8c8268a46b95ad5b3458acf6b7753f0d6c1f63cc8902b1a83ca",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/212.md :: Fundamentos e mecanismo causal; https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+          "result": "Hipóteses testáveis H1–H4 e status previstos por identidade e modo. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/212.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-212 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 212; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 212 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/212.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Hipóteses testáveis H1–H4 e status previstos por identidade e modo; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/212.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-212.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-212; public/course-library/main/212.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-212 gera Hipóteses testáveis H1–H4 e status previstos por identidade e modo; ligação de artefato e SHA-256 475d24834e39… identificável."
+        }
+      ]
+    },
+    "AULA-213": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "PoC mínima de Bob 200→403 e preservação Alice 200 sem payload de produção. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "6301efc21d8b7bded0db2cf9a63444bf98e7fae0e755d4e4f02dcd5c83ee3cc5",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/213.md :: Fundamentos e mecanismo causal; https://csrc.nist.gov/pubs/sp/800/115/final",
+          "result": "PoC mínima de Bob 200→403 e preservação Alice 200 sem payload de produção. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/213.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-213 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 213; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 213 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/213.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a PoC mínima de Bob 200→403 e preservação Alice 200 sem payload de produção; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/213.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-213.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-213; public/course-library/main/213.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-213 gera PoC mínima de Bob 200→403 e preservação Alice 200 sem payload de produção; ligação de artefato e SHA-256 6301efc21d8b… identificável."
+        }
+      ]
+    },
+    "AULA-214": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Eventos JSON UTC e correlação em TIMELINE.csv; observed não implica autorizado. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "d9d39f12da85217ccaff36a57371f0d40f0e7e71f4a9c824401c0203029da8ff",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/214.md :: Fundamentos e mecanismo causal; https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+          "result": "Eventos JSON UTC e correlação em TIMELINE.csv; observed não implica autorizado. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/214.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-214 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 214; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 214 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/214.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Eventos JSON UTC e correlação em TIMELINE.csv; observed não implica autorizado; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/214.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-214.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-214; public/course-library/main/214.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-214 gera Eventos JSON UTC e correlação em TIMELINE.csv; observed não implica autorizado; ligação de artefato e SHA-256 d9d39f12da85… identificável."
+        }
+      ]
+    },
+    "AULA-215": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Correlação sintética de alerta com positivo, negativo e falso positivo; delimitação Sigma/YARA/EDR/SIEM. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "ffb23142266aacb45be4ab24228b7ba16305d8e0e005b5bb15f847eb1e2c2c26",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/215.md :: Fundamentos e mecanismo causal; https://sigmahq.io/docs/basics/rules.html",
+          "result": "Correlação sintética de alerta com positivo, negativo e falso positivo; delimitação Sigma/YARA/EDR/SIEM. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/215.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-215 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 215; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 215 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/215.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Correlação sintética de alerta com positivo, negativo e falso positivo; delimitação Sigma/YARA/EDR/SIEM; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/215.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-215.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-215; public/course-library/main/215.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-215 gera Correlação sintética de alerta com positivo, negativo e falso positivo; delimitação Sigma/YARA/EDR/SIEM; ligação de artefato e SHA-256 ffb23142266a… identificável."
+        }
+      ]
+    },
+    "AULA-216": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Causa raiz BOLA e correção no ponto de autorização mantendo Alice 200. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "e4bba3ddd27ef9d2ceeecfdbe18fd653cc9b882796d404332689bb6aa585f2ce",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/216.md :: Fundamentos e mecanismo causal; https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+          "result": "Causa raiz BOLA e correção no ponto de autorização mantendo Alice 200. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/216.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-216 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 216; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 216 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/216.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Causa raiz BOLA e correção no ponto de autorização mantendo Alice 200; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/216.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-216.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-216; public/course-library/main/216.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-216 gera Causa raiz BOLA e correção no ponto de autorização mantendo Alice 200; ligação de artefato e SHA-256 e4bba3ddd27e… identificável."
+        }
+      ]
+    },
+    "AULA-217": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Reteste de quatro hipóteses com asserts e regressão funcional explicitada. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "e1c5cc9001190b7434802946066b09424311b0955d53436da4118be061c94eec",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/217.md :: Fundamentos e mecanismo causal; https://owasp.org/www-project-web-security-testing-guide/",
+          "result": "Reteste de quatro hipóteses com asserts e regressão funcional explicitada. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/217.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-217 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 217; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 217 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/217.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Reteste de quatro hipóteses com asserts e regressão funcional explicitada; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/217.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-217.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-217; public/course-library/main/217.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-217 gera Reteste de quatro hipóteses com asserts e regressão funcional explicitada; ligação de artefato e SHA-256 e1c5cc900119… identificável."
+        }
+      ]
+    },
+    "AULA-218": {
+      "grade": "A",
+      "author": "HubEstudos — redação e implementação com assistência GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Relatório com cadeia de evidências e decisão executiva limitada à fixture. Aula integralmente reescrita com fundamento causal, exemplo Node reproduzível, roteiro de laboratório em F001, entrega verificável, seis perguntas de transferência e gabarito segregado. Revisão A é editorial assistida por IA, com execução de testes vinculada à CI; não constitui avaliação com aluno ou pentest real.",
+      "contentSha256": "a5a0adf292a64841d51d6df7b0dbadae9ae49a262060ea2285debc49f6fa992f",
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura por IA de conceito, causa e limites; contrato de decisão e fonte primária",
+          "reference": "public/course-library/main/218.md :: Fundamentos e mecanismo causal; https://csrc.nist.gov/pubs/sp/800/115/final",
+          "result": "Relatório com cadeia de evidências e decisão executiva limitada à fixture. Mecanismo e fronteira distintos de ambiente real declarados."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough simulado editorial, predizer→executar→comparar→registrar; sem alunos humanos",
+          "reference": "public/course-library/main/218.md :: Exemplo resolvido; Prática guiada",
+          "result": "Passos específicos AULA-218 com entrada, esperado, contraprova e ligação à etapa anterior."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de cenário determinístico e suite Node de 8 testes; aprovação operacional condicionada a CI",
+          "reference": "public/course-labs/capstone-final/grade-a-211-218.test.mjs :: aula 218; public/course-labs/capstone-final/model.mjs",
+          "result": "Fixtures locais com caso autorizado/negado, invariante 218 e sem rede para outro host; execução será verificada em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Crítica da causa e exigência de reteste positivo além de negativo",
+          "reference": "public/course-library/main/218.md :: Defesa, reteste e limites; public/course-labs/capstone-final/model.mjs",
+          "result": "Controle contextualizado a Relatório com cadeia de evidências e decisão executiva limitada à fixture; preservação de Alice 200 quando aplicável; sem alegar proteção em produção."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Seis perguntas exclusivas, transferência F002 no papel e gabarito individual fora da aula",
+          "reference": "public/course-library/main/218.md :: Avaliação de transferência; public/course-labs/capstone-final/answer-keys/AULA-218.md",
+          "result": "Seis itens e Rubrica (100 pontos), meta 80; enunciados distintos, gabaritos segregados."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de ID canônico, arquivo-alvo, template e sinais observáveis",
+          "reference": "src/curriculum/catalog.json :: AULA-218; public/course-library/main/218.md; public/course-labs/capstone-final/templates/",
+          "result": "AULA-218 gera Relatório com cadeia de evidências e decisão executiva limitada à fixture; ligação de artefato e SHA-256 a5a0adf292a6… identificável."
+        }
+      ]
     }
   },
   "policy": {

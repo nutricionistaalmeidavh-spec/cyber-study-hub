@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-211..AULA-218",
+  "reviewedOn": "2026-10-15",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "HubEstudos — redação e implementação com assistência GPT-6",
+  "reviewer": "GPT-6 — segunda passagem crítica técnico-editorial por IA, não auditor humano",
+  "humanLearnerTesting": "not_performed",
+  "labMode": "Node.js 22+, EscolaLab sintético e offline, R$ 0 sem serviço externo",
+  "qaMethod": "Oito testes de comportamento por aula e testes de rastreabilidade editorial por SHA-256. Resultado final sujeito a CI; não valida ambiente real, Sigma, YARA, EDR, SIEM ou aprendizagem com alunos.",
+  "units": {
+    "AULA-211": {
+      "title": "Reconhecimento e inventário autorizado",
+      "contentPath": "/course-library/main/211.md",
+      "contentSha256": "aac6ceb70c192454a3c03ee3124a286b81795de19fb4a46ec3e48d92c3f32309",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/115/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Inventário de ativos e duas rotas, origem e controle de escopo",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-211",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-212": {
+      "title": "Pentest controlado — hipóteses e validação",
+      "contentPath": "/course-library/main/212.md",
+      "contentSha256": "475d24834e39b8c8268a46b95ad5b3458acf6b7753f0d6c1f63cc8902b1a83ca",
+      "technicalSources": [
+        "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Hipóteses testáveis H1–H4 e status previstos por identidade e modo",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-212",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-213": {
+      "title": "Exploração controlada e prova de impacto",
+      "contentPath": "/course-library/main/213.md",
+      "contentSha256": "6301efc21d8b7bded0db2cf9a63444bf98e7fae0e755d4e4f02dcd5c83ee3cc5",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/115/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "PoC mínima de Bob 200→403 e preservação Alice 200 sem payload de produção",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-213",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-214": {
+      "title": "Coleta e análise de logs",
+      "contentPath": "/course-library/main/214.md",
+      "contentSha256": "d9d39f12da85217ccaff36a57371f0d40f0e7e71f4a9c824401c0203029da8ff",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Eventos JSON UTC e correlação em TIMELINE.csv; observed não implica autorizado",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-214",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-215": {
+      "title": "Detecções — YARA, Sigma, EDR e SIEM",
+      "contentPath": "/course-library/main/215.md",
+      "contentSha256": "ffb23142266aacb45be4ab24228b7ba16305d8e0e005b5bb15f847eb1e2c2c26",
+      "technicalSources": [
+        "https://sigmahq.io/docs/basics/rules.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Correlação sintética de alerta com positivo, negativo e falso positivo; delimitação Sigma/YARA/EDR/SIEM",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-215",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-216": {
+      "title": "Correções e Hardening",
+      "contentPath": "/course-library/main/216.md",
+      "contentSha256": "e4bba3ddd27ef9d2ceeecfdbe18fd653cc9b882796d404332689bb6aa585f2ce",
+      "technicalSources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Causa raiz BOLA e correção no ponto de autorização mantendo Alice 200",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-216",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-217": {
+      "title": "Reteste e regressão",
+      "contentPath": "/course-library/main/217.md",
+      "contentSha256": "e1c5cc9001190b7434802946066b09424311b0955d53436da4118be061c94eec",
+      "technicalSources": [
+        "https://owasp.org/www-project-web-security-testing-guide/"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Reteste de quatro hipóteses com asserts e regressão funcional explicitada",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-217",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    },
+    "AULA-218": {
+      "title": "Relatório e apresentação final",
+      "contentPath": "/course-library/main/218.md",
+      "contentSha256": "a5a0adf292a64841d51d6df7b0dbadae9ae49a262060ea2285debc49f6fa992f",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/115/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 93,
+        "didatica": 91,
+        "pratica": 91,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "technicalScope": "Relatório com cadeia de evidências e decisão executiva limitada à fixture",
+      "observations": "Modelo determinístico EscolaLab, seis perguntas e gabarito individual; prova em CI de regressão AULA-218",
+      "limitations": [
+        "Modo vulnerable deliberadamente inseguro e disponível apenas como fixture; nenhuma validação real de login, dados pessoais ou SIEM/EDR/YARA/Sigma.",
+        "A segunda passagem é IA; nenhum estudante ou auditor humano participou. Execução depende do CI."
+      ]
+    }
+  }
+}
