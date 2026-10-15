@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import manifest from './manifest.json';
 import learning from './modules.json';
+import oficinas from './oficinas.json';
 import '../ai-dev/ai-dev.css';
 import './channel-dark.css';
 import { getStudyDraft, saveStudyVisit } from '../../lib/studyProgress';
@@ -200,7 +201,27 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
         {lesson.brief && <section className="ai-exercise">
           <span className="eyebrow">LABORATÓRIO INCREMENTAL · CANAL PILOTO</span>
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
-          <div className="ai-actions">{lesson.starterSourceUrl && <a className="button primary" href={lesson.starterSourceUrl} target="_blank" rel="noopener noreferrer">Abrir roteiro do laboratório ↗</a>}</div>
+          {oficinas.filter(oficina => oficina.moduleId === moduleId).map(oficina =>
+            <section key={oficina.moduleId} className="channel-workshop" aria-label="Oficina prática com código reutilizável">
+              <span className="eyebrow">OFICINA PRINCIPAL · CÓDIGO REUTILIZÁVEL</span>
+              <h3>{oficina.title}</h3>
+              <p>{oficina.whatWorks}</p>
+              <a className="button primary" target="_blank" rel="noopener noreferrer" href={oficina.guide}>Abrir guia de integração e arquivos ↗</a>
+              <div className="channel-workshop-command"><strong>Execute no seu computador:</strong><code>{oficina.command}</code></div>
+              <h4>Arquivos que você vai produzir</h4>
+              <ul>{oficina.artifacts.map(file => <li key={file}><code>{file}</code></li>)}</ul>
+              <h4>Código existente que você vai usar</h4>
+              <ul className="channel-workshop-sources">{oficina.sources.map(source =>
+                <li key={source.repo + source.path}>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer">{source.repo}/{source.path} ↗</a>
+                  <small>{source.access === 'private' ? 'Repositório privado: precisa de acesso · opcional' : 'Origem pública com código MIT'}</small>
+                  <p>{source.why}</p>
+                </li>)}
+              </ul>
+              <p className="channel-workshop-limit">O guia distingue módulos de contrato dos executores reais. A edição do vídeo requer FFmpeg e direitos dos ativos; nenhum vídeo é publicado automaticamente.</p>
+            </section>
+          )}
+          <div className="ai-actions">{lesson.starterSourceUrl && <a className="button ghost" href={lesson.starterSourceUrl} target="_blank" rel="noopener noreferrer">Consultar exercício introdutório ↗</a>}</div>
           <p className="ai-privacy">Trabalhe com arquivos próprios e mídia licenciada. O laboratório pode ser concluído sem GPU, assinatura ou API paga. Ferramentas externas são experimentos opcionais, nunca um desbloqueio.</p>
           {lesson.labCommand && <div className="channel-executable">
             <h3>Execute no seu computador</h3>

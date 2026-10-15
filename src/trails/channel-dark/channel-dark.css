@@ -25,3 +25,19 @@
 .channel-executable details{margin-top:15px}
 .channel-executable summary{font-size:13px}
 .channel-executable li{font-size:12px;line-height:1.6}
+
+.channel-workshop{border:1px solid #9375c6;border-radius:16px;background:linear-gradient(135deg,rgba(85,60,122,.35),rgba(36,28,57,.7));padding:18px;margin:16px 0}
+.channel-workshop h3{font-size:17px;margin:7px 0 10px}
+.channel-workshop h4{font-size:13px;color:#eadcf8;margin:18px 0 9px}
+.channel-workshop p{font-size:13px;line-height:1.6;color:#e0d6ec;margin:8px 0 14px}
+.channel-workshop-command{margin-top:16px;background:rgba(15,13,29,.68);border:1px solid #594670;border-radius:11px;padding:13px}
+.channel-workshop-command strong{font-size:12px;color:#f0e1ff}
+.channel-workshop-command code{display:block;font-size:12px;line-height:1.6;color:#f3e5ff;overflow-wrap:anywhere;white-space:normal;margin-top:9px}
+.channel-workshop>ul{padding-left:22px}
+.channel-workshop>ul li{margin:9px 0;font-size:12px;overflow-wrap:anywhere}
+.channel-workshop-sources a{color:#e7caff;text-decoration:underline;text-underline-offset:3px}
+.channel-workshop-sources a:focus-visible{outline:2px solid #e9cfff;outline-offset:2px}
+.channel-workshop-sources small{display:block;font-size:11px;color:#bdb1cc;margin-top:4px}
+.channel-workshop-sources p{font-size:12px;margin:6px 0}
+.channel-workshop .channel-workshop-limit{font-size:12px;color:#c2b6d0;margin-top:15px}
+@media(max-width:600px){.channel-workshop{padding:14px}.channel-workshop .button{width:100%;justify-content:center;display:flex}.channel-workshop-command code{font-size:11px}}

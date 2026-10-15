@@ -7,6 +7,7 @@ on:
       - 'src/App.tsx'
       - 'src/components/Dashboard.tsx'
       - 'scripts/test-channel-dark.mjs'
+      - 'scripts/test-channel-dark-workshops.mjs'
       - 'scripts/verify-channel-dark.mjs'
       - 'quality/trails/channel-dark/**'
       - 'package.json'
