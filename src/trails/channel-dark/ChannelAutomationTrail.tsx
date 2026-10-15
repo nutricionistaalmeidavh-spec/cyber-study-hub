@@ -132,10 +132,10 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
     {showRoadmap && <section id="ai-all-modules" className="ai-roadmap" aria-label="Módulos da formação">
       {manifest.modules.map(m => {
         const released = m.status === 'available';
-        const count = released ? modules[m.id - 1].lessons.filter(s => progress.completed.includes(s.stepId)).length : 0;
+
         return released
           ? <button type="button" key={m.id} className={'ai-module available ' + (moduleId === m.id ? 'selected' : '')} aria-pressed={moduleId === m.id} onClick={() => choose(m.id, 0)}>
-              <span className="ai-module-number">{String(m.id).padStart(2, '0')}</span><span className="ai-module-label"><strong>{m.title}</strong><small>{m.duration} · {count}/4 etapas</small></span><span className="ai-status">Estudar ↗</span>
+              <span className="ai-module-number">{String(m.id).padStart(2, '0')}</span><span className="ai-module-label"><strong>{m.title}</strong><small>{m.duration}</small></span><span className="ai-status">Estudar ↗</span>
             </button>
           : <div key={m.id} className="ai-module planned" aria-disabled="true"><span className="ai-module-number">{String(m.id).padStart(2, '0')}</span><span className="ai-module-label"><strong>{m.title}</strong><small>{m.duration}</small></span><span className="ai-status">Em breve</span></div>;
       })}
