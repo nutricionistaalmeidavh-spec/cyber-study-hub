@@ -1,30 +1,32 @@
-# Gabarito reservado — módulo 03 (Binários nativos e Ghidra)
+# Gabarito restrito à revisão — Análise estática C/Ghidra
 
-1. Uma hipótese aceita um teste que poderia dar resultado contrário: preveja, por exemplo, a prioridade para severidade 8, impacto 1, bloqueado verdadeiro; obtenha 22 e categoria critical. Hipóteses além da amostra continuam abertas.
+**Módulo 03**. Compare a resposta do aluno com a prova de execução; equivalentes justificáveis são aceitos.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+1. **Resposta esperada:** São três tarefas distintas; engine lê fonte C e não compila nem faz decompilação.
 
-2. Observação é o JSON efetivamente produzido pelo runner; inferência é sua interpretação de como o programa chegou ao número e precisa de teste adicional.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+2. **Resposta esperada:** parse e main; confirmar no arquivo próprio e, opcionalmente, em fluxo real do Ghidra.
 
-3. O objeto negativeControl.rejected deve ser true, com reason contendo o erro; entrada inválida jamais é sucesso silencioso.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+3. **Resposta esperada:** critical/high/normal; ramos score>=22 e score>=14 determinam prioridade.
 
-4. A AULA-115 fornece fundamentos de referência canônica: aula 115, mas o código e a verificação pertencem ao laboratório REV-IA-012, sem alterar o progresso da fonte.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+4. **Resposta esperada:** cc -O0 -g -Wall -Wextra -Werror sample.c -o sample, adaptando o caminho do diretório.
 
-5. O agente poderia alucinar funções, afirmar que executou Ghidra ou confundir decompilação com fonte. Confronte suas afirmações com o código próprio e a execução documentada.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+5. **Resposta esperada:** Perde nomes, comentários, tipagem e estruturas após compilação/otimização, reconstruindo aproximação.
 
-6. A entrega inclui escopo autorizado, previsão, comando e ambiente, saídas positiva e negativa, divergência corrigida e limites; os testes não provam equivalência universal.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
 
-   **Critério:** 2 pontos para justificativa vinculada a teste, 1 parcial, 0 sem evidência.
+6. **Resposta esperada:** Informar versão, binário, captura e log reais; se não executou, declarar decompilerExecuted=false.
 
-**Erro eliminatório:** alegar que os testes didáticos garantem clone total, que burlou proteção/licença ou que o agente executou uma ferramenta não executada.
+   **Pontuação:** 2 se explicar e citar comando/arquivo quando aplicável; 1 para acerto parcial sem evidência; 0 se incorreto.
+
+**Erro eliminatório:** apresentar execução de Ghidra/REA/serviço externo sem prova, induzir bypass de licença/DRM ou confundir resultado didático com clone perfeito.
 
 ## Rubrica de correção
-De 0 a 12 pontos. Recomendar >=9, reexecução com entrada negativa e revisão da limitação; nenhuma aprovação automática pelo simples clique de conclusão. Este gabarito está fora da superfície principal da aula.
+10–12 pontos, sem erro eliminatório: domínio editorial satisfatório. 0–9 pontos: estudar novamente, refazer controle negativo e apresentar reteste. Sem observação com estudantes reais, esta rubrica é proposta e não certificação humana.
