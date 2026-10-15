@@ -12541,6 +12541,646 @@
           "result": "A equipe integra quatro testes benignos: ROE, árvore de processos, canário fictício e lacuna de coleta. O objetivo é medir o que foi realmente visto e investigar alertas sem confundir cobertura, acerto e falso positivo. Quatro casos e critérios declarados resultam COVERED; falta de fonte e alerta benigno geram GAP_IDENTIFIED."
         }
       ]
+    },
+    "AULA-201": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "cdeb4ce2dad0675589ad6e32f259675e36f89f1d6cdb30b0f59e7f91a1761200",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/201.md :: conteudoTecnico",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/201.md :: didatica",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 201",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/201.md :: defesa",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/201.md; public/course-labs/a201-210/answer-keys/AULA-201.md",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/201.md :: especificidade",
+          "result": "Fronteira de confiança entre LLM e ACL de relatório por tenant. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-202": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "e1c4fef7f0117e7fe211c4fcd0b2c95743d46ed1f51c2926985091826eee790b",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/202.md :: conteudoTecnico",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/202.md :: didatica",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 202",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/202.md :: defesa",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/202.md; public/course-labs/a201-210/answer-keys/AULA-202.md",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/202.md :: especificidade",
+          "result": "Injeção indireta: origem de conteúdo recuperado não autoriza tools. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-203": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Minimização de dados: projeção antes do prompt e ACL por owner. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "0c7c7bbd9b2be867a6e51e9d10f760c546d871d0682857f234f84954a0c9226b",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/203.md :: conteudoTecnico",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/203.md :: didatica",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 203",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/203.md :: defesa",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/203.md; public/course-labs/a201-210/answer-keys/AULA-203.md",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/203.md :: especificidade",
+          "result": "Minimização de dados: projeção antes do prompt e ACL por owner. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-204": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "42e509b71f41672779d0ec9738acc4366177f9ca5e7d23b2e7c870f83cb7a1a6",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/204.md :: conteudoTecnico",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/204.md :: didatica",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 204",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/204.md :: defesa",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/204.md; public/course-labs/a201-210/answer-keys/AULA-204.md",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/204.md :: especificidade",
+          "result": "RAG: filtro de chunks, ACL de tenant, proveniência e revogação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-205": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "9153a8b057b1d7da1ac08bd4720c7a10e74a03d03cdf305466064bffaa5940d6",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/205.md :: conteudoTecnico",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/205.md :: didatica",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 205",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/205.md :: defesa",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/205.md; public/course-labs/a201-210/answer-keys/AULA-205.md",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/205.md :: especificidade",
+          "result": "Abuso de tools: ação, schema, tenant e aprovação vinculada. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-206": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "65202970ee79ba638e1ac9d486c791a3c7fe1d6b446382f06af1b6adfc74ada1",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/206.md :: conteudoTecnico",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/206.md :: didatica",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 206",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/206.md :: defesa",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/206.md; public/course-labs/a201-210/answer-keys/AULA-206.md",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/206.md :: especificidade",
+          "result": "Supply chain de modelos: origem, digest, licença e gate de avaliação. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-207": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "02844e4034df46c61822a35e88a7872cce4acaf81c928f08a3dbc689876135da",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/207.md :: conteudoTecnico",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/207.md :: didatica",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 207",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/207.md :: defesa",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/207.md; public/course-labs/a201-210/answer-keys/AULA-207.md",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/207.md :: especificidade",
+          "result": "OWASP GenAI 2026: mapeamento de risco exigindo evidência. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-208": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "b77d262d32c2c2ff87d8b9c0557f2616731de6d6aa46c9d59f3c4595a538ab41",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/208.md :: conteudoTecnico",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/208.md :: didatica",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 208",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/208.md :: defesa",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/208.md; public/course-labs/a201-210/answer-keys/AULA-208.md",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/208.md :: especificidade",
+          "result": "Capstone IA: política entre retrieval e ação, trace sem texto sensível. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-209": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Capstone geral: escopo local, autorização, stop condition e reset. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "41634a3645130be72e16bb20f53b5091a18cf4d9fae30a40268292868e470cbd",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/209.md :: conteudoTecnico",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/209.md :: didatica",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 209",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/209.md :: defesa",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/209.md; public/course-labs/a201-210/answer-keys/AULA-209.md",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/209.md :: especificidade",
+          "result": "Capstone geral: escopo local, autorização, stop condition e reset. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
+    },
+    "AULA-210": {
+      "grade": "A",
+      "author": "HubEstudos — conteúdo didático com assistência GPT-6",
+      "reviewer": "GPT-6 — revisão técnico-editorial IA, não humana",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Capstone geral: DFD, fronteiras, controles e teste negativo. Material de 201–210 substitui explicações genéricas por mecanismo, exemplo ESM executável, entradas e oráculos específicos, cenário permitido, falha adversarial, correção causal, reteste duplo e transferência de competência com gabarito externo. Núcleo local Node 22+, gratuito e sem rede/conta cloud. Apenas revisão editorial assistida por IA: nenhum teste com alunos, plataforma de LLM ou backend de produção.",
+      "contentSha256": "834c40cdcb904cace6ae0ead3c02da589e1eca170815e3638d3fbc3aa24f1e67",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Segunda leitura editorial IA do mecanismo, pré-condições e origem da autorização",
+          "reference": "public/course-library/main/210.md :: conteudoTecnico",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Revisão IA de passo a passo, entradas, saídas e evolução iniciante-prática",
+          "reference": "public/course-library/main/210.md :: didatica",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Contrato Node 22 com caso positivo, negativo e reteste",
+          "reference": "public/course-labs/a201-210/lab.test.mjs :: 210",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Revisão da mitigação causal e manutenção do cenário permitido",
+          "reference": "public/course-library/main/210.md :: defesa",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Questões independentes e rubrica de 100 pontos com gabarito separado",
+          "reference": "public/course-library/main/210.md; public/course-labs/a201-210/answer-keys/AULA-210.md",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Conferência de identidade técnica de cada cenário e teste",
+          "reference": "public/course-library/main/210.md :: especificidade",
+          "result": "Capstone geral: DFD, fronteiras, controles e teste negativo. Teste reproduzível em ambiente sintético; desempenho de alunos não medido e uso real exige integração e validação independente."
+        }
+      ]
     }
   },
   "policy": {
