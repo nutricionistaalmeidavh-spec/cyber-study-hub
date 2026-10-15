@@ -1,0 +1,250 @@
+{
+  "id": "CANAL-DARK-IA",
+  "version": 1,
+  "title": "Automação de Canais Dark com IA",
+  "subtitle": "Do nicho à publicação, com produção autoral e alternativa local gratuita em cada módulo.",
+  "project": "Canal Piloto",
+  "audience": "Iniciantes e criadores de conteúdo que desejam aprender automação sem aparecer em câmera",
+  "corePolicy": "R$ 0 obrigatório: ferramentas locais, projetos open source e possibilidade de concluir cada laboratório sem assinaturas, APIs pagas ou GPU.",
+  "safetyPolicy": "Revisão humana antes da publicação, respeito a fontes/licenças, identificação de mídia sintética conforme plataforma; jamais clonagem de voz de terceiros sem consentimento.",
+  "notes": [
+    "Serviços externos online são opcionais, com termos e créditos sujeitos a mudanças.",
+    "n8n é fair-code sob Sustainable Use License e não open source OSI.",
+    "Avaliações e provas propostas não representam validação pedagógica por alunos humanos."
+  ],
+  "totalSteps": 32,
+  "modules": [
+    {
+      "id": 1,
+      "title": "Estratégia do canal dark",
+      "duration": "3–4 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 1,
+          "type": "microaula",
+          "title": "Canal dark não significa canal sem autoria"
+        },
+        {
+          "id": 2,
+          "type": "microaula-ia",
+          "title": "Brief editorial com IA"
+        },
+        {
+          "id": 3,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 4,
+          "type": "laboratorio",
+          "title": "Laboratório — Estratégia do canal dark"
+        }
+      ],
+      "outcome": "Separar geração técnica de responsabilidade autoral"
+    },
+    {
+      "id": 2,
+      "title": "Pesquisa, pautas e roteiros",
+      "duration": "4–5 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 5,
+          "type": "microaula",
+          "title": "Pesquisa antes do texto"
+        },
+        {
+          "id": 6,
+          "type": "microaula-ia",
+          "title": "Coautoria de roteiros com revisão"
+        },
+        {
+          "id": 7,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 8,
+          "type": "laboratorio",
+          "title": "Laboratório — Pesquisa, pautas e roteiros"
+        }
+      ],
+      "outcome": "Registrar revisões e checagem factual"
+    },
+    {
+      "id": 3,
+      "title": "Narração e TTS",
+      "duration": "4–5 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 9,
+          "type": "microaula",
+          "title": "Texto para fala e idioma correto"
+        },
+        {
+          "id": 10,
+          "type": "microaula-ia",
+          "title": "Direção da voz e escuta crítica"
+        },
+        {
+          "id": 11,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 12,
+          "type": "laboratorio",
+          "title": "Laboratório — Narração e TTS"
+        }
+      ],
+      "outcome": "Respeitar consentimento, identidade e licenças"
+    },
+    {
+      "id": 4,
+      "title": "Imagens, cenas e thumbnails",
+      "duration": "4–5 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 13,
+          "type": "microaula",
+          "title": "Cada cena precisa ensinar algo"
+        },
+        {
+          "id": 14,
+          "type": "microaula-ia",
+          "title": "Prompts visuais e direção artística"
+        },
+        {
+          "id": 15,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 16,
+          "type": "laboratorio",
+          "title": "Laboratório — Imagens, cenas e thumbnails"
+        }
+      ],
+      "outcome": "Comparar geração local e ferramentas online com limites"
+    },
+    {
+      "id": 5,
+      "title": "Vídeo com IA: Pika, Flow e Steve",
+      "duration": "5–6 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 17,
+          "type": "microaula",
+          "title": "Primeiro o vídeo que funciona"
+        },
+        {
+          "id": 18,
+          "type": "microaula-ia",
+          "title": "Direção de cenas e avaliação de custo"
+        },
+        {
+          "id": 19,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 20,
+          "type": "laboratorio",
+          "title": "Laboratório — Vídeo com IA: Pika, Flow e Steve"
+        }
+      ],
+      "outcome": "Montar cenas alternativas com FFmpeg"
+    },
+    {
+      "id": 6,
+      "title": "Edição, legendas e Shorts",
+      "duration": "5–6 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 21,
+          "type": "microaula",
+          "title": "Montagem por informação"
+        },
+        {
+          "id": 22,
+          "type": "microaula-ia",
+          "title": "Plano de edição assistida"
+        },
+        {
+          "id": 23,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 24,
+          "type": "laboratorio",
+          "title": "Laboratório — Edição, legendas e Shorts"
+        }
+      ],
+      "outcome": "Criar exportação reproduzível com FFmpeg"
+    },
+    {
+      "id": 7,
+      "title": "Automação com n8n e Node-RED",
+      "duration": "5–6 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 25,
+          "type": "microaula",
+          "title": "Automação não é publicação cega"
+        },
+        {
+          "id": 26,
+          "type": "microaula-ia",
+          "title": "Arquitetura de orquestração"
+        },
+        {
+          "id": 27,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 28,
+          "type": "laboratorio",
+          "title": "Laboratório — Automação com n8n e Node-RED"
+        }
+      ],
+      "outcome": "Introduzir aprovação, logs, retry e contingência"
+    },
+    {
+      "id": 8,
+      "title": "Publicação, métricas e monetização",
+      "duration": "5–6 h",
+      "status": "available",
+      "steps": [
+        {
+          "id": 29,
+          "type": "microaula",
+          "title": "Publicação oficial, nunca atalho oculto"
+        },
+        {
+          "id": 30,
+          "type": "microaula-ia",
+          "title": "Auditoria editorial e relatório de melhorias"
+        },
+        {
+          "id": 31,
+          "type": "referencia",
+          "title": "Documentação e transferência"
+        },
+        {
+          "id": 32,
+          "type": "laboratorio",
+          "title": "Laboratório — Publicação, métricas e monetização"
+        }
+      ],
+      "outcome": "Avaliar originalidade, conteúdo sintético e direitos"
+    }
+  ]
+}
