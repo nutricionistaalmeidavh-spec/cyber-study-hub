@@ -4,8 +4,8 @@
 
 ## O que o estudante recebe
 
-- [Modelos e fixtures](../models.mjs) implementam rejeição observável de input inválido.
-- [Execução selecionada](../run.mjs) e [testes de regressão](../lab.test.mjs) são código de verdade, com entradas fictícias controladas.
+- [Modelos e fixtures](../research-models.mjs) implementam rejeição observável de input inválido.
+- [Execução selecionada](../run.mjs) e [testes de regressão](../research.test.mjs) são código de verdade, com entradas fictícias controladas.
 - Aula teórica: [AULA-177](../../../course-library/main/177.md). 
 
 ## O que deverá conseguir fazer
@@ -17,14 +17,14 @@ Converter hipótese em teste de regressão não invasivo. Antes de executar, des
 ```bash
 node --version
 node public/course-labs/a171-180/run.mjs 177
-node --test public/course-labs/a171-180/lab.test.mjs
+node --test public/course-labs/a171-180/research.test.mjs
 ```
 
 **Caso esperado:** R:123 rejeitado. O campo `casePositive.status` deve corresponder ao estado esperado em `cases[177].okStatus`. **Controle negativo:** R:123 aceito; verifique `caseNegative.status` e explique por que o resultado difere.
 
 ## Desafio independente
 
-1. Abra `cases[177]` em `models.mjs` e copie para um arquivo temporário fora da pasta canônica.
+1. Abra `cases[177]` em `research-models.mjs` e copie para um arquivo temporário fora da pasta canônica.
 2. Preveja a decisão para a mudança de **um único parâmetro**. Justifique por condição exata, não por impressão.
 3. Execute novamente, compare resultado, retorne ao código original e reteste os dois casos.
 4. Registre: Node, cenário, campo alterado, saída, evidência e qual teste adicional seria exigido num sistema próprio.

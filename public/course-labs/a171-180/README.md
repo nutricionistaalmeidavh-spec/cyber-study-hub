@@ -19,7 +19,7 @@ Da raiz do projeto, com Node 22+:
 
 ```bash
 node public/course-labs/a171-180/run.mjs 171
-node --test public/course-labs/a171-180/lab.test.mjs
+node --test public/course-labs/a171-180/research.test.mjs
 ```
 
 Para cada aula, troque 171 pelo ID da atividade. Os testes cobrem resultado válido, negativo e entrada inválida. Os outputs são sintéticos. Registre entradas e saídas e tente uma alteração própria em cópia local.

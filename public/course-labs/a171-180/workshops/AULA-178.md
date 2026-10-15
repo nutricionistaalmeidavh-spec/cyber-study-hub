@@ -4,8 +4,8 @@
 
 ## O que o estudante recebe
 
-- [Modelos e fixtures](../models.mjs) implementam condição antes/depois de validar comprimento.
-- [Execução selecionada](../run.mjs) e [testes de regressão](../lab.test.mjs) são código de verdade, com entradas fictícias controladas.
+- [Modelos e fixtures](../research-models.mjs) implementam condição antes/depois de validar comprimento.
+- [Execução selecionada](../run.mjs) e [testes de regressão](../research.test.mjs) são código de verdade, com entradas fictícias controladas.
 - Aula teórica: [AULA-178](../../../course-library/main/178.md). 
 
 ## O que deverá conseguir fazer
@@ -17,14 +17,14 @@ Provar que o guard bloqueia abuso sem bloquear legítimo. Antes de executar, des
 ```bash
 node --version
 node public/course-labs/a171-180/run.mjs 178
-node --test public/course-labs/a171-180/lab.test.mjs
+node --test public/course-labs/a171-180/research.test.mjs
 ```
 
 **Caso esperado:** fixedGuard=true. O campo `casePositive.status` deve corresponder ao estado esperado em `cases[178].okStatus`. **Controle negativo:** fixedGuard=false; verifique `caseNegative.status` e explique por que o resultado difere.
 
 ## Desafio independente
 
-1. Abra `cases[178]` em `models.mjs` e copie para um arquivo temporário fora da pasta canônica.
+1. Abra `cases[178]` em `research-models.mjs` e copie para um arquivo temporário fora da pasta canônica.
 2. Preveja a decisão para a mudança de **um único parâmetro**. Justifique por condição exata, não por impressão.
 3. Execute novamente, compare resultado, retorne ao código original e reteste os dois casos.
 4. Registre: Node, cenário, campo alterado, saída, evidência e qual teste adicional seria exigido num sistema próprio.
