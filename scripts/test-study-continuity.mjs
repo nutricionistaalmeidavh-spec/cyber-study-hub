@@ -225,7 +225,7 @@ test('legacy guided progress migrates into canonical IDs without deleting snapsh
  assert.equal(next['DEV-IA-004'].draft.notes,'previous note');
  assert.deepEqual(Array.from(next['DEV-IA-004'].draft.checked),[0,1]);
  assert.equal(progress.getCanonicalGuidedCompletion().completed,3);
- assert.equal(progress.getCanonicalGuidedCompletion().total,64);
+ assert.equal(progress.getCanonicalGuidedCompletion().total,96);
  progress.syncCanonicalGuidedProgress('ai-dev',4,{completed:[],notes:{},checked:{},drafts:{}});
  assert.equal(JSON.parse(storage.getItem(KEY))['DEV-IA-004'].completed,true,'offline/legacy merge must not undo completed status');
 });
