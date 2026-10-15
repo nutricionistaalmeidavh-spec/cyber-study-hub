@@ -7,7 +7,7 @@
 Use um checkout local e versionado de `utilidades`. No diretório da sua cópia do projeto consumidor:
 
 ```sh
-npm install /caminho/para/utilidades/modules/artisys-pdf @pdfme/generator@^6 @pdfme/schemas@^6
+npm install /caminho/para/utilidades/modules/artisys-pdf @pdfme/generator@^6 @pdfme/schemas@^6 @pdfme/common@^6
 ```
 
 Copie esta pasta `pdf/` para uma pasta educacional no consumidor, ajustando o caminho de execução. O módulo usa Node 22+ (o Meu Gestor v1.0 requer Node 24+).
