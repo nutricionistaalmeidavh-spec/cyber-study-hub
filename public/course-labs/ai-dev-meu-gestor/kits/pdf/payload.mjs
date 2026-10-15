@@ -2,7 +2,7 @@
 export function makeOrderPdfPayload(order) {
   if (!order || typeof order !== 'object') throw new TypeError('Ordem ausente');
   const clean = (value, max=100) => {
-    if (typeof value !== 'string' || !value.trim() || value.length > max || /[\\u0000-\\u001f]/.test(value)) throw new TypeError('Campo de texto inválido');
+    if (typeof value !== 'string' || !value.trim() || value.length > max || /[\u0000-\u001f]/.test(value)) throw new TypeError('Campo de texto inválido');
     return value.trim();
   };
   const id=clean(order.id,32),cliente=clean(order.cliente,100),servico=clean(order.servico,160);
