@@ -76,7 +76,7 @@ function init(db) {
     ...ROADMAP_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
 }
-export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=false}) {
+export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true}) {
   if(!dbPath||!origin)throw Error('dbPath and HUB_ORIGIN are required');
   const canonicalOrigin=new URL(origin).origin, secure=canonicalOrigin.startsWith('https://');
   const db=new DatabaseSync(dbPath);
