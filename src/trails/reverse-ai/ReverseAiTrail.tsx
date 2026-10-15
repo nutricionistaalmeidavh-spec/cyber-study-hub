@@ -117,7 +117,7 @@ function ReverseAiTrailContent({userId,modules}:{userId:string;modules:Module[]}
      <textarea className="ai-prompt" rows={8} readOnly aria-label="Prompt de investigação" value={step.prompt}/>
      <h3>Perguntas para revisão</h3><ol>{step.reviewQuestions?.map(x=><li key={x}>{x}</li>)}</ol></section>}
     {step.referencePath&&<section className="ai-exercise"><h3>Estudo da fonte canônica</h3><p>{step.challengeText}</p><a className="button ghost" href={step.referencePath}>Abrir {step.referenceCode} →</a></section>}
-    {step.kind==='laboratorio'&&<section className="ai-exercise"><h3>Laboratório executável · dados fictícios</h3><p>{step.expectedArtifact}</p>
+    {step.kind==='laboratorio'&&<section id={'laboratorio-'+guidedCanonicalId('reverse-ai',step.stepId)} className="ai-exercise"><h3>Laboratório executável · dados fictícios</h3><p>{step.expectedArtifact}</p>
      <ol>{step.brief?.map(x=><li key={x}>{x}</li>)}</ol>
      <p>Comando local:</p><pre className="ai-prompt">{step.labCommand}{'\n'}{step.testCommand}</pre>
      <div className="ai-actions"><a className="button primary" href={step.starterSourceUrl} target="_blank" rel="noopener noreferrer">Abrir arquivos e roteiro ↗</a>
