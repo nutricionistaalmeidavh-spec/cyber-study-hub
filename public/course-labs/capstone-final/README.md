@@ -37,3 +37,18 @@ Use `templates/` para iniciar a **mesma** investigação em todas as etapas. Ele
 **Extensões opcionais:** `utilidades/artisys-reporting` para consolidar evidências, `artisys-pdf` para formatar o relatório, `artisys-qa` / `artisysScan` para CI e registros; referências `frontEnds` apenas com acesso privado, sem cópia para o Hub público. Nenhum desses kits é necessário para concluir.
 
 **O que o lab não prova:** proteção de sessão real, isolamento de tenants, segurança de rede, detecção em SIEM real ou conformidade de produção. É um toy app didático deliberadamente inseguro no modo opcional `vulnerable`.
+
+## Oficinas e entregas individuais do P2
+
+- [AULA-209 — Definição do laboratório final](./workshops/AULA-209.md)
+- [AULA-210 — Threat Modeling do laboratório](./workshops/AULA-210.md)
+- [AULA-211 — Reconhecimento e inventário autorizado](./workshops/AULA-211.md)
+- [AULA-212 — Pentest controlado — hipóteses e validação](./workshops/AULA-212.md)
+- [AULA-213 — Exploração controlada e prova de impacto](./workshops/AULA-213.md)
+- [AULA-214 — Coleta e análise de logs](./workshops/AULA-214.md)
+- [AULA-215 — Detecções — YARA, Sigma, EDR e SIEM](./workshops/AULA-215.md)
+- [AULA-216 — Correções e Hardening](./workshops/AULA-216.md)
+- [AULA-217 — Reteste e regressão](./workshops/AULA-217.md)
+- [AULA-218 — Relatório e apresentação final](./workshops/AULA-218.md)
+
+Em cada etapa, rode `node public/course-labs/capstone-final/stage-runner.mjs 209` (troque pelo ID da aula) e complete o template em cópia própria. Os dez roteiros compartilham o MESMO aplicativo e produzem relatórios distintos, não dez provas desligadas.

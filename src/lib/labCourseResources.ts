@@ -12,23 +12,23 @@ export function getMainLabGuide(id:number):CourseLabGuide|null{
  if(id>=181&&id<=190)return{kind:'Red/Purple Team · simulação de telemetria',
   title:'Oficina '+id+' — decisões e evidências',
   description:'Fixtures independentes por aula: caso permitido, controle negativo, escopo e evidência sem tráfego de rede.',
-  guide:'/course-labs/a181-190/README.md',code:'/course-labs/a181-190/models.mjs',
-  tests:'/course-labs/a181-190/lab.test.mjs',command:'node --test public/course-labs/a181-190/lab.test.mjs',safety:local};
+  guide:'/course-labs/a181-190/workshops/AULA-'+id+'.md',code:'/course-labs/a181-190/run.mjs',
+  tests:'/course-labs/a181-190/run.test.mjs',command:'node public/course-labs/a181-190/run.mjs '+id,safety:local};
  if(id>=191&&id<=200)return{kind:'Cloud/Plataforma · decisão local',
   title:'Teste de política e controle — aula '+id,
   description:'Casos de permissão e negação. Os modelos não executam Docker, AWS, Firebase nem Electron; consulte a aula para práticas nativas opcionais.',
-  guide:'/course-labs/a191-200/README.md',code:'/course-labs/a191-200/models.mjs',
-  tests:'/course-labs/a191-200/lab.test.mjs',command:'node --test public/course-labs/a191-200/lab.test.mjs',safety:local};
+  guide:'/course-labs/a191-200/workshops/AULA-'+id+'.md',code:'/course-labs/a191-200/run.mjs',
+  tests:'/course-labs/a191-200/run.test.mjs',command:'node public/course-labs/a191-200/run.mjs '+id,safety:local};
  if(id>=201&&id<=208)return{kind:'Segurança de IA · política sem LLM',
   title:'Teste de controles de IA — aula '+id,
   description:'Estudo determinístico de ACL, conteúdo não confiável, RAG, tools e auditoria. Não comprova robustez de um LLM real.',
-  guide:'/course-labs/a201-208/README.md',code:'/course-labs/a201-208/models.mjs',
-  tests:'/course-labs/a201-208/lab.test.mjs',command:'node --test public/course-labs/a201-208/lab.test.mjs',safety:local};
+  guide:'/course-labs/a201-208/workshops/AULA-'+id+'.md',code:'/course-labs/a201-208/run.mjs',
+  tests:'/course-labs/a201-208/run.test.mjs',command:'node public/course-labs/a201-208/run.mjs '+id,safety:local};
  if(id>=209&&id<=218)return{kind:'Projeto final integrado · cenário único',
   title:'EscolaLab: projeto final — etapa '+id,
   description:'Aplicação localhost com falha fictícia, correção, evidências e templates encadeados. Não é sistema comercial.',
-  guide:'/course-labs/capstone-final/README.md',code:'/course-labs/capstone-final/server.mjs',
-  tests:'/course-labs/capstone-final/lab.test.mjs',command:'node --test public/course-labs/capstone-final/lab.test.mjs',safety:local};
+  guide:'/course-labs/capstone-final/workshops/AULA-'+id+'.md',code:'/course-labs/capstone-final/stage-runner.mjs',
+  tests:'/course-labs/capstone-final/stage.test.mjs',command:'node public/course-labs/capstone-final/stage-runner.mjs '+id,safety:local};
  return null;
 }
 export function getParallelLabGuide(code:string):CourseLabGuide|null{
