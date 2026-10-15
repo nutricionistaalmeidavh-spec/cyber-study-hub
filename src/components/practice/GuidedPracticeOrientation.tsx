@@ -6,11 +6,11 @@ type GuidedStep={
  checkpointAssertion?:string;challengeText?:string;assessmentPrompt?:string;
  brief?:string[];
 };
-/** A mesma distinção pedagógica nas 64 etapas canônicas das trilhas especiais. */
-export function GuidedPracticeOrientation({code,source,step}:{code:string;source:'ai-dev'|'channel-dark';step:GuidedStep}){
+/** A mesma distinção pedagógica nas etapas canônicas das trilhas especiais. */
+export function GuidedPracticeOrientation({code,source,step}:{code:string;source:'ai-dev'|'channel-dark'|'reverse-ai';step:GuidedStep}){
  const lab=step.kind==='laboratorio',ref=step.kind==='referencia',ai=step.kind==='microaula-ia';
  const kind=lab?'Projeto incremental':'Estudo aplicado';
- const purpose=lab?(source==='ai-dev'?'Evoluir seu Meu Gestor com código de um checkpoint real.':'Construir a próxima etapa do canal piloto com os componentes gratuitos.'):
+ const purpose=lab?(source==='ai-dev'?'Evoluir seu Meu Gestor com código de um checkpoint real.':source==='reverse-ai'?'Investigar e reconstruir comportamento com evidências locais e software próprio.':'Construir a próxima etapa do canal piloto com os componentes gratuitos.'):
   ref?'Consultar a fonte indicada, interpretar um caso e demonstrar o aprendizado sem duplicar a aula original.':
   ai?'Produzir uma tentativa própria, revisar os erros da IA ou de um exemplo e justificar as correções.':
   'Compreender a regra, resolver a questão e explicar um contraexemplo.';
