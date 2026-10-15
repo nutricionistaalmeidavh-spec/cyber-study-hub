@@ -222,7 +222,7 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
       .finally(()=>{if(active)setLoading(false);});
     return()=>{active=false;};
   },[endpoint,page,admin,status]);
-  return <div className="page stack-lg feedback-page">
+  return <div className="page stack-lg feedback-page hub-secondary">
     <section className="page-title"><span className="eyebrow">{admin?'ADMINISTRAÇÃO':'CENTRAL DE FEEDBACK'}</span><h1>{admin?'Feedback dos alunos':'Meus feedbacks'}</h1><p>{admin?'Acompanhe problemas, sugestões e correções solicitadas pelos alunos.':'Acompanhe seus relatos, veja o andamento e converse com a equipe.'}</p><a className="button ghost" href="#roadmap">Ver roadmap e novidades</a></section>
     <section className="panel feedback-board">
       <div className="feedback-board-head"><h2>{admin?'Relatos recebidos':'Histórico de envios'} <span className="feedback-counter">{total}</span></h2>{admin&&<label className="feedback-filter">Filtrar situação<select value={status} onChange={e=>{setPage(0);setStatus(e.target.value as typeof status);}}><option value="all">Todas</option>{Object.entries(statuses).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>}</div>

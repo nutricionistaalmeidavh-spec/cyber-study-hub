@@ -16,3 +16,4 @@ createRoot(document.getElementById('root')!).render(
 );
 
 import './components/study-experience.css';
+import './components/hub-secondary-pages.css';

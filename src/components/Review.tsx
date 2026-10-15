@@ -11,7 +11,7 @@ export default function Review() {
   const favorites=lessons.filter(l=>lessonState[l.id]?.favorite);
   const weak=[...new Set(games.flatMap(g=>g.weakConcepts||[]))].slice(0,12);
   const lowQuiz=lessons.filter(l=>lessonState[l.id]?.quizBest>0&&lessonState[l.id]?.quizBest<75);
-  return <div className="page stack-lg">
+  return <div className="page stack-lg hub-secondary review-page">
     <section className="page-title"><div><span className="eyebrow">REVISÃO INTELIGENTE</span><h1>Volte onde houve atrito.</h1><p>Dúvidas, quizzes fracos e erros dos jogos aparecem aqui.</p></div></section>
     <LearningInsights />
     <section className="two-col align-start">

@@ -16,7 +16,7 @@ export function PlatformProfile({user,onUpdated,onSignOut}:{user:PlatformUser;on
     try{await fn();setMessage(success);}catch(e){setMessage(String(e).replace(/^Error: /,''));}
     finally{setBusy(false);}
   };
-  return <div className="page stack-lg platform-page">
+  return <div className="page stack-lg platform-page hub-secondary platform-profile">
     <section className="page-title"><span className="eyebrow">MINHA CONTA</span><h1>Seu perfil</h1><p>Gerencie suas informações e o acesso aos seus estudos.</p></section>
     <div className="two-col align-start">
       <section className="panel stack"><h2>Dados pessoais</h2>
