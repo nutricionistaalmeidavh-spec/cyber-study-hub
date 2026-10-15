@@ -65,8 +65,8 @@ export function FeedbackComposer({context,onClose}:{context:{contextPath:string;
   const nonce=useRef(crypto.randomUUID());
   const first=useRef<HTMLSelectElement>(null);
   const safelyClose=()=>{if(busy)return;if(!sentId&&(title||description||attachment)&&!window.confirm('Descartar o feedback ainda não enviado?'))return;onClose();};
+  useEffect(()=>{first.current?.focus();},[]);
   useEffect(()=>{
-    first.current?.focus();
     const key=(e:KeyboardEvent)=>{if(e.key==='Escape'&&!busy){if(!sentId&&(title||description||attachment)&&!window.confirm('Descartar o feedback ainda não enviado?'))return;onClose();}};
     window.addEventListener('keydown',key);
     return()=>window.removeEventListener('keydown',key);
@@ -235,6 +235,6 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
     </section>
     {admin&&<RoadmapManager revision={roadmapRevision}/>}
     {admin&&<p className="muted">Apenas administradores podem consultar todos os relatos, definir prioridades e alterar situações.</p>}
-    {selected&&<FeedbackDetail id={selected} admin={admin&&user.role==='admin'} onClose={()=>setSelected('')} onUpdate={()=>{setRoadmapRevision(x=>x+1);void load().catch(e=>setError(errText(e)));}}/>}
+    {selected&&<FeedbackDetail id={selected} admin={admin&&user.role==='admin'} onClose={()=>{setSelected('');void load().catch(e=>setError(errText(e)));}} onUpdate={()=>{setRoadmapRevision(x=>x+1);void load().catch(e=>setError(errText(e)));}}/>}
   </div>;
 }
