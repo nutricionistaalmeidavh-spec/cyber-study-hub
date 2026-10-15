@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run verify:learning && npm run verify:catalog && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:hub-editorial && tsc --noEmit && vite build",
+    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:hub-editorial && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -71,7 +71,8 @@
     "test:grade-a-201-210": "node scripts/test-grade-a-201-210.mjs",
     "test:grade-a-171-180": "node scripts/test-grade-a-171-180.mjs && node --test public/course-labs/a171-180/lab.test.mjs",
     "test:a-211-218": "node --test public/course-labs/capstone-final/grade-a-211-218.test.mjs",
-    "test:grade-a-211-218": "node scripts/test-grade-a-211-218.mjs"
+    "test:grade-a-211-218": "node scripts/test-grade-a-211-218.mjs",
+    "test:course-catalog": "node --test scripts/test-course-offerings.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
