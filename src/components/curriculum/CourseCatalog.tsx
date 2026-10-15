@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { courses, publishedCourses, mainLessonsByCode, parallelLessonsByCode, guidedLessonsByCode } from '../../curriculum/courseOfferings';
 import type { CourseOffering } from '../../curriculum/courseOfferings';
 import './course-catalog.css';
+import ArtisysPurchase from './ArtisysPurchase';
 
 const normalize=(text:string)=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR');
 function label(course:CourseOffering){
@@ -13,7 +14,7 @@ function courseMinutes(course:CourseOffering){
 function totalLessons(course:CourseOffering){
  return course.modules.reduce((total,module)=>total+module.lessonCodes.length,0);
 }
-export default function CourseCatalog({courseId,admin=false}:{courseId?:string;admin?:boolean}) {
+export default function CourseCatalog({courseId,admin=false,userEmail}:{courseId?:string;admin?:boolean;userEmail?:string}) {
  const [query,setQuery]=useState('');
  const available=admin?courses:publishedCourses;
  const selected=available.find(course=>course.id===courseId);
@@ -44,6 +45,7 @@ export default function CourseCatalog({courseId,admin=false}:{courseId?:string;a
       <h2>{selected.modules.length} módulos</h2>
       <p>{selected.type==='trail'?totalLessons(selected)+' etapas práticas guiadas':totalLessons(selected)+' aulas canônicas'}{courseMinutes(selected)>0?' · cerca de '+Math.round(courseMinutes(selected)/60)+' horas':''}</p>
     </div>{selected.type==='trail'&&selected.href&&<a className="button primary" href={selected.href}>Abrir trilha completa →</a>}</section>
+    {selected.status==='published'&&<ArtisysPurchase courseId={selected.id} email={userEmail} />}
     <div className="course-module-stack">{selected.modules.map((module,index)=><section className="course-module" key={module.id}>
       <div className="course-module-top"><span className="course-module-index">M{String(index+1).padStart(2,'0')}</span>
        <div><h2>{module.title}</h2><p>{module.lessonCodes.length?module.lessonCodes.length+(selected.type==='trail'?' etapas':' aulas'):'Atividades, referências e laboratório'}</p></div>
