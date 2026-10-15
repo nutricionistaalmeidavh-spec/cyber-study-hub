@@ -5,7 +5,7 @@ import labContracts from './labContracts.json';
 import './ai-dev.css';
 import { getStudyDraft, saveStudyVisit, syncCanonicalGuidedProgress } from '../../lib/studyProgress';
 import { guidedCanonicalId } from '../../lib/guidedIdentity';
-import { GuidedPracticeOrientation } from '../../components/practice/GuidedPracticeOrientation';
+import { AiLabLearningPath } from './AiLabLearningPath';
 import ProgressSyncStatus from '../../components/ProgressSyncStatus';
 
 type Section = { heading: string; body: string; example?: string; counterexample?: string };
@@ -160,7 +160,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
       <article className="ai-lesson panel" aria-labelledby="ai-lesson-title">
         <div className="ai-lesson-top"><span className="eyebrow">ID {guidedCanonicalId('ai-dev', lesson.stepId)} · ETAPA {String(lesson.stepId).padStart(2, '0')} / 32</span><span>{lesson.durationMin} min</span></div>
         <h2 id="ai-lesson-title">{lesson.title}</h2><p className="ai-lead">{lesson.lead}</p>
-        <GuidedPracticeOrientation code={guidedCanonicalId('ai-dev',lesson.stepId)} source='ai-dev' step={lesson} labContract={activeLabA} />
+
         {lesson.sections?.map((s, i) => <section className="ai-reading" key={i}>
           <h3>{s.heading}</h3><p>{s.body}</p>
           {s.example && <p><strong>Exemplo aplicável:</strong> {s.example}</p>}
@@ -196,30 +196,10 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
         </section>}
         {lesson.brief && <section id={'laboratorio-'+guidedCanonicalId('ai-dev',lesson.stepId)} className="ai-exercise">
           <span className="eyebrow">LABORATÓRIO PRÁTICO · PROJETO MEU GESTOR</span>
-          {activeLabA && <section className="ai-lab-contract" aria-label="Entrega e materiais do laboratório">
-            <div className="ai-lab-contract-top"><span>{activeLabA.kind}</span><span>R$ 0 · Local</span></div>
-            <h3>Entrega desta etapa</h3>
-            <p className="ai-lab-deliverable">{activeLabA.deliverable}</p>
-            <div className="ai-lab-links">
-              <a href={activeLabA.entrypoint} target="_blank" rel="noopener noreferrer">Abrir arquivos desta etapa ↗</a>
-            </div>
-            <details className="ai-lab-more">
-              <summary>Preparação, testes e evidências <span aria-hidden="true">▾</span></summary>
-              <dl><div><dt>Preparação</dt><dd>{activeLabA.preflight}</dd></div>
-                <div><dt>Como verificar</dt><dd>{activeLabA.verify}</dd></div>
-                <div><dt>Evidência esperada</dt><dd>{activeLabA.evidence}</dd></div></dl>
-              <div className="ai-lab-links">
-                <a href="/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md" target="_blank" rel="noopener noreferrer">Guia completo dos oito laboratórios ↗</a>
-              </div>
-              {activeLabA.optionalKits.length>0&&<div className="ai-lab-kit-row">
-                <strong>Kits opcionais</strong>
-                <p>Extensões não são necessárias para concluir esta etapa.</p>
-                <a href="/course-labs/ai-dev-meu-gestor/kits/README.md" target="_blank" rel="noopener noreferrer">Biblioteca de kits ↗</a>
-              </div>}
-              <small>Marcar etapas não executa nem verifica o código automaticamente.</small>
-            </details>
-          </section>}
-                    <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
+          {activeLabA && <AiLabLearningPath
+            code={guidedCanonicalId('ai-dev',lesson.stepId)} moduleId={moduleId}
+            moduleTitle={module.title} moduleObjective={module.objective}
+            lesson={lesson} contract={activeLabA} />}
           <div className="ai-actions">{lesson.starterUrl && moduleId <= 2 && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
           {moduleId >= 3 && <a className="button primary" href={"https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/tree/main/public/course-labs/ai-dev-meu-gestor/checkpoints/" + ({3:"v0.1",4:"v0.2",5:"v0.3",6:"v0.4",7:"v0.5",8:"v1.0"} as Record<number,string>)[moduleId]} target="_blank" rel="noopener noreferrer">Ver código-fonte no GitHub ↗</a>}
           {lesson.starterSourceUrl && <a className="button ghost" href={lesson.starterSourceUrl} target="_blank" rel="noopener noreferrer">Roteiro do projeto ↗</a>}
@@ -229,7 +209,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
           <label htmlFor="ai-lab-notes" className="ai-field-label">Registro: decisão, previsão, resultado e erro corrigido (mínimo 120 caracteres)</label>
           <textarea id="ai-lab-notes" className="ai-notes" rows={7} value={notes} maxLength={4500} onChange={e => updateNotes(e.target.value)} placeholder="Descreva o que você fez, o que esperava e o que observou..."/>
           <small className="muted">{notes.trim().length}/120 caracteres mínimos · registro pessoal vinculado à sua conta</small>
-          <h3>Critérios de aceitação (autodeclaração)</h3>{lesson.acceptance?.map((item,i) => <label key={item} className="ai-check"><input type="checkbox" checked={check.includes(i)} onChange={() => toggleCheck(i)} /><span>{item}</span></label>)}
+          <h3 id={'criterios-'+guidedCanonicalId('ai-dev',lesson.stepId)}>Critérios de aceitação (autodeclaração)</h3>{lesson.acceptance?.map((item,i) => <label key={item} className="ai-check"><input type="checkbox" checked={check.includes(i)} onChange={() => toggleCheck(i)} /><span>{item}</span></label>)}
         </section>}
         <footer className="ai-lesson-footer">
           <p className={complete ? 'ai-success' : 'muted'}>{complete ? 'Etapa registrada na sua conta.' : 'Conclua a atividade antes de registrar a etapa. O registro não é certificação de competência.'}</p>
