@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { createHash } from 'node:crypto';
+const catalog=JSON.parse(fs.readFileSync('src/curriculum/catalog.json','utf8'));
+const registry=JSON.parse(fs.readFileSync('quality/registry.json','utf8'));
+const audit=JSON.parse(fs.readFileSync('quality/reviews/a211-218-2026-10-15.json','utf8'));
+const dims=['conteudoTecnico','didatica','pratica','defesa','avaliacao','especificidade'];
+const gates=['precisaoRevisada','didaticaInicianteValidada','praticaVerificada','avaliacaoIndependenteRevisada','escopoSeguroVerificado','revisorIndependente'];
+assert.equal(audit.cohort,'AULA-211..AULA-218');
+assert.equal(audit.humanLearnerTesting,'not_performed');
+assert.equal(Object.keys(audit.units).length,8);
+assert.equal(catalog.main.length,218);
+assert.ok((catalog.parallel.length + (catalog.guided?.length||0) + catalog.main.length)>=607);
+for(let n=211;n<=218;n++){
+ const id='AULA-'+n;
+ const unit=catalog.main.find(x=>x.code===id);
+ assert.equal(unit?.id,n,'ID canônico '+id);
+ assert.equal(unit?.contentPath,'/course-library/main/'+n+'.md');
+ const doc=fs.readFileSync('public/course-library/main/'+n+'.md','utf8');
+ const hash=createHash('sha256').update(doc).digest('hex');
+ const a=audit.units[id], r=registry.editorialReviews?.[id];
+ assert.ok(a && r,id+' requer auditoria e registro');
+ assert.equal(r.grade,'A',id);
+ assert.equal(a.contentSha256,hash,id+' SHA auditoria');
+ assert.equal(r.contentSha256,hash,id+' SHA registro');
+ assert.equal(r.reviewMethod,'ai_editorial_second_pass');
+ assert.equal(r.humanLearnerTesting,'not_performed');
+ assert.ok(r.summary.length>=160);
+ assert.ok(r.author && r.reviewer && r.author!==r.reviewer);
+ for(const d of dims){ assert.ok(r.scores[d]>=80 && r.scores[d]<=100,id+' '+d); assert.ok(r.evidence.some(e=>e.dimension===d && e.reference && e.method && e.result),id+' '+d); }
+ for(const g of gates) assert.equal(r.gates[g],true,id+' '+g);
+ const key='public/course-labs/capstone-final/answer-keys/'+id+'.md';
+ assert.ok(fs.existsSync(key),id+' gabarito ausente');
+ assert.ok(doc.includes('/course-labs/capstone-final/answer-keys/'+id+'.md'),id+' deve ligar gabarito');
+ assert.ok(doc.includes('node --test public/course-labs/capstone-final/grade-a-211-218.test.mjs'),id+' comando de teste');
+ assert.ok(doc.includes('R$ 0') && doc.includes('127.0.0.1') && doc.includes('limites'),id+' escopo/limites ausentes');
+ assert.ok(doc.includes('## Avaliação de transferência'),id+' sem avaliação');
+ assert.ok(doc.includes('## Prática guiada'),id+' sem laboratório');
+ assert.ok(doc.includes('## Modelo do artefato'),id+' sem saída verificável');
+ assert.ok(fs.readFileSync(key,'utf8').includes('Rubrica (100 pontos)'),id+' rubrica ausente');
+ assert.ok(a.technicalSources?.length>=1,id+' falta fonte');
+}
+for(let n=201;n<=210;n++) assert.equal(registry.editorialReviews['AULA-'+n]?.grade,'A','regressão '+n);
+assert.ok(Object.values(registry.editorialReviews).filter(x=>x.grade==='A').length>=221);
+console.log('PASS: oito aulas A 211–218, hashes, identidade canônica, avaliação e 221+ A preservadas.');
