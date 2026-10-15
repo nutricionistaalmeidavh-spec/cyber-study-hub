@@ -34,8 +34,19 @@ async function start(secret=SECRET){
  assert.equal(admin.status,201);
  const learner=await request('/api/auth/register','POST',{name:'Aluno',email,password:'GoodPassword1234!'});
  assert.equal(learner.status,201);
+ const issued=new Map();
  const deliver=async(data,{sign=true,timestamp=Date.now(),deliveryId=data.idempotencyKey}={})=>{
-  const body=JSON.stringify(data);
+  let signed=issued.get(data.orderId);
+  if(!signed){
+   const productId=data.productId?.startsWith('hubestudos-course-')&&data.productId!=='hubestudos-course-web-apis'?'hubestudos-course-web-apis':data.productId;
+   const saleType=['monthly','yearly'].includes(data.saleType)&&productId==='hubestudos-subscription'?data.saleType:'one_time';
+   const init=await request('/api/billing/purchase-intent','POST',{productId:productId==='hubestudos-subscription'?productId:'hubestudos-course-web-apis',saleType},learner.cookie);
+   signed={buyerBinding:init.payload.buyerBinding,orderCreatedAt:new Date().toISOString()};
+   issued.set(data.orderId,signed);
+  }
+  const body=JSON.stringify({...data,...signed,
+    ...(data.buyerBinding!==undefined?{buyerBinding:data.buyerBinding}:{}),
+    ...(data.orderCreatedAt!==undefined?{orderCreatedAt:data.orderCreatedAt}:{})});
   const signature=createHmac('sha256',SECRET).update(String(timestamp)+'.'+body).digest('hex');
   const result=await fetch(base+URL,{method:'POST',headers:{'content-type':'application/json',
    'x-artisys-timestamp':String(timestamp),'x-artisys-delivery-id':deliveryId,
@@ -163,5 +174,25 @@ test('reenvio da ativação não soma grants e curso draft segue bloqueado',asyn
   assert.equal((await s.deliver({...paid,productId:'hubestudos-course-paralela-py'})).status,400);
   assert.equal((await s.deliver({...paid,orderId:randomUUID()})).status,409);
   assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+ }finally{await s.close();}
+});
+
+test('sem intenção autenticada, uma compra com e-mail conhecido não libera curso',async()=>{
+ const s=await start();
+ try{
+  const target=bodyFor({buyerBinding:'falso'});
+  assert.equal((await s.deliver(target)).status,409);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,[]);
+ }finally{await s.close();}
+});
+test('intenção de compra exige sessão logada; perfil do aluno estável',async()=>{
+ const s=await start();
+ try{
+  const denied=await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-web-apis',saleType:'one_time'});
+  assert.equal(denied.status,401);
+  const created=await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-web-apis',saleType:'one_time'},s.learner.cookie);
+  assert.equal(created.status,200);
+  assert.match(created.payload.buyerBinding,/^[A-Za-z0-9_-]+\.[0-9a-f]{64}$/);
+  assert.equal((await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-paralela-log',saleType:'one_time'},s.learner.cookie)).status,400);
  }finally{await s.close();}
 });
