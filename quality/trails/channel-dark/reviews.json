@@ -1,0 +1,620 @@
+{
+  "schemaVersion": 1,
+  "trackId": "CANAL-DARK-IA",
+  "reviewMethod": "ai_editorial_second_pass_with_local_lab_tests",
+  "reviewedOn": "2026-10-15",
+  "humanLearnerTesting": "not_performed",
+  "externalHumanReview": "not_performed",
+  "gradeDefinition": "A editorial condicionada a conteúdo, didática, prática local, prova independente, salvaguardas, evidências e CI. Não equivale a avaliação humana de aprendizagem.",
+  "checksumAlgorithm": "fnv1a32_utf16 (checagem simples de deriva; não assinatura criptográfica)",
+  "modules": {
+    "01": {
+      "moduleId": 1,
+      "title": "Estratégia do canal dark",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "6260d0fb",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=1",
+          "result": "Canal sem rosto não equivale a conteúdo sem autoria; briefing exige nicho, promessa, licenças e aprovação."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=1",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Escolher nicho com público e promessa claros; Definir formatos longos e Shorts sem copiar concorrentes."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Falhas de público, promessa e aprovação são rejeitadas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-01.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-01.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-01.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-01.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 1 --out ./meu-canal com saída 01-estrategia/brief.json + 01-estrategia/licencas.csv. Regra validada: A validação impede continuar com revisão humana desabilitada."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-01.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-01.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-01.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "A eficácia com alunos e a performance de um canal real não foram medidas."
+      ]
+    },
+    "02": {
+      "moduleId": 2,
+      "title": "Pesquisa, pautas e roteiros",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "7d38d87a",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=2",
+          "result": "Pesquisa distingue RFC e licenças CC; estado a_verificar impede afirmações não confirmadas."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=2",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Construir fila editorial com prioridades; Distinguir fonte primária de palpite da IA."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Promover fonte a verificada sem revisão humana lança exceção."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-02.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-02.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-02.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-02.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 2 --out ./meu-canal com saída 02-roteiros/pautas.csv + 02-roteiros/roteiro.md. Regra validada: Uma pauta sem revisão permanece a_verificar e não recebe selo de fonte confirmada."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-02.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-02.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-02.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "A eficácia com alunos e a performance de um canal real não foram medidas."
+      ]
+    },
+    "03": {
+      "moduleId": 3,
+      "title": "Narração e TTS",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "3af632da",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 85,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=3",
+          "result": "TTS exige pt-BR, teste, consentimento, licença e escuta; voz real é pendência explícita."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=3",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Diferenciar TTS, transcrição e clonagem de voz; Produzir narração com pipeline local acessível."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Segmentação e bloqueios de voz demonstrados; síntese real depende de Piper ou gravação."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-03.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-03.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-03.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-03.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 3 --out ./meu-canal com saída 03-audio/narracao.json (manifesto, ainda sem WAV até gravar/rodar TTS). Regra validada: Uma voz sem consentimento, licença, português testado ou escuta não recebe aprovação."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-03.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-03.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-03.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "Piper/Kokoro e escuta de áudio real são tarefas do aluno, não testes concluídos por CI."
+      ]
+    },
+    "04": {
+      "moduleId": 4,
+      "title": "Imagens, cenas e thumbnails",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "eacd05ec",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=4",
+          "result": "Storyboard tem autoria, duração, objetivo e arte sintética; SVG escapa caracteres de entrada."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=4",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Construir storyboard por cena; Criar thumbnail com contraste e mensagem clara."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Cenas inválidas são rejeitadas; SVG e imagens procedurais são gerados."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-04.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-04.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-04.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-04.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 4 --out ./meu-canal com saída 04-visuais/storyboard.json + 04-visuais/thumbnail.svg. Regra validada: Cenas sem propósito, duração ou licença são rejeitadas pelo verificador."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-04.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-04.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-04.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "A eficácia com alunos e a performance de um canal real não foram medidas."
+      ]
+    },
+    "05": {
+      "moduleId": 5,
+      "title": "Vídeo com IA: Pika, Flow e Steve",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "014089cc",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 87,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=5",
+          "result": "Pika, Flow e Steve comparados sem excluir alternativa grátis FFmpeg."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=5",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Escolher entre animação simples e geração de vídeo; Comparar Pika, Google Flow e Steve AI com critérios."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Frames PPM gerados e shell FFmpeg entregue; CI valida montagem quando binário disponível."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-05.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-05.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-05.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-05.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 5 --out ./meu-canal com saída 05-video/scene-01.ppm + 05-video/scene-02.ppm + 05-video/render.sh. Regra validada: Há dois arquivos de imagem válidos e um comando que renderiza vídeo sem API."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-05.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-05.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-05.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "Render local depende de FFmpeg; revisão audiovisual final permanece humana."
+      ]
+    },
+    "06": {
+      "moduleId": 6,
+      "title": "Edição, legendas e Shorts",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "7f19f528",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=6",
+          "result": "SRT usa tempos válidos e vertical inclui área de proporção, com sincronização humana pendente."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=6",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Sincronizar narração e cenas; Gerar e corrigir legendas."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Legendas demonstrativas e script vertical gerados offline, sem upload."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-06.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-06.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-06.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-06.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 6 --out ./meu-canal com saída 06-shorts/legendas.srt + 06-shorts/exportar-vertical.sh. Regra validada: Há um SRT sintaticamente válido e um arquivo de comando para 9:16."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-06.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-06.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-06.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "A eficácia com alunos e a performance de um canal real não foram medidas."
+      ]
+    },
+    "07": {
+      "moduleId": 7,
+      "title": "Automação com n8n e Node-RED",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "97e818b4",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=7",
+          "result": "n8n é fair-code e não OSI; Node-RED e JS são alternativa livre."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=7",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Modelar estados, gatilhos e filas; Automatizar etapas seguras com Node-RED ou Python."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Mesmo ID não cria novo job; aprovação parcial e transição inválida são bloqueadas."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-07.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-07.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-07.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-07.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 7 --out ./meu-canal com saída 07-automacao/fila.json (status pendente_revisao e aprovação false). Regra validada: Segundo evento com mesmo ID mantém fila com apenas uma tarefa."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-07.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-07.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-07.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "A eficácia com alunos e a performance de um canal real não foram medidas."
+      ]
+    },
+    "08": {
+      "moduleId": 8,
+      "title": "Publicação, métricas e monetização",
+      "grade": "A",
+      "reviewType": "editorial_ai_only",
+      "reviewedOn": "2026-10-15",
+      "humanLearnerTesting": "not_performed",
+      "liveServiceTesting": "not_performed",
+      "checksumAlgorithm": "fnv1a32_utf16",
+      "contentChecksum": "7c3e5616",
+      "scores": {
+        "conteudoTecnico": 91,
+        "didatica": 91,
+        "pratica": 92,
+        "defesa": 93,
+        "avaliacao": 89,
+        "especificidade": 91
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "segundaPassagemCritica": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Auditoria técnica das seções, fontes e casos negativos da aula",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=8",
+          "result": "Publicação manual requer fatos, direitos, originalidade, revisão e declaração de conteúdo sintético."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough de iniciante com exemplos, erros, prompt guiado, referência e laboratório",
+          "reference": "src/trails/channel-dark/modules.json#moduleId=8",
+          "result": "Conceitos acessíveis, instruções locais, objetivos observáveis e falhas prováveis com recuperação. O aluno deve demonstrar: Publicar somente com revisão editorial concluída; Usar YouTube Studio e conhecer a API oficial."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Revisão de testes Node dos oito checkpoints e da trilha livre",
+          "reference": "public/course-labs/channel-dark/engine.test.mjs",
+          "result": "Pacote mantém automatedUpload:false e analytics marcados SIMULAÇÃO."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Análise de licenças, tratamento de dados, custos e aprovação humana",
+          "reference": "public/course-labs/channel-dark/module-08.md",
+          "result": "Percurso local grátis com mídias fictícias e sem publicação automática; uso comercial de serviços externos e direitos dos ativos deve ser conferido antes de publicar."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão crítica de seis situações novas e do gabarito/rubrica separados",
+          "reference": "public/course-labs/channel-dark/assessments/module-08.md",
+          "result": "Prova de transferência com seis desafios de 0–2 pontos, meta de 10/12 e falhas eliminatórias; o gabarito separado fica em public/course-labs/channel-dark/answer-keys/module-08.md."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Rastreio do objetivo até o comando e saída material do checkpoint",
+          "reference": "public/course-labs/channel-dark/module-08.md",
+          "result": "Comando node public/course-labs/channel-dark/engine.mjs --module 8 --out ./meu-canal com saída 08-publicacao/pacote.json + 08-publicacao/analytics-ficticio.json. Regra validada: O JSON final contém automatedUpload:false e checklist com todos os itens ainda false."
+        }
+      ],
+      "paths": {
+        "guide": "public/course-labs/channel-dark/module-08.md",
+        "exam": "public/course-labs/channel-dark/assessments/module-08.md",
+        "key": "public/course-labs/channel-dark/answer-keys/module-08.md",
+        "test": "public/course-labs/channel-dark/engine.test.mjs"
+      },
+      "limitations": [
+        "Classificação A é revisão editorial/automatizada do material, não certificação do aluno nem revisão humana independente.",
+        "Testes usam dados fictícios; ferramentas online e licenças vigentes exigem confirmação antes de uso comercial.",
+        "A eficácia com alunos e a performance de um canal real não foram medidas."
+      ]
+    }
+  }
+}
