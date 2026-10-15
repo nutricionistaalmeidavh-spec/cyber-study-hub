@@ -28,5 +28,5 @@ jobs:
       - run: node --test scripts/test-study-continuity.mjs
       - run: npm run test:hub-ux
       - run: npm run test:platform
-      - run: npm run test:worker
       - run: npm run build
+      - run: npm run test:worker
