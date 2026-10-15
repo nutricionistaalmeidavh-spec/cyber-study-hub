@@ -119,6 +119,11 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
+      {item.kind === 'main' && item.id >= 201 && item.id <= 218 && <section className="panel" aria-label="Arquivos reais do laboratório" style={{marginBottom:'18px',padding:'17px 20px'}}>
+        <strong>{item.id <= 208 ? 'Segurança de IA — laboratório local de decisão' : 'Projeto Final — cenário único e artefatos'}</strong>
+        <p style={{margin:'8px 0 12px'}}>A prática usa dados fictícios, casos válidos e negativos. O roteiro abaixo aponta para código testável e critérios de evidência; não exige conta, API paga ou serviço externo.</p>
+        <a className="button ghost" href={item.id <= 208 ? '/course-labs/a201-208/README.md' : '/course-labs/capstone-final/README.md'} target="_blank" rel="noopener noreferrer">Abrir laboratório e código ↗</a>
+      </section>}
       <ProgressSyncStatus />
       <div className="course-document-layout">
         <main className="course-document-content">
