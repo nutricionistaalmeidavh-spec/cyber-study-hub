@@ -92,10 +92,10 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       <span><small>CANAL DARK · 8 MÓDULOS</small><strong>Automatize um canal com IA, do zero</strong><em>Steve AI, Pika, Google Flow, Kokoro, n8n e Modal como opções. Núcleo local gratuito em todas as etapas.</em></span>
       <b>Explorar trilha →</b>
     </a>
-    <a className="hub-ai-banner" href="#courses/engenharia-reversa-com-ia">
+    {(user.role==='admin'||user.role==='teacher') && <a className="hub-ai-banner" href="#courses/engenharia-reversa-com-ia">
        <span><small>ENGENHARIA REVERSA · 8 MÓDULOS</small><strong>Engenharia Reversa com IA</strong><em>REA, Ghidra, MCP, testes diferenciais e core local R$ 0.</em></span>
-       <b>Conhecer curso →</b>
-     </a>
+       <b>Prévia administrativa →</b>
+     </a>}
      <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><h2 id="hub-journeys-title">Explore por assunto</h2></div>
