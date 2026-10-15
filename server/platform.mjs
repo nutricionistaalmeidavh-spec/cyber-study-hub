@@ -6,6 +6,7 @@ import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from '../src/worker/feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from '../src/worker/roadmap.mjs';
 import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../src/billing/artisys.mjs';
+import {issueBuyerIntent} from '../src/billing/buyer-intent.mjs';
 
 const DAY = 86400000;
 const PROGRESS_KEYS = new Set([
@@ -162,6 +163,15 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       if(!path.startsWith('/api/'))throw new HttpError(404,'Rota não encontrada.');
       if(method!=='GET'&&req.headers.origin!==canonicalOrigin&&!(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'))
         throw new HttpError(403,'Origem não permitida.');
+      if(path==='/api/billing/purchase-intent'&&method==='POST'){
+        const user=mustUser(req),b=await readJson(req,512);
+        if(typeof artisysConnectorSecret!=='string'||artisysConnectorSecret.length<32)
+          throw new HttpError(503,'Compras ainda não configuradas.');
+        let ticket;
+        try{ticket=await issueBuyerIntent({user,productId:b.productId,saleType:b.saleType,secret:artisysConnectorSecret});}
+        catch{throw new HttpError(400,'Curso ou modalidade indisponível para compra.');}
+        return respond(res,200,{buyerBinding:ticket});
+      }
       if(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'){
         const raw=await readArtisysRaw(req);
         let event;try{event=await verifyArtisysDelivery({headers:req.headers,body:raw,secret:artisysConnectorSecret});}
