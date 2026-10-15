@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {parseFrame,inspectCorpus,mutate,triage,compareFix} from './models.mjs';
+test('171: fuzzing usa somente parser local e entradas sintéticas',()=>{const v=mutate('LAB:03:abc');assert.ok(v.length>=4);assert.ok(v.some(x=>!parseFrame(x).ok));});
+test('172: cobertura de decisões é observável, não cobertura LLVM real',()=>{const c=inspectCorpus(['LAB:03:abc','invalid','LAB:03:ab','LAB:01:1']);assert.deepEqual(c,{FORMAT:1,LENGTH:1,CHARSET:1,ACCEPT:1});});
+test('173: rejeita comprimentos e tipos inválidos sem corrupção de memória',()=>{assert.equal(parseFrame('LAB:99:a').branch,'LENGTH');assert.equal(parseFrame({}).branch,'FORMAT');});
+test('174: triagem preserva fixture reproduzível',()=>{const a=triage('LAB:05:ab');assert.equal(a.reproducible,true);assert.equal(a.branch,'LENGTH');});
+test('175: causa raiz é discrepância entre prefixo e validação de tamanho',()=>{const r=compareFix('LAB:99:a');assert.equal(r.before,true);assert.equal(r.after,false);});
+test('176: reproduzir mantendo exatamente a mesma entrada',()=>{assert.deepEqual(parseFrame('LAB:02:ab'),parseFrame('LAB:02:ab'));});
+test('177: PoC inofensivo não sai do parser fictício',()=>{assert.equal(parseFrame('LAB:02:ab').ok,true);assert.equal(parseFrame('LAB:02:abx').ok,false);});
+test('178: diff de correção bloqueia caso inválido preservando válido',()=>{assert.equal(compareFix('LAB:02:ab').after,true);assert.equal(compareFix('LAB:10:ab').after,false);});
+test('179: variante altera variável diferente e recebe classificação',()=>{assert.equal(parseFrame('LAB:01:a').ok,true);assert.equal(parseFrame('LAB:01:1').branch,'CHARSET');});
+test('180: capstone local reprodutível: corpus antes/depois e controle negativo',()=>{const c=inspectCorpus(['LAB:03:abc','LAB:99:a','x']);assert.equal(c.ACCEPT,1);assert.equal(c.LENGTH,1);assert.equal(c.FORMAT,1);});
