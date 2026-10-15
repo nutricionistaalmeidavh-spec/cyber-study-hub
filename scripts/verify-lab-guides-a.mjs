@@ -25,6 +25,7 @@ for(let id=47;id<=60;id++){
   assert.ok(existsSync('public'+file.href),'Recurso quebrado na aula '+id+': '+file.href);
  }
 }
-const docs=['public/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md','public/course-labs/ai-dev-meu-gestor/kits/README.md'];
+const docs=['public/course-labs/a201-208/README.md','public/course-labs/capstone-final/README.md','public/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md','public/course-labs/ai-dev-meu-gestor/kits/README.md'];
 for(const doc of docs)assert.ok(readFileSync(doc,'utf8').length>1000);
+for(const file of ['public/course-labs/a201-208/models.mjs','public/course-labs/a201-208/lab.test.mjs','public/course-labs/capstone-final/model.mjs','public/course-labs/capstone-final/lab.test.mjs','public/course-labs/capstone-final/server.mjs'])assert.ok(existsSync(file),file+' ausente');
 console.log('PASS: 8 contratos de laboratório Meu Gestor, 6 kits, 14 aulas V2 com recursos existentes');

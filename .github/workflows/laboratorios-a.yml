@@ -5,6 +5,8 @@ on:
       - 'src/trails/ai-dev/**'
       - 'src/content/main/**'
       - 'public/course-labs/ai-dev-meu-gestor/**'
+      - 'public/course-labs/a201-208/**'
+      - 'public/course-labs/capstone-final/**'
       - 'scripts/verify-lab-guides-a.mjs'
       - '.github/workflows/laboratorios-a.yml'
   push:
@@ -24,6 +26,8 @@ jobs:
         run: node scripts/verify-lab-guides-a.mjs
       - name: Test original kit examples and negative cases
         run: node --test public/course-labs/ai-dev-meu-gestor/kits/tests/*.test.mjs
+      - name: Verify AI security and capstone locally
+        run: node --test public/course-labs/a201-208/lab.test.mjs public/course-labs/capstone-final/lab.test.mjs
       - name: Verify original AI course and checkpoints
         run: node scripts/verify-ai-dev.mjs
       - name: Web app build

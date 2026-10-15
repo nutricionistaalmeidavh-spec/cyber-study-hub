@@ -21,7 +21,7 @@ export function executeToolIntent({tool,principal,approved=false}){
 }
 export function scrubOutput(text){
  if(typeof text!=='string')throw new TypeError('Texto inválido');
- return text.replace(/(token|secret|api[_-]?key)\\s*[:=]\\s*[^\\s,;]+/gi,'$1=[REDACTED]');
+ return text.replace(/(token|secret|api[_-]?key)\s*[:=]\s*[^\s,;]+/gi,'$1=[REDACTED]');
 }
 export function verifyToolBundle({content,sha256,source,allowedSources}){
  if(!allowedSources.includes(source))return{trusted:false,reason:'UNAPPROVED_SOURCE'};
