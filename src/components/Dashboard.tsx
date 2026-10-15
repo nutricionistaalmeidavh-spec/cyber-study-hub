@@ -84,6 +84,10 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       <span><small>FORMAÇÃO PRÁTICA · 8 MÓDULOS DISPONÍVEIS</small><strong>Construa o Meu Gestor com ChatGPT ou Claude</strong><em>32 etapas com laboratórios e provas independentes. IA local opcional, sem API paga obrigatória.</em></span>
       <b>Abrir trilha →</b>
     </a>
+    <a className="hub-ai-banner" href="#channel-dark">
+      <span><small>CANAL DARK · 8 MÓDULOS</small><strong>Automatize um canal com IA, do zero</strong><em>Steve AI, Pika, Google Flow, Kokoro, n8n e Modal como opções. Núcleo local gratuito em todas as etapas.</em></span>
+      <b>Explorar trilha →</b>
+    </a>
     <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><span className="eyebrow">EXPLORE POR OBJETIVO</span><h2 id="hub-journeys-title">O que você quer estudar?</h2></div>
