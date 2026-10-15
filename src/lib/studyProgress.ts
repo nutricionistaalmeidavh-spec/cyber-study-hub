@@ -1,5 +1,6 @@
 import { accountStorage } from './accountStorage';
 import type { LessonLearningProgress } from './learningProgress';
+import { guidedCanonicalId, guidedItems } from './guidedIdentity';
 
 // Extend entries in the existing account-owned state. No new endpoint or storage key.
 const KEY = 'cyber-study-learning-v2';
@@ -42,4 +43,53 @@ export function saveStudyVisit(key: string, visit: Omit<StudyVisit, 'updatedAt'>
   };
   accountStorage.setItem(KEY, JSON.stringify(all));
   return all[key].study!;
+}
+
+/**
+ * Índice individual por ID canônico, dentro da chave account-owned já sincronizada.
+ * Migra COMPLETADOS, notas e checklists locais/anteriores sem apagar o snapshot de trilha.
+ * As referências reutilizadas não marcam automaticamente suas unidades de origem.
+ */
+export function syncCanonicalGuidedProgress(
+  source:'ai-dev'|'channel-dark',
+  currentStepId:number,
+  progress:{completed:number[];notes:Record<number,string>;checked:Record<number,number[]>;drafts?:Record<number,unknown>}
+){
+ const list=guidedItems(source);
+ guidedCanonicalId(source,currentStepId); // Impede escrita com identidade desconhecida.
+ const known=new Set(list.map(x=>x.stepId));
+ const touched=new Set<number>([currentStepId,...progress.completed,
+    ...Object.keys(progress.notes).map(Number),...Object.keys(progress.checked).map(Number),
+    ...Object.keys(progress.drafts||{}).map(Number)]);
+ const all=entries();const now=new Date().toISOString();
+ for(const stepId of touched){
+  if(!known.has(stepId))continue; // Mantém o snapshot legado intacto para eventual auditoria.
+  const item=list.find(x=>x.stepId===stepId)!;
+  const key=guidedCanonicalId(source,stepId),current=all[key];
+  const completed=progress.completed.includes(stepId);
+  const notes=progress.notes[stepId]??'';
+  const checks=progress.checked[stepId]??[];
+  const previousDraft=(current?.draft && typeof current.draft==='object' && !Array.isArray(current.draft))
+    ? current.draft as Record<string,unknown>:{};
+  const draft={...previousDraft,notes,checked:checks,answer:progress.drafts?.[stepId]};
+  const active=stepId===currentStepId;
+  all[key]={
+   migratedFromLegacy:Boolean(current?.migratedFromLegacy||completed||notes||checks.length),
+   completed:Boolean(current?.completed||completed),favorite:current?.favorite??false,doubt:current?.doubt??false,
+   visitedSectionIds:current?.visitedSectionIds??[],completedActivityIds:current?.completedActivityIds??[],
+   completedLabStepIds:current?.completedLabStepIds??[],quizHistory:current?.quizHistory??[],
+   firstSeenAt:current?.firstSeenAt??now,lastSeenAt:active?now:current?.lastSeenAt??now,
+   ...current,completed:Boolean(current?.completed||completed),
+   study:active?{title:item.title,href:item.href,kind:'ai',sectionLabel:item.moduleTitle,read:completed,updatedAt:now}:current?.study,
+   draft
+  };
+ }
+ accountStorage.setItem(KEY,JSON.stringify(all)); // Uma única escrita/sincronização por mudança.
+ return guidedCanonicalId(source,currentStepId);
+}
+export function getCanonicalGuidedCompletion(){
+ const all=entries();
+ return {completed: [...guidedItems('ai-dev'),...guidedItems('channel-dark')]
+  .filter(item=>all[item.code]?.completed).length,
+  total:guidedItems('ai-dev').length+guidedItems('channel-dark').length};
 }

@@ -139,7 +139,7 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Escolha um assunto e avance módulo por módulo. São {studyInventory.canonical} unidades no catálogo mais {studyInventory.guided} etapas nas trilhas guiadas; o total inclui referências e não representa aulas inéditas.</p>
+          <p>Escolha um assunto e avance módulo por módulo. O inventário reúne {studyInventory.canonical} IDs canônicos: {studyInventory.legacyCanonical} unidades principais/paralelas e {studyInventory.guided} etapas das trilhas guiadas. Referências também têm ID, mas não são aulas inéditas.</p>
         </div>
         <div className="academy-catalog-panel" data-reveal>
           <div className="academy-catalog-top">

@@ -19,8 +19,24 @@ export type ParallelCurriculumItem = {
   contentPath: string;
 };
 
+export type GuidedCurriculumItem = {
+  kind: 'guided';
+  code: string;
+  source: 'ai-dev' | 'channel-dark';
+  stepId: number;
+  moduleId: number;
+  title: string;
+  track: string;
+  moduleTitle: string;
+  stepType: 'microaula' | 'microaula-ia' | 'referencia' | 'laboratorio';
+  durationMin: number;
+  href: string;
+  aliasOf?: string;
+  referencePath?: string;
+};
 export type CurriculumCatalog = {
   version: number;
   main: MainCurriculumItem[];
   parallel: ParallelCurriculumItem[];
+  guided: GuidedCurriculumItem[];
 };
