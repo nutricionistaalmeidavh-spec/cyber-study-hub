@@ -10,7 +10,8 @@ type Challenge = { question: string; options: string[]; answer: number; feedback
 type Lesson = { stepId: number; kind: string; durationMin: number; title: string; lead: string;
   sections?: Section[]; challenge?: Challenge; reviewQuestions?: string[]; prompt?: string;
   referenceCode?: string; referencePath?: string; challengeText?: string; brief?: string[];
-  acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string };
+  acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string;
+  labA?: {kind: string;deliverable: string;entrypoint: string;instructions: string;verify: string;preflight: string;evidence: string;optionalKits: string[];status: string;verifiedExecution: string}; };
 type Module = { moduleId: number; version: number; title: string; objective: string;
   learningOutcomes: string[]; lessons: Lesson[]; assessmentPath: string; answerKeyPath: string };
 type StepDraft = { answer: number | null; checkedAnswer: boolean; referenceRead: boolean; quizAttempt: string };
@@ -188,7 +189,20 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
           <label className="ai-check"><input type="checkbox" checked={referenceRead} onChange={e => setReferenceRead(e.target.checked)}/><span>Estudei a aula e consigo prever um caso inválido sem consultar o gabarito.</span></label>
         </section>}
         {lesson.brief && <section className="ai-exercise">
-          <span className="eyebrow">LABORATÓRIO INCREMENTAL · PROJETO MEU GESTOR</span>
+          <span className="eyebrow">LABORATÓRIO PRÁTICO · PROJETO MEU GESTOR</span>
+          {lesson.labA && <div className="ai-lab-contract" aria-label="Contrato do laboratório">
+            <div className="ai-lab-contract-top"><span>{lesson.labA.kind}</span><span>R$ 0 · Execução local</span></div>
+            <h3>O que você vai entregar</h3><p>{lesson.labA.deliverable}</p>
+            <dl><div><dt>Preparação</dt><dd>{lesson.labA.preflight}</dd></div>
+              <div><dt>Como verificar</dt><dd>{lesson.labA.verify}</dd></div>
+              <div><dt>Evidência</dt><dd>{lesson.labA.evidence}</dd></div></dl>
+            <div className="ai-lab-links"><a href={lesson.labA.entrypoint} target="_blank" rel="noopener noreferrer">Abrir arquivos e roteiro ↗</a>
+              <a href="/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md" target="_blank" rel="noopener noreferrer">Guia dos 8 laboratórios ↗</a></div>
+            {lesson.labA.optionalKits.length > 0 && <div className="ai-lab-kit-row"><strong>Kits opcionais para evoluir o projeto</strong>
+              <p>São extensões, não exigências para concluir esta aula. Cada kit informa maturidade, dependências, origem e testes.</p>
+              <a href="/course-labs/ai-dev-meu-gestor/kits/README.md" target="_blank" rel="noopener noreferrer">Abrir biblioteca de kits ↗</a></div>}
+            <small>Marcar etapas e registrar anotações não significa que o Hub executou ou validou o seu código.</small>
+          </div>}
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
           <div className="ai-actions">{lesson.starterUrl && moduleId <= 2 && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
           {moduleId >= 3 && <a className="button primary" href={"https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/tree/main/public/course-labs/ai-dev-meu-gestor/checkpoints/" + ({3:"v0.1",4:"v0.2",5:"v0.3",6:"v0.4",7:"v0.5",8:"v1.0"} as Record<number,string>)[moduleId]} target="_blank" rel="noopener noreferrer">Ver código-fonte no GitHub ↗</a>}
