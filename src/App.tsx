@@ -166,7 +166,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
       </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
-      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} />}
+      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} userEmail={user.email} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='feedback' && <FeedbackBoard user={user} />}
       {route.page==='roadmap' && <RoadmapPage embedded />}
