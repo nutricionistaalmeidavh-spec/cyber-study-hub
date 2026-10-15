@@ -188,6 +188,16 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
       <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
       <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
+      <details key={route.page} className="mobile-nav-more">
+        <summary className={'nav-item mobile-nav-more-trigger'+(route.page==='feedback'||route.page==='roadmap'||route.page==='admin-feedback'?' active':'')} aria-label="Mais opções: comunidade e suporte">
+          <span><NavIcon name="roadmap" /></span><b>Mais</b>
+        </summary>
+        <div className="mobile-nav-more-panel">
+          <Nav href="#feedback" active={route.page==='feedback'} icon="feedback" label="Meus feedbacks" />
+          <Nav href="#roadmap" active={route.page==='roadmap'} icon="roadmap" label="Votar em melhorias" />
+          {user.role==='admin' && <Nav href="#admin/feedback" active={route.page==='admin-feedback'} icon="feedback" label="Central de feedback" />}
+        </div>
+      </details>
     </nav>
 
     {feedbackOpen && <FeedbackComposer onClose={closeFeedback} context={{
