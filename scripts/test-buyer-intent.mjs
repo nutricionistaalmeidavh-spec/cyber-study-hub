@@ -18,7 +18,7 @@ test('não serve copiar ticket para outra conta, outro produto, outra modalidade
  await assert.rejects(verify({email:'outra@example.test'}));
  await assert.rejects(verify({productId:'hubestudos-course-blue-team'}));
  await assert.rejects(verify({saleType:'monthly'}));
- await assert.rejects(verify({ticket:ticket.slice(0,-1)+'f'}));
+ await assert.rejects(verify({ticket:ticket.slice(0,-1)+(ticket.endsWith('f')?'0':'f')}));
  await assert.rejects(verify({orderCreatedAt:new Date(now+3600000).toISOString()}));
  await assert.rejects(verify({orderCreatedAt:new Date(now-600000).toISOString()}));
 });
