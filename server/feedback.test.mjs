@@ -54,10 +54,14 @@ test('feedback P0/P1: ownership, administration, replies, attachments and idempo
     const replied=await request('/api/feedback/'+id+'/messages',{method:'POST',cookie:admin.cookie,data:{body:'Estamos analisando e retornaremos por aqui.'}});
     assert.equal(replied.status,201);
     assert.equal((await request('/api/feedback/'+id+'/messages',{method:'POST',cookie:b,data:{body:'Tentativa indevida.'}})).status,404);
+    const pending=(await request('/api/feedback',{cookie:a})).body.feedback;
+    assert.equal(pending[0].hasUpdates,1);
     const detail=await request('/api/feedback/'+id,{cookie:a});
     assert.equal(detail.body.feedback.status,'in_review');
     assert.equal(detail.body.messages.length,1);
     assert.equal(detail.body.messages[0].body,'Estamos analisando e retornaremos por aqui.');
+    assert.equal(detail.body.history.some(h=>h.kind==='status'&&h.value==='in_review'),true);
+    assert.equal((await request('/api/feedback',{cookie:a})).body.feedback[0].hasUpdates,0);
     assert.equal((await request('/api/feedback',{method:'POST',cookie:a,originHeader:'https://evil.test',data:sample})).status,403);
     const image='data:image/png;base64,'+Buffer.from('small screenshot').toString('base64');
     const imagePost=await request('/api/feedback',{method:'POST',cookie:a,data:{...sample,clientNonce:'9b932c34-6783-49ae-a8c9-1711d7731496',attachment:image}});

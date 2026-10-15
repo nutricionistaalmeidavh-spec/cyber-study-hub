@@ -55,7 +55,7 @@ function parseHash(): Route {
   }
   if (raw.startsWith('material/')) return { page: 'material', id: raw.split('/')[1] || 'appsec-01-40' };
   if (raw === 'feedback') return { page: 'feedback' };
-  if (raw === 'admin/feedback'||(!raw&&window.location.pathname==='/admin/feedback')) return { page: 'admin-feedback' };
+  if (raw === 'admin/feedback'||(!window.location.hash&&window.location.pathname==='/admin/feedback')) return { page: 'admin-feedback' };
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
   if (raw.split('?')[0] === 'ai-dev') return { page: 'ai-dev' };

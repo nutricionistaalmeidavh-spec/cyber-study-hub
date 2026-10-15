@@ -64,6 +64,25 @@ try{
     body:{name:'Replay',password:'GoodPassword1234!',inviteToken:invitation.payload.token}})).status,403);
   assert.equal((await request('/api/admin/users',{cookie:student.cookie})).status,403);
   assert.equal((await request('/api/admin/users',{cookie:created.cookie})).payload.users.length,2);
+  // P0/P1 feedback contract exercised against the real local Cloudflare Worker.
+  const report={clientNonce:'f33d90a1-2cef-4b3a-894a-7c17608edfad',category:'bug',
+    title:'Falha ao carregar vídeo',description:'A tela da aula permanece em branco após iniciar.',
+    contextPath:'#course/main/047',contextLabel:'Aula principal 047'};
+  assert.equal((await request('/api/feedback',{cookie:student.cookie})).status,200);
+  const createdFeedback=await request('/api/feedback',{method:'POST',cookie:student.cookie,body:report});
+  assert.equal(createdFeedback.status,201,createdFeedback.text);
+  const feedbackId=createdFeedback.payload.feedback.id;
+  assert.equal((await request('/api/feedback',{method:'POST',cookie:student.cookie,body:report})).payload.feedback.id,feedbackId);
+  assert.equal((await request('/api/admin/feedback',{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/admin/feedback',{cookie:created.cookie})).payload.total,1);
+  const change=await request('/api/admin/feedback/'+feedbackId,{method:'PATCH',cookie:created.cookie,body:{status:'in_review',priority:'high'}});
+  assert.equal(change.status,200,change.text);
+  const answer=await request('/api/feedback/'+feedbackId+'/messages',{method:'POST',cookie:created.cookie,body:{body:'Investigação iniciada.'}});
+  assert.equal(answer.status,201,answer.text);
+  assert.equal((await request('/api/feedback',{cookie:student.cookie})).payload.feedback[0].hasUpdates,1);
+  const feedbackDetail=await request('/api/feedback/'+feedbackId,{cookie:student.cookie});
+  assert.equal(feedbackDetail.payload.messages[0].body,'Investigação iniciada.');
+  assert.equal((await request('/api/feedback',{cookie:student.cookie})).payload.feedback[0].hasUpdates,0);
   const keyProgress='cyber-study-lessons-v1';
   assert.equal((await request('/api/me/state',{method:'PUT',cookie:student.cookie,
     body:{key:keyProgress,value:'{"1":{"completed":true}}'}})).status,200);

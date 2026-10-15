@@ -1,6 +1,6 @@
 /* Feedback API contract shared by Cloudflare Durable Objects and self-hosted Node SQLite. */
 export const FEEDBACK_SCHEMA=[
-  "CREATE TABLE IF NOT EXISTS feedback_reports (id TEXT PRIMARY KEY,user_id TEXT NOT NULL,client_nonce TEXT NOT NULL,category TEXT NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,context_path TEXT NOT NULL,context_label TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'new',priority TEXT NOT NULL DEFAULT 'normal',attachment TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,UNIQUE(user_id,client_nonce))",
+  "CREATE TABLE IF NOT EXISTS feedback_reports (id TEXT PRIMARY KEY,user_id TEXT NOT NULL,client_nonce TEXT NOT NULL,category TEXT NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,context_path TEXT NOT NULL,context_label TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'new',priority TEXT NOT NULL DEFAULT 'normal',attachment TEXT,last_seen_at TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,UNIQUE(user_id,client_nonce))",
   "CREATE INDEX IF NOT EXISTS feedback_reports_owner ON feedback_reports(user_id,created_at)",
   "CREATE INDEX IF NOT EXISTS feedback_reports_recent ON feedback_reports(created_at)",
   "CREATE TABLE IF NOT EXISTS feedback_messages (id TEXT PRIMARY KEY,feedback_id TEXT NOT NULL,user_id TEXT NOT NULL,body TEXT NOT NULL,created_at TEXT NOT NULL)",
@@ -13,7 +13,7 @@ const STATUSES=['new','in_review','planned','resolved','closed'];
 const PRIORITIES=['low','normal','high','critical'];
 const uuidRe=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const imageRe=/^data:image\/(?:png|jpeg|webp);base64,[a-z0-9+/]+={0,2}$/i;
-const reportFields='f.id,f.user_id,f.category,f.title,f.description,f.context_path AS contextPath,f.context_label AS contextLabel,f.status,f.priority,f.created_at AS createdAt,f.updated_at AS updatedAt,u.name AS authorName,u.email AS authorEmail';
+const reportFields='f.id,f.user_id,f.category,f.title,f.description,f.context_path AS contextPath,f.context_label AS contextLabel,f.status,f.priority,f.created_at AS createdAt,f.updated_at AS updatedAt,CASE WHEN f.updated_at>COALESCE(f.last_seen_at,f.created_at) THEN 1 ELSE 0 END AS hasUpdates,u.name AS authorName,u.email AS authorEmail';
 const reportSelect='SELECT '+reportFields+' FROM feedback_reports f LEFT JOIN users u ON u.id=f.user_id';
 const validText=(value,min,max)=>typeof value==='string'&&value.trim().length>=min&&value.trim().length<=max;
 export function feedbackRoute(path){
@@ -82,7 +82,8 @@ export async function handleFeedback({
     if(!detail[2]&&method==='GET'){
       const messages=all('SELECT m.id,m.body,m.created_at AS createdAt,u.name AS authorName,u.role AS authorRole FROM feedback_messages m JOIN users u ON u.id=m.user_id WHERE m.feedback_id=? ORDER BY m.created_at ASC',id);
       const history=all('SELECT e.kind,e.value,e.created_at AS createdAt,u.name AS authorName FROM feedback_events e JOIN users u ON u.id=e.user_id WHERE e.feedback_id=? ORDER BY e.created_at ASC',id);
-      return reply(200,{feedback:item,messages,history,hasAttachment:one('SELECT attachment FROM feedback_reports WHERE id=?',id)?.attachment!==null});
+      if(actor.role!=='admin')run('UPDATE feedback_reports SET last_seen_at=? WHERE id=?',now(),id);
+      return reply(200,{feedback:item,messages,history,hasAttachment:Boolean(one('SELECT attachment FROM feedback_reports WHERE id=?',id)?.attachment)});
     }
     if(detail[2]==='attachment'&&method==='GET'){
       const attachment=one('SELECT attachment FROM feedback_reports WHERE id=?',id)?.attachment;
@@ -96,7 +97,7 @@ export async function handleFeedback({
       if(recent.n>=20)reject(429,'Limite temporário de mensagens atingido.');
       const created=now();
       run('INSERT INTO feedback_messages(id,feedback_id,user_id,body,created_at) VALUES(?,?,?,?,?)',uuid(),id,actor.id,b.body.trim(),created);
-      run('UPDATE feedback_reports SET updated_at=? WHERE id=?',created,id);
+      run('UPDATE feedback_reports SET updated_at=?,last_seen_at=CASE WHEN user_id=? THEN ? ELSE last_seen_at END WHERE id=?',created,actor.id,created,id);
       return reply(201,{ok:true,createdAt:created});
     }
   }

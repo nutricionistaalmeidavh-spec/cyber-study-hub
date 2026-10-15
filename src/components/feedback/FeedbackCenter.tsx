@@ -8,7 +8,7 @@ type Priority='low'|'normal'|'high'|'critical';
 type Report={
   id:string;user_id:string;category:Category;title:string;description:string;
   contextPath:string;contextLabel:string;status:Status;priority:Priority;
-  createdAt:string;updatedAt:string;authorName:string;authorEmail:string;
+  createdAt:string;updatedAt:string;hasUpdates:number;authorName:string;authorEmail:string;
 };
 type Message={id:string;body:string;createdAt:string;authorName:string;authorRole:string};
 type History={kind:string;value:string;createdAt:string;authorName:string};
@@ -207,7 +207,7 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
       <div className="feedback-board-head"><h2>{admin?'Relatos recebidos':'Histórico de envios'} <span className="feedback-counter">{total}</span></h2>{admin&&<label className="feedback-filter">Filtrar situação<select value={status} onChange={e=>{setPage(0);setStatus(e.target.value as typeof status);}}><option value="all">Todas</option>{Object.entries(statuses).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>}</div>
       {loading?<p role="status">Carregando feedbacks…</p>:!items.length?<div className="feedback-empty"><strong>{error?'Não foi possível consultar':'Nenhum feedback nesta lista'}</strong><p>{error||'Os relatos aparecerão aqui assim que forem enviados.'}</p><button className="button ghost" onClick={()=>void load().catch(e=>setError(errText(e)))}>Atualizar</button></div>:<div className="feedback-list">
         {items.map(item=><button key={item.id} type="button" className="feedback-item" onClick={()=>setSelected(item.id)}>
-          <span className="feedback-item-main"><strong>{item.title}</strong><small>{categories[item.category]} · {item.contextLabel}{admin?' · '+item.authorName:''}</small><small>{stamp(item.createdAt)}</small></span><span className={'feedback-status status-'+item.status}>{statuses[item.status]}</span>
+          <span className="feedback-item-main"><strong>{item.title}</strong><small>{categories[item.category]} · {item.contextLabel}{admin?' · '+item.authorName:''}</small><small>{stamp(item.createdAt)}</small>{!admin&&Boolean(item.hasUpdates)&&<small className="feedback-unread">Nova atualização disponível</small>}</span><span className={'feedback-status status-'+item.status}>{statuses[item.status]}</span>
         </button>)}
       </div>}
       {total>30&&<div className="feedback-pagination"><button className="button ghost" onClick={()=>setPage(x=>Math.max(0,x-1))} disabled={page===0||loading}>Anterior</button><span>Página {page+1}</span><button className="button ghost" onClick={()=>setPage(x=>x+1)} disabled={!more||loading}>Próxima</button></div>}
