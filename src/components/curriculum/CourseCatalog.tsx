@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { courses, publishedCourses, mainLessonsByCode, parallelLessonsByCode } from '../../curriculum/courseOfferings';
+import { courses, publishedCourses, mainLessonsByCode, parallelLessonsByCode, guidedLessonsByCode } from '../../curriculum/courseOfferings';
 import type { CourseOffering } from '../../curriculum/courseOfferings';
 import './course-catalog.css';
 
@@ -8,7 +8,7 @@ function label(course:CourseOffering){
  return course.type==='trail'?'Trilha prática':course.type==='parallel'?'Formação paralela':'Curso de cibersegurança';
 }
 function courseMinutes(course:CourseOffering){
- return course.modules.flatMap(m=>m.lessonCodes).reduce((total,code)=>total+(mainLessonsByCode.get(code)?.durationMin||0),0);
+ return course.modules.flatMap(m=>m.lessonCodes).reduce((total,code)=>total+(mainLessonsByCode.get(code)?.durationMin||guidedLessonsByCode.get(code)?.durationMin||0),0);
 }
 function totalLessons(course:CourseOffering){
  return course.modules.reduce((total,module)=>total+module.lessonCodes.length,0);
@@ -42,7 +42,7 @@ export default function CourseCatalog({courseId,admin=false}:{courseId?:string;a
     {selected.status==='draft'&&<p className="course-draft-note">Prévia administrativa: este curso ainda não é exibido no catálogo público.</p>}
     <section className="course-overview"><div><span className="eyebrow">ESTRUTURA DO CURSO</span>
       <h2>{selected.modules.length} módulos</h2>
-      <p>{selected.type==='trail'?'Laboratórios e etapas práticas guiadas':totalLessons(selected)+' aulas canônicas'}{courseMinutes(selected)>0?' · cerca de '+Math.round(courseMinutes(selected)/60)+' horas':''}</p>
+      <p>{selected.type==='trail'?totalLessons(selected)+' etapas práticas guiadas':totalLessons(selected)+' aulas canônicas'}{courseMinutes(selected)>0?' · cerca de '+Math.round(courseMinutes(selected)/60)+' horas':''}</p>
     </div>{selected.type==='trail'&&selected.href&&<a className="button primary" href={selected.href}>Abrir trilha completa →</a>}</section>
     <div className="course-module-stack">{selected.modules.map((module,index)=><section className="course-module" key={module.id}>
       <div className="course-module-top"><span className="course-module-index">M{String(index+1).padStart(2,'0')}</span>
@@ -50,10 +50,10 @@ export default function CourseCatalog({courseId,admin=false}:{courseId?:string;a
        {selected.type==='trail'&&selected.href&&<a href={selected.href} aria-label={'Abrir '+module.title}>Abrir trilha ↗</a>}
       </div>
       {module.lessonCodes.length>0&&<ol className="course-lesson-list">{module.lessonCodes.map((code,i)=>{
-        const main=mainLessonsByCode.get(code),parallel=parallelLessonsByCode.get(code);
-        if(!main&&!parallel)return null;
-        return <li key={code}><a href={main?'#course/main/'+main.id:'#course/parallel/'+encodeURIComponent(code)}>
-         <span>{String(i+1).padStart(2,'0')}</span><span>{main?.title??parallel?.title}</span><small>{main?.durationMin?main.durationMin+' min':''}</small><b aria-hidden="true">→</b>
+        const main=mainLessonsByCode.get(code),parallel=parallelLessonsByCode.get(code),guided=guidedLessonsByCode.get(code);
+        if(!main&&!parallel&&!guided)return null;
+        return <li key={code}><a href={main?'#course/main/'+main.id:guided?guided.href:'#course/parallel/'+encodeURIComponent(code)}>
+         <span>{String(i+1).padStart(2,'0')}</span><span>{main?.title??parallel?.title??guided?.title}</span><small>{(main?.durationMin??guided?.durationMin)?(main?.durationMin??guided?.durationMin)+' min':''}</small><b aria-hidden="true">→</b>
         </a></li>;
       })}</ol>}
     </section>)}</div>
