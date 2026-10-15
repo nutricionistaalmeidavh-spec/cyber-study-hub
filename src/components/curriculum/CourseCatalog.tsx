@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { courses, publishedCourses, mainLessonsByCode, parallelLessonsByCode, guidedLessonsByCode } from '../../curriculum/courseOfferings';
 import type { CourseOffering } from '../../curriculum/courseOfferings';
 import './course-catalog.css';
+import ArtisysPurchase from './ArtisysPurchase';
 
 const normalize=(text:string)=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR');
 function label(course:CourseOffering){
@@ -13,7 +14,7 @@ function courseMinutes(course:CourseOffering){
 function totalLessons(course:CourseOffering){
  return course.modules.reduce((total,module)=>total+module.lessonCodes.length,0);
 }
-export default function CourseCatalog({courseId,admin=false}:{courseId?:string;admin?:boolean}) {
+export default function CourseCatalog({courseId,admin=false,userEmail}:{courseId?:string;admin?:boolean;userEmail?:string}) {
  const [query,setQuery]=useState('');
  const available=admin?courses:publishedCourses;
  const selected=available.find(course=>course.id===courseId);
@@ -40,6 +41,7 @@ export default function CourseCatalog({courseId,admin=false}:{courseId?:string;a
     {filtered.length===0&&<div className="course-empty"><h2>Nenhum curso encontrado.</h2><button type="button" className="button ghost" onClick={()=>setQuery('')}>Limpar busca</button></div>}
    </>:<>
     {selected.status==='draft'&&<p className="course-draft-note">Prévia administrativa: este curso ainda não é exibido no catálogo público.</p>}
+    {selected.status==='published'&&<ArtisysPurchase courseId={selected.id} email={userEmail} />}
     <section className="course-overview"><div><span className="eyebrow">ESTRUTURA DO CURSO</span>
       <h2>{selected.modules.length} módulos</h2>
       <p>{selected.type==='trail'?totalLessons(selected)+' etapas práticas guiadas':totalLessons(selected)+' aulas canônicas'}{courseMinutes(selected)>0?' · cerca de '+Math.round(courseMinutes(selected)/60)+' horas':''}</p>

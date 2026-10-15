@@ -5,6 +5,8 @@ import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from 'node:crypto';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from '../src/worker/feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from '../src/worker/roadmap.mjs';
+import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../src/billing/artisys.mjs';
+import {issueBuyerIntent} from '../src/billing/buyer-intent.mjs';
 
 const DAY = 86400000;
 const PROGRESS_KEYS = new Set([
@@ -52,6 +54,12 @@ async function readJson(req,maxLength=200000) {
     return b;
   }catch{throw new HttpError(400,'JSON inválido.');}
 }
+async function readArtisysRaw(req){
+ if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']??''))throw new HttpError(415,'Envie JSON.');
+ const chunks=[];let bytes=0;
+ for await(const chunk of req){bytes+=chunk.byteLength;if(bytes>16384)throw new HttpError(413,'Requisição muito grande.');chunks.push(chunk);}
+ return Buffer.concat(chunks).toString('utf8');
+}
 function cookie(token,secure,expired=false) {
   return 'hub_session='+(expired?'':encodeURIComponent(token))+
     '; Path=/; HttpOnly; SameSite=Lax'+(secure?'; Secure':'')+
@@ -72,11 +80,12 @@ function init(db) {
     'CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY (user_id,key));',
     'CREATE TABLE IF NOT EXISTS course_grants (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,course_id TEXT NOT NULL,granted_at INTEGER NOT NULL,expires_at INTEGER,revoked_at INTEGER,PRIMARY KEY(user_id,course_id));',
     'CREATE TABLE IF NOT EXISTS subscription_grants (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,granted_at INTEGER NOT NULL,expires_at INTEGER NOT NULL,revoked_at INTEGER);',
+    ...BILLING_SCHEMA.map(statement=>statement+';'),
     ...FEEDBACK_SCHEMA.map(statement=>statement+';'),
     ...ROADMAP_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
 }
-export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true}) {
+export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true,artisysConnectorSecret=''}) {
   if(!dbPath||!origin)throw Error('dbPath and HUB_ORIGIN are required');
   const canonicalOrigin=new URL(origin).origin, secure=canonicalOrigin.startsWith('https://');
   const db=new DatabaseSync(dbPath);
@@ -130,10 +139,13 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       .run(key,valid?hit.count+1:1,valid?hit.reset_at:now()+900000);
   }
   function accessState(user){
-    const grants=q('SELECT course_id,expires_at,revoked_at FROM course_grants WHERE user_id=?').all(user.id);
+    const manual=q('SELECT course_id,expires_at,revoked_at FROM course_grants WHERE user_id=?').all(user.id);
+    const paid=q('SELECT course_id,expires_at,revoked_at FROM billing_entitlements WHERE user_id=? AND course_id IS NOT NULL').all(user.id);
+    const grants=[...manual,...paid];
     const subscription=q('SELECT expires_at,revoked_at FROM subscription_grants WHERE user_id=?').get(user.id);
-    const active=Boolean(subscription&&subscription.revoked_at===null&&subscription.expires_at>now());
-    const activeCourses=grants.filter(g=>g.revoked_at===null&&(g.expires_at===null||g.expires_at>now())&&publishedCourseIds.has(g.course_id)).map(g=>g.course_id);
+    const paidSubscription=q('SELECT MAX(expires_at) AS expires_at FROM billing_entitlements WHERE user_id=? AND course_id IS NULL AND revoked_at IS NULL').get(user.id);
+    const active=Boolean((subscription&&subscription.revoked_at===null&&subscription.expires_at>now())||(paidSubscription&&paidSubscription.expires_at>now()));
+    const activeCourses=[...new Set(grants.filter(g=>g.revoked_at===null&&(g.expires_at===null||g.expires_at>now())&&publishedCourseIds.has(g.course_id)).map(g=>g.course_id))];
     return {grants,subscriptionActive:active,activeCourses};
   }
   function authorize(req,location){
@@ -149,7 +161,30 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       const path=new URL(req.url,canonicalOrigin).pathname, method=req.method;
       if(path==='/api/health'&&method==='GET')return respond(res,200,{ok:true});
       if(!path.startsWith('/api/'))throw new HttpError(404,'Rota não encontrada.');
-      if(method!=='GET'&&req.headers.origin!==canonicalOrigin)throw new HttpError(403,'Origem não permitida.');
+      if(method!=='GET'&&req.headers.origin!==canonicalOrigin&&!(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'))throw new HttpError(403,'Origem não permitida.');
+      if(path==='/api/billing/purchase-intent'&&method==='POST'){
+        const user=mustUser(req),b=await readJson(req,512);
+        if(typeof artisysConnectorSecret!=='string'||artisysConnectorSecret.length<32)
+          throw new HttpError(503,'Compras ainda não configuradas.');
+        let ticket;
+        try{ticket=await issueBuyerIntent({user,productId:b.productId,saleType:b.saleType,secret:artisysConnectorSecret});}
+        catch{throw new HttpError(400,'Curso ou modalidade indisponível para compra.');}
+        return respond(res,200,{buyerBinding:ticket});
+      }
+      if(path===ARTISYS_FULFILLMENT_PATH&&method==='POST'){
+        const raw=await readArtisysRaw(req);
+        let event;try{event=await verifyArtisysDelivery({headers:req.headers,body:raw,secret:artisysConnectorSecret});}
+        catch(err){if(err instanceof ArtisysDeliveryError)throw new HttpError(err.status,err.message);throw err;}
+        db.exec('BEGIN IMMEDIATE');
+        try{
+          const result=applyArtisysDelivery(event,{one:(sql,...args)=>q(sql).get(...args),run:(sql,...args)=>q(sql).run(...args)});
+          db.exec('COMMIT');return respond(res,200,result);
+        }catch(err){
+          db.exec('ROLLBACK');
+          if(err instanceof ArtisysDeliveryError)throw new HttpError(err.status,err.message);
+          throw err;
+        }
+      }
       if(path==='/api/auth/config'&&method==='GET')
         return respond(res,200,{ready:q('SELECT count(*) AS n FROM users').get().n>0,openRegistration:Boolean(openRegistration)});
       if(path==='/api/auth/bootstrap'&&method==='POST') {
