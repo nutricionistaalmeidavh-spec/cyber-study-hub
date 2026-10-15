@@ -2,6 +2,7 @@ import {createServer} from 'node:http';
 import {readFile,stat} from 'node:fs/promises';
 import {resolve,sep,extname} from 'node:path';
 import {openStore,DomainError} from './db.mjs';
+import {printableOrder} from '../src/extensions/core.ts';
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json; charset=utf-8'};
 function send(res,status,data){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(data));}
 async function jsonBody(req){
@@ -24,6 +25,22 @@ export async function startServer({dbFile=':memory:',port=4173,host='127.0.0.1',
    const method=req.method||'GET',pathname=new URL(req.url||'/', 'http://127.0.0.1').pathname;
    if(pathname.startsWith('/api/')){
     if(method==='GET'&&pathname==='/api/health')return send(res,200,{ok:true,storage:'sqlite-local'});
+    if(method==='GET'&&pathname==='/api/extensions/quality'){
+     const integrity=store.integrity();
+     return send(res,200,{ok:integrity.valid,integrity,counts:{clients:store.clients().length,orders:store.orders().length},mode:'educational-local-only'});
+    }
+    const printMatch=pathname.match(/^\/api\/extensions\/orders\/(OS-[0-9]+)\/print$/);
+    if(method==='GET'&&printMatch){
+     const order=store.orders().find(o=>o.id===printMatch[1]);
+     if(!order)return send(res,404,{error:'NOT_FOUND',message:'Ordem fictícia não encontrada'});
+     const client=store.clients().find(c=>c.id===order.clientId);
+     if(!client)return send(res,409,{error:'BROKEN_REFERENCE',message:'OS sem cliente válido'});
+     const html=printableOrder(order,client);
+     res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store',
+      'Content-Security-Policy':"default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'",
+      'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});
+     return res.end(html);
+    }
     if(method==='GET'&&pathname==='/api/clients')return send(res,200,{items:store.clients()});
     if(method==='GET'&&pathname==='/api/orders')return send(res,200,{items:store.orders()});
     if(method==='POST'&&pathname==='/api/clients')return send(res,201,{item:store.createClient(await jsonBody(req))});
