@@ -185,14 +185,15 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
       <Nav href="#courses" active={route.page==='courses'||route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Cursos" />
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
-      <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
-      <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
       <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
       <details key={route.page} className="mobile-nav-more">
-        <summary className={'nav-item mobile-nav-more-trigger'+(route.page==='feedback'||route.page==='roadmap'||route.page==='admin-feedback'?' active':'')} aria-label="Mais opções: comunidade e suporte">
+        <summary className={'nav-item mobile-nav-more-trigger'+(['materials','material','review','feedback','roadmap','admin-feedback'].includes(route.page)?' active':'')} aria-label="Mais opções: materiais, revisão e comunidade">
           <span><NavIcon name="roadmap" /></span><b>Mais</b>
         </summary>
         <div className="mobile-nav-more-panel">
+          <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
+          <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
+          <div className="mobile-nav-more-divider" role="separator" />
           <Nav href="#feedback" active={route.page==='feedback'} icon="feedback" label="Meus feedbacks" />
           <Nav href="#roadmap" active={route.page==='roadmap'} icon="roadmap" label="Votar em melhorias" />
           {user.role==='admin' && <Nav href="#admin/feedback" active={route.page==='admin-feedback'} icon="feedback" label="Central de feedback" />}
