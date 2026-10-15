@@ -142,6 +142,7 @@ test('AI migration retains legacy notes while the account version wins conflicts
   const ai = load('src/trails/ai-dev/AiDevelopmentTrail.tsx', {
     './manifest.json': JSON.parse(readFileSync('src/trails/ai-dev/manifest.json')),
     './modules.json': JSON.parse(readFileSync('src/trails/ai-dev/modules.json')),
+    './labContracts.json': JSON.parse(readFileSync('src/trails/ai-dev/labContracts.json')),
     './ai-dev.css': {}, '../../components/ProgressSyncStatus': {},
     '../../lib/studyProgress': { getStudyDraft: () => remote }
   }, { localStorage: local, window: { location: { hash: '#ai-dev' } } }, '\nexport { initial, initialPosition };');
