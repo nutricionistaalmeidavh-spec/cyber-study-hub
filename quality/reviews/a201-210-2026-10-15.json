@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "cohort": "AULA-201..AULA-210",
+  "reviewedOn": "2026-10-15",
+  "reviewType": "ai_editorial_second_pass",
+  "author": "HubEstudos — conteúdo didático e fixtures com assistência GPT-6",
+  "reviewer": "GPT-6 — segundo passe de crítica técnico-editorial IA; não humano",
+  "humanLearnerTesting": "not_performed",
+  "labMode": "Node.js 22+, mocks in-memory offline, sem IA ou cloud paga",
+  "qaMethod": "Testes Node para 10 contratos, CI da PR. Não atesta plataformas externas ou aprendizagem com alunos.",
+  "units": {
+    "AULA-201": {
+      "title": "LLM Security Fundamentals",
+      "contentPath": "/course-library/main/201.md",
+      "contentSha256": "cdeb4ce2dad0675589ad6e32f259675e36f89f1d6cdb30b0f59e7f91a1761200",
+      "technicalSources": [
+        "https://airc.nist.gov/AI_RMF_Knowledge_Base/AI_RMF"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "LLM Security Fundamentals: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #201 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-202": {
+      "title": "Prompt Injection",
+      "contentPath": "/course-library/main/202.md",
+      "contentSha256": "e1c4fef7f0117e7fe211c4fcd0b2c95743d46ed1f51c2926985091826eee790b",
+      "technicalSources": [
+        "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Prompt Injection: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #202 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-203": {
+      "title": "Sensitive Information Disclosure",
+      "contentPath": "/course-library/main/203.md",
+      "contentSha256": "0c7c7bbd9b2be867a6e51e9d10f760c546d871d0682857f234f84954a0c9226b",
+      "technicalSources": [
+        "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Sensitive Information Disclosure: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #203 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-204": {
+      "title": "RAG Security",
+      "contentPath": "/course-library/main/204.md",
+      "contentSha256": "42e509b71f41672779d0ec9738acc4366177f9ca5e7d23b2e7c870f83cb7a1a6",
+      "technicalSources": [
+        "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "RAG Security: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #204 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-205": {
+      "title": "Tool / Agent Abuse",
+      "contentPath": "/course-library/main/205.md",
+      "contentSha256": "9153a8b057b1d7da1ac08bd4720c7a10e74a03d03cdf305466064bffaa5940d6",
+      "technicalSources": [
+        "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Tool / Agent Abuse: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #205 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-206": {
+      "title": "Model & AI Supply Chain",
+      "contentPath": "/course-library/main/206.md",
+      "contentSha256": "65202970ee79ba638e1ac9d486c791a3c7fe1d6b446382f06af1b6adfc74ada1",
+      "technicalSources": [
+        "https://slsa.dev/spec/v1.1/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Model & AI Supply Chain: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #206 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-207": {
+      "title": "OWASP GenAI / LLM Top 10 2026",
+      "contentPath": "/course-library/main/207.md",
+      "contentSha256": "02844e4034df46c61822a35e88a7872cce4acaf81c928f08a3dbc689876135da",
+      "technicalSources": [
+        "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "OWASP GenAI / LLM Top 10 2026: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #207 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-208": {
+      "title": "Defesa de Agentes e Capstone AI Security",
+      "contentPath": "/course-library/main/208.md",
+      "contentSha256": "b77d262d32c2c2ff87d8b9c0557f2616731de6d6aa46c9d59f3c4595a538ab41",
+      "technicalSources": [
+        "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Defesa de Agentes e Capstone AI Security: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #208 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-209": {
+      "title": "Definição do laboratório final",
+      "contentPath": "/course-library/main/209.md",
+      "contentSha256": "41634a3645130be72e16bb20f53b5091a18cf4d9fae30a40268292868e470cbd",
+      "technicalSources": [
+        "https://csrc.nist.gov/pubs/sp/800/115/final"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Definição do laboratório final: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #209 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    },
+    "AULA-210": {
+      "title": "Threat Modeling do laboratório",
+      "contentPath": "/course-library/main/210.md",
+      "contentSha256": "834c40cdcb904cace6ae0ead3c02da589e1eca170815e3638d3fbc3aa24f1e67",
+      "technicalSources": [
+        "https://owasp.org/www-community/Threat_Modeling_Process"
+      ],
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 90,
+        "pratica": 93,
+        "defesa": 93,
+        "avaliacao": 91,
+        "especificidade": 93
+      },
+      "technicalScope": "Threat Modeling do laboratório: decisão de fronteira, caso positivo, caso negativo e reteste",
+      "observations": "Contrato Node #210 com entradas e saídas reproduzíveis; enunciado e gabarito externos.",
+      "limitations": [
+        "Mocks não certificam segurança de LLMs, bancos, vetores, autenticação ou ferramentas reais.",
+        "Parecer editorial IA; ensaio com estudantes não realizado."
+      ]
+    }
+  }
+}

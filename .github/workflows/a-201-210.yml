@@ -1,0 +1,35 @@
+name: Aulas 201-210 QA
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'public/course-library/main/20*.md'
+      - 'public/course-library/main/210.md'
+      - 'public/course-labs/a201-210/**'
+      - 'quality/**'
+      - 'scripts/test-grade-a-201-210.mjs'
+      - 'package.json'
+      - '.github/workflows/a-201-210.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Independent laboratory contracts
+        run: npm run test:a-201-210
+      - name: Verify grade A and lesson hashes
+        run: npm run test:grade-a-201-210
+      - name: Build with platform regression QA
+        run: npm run build
