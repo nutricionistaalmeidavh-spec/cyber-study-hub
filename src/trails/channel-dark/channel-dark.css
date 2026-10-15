@@ -17,3 +17,11 @@
 .channel-tool em{font-size:11px;line-height:1.5;color:#c9bcdb;font-style:normal}
 @media(max-width:650px){.channel-tool-grid{grid-template-columns:1fr}.channel-tools{margin-top:12px}}
 @media(prefers-reduced-motion:reduce){.channel-track *, .channel-tool{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+.channel-executable{border:1px solid rgba(168,135,214,.42);border-radius:13px;background:rgba(38,31,58,.54);padding:16px;margin:16px 0}
+.channel-executable h3{font-size:15px;margin:0 0 8px}
+.channel-executable p{font-size:13px;line-height:1.5;color:#dfd5ea}
+.channel-executable code{display:block;background:#100e1d;color:#e7dafa;border:1px solid #59476e;border-radius:8px;padding:12px;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;user-select:text}
+.channel-executable details{margin-top:15px}
+.channel-executable summary{font-size:13px}
+.channel-executable li{font-size:12px;line-height:1.6}
