@@ -20,8 +20,11 @@ test('academy page includes real curriculum and working navigation targets', () 
     assert.match(source, new RegExp('id="' + anchor + '"'));
     assert.match(source, new RegExp('href="#' + anchor + '"'));
   }
-  assert.match(source, /catalog\.main/);
-  assert.match(source, /catalog\.parallel/);
+  assert.match(source, /courseProducts\.courses/);
+  assert.match(source, /publication\.publishedCourseIds/);
+  assert.match(source, /publication\.publishedTrailIds/);
+  assert.match(source, /href=\{'\/#courses\/' \+ course\.id\}/);
+  assert.doesNotMatch(source, /catalog\.main|catalog\.parallel/, 'A vitrine deve usar produtos publicados, não todos os módulos brutos');
   assert.match(source, /href="\/"/);
   assert.match(css, /@media\s*\(max-width:\s*720px\)/);
 });

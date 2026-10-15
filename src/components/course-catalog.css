@@ -1,0 +1,8 @@
+.course-card-description { margin: .6rem 0 1rem; font-size: .88rem; line-height: 1.5; opacity: .75; }
+.course-module-list { display: grid; gap: 1rem; }
+.course-module-details { border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 18px; padding: .4rem 1rem 1rem; }
+.course-module-details > summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; padding: 1rem .3rem; font-weight: 700; }
+.course-module-details > summary small { font-size: .75rem; font-weight: 500; opacity: .7; white-space: nowrap; }
+.course-module-units { display: grid; gap: .5rem; padding-bottom: .4rem; }
+.course-module-units .curriculum-row { text-decoration: none; }
+@media (max-width: 520px) { .course-module-details > summary { align-items: flex-start; flex-direction: column; gap: .25rem; } }
