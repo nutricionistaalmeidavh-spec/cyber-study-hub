@@ -1,0 +1,981 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "moduleId": 1,
+      "version": 1,
+      "title": "Fundamentos e limites da engenharia reversa",
+      "objective": "Ao final, o estudante deverá definir uma hipótese auditável sobre um aplicativo próprio, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar caixa-preta, caixa-branca e proveniência.",
+        "Aplicar escopo autorizado e propriedade intelectual com prova.",
+        "Relacionar o que constitui evidência reproduzível à aula AULA-028.",
+        "Entregar escopo, permissão e linha de base observável."
+      ],
+      "lessons": [
+        {
+          "stepId": 1,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Caixa-preta, caixa-branca e proveniência",
+          "lead": "Competência: entender comportamento sem acesso ao código-fonte original.",
+          "sections": [
+            {
+              "heading": "Caixa-preta, caixa-branca e proveniência",
+              "body": "Neste módulo, entender comportamento sem acesso ao código-fonte original. Comece por um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Caixa-preta, caixa-branca e proveniência\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-001.",
+              "counterexample": "Erro a evitar: Confundir interface semelhante com equivalência de comportamento. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Escopo autorizado e propriedade intelectual",
+              "body": "Neste módulo, entender comportamento sem acesso ao código-fonte original. Comece por um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Escopo autorizado e propriedade intelectual\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-002.",
+              "counterexample": "Erro a evitar: Confundir interface semelhante com equivalência de comportamento. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "O que constitui evidência reproduzível",
+              "body": "Neste módulo, entender comportamento sem acesso ao código-fonte original. Comece por um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"O que constitui evidência reproduzível\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-003.",
+              "counterexample": "Erro a evitar: Confundir interface semelhante com equivalência de comportamento. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é definir uma hipótese auditável sobre um aplicativo próprio?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 2,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Escopo autorizado e propriedade intelectual",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Escopo autorizado e propriedade intelectual",
+              "body": "Neste módulo, entender comportamento sem acesso ao código-fonte original. Comece por um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Escopo autorizado e propriedade intelectual\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-002.",
+              "counterexample": "Erro a evitar: Confundir interface semelhante com equivalência de comportamento. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"Fundamentos e limites da engenharia reversa\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"definir uma hipótese auditável sobre um aplicativo próprio\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "O que constitui evidência reproduzível",
+              "body": "Neste módulo, entender comportamento sem acesso ao código-fonte original. Comece por um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"O que constitui evidência reproduzível\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-003.",
+              "counterexample": "Erro a evitar: Confundir interface semelhante com equivalência de comportamento. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 1: definir uma hipótese auditável sobre um aplicativo próprio. Artefato: Um classificador próprio recebe impacto e urgência; você observa somente entrada e saída. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 3,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 028",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-028",
+          "referencePath": "#course/main/28",
+          "challengeText": "Leia a AULA-028 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"definir uma hipótese auditável sobre um aplicativo próprio\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 4,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Delimitar escopo e obter primeira linha de base",
+          "lead": "Entrega verificável: Escopo, permissão e linha de base observável.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-01.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 1",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 1 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 1 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"definir uma hipótese auditável sobre um aplicativo próprio\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Escopo, permissão e linha de base observável\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-01.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-01.md"
+    },
+    {
+      "moduleId": 2,
+      "version": 1,
+      "title": "Investigação orientada por evidências",
+      "objective": "Ao final, o estudante deverá registrar previsão, observação e hipótese alternativa, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar mapa de entradas e saídas.",
+        "Aplicar casos de fronteira e hipótese refutável com prova.",
+        "Relacionar caderno de evidências e repetibilidade à aula AULA-111.",
+        "Entregar matriz de casos com ao menos um controle negativo."
+      ],
+      "lessons": [
+        {
+          "stepId": 5,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Mapa de entradas e saídas",
+          "lead": "Competência: formular hipóteses, casos de fronteira e controles negativos.",
+          "sections": [
+            {
+              "heading": "Mapa de entradas e saídas",
+              "body": "Neste módulo, formular hipóteses, casos de fronteira e controles negativos. Comece por entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Mapa de entradas e saídas\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-005.",
+              "counterexample": "Erro a evitar: Tomar uma amostra isolada como lei geral. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Casos de fronteira e hipótese refutável",
+              "body": "Neste módulo, formular hipóteses, casos de fronteira e controles negativos. Comece por entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Casos de fronteira e hipótese refutável\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-006.",
+              "counterexample": "Erro a evitar: Tomar uma amostra isolada como lei geral. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Caderno de evidências e repetibilidade",
+              "body": "Neste módulo, formular hipóteses, casos de fronteira e controles negativos. Comece por entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Caderno de evidências e repetibilidade\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-007.",
+              "counterexample": "Erro a evitar: Tomar uma amostra isolada como lei geral. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é registrar previsão, observação e hipótese alternativa?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 6,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Casos de fronteira e hipótese refutável",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Casos de fronteira e hipótese refutável",
+              "body": "Neste módulo, formular hipóteses, casos de fronteira e controles negativos. Comece por entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Casos de fronteira e hipótese refutável\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-006.",
+              "counterexample": "Erro a evitar: Tomar uma amostra isolada como lei geral. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"Investigação orientada por evidências\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"registrar previsão, observação e hipótese alternativa\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Caderno de evidências e repetibilidade",
+              "body": "Neste módulo, formular hipóteses, casos de fronteira e controles negativos. Comece por entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Caderno de evidências e repetibilidade\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: Entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-007.",
+              "counterexample": "Erro a evitar: Tomar uma amostra isolada como lei geral. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 2: registrar previsão, observação e hipótese alternativa. Artefato: Entradas de impacto 0, 5 e 10 exercitam os limites do classificador. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 7,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 111",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-111",
+          "referencePath": "#course/main/111",
+          "challengeText": "Leia a AULA-111 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"registrar previsão, observação e hipótese alternativa\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 8,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Construir matriz de comportamento",
+          "lead": "Entrega verificável: Matriz de casos com ao menos um controle negativo.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-02.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 2",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 2 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 2 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"registrar previsão, observação e hipótese alternativa\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Matriz de casos com ao menos um controle negativo\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-02.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-02.md"
+    },
+    {
+      "moduleId": 3,
+      "version": 1,
+      "title": "Binários nativos e Ghidra",
+      "objective": "Ao final, o estudante deverá investigar um binário compilado de código próprio, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar elf/pe e arquitetura do binário.",
+        "Aplicar strings, funções, xrefs e cfg com prova.",
+        "Relacionar limites de descompilação e otimização à aula AULA-115.",
+        "Entregar relatório estático com função, string e ramo observado."
+      ],
+      "lessons": [
+        {
+          "stepId": 9,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "ELF/PE e arquitetura do binário",
+          "lead": "Competência: relacionar C compilado, assembly, strings e fluxo de controle.",
+          "sections": [
+            {
+              "heading": "ELF/PE e arquitetura do binário",
+              "body": "Neste módulo, relacionar C compilado, assembly, strings e fluxo de controle. Comece por o arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"ELF/PE e arquitetura do binário\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-009.",
+              "counterexample": "Erro a evitar: Tratar pseudocódigo decompilado como fonte recuperada integralmente. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Strings, funções, xrefs e CFG",
+              "body": "Neste módulo, relacionar C compilado, assembly, strings e fluxo de controle. Comece por o arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Strings, funções, xrefs e CFG\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-010.",
+              "counterexample": "Erro a evitar: Tratar pseudocódigo decompilado como fonte recuperada integralmente. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Limites de descompilação e otimização",
+              "body": "Neste módulo, relacionar C compilado, assembly, strings e fluxo de controle. Comece por o arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Limites de descompilação e otimização\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-011.",
+              "counterexample": "Erro a evitar: Tratar pseudocódigo decompilado como fonte recuperada integralmente. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é investigar um binário compilado de código próprio?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 10,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Strings, funções, xrefs e CFG",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Strings, funções, xrefs e CFG",
+              "body": "Neste módulo, relacionar C compilado, assembly, strings e fluxo de controle. Comece por o arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Strings, funções, xrefs e CFG\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-010.",
+              "counterexample": "Erro a evitar: Tratar pseudocódigo decompilado como fonte recuperada integralmente. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"Binários nativos e Ghidra\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"investigar um binário compilado de código próprio\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Limites de descompilação e otimização",
+              "body": "Neste módulo, relacionar C compilado, assembly, strings e fluxo de controle. Comece por o arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Limites de descompilação e otimização\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-011.",
+              "counterexample": "Erro a evitar: Tratar pseudocódigo decompilado como fonte recuperada integralmente. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 3: investigar um binário compilado de código próprio. Artefato: O arquivo sample.c implementa decisão por prioridades e pode ser compilado localmente. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 11,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 115",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-115",
+          "referencePath": "#course/main/115",
+          "challengeText": "Leia a AULA-115 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"investigar um binário compilado de código próprio\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 12,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Compilar e mapear uma função no Ghidra",
+          "lead": "Entrega verificável: Relatório estático com função, string e ramo observado.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-03.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 3",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 3 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 3 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"investigar um binário compilado de código próprio\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Relatório estático com função, string e ramo observado\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-03.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-03.md"
+    },
+    {
+      "moduleId": 4,
+      "version": 1,
+      "title": "Análise dinâmica controlada",
+      "objective": "Ao final, o estudante deverá comparar previsões de ramos com comportamento real, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar observação versus inferência.",
+        "Aplicar breakpoints e fluxo de estados com prova.",
+        "Relacionar diferenças por plataforma e controle de execução à aula AULA-116.",
+        "Entregar tabela que separa inferência estática e saída observada."
+      ],
+      "lessons": [
+        {
+          "stepId": 13,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Observação versus inferência",
+          "lead": "Competência: contrastar análise estática com execução de testes e traces em sandbox.",
+          "sections": [
+            {
+              "heading": "Observação versus inferência",
+              "body": "Neste módulo, contrastar análise estática com execução de testes e traces em sandbox. Comece por o runner node valida casos legítimos, inválidos e situações de fronteira. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Observação versus inferência\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O runner Node valida casos legítimos, inválidos e situações de fronteira. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-013.",
+              "counterexample": "Erro a evitar: Executar binários desconhecidos ou concluir equivalência sem casos inválidos. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Breakpoints e fluxo de estados",
+              "body": "Neste módulo, contrastar análise estática com execução de testes e traces em sandbox. Comece por o runner node valida casos legítimos, inválidos e situações de fronteira. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Breakpoints e fluxo de estados\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O runner Node valida casos legítimos, inválidos e situações de fronteira. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-014.",
+              "counterexample": "Erro a evitar: Executar binários desconhecidos ou concluir equivalência sem casos inválidos. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Diferenças por plataforma e controle de execução",
+              "body": "Neste módulo, contrastar análise estática com execução de testes e traces em sandbox. Comece por o runner node valida casos legítimos, inválidos e situações de fronteira. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Diferenças por plataforma e controle de execução\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O runner Node valida casos legítimos, inválidos e situações de fronteira. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-015.",
+              "counterexample": "Erro a evitar: Executar binários desconhecidos ou concluir equivalência sem casos inválidos. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é comparar previsões de ramos com comportamento real?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 14,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Breakpoints e fluxo de estados",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Breakpoints e fluxo de estados",
+              "body": "Neste módulo, contrastar análise estática com execução de testes e traces em sandbox. Comece por o runner node valida casos legítimos, inválidos e situações de fronteira. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Breakpoints e fluxo de estados\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O runner Node valida casos legítimos, inválidos e situações de fronteira. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-014.",
+              "counterexample": "Erro a evitar: Executar binários desconhecidos ou concluir equivalência sem casos inválidos. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"Análise dinâmica controlada\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"comparar previsões de ramos com comportamento real\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Diferenças por plataforma e controle de execução",
+              "body": "Neste módulo, contrastar análise estática com execução de testes e traces em sandbox. Comece por o runner node valida casos legítimos, inválidos e situações de fronteira. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Diferenças por plataforma e controle de execução\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O runner Node valida casos legítimos, inválidos e situações de fronteira. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-015.",
+              "counterexample": "Erro a evitar: Executar binários desconhecidos ou concluir equivalência sem casos inválidos. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 4: comparar previsões de ramos com comportamento real. Artefato: O runner Node valida casos legítimos, inválidos e situações de fronteira. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 15,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 116",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-116",
+          "referencePath": "#course/main/116",
+          "challengeText": "Leia a AULA-116 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"comparar previsões de ramos com comportamento real\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 16,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Comparar execução e previsão",
+          "lead": "Entrega verificável: Tabela que separa inferência estática e saída observada.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-04.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 4",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 4 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 4 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"comparar previsões de ramos com comportamento real\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Tabela que separa inferência estática e saída observada\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-04.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-04.md"
+    },
+    {
+      "moduleId": 5,
+      "version": 1,
+      "title": "JavaScript, Electron e interfaces",
+      "objective": "Ao final, o estudante deverá inspecionar um programa JavaScript próprio e identificar seus limites, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar código distribuído e source maps.",
+        "Aplicar diferença entre front-end e api com prova.",
+        "Relacionar reprodução de fluxo sem copiar recursos protegidos à aula AULA-118.",
+        "Entregar mapa de chamadas e distinção entre ui e regra."
+      ],
+      "lessons": [
+        {
+          "stepId": 17,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Código distribuído e source maps",
+          "lead": "Competência: estudar bundles e rotas de interface sem confundir código cliente com backend.",
+          "sections": [
+            {
+              "heading": "Código distribuído e source maps",
+              "body": "Neste módulo, estudar bundles e rotas de interface sem confundir código cliente com backend. Comece por o módulo javascript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Código distribuído e source maps\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-017.",
+              "counterexample": "Erro a evitar: Inferir lógica de servidor apenas por ler uma interface. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Diferença entre front-end e API",
+              "body": "Neste módulo, estudar bundles e rotas de interface sem confundir código cliente com backend. Comece por o módulo javascript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Diferença entre front-end e API\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-018.",
+              "counterexample": "Erro a evitar: Inferir lógica de servidor apenas por ler uma interface. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Reprodução de fluxo sem copiar recursos protegidos",
+              "body": "Neste módulo, estudar bundles e rotas de interface sem confundir código cliente com backend. Comece por o módulo javascript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Reprodução de fluxo sem copiar recursos protegidos\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-019.",
+              "counterexample": "Erro a evitar: Inferir lógica de servidor apenas por ler uma interface. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é inspecionar um programa JavaScript próprio e identificar seus limites?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 18,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Diferença entre front-end e API",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Diferença entre front-end e API",
+              "body": "Neste módulo, estudar bundles e rotas de interface sem confundir código cliente com backend. Comece por o módulo javascript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Diferença entre front-end e API\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-018.",
+              "counterexample": "Erro a evitar: Inferir lógica de servidor apenas por ler uma interface. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"JavaScript, Electron e interfaces\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"inspecionar um programa JavaScript próprio e identificar seus limites\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Reprodução de fluxo sem copiar recursos protegidos",
+              "body": "Neste módulo, estudar bundles e rotas de interface sem confundir código cliente com backend. Comece por o módulo javascript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Reprodução de fluxo sem copiar recursos protegidos\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-019.",
+              "counterexample": "Erro a evitar: Inferir lógica de servidor apenas por ler uma interface. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 5: inspecionar um programa JavaScript próprio e identificar seus limites. Artefato: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 19,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 118",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-118",
+          "referencePath": "#course/main/118",
+          "challengeText": "Leia a AULA-118 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"inspecionar um programa JavaScript próprio e identificar seus limites\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 20,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Anotar dependências e reconstruir fluxo",
+          "lead": "Entrega verificável: Mapa de chamadas e distinção entre UI e regra.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-05.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 5",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 5 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 5 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"inspecionar um programa JavaScript próprio e identificar seus limites\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Mapa de chamadas e distinção entre UI e regra\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-05.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-05.md"
+    },
+    {
+      "moduleId": 6,
+      "version": 1,
+      "title": "REA, agentes e MCP com execução local",
+      "objective": "Ao final, o estudante deverá comparar hipótese de um agente com prova manual, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar rea cli/mcp e limites de compatibilidade.",
+        "Aplicar ghidra gratuito versus hopper opcional com prova.",
+        "Relacionar prompts de agente e verificação independente à aula AULA-117.",
+        "Entregar dossiê com evidência, confiança e contraexemplo."
+      ],
+      "lessons": [
+        {
+          "stepId": 21,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "REA CLI/MCP e limites de compatibilidade",
+          "lead": "Competência: integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente.",
+          "sections": [
+            {
+              "heading": "REA CLI/MCP e limites de compatibilidade",
+              "body": "Neste módulo, integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente. Comece por o agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"REA CLI/MCP e limites de compatibilidade\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-021.",
+              "counterexample": "Erro a evitar: Atribuir ao REA clonagem automática de software ou análise sem limitações. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Ghidra gratuito versus Hopper opcional",
+              "body": "Neste módulo, integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente. Comece por o agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Ghidra gratuito versus Hopper opcional\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-022.",
+              "counterexample": "Erro a evitar: Atribuir ao REA clonagem automática de software ou análise sem limitações. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Prompts de agente e verificação independente",
+              "body": "Neste módulo, integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente. Comece por o agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Prompts de agente e verificação independente\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-023.",
+              "counterexample": "Erro a evitar: Atribuir ao REA clonagem automática de software ou análise sem limitações. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é comparar hipótese de um agente com prova manual?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 22,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Ghidra gratuito versus Hopper opcional",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Ghidra gratuito versus Hopper opcional",
+              "body": "Neste módulo, integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente. Comece por o agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Ghidra gratuito versus Hopper opcional\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-022.",
+              "counterexample": "Erro a evitar: Atribuir ao REA clonagem automática de software ou análise sem limitações. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"REA, agentes e MCP com execução local\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"comparar hipótese de um agente com prova manual\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Prompts de agente e verificação independente",
+              "body": "Neste módulo, integrar investigação assistida com REA e Ghidra sem delegar evidências ao agente. Comece por o agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Prompts de agente e verificação independente\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-023.",
+              "counterexample": "Erro a evitar: Atribuir ao REA clonagem automática de software ou análise sem limitações. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 6: comparar hipótese de um agente com prova manual. Artefato: O agente recebe apenas artefato criado no curso; o aluno exige origem e limites para cada conclusão. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 23,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 117",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-117",
+          "referencePath": "#course/main/117",
+          "challengeText": "Leia a AULA-117 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"comparar hipótese de um agente com prova manual\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 24,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Gerar dossiê assistido sem API obrigatória",
+          "lead": "Entrega verificável: Dossiê com evidência, confiança e contraexemplo.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-06.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 6",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 6 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 6 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"comparar hipótese de um agente com prova manual\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Dossiê com evidência, confiança e contraexemplo\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-06.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-06.md"
+    },
+    {
+      "moduleId": 7,
+      "version": 1,
+      "title": "Reconstrução e testes diferenciais",
+      "objective": "Ao final, o estudante deverá escrever uma implementação nova sem copiar código ou ativos, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar separação entre observação e implementação.",
+        "Aplicar teste diferencial por casos representativos com prova.",
+        "Relacionar cobertura, divergência e correção incremental à aula AULA-129.",
+        "Entregar candidato local e divergências documentadas."
+      ],
+      "lessons": [
+        {
+          "stepId": 25,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Separação entre observação e implementação",
+          "lead": "Competência: implementar uma versão independente da regra observada e comparar saídas.",
+          "sections": [
+            {
+              "heading": "Separação entre observação e implementação",
+              "body": "Neste módulo, implementar uma versão independente da regra observada e comparar saídas. Comece por candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Separação entre observação e implementação\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-025.",
+              "counterexample": "Erro a evitar: Declarar clone completo por passar meia dúzia de amostras. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Teste diferencial por casos representativos",
+              "body": "Neste módulo, implementar uma versão independente da regra observada e comparar saídas. Comece por candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Teste diferencial por casos representativos\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-026.",
+              "counterexample": "Erro a evitar: Declarar clone completo por passar meia dúzia de amostras. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Cobertura, divergência e correção incremental",
+              "body": "Neste módulo, implementar uma versão independente da regra observada e comparar saídas. Comece por candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Cobertura, divergência e correção incremental\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-027.",
+              "counterexample": "Erro a evitar: Declarar clone completo por passar meia dúzia de amostras. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é escrever uma implementação nova sem copiar código ou ativos?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 26,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Teste diferencial por casos representativos",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Teste diferencial por casos representativos",
+              "body": "Neste módulo, implementar uma versão independente da regra observada e comparar saídas. Comece por candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Teste diferencial por casos representativos\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-026.",
+              "counterexample": "Erro a evitar: Declarar clone completo por passar meia dúzia de amostras. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"Reconstrução e testes diferenciais\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"escrever uma implementação nova sem copiar código ou ativos\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Cobertura, divergência e correção incremental",
+              "body": "Neste módulo, implementar uma versão independente da regra observada e comparar saídas. Comece por candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Cobertura, divergência e correção incremental\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-027.",
+              "counterexample": "Erro a evitar: Declarar clone completo por passar meia dúzia de amostras. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 7: escrever uma implementação nova sem copiar código ou ativos. Artefato: candidate.mjs é uma implementação independente que passa pelos mesmos testes da referência. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 27,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 129",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-129",
+          "referencePath": "#course/main/129",
+          "challengeText": "Leia a AULA-129 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"escrever uma implementação nova sem copiar código ou ativos\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 28,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Construir e verificar uma reimplementação",
+          "lead": "Entrega verificável: Candidato local e divergências documentadas.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-07.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 7",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 7 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 7 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"escrever uma implementação nova sem copiar código ou ativos\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Candidato local e divergências documentadas\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-07.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-07.md"
+    },
+    {
+      "moduleId": 8,
+      "version": 1,
+      "title": "Capstone: auditoria e entrega",
+      "objective": "Ao final, o estudante deverá entregar artefato, suíte de teste e dossiê final, com evidência local auditável e limite explícito de inferência.",
+      "learningOutcomes": [
+        "Explicar cadeia de evidências e proveniência.",
+        "Aplicar critérios de aceitação e comunicação de limites com prova.",
+        "Relacionar pacote reproduzível e documentação final à aula AULA-130.",
+        "Entregar pacote local e relatório técnico que permite auditoria."
+      ],
+      "lessons": [
+        {
+          "stepId": 29,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Cadeia de evidências e proveniência",
+          "lead": "Competência: apresentar um relatório de engenharia reversa com limitações e código reproduzível.",
+          "sections": [
+            {
+              "heading": "Cadeia de evidências e proveniência",
+              "body": "Neste módulo, apresentar um relatório de engenharia reversa com limitações e código reproduzível. Comece por o capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Cadeia de evidências e proveniência\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-029.",
+              "counterexample": "Erro a evitar: Confundir aprovação do runner didático com garantia de segurança de produção. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Critérios de aceitação e comunicação de limites",
+              "body": "Neste módulo, apresentar um relatório de engenharia reversa com limitações e código reproduzível. Comece por o capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Critérios de aceitação e comunicação de limites\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-030.",
+              "counterexample": "Erro a evitar: Confundir aprovação do runner didático com garantia de segurança de produção. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pacote reproduzível e documentação final",
+              "body": "Neste módulo, apresentar um relatório de engenharia reversa com limitações e código reproduzível. Comece por o capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Pacote reproduzível e documentação final\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-031.",
+              "counterexample": "Erro a evitar: Confundir aprovação do runner didático com garantia de segurança de produção. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é a conduta correta quando o objetivo é entregar artefato, suíte de teste e dossiê final?",
+            "options": [
+              "Registrar hipótese e executar teste com controle negativo",
+              "Aceitar a primeira saída sem executar testes",
+              "Anunciar clone perfeito com base na aparência"
+            ],
+            "answer": 0,
+            "feedback": "Uma hipótese só se sustenta dentro do alcance das entradas efetivamente verificadas."
+          }
+        },
+        {
+          "stepId": 30,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Agentes de IA: Critérios de aceitação e comunicação de limites",
+          "lead": "IA é assistente de investigação, não fonte de prova. Núcleo gratuito segue sem modelo.",
+          "sections": [
+            {
+              "heading": "Critérios de aceitação e comunicação de limites",
+              "body": "Neste módulo, apresentar um relatório de engenharia reversa com limitações e código reproduzível. Comece por o capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Critérios de aceitação e comunicação de limites\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-030.",
+              "counterexample": "Erro a evitar: Confundir aprovação do runner didático com garantia de segurança de produção. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            },
+            {
+              "heading": "Pergunta de agente com evidência",
+              "body": "Peça a um agente que descreva o que é conhecido, o que é incerto e quais testes poderiam contrariar sua conclusão. Para \"Capstone: auditoria e entrega\", nunca permita que ele deduza resultados não observados. Execute a matriz localmente, compare o relatório com a saída do programa e indique divergências. O caminho manual é preencher os mesmos campos sem assistente, o que atende todos os critérios de avaliação.",
+              "example": "Solicite uma tabela de hipóteses para \"entregar artefato, suíte de teste e dossiê final\" e marque cada linha como \"observada\", \"inferida\" ou \"não testada\".",
+              "counterexample": "Colar resultados produzidos pela IA sem executar a ferramenta, atribuindo a ela testes inexistentes."
+            },
+            {
+              "heading": "Pacote reproduzível e documentação final",
+              "body": "Neste módulo, apresentar um relatório de engenharia reversa com limitações e código reproduzível. Comece por o capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Separe dados fornecidos, comportamento realmente medido e suposições ainda não verificadas. No tópico \"Pacote reproduzível e documentação final\", produza um registro próprio com ambiente, entrada exata, comando utilizado, saída observada e justificativa. Use somente o artefato sintético distribuído nesta trilha, sem executar código de terceiros, contornar licenças ou enviar dados privados para serviços externos.",
+              "example": "Exemplo prático: O capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Escreva a previsão antes do teste, execute novamente com entrada de fronteira e registre o resultado com o ID canônico REV-IA-031.",
+              "counterexample": "Erro a evitar: Confundir aprovação do runner didático com garantia de segurança de produção. Um palpite fornecido por IA ou um único caso positivo não substitui comparação controlada e relatório de limitações."
+            }
+          ],
+          "prompt": "Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 8: entregar artefato, suíte de teste e dossiê final. Artefato: O capstone resume 8 checkpoints, as falhas encontradas e as decisões de correção. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.",
+          "reviewQuestions": [
+            "A hipótese tem comando e saída observável?",
+            "Existe caso negativo ou fronteira?",
+            "O agente separou dedução de medição?"
+          ]
+        },
+        {
+          "stepId": 31,
+          "kind": "referencia",
+          "durationMin": 25,
+          "title": "Referência canônica: aula 130",
+          "lead": "Releia a aula existente; esta etapa tem progresso próprio e não duplica a nota original.",
+          "referenceCode": "AULA-130",
+          "referencePath": "#course/main/130",
+          "challengeText": "Leia a AULA-130 e explique em pelo menos 120 caracteres como seu conceito se conecta a \"entregar artefato, suíte de teste e dossiê final\". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência."
+        },
+        {
+          "stepId": 32,
+          "kind": "laboratorio",
+          "durationMin": 55,
+          "title": "Entregar capstone com relatório e reteste",
+          "lead": "Entrega verificável: Pacote local e relatório técnico que permite auditoria.",
+          "starterSourceUrl": "/course-labs/reverse-ai/module-08.md",
+          "labCommand": "node public/course-labs/reverse-ai/lab.mjs --module 8",
+          "testCommand": "node --test public/course-labs/reverse-ai/lab.test.mjs",
+          "expectedArtifact": "Relatório do módulo 8 com previsões, saídas observadas, um teste negativo e limitações.",
+          "checkpointAssertion": "O comando local é reproduzível e um erro esperado não é classificado como sucesso.",
+          "brief": [
+            "Leia o roteiro do módulo 8 e anote escopo, ambiente e autorização.",
+            "Antes de executar, preveja uma saída legítima e outra inválida para \"entregar artefato, suíte de teste e dossiê final\".",
+            "Execute o comando local e os testes; registre saída real e eventuais divergências.",
+            "Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança."
+          ],
+          "acceptance": [
+            "Usei apenas arquivo próprio e ambiente local.",
+            "Registrei uma previsão antes de executar.",
+            "Executei um caso permitido e um inválido.",
+            "Separei resultado medido de sugestão da IA.",
+            "Documentei uma limitação e um reteste."
+          ],
+          "assessmentPrompt": "Mostre por que o relatório \"Pacote local e relatório técnico que permite auditoria\" é reproduzível, quais entradas examinou, o que ainda não foi observado e como uma execução futura poderia invalidar sua conclusão. Não declare resultado de ferramenta que não utilizou."
+        }
+      ],
+      "assessmentPath": "/course-labs/reverse-ai/assessments/module-08.md",
+      "answerKeyPath": "/course-labs/reverse-ai/answer-keys/module-08.md"
+    }
+  ]
+}
