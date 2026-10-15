@@ -5,5 +5,41 @@
 .ai-track button.ai-module{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%}.ai-track button.ai-module.selected{border-color:#31d7bf;box-shadow:inset 3px 0 #31d7bf}.ai-track .ai-module-label,.ai-track .ai-step-label{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}.ai-track .ai-module-label strong,.ai-track .ai-step-label strong{font-size:13px;line-height:1.4}.ai-track .ai-module-label small,.ai-track .ai-step-label small{font-size:11px;color:#a5b6c7}.ai-track .ai-objectives{border:1px solid #37536a;border-radius:12px;padding:13px;margin-top:12px;color:#d7e4ee}.ai-track .ai-objectives summary{cursor:pointer;font-weight:650}.ai-track .ai-objectives li{margin:7px 0;font-size:13px}.ai-track .ai-final{margin-top:24px;padding:24px}.ai-track .ai-final a:not(.button){text-decoration:underline;color:#65e4cf}@media(max-width:680px){.ai-track .ai-module-label strong,.ai-track .ai-step-label strong{font-size:11px}.ai-track .ai-final{padding:16px}}
 
 /* Contrato pedagógico dos laboratórios aplicados. Mantém a UI responsiva sem alterar o progresso. */
-.ai-lab-contract{border:1px solid #766b9b;border-radius:16px;background:linear-gradient(145deg,rgba(94,65,132,.18),rgba(28,46,69,.7));padding:19px;margin:0 0 20px}
-.ai-lab-contract h3{margin:13px 0 7px;font-size:17px}.ai-lab-contract>p{font-weight:650;color:#f4eefe}.ai-lab-contract-top,.ai-lab-links{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.ai-lab-contract-top span{font-size:11px;color:#d9c9f2;border:1px solid #78659e;border-radius:999px;padding:5px 9px}.ai-lab-contract dl{display:grid;gap:10px;margin:13px 0}.ai-lab-contract dl>div{border-top:1px solid #64567b;padding-top:9px}.ai-lab-contract dt{color:#d6c3f4;font-size:12px;font-weight:750;margin-bottom:4px}.ai-lab-contract dd{margin:0;font-size:13px;line-height:1.55;color:#e6e4f4}.ai-lab-links{justify-content:flex-start}.ai-lab-links a,.ai-lab-kit-row a{display:inline-flex;align-items:center;color:#e5d2ff;text-decoration:underline;font-size:13px;min-height:40px}.ai-lab-contract small{display:block;margin-top:13px;color:#c5bddd}.ai-lab-kit-row{border-top:1px solid #64567b;margin-top:14px;padding-top:13px}.ai-lab-kit-row strong{font-size:13px;color:#eee0ff}.ai-lab-kit-row p{font-size:12px;margin:6px 0 0;color:#d3c9e4}@media(max-width:680px){.ai-lab-contract{padding:13px}.ai-lab-contract-top{justify-content:flex-start}.ai-lab-links{flex-direction:column;align-items:flex-start}}
+/* Solid dark surface for the detailed AI track lab (iPhone/light-mode safe). */
+.ai-track .ai-lab-contract{
+ background:#1b1730;color:#f6f0ff;border:1px solid #846ba9;
+ border-radius:14px;padding:14px 16px;margin:12px 0 16px;overflow-wrap:anywhere;
+}
+.ai-track .ai-lab-contract h3{margin:10px 0 6px;font-size:16px;color:#fff}
+.ai-track .ai-lab-deliverable{
+ margin:0 0 12px;font-size:13px;line-height:1.6;
+ color:#f6f0ff!important;font-weight:600;
+}
+.ai-lab-contract-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center}
+.ai-lab-contract-top span{
+ font-size:11px;color:#e9d2ff;border:1px solid #9475bb;
+ border-radius:999px;padding:4px 8px;
+}
+.ai-track .ai-lab-links{display:flex;flex-wrap:wrap;gap:10px}
+.ai-track .ai-lab-links a,.ai-track .ai-lab-kit-row a{
+ display:inline-flex;align-items:center;min-height:44px;
+ font-size:13px;color:#fff;text-decoration:underline;text-underline-offset:3px;
+}
+.ai-track .ai-lab-links>a:first-child{padding:8px 11px;border:1px solid #ad86dd;border-radius:9px;background:#4b286e;text-decoration:none;font-weight:750}
+.ai-track .ai-lab-contract a:focus-visible{outline:3px solid #e2bcff;outline-offset:2px}
+.ai-track .ai-lab-more{margin:12px 0 0;border-top:1px solid #665284;padding-top:12px}
+.ai-track .ai-lab-more summary{cursor:pointer;min-height:36px;color:#e5d0ff;font-size:13px;font-weight:750}
+.ai-track .ai-lab-more summary:focus-visible{outline:3px solid #e2bcff;outline-offset:2px}
+.ai-track .ai-lab-more dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.ai-track .ai-lab-more dl>div{min-width:0;border-top:1px solid #54436f;padding-top:8px}
+.ai-track .ai-lab-more dt{color:#e2c9ff;font-size:12px;font-weight:750}
+.ai-track .ai-lab-more dd{margin:4px 0 0;font-size:13px;line-height:1.55;color:#f0e8f9}
+.ai-track .ai-lab-more small{display:block;color:#decfea;font-size:12px;margin-top:10px}
+.ai-track .ai-lab-kit-row{border-top:1px solid #54436f;margin-top:12px;padding-top:12px}
+.ai-track .ai-lab-kit-row strong{font-size:12px;color:#fff}
+.ai-track .ai-lab-kit-row p{font-size:12px;color:#e3d7f1!important;margin:5px 0}
+@media(max-width:680px){
+ .ai-track .ai-lab-contract{padding:12px}
+ .ai-track .ai-lab-more dl{grid-template-columns:1fr}
+ .ai-track .ai-lab-links>a:first-child{width:100%;justify-content:center}
+}

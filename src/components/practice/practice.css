@@ -1,15 +1,55 @@
-.practice-contract{border:1px solid #6f5a95;border-radius:17px;padding:18px 20px;margin:17px 0 20px;background:linear-gradient(130deg,rgba(114,65,171,.16),rgba(21,27,49,.75));color:var(--text)}
-.practice-contract-overline{display:flex;gap:9px;justify-content:space-between;flex-wrap:wrap;color:#dfcaff;font-weight:800;font-size:11px;letter-spacing:.03em}
-.practice-contract h2{margin:12px 0;font-size:clamp(18px,2.5vw,23px)}
-.practice-contract dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 17px}
-.practice-contract dl>div{border-top:1px solid #705d91;padding-top:10px}
-.practice-contract dt{color:#edddff;font-weight:800;font-size:12px}
-.practice-contract dd{margin:6px 0;color:#d6cee5;font-size:13px;line-height:1.65}
-.practice-contract-files>strong{display:block;font-size:13px;margin-bottom:9px}
-.practice-contract-files>div{display:flex;gap:8px;flex-wrap:wrap}
-.practice-contract-files a{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #9177ba;border-radius:10px;font-size:12px;color:#ead6ff;overflow-wrap:anywhere;min-height:44px}
-.practice-contract-files a span{padding:3px 5px;border-radius:5px;background:rgba(171,116,231,.17);color:#fff;font-size:10px}
-.practice-contract-limit{color:#cbbfdf;font-size:12px;line-height:1.6;margin:14px 0 0}
+/* Contract surfaces use an OPAQUE fill: no light page, iOS overlay or theme can
+   wash out the text. Summary is collapsed until students need the details. */
+.practice-contract,
+.guided-practice-contract{
+  background:#1b1730;
+  color:#f6f0ff;
+  border:1px solid #846ba9;
+  border-radius:14px;
+  margin:12px 0 18px;
+  box-shadow:none;
+}
+.practice-contract{padding:0;overflow:clip}
+.practice-contract-summary{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  cursor:pointer;list-style:none;padding:13px 15px;min-height:64px;
+  color:#f6f0ff;
+}
+.practice-contract-summary::-webkit-details-marker{display:none}
+.practice-contract-summary-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.practice-contract-eyebrow,.guided-practice-eyebrow{
+  color:#e4cbff;font-size:11px;line-height:1.45;font-weight:750;letter-spacing:.025em;
+}
+.practice-contract-summary-copy strong{font-size:14px;line-height:1.35;color:#fff}
+.practice-contract-summary-action{
+  display:inline-flex;align-items:center;gap:7px;
+  color:#e6d2ff;font-size:12px;font-weight:750;white-space:nowrap;
+}
+.practice-contract-summary-action span{display:inline-block;transition:transform .15s ease}
+.practice-contract[open] .practice-contract-summary-action span{transform:rotate(180deg)}
+.practice-contract-summary:hover{background:#2a2243}
+.practice-contract-summary:focus-visible,
+.guided-practice-jump:focus-visible,
+.practice-contract-files a:focus-visible{outline:3px solid #e2bcff;outline-offset:-3px}
+.practice-contract-body{padding:2px 16px 15px;border-top:1px solid #574777}
+.practice-contract-purpose{font-size:13px;font-weight:650;line-height:1.65;color:#fff;margin:12px 0}
+.practice-contract dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 15px}
+.practice-contract dl>div{border-top:1px solid #54436f;padding-top:9px;min-width:0}
+.practice-contract dt{color:#e2c9ff;font-weight:750;font-size:12px}
+.practice-contract dd{margin:5px 0 0;font-size:13px;line-height:1.55;color:#f0e8f9;overflow-wrap:anywhere}
+.practice-contract-files>strong{display:block;color:#fff;font-size:13px;margin-bottom:9px}
+.practice-contract-files>div{display:flex;flex-wrap:wrap;gap:8px}
+.practice-contract-files a{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 11px;min-height:44px;min-width:0;max-width:100%;font-size:13px;
+  color:#f7eaff;text-decoration:underline;text-underline-offset:3px;
+  border-radius:10px;border:1px solid #8d73b3;overflow-wrap:anywhere;
+}
+.practice-contract-files a:hover{background:#30264c}
+.practice-contract-files a span{
+  color:#fff;background:#4d356d;padding:3px 6px;border-radius:5px;font-size:11px;
+}
+.practice-contract-limit{margin:13px 0 0;color:#decfea!important;font-size:12px;line-height:1.6}
 .canonical-full-lesson{margin:18px 0;padding:0;border:1px solid #675687;border-radius:16px;overflow:hidden}
 .canonical-full-lesson-heading{padding:20px;background:linear-gradient(120deg,rgba(99,52,147,.29),rgba(18,31,47,.9));border-bottom:1px solid #53476b}
 .canonical-full-lesson-heading>span{font-size:11px;color:#d7bdf8;font-weight:900}
@@ -18,12 +58,34 @@
 .canonical-full-lesson-heading a{display:inline-flex;color:#e8cbff;padding:7px 0;text-decoration:underline}
 .canonical-full-lesson>.markdown-document{padding:12px 14px}
 @media(max-width:680px){.practice-contract{padding:14px}.practice-contract dl{grid-template-columns:1fr}.canonical-full-lesson>.markdown-document{padding:7px}.canonical-full-lesson-heading{padding:14px}}
-
-.guided-practice-contract{margin:12px 0 23px;padding:15px 17px;border-radius:15px;background:linear-gradient(135deg,rgba(104,59,143,.16),rgba(18,31,47,.45));border:1px solid #66517e}
-.guided-practice-contract dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
-.guided-practice-contract dt{color:#dec5ff;font-weight:800;font-size:12px}
-.guided-practice-contract dd{margin:6px 0;color:#d1cbe0;line-height:1.55;font-size:12px}
-.guided-practice-contract .practice-contract-files a{max-width:100%}
-.guided-practice-command{font-size:12px;display:grid;gap:6px}
-.guided-practice-command code{display:block;white-space:pre-wrap;overflow-wrap:anywhere;padding:8px;background:rgba(4,12,25,.55);border-radius:7px}
-@media(max-width:680px){.guided-practice-contract{padding:12px}.guided-practice-contract dl{grid-template-columns:1fr}}
+/* Guided theory and reference steps render NO repeated guidance card. */
+.guided-practice-contract{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;padding:13px 15px;min-height:76px;
+}
+.guided-practice-copy{min-width:0;flex:1 1 220px}
+.guided-practice-copy p{
+  margin:5px 0 0!important;color:#f6f0ff!important;
+  font-size:13px!important;line-height:1.5!important;overflow-wrap:anywhere;
+}
+.guided-practice-copy strong{color:#fff}
+.guided-practice-jump{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  color:#fff!important;background:#4b286e;border:1px solid #ad86dd;
+  border-radius:10px;padding:9px 11px;min-height:44px;
+  font-size:12px;font-weight:750;text-decoration:none;
+}
+.guided-practice-jump:hover{background:#73539b}
+@media(max-width:680px){
+  .practice-contract-summary{padding:12px}
+  .practice-contract-summary-action{font-size:11px}
+  .practice-contract-body{padding:0 12px 13px}
+  .practice-contract dl{grid-template-columns:1fr}
+  .practice-contract-files>div{display:grid;grid-template-columns:minmax(0,1fr)}
+  .practice-contract-files a{width:100%}
+  .guided-practice-contract{padding:12px;align-items:stretch}
+  .guided-practice-jump{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .practice-contract-summary-action span{transition:none}
+}

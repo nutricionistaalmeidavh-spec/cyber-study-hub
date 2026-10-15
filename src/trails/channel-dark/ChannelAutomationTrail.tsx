@@ -202,7 +202,7 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
           <textarea id="ai-transfer" className="ai-notes" rows={4} value={quizAttempt} maxLength={4500} onChange={e => setQuizAttempt(e.target.value.slice(0, 4500))}/>
           <label className="ai-check"><input type="checkbox" checked={referenceRead} onChange={e => setReferenceRead(e.target.checked)}/><span>Estudei a aula e consigo prever um caso inválido sem consultar o gabarito.</span></label>
         </section>}
-        {lesson.brief && <section className="ai-exercise">
+        {lesson.brief && <section id={'laboratorio-'+guidedCanonicalId('channel-dark',lesson.stepId)} className="ai-exercise">
           <span className="eyebrow">LABORATÓRIO INCREMENTAL · CANAL PILOTO</span>
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
           {oficinas.filter(oficina => oficina.moduleId === moduleId).map(oficina =>
