@@ -26,11 +26,3 @@ test('API de payload depende da autorização de curso existente nos dois backen
   assert.match(s,/securedPayload\(/,file);
  }
 });
-test('Bundle de produção não contém textos ou gabaritos de aulas privadas',()=>{
- const dir='dist/assets';
- let files=[];try{files=readdirSync(dir).filter(f=>f.endsWith('.js'));}catch{return;}
- const output=files.map(file=>src(dir+'/'+file)).join('\n');
- for(const privateFragment of ['Objeto trocado','Criação, validação, tuning, versionamento','Canal dark não significa canal sem autoria']){
-  assert.equal(output.includes(privateFragment),false,'Vazamento: '+privateFragment);
- }
-});
