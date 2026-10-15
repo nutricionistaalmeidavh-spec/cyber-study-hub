@@ -1,0 +1,577 @@
+{
+  "schemaVersion": 1,
+  "kind": "Acompanhamento de ferramentas — interpretação de evidência sintética",
+  "disclaimer": "Nenhum cenário executa ferramenta, rede, dispositivo ou código externo.",
+  "scenarios": [
+    {
+      "code": "LAB-01",
+      "title": "Ética, autorização e escopo",
+      "objective": "A autorização delimita ativo e operação",
+      "field": "asset",
+      "expected": "LAB01",
+      "positive": {
+        "asset": "LAB01",
+        "caseId": "LAB-01-POS"
+      },
+      "negative": {
+        "asset": "PUBLICO",
+        "caseId": "LAB-01-NEG"
+      },
+      "positiveReason": "Acesso a LAB01 no escopo aprovado",
+      "negativeReason": "Outro ativo não está autorizado",
+      "limitation": "Escopo e consentimento não podem ser inferidos de HTTP 200.",
+      "existingArtifact": "/course-labs/phase16-foundations/LAB-01-scope.py"
+    },
+    {
+      "code": "LAB-02",
+      "title": "Como documentar um laboratório",
+      "objective": "Um relatório precisa amarrar evidência e ambiente",
+      "field": "evidenceId",
+      "expected": "EV-001",
+      "positive": {
+        "evidenceId": "EV-001",
+        "caseId": "LAB-02-POS"
+      },
+      "negative": {
+        "evidenceId": null,
+        "caseId": "LAB-02-NEG"
+      },
+      "positiveReason": "Evidência EV-001 com origem e hipótese",
+      "negativeReason": "Evidência sem identificador rastreável",
+      "limitation": "Modelo de registro não fornece prova técnica sozinho.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-03",
+      "title": "Virtualização",
+      "objective": "A VM deve ficar isolada da rede externa",
+      "field": "networkMode",
+      "expected": "host-only",
+      "positive": {
+        "networkMode": "host-only",
+        "caseId": "LAB-03-POS"
+      },
+      "negative": {
+        "networkMode": "bridged",
+        "caseId": "LAB-03-NEG"
+      },
+      "positiveReason": "Adaptador host-only no ambiente fictício",
+      "negativeReason": "Bridge expõe outras rotas possíveis",
+      "limitation": "Configuração virtual não prova isolamento efetivo sem teste de host.",
+      "existingArtifact": "/course-labs/phase16-foundations/LAB-03-canary.py"
+    },
+    {
+      "code": "LAB-04",
+      "title": "WSL",
+      "objective": "Confirme o ambiente antes de executar comandos",
+      "field": "platform",
+      "expected": "WSL2",
+      "positive": {
+        "platform": "WSL2",
+        "caseId": "LAB-04-POS"
+      },
+      "negative": {
+        "platform": "Windows-host",
+        "caseId": "LAB-04-NEG"
+      },
+      "positiveReason": "Execução no Linux WSL2 delimitada",
+      "negativeReason": "Comando de Linux no host Windows errado",
+      "limitation": "Verifique comandos somente em ambiente próprio e não altere políticas do Windows.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-05",
+      "title": "Docker",
+      "objective": "O processo precisa evitar privilégios de root",
+      "field": "runAs",
+      "expected": "non-root",
+      "positive": {
+        "runAs": "non-root",
+        "caseId": "LAB-05-POS"
+      },
+      "negative": {
+        "runAs": "root",
+        "caseId": "LAB-05-NEG"
+      },
+      "positiveReason": "Processo non-root em contêiner fictício",
+      "negativeReason": "Root aumenta privilégio local",
+      "limitation": "Modelo não substitui docker inspect e política real do daemon.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-06",
+      "title": "Redes Docker",
+      "objective": "Rede interna não deve expor serviços por padrão",
+      "field": "publishedPort",
+      "expected": false,
+      "positive": {
+        "publishedPort": false,
+        "caseId": "LAB-06-POS"
+      },
+      "negative": {
+        "publishedPort": true,
+        "caseId": "LAB-06-NEG"
+      },
+      "positiveReason": "Serviço privado sem porta publicada",
+      "negativeReason": "Publicação no host rompe isolamento presumido",
+      "limitation": "Bridge network requer validação real em contêiner próprio.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-07",
+      "title": "Kali",
+      "objective": "Inventarie antes de instalar ferramentas",
+      "field": "source",
+      "expected": "official-mirror",
+      "positive": {
+        "source": "official-mirror",
+        "caseId": "LAB-07-POS"
+      },
+      "negative": {
+        "source": "unknown-script",
+        "caseId": "LAB-07-NEG"
+      },
+      "positiveReason": "Pacote com origem aprovada",
+      "negativeReason": "Script desconhecido não é etapa de configuração segura",
+      "limitation": "Disponibilidade de binários depende do sistema; não execute comandos de origem duvidosa.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-08",
+      "title": "Ubuntu",
+      "objective": "Repositórios e versão devem ser verificados",
+      "field": "repoSigned",
+      "expected": true,
+      "positive": {
+        "repoSigned": true,
+        "caseId": "LAB-08-POS"
+      },
+      "negative": {
+        "repoSigned": false,
+        "caseId": "LAB-08-NEG"
+      },
+      "positiveReason": "Pacote de repositório com assinatura",
+      "negativeReason": "Fonte sem assinatura exige revisão",
+      "limitation": "Assinatura não garante ausência de vulnerabilidades.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-09",
+      "title": "Windows VM",
+      "objective": "Snapshot e conta de laboratório identificados",
+      "field": "account",
+      "expected": "lab_user",
+      "positive": {
+        "account": "lab_user",
+        "caseId": "LAB-09-POS"
+      },
+      "negative": {
+        "account": "production_admin",
+        "caseId": "LAB-09-NEG"
+      },
+      "positiveReason": "Conta fictícia da VM isolada",
+      "negativeReason": "Conta administrativa de produção fora do escopo",
+      "limitation": "Exercício sintético complementa baseline PowerShell de VM.",
+      "existingArtifact": "/course-labs/phase16-foundations/LAB-09-baseline.ps1"
+    },
+    {
+      "code": "LAB-10",
+      "title": "Snapshots",
+      "objective": "Restaure para ponto verificável",
+      "field": "restoredHash",
+      "expected": "sha256:baseline-01",
+      "positive": {
+        "restoredHash": "sha256:baseline-01",
+        "caseId": "LAB-10-POS"
+      },
+      "negative": {
+        "restoredHash": "sha256:changed-02",
+        "caseId": "LAB-10-NEG"
+      },
+      "positiveReason": "Snapshot retorna ao baseline esperado",
+      "negativeReason": "Snapshot divergente não é reversão comprovada",
+      "limitation": "Hash fictício ilustra conferência; use ferramenta de virtualização no lab.",
+      "existingArtifact": "/course-labs/phase16-foundations/LAB-10-estado.ps1"
+    },
+    {
+      "code": "LAB-11",
+      "title": "Burp Suite",
+      "objective": "Inspecione apenas requisições do host autorizado",
+      "field": "target",
+      "expected": "127.0.0.1",
+      "positive": {
+        "target": "127.0.0.1",
+        "caseId": "LAB-11-POS"
+      },
+      "negative": {
+        "target": "example.com",
+        "caseId": "LAB-11-NEG"
+      },
+      "positiveReason": "Histórico somente da aplicação local",
+      "negativeReason": "Host externo não faz parte da autorização",
+      "limitation": "O laboratório não intercepta pacotes, só classifica um registro de escopo.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-12",
+      "title": "OWASP ZAP",
+      "objective": "Trate alertas como hipóteses, não provas",
+      "field": "scope",
+      "expected": "localhost",
+      "positive": {
+        "scope": "localhost",
+        "caseId": "LAB-12-POS"
+      },
+      "negative": {
+        "scope": "external-host",
+        "caseId": "LAB-12-NEG"
+      },
+      "positiveReason": "Alerta em localhost controlado",
+      "negativeReason": "Alerta sobre host externo fica fora do escopo",
+      "limitation": "A classificação não simula o engine real do ZAP.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-13",
+      "title": "DevTools",
+      "objective": "Verifique respostas e cabeçalhos de sua aplicação",
+      "field": "origin",
+      "expected": "http://127.0.0.1",
+      "positive": {
+        "origin": "http://127.0.0.1",
+        "caseId": "LAB-13-POS"
+      },
+      "negative": {
+        "origin": "https://terceiros",
+        "caseId": "LAB-13-NEG"
+      },
+      "positiveReason": "Inspeção da origem local",
+      "negativeReason": "Origem de terceiros não deve ser instrumentada",
+      "limitation": "Verificar cabeçalho em fixture não substitui DevTools real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-14",
+      "title": "curl",
+      "objective": "Status HTTP esperado deve ser verificado",
+      "field": "status",
+      "expected": 200,
+      "positive": {
+        "status": 200,
+        "caseId": "LAB-14-POS"
+      },
+      "negative": {
+        "status": 500,
+        "caseId": "LAB-14-NEG"
+      },
+      "positiveReason": "Resposta 200 no endpoint próprio",
+      "negativeReason": "Erro 500 exige diagnosticar servidor e corpo",
+      "limitation": "Não envie requests para endereços externos; cenário é JSON fixo.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-15",
+      "title": "Postman e Bruno",
+      "objective": "Variáveis de ambiente não devem conter secrets reais",
+      "field": "credentialType",
+      "expected": "fixture",
+      "positive": {
+        "credentialType": "fixture",
+        "caseId": "LAB-15-POS"
+      },
+      "negative": {
+        "credentialType": "live-secret",
+        "caseId": "LAB-15-NEG"
+      },
+      "positiveReason": "Collection usa dados fictícios",
+      "negativeReason": "Secret real em collection é risco de compartilhamento",
+      "limitation": "Este exercício não importa collections, apenas valida política de valores.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-16",
+      "title": "Nmap",
+      "objective": "Inspeção de portas só no alvo aprovado",
+      "field": "target",
+      "expected": "127.0.0.1",
+      "positive": {
+        "target": "127.0.0.1",
+        "caseId": "LAB-16-POS"
+      },
+      "negative": {
+        "target": "192.0.2.42",
+        "caseId": "LAB-16-NEG"
+      },
+      "positiveReason": "Porta no próprio localhost",
+      "negativeReason": "Endereço não listado fora do escopo",
+      "limitation": "Não gera varredura de portas: fixture documental.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-17",
+      "title": "Wireshark",
+      "objective": "Capture apenas tráfego consentido da VM",
+      "field": "capture",
+      "expected": "lab-only",
+      "positive": {
+        "capture": "lab-only",
+        "caseId": "LAB-17-POS"
+      },
+      "negative": {
+        "capture": "shared-network",
+        "caseId": "LAB-17-NEG"
+      },
+      "positiveReason": "Arquivo de captura sintético do lab",
+      "negativeReason": "Captura de rede compartilhada indevida",
+      "limitation": "Nenhuma captura de pacote real é executada.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-18",
+      "title": "Nuclei",
+      "objective": "Um finding exige versão e reprodutibilidade",
+      "field": "confirmed",
+      "expected": true,
+      "positive": {
+        "confirmed": true,
+        "caseId": "LAB-18-POS"
+      },
+      "negative": {
+        "confirmed": false,
+        "caseId": "LAB-18-NEG"
+      },
+      "positiveReason": "Resultado confirmado no ambiente local",
+      "negativeReason": "Template não confirmado não equivale a falha",
+      "limitation": "Não executa scanner: triagem de metadados com limites.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-19",
+      "title": "Ghidra",
+      "objective": "Amostra deve ter origem rastreada",
+      "field": "sampleOrigin",
+      "expected": "own-toy-binary",
+      "positive": {
+        "sampleOrigin": "own-toy-binary",
+        "caseId": "LAB-19-POS"
+      },
+      "negative": {
+        "sampleOrigin": "unknown-download",
+        "caseId": "LAB-19-NEG"
+      },
+      "positiveReason": "Binário toy compilado no laboratório",
+      "negativeReason": "Amostra de origem desconhecida não deve ser executada",
+      "limitation": "Não executa descompilador nem carrega executáveis.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-20",
+      "title": "x64dbg",
+      "objective": "Depure apenas binário do próprio laboratório",
+      "field": "binary",
+      "expected": "toy-debug.exe",
+      "positive": {
+        "binary": "toy-debug.exe",
+        "caseId": "LAB-20-POS"
+      },
+      "negative": {
+        "binary": "third-party.exe",
+        "caseId": "LAB-20-NEG"
+      },
+      "positiveReason": "Breakpoint no binário demonstrativo",
+      "negativeReason": "Executável de terceiro exige autorização",
+      "limitation": "Modelo não injeta, executa ou depura processo real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-21",
+      "title": "Sysmon",
+      "objective": "Vincule Event ID ao evento observado",
+      "field": "eventId",
+      "expected": 1,
+      "positive": {
+        "eventId": 1,
+        "caseId": "LAB-21-POS"
+      },
+      "negative": {
+        "eventId": 255,
+        "caseId": "LAB-21-NEG"
+      },
+      "positiveReason": "Evento 1 de criação de processo fictício",
+      "negativeReason": "Event ID sem regra/mapeamento exige revisão",
+      "limitation": "Event ID válido não torna um evento malicioso automaticamente.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-22",
+      "title": "Procmon",
+      "objective": "Filtro de processo precisa ter alvo de laboratório",
+      "field": "process",
+      "expected": "toy-app.exe",
+      "positive": {
+        "process": "toy-app.exe",
+        "caseId": "LAB-22-POS"
+      },
+      "negative": {
+        "process": "system.exe",
+        "caseId": "LAB-22-NEG"
+      },
+      "positiveReason": "Filtro cobre o processo toy",
+      "negativeReason": "Filtrar sistema inteiro cria ruído e risco de dados reais",
+      "limitation": "Não acessa Procmon nem coleta telemetria real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-23",
+      "title": "Process Explorer",
+      "objective": "Relação pai-filho precisa ser contextualizada",
+      "field": "parentProcess",
+      "expected": "lab-runner.exe",
+      "positive": {
+        "parentProcess": "lab-runner.exe",
+        "caseId": "LAB-23-POS"
+      },
+      "negative": {
+        "parentProcess": "unknown.exe",
+        "caseId": "LAB-23-NEG"
+      },
+      "positiveReason": "Processo filho do runner fictício",
+      "negativeReason": "Pai desconhecido pede investigação",
+      "limitation": "Nome de executável sozinho não indica comprometimento.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-24",
+      "title": "Autoruns",
+      "objective": "Persistência deve ter origem controlada e reversão",
+      "field": "entry",
+      "expected": "lab-autostart",
+      "positive": {
+        "entry": "lab-autostart",
+        "caseId": "LAB-24-POS"
+      },
+      "negative": {
+        "entry": "unreviewed-startup",
+        "caseId": "LAB-24-NEG"
+      },
+      "positiveReason": "Entrada criada pelo laboratório e reversível",
+      "negativeReason": "Inicialização não revisada é apenas indício",
+      "limitation": "Não cria tarefas, chaves de registro ou persistência real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-25",
+      "title": "REMnux",
+      "objective": "Análise de amostra deve ser isolada e inerte",
+      "field": "sampleType",
+      "expected": "text-fixture",
+      "positive": {
+        "sampleType": "text-fixture",
+        "caseId": "LAB-25-POS"
+      },
+      "negative": {
+        "sampleType": "unknown-binary",
+        "caseId": "LAB-25-NEG"
+      },
+      "positiveReason": "Amostra de texto inerte",
+      "negativeReason": "Binário desconhecido não é executado",
+      "limitation": "Não instala REMnux e não executa malware.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-26",
+      "title": "Volatility",
+      "objective": "Diferencie memória preservada de alegação de processo",
+      "field": "snapshot",
+      "expected": "toy-memory.raw",
+      "positive": {
+        "snapshot": "toy-memory.raw",
+        "caseId": "LAB-26-POS"
+      },
+      "negative": {
+        "snapshot": "unverified-dump",
+        "caseId": "LAB-26-NEG"
+      },
+      "positiveReason": "Snapshot fictício identificado",
+      "negativeReason": "Dump não verificado carece de cadeia de custódia",
+      "limitation": "Nenhum dump real, plugin ou processo é analisado.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-27",
+      "title": "Suricata",
+      "objective": "Alerta da regra deve associar SID e escopo",
+      "field": "sid",
+      "expected": 1000001,
+      "positive": {
+        "sid": 1000001,
+        "caseId": "LAB-27-POS"
+      },
+      "negative": {
+        "sid": 0,
+        "caseId": "LAB-27-NEG"
+      },
+      "positiveReason": "SID sintético válido e fluxo do lab",
+      "negativeReason": "SID ausente impede rastreio de detecção",
+      "limitation": "Sem inspeção de pacotes ou IDS real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-28",
+      "title": "SIEM",
+      "objective": "Evento precisa informar origem e correlação",
+      "field": "source",
+      "expected": "lab-host-01",
+      "positive": {
+        "source": "lab-host-01",
+        "caseId": "LAB-28-POS"
+      },
+      "negative": {
+        "source": "unknown",
+        "caseId": "LAB-28-NEG"
+      },
+      "positiveReason": "Origem fictícia registrada",
+      "negativeReason": "Origem ausente dificulta triagem",
+      "limitation": "Não instala nem opera SIEM real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-29",
+      "title": "YARA e Sigma",
+      "objective": "Regra de detecção requer teste negativo",
+      "field": "negativeMatched",
+      "expected": false,
+      "positive": {
+        "negativeMatched": false,
+        "caseId": "LAB-29-POS"
+      },
+      "negative": {
+        "negativeMatched": true,
+        "caseId": "LAB-29-NEG"
+      },
+      "positiveReason": "Regra toy não marca benigno",
+      "negativeReason": "Regra marca controle negativo: falso positivo",
+      "limitation": "Modelo não compila YARA nem executa Sigma em telemetry real.",
+      "existingArtifact": null
+    },
+    {
+      "code": "LAB-30",
+      "title": "Laboratório integrado",
+      "objective": "Cobertura exige cenário permitido e bloqueado",
+      "field": "retest",
+      "expected": "passed",
+      "positive": {
+        "retest": "passed",
+        "caseId": "LAB-30-POS"
+      },
+      "negative": {
+        "retest": "skipped",
+        "caseId": "LAB-30-NEG"
+      },
+      "positiveReason": "Reteste reproduzido com evidência",
+      "negativeReason": "Reteste ausente não conclui investigação",
+      "limitation": "Conclusão limitada aos fixtures sintéticos; não é auditoria de segurança.",
+      "existingArtifact": null
+    }
+  ]
+}
