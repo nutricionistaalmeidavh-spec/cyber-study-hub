@@ -20,15 +20,26 @@ test('Hub mobile menu exposes feedback, voting and admin-only feedback moderatio
   assert.match(mobile, /href="#feedback"/);
   assert.match(mobile, /href="#roadmap"/);
   assert.match(mobile, /\{user\.role==='admin'\s*&&\s*<Nav href="#admin\/feedback"/);
-  assert.match(mobile, /<summary[^>]+aria-label="Mais opções: comunidade e suporte"/);
+  assert.match(mobile, /<summary[^>]+aria-label="Mais opções: materiais, revisão e comunidade"/);
 });
 
-test('New navigation is mobile-only and does not displace existing important tabs', () => {
+test('Mobile bottom bar has exactly five slots; Materials and Review appear only inside Mais', () => {
   const mobile = app.split('<nav className="mobile-nav">')[1]?.split('</nav>')[0] ?? '';
-  for (const route of ['#dashboard','#courses','#games','#materials','#review','#account']) {
-    assert.ok(mobile.includes('href="'+route+'"'), 'Existing mobile tab missing: '+route);
+  const [primary, more = ''] = mobile.split('<div className="mobile-nav-more-panel">');
+  const primaryLinks = [...primary.matchAll(/<Nav href="#([^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(primaryLinks, ['dashboard','courses','games','account']);
+  assert.match(primary, /<details key=\{route\.page\} className="mobile-nav-more">/);
+  assert.doesNotMatch(primary, /href="#(?:materials|review)"/);
+  assert.match(more, /<Nav href="#materials"[^>]+label="Materiais"/);
+  assert.match(more, /<Nav href="#review"[^>]+label="Revisão"/);
+  for (const route of ['#feedback','#roadmap']) {
+    assert.ok(more.includes('href="'+route+'"'), 'Missing Mais destination: '+route);
   }
-  assert.match(css, /@media\(max-width:780px\)\{[\s\S]*?\.mobile-nav-more/);
-  assert.match(css, /\.mobile-nav-more-panel/);
+});
+
+test('Mobile navigation remains a single row and popup stays inside viewport', () => {
+  assert.match(css, /@media\(max-width:780px\)\{[\s\S]*?\.app-shell \.mobile-nav\{grid-template-columns:repeat\(5,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.mobile-nav-more-panel\{[\s\S]*?right:0;/);
   assert.match(css, /\.mobile-nav-more summary:focus-visible/);
+  assert.match(css, /\.mobile-nav-more-panel \.nav-item b\{font-size:13px\}/);
 });
