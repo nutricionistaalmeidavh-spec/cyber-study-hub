@@ -1343,5 +1343,10 @@
         }
       ]
     }
+  ],
+  "publishedStandaloneLessonCodes": [
+    "LOG-01",
+    "PY-01",
+    "NET-25"
   ]
 }
