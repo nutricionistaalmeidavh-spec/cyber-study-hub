@@ -43,7 +43,7 @@ test('catálogo não inventa pagamentos, preserva status explícito e acesso sep
  const landing=readFileSync('src/components/AcademyLanding.tsx','utf8');
  assert.match(app,/CourseCatalog/);
  assert.match(landing,/publishedCourses/);
- assert.match(landing,/courses\.filter\(course => course\.status === 'published'\)/);
+ assert.match(readFileSync('src/curriculum/courseOfferings.ts','utf8'),/courses\.filter\(course => course\.status === 'published'\)/);
  assert.doesNotMatch(landing,/\/api\/(?:checkout|payment|subscribe)/i);
 });
 
