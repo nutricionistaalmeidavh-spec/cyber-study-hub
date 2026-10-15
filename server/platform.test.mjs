@@ -120,3 +120,32 @@ test('removing a progress key deletes only that user state',async()=>{
   assert.equal((await request('/api/me/state',{method:'DELETE',cookie,data:{key}})).status,200);
   assert.equal((await request('/api/me/state',{cookie})).payload.state[key],undefined);
 });
+
+
+test('HTTP course payload: unauthorized, granted, revoked and subscription scenarios',async()=>{
+  const request=await start({openRegistration:true});
+  const adminCookie=await boot(request);
+  const student=await request('/api/auth/register',{method:'POST',data:{name:'Aluno Teste',email:'curso-aluno@example.test',password:'GoodPassword1234!'}});
+  assert.equal(student.status,201);
+  const lesson='/api/content/lesson/43';
+  assert.equal((await request(lesson)).status,401);
+  assert.equal((await request(lesson,{cookie:student.cookie})).status,403);
+  assert.equal((await request(lesson,{cookie:adminCookie})).payload.lesson.id,43);
+  assert.equal((await request('/api/content/trail/ai-dev',{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/content/games',{cookie:student.cookie})).status,403);
+  const userId=student.payload.user.id;
+  assert.equal((await request('/api/admin/access/grants',{method:'POST',cookie:adminCookie,data:{userId,courseId:'web-apis'}})).status,200);
+  const opened=await request(lesson,{cookie:student.cookie});
+  assert.equal(opened.status,200);
+  assert.equal(opened.payload.kind,'legacy');
+  assert.equal(opened.payload.lesson.id,43);
+  assert.equal((await request('/api/content/lesson/47',{cookie:student.cookie})).payload.kind,'native');
+  assert.equal((await request('/api/content/trail/ai-dev',{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/admin/access/grants',{method:'DELETE',cookie:adminCookie,data:{userId,courseId:'web-apis'}})).status,200);
+  assert.equal((await request(lesson,{cookie:student.cookie})).status,403);
+  assert.equal((await request('/api/admin/access/subscriptions',{method:'POST',cookie:adminCookie,data:{userId,validDays:30}})).status,200);
+  assert.equal((await request('/api/content/trail/channel-dark',{cookie:student.cookie})).payload.modules.length,8);
+  assert.equal((await request('/api/content/games',{cookie:student.cookie})).payload.reviewPacks.length,9);
+  assert.equal((await request('/api/admin/access/subscriptions',{method:'DELETE',cookie:adminCookie,data:{userId}})).status,200);
+  assert.equal((await request('/api/content/trail/channel-dark',{cookie:student.cookie})).status,403);
+});

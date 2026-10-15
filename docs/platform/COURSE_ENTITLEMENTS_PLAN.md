@@ -40,12 +40,26 @@ Estado no momento:
 5. Migrar contas antigas sem perder progresso, favoritos, questionários nem relatórios.
 6. Validar UX de login, compra, pagamento pendente, assinatura vencida e recuperação de acesso.
 
-Esta etapa contempla **organização curricular e vitrine A**, não o lançamento de cobrança nem a ativação de uma barreira de conteúdo seguro.
+Esta etapa contempla **organização curricular, vitrine A e autenticação dos conteúdos no aplicativo**. A cobrança continua desativada; a publicação do repositório GitHub ainda impede exclusividade comercial.
 
-## Limite de segurança antes de cobrar (obrigatório resolver)
+## Segunda camada implementada: entrega autorizada de conteúdo
 
-Os documentos Markdown, PDFs e laboratórios estáticos estão controlados pelo backend. **Isso ainda não constitui um paywall completo**: partes do conteúdo das aulas interativas (`src/data/lessons.ts`, `src/data/lessonDetails.ts`, `src/content/main/*.json`) e das trilhas guiadas (`src/trails/*/modules.json`) são incorporadas ao JavaScript público pelo Vite. Um visitante tecnicamente capaz pode inspecionar o bundle, mesmo sem permissão de leitura no servidor. O source map público foi desativado, mas isso **não elimina** o conteúdo embutido.
+- Aulas V2 047–060 e legado 043–100 saem de `/api/content/lesson/:id` e não são importadas pelo aplicativo.
+- Trilhas Meu Gestor e Canal Dark, oficinas e contratos de laboratórios são recuperados via `/api/content/trail/:source` com grant do respectivo curso.
+- Conteúdo de jogos, gabaritos e cenários é recuperado via `/api/content/games`. O backend filtra os pacotes cujas aulas pertencem às concessões ativas.
+- Cloudflare Worker e Node self-hosted usam o mesmo motor `securedPayload` e checam sessão, curso publicado, concessão, revogação e assinatura.
+- Markdown, laboratórios e PDFs continuam protegidos também contra URL direta no Worker/Node. Respostas de conteúdo usam `Cache-Control: no-store`; o service worker não intercepta `/api`, `/course-library`, `/course-labs` nem `/materials`.
+- `npm run build` verifica regressões e, no pós-build, audita o JavaScript gerado para evitar inclusão de conteúdo privado.
+- IDs canônicos, progresso, contas, avaliações e login não mudam.
 
-Antes de aceitar pagamentos reais, extrair os dados didáticos para endpoints autenticados, aplicar a mesma autorização por curso a cada payload, impedir o acesso por arquivos alternativos, realizar testes E2E de tentativas com duas contas e confirmar que o bundle público contém somente a estrutura editorial permitida. Também considerar que caches antigos em dispositivos e arquivos previamente baixados não podem ser revogados retroativamente.
+## Bloqueios comerciais ainda existentes
 
-O núcleo atual não chama gateway externo, não contém credenciais novas e continua usando tecnologias abertas. Pagamentos permanecem somente opção futura explícita.
+**O repositório GitHub `nutricionistaalmeidavh-spec/cyber-study-hub` está público.** Seus arquivos-fonte de aulas, jogos e trilhas, além dos diretórios de Markdown/laboratórios, permanecem disponíveis no GitHub independentemente do login no site. A proteção de requests e do bundle é real, mas **não constitui proteção de propriedade intelectual comercial contra leitura do GitHub**. Para vender conteúdo exclusivo será obrigatório:
+
+1. Transferir o material completo para armazenamento ou repositório **privado** com deploy de conteúdo autenticado, sem integrar payloads didáticos no repositório público.
+2. Excluir os arquivos sensíveis do estado atual do repositório público (sem apagar códigos canônicos de progresso), revisar scripts de QA que consultam esses arquivos e configurar credenciais de leitura *somente* no backend.
+3. Considerar que commits públicos anteriores, forks, clones, caches antigos e materiais baixados não podem ser recolhidos retroativamente. Para exclusividade futura, publicar conteúdo revisado/novo apenas no armazenamento privado.
+4. Validar URLs diretas, bundles, dois usuários distintos, conta suspensa, grant vencido/revogado, cache e deploy de produção.
+5. Habilitar pagamentos e webhooks idempotentes somente após a migração, os testes operacionais e a escolha explícita do processador.
+
+O núcleo permanece self-hosted/open source/R$ 0 e não chama prestadores pagos. A aquisição/assinatura ainda não é cobrada.

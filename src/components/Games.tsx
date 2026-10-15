@@ -1,5 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
-import { reviewPacks, scenarios } from '../data/games';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { buildCrossword, normalize, scoreFrom } from '../lib/gameEngine';
 import { getGameProgress, pickWithRecency, saveGameProgress } from '../lib/storage';
 import type { GameType, ReviewPack, Scenario } from '../types';
@@ -16,7 +15,30 @@ const gameModes: GameModeChoice[] = [
   { type: 'scenario', number: '04', title: 'Cenários', description: 'Treine decisões com evidências.' }
 ];
 
-export function GamesHub() {
+type SecureGames = {reviewPacks:ReviewPack[];scenarios:Scenario[]};
+function useSecureGames(){
+  const [value,setValue]=useState<SecureGames|null>(null);
+  const [error,setError]=useState('');
+  useEffect(()=>{
+    const controller=new AbortController();
+    fetch('/api/content/games',{credentials:'same-origin',cache:'no-store',signal:controller.signal})
+      .then(async response=>{if(!response.ok)throw Error('Pacotes não liberados (HTTP '+response.status+').');return response.json();})
+      .then(setValue).catch(reason=>{if(!controller.signal.aborted)setError(String(reason));});
+    return ()=>controller.abort();
+  },[]);
+  return {value,error};
+}
+function GamesLoading({error}:{error:string}){
+  return <div className="page"><section className="panel">
+    <h1>{error?'Jogos indisponíveis':'Carregando jogos autorizados…'}</h1>
+    <p>{error||'Somente pacotes ligados aos cursos disponíveis em sua conta serão carregados.'}</p>
+  </section></div>;
+}
+export function GamesHub(){
+  const {value,error}=useSecureGames();
+  return value?<GamesHubLoaded reviewPacks={value.reviewPacks}/>:<GamesLoading error={error}/>;
+}
+function GamesHubLoaded({reviewPacks}:{reviewPacks:ReviewPack[]}) {
   const [track,setTrack]=useState('Todas');
   const [mode,setMode]=useState<GameType | null>(null);
   const progress=getGameProgress();
@@ -99,13 +121,18 @@ function PackCard({pack,progress,mode}:{pack:ReviewPack;progress:ReturnType<type
 }
 
 export function GamePlayer({packId,type,onRefresh}:{packId:number;type:GameType;onRefresh:()=>void}) {
-  const pack=reviewPacks.find(p=>p.id===packId) || reviewPacks[0];
+  const {value,error}=useSecureGames();
+  return value?<GamePlayerLoaded packId={packId} type={type} onRefresh={onRefresh} reviewPacks={value.reviewPacks} scenarios={value.scenarios}/>:<GamesLoading error={error}/>;
+}
+function GamePlayerLoaded({packId,type,onRefresh,reviewPacks,scenarios}:{packId:number;type:GameType;onRefresh:()=>void;reviewPacks:ReviewPack[];scenarios:Scenario[]}) {
+  const pack=reviewPacks.find(p=>p.id===packId);
+  if(!pack)return <div className="page"><section className="panel"><h1>Jogo não liberado</h1><a href="#games">Voltar aos jogos</a></section></div>;
   return <div className="page stack-lg">
     <div className="game-topbar"><a href="#games">← Cyber Games</a><span>Pack {pack.id} · aulas {pack.lessons[0]}–{pack.lessons[1]}</span></div>
     {type==='crossword'&&<CrosswordGame pack={pack} onDone={onRefresh}/>} 
     {type==='matching'&&<MatchingGame pack={pack} onDone={onRefresh}/>} 
     {type==='ordering'&&<OrderingGame pack={pack} onDone={onRefresh}/>} 
-    {type==='scenario'&&<ScenarioGame pack={pack} onDone={onRefresh}/>} 
+    {type==='scenario'&&<ScenarioGame pack={pack} onDone={onRefresh} scenarios={scenarios}/>} 
   </div>;
 }
 
@@ -193,7 +220,7 @@ function OrderingGame({pack,onDone}:{pack:ReviewPack;onDone:()=>void}) {
   </section>;
 }
 
-function ScenarioGame({pack,onDone}:{pack:ReviewPack;onDone:()=>void}) {
+function ScenarioGame({pack,onDone,scenarios}:{pack:ReviewPack;onDone:()=>void;scenarios:Scenario[]}) {
   const start=useRef(Date.now());
   const pool=useMemo(()=>scenarios.filter(s=>pack.scenarioIds.includes(s.id)),[pack.id]);
   const [index,setIndex]=useState(0);const [selected,setSelected]=useState<number|null>(null);const [correct,setCorrect]=useState(0);const [mistakes,setMistakes]=useState(0);const [result,setResult]=useState<number|null>(null);

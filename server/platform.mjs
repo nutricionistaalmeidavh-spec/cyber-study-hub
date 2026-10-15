@@ -1,3 +1,5 @@
+import { privateCourseSource } from './private-course-data.mjs';
+import { contentRoute, securedPayload } from '../src/worker/secure-payload-route.mjs';
 import { ownersForPath, knownCourseIds, publishedCourseIds, canonicalAssetPath, permitted } from '../src/worker/course-access.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from 'node:crypto';
@@ -257,6 +259,13 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
             .run(b.userId,now(),now()+b.validDays*DAY);
         }else q('UPDATE subscription_grants SET revoked_at=? WHERE user_id=?').run(now(),b.userId);
         return respond(res,200,{ok:true});
+      }
+      const courseRequest=method==='GET'?contentRoute(path):null;
+      if(courseRequest){
+        const user=mustUser(req),access=accessState(user);
+        const payload=securedPayload(courseRequest,user,access.grants,access.subscriptionActive,privateCourseSource);
+        if(!payload)throw new HttpError(403,'Curso não liberado para esta conta.');
+        return respond(res,200,payload);
       }
       if(roadmapRoute(path))return await handleRoadmap({
         path,method,url:new URL(req.url,canonicalOrigin).href,

@@ -1,4 +1,6 @@
-import { lessons } from '../data/lessons';
+import catalogData from '../curriculum/catalog.json';
+import type { CurriculumCatalog } from '../curriculum/types';
+const lessons=(catalogData as CurriculumCatalog).main.filter(l=>l.id>=43&&l.id<=100);
 import { getGameProgress, getLessonState } from '../lib/storage';
 import { LearningInsights } from './review/LearningInsights';
 
@@ -17,6 +19,6 @@ export default function Review() {
       <div className="panel stack"><span className="eyebrow">QUIZ &lt; 75%</span><h2>{lowQuiz.length} aulas</h2>{lowQuiz.length?lowQuiz.map(l=><a className="review-link" href={`#lesson/${l.id}`} key={l.id}><b>{lessonState[l.id].quizBest}%</b><span>{l.id} · {l.title}</span></a>):<p className="muted">Nenhum quiz abaixo do limiar.</p>}</div>
     </section>
     <section className="panel stack"><span className="eyebrow">CONCEITOS DOS GAMES</span><h2>Pontos que merecem outra passada</h2>{weak.length?<div className="tags large">{weak.map(w=><span key={w}>{w}</span>)}</div>:<p className="muted">Os jogos ainda não registraram conceitos fracos.</p>}</section>
-    <section className="panel stack"><span className="eyebrow">FAVORITAS</span><h2>Referências rápidas</h2><div className="lesson-grid compact">{favorites.map(l=><a className="lesson-card" href={`#lesson/${l.id}`} key={l.id}><div className="lesson-number">{l.id}</div><div className="lesson-body"><h3>{l.title}</h3><p>{l.summary}</p></div></a>)}</div>{!favorites.length&&<p className="muted">Favorite aulas para mantê-las aqui.</p>}</section>
+    <section className="panel stack"><span className="eyebrow">FAVORITAS</span><h2>Referências rápidas</h2><div className="lesson-grid compact">{favorites.map(l=><a className="lesson-card" href={`#lesson/${l.id}`} key={l.id}><div className="lesson-number">{l.id}</div><div className="lesson-body"><h3>{l.title}</h3><p>Aula da formação {l.track}.</p></div></a>)}</div>{!favorites.length&&<p className="muted">Favorite aulas para mantê-las aqui.</p>}</section>
   </div>;
 }

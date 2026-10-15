@@ -153,7 +153,7 @@ test('AI migration retains legacy notes while the account version wins conflicts
     './modules.json': JSON.parse(readFileSync('src/trails/ai-dev/modules.json')),
     './labContracts.json': JSON.parse(readFileSync('src/trails/ai-dev/labContracts.json')),
     '../../lib/guidedIdentity': guidedIdentity,
-    '../../components/practice/GuidedPracticeOrientation': {},
+    './AiLabLearningPath': {},
     './ai-dev.css': {}, '../../components/ProgressSyncStatus': {},
     '../../lib/studyProgress': { getStudyDraft: () => remote }
   }, { localStorage: local, window: { location: { hash: '#ai-dev' } } }, '\nexport { initial, initialPosition };');
@@ -161,8 +161,9 @@ test('AI migration retains legacy notes while the account version wins conflicts
   assert.equal(merged.notes[4], 'local draft');
   assert.equal(merged.notes[8], 'account draft');
   assert.deepEqual(Array.from(merged.completed).sort(), [1, 2]);
-  assert.equal(ai.initialPosition(merged).moduleId, 3);
-  assert.equal(ai.initialPosition(merged).stepIndex, 2);
+  const privateModules=JSON.parse(readFileSync('src/trails/ai-dev/modules.json')).modules;
+  assert.equal(ai.initialPosition(merged,privateModules).moduleId, 3);
+  assert.equal(ai.initialPosition(merged,privateModules).stepIndex, 2);
   assert.ok(local.getItem('hub-ai-dev-learning-v2:alice'), 'legacy backup must remain intact');
 });
 
@@ -192,7 +193,7 @@ test('a completed interactive lesson is not presented as the module continuation
   Object.assign(deps, {
     '../../curriculum/catalog.json': catalog,
     '../../data/lessons': { lessons: [] },
-    '../../content/registry': { listNativeV2LessonIds: () => [47] },
+    '../../content/nativeLessonIndex': { listNativeV2LessonIds: () => [47] },
     '../../lib/curriculumState': { getActiveParallelTracks: () => [] },
     '../../lib/learningProgress': { getLearningProgress: () => ({ 47: { completed: true } }) },
     '../../lib/storage': { getLessonState: () => ({}) },

@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import manifest from './manifest.json';
-import learning from './modules.json';
-import oficinas from './oficinas.json';
 import '../ai-dev/ai-dev.css';
 import './channel-dark.css';
 import { getStudyDraft, saveStudyVisit, syncCanonicalGuidedProgress } from '../../lib/studyProgress';
@@ -21,7 +19,6 @@ type Module = { moduleId: number; version: number; title: string; objective: str
   learningOutcomes: string[]; lessons: Lesson[]; assessmentPath: string; answerKeyPath: string };
 type StepDraft = { answer: number | null; checkedAnswer: boolean; referenceRead: boolean; quizAttempt: string };
 type Progress = { moduleId?: number; stepIndex?: number; drafts?: Record<number, StepDraft>; completed: number[]; notes: Record<number, string>; checked: Record<number, number[]> };
-const modules = (learning as unknown as { modules: Module[] }).modules;
 const modes = [
   { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/' },
   { id: 'claude', name: 'Claude', url: 'https://claude.ai/' },
@@ -45,7 +42,7 @@ function initial(userId: string): Progress {
   return { ...old, ...saved, completed: [...new Set([...old.completed, ...saved.completed])].filter(Number.isInteger),
     notes: { ...old.notes, ...saved.notes }, checked: { ...old.checked, ...saved.checked } };
 }
-function initialPosition(progress: Progress) {
+function initialPosition(progress: Progress, modules:Module[]) {
   const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
   const moduleId = Number(params.get('module') || progress.moduleId || 1);
   const module = modules.find(item => item.moduleId === moduleId) || modules[0];
@@ -54,9 +51,26 @@ function initialPosition(progress: Progress) {
 }
 
 export default function ChannelAutomationTrail({ userId }: { userId: string }) {
+  const [content,setContent]=useState<{modules:Module[];oficinas:any[]}|null>(null);
+  const [loadError,setLoadError]=useState('');
+  useEffect(()=>{
+    const controller=new AbortController();
+    fetch('/api/content/trail/channel-dark',{credentials:'same-origin',cache:'no-store',signal:controller.signal})
+      .then(async response=>{if(!response.ok)throw Error('Curso não liberado (HTTP '+response.status+').');return response.json();})
+      .then(payload=>setContent(payload))
+      .catch(reason=>{if(!controller.signal.aborted)setLoadError(String(reason));});
+    return ()=>controller.abort();
+  },[]);
+  if(!content?.modules?.length)return <div className="page"><section className="panel">
+    <h1>Automação de Canal Dark</h1>
+    <p>{loadError||'Carregando conteúdo autorizado pelo servidor…'}</p>
+  </section></div>;
+  return <ChannelAutomationTrailLoaded userId={userId} modules={content.modules} oficinas={content.oficinas} />;
+}
+function ChannelAutomationTrailLoaded({ userId, modules, oficinas }: { userId:string; modules:Module[]; oficinas:any[] }) {
   const [progress, setProgress] = useState<Progress>(() => initial(userId));
-  const [moduleId, setModuleId] = useState(() => initialPosition(progress).moduleId);
-  const [stepIndex, setStepIndex] = useState(() => initialPosition(progress).stepIndex);
+  const [moduleId, setModuleId] = useState(() => initialPosition(progress,modules).moduleId);
+  const [stepIndex, setStepIndex] = useState(() => initialPosition(progress,modules).stepIndex);
   const initialStep = modules.find(item => item.moduleId === moduleId)!.lessons[stepIndex].stepId;
   const restored = progress.drafts?.[initialStep];
   const [saveError, setSaveError] = useState('');
@@ -213,9 +227,9 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
               <a className="button primary" target="_blank" rel="noopener noreferrer" href={oficina.guide}>Abrir guia de integração e arquivos ↗</a>
               <div className="channel-workshop-command"><strong>Execute no seu computador:</strong><code>{oficina.command}</code></div>
               <h4>Arquivos que você vai produzir</h4>
-              <ul>{oficina.artifacts.map(file => <li key={file}><code>{file}</code></li>)}</ul>
+              <ul>{oficina.artifacts.map((file:string) => <li key={file}><code>{file}</code></li>)}</ul>
               <h4>Código existente que você vai usar</h4>
-              <ul className="channel-workshop-sources">{oficina.sources.map(source =>
+              <ul className="channel-workshop-sources">{oficina.sources.map((source:{repo:string;path:string;url:string;access:string;why:string}) =>
                 <li key={source.repo + source.path}>
                   <a href={source.url} target="_blank" rel="noopener noreferrer">{source.repo}/{source.path} ↗</a>
                   <small>{source.access === 'private' ? 'Repositório privado: precisa de acesso · opcional' : 'Origem pública com código MIT'}</small>

@@ -7,7 +7,7 @@ import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
 import AcademyBrand from './components/AcademyBrand';
 import { studyRouteHash, studySectionId, scrollStudySection } from './lib/studyNavigation';
-import { LessonList, LessonViewer } from './components/Lessons';
+import { LessonList, LessonViewer } from './components/SecureLessons';
 import { GamePlayer, GamesHub } from './components/Games';
 import Review from './components/Review';
 import { MaterialsHub, MaterialViewer } from './components/Materials';
