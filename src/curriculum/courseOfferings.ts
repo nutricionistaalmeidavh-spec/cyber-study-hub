@@ -13,3 +13,5 @@ export const mainLessonsByCode = new Map(catalog.main.map(item => [item.code,ite
 export const parallelLessonsByCode = new Map(catalog.parallel.map(item => [item.code,item]));
 export const publishedMainLessonIds = new Set(publishedCourses.filter(c=>c.type==='main').flatMap(c=>c.modules.flatMap(m=>m.lessonCodes)).map(code=>mainLessonsByCode.get(code)?.id).filter((id):id is number=>id!==undefined));
 export const publishedParallelLessonCodes = new Set(publishedCourses.filter(c=>c.type==='parallel').flatMap(c=>c.modules.flatMap(m=>m.lessonCodes)));
+export const guidedLessonsByCode = new Map(catalog.guided.map(item => [item.code,item]));
+export const publishedGuidedLessonCodes = new Set(publishedCourses.filter(c=>c.type==='trail').flatMap(c=>c.modules.flatMap(m=>m.lessonCodes)));
