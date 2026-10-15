@@ -61,7 +61,7 @@
     "verify:ai-dev": "node scripts/verify-ai-dev.mjs",
     "test:editorial": "node --test scripts/test-artisys-editorial.mjs",
     "test:hub-editorial": "node --test scripts/test-artisys-hub-editorial.mjs",
-    "test:channel-dark": "node --test scripts/test-channel-dark.mjs"
+    "test:channel-dark": "node --test scripts/test-channel-dark.mjs public/course-labs/channel-dark/engine.test.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
