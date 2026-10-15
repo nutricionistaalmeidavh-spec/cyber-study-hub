@@ -8,7 +8,7 @@ test('Aulas interativas devem vir do servidor autenticado',()=>{
   const code=src(path);
   assert.doesNotMatch(code,/from ['"][^'"]*\/(?:data\/lessons|data\/lessonDetails|content\/registry)['"]/,path);
  }
- assert.match(src('src/components/SecureLessons.tsx'),/\/api\/content\/lesson\//);
+ assert.match(src('src/components/lesson-v2/LessonViewerV2.tsx'),/\/api\/content\/lesson\//);
 });
 test('Trilhas e jogos não incorporam payload editorial em JS público',()=>{
  for(const path of ['src/trails/ai-dev/AiDevelopmentTrail.tsx','src/trails/channel-dark/ChannelAutomationTrail.tsx']){
@@ -22,10 +22,8 @@ test('Trilhas e jogos não incorporam payload editorial em JS público',()=>{
 test('API de payload depende da autorização de curso existente nos dois backends',()=>{
  for(const file of ['src/worker/index.mjs','server/platform.mjs']){
   const s=src(file);
-  assert.match(s,/\/api\/content\/lesson\//,file);
-  assert.match(s,/\/api\/content\/trail\//,file);
-  assert.match(s,/\/api\/content\/games/,file);
-  assert.match(s,/permitted\(/,file);
+  assert.match(s,/contentRoute\(path\)/,file);
+  assert.match(s,/securedPayload\(/,file);
  }
 });
 test('Bundle de produção não contém textos ou gabaritos de aulas privadas',()=>{
