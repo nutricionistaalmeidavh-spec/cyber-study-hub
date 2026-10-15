@@ -104,7 +104,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   const denied=<section className="page platform-page"><div className="panel stack" role="status">
     <span className="eyebrow">ACESSO AO CURSO</span>
     <h1>{accessError?'Não foi possível verificar seu acesso':access?'Curso não liberado nesta conta':'Verificando acesso ao curso…'}</h1>
-    <p>{accessError?'Atualize a página para tentar novamente.':access?'Selecione uma formação disponível para sua conta. A compra avulsa e a assinatura ainda não são cobradas automaticamente.':'A consulta de permissões ocorre no servidor.'}</p>
+    <p>{accessError?'Atualize a página para tentar novamente.':access?'Selecione uma formação disponível para sua conta. Se houver oferta disponível, compre pelo ArtiSys Pagamentos usando o e-mail desta conta. O acesso será liberado após confirmação financeira.':'A consulta de permissões ocorre no servidor.'}</p>
     <a className="button ghost" href="#courses">Ver catálogo de cursos</a>
   </div></section>;
   const feedbackTrigger=useRef<HTMLButtonElement>(null);
@@ -162,7 +162,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
       </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
-      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} />}
+      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} userEmail={user.email} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='feedback' && <FeedbackBoard user={user} />}
       {route.page==='roadmap' && <RoadmapPage embedded />}
