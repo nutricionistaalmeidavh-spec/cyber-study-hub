@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:learning && npm run verify:catalog && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:hub-editorial && tsc --noEmit && vite build",
+    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run verify:learning && npm run verify:catalog && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:hub-editorial && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -64,6 +64,8 @@
     "test:a-191-200": "node --test public/course-labs/a191-200/lab.test.mjs",
     "test:grade-a-191-200": "node scripts/test-grade-a-191-200.mjs",
     "test:grade-a-181-190": "node scripts/test-grade-a-181-190.mjs && node --test public/course-labs/a181-190/lab.test.mjs",
+    "verify:channel-dark": "node scripts/verify-channel-dark.mjs",
+    "test:channel-dark": "node --test scripts/test-channel-dark.mjs public/course-labs/channel-dark/engine.test.mjs scripts/test-channel-dark-workshops.mjs",
     "test:a-201-210": "node --test public/course-labs/a201-210/lab.test.mjs",
     "test:grade-a-201-210": "node scripts/test-grade-a-201-210.mjs"
   },

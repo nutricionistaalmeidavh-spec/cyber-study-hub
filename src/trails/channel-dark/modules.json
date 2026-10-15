@@ -1,0 +1,1267 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "moduleId": 1,
+      "version": 1,
+      "title": "Estratégia do canal dark",
+      "objective": "Planejar um canal sem exposição pessoal, com autoria, nicho e ritmo de produção sustentável antes de gerar vídeos.",
+      "learningOutcomes": [
+        "Escolher nicho com público e promessa claros",
+        "Definir formatos longos e Shorts sem copiar concorrentes",
+        "Construir guia editorial e identidade própria",
+        "Separar geração técnica de responsabilidade autoral"
+      ],
+      "lessons": [
+        {
+          "stepId": 1,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Canal dark não significa canal sem autoria",
+          "lead": "Planejar um canal sem exposição pessoal, com autoria, nicho e ritmo de produção sustentável antes de gerar vídeos.",
+          "sections": [
+            {
+              "heading": "Canal dark não significa canal sem autoria",
+              "body": "Um canal dark não mostra obrigatoriamente o rosto do criador; seu valor continua dependendo de pesquisa, narrativa original e edição com intenção. O planejamento precisa explicitar o público, a transformação prometida e como o vídeo contribui para quem assiste.",
+              "example": "Canal sobre história da tecnologia: cada episódio responde uma pergunta investigável, inclui fontes e traz conclusão própria.",
+              "counterexample": "Criar cem vídeos com o mesmo template e só trocar nomes pode caracterizar conteúdo inautêntico."
+            },
+            {
+              "heading": "Formato e capacidade real de produção",
+              "body": "Distingua vídeo longo, Short e recorte derivado. Cada formato exige abertura, duração, cadência e métrica apropriados. Comece com um episódio piloto e crie somente o calendário que consegue revisar.",
+              "example": "Um episódio explicativo de 4 minutos gera um Short de 35 segundos que traz uma ideia completa, não apenas um trailer.",
+              "counterexample": "Prometer publicar 10 vídeos ao dia sem tempo para verificar fatos e licenças leva à queda de qualidade."
+            },
+            {
+              "heading": "Licenças e rastreabilidade da criação",
+              "body": "Registre a origem de imagens, vídeos, voz, música e dados usados. Banco de mídia, modelo generativo e plataforma de publicação têm termos diferentes; plano gratuito não significa autorização comercial.",
+              "example": "Na planilha editorial cada cena contém origem, autor, tipo de licença, permissão comercial e data da verificação.",
+              "counterexample": "Baixar imagens achadas em buscador e assumir que podem ser monetizadas viola direitos de terceiros."
+            }
+          ],
+          "challenge": {
+            "question": "Qual característica torna um canal dark original?",
+            "options": [
+              "Pesquisa própria, narração contextualizada e edição com valor para o público",
+              "Vídeos idênticos mudando somente o título",
+              "Automatização de publicações sem revisão"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 2,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Brief editorial com IA",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para peça ao assistente três propostas de nicho e critérios para validar demanda, conteúdo e diferenciação. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Estratégia do canal dark\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não trate sugestões de tendências como evidência verificada."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 1: Estratégia do canal dark. Ajude a peça ao assistente três propostas de nicho e critérios para validar demanda, conteúdo e diferenciação. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 3,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de Política de monetização do YouTube. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "Política de monetização do YouTube",
+          "referencePath": "https://support.google.com/youtube/answer/1311392",
+          "challengeText": "Compare dois roteiros: um repetitivo e um investigativo com fontes. Identifique a contribuição original em pelo menos 50 caracteres."
+        },
+        {
+          "stepId": 4,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Estratégia do canal dark",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Defina nome provisório, público, promessa e três temas sem usar conteúdo protegido.",
+            "Crie um guia editorial em arquivo de texto gratuito com tom, fontes e padrões visuais.",
+            "Liste dez pautas e selecione uma por utilidade, originalidade e possibilidade de verificação.",
+            "Monte um registro de direitos por cena e marque o que exige confirmação antes de publicar."
+          ],
+          "acceptance": [
+            "Público e promessa definidos e verificáveis",
+            "Uma pauta apresenta contribuição autoral clara",
+            "Direitos e fontes registrados em arquivo local",
+            "Não há necessidade de conta paga para executar",
+            "Critérios de revisão humana estão explícitos"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-01.md",
+          "assessmentPrompt": "Um vídeo obtém muitas visualizações mas consiste apenas em slides genéricos repetidos. Explique o risco editorial e proponha uma reformulação original.",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 1 --out ./meu-canal",
+          "expectedArtifact": "01-estrategia/brief.json + 01-estrategia/licencas.csv",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "Erro: revisão humana obrigatória",
+            "Defina humanApproval: true no brief; não simule aprovação do vídeo",
+            "Corrija público e promessa até o validador aceitar"
+          ],
+          "implementationNote": "Defina persona e três temas. Compare a promessa com um exemplo de aula já existente; evite trocar apenas palavras de vídeos alheios.",
+          "checkpointAssertion": "A validação impede continuar com revisão humana desabilitada."
+        }
+      ],
+      "tools": [
+        {
+          "name": "OBS Studio",
+          "url": "https://obsproject.com/",
+          "tier": "core",
+          "note": "Gravação gratuita opcional para o piloto"
+        },
+        {
+          "name": "Krita",
+          "url": "https://krita.org/en/",
+          "tier": "core",
+          "note": "Identidade visual local"
+        },
+        {
+          "name": "Steve AI",
+          "url": "https://www.steve.ai/",
+          "tier": "optional",
+          "note": "Freemium; exportações e uso comercial dependem do plano"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-01.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-01.md"
+    },
+    {
+      "moduleId": 2,
+      "version": 1,
+      "title": "Pesquisa, pautas e roteiros",
+      "objective": "Criar pesquisa fundamentada, estrutura narrativa e roteiros reutilizáveis sem depender de APIs pagas.",
+      "learningOutcomes": [
+        "Construir fila editorial com prioridades",
+        "Distinguir fonte primária de palpite da IA",
+        "Escrever roteiro com abertura, desenvolvimento e conclusão",
+        "Registrar revisões e checagem factual"
+      ],
+      "lessons": [
+        {
+          "stepId": 5,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Pesquisa antes do texto",
+          "lead": "Criar pesquisa fundamentada, estrutura narrativa e roteiros reutilizáveis sem depender de APIs pagas.",
+          "sections": [
+            {
+              "heading": "Pesquisa antes do texto",
+              "body": "O pipeline começa com pergunta central e evidências de fontes confiáveis. Conteúdo de terceiros deve ser citado ou licenciado. A IA pode sugerir caminhos de pesquisa, mas não substitui a consulta da fonte original.",
+              "example": "Uma pauta sobre um protocolo inclui documentação oficial, data, limite da afirmação e forma de explicar para iniciantes.",
+              "counterexample": "Pedir ao modelo para inventar cinco fontes e copiá-las para o vídeo transforma alucinações em afirmações públicas."
+            },
+            {
+              "heading": "Estrutura narrativa planejada",
+              "body": "Use a sequência gancho relevante, contexto, conflito/pergunta, evidências, implicações e conclusão. Cada parte precisa corresponder ao tempo de narração disponível; roteiro de 800 palavras não cabe num Short.",
+              "example": "Um episódio de quatro minutos usa abertura de 15 segundos, três blocos de 60 segundos e fechamento de 25 segundos com margem de edição.",
+              "counterexample": "Gancho sensacionalista desconectado da resposta diminui credibilidade e retenção."
+            },
+            {
+              "heading": "Banco editorial canônico",
+              "body": "Guarde em SQLite ou CSV uma única ficha por pauta com id, estado, prazo, fontes, versão do roteiro e revisão. Não duplique a mesma verdade em ferramentas diferentes sem sincronização.",
+              "example": "PAUTA-001 passa de ideia a pesquisada, roteirizada, revisada, montada e pronta para publicação.",
+              "counterexample": "Manter pauta como publicada após alterar o arquivo de roteiro quebra a rastreabilidade do fluxo."
+            }
+          ],
+          "challenge": {
+            "question": "Qual procedimento evita a publicação de fatos inventados?",
+            "options": [
+              "Abrir a fonte primária e verificar a afirmação",
+              "Confiar na quantidade de detalhes da resposta da IA",
+              "Retirar todas as fontes para deixar o roteiro mais curto"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 6,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Coautoria de roteiros com revisão",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para organize um roteiro de 90 segundos baseado exclusivamente em fatos e links conferidos. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Pesquisa, pautas e roteiros\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não autorize criação de citações, datas ou números não validados."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 2: Pesquisa, pautas e roteiros. Ajude a organize um roteiro de 90 segundos baseado exclusivamente em fatos e links conferidos. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 7,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de SQLite documentação. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "SQLite documentação",
+          "referencePath": "https://www.sqlite.org/docs.html",
+          "challengeText": "Explique por que cada pauta precisa de id e estado únicos e descreva uma transição inválida que não pode sobrescrever o roteiro revisado."
+        },
+        {
+          "stepId": 8,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Pesquisa, pautas e roteiros",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Escreva gratuitamente cinco pautas com pergunta, público e ao menos uma fonte por pauta.",
+            "Crie um CSV com id, status, titulo, fonte e licenca para rastrear o trabalho.",
+            "Produza um roteiro original de 90 segundos com abertura, evidências e desfecho.",
+            "Faça revisão manual de cada afirmação e salve uma versão final assinada editorialmente."
+          ],
+          "acceptance": [
+            "Cinco pautas únicas com estados explícitos",
+            "Fontes podem ser abertas e conferidas",
+            "Roteiro possui estrutura e duração plausíveis",
+            "A versão revisada fica preservada",
+            "Etapa completa sem API ou pagamento"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-02.md",
+          "assessmentPrompt": "Um assistente gerou um número preciso, mas a fonte está indisponível. Qual estado da pauta e como o roteiro deve tratar o dado?",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 2 --out ./meu-canal",
+          "expectedArtifact": "02-roteiros/pautas.csv + 02-roteiros/roteiro.md",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "Fonte 'verificada' sem aprovação humana",
+            "Deixe a_verificar até consultar a fonte original e registrar o revisor",
+            "Atualize a pergunta sem perder id e histórico"
+          ],
+          "implementationNote": "A primeira pauta tem documento RFC como fonte a verificar; uma segunda pauta demonstrativa também precisa receber uma fonte pertinente antes de ser considerada pesquisada.",
+          "checkpointAssertion": "Uma pauta sem revisão permanece a_verificar e não recebe selo de fonte confirmada."
+        }
+      ],
+      "tools": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/",
+          "tier": "core",
+          "note": "Scripts e CSV locais"
+        },
+        {
+          "name": "SQLite",
+          "url": "https://www.sqlite.org/",
+          "tier": "core",
+          "note": "Banco editorial local"
+        },
+        {
+          "name": "Ollama",
+          "url": "https://ollama.com/",
+          "tier": "optional",
+          "note": "Assistente local sujeito ao hardware"
+        },
+        {
+          "name": "ChatGPT",
+          "url": "https://chatgpt.com/",
+          "tier": "optional",
+          "note": "Assistente de navegador, limites variáveis"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-02.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-02.md"
+    },
+    {
+      "moduleId": 3,
+      "version": 1,
+      "title": "Narração e TTS",
+      "objective": "Gerar narração inteligível em português e tratar áudio localmente, comparando Kokoro, Piper e opções avançadas.",
+      "learningOutcomes": [
+        "Diferenciar TTS, transcrição e clonagem de voz",
+        "Produzir narração com pipeline local acessível",
+        "Ajustar pausas, pronúncia e volume",
+        "Respeitar consentimento, identidade e licenças"
+      ],
+      "lessons": [
+        {
+          "stepId": 9,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Texto para fala e idioma correto",
+          "lead": "Gerar narração inteligível em português e tratar áudio localmente, comparando Kokoro, Piper e opções avançadas.",
+          "sections": [
+            {
+              "heading": "Texto para fala e idioma correto",
+              "body": "TTS converte roteiro em som e não deve ser confundido com reconhecimento de fala. Verifique explicitamente se o modelo e a voz suportam português brasileiro; não é seguro presumir que toda voz de Kokoro fala pt-BR.",
+              "example": "Para uma narração em português, comece com uma voz pt_BR do Piper e compare a qualidade do teste com outras alternativas.",
+              "counterexample": "Escolher uma voz inglesa e considerar a pronúncia truncada um problema de edição não corrige a origem."
+            },
+            {
+              "heading": "Kokoro, Piper e Chatterbox",
+              "body": "Kokoro-82M tem pesos com licença Apache-2.0 e é leve em comparação a modelos maiores; valide idiomas e vozes antes de adotá-lo. Piper permite um percurso local de CPU com voz compatível. Chatterbox é uma alternativa multimodal mais pesada.",
+              "example": "Compare o mesmo parágrafo com Piper pt_BR e uma voz suportada do Kokoro, anotando naturalidade, tempo e custo computacional.",
+              "counterexample": "Clonar a voz de uma celebridade sem consentimento não é alternativa legítima de narração."
+            },
+            {
+              "heading": "Qualidade e normalização",
+              "body": "Segmentação por frases, pausas e normalização mantêm o áudio compreensível. Guarde os arquivos de entrada e saída e compare o áudio original com o resultado, evitando distorção e volume agressivo.",
+              "example": "Exporte narração limpa em WAV, inspecione picos no Audacity e gere versão final com volume consistente.",
+              "counterexample": "Aumentar ganho até distorcer ou cobrir palavras com trilha alta prejudica acessibilidade."
+            }
+          ],
+          "challenge": {
+            "question": "Qual é o percurso gratuito mais seguro para narrar um vídeo em português?",
+            "options": [
+              "Usar TTS local com voz pt-BR verificada e revisar áudio",
+              "Usar uma voz de idioma não suportado e publicar sem ouvir",
+              "Clonar uma voz conhecida sem permissão"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 10,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Direção da voz e escuta crítica",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para revisar frase por frase um texto de narração com marcação de pausas, palavras difíceis e instruções de entonação. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Narração e TTS\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não confunda uma voz natural com comprovação de autorização para uso."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 3: Narração e TTS. Ajude a revisar frase por frase um texto de narração com marcação de pausas, palavras difíceis e instruções de entonação. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 11,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de Kokoro-82M. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "Kokoro-82M",
+          "referencePath": "https://huggingface.co/hexgrad/Kokoro-82M",
+          "challengeText": "Leia idiomas, pesos e condições da voz que pretende usar. Compare a viabilidade com Piper pt-BR e explique qual escolheria para o seu computador."
+        },
+        {
+          "stepId": 12,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Narração e TTS",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Separe gratuitamente o roteiro em cinco blocos de narração com pausas e pronúncias.",
+            "Gere um teste com Piper e uma voz portuguesa de uso permitido; o teste pode ser curto.",
+            "Ouça, anote erros e ajuste as frases sem alterar o conteúdo factual.",
+            "Normalize no Audacity ou FFmpeg e arquive a versão aprovada com registro de licença da voz."
+          ],
+          "acceptance": [
+            "Modelo, voz e licença identificados",
+            "Português testado na prática antes de usar",
+            "Existem original e arquivo revisado",
+            "Registro de ajustes de pronúncia e volume",
+            "Nenhuma ferramenta paga é necessária"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-03.md",
+          "assessmentPrompt": "A narração é realista, mas a licença da voz não está clara. Você deve publicar? Proponha alternativa verificável.",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 3 --out ./meu-canal",
+          "expectedArtifact": "03-audio/narracao.json (manifesto, ainda sem WAV até gravar/rodar TTS)",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "Piper indisponível ou voz pt-BR ausente",
+            "Não invente áudio: grave voz própria no Audacity, confirme licença e execute a escuta",
+            "Se perder a fala, regrave somente o segmento e preserve o original"
+          ],
+          "implementationNote": "Este checkpoint **não gera voz sozinho**. Entrega segmentos com pronúncia e duração estimada; Piper pt-BR ou gravação própria são a prática de áudio do estudante.",
+          "checkpointAssertion": "Uma voz sem consentimento, licença, português testado ou escuta não recebe aprovação."
+        }
+      ],
+      "tools": [
+        {
+          "name": "Piper TTS",
+          "url": "https://github.com/OHF-Voice/piper1-gpl",
+          "tier": "core",
+          "note": "Vozes locais, selecionar voz pt_BR e conferir licença"
+        },
+        {
+          "name": "Audacity",
+          "url": "https://www.audacityteam.org/",
+          "tier": "core",
+          "note": "Tratamento local de áudio"
+        },
+        {
+          "name": "Kokoro",
+          "url": "https://huggingface.co/hexgrad/Kokoro-82M",
+          "tier": "optional",
+          "note": "Open weights Apache-2.0; checar idiomas/vozes"
+        },
+        {
+          "name": "Chatterbox",
+          "url": "https://github.com/resemble-ai/chatterbox",
+          "tier": "optional",
+          "note": "Modelo aberto mais pesado, inclui português"
+        },
+        {
+          "name": "ElevenLabs",
+          "url": "https://elevenlabs.io/pricing",
+          "tier": "optional",
+          "note": "Serviço comercial opcional"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-03.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-03.md"
+    },
+    {
+      "moduleId": 4,
+      "version": 1,
+      "title": "Imagens, cenas e thumbnails",
+      "objective": "Produzir imagens e um storyboard legíveis, rastreáveis e consistentes sem depender de geração visual em nuvem.",
+      "learningOutcomes": [
+        "Construir storyboard por cena",
+        "Criar thumbnail com contraste e mensagem clara",
+        "Usar editores locais e mídia autorizada",
+        "Comparar geração local e ferramentas online com limites"
+      ],
+      "lessons": [
+        {
+          "stepId": 13,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Cada cena precisa ensinar algo",
+          "lead": "Produzir imagens e um storyboard legíveis, rastreáveis e consistentes sem depender de geração visual em nuvem.",
+          "sections": [
+            {
+              "heading": "Cada cena precisa ensinar algo",
+              "body": "O storyboard parte do roteiro e marca início, fim, objetivo visual, duração e origem da mídia. Imagem decorativa deve ser subordinada à informação; thumbnails prometem apenas o que o episódio entrega.",
+              "example": "Cena de 12 s usa diagrama da evolução de um circuito desenhado no Krita, com uma frase na tela.",
+              "counterexample": "Trocar uma cena histórica por foto artificial apresentada como registro real induz o público ao erro."
+            },
+            {
+              "heading": "Consistência e legibilidade",
+              "body": "Padronize tipografia, margens, contraste e cores. Mostre conceitos visuais sem copiar thumbnails de outros canais. Teste a imagem reduzida como apareceria num celular.",
+              "example": "A thumbnail usa quatro palavras, um elemento focal e área segura sem texto cortado.",
+              "counterexample": "Texto pequeno e dez elementos competindo por atenção deixam a capa ilegível."
+            },
+            {
+              "heading": "Geração assistida e responsabilidade",
+              "body": "ComfyUI e modelos locais podem ampliar possibilidades se houver GPU; o caminho mínimo continua com Krita, SVG e imagens de licença conferida. Google Flow pode servir como comparação em aula, não como requisito.",
+              "example": "O aluno cria primeiro uma cena manual em 16:9 e depois compara com uma imagem sintética, identificando custo e limitações.",
+              "counterexample": "Assumir que qualquer imagem gerada pode representar um evento real sem identificação contraria boas práticas."
+            }
+          ],
+          "challenge": {
+            "question": "O que documentar em uma cena do storyboard?",
+            "options": [
+              "Duração, propósito, arquivo-fonte e direitos",
+              "Somente um prompt bonito",
+              "Somente cor de fundo"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 14,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Prompts visuais e direção artística",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para produzir instruções de storyboard em vez de fazer a IA inventar provas visuais ou direitos. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Imagens, cenas e thumbnails\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não utilizar geração fotorrealista como se fosse documentação real."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 4: Imagens, cenas e thumbnails. Ajude a produzir instruções de storyboard em vez de fazer a IA inventar provas visuais ou direitos. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 15,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de Documentação do Krita. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "Documentação do Krita",
+          "referencePath": "https://docs.krita.org/en/",
+          "challengeText": "Especifique uma thumbnail legível em 320 pixels de largura e explique como a cena mantém continuidade com a mensagem do roteiro."
+        },
+        {
+          "stepId": 16,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Imagens, cenas e thumbnails",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Monte gratuitamente um storyboard de seis cenas com duração e intenção editorial.",
+            "Desenhe três elementos visuais próprios no Krita ou com SVG gratuito.",
+            "Crie uma thumbnail com título curto e teste a legibilidade em tamanho pequeno.",
+            "Registre a origem e os termos de cada arquivo usado, deixando a cena sintética identificada."
+          ],
+          "acceptance": [
+            "Storyboard tem seis cenas úteis",
+            "Thumbnail é legível em dimensão reduzida",
+            "Cada elemento tem fonte rastreável",
+            "Há uma versão integralmente local/gratuita",
+            "Cenas não simulam falsamente eventos reais"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-04.md",
+          "assessmentPrompt": "Uma imagem gerada parece fotografia de um acontecimento histórico. Como deve ser apresentada para não confundir espectadores?",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 4 --out ./meu-canal",
+          "expectedArtifact": "04-visuais/storyboard.json + 04-visuais/thumbnail.svg",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "Thumbnail com texto cortado",
+            "Teste a versão reduzida e reescreva o título com menos palavras",
+            "Nunca chame cena artificial de fotografia de evento real"
+          ],
+          "implementationNote": "O SVG é um exemplo próprio, não fotografia documental. Compare tamanho de 1280 × 720 e visualização reduzida antes de liberar o thumbnail.",
+          "checkpointAssertion": "Cenas sem propósito, duração ou licença são rejeitadas pelo verificador."
+        }
+      ],
+      "tools": [
+        {
+          "name": "Krita",
+          "url": "https://krita.org/en/",
+          "tier": "core",
+          "note": "Desenho e thumbnails offline"
+        },
+        {
+          "name": "ImageMagick",
+          "url": "https://imagemagick.org/",
+          "tier": "core",
+          "note": "Tratamento e conversão em lote"
+        },
+        {
+          "name": "ComfyUI",
+          "url": "https://github.com/comfyanonymous/ComfyUI",
+          "tier": "optional",
+          "note": "Geração de imagem local com GPU, depende de modelo e licença"
+        },
+        {
+          "name": "Google Flow",
+          "url": "https://labs.google/fx/tools/flow",
+          "tier": "optional",
+          "note": "Serviço Google com créditos e limites variáveis"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-04.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-04.md"
+    },
+    {
+      "moduleId": 5,
+      "version": 1,
+      "title": "Vídeo com IA: Pika, Flow e Steve",
+      "objective": "Comparar vídeos generativos comerciais e modelos locais sem tornar serviços online necessários para concluir o módulo.",
+      "learningOutcomes": [
+        "Escolher entre animação simples e geração de vídeo",
+        "Comparar Pika, Google Flow e Steve AI com critérios",
+        "Reconhecer limites de créditos, licenças e hardware",
+        "Montar cenas alternativas com FFmpeg"
+      ],
+      "lessons": [
+        {
+          "stepId": 17,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Primeiro o vídeo que funciona",
+          "lead": "Comparar vídeos generativos comerciais e modelos locais sem tornar serviços online necessários para concluir o módulo.",
+          "sections": [
+            {
+              "heading": "Primeiro o vídeo que funciona",
+              "body": "Vídeo generativo é opcional: um bom episódio pode usar narração, mapas, diagramas, zoom e movimentos de câmera em imagens de autoria ou licença apropriada. FFmpeg permite transformar essas cenas em vídeo sem crédito de nuvem.",
+              "example": "Uma imagem própria com movimento suave e narração contextualizada pode explicar melhor um conceito do que 5 s de vídeo artificial.",
+              "counterexample": "Achar que cada cena precisa do modelo mais caro cria um pipeline caro e frágil."
+            },
+            {
+              "heading": "Comparação entre serviços",
+              "body": "Pika oferece experiências e planos, mas direitos comerciais dependem do plano atual; Google Flow oferece créditos sujeitos a termos e região; Steve AI reúne composição de vídeo e animações. Nenhum desses é software open source nem núcleo do curso.",
+              "example": "Compare, em ficha, qualidade, fidelidade, custo estimado, marca d'água, autorização comercial, prazo e forma de exportação.",
+              "counterexample": "Confundir plano grátis para experimentar com licença para monetizar um vídeo gera risco legal."
+            },
+            {
+              "heading": "Modelos locais e custo computacional",
+              "body": "ComfyUI com modelos de vídeo como Wan 2.2 pode funcionar localmente em máquina com GPU adequada, mas versões e requisitos diferem. Não exija GPU de quem está começando; reserve geração pesada para laboratório avançado.",
+              "example": "Um aluno com computador básico usa FFmpeg para animar frames; outro com GPU compara a mesma cena gerada localmente.",
+              "counterexample": "Executar modelo pesado em notebook fraco sem estimar RAM e VRAM interrompe o curso antes da entrega."
+            }
+          ],
+          "challenge": {
+            "question": "O que é obrigatório para concluir a trilha sem gastar?",
+            "options": [
+              "Conseguir montar vídeo com arquivos próprios, FFmpeg e revisão",
+              "Comprar créditos de vídeo generativo",
+              "Assinar simultaneamente Pika e Google Flow"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 18,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Direção de cenas e avaliação de custo",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para transformar uma cena do storyboard em prompt técnico e também em alternativa gratuita com material próprio. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Vídeo com IA: Pika, Flow e Steve\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não assumir automatização não oficial das interfaces comerciais nem licença comercial de testes."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 5: Vídeo com IA: Pika, Flow e Steve. Ajude a transformar uma cena do storyboard em prompt técnico e também em alternativa gratuita com material próprio. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 19,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de FFmpeg documentação de filtros. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "FFmpeg documentação de filtros",
+          "referencePath": "https://ffmpeg.org/ffmpeg-filters.html",
+          "challengeText": "Descreva como gerar uma cena de 10 segundos a partir de imagem própria e explique por que o fluxo continua funcionando sem Pika, Flow ou Steve AI."
+        },
+        {
+          "stepId": 20,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Vídeo com IA: Pika, Flow e Steve",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Monte gratuitamente duas cenas em imagem própria e defina suas durações.",
+            "Crie vídeo local com FFmpeg ou exporte pelo Kdenlive, sem necessidade de modelo de geração.",
+            "Preencha uma ficha comparativa de Pika, Google Flow, Steve AI e um modelo local.",
+            "Substitua mentalmente qualquer serviço indisponível pela cena local e documente por que a narrativa continua válida."
+          ],
+          "acceptance": [
+            "Há vídeo de duas cenas no percurso gratuito",
+            "Licenças das imagens foram verificadas",
+            "Pika, Flow e Steve constam somente como comparação",
+            "Alternativa sem GPU foi documentada",
+            "Vídeo mantém sentido narrativo sem serviço pago"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-05.md",
+          "assessmentPrompt": "O plano gratuito de uma ferramenta não oferece licença comercial. Monte um plano de contingência para publicar sem usá-la.",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 5 --out ./meu-canal",
+          "expectedArtifact": "05-video/scene-01.ppm + 05-video/scene-02.ppm + 05-video/render.sh",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "FFmpeg não localizado",
+            "Instale a versão gratuita do FFmpeg, confira ffmpeg -version e rode novamente o script",
+            "Não confunda prévia sem narração com episódio pronto"
+          ],
+          "implementationNote": "As cenas .ppm são imagens sintéticas produzidas localmente com Node. `sh render.sh` cria vídeo de demonstração **sem narração**, que ainda requer edição e revisão.",
+          "checkpointAssertion": "Há dois arquivos de imagem válidos e um comando que renderiza vídeo sem API."
+        }
+      ],
+      "tools": [
+        {
+          "name": "FFmpeg",
+          "url": "https://ffmpeg.org/",
+          "tier": "core",
+          "note": "Render local sem GPU obrigatória"
+        },
+        {
+          "name": "Kdenlive",
+          "url": "https://kdenlive.org/en/",
+          "tier": "core",
+          "note": "Montagem local"
+        },
+        {
+          "name": "ComfyUI",
+          "url": "https://github.com/comfyanonymous/ComfyUI",
+          "tier": "optional",
+          "note": "Interface local para modelos que exigem hardware"
+        },
+        {
+          "name": "Wan 2.2",
+          "url": "https://github.com/Wan-Video/Wan2.2",
+          "tier": "optional",
+          "note": "Pesos/modelos de vídeo; conferir licença e VRAM"
+        },
+        {
+          "name": "Pika",
+          "url": "https://pika.art/pricing",
+          "tier": "optional",
+          "note": "Free não inclui licença comercial no plano consultado"
+        },
+        {
+          "name": "Google Flow",
+          "url": "https://labs.google/fx/tools/flow",
+          "tier": "optional",
+          "note": "Créditos gratuitos limitados, acesso por conta"
+        },
+        {
+          "name": "Steve AI",
+          "url": "https://www.steve.ai/",
+          "tier": "optional",
+          "note": "Freemium de geração/montagem de vídeo"
+        },
+        {
+          "name": "Runway",
+          "url": "https://runwayml.com/pricing",
+          "tier": "optional",
+          "note": "Ferramenta comercial opcional"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-05.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-05.md"
+    },
+    {
+      "moduleId": 6,
+      "version": 1,
+      "title": "Edição, legendas e Shorts",
+      "objective": "Montar episódio e Short derivado com áudio sincronizado, legendas revisadas e configurações de exportação reproduzíveis.",
+      "learningOutcomes": [
+        "Sincronizar narração e cenas",
+        "Gerar e corrigir legendas",
+        "Transformar episódio em Short autossuficiente",
+        "Criar exportação reproduzível com FFmpeg"
+      ],
+      "lessons": [
+        {
+          "stepId": 21,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Montagem por informação",
+          "lead": "Montar episódio e Short derivado com áudio sincronizado, legendas revisadas e configurações de exportação reproduzíveis.",
+          "sections": [
+            {
+              "heading": "Montagem por informação",
+              "body": "A edição segue o tempo do roteiro e o que cada cena acrescenta. Use arquivos originais preservados e receitas reproduzíveis; transição não substitui compreensão.",
+              "example": "Um gráfico aparece exatamente quando a narração apresenta seus dados e sai antes da conclusão.",
+              "counterexample": "Cortes frenéticos aleatórios podem disfarçar falta de conteúdo, sem melhorar retenção."
+            },
+            {
+              "heading": "Legendas e acessibilidade",
+              "body": "whisper.cpp pode transcrever localmente um áudio já gravado, mas erros em números, nomes e termos técnicos exigem revisão humana. Arquivos SRT têm início e fim precisos.",
+              "example": "Corrija no SRT uma sigla que foi transcrita errado, confirme tempo e contraste da legenda.",
+              "counterexample": "Publicar legendas sem escutar o áudio pode atribuir sentido oposto à fala."
+            },
+            {
+              "heading": "Derivação em vertical",
+              "body": "Criar Shorts não é cortar aleatoriamente 30 segundos. Reescreva a abertura para que o recorte traga contexto e conclusão; ajuste proporção, safe-area e tamanho de texto.",
+              "example": "Um Short responde uma pergunta com abertura de 3 s, explicação de 25 s e fechamento de 5 s.",
+              "counterexample": "Recorte que começa com 'como eu disse antes...' depende do vídeo longo e perde autonomia."
+            }
+          ],
+          "challenge": {
+            "question": "Uma legenda automatizada informa o número errado. O que fazer?",
+            "options": [
+              "Conferir no áudio e na fonte antes de exportar",
+              "Confiar no modelo porque parece fluente",
+              "Eliminar todas as legendas"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 22,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Plano de edição assistida",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para gerar lista de cortes e marcações do roteiro, preservando evidências de revisão. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Edição, legendas e Shorts\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não inventar timestamps ou considerar transcrição automática como prova factual."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 6: Edição, legendas e Shorts. Ajude a gerar lista de cortes e marcações do roteiro, preservando evidências de revisão. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 23,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de whisper.cpp. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "whisper.cpp",
+          "referencePath": "https://github.com/ggml-org/whisper.cpp",
+          "challengeText": "Descreva o caminho de narração WAV até SRT revisado e sua reexportação sem recorrer a legendadores comerciais."
+        },
+        {
+          "stepId": 24,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Edição, legendas e Shorts",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Organize gratuitamente uma pasta com narração, duas cenas, roteiro e assets autorizados.",
+            "Monte sequência em 16:9 e exporte a versão do episódio piloto.",
+            "Gere ou escreva um SRT curto, ajuste três timestamps e revise texto comparando com o áudio.",
+            "Prepare um Short 9:16 que responda uma pergunta completa sem exigir ter assistido ao episódio."
+          ],
+          "acceptance": [
+            "Áudio está sincronizado com as cenas",
+            "Legenda revisada não contém erros críticos",
+            "Existe versão vertical com contexto próprio",
+            "Arquivos-fonte e receita de edição permanecem disponíveis",
+            "Edição básica funciona offline e sem custo"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-06.md",
+          "assessmentPrompt": "No Short, a legenda encobre parte relevante da cena. Corrija a hierarquia e a área segura sem perder acessibilidade.",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 6 --out ./meu-canal",
+          "expectedArtifact": "06-shorts/legendas.srt + 06-shorts/exportar-vertical.sh",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "SRT mostra número errado",
+            "Reouça o trecho, corrija texto e timestamps; nunca aceite ASR sem revisão",
+            "Se não houver mídia, mantenha somente o SRT demonstrativo"
+          ],
+          "implementationNote": "O SRT é estimado, não alinhado por reconhecimento automático. Só o áudio real permite conferir timestamps. O Short exportado é uma **prévia sem narração**.",
+          "checkpointAssertion": "Há um SRT sintaticamente válido e um arquivo de comando para 9:16."
+        }
+      ],
+      "tools": [
+        {
+          "name": "FFmpeg",
+          "url": "https://ffmpeg.org/",
+          "tier": "core",
+          "note": "Montagem e exportação reproduzíveis"
+        },
+        {
+          "name": "whisper.cpp",
+          "url": "https://github.com/ggml-org/whisper.cpp",
+          "tier": "core",
+          "note": "Transcrição offline"
+        },
+        {
+          "name": "Kdenlive",
+          "url": "https://kdenlive.org/en/",
+          "tier": "core",
+          "note": "Editor gráfico local"
+        },
+        {
+          "name": "Steve AI",
+          "url": "https://www.steve.ai/",
+          "tier": "optional",
+          "note": "Montagem comercial como comparação"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-06.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-06.md"
+    },
+    {
+      "moduleId": 7,
+      "version": 1,
+      "title": "Automação com n8n e Node-RED",
+      "objective": "Criar pipeline idempotente de produção em Node-RED e comparar n8n fair-code, Python e Modal sem dependências de nuvem.",
+      "learningOutcomes": [
+        "Modelar estados, gatilhos e filas",
+        "Automatizar etapas seguras com Node-RED ou Python",
+        "Compreender licença fair-code do n8n",
+        "Introduzir aprovação, logs, retry e contingência"
+      ],
+      "lessons": [
+        {
+          "stepId": 25,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Automação não é publicação cega",
+          "lead": "Criar pipeline idempotente de produção em Node-RED e comparar n8n fair-code, Python e Modal sem dependências de nuvem.",
+          "sections": [
+            {
+              "heading": "Automação não é publicação cega",
+              "body": "Separe descoberta, roteiro, revisão, assets, render e publicação em estados únicos. Transições automáticas podem preparar tarefas; publicação exige aprovação. Cada etapa guarda id do episódio e versão do material.",
+              "example": "O fluxo recusa publicar se licenças e roteiro não estiverem aprovados, mesmo que a renderização termine.",
+              "counterexample": "Workflow que interpreta arquivo gerado como autorização para upload pode divulgar fatos falsos."
+            },
+            {
+              "heading": "Node-RED, n8n e licenças",
+              "body": "Node-RED é um motor open source que pode rodar localmente. n8n Community self-hosted é gratuito para cenários permitidos, mas usa Sustainable Use License: código disponível não significa licença open source OSI. Para curso pago não inclua instância n8n compartilhada aos alunos sem avaliar licença.",
+              "example": "O aluno implementa os nós essenciais em Node-RED; um capítulo opcional mostra o equivalente no n8n de sua própria instalação.",
+              "counterexample": "Tornar o n8n embutido em SaaS de automação sem licença adequada pode gerar problema comercial."
+            },
+            {
+              "heading": "Modal e execução remota sob controle",
+              "body": "Modal pode executar tarefas de compute em nuvem com créditos e cobrança por uso. Precisa ser opt-in, com orçamento e limites: não é substituto silencioso de render local. Repita tarefas por id e preserve artefatos para recuperação.",
+              "example": "Rodar o mesmo job duas vezes retorna estado já processado sem criar dois uploads; comparação com Modal registra custo projetado.",
+              "counterexample": "Agendar uma GPU sem limite, sem logs e sem botão de parar pode consumir saldo inesperado."
+            }
+          ],
+          "challenge": {
+            "question": "Que projeto atende ao percurso gratuito e à licença?",
+            "options": [
+              "Node-RED local com aprovação humana e n8n só como alternativa individual",
+              "Exigir que alunos usem n8n SaaS embutido sem autorização",
+              "Publicar ao detectar qualquer novo arquivo"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 26,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Arquitetura de orquestração",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para pedir um fluxograma de estados e falhas antes de conectar APIs, credenciais ou cloud. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Automação com n8n e Node-RED\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não pedir que a IA armazene segredos nem aceite uploads sem aprovação."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 7: Automação com n8n e Node-RED. Ajude a pedir um fluxograma de estados e falhas antes de conectar APIs, credenciais ou cloud. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 27,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de Documentação do Node-RED. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "Documentação do Node-RED",
+          "referencePath": "https://nodered.org/docs/",
+          "challengeText": "Modele três estados de um job: pendente, pronto_para_revisao e aprovado. Explique o que acontece se a mensagem de aprovação chegar duas vezes."
+        },
+        {
+          "stepId": 28,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Automação com n8n e Node-RED",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Desenhe gratuitamente em Node-RED ou arquivo JSON estados e eventos de um episódio.",
+            "Crie entrada de pauta local e saída para pasta pendente_de_revisao, sem credenciais externas.",
+            "Teste duas execuções com o mesmo id e impeça que sejam criados dois jobs.",
+            "Implemente aprovação humana e simule falha de render e retomada com log."
+          ],
+          "acceptance": [
+            "Há fluxo local sem conta em serviço pago",
+            "Estado de aprovação controla o próximo passo",
+            "Repetição de evento não duplica job",
+            "Existem log e tratamento de falha",
+            "Licença do n8n e custo do Modal estão documentados"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-07.md",
+          "assessmentPrompt": "Um webhook chega três vezes e o fluxo gera três publicações. Como torná-lo idempotente sem esconder erros?",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 7 --out ./meu-canal",
+          "expectedArtifact": "07-automacao/fila.json (status pendente_revisao e aprovação false)",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "Mesmo webhook cria duas tarefas",
+            "Use id estável; queueJob retorna created:false e um único evento",
+            "Ao falhar, repita o mesmo id em vez de gerar novo id"
+          ],
+          "implementationNote": "A fila didática funciona sem depender de Node-RED, n8n ou webhook externos. Replique o modelo visualmente nos orquestradores somente depois do teste local.",
+          "checkpointAssertion": "Segundo evento com mesmo ID mantém fila com apenas uma tarefa."
+        }
+      ],
+      "tools": [
+        {
+          "name": "Node-RED",
+          "url": "https://nodered.org/",
+          "tier": "core",
+          "note": "Orquestração open source self-hosted"
+        },
+        {
+          "name": "Python",
+          "url": "https://www.python.org/",
+          "tier": "core",
+          "note": "Tarefas locais e filas simples"
+        },
+        {
+          "name": "SQLite",
+          "url": "https://www.sqlite.org/",
+          "tier": "core",
+          "note": "Controle de idempotência"
+        },
+        {
+          "name": "n8n",
+          "url": "https://docs.n8n.io/hosting/",
+          "tier": "optional",
+          "note": "Self-hosted gratuito sob licença fair-code, não OSI"
+        },
+        {
+          "name": "Modal",
+          "url": "https://modal.com/pricing",
+          "tier": "optional",
+          "note": "Nuvem com créditos e cobrança por excedente"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-07.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-07.md"
+    },
+    {
+      "moduleId": 8,
+      "version": 1,
+      "title": "Publicação, métricas e monetização",
+      "objective": "Encerrar o pipeline com checklist de publicação, análise de desempenho e mecanismos de conformidade do YouTube.",
+      "learningOutcomes": [
+        "Publicar somente com revisão editorial concluída",
+        "Usar YouTube Studio e conhecer a API oficial",
+        "Analisar retenção e CTR sem métricas falsas",
+        "Avaliar originalidade, conteúdo sintético e direitos"
+      ],
+      "lessons": [
+        {
+          "stepId": 29,
+          "kind": "microaula",
+          "durationMin": 30,
+          "title": "Publicação oficial, nunca atalho oculto",
+          "lead": "Encerrar o pipeline com checklist de publicação, análise de desempenho e mecanismos de conformidade do YouTube.",
+          "sections": [
+            {
+              "heading": "Publicação oficial, nunca atalho oculto",
+              "body": "Prepare título fiel, descrição com fontes, miniatura, direitos e indicação de mídia sintética quando aplicável. A publicação pode ser feita manualmente no YouTube Studio; uso da Data API exige OAuth, quotas e regras próprias.",
+              "example": "Checklist de aprovação confirma licença do vídeo, fontes, legenda, thumbnail e permissão de publicação.",
+              "counterexample": "Usar automação não oficial para contornar plataformas ou fazer upload em massa sem revisão pode criar bloqueios e violações."
+            },
+            {
+              "heading": "Analytics e hipótese testável",
+              "body": "Visualizações isoladas não explicam qualidade. Analise retenção, impressões, CTR e feedback, comparando vídeos com formatos semelhantes. Registre hipótese antes da mudança e avalie amostra suficiente.",
+              "example": "Abertura com queda de retenção vira hipótese de melhoria: reduzir contexto inicial, mantendo a precisão.",
+              "counterexample": "Alterar cinco coisas de uma vez e atribuir melhoria somente à thumbnail impede aprendizado."
+            },
+            {
+              "heading": "Monetização e conteúdo sintético",
+              "body": "YouTube exige autenticidade; produção repetitiva em massa pode não monetizar, mesmo com IA. Conteúdo sintético fotorrealista ou significativo precisa ser declarado conforme regras atuais. Direitos de áudio/imagens e licenças comerciais de serviços usados importam.",
+              "example": "Antes da publicação registre como o episódio agrega análise própria e se algum clipe realista foi gerado por IA.",
+              "counterexample": "Concluir que IA é proibida ou que usar IA garante monetização são duas simplificações falsas."
+            }
+          ],
+          "challenge": {
+            "question": "Quando o fluxo pode entregar o vídeo para publicação?",
+            "options": [
+              "Após validação de fontes, licenças, originalidade e aprovação humana",
+              "Imediatamente após o render",
+              "Assim que houver muitos vídeos na fila"
+            ],
+            "answer": 0,
+            "feedback": "Correto. O processo deve produzir um artefato original, verificável e reutilizável."
+          }
+        },
+        {
+          "stepId": 30,
+          "kind": "microaula-ia",
+          "durationMin": 35,
+          "title": "Auditoria editorial e relatório de melhorias",
+          "lead": "Use IA como apoio crítico. O núcleo do módulo continua disponível sem assistente ou serviço pago.",
+          "sections": [
+            {
+              "heading": "Objetivo da assistência",
+              "body": "Neste módulo, use um assistente apenas para gerar checklist de conformidade e relatório de hipótese de retenção a partir de dados demonstrativos. O resultado precisa ser conferido no material técnico e nas fontes originais. A alternativa obrigatória sem IA é executar exatamente a mesma tarefa com o roteiro e exemplos da aula. Não envie credenciais, dados privados nem arquivos confidenciais.",
+              "example": "Faça uma solicitação restrita ao tema \"Publicação, métricas e monetização\" e peça explicitamente exemplos válidos, casos inválidos e um teste observável antes de produzir o artefato.",
+              "counterexample": "Delegar todas as decisões, sem revisar provas, é inadequado; não prometer monetização nem confundir estatística sintética com resultado real."
+            },
+            {
+              "heading": "Compare percurso gratuito e alternativas",
+              "body": "O trabalho principal desta etapa é local e gratuito. As ferramentas opcionais servem para comparar ergonomia e qualidade, não para desbloquear o curso. Consulte os termos atuais de licença, hardware e custo antes de usar qualquer serviço online. Guarde uma versão feita sem contratação.",
+              "example": "Crie primeiro o artefato no núcleo R$ 0 e use os resultados externos apenas como referência, registrando o que realmente melhorou.",
+              "counterexample": "Uma assinatura ou teste de créditos não é requisito pedagógico nem prova de que o recurso pode ser usado comercialmente."
+            },
+            {
+              "heading": "Revisão crítica com evidências",
+              "body": "Aplique três perguntas: o resultado é factual, é reproduzível e respeita os direitos de terceiros? Inspecione o produto final e registre uma decisão editorial. Se houver divergência, revise o arquivo-fonte antes de avançar; quando a ferramenta ficar indisponível, continue pelo caminho manual.",
+              "example": "Registre uma previsão, execute o teste e documente resultado e correção, mesmo quando o assistente sugerir outra solução.",
+              "counterexample": "A frase \"a IA disse que funciona\" não é evidência de qualidade ou de autorização de uso."
+            }
+          ],
+          "prompt": "Estou construindo um canal dark educacional com um pipeline gratuito, self-hosted e de conteúdo original. Estou no módulo 8: Publicação, métricas e monetização. Ajude a gerar checklist de conformidade e relatório de hipótese de retenção a partir de dados demonstrativos. Regras: não invente fatos, links, licenças nem métricas; faça uma pergunta quando faltar contexto; forneça um procedimento reprodutível usando somente recursos gratuitos locais como opção principal. Compare as alternativas de ferramentas somente como opcional; explicite hardware e risco de cobrança. Inclua um caso de sucesso, um de falha, como verificar cada resultado, e uma versão sem IA. Nunca solicite tokens, credenciais ou material privado.",
+          "reviewQuestions": [
+            "Conferi fatos, licenças e riscos de publicação nas fontes primárias.",
+            "Produzi uma alternativa gratuita e local que não exige cadastro ou GPU cara.",
+            "Registrei ao menos um teste positivo e um teste negativo com resultado verificável."
+          ]
+        },
+        {
+          "stepId": 31,
+          "kind": "referencia",
+          "durationMin": 30,
+          "title": "Documentação e transferência",
+          "lead": "Estudo guiado de Políticas de monetização do YouTube. A leitura é externa; a tarefa é demonstrar entendimento independente. Ao abrir links externos, a leitura não envia dados para o HubEstudos e não habilita publicação.",
+          "referenceCode": "Políticas de monetização do YouTube",
+          "referencePath": "https://support.google.com/youtube/answer/1311392",
+          "challengeText": "Explique a diferença entre um episódio autoral assistido por IA e dez vídeos massificados. Relacione a decisão de publicação à declaração de conteúdo sintético."
+        },
+        {
+          "stepId": 32,
+          "kind": "laboratorio",
+          "durationMin": 75,
+          "title": "Laboratório — Publicação, métricas e monetização",
+          "lead": "Prática incremental do mesmo canal piloto, com registro de decisões e aceite explícito.",
+          "brief": [
+            "Revise gratuitamente as evidências de cada módulo e complete checklist do episódio piloto.",
+            "Monte pacote de publicação com título, descrição, fontes, thumbnail, legenda e declaração de IA, se exigida.",
+            "Simule aprovação humana e mantenha a publicação manual como caminho padrão seguro.",
+            "Escreva três hipóteses de melhoria de retenção usando métricas fictícias claramente rotuladas."
+          ],
+          "acceptance": [
+            "Checklist documental completo",
+            "Responsável aprovou publicação explicitamente",
+            "Termos comerciais e direitos revisados",
+            "Indicadores são apresentados sem fabricar desempenho real",
+            "Publicação não é exigida para finalizar o curso"
+          ],
+          "starterSourceUrl": "/course-labs/channel-dark/module-08.md",
+          "assessmentPrompt": "O render está pronto, mas uma música não possui prova de licença e a capa simula uma pessoa real. Indique bloqueios e correções antes da publicação.",
+          "labCommand": "node public/course-labs/channel-dark/engine.mjs --module 8 --out ./meu-canal",
+          "expectedArtifact": "08-publicacao/pacote.json + 08-publicacao/analytics-ficticio.json",
+          "testCommand": "npm run test:channel-dark",
+          "troubleshooting": [
+            "Pacote bloqueado apesar de vídeo pronto",
+            "É esperado: faltam comprovação de licença, fatos, declaração sintética e aprovação",
+            "Revisão humana não é substituída por conclusão de render"
+          ],
+          "implementationNote": "O pacote final permanece bloqueado por padrão. CTR e conclusão são números **fictícios de treino**, nunca estatística de um canal real.",
+          "checkpointAssertion": "O JSON final contém automatedUpload:false e checklist com todos os itens ainda false."
+        }
+      ],
+      "tools": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/",
+          "tier": "core",
+          "note": "Relatórios locais com dados fictícios"
+        },
+        {
+          "name": "SQLite",
+          "url": "https://www.sqlite.org/",
+          "tier": "core",
+          "note": "Histórico e auditoria"
+        },
+        {
+          "name": "YouTube Studio",
+          "url": "https://studio.youtube.com/",
+          "tier": "optional",
+          "note": "Plataforma externa gratuita para publicar manualmente"
+        },
+        {
+          "name": "YouTube Data API",
+          "url": "https://developers.google.com/youtube/v3",
+          "tier": "optional",
+          "note": "Integração oficial sujeita a OAuth e cotas"
+        }
+      ],
+      "assessmentPath": "/course-labs/channel-dark/assessments/module-08.md",
+      "answerKeyPath": "/course-labs/channel-dark/answer-keys/module-08.md"
+    }
+  ]
+}
