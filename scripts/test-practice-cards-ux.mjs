@@ -22,7 +22,7 @@ const luminance=hex=>{
 const contrast=(a,b)=>{const [hi,lo]=[luminance(a),luminance(b)].sort((a,b)=>b-a);return (hi+0.05)/(lo+0.05);};
 
 test('paleta do card mantém contraste alto e preenchimento opaco mesmo sobre tema claro',()=>{
- for(const [fg,bg] of [['#f6f0ff','#1b1730'],['#e4cbff','#1b1730'],['#decfea','#1b1730'],['#fff','#4b286e']]){
+ for(const [fg,bg] of [['#f6f0ff','#1b1730'],['#e4cbff','#1b1730'],['#decfea','#1b1730'],['#ffffff','#4b286e']]){
   assert.ok(contrast(fg,bg)>=4.5,fg+'/'+bg+' não atende a 4.5:1');
  }
  assert.match(css,/background:#1b1730/);
