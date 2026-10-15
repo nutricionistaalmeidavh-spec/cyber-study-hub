@@ -37,12 +37,12 @@ jobs:
         run: node --test public/course-labs/lab-tools/lab.test.mjs
       - name: Verify original AI course and checkpoints
         run: node scripts/verify-ai-dev.mjs
-      - name: Study continuity regression
-        run: node --test scripts/test-study-continuity.mjs
       - name: Web app build
         run: |
           npm ci
           npm run build
+      - name: Study continuity regression
+        run: node --test scripts/test-study-continuity.mjs
       - name: Integration smoke - real utilidades modules
         run: |
           git clone --depth 1 https://github.com/nutricionistaalmeidavh-spec/utilidades.git /tmp/hub-utilidades
