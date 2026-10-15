@@ -46,3 +46,10 @@ test('catálogo não inventa pagamentos, preserva status explícito e acesso sep
  assert.match(landing,/courses\.filter\(course => course\.status === 'published'\)/);
  assert.doesNotMatch(landing,/\/api\/(?:checkout|payment|subscribe)/i);
 });
+
+test('documenta acesso comercial seguro antes de ativar cobrança',()=> {
+ const s=readFileSync('docs/platform/COURSE_ENTITLEMENTS_PLAN.md','utf8');
+ assert.match(s,/Backend faz checagem autorizada/);
+ assert.match(s,/URL direta e recursos estáticos públicos não são paywall/);
+ assert.match(s,/self-hosted\/open source\/R\$ 0/);
+});
