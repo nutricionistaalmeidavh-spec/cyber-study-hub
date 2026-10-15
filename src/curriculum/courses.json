@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "policy": "A editorial + liberação explícita",
+  "courses": [
+    {
+      "id": "web-apis",
+      "title": "Web Security e APIs",
+      "description": "Segurança web, identidade, APIs e aplicações modernas.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Fundamentos de Segurança Web",
+          "start": 1,
+          "end": 10
+        },
+        {
+          "title": "APIs, OAuth e autorização",
+          "start": 11,
+          "end": 20
+        },
+        {
+          "title": "Web e AppSec avançado I",
+          "start": 41,
+          "end": 50
+        },
+        {
+          "title": "Web e AppSec avançado II",
+          "start": 51,
+          "end": 60
+        }
+      ]
+    },
+    {
+      "id": "redes-sistemas",
+      "title": "Redes e Segurança de Sistemas",
+      "description": "Redes, Linux, serviços e exploração em laboratório.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Redes e sistemas",
+          "start": 21,
+          "end": 30
+        },
+        {
+          "title": "Systems Security",
+          "start": 61,
+          "end": 69
+        }
+      ]
+    },
+    {
+      "id": "pentest-seguro",
+      "title": "Pentest e Desenvolvimento Seguro",
+      "description": "Método de pentest, relatórios, prevenção e projeto prático.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Metodologia de Pentest",
+          "start": 31,
+          "end": 35
+        },
+        {
+          "title": "Secure Development",
+          "start": 36,
+          "end": 40
+        }
+      ]
+    },
+    {
+      "id": "active-directory",
+      "title": "Segurança de Active Directory",
+      "description": "Diretório corporativo, identidade e detecção.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Fundamentos e análise de AD",
+          "start": 70,
+          "end": 74
+        },
+        {
+          "title": "Segurança e detecção no AD",
+          "start": 75,
+          "end": 78
+        }
+      ]
+    },
+    {
+      "id": "blue-team",
+      "title": "Blue Team, SOC e EDR",
+      "description": "Defesa, telemetria, resposta a incidentes e detecções.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Fundamentos e operações SOC",
+          "start": 79,
+          "end": 84
+        },
+        {
+          "title": "Investigação e DFIR",
+          "start": 85,
+          "end": 90
+        },
+        {
+          "title": "Antivírus e EDR",
+          "start": 91,
+          "end": 95
+        },
+        {
+          "title": "Detection Engineering",
+          "start": 96,
+          "end": 100
+        }
+      ]
+    },
+    {
+      "id": "engenharia-reversa",
+      "title": "C, Windows e Engenharia Reversa",
+      "description": "C, internals, assembly e análise de binários próprios.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "C e Windows Internals",
+          "start": 101,
+          "end": 110
+        },
+        {
+          "title": "Assembly e binários",
+          "start": 111,
+          "end": 120
+        },
+        {
+          "title": "Engenharia Reversa",
+          "start": 121,
+          "end": 130
+        }
+      ]
+    },
+    {
+      "id": "analise-malware",
+      "title": "Análise de Malware e Detecção",
+      "description": "Análise segura de amostras e construção de detecções.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Fundamentos de Malware",
+          "start": 131,
+          "end": 140
+        },
+        {
+          "title": "Análise estática",
+          "start": 141,
+          "end": 150
+        },
+        {
+          "title": "Análise comportamental e capstone",
+          "start": 151,
+          "end": 160
+        }
+      ]
+    },
+    {
+      "id": "exploit-research",
+      "title": "Exploit Development e Pesquisa",
+      "description": "Memória, mitigação, fuzzing e análise de vulnerabilidades.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Memória e mitigação",
+          "start": 161,
+          "end": 170
+        },
+        {
+          "title": "Fuzzing e triagem",
+          "start": 171,
+          "end": 179
+        },
+        {
+          "title": "Projeto de pesquisa",
+          "start": 180,
+          "end": 180
+        }
+      ]
+    },
+    {
+      "id": "red-purple-team",
+      "title": "Red Team e Purple Team",
+      "description": "Emulação autorizada e exercícios entre equipes.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Metodologia Red Team",
+          "start": 181,
+          "end": 185
+        },
+        {
+          "title": "Purple Team e telemetria",
+          "start": 186,
+          "end": 190
+        }
+      ]
+    },
+    {
+      "id": "cloud-devsecops",
+      "title": "Cloud, DevSecOps e AppSec Moderna",
+      "description": "Containers, Kubernetes, pipelines e aplicações modernas.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Containers e Cloud",
+          "start": 191,
+          "end": 194
+        },
+        {
+          "title": "DevSecOps e supply chain",
+          "start": 195,
+          "end": 197
+        },
+        {
+          "title": "Segurança de aplicações modernas",
+          "start": 198,
+          "end": 200
+        }
+      ]
+    },
+    {
+      "id": "seguranca-ia",
+      "title": "Segurança de IA e LLMs",
+      "description": "Prompt injection, RAG, agentes e controles defensivos.",
+      "releaseRequested": true,
+      "modules": [
+        {
+          "title": "Fundamentos de segurança de IA",
+          "start": 201,
+          "end": 204
+        },
+        {
+          "title": "Agentes, ferramentas e defesas",
+          "start": 205,
+          "end": 208
+        }
+      ]
+    },
+    {
+      "id": "projeto-final",
+      "title": "Projeto Final Integrado",
+      "description": "Laboratório de defesa, validação, remediação e relatório.",
+      "releaseRequested": false,
+      "modules": [
+        {
+          "title": "Definição e planejamento",
+          "start": 209,
+          "end": 213
+        },
+        {
+          "title": "Defesa, reteste e apresentação",
+          "start": 214,
+          "end": 218
+        }
+      ]
+    }
+  ],
+  "trails": [
+    {
+      "id": "ai-dev",
+      "title": "Desenvolvimento de Sistemas com IA — Meu Gestor",
+      "description": "Construa seu sistema com IA e laboratórios locais, sem API paga obrigatória.",
+      "route": "#ai-dev",
+      "reviewPath": "quality/trails/ai-dev/reviews.json",
+      "releaseRequested": true
+    },
+    {
+      "id": "channel-dark",
+      "title": "Automação de Canais Dark com IA",
+      "description": "Produção de vídeos e automação com núcleo gratuito e ferramentas abertas.",
+      "route": "#channel-dark",
+      "reviewPath": "quality/trails/channel-dark/reviews.json",
+      "releaseRequested": true
+    }
+  ]
+}

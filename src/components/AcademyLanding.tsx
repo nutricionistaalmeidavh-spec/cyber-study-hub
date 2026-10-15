@@ -1,29 +1,14 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import catalogData from '../curriculum/catalog.json';
-import type { CurriculumCatalog } from '../curriculum/types';
+import { useEffect, useRef, type CSSProperties } from 'react';
+import courseProducts from '../curriculum/courses.json';
+import publication from '../curriculum/publication.json';
+import { studyInventory } from '../lib/studyInventory';
 import { useAcademyMotion } from './useAcademyMotion';
 import './academy.css';
 import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
-import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
-import { studyInventory } from '../lib/studyInventory';
-
-const catalog = catalogData as CurriculumCatalog;
-
-type CatalogMode = 'main' | 'parallel';
-type ModulePreview = { title: string; count: number; durationMin: number };
-function groupModules(items: Array<{ block?: string; track?: string; durationMin?: number }>, field: 'block' | 'track'): ModulePreview[] {
-  const grouped = new Map<string, { count: number; durationMin: number }>();
-  for (const item of items) {
-    const title = item[field];
-    if (!title) continue;
-    const previous = grouped.get(title) || { count: 0, durationMin: 0 };
-    grouped.set(title, { count: previous.count + 1, durationMin: previous.durationMin + (item.durationMin ?? 0) });
-  }
-  return [...grouped].map(([title, info]) => ({ title, ...info }));
-}
-const principal = groupModules(catalog.main, 'block');
-const paralelas = groupModules(catalog.parallel, 'track');
+const published = new Set(publication.publishedCourseIds);
+const courseList = courseProducts.courses.filter(course => published.has(course.id));
+const publishedTrails = courseProducts.trails.filter(trail => publication.publishedTrailIds.includes(trail.id));
 
 export function isAcademyPath(pathname: string) {
   return /^\/academy\/?$/.test(pathname);
@@ -46,8 +31,6 @@ function Brand() { return <AcademyBrand />; }
 export default function AcademyLanding() {
   const rootRef = useRef<HTMLDivElement>(null);
   useAcademyMotion(rootRef);
-  const [mode, setMode] = useState<CatalogMode>('main');
-  const modules = mode === 'main' ? principal : paralelas;
 
   useEffect(() => {
     const originalTitle = document.title;
@@ -97,9 +80,9 @@ export default function AcademyLanding() {
             <a className="academy-button academy-button-outline" href="#metodo">Como funciona <span aria-hidden="true">↓</span></a>
           </div>
           <div className="academy-hero-proof">
-            <span><b>{principal.length}</b> módulos principais</span>
+            <span><b>{courseList.length}</b> cursos completos</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
-            <span><b>{paralelas.length}</b> trilhas paralelas</span>
+            <span><b>{publishedTrails.length}</b> trilhas práticas de IA</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
             <span><b>{studyInventory.totalSteps}</b> etapas de estudo no Hub</span>
           </div>
@@ -139,27 +122,23 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Escolha um assunto e avance módulo por módulo. O inventário reúne {studyInventory.canonical} IDs canônicos: {studyInventory.legacyCanonical} unidades principais/paralelas e {studyInventory.guided} etapas das trilhas guiadas. Referências também têm ID, mas não são aulas inéditas.</p>
+          <p>Escolha um curso completo, abra os módulos e avance pelas aulas e laboratórios. O inventário possui {studyInventory.canonical} IDs canônicos: {studyInventory.legacyCanonical} unidades principais/paralelas e {studyInventory.guided} etapas guiadas. Somente cursos completos com A editorial aparecem nesta vitrine.</p>
         </div>
         <div className="academy-catalog-panel" data-reveal>
           <div className="academy-catalog-top">
-            <div className="academy-tabs" role="group" aria-label="Tipo de formação">
-              <button type="button" className={mode === 'main' ? 'active' : ''} aria-pressed={mode === 'main'} onClick={() => setMode('main')}>Formação principal <span>{principal.length}</span></button>
-              <button type="button" className={mode === 'parallel' ? 'active' : ''} aria-pressed={mode === 'parallel'} onClick={() => setMode('parallel')}>Trilhas paralelas <span>{paralelas.length}</span></button>
-            </div>
-            <span className="academy-catalog-count">{modules.length} {mode === 'main' ? 'módulos' : 'trilhas'} no catálogo</span>
+            <strong>Cursos publicados</strong>
+            <span className="academy-catalog-count">{courseList.length} cursos completos · {publishedTrails.length} trilhas com A editorial</span>
           </div>
-          <div className="academy-module-grid" key={mode}>
-            {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title} style={{ '--academy-i': index } as CSSProperties}
-              href={'/#lessons?mode=' + mode + '&module=' + encodeURIComponent(module.title)}>
+          <div className="academy-module-grid">
+            {courseList.map((course, index) => <a className="academy-module-card" key={course.id} style={{ '--academy-i': index } as CSSProperties} href={'/#courses/' + course.id}>
               <span className="academy-module-top"><span className="academy-module-number">{String(index + 1).padStart(2, '0')}</span><span className="academy-module-arrow" aria-hidden="true">↗</span></span>
-              <h3>{moduleDisplayTitle(module.title)}</h3>
-              <div className="academy-module-bottom"><span>{mode === 'main' ? mainStudyTime(module.durationMin) : parallelStudyTime(module.count)}</span><span>Explorar <Arrow /></span></div>
+              <h3>{course.title}</h3>
+              <div className="academy-module-bottom"><span>{course.modules.length} módulos · {course.modules.reduce((sum, m) => sum + m.end - m.start + 1, 0)} aulas</span><span>Explorar <Arrow /></span></div>
             </a>)}
           </div>
           <div className="academy-catalog-footer">
-            <p>Prévia do catálogo real. O acesso às aulas depende de uma conta na plataforma.</p>
-            <a href="/">Entrar na plataforma <Arrow /></a>
+            <p>Somente cursos completos com parecer editorial A são exibidos. Valores e contratação ainda não estão disponíveis.</p>
+            <a href="/#courses">Ver todos os cursos <Arrow /></a>
           </div>
         </div>
         <a className="academy-ai-feature" data-reveal href="/#ai-dev">

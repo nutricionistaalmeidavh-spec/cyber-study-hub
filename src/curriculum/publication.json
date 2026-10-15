@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "source": "quality/registry.json + quality/trails/*/reviews.json",
+  "publishedCourseIds": [
+    "web-apis",
+    "redes-sistemas",
+    "pentest-seguro",
+    "active-directory",
+    "blue-team",
+    "engenharia-reversa",
+    "analise-malware",
+    "exploit-research",
+    "red-purple-team",
+    "cloud-devsecops",
+    "seguranca-ia"
+  ],
+  "pendingCourseIds": [
+    "projeto-final"
+  ],
+  "publishedTrailIds": [
+    "ai-dev",
+    "channel-dark"
+  ]
+}
