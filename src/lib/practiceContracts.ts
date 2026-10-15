@@ -42,7 +42,7 @@ export function mainPracticeResource(id:number):PracticeResource|null{
 }
 /** Arquivos V2 explícitos prevalecem, fallback apenas para pacotes reais. */
 export function v2LabResources(id:number,explicit:readonly {label:string;href:string}[]=[]):PracticeResource[]{
- if(explicit.length)return explicit.map(x=>resource(x.label,x.href,'codigo'));
+ if(explicit.length)return explicit.map(x=>resource(x.label,x.href,x.href.startsWith('https://')?'guia':'codigo'));
  if(id>=48&&id<=50)return [
    resource('models.mjs','/course-labs/a41-50/models.mjs','codigo'),
    resource('lab.test.mjs','/course-labs/a41-50/lab.test.mjs','teste'),

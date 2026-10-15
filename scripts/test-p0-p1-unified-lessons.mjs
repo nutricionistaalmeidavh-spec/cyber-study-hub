@@ -56,7 +56,8 @@ test('P1: recursos das 14 aulas V2 têm apontamentos verificáveis e sem gabarit
   const explicit=lesson.lab.resources||[];
   for(const res of explicit){
    assert.ok(!res.href.includes('answer-keys'),'Gabarito exposto no laboratório: '+id);
-   assert.ok(existsSync('public'+res.href),'Recurso V2 quebrado: '+id+'/'+res.href);
+   if(res.href.startsWith('/course-labs/')) assert.ok(existsSync('public'+res.href),'Recurso V2 quebrado: '+id+'/'+res.href);
+   else assert.match(res.href,/^https:\/\//,'Referência externa deve usar HTTPS');
   }
   if(!explicit.length){
    assert.ok(id>=48&&id<=60,'Sem fallback verificado para '+id);
