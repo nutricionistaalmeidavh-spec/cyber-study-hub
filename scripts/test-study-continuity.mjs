@@ -161,8 +161,9 @@ test('AI migration retains legacy notes while the account version wins conflicts
   assert.equal(merged.notes[4], 'local draft');
   assert.equal(merged.notes[8], 'account draft');
   assert.deepEqual(Array.from(merged.completed).sort(), [1, 2]);
-  assert.equal(ai.initialPosition(merged).moduleId, 3);
-  assert.equal(ai.initialPosition(merged).stepIndex, 2);
+  const privateModules=JSON.parse(readFileSync('src/trails/ai-dev/modules.json')).modules;
+  assert.equal(ai.initialPosition(merged,privateModules).moduleId, 3);
+  assert.equal(ai.initialPosition(merged,privateModules).stepIndex, 2);
   assert.ok(local.getItem('hub-ai-dev-learning-v2:alice'), 'legacy backup must remain intact');
 });
 
