@@ -82,6 +82,10 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       <span><small>TRILHA PRÁTICA</small><strong>Meu Gestor com IA</strong><em>ChatGPT ou Claude no navegador · IA local opcional · sem API paga.</em></span>
       <b>Explorar trilha →</b>
     </a>
+    <a className="hub-ai-banner hub-channel-banner" href="#channel-dark">
+      <span><small>CANAL DARK · 8 MÓDULOS</small><strong>Automatize um canal com IA, do zero</strong><em>Steve AI, Pika, Google Flow, Kokoro, n8n e Modal como opções. Núcleo local gratuito em todas as etapas.</em></span>
+      <b>Explorar trilha →</b>
+    </a>
     <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><h2 id="hub-journeys-title">Explore por assunto</h2></div>

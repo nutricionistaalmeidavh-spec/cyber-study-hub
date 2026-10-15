@@ -1,0 +1,90 @@
+[
+  {
+    "id": "lab-dark-tab",
+    "type": "tab",
+    "label": "Canal Piloto — fila local demonstrativa",
+    "disabled": false,
+    "info": "Manual; sem upload, sem credenciais. Estado em memória: configure contextStorage para persistir."
+  },
+  {
+    "id": "lab-dark-inject",
+    "type": "inject",
+    "z": "lab-dark-tab",
+    "name": "Pauta de demonstração (manual)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"id\":\"episodio-piloto-001\",\"titulo\":\"Introdução ao HTTP\"}",
+    "payloadType": "json",
+    "x": 165,
+    "y": 120,
+    "wires": [
+      [
+        "lab-dark-gate"
+      ]
+    ]
+  },
+  {
+    "id": "lab-dark-gate",
+    "type": "function",
+    "z": "lab-dark-tab",
+    "name": "Validar e impedir duplicidade",
+    "func": "const job=msg.payload;\nif (!job || typeof job.id !== 'string' || !/^[a-z0-9-]{3,64}$/.test(job.id)) {node.error('ID inválido',msg);return null;}\nconst jobs=flow.get('jobs') || {};\nif (Object.prototype.hasOwnProperty.call(jobs,job.id)) {return [null,{payload:{id:job.id,resultado:'duplicado ignorado'}}];}\njobs[job.id]={id:job.id,titulo:String(job.titulo||''),estado:'pendente_revisao',aprovado:false};\nflow.set('jobs',jobs);\nmsg.payload=jobs[job.id];\nreturn [msg,null];",
+    "outputs": 2,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 120,
+    "wires": [
+      [
+        "lab-dark-pending"
+      ],
+      [
+        "lab-dark-duplicate"
+      ]
+    ]
+  },
+  {
+    "id": "lab-dark-pending",
+    "type": "debug",
+    "z": "lab-dark-tab",
+    "name": "Revisão humana pendente",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 665,
+    "y": 90,
+    "wires": []
+  },
+  {
+    "id": "lab-dark-duplicate",
+    "type": "debug",
+    "z": "lab-dark-tab",
+    "name": "Evento repetido ignorado",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 660,
+    "y": 150,
+    "wires": []
+  }
+]

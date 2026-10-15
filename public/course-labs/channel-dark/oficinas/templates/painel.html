@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canal Piloto · Métricas locais</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,sans-serif;background:#151326;color:#f3ecff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:clamp(18px,4vw,60px)}
+main{max-width:960px;margin:auto}h1{font-size:clamp(28px,5vw,46px);letter-spacing:-.04em;line-height:1.1;margin:12px 0}
+p{color:#c7bcda;line-height:1.6}header{border-bottom:1px solid #5d4777;padding-bottom:28px;margin-bottom:25px}
+label{display:block;font-size:14px;margin:16px 0 6px;font-weight:600}input{width:100%;max-width:480px;padding:13px;background:#29213e;border:1px solid #ad94c9;border-radius:9px;color:#fff}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.card{border:1px solid #655083;background:linear-gradient(150deg,#2b2142,#1c192e);border-radius:16px;padding:22px;min-height:135px}
+.card span{font-size:13px;color:#d3c8e5}.card strong{display:block;font-size:clamp(30px,5vw,41px);margin-top:12px}
+.help{font-size:12px;color:#baafcd;margin-top:20px}#status{min-height:1.4em}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none}}
+</style>
+</head>
+<body>
+<main>
+<header><p>ArtiSys · Oficina do Canal Piloto</p><h1>Seu painel, com dados seus</h1>
+<p>Abra o arquivo <code>module-08/resumo.json</code> produzido pela oficina. Tudo é lido localmente no navegador; nenhum dado é enviado a um servidor.</p>
+<label for="file">Escolher resumo.json</label><input id="file" type="file" accept=".json,application/json">
+<p id="status" role="status" aria-live="polite">Nenhum arquivo importado.</p></header>
+<section class="card-grid" aria-label="Indicadores importados">
+<div class="card"><span>Episódios</span><strong id="episodes">—</strong></div>
+<div class="card"><span>Impressões</span><strong id="impressions">—</strong></div>
+<div class="card"><span>Visualizações</span><strong id="views">—</strong></div>
+<div class="card"><span>CTR calculada</span><strong id="ctr">—</strong></div></section>
+<p class="help">Se os dados são exemplos, o painel continua sendo apenas uma simulação. O CSV não é lido por este painel; use o arquivo resumo.json.</p>
+</main>
+<script type="module">
+const file=document.getElementById('file'),status=document.getElementById('status');
+const digits=new Intl.NumberFormat('pt-BR');
+const render=(id,value)=>{document.getElementById(id).textContent=value};
+file.addEventListener('change',async()=>{
+  if(!file.files.length)return;
+  try{
+    const data=JSON.parse(await file.files[0].text());
+    const keys=['episodes','impressions','views','completed'];
+    if(keys.some(k=>!Number.isSafeInteger(data[k])||data[k]<0)||data.views>data.impressions||data.completed>data.views)throw Error('Totais inválidos');
+    render('episodes',digits.format(data.episodes));
+    render('impressions',digits.format(data.impressions));
+    render('views',digits.format(data.views));
+    render('ctr',(data.impressions?100*data.views/data.impressions:0).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%');
+    status.textContent=data.kind==='EXEMPLO_FICTICIO'?'Exemplo fictício carregado — não representa desempenho real.':'Dados locais importados. Verifique a origem antes de divulgar resultados.';
+  }catch(error){status.textContent='Arquivo recusado: '+String(error.message);for(const key of ['episodes','impressions','views','ctr'])render(key,'—')}
+});
+</script>
+</body>
+</html>

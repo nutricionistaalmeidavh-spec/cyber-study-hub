@@ -1,0 +1,48 @@
+{
+  "name": "Canal Piloto — preparar pauta sem publicar (exemplo manual)",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "lab-manual-start",
+      "name": "Clique para testar",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const id = 'episodio-piloto-001';\nconst titulo = 'Introdução ao HTTP';\nif (!/^[a-z0-9-]{3,64}$/.test(id)) throw new Error('ID inválido');\n// Apenas prepara dados; produção real requer armazenamento durável e idempotência.\nreturn [{ json: { id, titulo, estado: 'pendente_revisao', aprovado: false, publicaçãoAutomática: false, demonstracao: true } }];"
+      },
+      "id": "lab-build-pending",
+      "name": "Preparar item para revisão",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        490,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Clique para testar": {
+      "main": [
+        [
+          {
+            "node": "Preparar item para revisão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": []
+}
