@@ -1,5 +1,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { passwordHash, passwordMatches } from './password-kdf.mjs';
+import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
+import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from './roadmap.mjs';
 
 const DAY = 86400000;
 const KEYS = new Set([
@@ -31,13 +33,13 @@ function response(status,payload,headers={}){
     'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers
   }});
 }
-async function jsonBody(request){
+async function jsonBody(request,maxLength=200000){
   if(!/^application\/json(?:;|$)/i.test(request.headers.get('content-type')??''))
     throw new ApiError(415,'Envie JSON.');
-  if(Number(request.headers.get('content-length')||0)>200000)
+  if(Number(request.headers.get('content-length')||0)>maxLength)
     throw new ApiError(413,'Solicitação muito grande.');
   const text=await request.text();
-  if(text.length>200000)throw new ApiError(413,'Solicitação muito grande.');
+  if(text.length>maxLength)throw new ApiError(413,'Solicitação muito grande.');
   try{
     const value=JSON.parse(text);
     if(!value||typeof value!=='object'||Array.isArray(value))throw Error();
@@ -64,7 +66,9 @@ export class HubAuthObject extends DurableObject {
       "CREATE INDEX IF NOT EXISTS sessions_user ON sessions(user_id)",
       "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL,expires_at INTEGER NOT NULL,used_at INTEGER)",
       "CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL)",
-      "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))"
+      "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))",
+      ...FEEDBACK_SCHEMA,
+      ...ROADMAP_SCHEMA
     ])this.sql.exec(ddl);
   }
   one(sql,...args){return this.sql.exec(sql,...args).toArray()[0];}
@@ -233,6 +237,21 @@ export class HubAuthObject extends DurableObject {
         this.sql.exec('DELETE FROM user_state WHERE user_id=? AND key=?',u.id,b.key);
         return response(200,{ok:true});
       }
+      if(roadmapRoute(path))return await handleRoadmap({
+        path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
+        requireUser:()=>this.requireUser(request),requireAdmin:()=>this.requireAdmin(request),
+        getUser:()=>this.authenticated(request),
+        one:(sql,...args)=>this.one(sql,...args),all:(sql,...args)=>this.all(sql,...args),
+        run:(sql,...args)=>this.sql.exec(sql,...args),reply:response,
+        fail:(status,message)=>new ApiError(status,message),uuid:rand
+      });
+      if(feedbackRoute(path))return await handleFeedback({
+        path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
+        requireUser:()=>this.requireUser(request),requireAdmin:()=>this.requireAdmin(request),
+        one:(sql,...args)=>this.one(sql,...args),all:(sql,...args)=>this.all(sql,...args),
+        run:(sql,...args)=>this.sql.exec(sql,...args),reply:response,
+        fail:(status,message)=>new ApiError(status,message),uuid:rand
+      });
       if(path==='/api/admin/users'&&method==='GET'){
         await this.requireAdmin(request);
         return response(200,{users:this.all('SELECT id,email,name,role,status,created_at FROM users ORDER BY created_at DESC').map(safeUser)});

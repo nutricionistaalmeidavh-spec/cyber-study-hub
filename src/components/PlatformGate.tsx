@@ -52,7 +52,9 @@ export function PlatformGate({children}:{children:(user:PlatformUser,actions:{lo
     setUser(value.user);
     setError('');
     if(window.location.search.includes('invite='))history.replaceState(null,'',window.location.pathname+window.location.hash);
-    window.location.hash='#dashboard';
+    const requested=new URLSearchParams(window.location.search).get('next');
+    if(requested==='roadmap')history.replaceState(null,'',window.location.pathname+'#roadmap');
+    else window.location.hash='#dashboard';
   };
   const logout=async()=>{
     setError('');

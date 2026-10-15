@@ -223,6 +223,6 @@ export default function AcademyLanding() {
       </section>
     </main>
 
-    <footer className="academy-footer"><div className="academy-container academy-footer-inner"><a href="#inicio"><Brand /></a><p>Aprendizado com propósito. Tecnologia na prática.</p><div><a href="https://artisys.dev/" target="_blank" rel="noopener noreferrer">Conheça a ArtiSys <Arrow diagonal /></a><a href="/">Área do aluno <Arrow /></a></div><small>© 2026 ArtiSys · Academy</small></div></footer>
+    <footer className="academy-footer"><div className="academy-container academy-footer-inner"><a href="#inicio"><Brand /></a><p>Aprendizado com propósito. Tecnologia na prática.</p><div><a href="https://artisys.dev/" target="_blank" rel="noopener noreferrer">Conheça a ArtiSys <Arrow diagonal /></a><a href="/roadmap">Roadmap e novidades <Arrow /></a><a href="/">Área do aluno <Arrow /></a></div><small>© 2026 ArtiSys · Academy</small></div></footer>
   </div>;
 }
