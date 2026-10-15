@@ -20,7 +20,7 @@ test('P0: as 607 unidades mantêm ID estável e um caminho de orientação em su
  assert.match(v2,/<MainPracticeOrientation id=\{lesson.id\}/);
  const ai=read('src/trails/ai-dev/AiDevelopmentTrail.tsx');
  const channel=read('src/trails/channel-dark/ChannelAutomationTrail.tsx');
- assert.match(ai,/<GuidedPracticeOrientation code=\{guidedCanonicalId\('ai-dev'/);
+ assert.match(ai,/<AiLabLearningPath/);
  assert.match(channel,/<GuidedPracticeOrientation code=\{guidedCanonicalId\('channel-dark'/);
  assert.match(guided,/Projeto incremental/);
  assert.match(contracts,/Experimento didático/);

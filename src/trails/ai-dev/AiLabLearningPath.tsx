@@ -1,3 +1,4 @@
+import type {ReactNode} from 'react';
 import {labJourney,kitPaths,kitPublicFile,repoZipUrl} from './labJourneyData';
 import './ai-lab-path.css';
 
@@ -5,7 +6,7 @@ type Contract={kind:string;deliverable:string;entrypoint:string;preflight:string
 type Lesson={stepId:number;title:string;brief?:string[];acceptance?:string[]};
 type Props={code:string;moduleId:number;moduleTitle:string;moduleObjective:string;lesson:Lesson;contract:Contract};
 
-function Phase({number,title,children}:{number:number;title:string;children:React.ReactNode}){
+function Phase({number,title,children}:{number:number;title:string;children:ReactNode}){
  return <li className="ai-path-step">
   <span className="ai-path-number" aria-hidden="true">{number}</span>
   <div className="ai-path-step-content"><h4>{title}</h4>{children}</div>

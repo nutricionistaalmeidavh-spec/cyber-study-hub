@@ -12,6 +12,7 @@ const practice=read('src/components/practice/PracticeOrientation.tsx');
 const css=read('src/components/practice/practice.css');
 const aiCss=read('src/trails/ai-dev/ai-dev.css');
 const aiView=read('src/trails/ai-dev/AiDevelopmentTrail.tsx');
+const labPath=read('src/trails/ai-dev/AiLabLearningPath.tsx');
 const channelView=read('src/trails/channel-dark/ChannelAutomationTrail.tsx');
 
 const luminance=hex=>{
@@ -46,17 +47,16 @@ test('DEV-IA-004 usa especificação real, não mensagem genérica de código',(
  assert.equal(meta.moduleId,1);assert.match(meta.deliverable,/Escopo inicial/);
  assert.equal(meta.kind,'Projeto incremental');
  assert.match(guided,/labContract\?\.deliverable/);
- assert.match(aiView,/labContract=\{activeLabA\}/);
+ assert.match(aiView,/contract=\{activeLabA\}/);
  assert.match(aiView,/id=\{'laboratorio-'\+guidedCanonicalId\('ai-dev',lesson\.stepId\)\}/);
  assert.match(channelView,/id=\{'laboratorio-'\+guidedCanonicalId\('channel-dark',lesson\.stepId\)\}/);
 });
-test('aluno vê entrega, link principal e detalhes de testes apenas sob demanda',()=>{
- assert.match(aiView,/<h3>Entrega desta etapa<\/h3>/);
- assert.match(aiView,/activeLabA\.entrypoint/);
- assert.match(aiView,/<details className="ai-lab-more">/);
- assert.match(aiView,/Como verificar/);
- assert.match(aiView,/activeLabA\.evidence/);
- assert.match(aiCss,/\.ai-track \.ai-lab-more summary/);
+test('o roteiro mostra cinco passos e o material canônico continua acessível',()=>{
+ for(const label of ['Explicação','Arquivos prontos','Tutorial','Laboratório','Validação']) assert.ok(labPath.includes(label));
+ assert.match(aiView,/<AiLabLearningPath/);
+ assert.match(labPath,/contract.deliverable/);
+ assert.match(labPath,/contract.verify/);
+ assert.match(labPath,/kitPaths.map/);
 });
 test('nenhum ID ou regra de conclusão foi alterado no inventário',()=>{
  const codes=[...catalog.main,...catalog.parallel,...catalog.guided].map(x=>x.code);
