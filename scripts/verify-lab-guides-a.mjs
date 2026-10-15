@@ -53,4 +53,10 @@ for(let id=171;id<=180;id++){
 for(const path of ['public/course-labs/a171-180/models.mjs','public/course-labs/a171-180/run.mjs','public/course-labs/a171-180/lab.test.mjs','public/course-labs/lab-tools/model.mjs','public/course-labs/lab-tools/run.mjs','public/course-labs/lab-tools/lab.test.mjs','src/lib/labCourseResources.ts'])assert.ok(existsSync(path),path+' ausente');
 const app=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf8');
 assert.ok(app.includes('getParallelLabGuide')&&app.includes('getMainLabGuide')&&app.includes('labGuide.guide'),'Aula não mostra o roteiro específico');
+const mainDoc=readFileSync('src/components/curriculum/CourseDocumentViewer.tsx','utf8');
+const matches=[...mainDoc.matchAll(/\\[(\\d+),(\\d+),'[^']+','(\\/course-labs\\/[^']+)'\\]/g)].map(m=>({from:Number(m[1]),to:Number(m[2]),file:m[3]}));
+assert.ok(matches.length>=25,'Mapa central sem faixas suficientes');
+for(let id=1;id<=218;id++)assert.equal(matches.filter(item=>id>=item.from&&id<=item.to).length,1,'Aula '+id+' com pacote ausente ou ambíguo');
+for(const item of matches)assert.ok(existsSync('public'+item.file),'Link central quebrado: '+item.file);
+console.log('PASS: 218 aulas mapeadas em pacotes existentes');
 console.log('PASS: 8 contratos Meu Gestor, 6 kits, 14 aulas V2, 10 aulas de pesquisa e 30 oficinas específicas de ferramentas');
