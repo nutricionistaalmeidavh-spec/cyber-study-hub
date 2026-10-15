@@ -44,8 +44,8 @@ test('96 referências e atividades possuem conteúdo, rotas e contratos de avali
  }
  const r=report();
  assert.equal(r.records.filter(v=>v.kind==='guided'&&v.grade!==null).length,0,'A de módulo não equivale a A da aula individual');
- assert.equal(r.records.filter(v=>v.kind==='guided'&&v.moduleEditorialGrade==='A').length,64);
- assert.equal(r.records.filter(v=>v.source==='reverse-ai'&&v.moduleEditorialGrade===null).length,32);
+ assert.equal(r.records.filter(v=>v.kind==='guided'&&v.moduleEditorialGrade==='A').length,96);
+ assert.equal(r.records.filter(v=>v.source==='reverse-ai'&&v.moduleEditorialGrade==='A'&&v.grade===null).length,32,'Parecer A do módulo sem promover nota individual');
  assert.match(canonicalCsv(r),/CANAL-IA-032/);
  assert.match(canonicalCsv(r),/REV-IA-032/);
 });
