@@ -12,7 +12,7 @@ type LabContract = { kind:string; deliverable:string };
 export function GuidedPracticeOrientation({
  code,source,step,labContract
 }:{
- code:string; source:'ai-dev'|'channel-dark'; step:GuidedStep;labContract?:LabContract
+ code:string; source:'ai-dev'|'channel-dark'|'reverse-ai'; step:GuidedStep;labContract?:LabContract
 }){
  if(step.kind!=='laboratorio')return null;
  const specification=labContract?.kind==='Especificação';
