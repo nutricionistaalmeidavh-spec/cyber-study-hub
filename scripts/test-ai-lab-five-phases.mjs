@@ -13,7 +13,9 @@ const base='public/course-labs/ai-dev-meu-gestor/';
 test('Os oito roteiros reutilizam IDs canônicos existentes e contratos individuais',()=>{
  assert.equal(modules.length,8);
  assert.equal(contracts.length,8);
- assert.equal(catalog.main.length+catalog.parallel.length+catalog.guided.length,607);
+ assert.equal(catalog.main.length+catalog.parallel.length+catalog.guided.length,639);
+ assert.equal(catalog.guided.filter(x=>x.source==='ai-dev').length,32);
+ assert.equal(catalog.guided.filter(x=>x.source==='reverse-ai').length,32);
  for(const m of modules){
   const l=m.lessons.find(x=>x.kind==='laboratorio');
   assert.equal(l.stepId,m.moduleId*4);
