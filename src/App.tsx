@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
 import CourseCatalog from './components/curriculum/CourseCatalog';
-import { publishedMainLessonIds, publishedParallelLessonCodes } from './curriculum/courseOfferings';
+import { publishedMainLessonIds, publishedParallelLessonCodes, publishedStandaloneLessonCodes } from './curriculum/courseOfferings';
 import { PlatformGate, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
@@ -151,7 +151,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='lessons' && (user.role==='admin' ? <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} /> : <CourseCatalog />)}
       {route.page==='lesson' && (user.role==='admin'||publishedMainLessonIds.has(route.id) ? <LessonViewer key={route.id} id={route.id} onRefresh={refresh} /> : <CourseCatalog courseId="unavailable" />)}
       {route.page==='course-main' && (user.role==='admin'||publishedMainLessonIds.has(route.id) ? <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} /> : <CourseCatalog courseId="unavailable" />)}
-      {route.page==='course-parallel' && (user.role==='admin'||publishedParallelLessonCodes.has(route.code) ? <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} /> : <CourseCatalog courseId="unavailable" />)}
+      {route.page==='course-parallel' && (user.role==='admin'||publishedParallelLessonCodes.has(route.code)||publishedStandaloneLessonCodes.has(route.code) ? <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} /> : <CourseCatalog courseId="unavailable" />)}
       {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
       {route.page==='channel-dark' && <ChannelAutomationTrail userId={user.id} />}
       {route.page==='games' && <GamesHub />}
