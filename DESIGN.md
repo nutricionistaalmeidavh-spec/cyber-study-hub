@@ -34,7 +34,7 @@ Study workspace for Brazilian learners and instructors on mobile PWA and desktop
 
 ## Colors
 
-The runtime variables in src/styles.css are canonical. This document mirrors those values (ownership model B). Use teal for primary actions, activity progress and keyboard focus; purple is an accent, not a completion state. Every count and progress bar requires a corresponding textual explanation. A total of 543 catalog items never means 543 interactive completions are available.
+The runtime variables in src/styles.css are canonical. This document mirrors those values (ownership model B). Use teal for primary actions, activity progress and keyboard focus; purple is an accent, not a completion state. Every count and progress bar requires a corresponding textual explanation. The canonical catalog now has **607 individually identified records**: 543 existing AULA/parallel IDs plus 64 guided IDs (32 DEV-IA and 32 CANAL-IA), including 16 reference stages. Each guided step has a stable ID, route and account-owned progress key. Reporting distinguishes per-step review from the A grade of a parent module; progress denominators are specific to the interaction type.
 
 ## Typography
 

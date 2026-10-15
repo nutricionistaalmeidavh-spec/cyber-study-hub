@@ -192,7 +192,8 @@
     "safetyScope": "Execute somente em localhost, VM, WSL, Docker, sistemas próprios ou escopo explicitamente autorizado.",
     "setup": [
       "Confirme o escopo do laboratório e registre o estado inicial antes de qualquer mudança.",
-      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável."
+      "Use dados fictícios e mantenha o ambiente isolado quando houver comportamento vulnerável.",
+      "Se estiver no PC e quiser conferir o código do bloco, execute da raiz: node --test public/course-labs/a051-060/labs.test.mjs. Os modelos são didáticos, não aplicações comerciais nem serviços externos."
     ],
     "happyPath": [
       "Antes de procurar a falha, execute o fluxo legítimo esperado.",
@@ -259,6 +260,16 @@
         "symptom": "Mantenha laboratório isolado e restaure snapshot quando a aula pedir mudança de configuração.",
         "likelyCause": "Estado inicial, versão, configuração ou fonte de dados diferente da esperada.",
         "action": "Volte ao baseline, confirme uma variável por vez e repita o mesmo cenário antes/depois."
+      }
+    ],
+    "resources": [
+      {
+        "label": "Modelo executável do bloco",
+        "href": "/course-labs/a051-060/models.mjs"
+      },
+      {
+        "label": "Testes locais (casos positivos/negativos)",
+        "href": "/course-labs/a051-060/labs.test.mjs"
       }
     ]
   },

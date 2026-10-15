@@ -4,7 +4,8 @@ import learning from './modules.json';
 import oficinas from './oficinas.json';
 import '../ai-dev/ai-dev.css';
 import './channel-dark.css';
-import { getStudyDraft, saveStudyVisit } from '../../lib/studyProgress';
+import { getStudyDraft, saveStudyVisit, syncCanonicalGuidedProgress } from '../../lib/studyProgress';
+import { guidedCanonicalId } from '../../lib/guidedIdentity';
 import ProgressSyncStatus from '../../components/ProgressSyncStatus';
 
 type Section = { heading: string; body: string; example?: string; counterexample?: string };
@@ -81,6 +82,7 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
     try {
       saveStudyVisit('channel-dark', { title: lesson.title, href: '#channel-dark?module=' + moduleId + '&step=' + stepIndex,
         kind: 'ai', sectionLabel: module.title }, snapshot);
+      syncCanonicalGuidedProgress('channel-dark', lesson.stepId, snapshot);
       setSaveError('');
     } catch { setSaveError('Não foi possível salvar esta etapa. Mantenha suas anotações abertas e tente novamente.'); }
   }, [progress, moduleId, stepIndex, lesson.stepId, lesson.title, module.title, answer, checkedAnswer, referenceRead, quizAttempt, saveAttempt]);
@@ -163,7 +165,7 @@ export default function ChannelAutomationTrail({ userId }: { userId: string }) {
         </button>)}
       </nav>
       <article className="ai-lesson panel" aria-labelledby="ai-lesson-title">
-        <div className="ai-lesson-top"><span className="eyebrow">ETAPA {String(lesson.stepId).padStart(2, '0')} / 32</span><span>{lesson.durationMin} min</span></div>
+        <div className="ai-lesson-top"><span className="eyebrow">ID {guidedCanonicalId('channel-dark', lesson.stepId)} · ETAPA {String(lesson.stepId).padStart(2, '0')} / 32</span><span>{lesson.durationMin} min</span></div>
         <h2 id="ai-lesson-title">{lesson.title}</h2><p className="ai-lead">{lesson.lead}</p>
         {lesson.sections?.map((s, i) => <section className="ai-reading" key={i}>
           <h3>{s.heading}</h3><p>{s.body}</p>

@@ -1,0 +1,3 @@
+asset,route,method,host,authorization,status
+lab-final,/health,GET,127.0.0.1:4191,local autorizado,pendente
+lab-final,/invoices/F001,GET,127.0.0.1:4191,local autorizado,pendente

@@ -1,0 +1,62 @@
+name: Laboratorios A e kits praticos
+on:
+  pull_request:
+    paths:
+      - 'src/trails/ai-dev/**'
+      - 'src/trails/channel-dark/manifest.json'
+      - 'src/lib/studyInventory.ts'
+      - 'src/components/Dashboard.tsx'
+      - 'src/components/AcademyLanding.tsx'
+      - 'src/curriculum/catalog.json'
+      - 'scripts/test-study-inventory.mjs'
+      - 'package.json'
+      - 'src/content/main/**'
+      - 'public/course-labs/ai-dev-meu-gestor/**'
+      - 'public/course-labs/a201-208/**'
+      - 'public/course-labs/a171-180/**'
+      - 'public/course-labs/lab-tools/**'
+      - 'src/lib/labCourseResources.ts'
+      - 'src/components/curriculum/**'
+      - 'public/course-labs/a181-190/**'
+      - 'public/course-labs/capstone-final/**'
+      - 'scripts/verify-lab-guides-a.mjs'
+      - '.github/workflows/laboratorios-a.yml'
+  push:
+    branches:
+      - feat/laboratorios-a-kits-aplicados-20261015
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Verify lab contracts and resources
+        run: node scripts/verify-lab-guides-a.mjs
+      - name: Test original kit examples and negative cases
+        run: node --test public/course-labs/ai-dev-meu-gestor/kits/tests/*.test.mjs
+      - name: Verify AI security and capstone locally
+        run: node --test public/course-labs/a171-180/lab.test.mjs public/course-labs/a171-180/research.test.mjs public/course-labs/a181-190/lab.test.mjs public/course-labs/a201-208/lab.test.mjs public/course-labs/capstone-final/lab.test.mjs
+      - name: Verify 30 labs de ferramentas - casos positivos e negativos
+        run: node --test public/course-labs/lab-tools/lab.test.mjs
+      - name: Verify original AI course and checkpoints
+        run: node scripts/verify-ai-dev.mjs
+      - name: Web app build
+        run: |
+          npm ci
+          npm run build
+      - name: Validate current number of study stages and references
+        run: npm run test:study-inventory
+      - name: Study continuity regression
+        run: node --test scripts/test-study-continuity.mjs
+      - name: Integration smoke - real utilidades modules
+        run: |
+          git clone --depth 1 https://github.com/nutricionistaalmeidavh-spec/utilidades.git /tmp/hub-utilidades
+          npm install --no-save --no-package-lock --legacy-peer-deps             /tmp/hub-utilidades/modules/artisys-reporting             /tmp/hub-utilidades/modules/artisys-finance-domain             /tmp/hub-utilidades/modules/artisys-pdf             @pdfme/generator@^6 @pdfme/schemas@^6 @pdfme/common@^6
+          node public/course-labs/ai-dev-meu-gestor/kits/reporting/export-orders.mjs /tmp/hub-ordens.csv
+          node public/course-labs/ai-dev-meu-gestor/kits/finance/classify-demo.mjs /tmp/hub-finance.json
+          node public/course-labs/ai-dev-meu-gestor/kits/pdf/generate-pdf.mjs /tmp/hub-ordem.pdf
+          node -e "const fs=require('node:fs');if(fs.readFileSync('/tmp/hub-ordem.pdf').toString('ascii',0,5)!=='%PDF-')process.exit(1);if(!fs.readFileSync('/tmp/hub-ordens.csv','utf8').includes('OS-1'))process.exit(1);if(!JSON.parse(fs.readFileSync('/tmp/hub-finance.json','utf8')).sourceId)process.exit(1);console.log('PASS integrações PDF CSV financeiro')"

@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import manifest from './manifest.json';
 import learning from './modules.json';
+import labContracts from './labContracts.json';
 import './ai-dev.css';
-import { getStudyDraft, saveStudyVisit } from '../../lib/studyProgress';
+import { getStudyDraft, saveStudyVisit, syncCanonicalGuidedProgress } from '../../lib/studyProgress';
+import { guidedCanonicalId } from '../../lib/guidedIdentity';
 import ProgressSyncStatus from '../../components/ProgressSyncStatus';
 
 type Section = { heading: string; body: string; example?: string; counterexample?: string };
@@ -10,7 +12,8 @@ type Challenge = { question: string; options: string[]; answer: number; feedback
 type Lesson = { stepId: number; kind: string; durationMin: number; title: string; lead: string;
   sections?: Section[]; challenge?: Challenge; reviewQuestions?: string[]; prompt?: string;
   referenceCode?: string; referencePath?: string; challengeText?: string; brief?: string[];
-  acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string };
+  acceptance?: string[]; starterUrl?: string; starterSourceUrl?: string; assessmentPrompt?: string;
+  labA?: {kind: string;deliverable: string;entrypoint: string;instructions: string;verify: string;preflight: string;evidence: string;optionalKits: string[];status: string;verifiedExecution: string}; };
 type Module = { moduleId: number; version: number; title: string; objective: string;
   learningOutcomes: string[]; lessons: Lesson[]; assessmentPath: string; answerKeyPath: string };
 type StepDraft = { answer: number | null; checkedAnswer: boolean; referenceRead: boolean; quizAttempt: string };
@@ -65,6 +68,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
   const [keyRevealed, setKeyRevealed] = useState<Record<number, boolean>>({});
   const module = modules.find(m => m.moduleId === moduleId) || modules[0];
   const lesson = module.lessons[stepIndex];
+  const activeLabA = labContracts.find(c => c.moduleId === moduleId);
   const complete = progress.completed.includes(lesson.stepId);
   const check = progress.checked[lesson.stepId] || [];
   const notes = progress.notes[lesson.stepId] || '';
@@ -77,6 +81,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
     try {
       saveStudyVisit('ai-dev', { title: lesson.title, href: '#ai-dev?module=' + moduleId + '&step=' + stepIndex,
         kind: 'ai', sectionLabel: module.title }, snapshot);
+      syncCanonicalGuidedProgress('ai-dev', lesson.stepId, snapshot);
       setSaveError('');
     } catch { setSaveError('Não foi possível salvar esta etapa. Mantenha suas anotações abertas e tente novamente.'); }
   }, [progress, moduleId, stepIndex, lesson.stepId, lesson.title, module.title, answer, checkedAnswer, referenceRead, quizAttempt, saveAttempt]);
@@ -152,7 +157,7 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
         </button>)}
       </nav>
       <article className="ai-lesson panel" aria-labelledby="ai-lesson-title">
-        <div className="ai-lesson-top"><span className="eyebrow">ETAPA {String(lesson.stepId).padStart(2, '0')} / 32</span><span>{lesson.durationMin} min</span></div>
+        <div className="ai-lesson-top"><span className="eyebrow">ID {guidedCanonicalId('ai-dev', lesson.stepId)} · ETAPA {String(lesson.stepId).padStart(2, '0')} / 32</span><span>{lesson.durationMin} min</span></div>
         <h2 id="ai-lesson-title">{lesson.title}</h2><p className="ai-lead">{lesson.lead}</p>
         {lesson.sections?.map((s, i) => <section className="ai-reading" key={i}>
           <h3>{s.heading}</h3><p>{s.body}</p>
@@ -188,7 +193,20 @@ export default function AiDevelopmentTrail({ userId }: { userId: string }) {
           <label className="ai-check"><input type="checkbox" checked={referenceRead} onChange={e => setReferenceRead(e.target.checked)}/><span>Estudei a aula e consigo prever um caso inválido sem consultar o gabarito.</span></label>
         </section>}
         {lesson.brief && <section className="ai-exercise">
-          <span className="eyebrow">LABORATÓRIO INCREMENTAL · PROJETO MEU GESTOR</span>
+          <span className="eyebrow">LABORATÓRIO PRÁTICO · PROJETO MEU GESTOR</span>
+          {activeLabA && <div className="ai-lab-contract" aria-label="Contrato do laboratório">
+            <div className="ai-lab-contract-top"><span>{activeLabA.kind}</span><span>R$ 0 · Execução local</span></div>
+            <h3>O que você vai entregar</h3><p>{activeLabA.deliverable}</p>
+            <dl><div><dt>Preparação</dt><dd>{activeLabA.preflight}</dd></div>
+              <div><dt>Como verificar</dt><dd>{activeLabA.verify}</dd></div>
+              <div><dt>Evidência</dt><dd>{activeLabA.evidence}</dd></div></dl>
+            <div className="ai-lab-links"><a href={activeLabA.entrypoint} target="_blank" rel="noopener noreferrer">Abrir arquivos e roteiro ↗</a>
+              <a href="/course-labs/ai-dev-meu-gestor/LABORATORIOS-A.md" target="_blank" rel="noopener noreferrer">Guia dos 8 laboratórios ↗</a></div>
+            {activeLabA.optionalKits.length > 0 && <div className="ai-lab-kit-row"><strong>Kits opcionais para evoluir o projeto</strong>
+              <p>São extensões, não exigências para concluir esta aula. Cada kit informa maturidade, dependências, origem e testes.</p>
+              <a href="/course-labs/ai-dev-meu-gestor/kits/README.md" target="_blank" rel="noopener noreferrer">Abrir biblioteca de kits ↗</a></div>}
+            <small>Marcar etapas e registrar anotações não significa que o Hub executou ou validou o seu código.</small>
+          </div>}
           <h3>Prática com evidências</h3><ol>{lesson.brief.map(x => <li key={x}>{x}</li>)}</ol>
           <div className="ai-actions">{lesson.starterUrl && moduleId <= 2 && <a className="button primary" href={lesson.starterUrl} target="_blank" rel="noopener noreferrer">Abrir artefato ↗</a>}
           {moduleId >= 3 && <a className="button primary" href={"https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/tree/main/public/course-labs/ai-dev-meu-gestor/checkpoints/" + ({3:"v0.1",4:"v0.2",5:"v0.3",6:"v0.4",7:"v0.5",8:"v1.0"} as Record<number,string>)[moduleId]} target="_blank" rel="noopener noreferrer">Ver código-fonte no GitHub ↗</a>}
