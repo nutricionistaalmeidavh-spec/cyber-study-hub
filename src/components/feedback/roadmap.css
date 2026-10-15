@@ -56,3 +56,5 @@
 @media(max-width:800px){.roadmap-grid{grid-template-columns:1fr}.roadmap-admin-row{flex-wrap:wrap}.roadmap-admin-row>div{flex-basis:100%}.roadmap-shell{padding:20px 15px 72px}.roadmap-embedded{padding:0}}
 @media(max-width:440px){.roadmap-card-footer{align-items:stretch;flex-direction:column}.roadmap-vote{width:100%}.roadmap-public-nav{padding:15px}.roadmap-public-nav .button{font-size:12px}.roadmap-heading h1{font-size:29px}}
 @media(prefers-reduced-motion:reduce){.roadmap-tab,.roadmap-vote{transition:none}}
+
+.feedback-dialog:focus-visible,.roadmap-public-layout a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { platformApi, type PlatformUser } from '../PlatformGate';
 import './feedback.css';
 import { FeedbackPublication, RoadmapManager } from './Roadmap';
@@ -20,6 +20,15 @@ const statuses:Record<Status,string>={new:'Novo',in_review:'Em análise',planned
 const priorities:Record<Priority,string>={low:'Baixa',normal:'Normal',high:'Alta',critical:'Crítica'};
 const stamp=(value:string)=>new Date(value).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});
 const errText=(value:unknown)=>value instanceof Error?value.message:String(value);
+function trapDialogTab(event:ReactKeyboardEvent<HTMLElement>){
+  if(event.key!=='Tab')return;
+  const controls=[...event.currentTarget.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled])')]
+    .filter(item=>item.getClientRects().length>0);
+  if(!controls.length)return;
+  const first=controls[0],last=controls[controls.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+}
 
 async function prepareImage(file:File):Promise<string>{
   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8_000_000)
@@ -83,7 +92,7 @@ export function FeedbackComposer({context,onClose}:{context:{contextPath:string;
     finally{setBusy(false);}
   };
   return <div className="feedback-overlay" onMouseDown={e=>{if(e.target===e.currentTarget)safelyClose();}}>
-    <section className="feedback-dialog" role="dialog" aria-modal="true" aria-labelledby="feedback-dialog-title">
+    <section className="feedback-dialog" role="dialog" aria-modal="true" aria-labelledby="feedback-dialog-title" onKeyDown={trapDialogTab}>
       <header className="feedback-dialog-top">
         <div><span className="eyebrow">HUBESTUDOS</span><h2 id="feedback-dialog-title">{sentId?'Feedback registrado':'Enviar feedback'}</h2></div>
         <button type="button" className="feedback-close" onClick={safelyClose} aria-label="Fechar" disabled={busy}>×</button>
@@ -122,6 +131,14 @@ function FeedbackDetail({id,admin,onClose,onUpdate}:{id:string;admin:boolean;onC
   const [busy,setBusy]=useState(false);
   const [loading,setLoading]=useState(true);
   const [error,setError]=useState('');
+  const closeButton=useRef<HTMLButtonElement>(null);
+  useEffect(()=>{
+    const previous=document.activeElement;
+    closeButton.current?.focus();
+    const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')onClose();};
+    window.addEventListener('keydown',onKey);
+    return()=>{window.removeEventListener('keydown',onKey);if(previous instanceof HTMLElement)previous.focus();};
+  },[onClose]);
   const reload=async()=>{
     const r=await platformApi<Detail>('/api/feedback/'+encodeURIComponent(id));
     setDetail(r);
@@ -153,8 +170,8 @@ function FeedbackDetail({id,admin,onClose,onUpdate}:{id:string;admin:boolean;onC
     catch(e){setError(errText(e));}
   };
   return <div className="feedback-overlay" onMouseDown={e=>{if(e.target===e.currentTarget)onClose();}}>
-    <section className="feedback-dialog feedback-detail" role="dialog" aria-modal="true" aria-labelledby="feedback-detail-title">
-      <header className="feedback-dialog-top"><div><span className="eyebrow">ACOMPANHAMENTO</span><h2 id="feedback-detail-title">{detail?.feedback.title??'Detalhes do feedback'}</h2></div><button type="button" className="feedback-close" onClick={onClose} aria-label="Fechar">×</button></header>
+    <section className="feedback-dialog feedback-detail" role="dialog" aria-modal="true" aria-labelledby="feedback-detail-title" onKeyDown={trapDialogTab}>
+      <header className="feedback-dialog-top"><div><span className="eyebrow">ACOMPANHAMENTO</span><h2 id="feedback-detail-title">{detail?.feedback.title??'Detalhes do feedback'}</h2></div><button ref={closeButton} type="button" className="feedback-close" onClick={onClose} aria-label="Fechar">×</button></header>
       {loading&&<p role="status">Carregando relato…</p>}
       {detail&&<div className="feedback-form">
         <div className="feedback-meta"><span className={'feedback-status status-'+detail.feedback.status}>{statuses[detail.feedback.status]}</span><span>{categories[detail.feedback.category]}</span><span>{stamp(detail.feedback.createdAt)}</span></div>
@@ -188,6 +205,7 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
   const [more,setMore]=useState(false);
   const [status,setStatus]=useState<'all'|Status>('all');
   const [selected,setSelected]=useState('');
+  const [roadmapRevision,setRoadmapRevision]=useState(0);
   const [loading,setLoading]=useState(true);
   const [error,setError]=useState('');
   const endpoint=admin?'/api/admin/feedback':'/api/feedback';
@@ -215,8 +233,8 @@ export function FeedbackBoard({user,admin=false}:{user:PlatformUser;admin?:boole
       </div>}
       {total>30&&<div className="feedback-pagination"><button className="button ghost" onClick={()=>setPage(x=>Math.max(0,x-1))} disabled={page===0||loading}>Anterior</button><span>Página {page+1}</span><button className="button ghost" onClick={()=>setPage(x=>x+1)} disabled={!more||loading}>Próxima</button></div>}
     </section>
-    {admin&&<RoadmapManager/>}
+    {admin&&<RoadmapManager revision={roadmapRevision}/>}
     {admin&&<p className="muted">Apenas administradores podem consultar todos os relatos, definir prioridades e alterar situações.</p>}
-    {selected&&<FeedbackDetail id={selected} admin={admin&&user.role==='admin'} onClose={()=>setSelected('')} onUpdate={()=>void load().catch(e=>setError(errText(e)))}/>}
+    {selected&&<FeedbackDetail id={selected} admin={admin&&user.role==='admin'} onClose={()=>setSelected('')} onUpdate={()=>{setRoadmapRevision(x=>x+1);void load().catch(e=>setError(errText(e)));}}/>}
   </div>;
 }

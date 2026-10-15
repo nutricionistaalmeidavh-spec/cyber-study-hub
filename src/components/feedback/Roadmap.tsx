@@ -70,12 +70,12 @@ export function RoadmapPage({embedded=false}:{embedded?:boolean}){
   return <div className="roadmap-public-layout"><nav className="roadmap-public-nav"><a href="/academy" aria-label="Academy início"><AcademyBrand/></a><a className="button ghost" href="/">Entrar no Hub</a></nav><main>{content}</main><footer className="roadmap-public-footer"><a href="/academy">Conhecer a Academy</a><span>ArtiSys · HubEstudos</span></footer></div>;
 }
 
-export function RoadmapManager(){
+export function RoadmapManager({revision=0}:{revision?:number}){
   const [data,setData]=useState<AdminData|null>(null);
   const [error,setError]=useState('');
   const [busy,setBusy]=useState('');
   const reload=useCallback(async()=>setData(await platformApi<AdminData>('/api/admin/roadmap')),[]);
-  useEffect(()=>{void reload().catch(e=>setError(errorText(e)));},[reload]);
+  useEffect(()=>{void reload().then(()=>setError('')).catch(e=>setError(errorText(e)));},[reload,revision]);
   const change=async(id:string,stage:Stage)=>{
     setBusy(id);setError('');
     try{await platformApi('/api/admin/roadmap/ideas/'+encodeURIComponent(id),'PATCH',{stage});await reload();}
@@ -90,9 +90,9 @@ export function RoadmapManager(){
     finally{setBusy('');}
   };
   return <section className="panel roadmap-management" aria-labelledby="roadmap-admin-title">
-    <div className="section-head"><div><span className="eyebrow">CONTEÚDO PÚBLICO</span><h2 id="roadmap-admin-title">Roadmap e novidades publicadas</h2><p>Somente os textos aprovados aparecem para visitantes. O feedback original continua privado.</p></div><a className="button ghost" href="/roadmap" target="_blank" rel="noopener noreferrer">Ver página pública</a></div>
+    <div className="section-head"><div><span className="eyebrow">CONTEÚDO PÚBLICO</span><h2 id="roadmap-admin-title">Roadmap e novidades publicadas</h2><p>Somente textos aprovados aparecem publicamente. O andamento do feedback privado e a etapa pública são estados diferentes; altere cada um conforme necessário.</p></div><a className="button ghost" href="/roadmap" target="_blank" rel="noopener noreferrer">Ver página pública</a></div>
     {error&&<p className="feedback-error" role="alert">{error}</p>}
-    {!data?<p role="status">Carregando publicações…</p>:<>
+    {!data?(error?<button className="button ghost" onClick={()=>void reload().then(()=>setError('')).catch(e=>setError(errorText(e)))}>Recarregar publicações</button>:<p role="status">Carregando publicações…</p>):<>
       <h3>Sugestões públicas ({data.ideas.length})</h3>
       {!data.ideas.length&&<p className="muted">Abra uma sugestão na lista de feedbacks para publicá-la.</p>}
       <div className="roadmap-admin-list">{data.ideas.map(idea=><div className="roadmap-admin-row" key={idea.id}>
