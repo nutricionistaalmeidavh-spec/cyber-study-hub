@@ -16,7 +16,7 @@ afterEach(async () => {
   }
 });
 
-async function start({ openRegistration = false } = {}) {
+async function start({ openRegistration = true } = {}) {
   const dir = mkdtempSync(join(tmpdir(), 'study-hub-auth-'));
   const origin = 'http://127.0.0.1';
   const app = createPlatformHandler({
@@ -76,8 +76,8 @@ test('secure cookie session: unauthenticated denied, login works, logout revokes
   assert.equal((await request('/api/me', { cookie: login.cookie })).status, 401);
 });
 
-test('registration is invite-only by default and new accounts are students', async () => {
-  const request = await start();
+test('o administrador pode fechar o cadastro e exigir convite (opt-out)', async () => {
+  const request = await start({openRegistration:false});
   const adminCookie = await boot(request);
   assert.equal((await request('/api/auth/register', { method: 'POST', data: { name:'No Invite', email:'x@example.test', password:'GoodPassword1234!' } })).status, 403);
   const inv = await request('/api/admin/invitations', { method:'POST', cookie:adminCookie, data:{ email:'student@example.test',role:'student' } });
@@ -148,4 +148,46 @@ test('HTTP course payload: unauthorized, granted, revoked and subscription scena
   assert.equal((await request('/api/content/games',{cookie:student.cookie})).payload.reviewPacks.length,9);
   assert.equal((await request('/api/admin/access/subscriptions',{method:'DELETE',cookie:adminCookie,data:{userId}})).status,200);
   assert.equal((await request('/api/content/trail/channel-dark',{cookie:student.cookie})).status,403);
+});
+
+test('cadastro público cria somente estudante e não exige convite nem código de e-mail',async()=>{
+ const request=await start();
+ assert.deepEqual((await request('/api/auth/config')).payload,{ready:false,openRegistration:true});
+ assert.equal((await request('/api/auth/register',{method:'POST',data:{name:'Intruso',email:'unconfigured@example.test',password:'GoodPassword1234!'}})).status,403);
+ const rootCookie=await boot(request);
+ assert.equal((await request('/api/auth/config')).payload.openRegistration,true);
+ const signup=await request('/api/auth/register',{method:'POST',data:{
+   name:'Estudante novo',email:'novo-aluno@example.test',password:'GoodPassword1234!',role:'admin'
+ }});
+ assert.equal(signup.status,201);
+ assert.equal(signup.payload.user.role,'student');
+ assert.equal(signup.payload.user.email,'novo-aluno@example.test');
+ assert.match(signup.cookie,/hub_session=/);
+ assert.equal((await request('/api/me',{cookie:signup.cookie})).payload.user.role,'student');
+ assert.deepEqual((await request('/api/access/me',{cookie:signup.cookie})).payload.courseIds,[]);
+ assert.equal((await request('/api/admin/users',{cookie:signup.cookie})).status,403);
+ assert.equal((await request('/api/auth/register',{method:'POST',data:{
+   name:'Duplicado',email:'NOVO-ALUNO@EXAMPLE.TEST',password:'GoodPassword1234!'
+ }})).status,409);
+ assert.equal((await request('/api/admin/users',{cookie:rootCookie})).payload.users.length,2);
+});
+
+test('público não cria professor; convite administrativo continua autorizando apenas a função definida',async()=>{
+ const request=await start();
+ const adminCookie=await boot(request);
+ const forged=await request('/api/auth/register',{method:'POST',data:{
+   name:'Tentativa',email:'fake@academy.example',password:'GoodPassword1234!',role:'teacher',status:'active'
+ }});
+ assert.equal(forged.status,201);
+ assert.equal(forged.payload.user.role,'student');
+ assert.equal((await request('/api/admin/invitations',{method:'POST',cookie:forged.cookie,data:{email:'x@example.test',role:'admin'}})).status,403);
+ const invite=await request('/api/admin/invitations',{method:'POST',cookie:adminCookie,data:{email:'prof@example.test',role:'teacher'}});
+ assert.equal(invite.status,201);
+ const teacher=await request('/api/auth/register',{method:'POST',data:{name:'Professor',password:'GoodPassword1234!',inviteToken:invite.payload.token,email:'other@example.test',role:'admin'}});
+ assert.equal(teacher.status,201);
+ assert.equal(teacher.payload.user.role,'teacher');
+ assert.equal(teacher.payload.user.email,'prof@example.test');
+ assert.equal((await request('/api/auth/register',{method:'POST',data:{
+  name:'Intruso',email:'another@example.test',password:'GoodPassword1234!',inviteToken:'X'.repeat(32)
+ }})).status,403);
 });
