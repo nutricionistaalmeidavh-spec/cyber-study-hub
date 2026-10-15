@@ -42,7 +42,7 @@ async function start(secret=SECRET){
    'x-artisys-signature':'sha256='+(sign?signature:'0'.repeat(64))},body});
   return {status:result.status,payload:await result.json()};
  };
- return {request,deliver,learner,admin,close:async()=>{
+ return {request,deliver,learner,admin,dbPath:join(dir,'study.sqlite'),close:async()=>{
   await new Promise(resolve=>server.close(resolve));app.close();rmSync(dir,{recursive:true,force:true});
  }};
 }
@@ -120,5 +120,22 @@ test('renovação antecipada falha e estorno impede reativação por replay',asy
   assert.equal((await s.deliver({...original,idempotencyKey:randomUUID()})).status,200);
   assert.equal((await s.deliver({...renewal,idempotencyKey:randomUUID()})).status,409);
   assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.subscriptionActive,false);
+ }finally{await s.close();}
+});
+
+test('assinatura expirada bloqueia, sem afetar outra assinatura paga',async()=>{
+ const s=await start();
+ try{
+  const first=bodyFor({productId:'hubestudos-subscription',saleType:'monthly'});
+  const next=bodyFor({productId:'hubestudos-subscription',saleType:'monthly'});
+  assert.equal((await s.deliver(first)).status,200);
+  const {DatabaseSync}=await import('node:sqlite');
+  const db=new DatabaseSync(s.dbPath);
+  try{db.prepare('UPDATE billing_entitlements SET expires_at=1 WHERE order_id=?').run(first.orderId);}
+  finally{db.close();}
+  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.subscriptionActive,false);
+  assert.equal((await s.deliver(next)).status,200);
+  assert.equal((await s.deliver({...first,event:'artisys.license.revoke',idempotencyKey:randomUUID()})).status,200);
+  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.subscriptionActive,true);
  }finally{await s.close();}
 });
