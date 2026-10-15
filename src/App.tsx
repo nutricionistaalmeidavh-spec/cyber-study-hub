@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import AcademyLanding, { isAcademyPath } from './components/AcademyLanding';
-import { PlatformGate, type PlatformUser } from './components/PlatformGate';
+import CourseCatalog from './components/curriculum/CourseCatalog';
+import { publishedMainLessonIds, publishedParallelLessonCodes, publishedStandaloneLessonCodes, courseByLessonCode } from './curriculum/courseOfferings';
+import { PlatformGate, platformApi, type PlatformUser } from './components/PlatformGate';
 import { PlatformProfile, PlatformUsers } from './components/PlatformAccount';
 import Dashboard from './components/Dashboard';
 import AcademyBrand from './components/AcademyBrand';
@@ -23,6 +25,7 @@ interface InstallPromptEvent extends Event {
 
 type Route =
   | { page: 'dashboard' }
+  | { page: 'courses'; courseId?: string }
   | { page: 'account' }
   | { page: 'admin-users' }
   | { page: 'admin-feedback' }
@@ -42,6 +45,7 @@ type Route =
 
 function parseHash(): Route {
   const raw = studyRouteHash(window.location.hash);
+  if (raw === 'courses' || raw.startsWith('courses/')) return { page: 'courses', courseId: raw.split('/')[1] || undefined };
   if (raw.startsWith('course/main/')) return { page: 'course-main', id: Number(raw.split('/')[2]) || 1 };
   if (raw.startsWith('course/parallel/')) return { page: 'course-parallel', code: decodeURIComponent(raw.split('/')[2] || 'LOG-01') };
   if (raw.startsWith('lesson/')) return { page: 'lesson', id: Number(raw.split('/')[1]) || 43 };
@@ -83,6 +87,26 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [showIos, setShowIos] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [access,setAccess] = useState<{courseIds:string[];subscriptionActive:boolean;staff:boolean}|null>(null);
+  const [accessError,setAccessError] = useState('');
+  useEffect(()=>{
+    let active=true;
+    void platformApi<{courseIds:string[];subscriptionActive:boolean;staff:boolean}>('/api/access/me')
+      .then(result=>{if(active){setAccess(result);setAccessError('');}})
+      .catch(reason=>{if(active){setAccess(null);setAccessError(String(reason));}});
+    return()=>{active=false;};
+  },[user.id]);
+  const staff=user.role==='admin'||user.role==='teacher';
+  const entitled=(courseId:string|undefined)=>staff||Boolean(courseId&&(access?.subscriptionActive||access?.courseIds.includes(courseId)));
+  const canReadMain=(id:number)=>publishedMainLessonIds.has(id)&&entitled(courseByLessonCode.get('AULA-'+String(id).padStart(3,'0')));
+  const canReadParallel=(code:string)=>(publishedParallelLessonCodes.has(code)||publishedStandaloneLessonCodes.has(code))&&entitled(code==='LOG-01'?'desenvolvimento-com-ia':courseByLessonCode.get(code));
+  const hasAnyAccess=staff||Boolean(access?.subscriptionActive||access?.courseIds.length);
+  const denied=<section className="page platform-page"><div className="panel stack" role="status">
+    <span className="eyebrow">ACESSO AO CURSO</span>
+    <h1>{accessError?'Não foi possível verificar seu acesso':access?'Curso não liberado nesta conta':'Verificando acesso ao curso…'}</h1>
+    <p>{accessError?'Atualize a página para tentar novamente.':access?'Selecione uma formação disponível para sua conta. A compra avulsa e a assinatura ainda não são cobradas automaticamente.':'A consulta de permissões ocorre no servidor.'}</p>
+    <a className="button ghost" href="#courses">Ver catálogo de cursos</a>
+  </div></section>;
   const feedbackTrigger=useRef<HTMLButtonElement>(null);
   const closeFeedback=()=>{setFeedbackOpen(false);requestAnimationFrame(()=>feedbackTrigger.current?.focus());};
   const isIos = useMemo(() => /iphone|ipad|ipod/i.test(navigator.userAgent), []);
@@ -115,7 +139,8 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <a className="brand" href="#dashboard"><AcademyBrand /></a>
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
-        <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+        <Nav href="#courses" active={route.page==='courses'} icon="book" label="Cursos" />
+        {user.role==='admin' && <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca editorial" />}
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
         <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
@@ -137,27 +162,28 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
       </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
+      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='feedback' && <FeedbackBoard user={user} />}
       {route.page==='roadmap' && <RoadmapPage embedded />}
       {route.page==='admin-feedback' && (user.role==='admin'?<FeedbackBoard user={user} admin />:<FeedbackBoard user={user} />)}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
-      {route.page==='lessons' && <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} />}
-      {route.page==='lesson' && <LessonViewer key={route.id} id={route.id} onRefresh={refresh} />}
-      {route.page==='course-main' && <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} />}
-      {route.page==='course-parallel' && <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} />}
-      {route.page==='ai-dev' && <AiDevelopmentTrail userId={user.id} />}
-      {route.page==='channel-dark' && <ChannelAutomationTrail userId={user.id} />}
-      {route.page==='games' && <GamesHub />}
-      {route.page==='game' && <GamePlayer packId={route.packId} type={route.type} onRefresh={refresh} />}
-      {route.page==='materials' && <MaterialsHub />}
-      {route.page==='material' && <MaterialViewer id={route.id} />}
+      {route.page==='lessons' && (user.role==='admin' ? <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} /> : <CourseCatalog />)}
+      {route.page==='lesson' && (canReadMain(route.id) ? <LessonViewer key={route.id} id={route.id} onRefresh={refresh} /> : denied)}
+      {route.page==='course-main' && (canReadMain(route.id) ? <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} /> : denied)}
+      {route.page==='course-parallel' && (canReadParallel(route.code) ? <CourseDocumentViewer key={"parallel-" + route.code} kind="parallel" code={route.code} /> : denied)}
+      {route.page==='ai-dev' && (entitled('desenvolvimento-com-ia')?<AiDevelopmentTrail userId={user.id}/>:denied)}
+      {route.page==='channel-dark' && (entitled('automacao-canal-dark')?<ChannelAutomationTrail userId={user.id}/>:denied)}
+      {route.page==='games' && (hasAnyAccess?<GamesHub/>:denied)}
+      {route.page==='game' && (hasAnyAccess?<GamePlayer packId={route.packId} type={route.type} onRefresh={refresh}/>:denied)}
+      {route.page==='materials' && (hasAnyAccess?<MaterialsHub/>:denied)}
+      {route.page==='material' && (hasAnyAccess?<MaterialViewer id={route.id}/>:denied)}
       {route.page==='review' && <Review />}
     </main>
 
     <nav className="mobile-nav">
       <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
-      <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Aulas" />
+      <Nav href="#courses" active={route.page==='courses'||route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Cursos" />
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
       <Nav href="#materials" active={route.page==='materials'||route.page==='material'} icon="materials" label="Materiais" />
       <Nav href="#review" active={route.page==='review'} icon="review" label="Revisão" />
@@ -171,6 +197,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         route.page==='lesson'?'Aula '+String(route.id).padStart(3,'0'):
         route.page==='ai-dev'?'Trilha Desenvolver com IA':
         route.page==='channel-dark'?'Trilha Canal Dark com IA':
+        route.page==='courses'?'Cursos '+(route.courseId??'· catálogo'):
         route.page==='lessons'?'Módulos '+(route.module??'· catálogo'):
         route.page==='material'?'Material '+route.id:route.page==='game'?'Jogo '+route.packId:
         route.page==='dashboard'?'Início do HubEstudos':route.page

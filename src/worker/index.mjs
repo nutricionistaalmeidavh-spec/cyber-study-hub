@@ -1,3 +1,4 @@
+import { ownersForPath, publishedCourseIds, knownCourseIds, protectedPath, canonicalAssetPath, permitted } from './course-access.mjs';
 import { DurableObject } from 'cloudflare:workers';
 import { passwordHash, passwordMatches } from './password-kdf.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
@@ -67,6 +68,9 @@ export class HubAuthObject extends DurableObject {
       "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL,expires_at INTEGER NOT NULL,used_at INTEGER)",
       "CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL)",
       "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))",
+      "CREATE TABLE IF NOT EXISTS course_grants (user_id TEXT NOT NULL,course_id TEXT NOT NULL,granted_at INTEGER NOT NULL,expires_at INTEGER,revoked_at INTEGER,PRIMARY KEY(user_id,course_id))",
+      "CREATE INDEX IF NOT EXISTS grants_user ON course_grants(user_id)",
+      "CREATE TABLE IF NOT EXISTS subscription_grants (user_id TEXT PRIMARY KEY,granted_at INTEGER NOT NULL,expires_at INTEGER NOT NULL,revoked_at INTEGER)",
       ...FEEDBACK_SCHEMA,
       ...ROADMAP_SCHEMA
     ])this.sql.exec(ddl);
@@ -114,6 +118,13 @@ export class HubAuthObject extends DurableObject {
     this.sql.exec('INSERT INTO sessions(token_hash,user_id,expires_at) VALUES(?,?,?)',
       await sha(token),u.id,Date.now()+7*DAY);
     return response(status,{user:safeUser(u)},{'Set-Cookie':cookie(token,secure)});
+  }
+  accessState(user){
+    const grants=this.all('SELECT course_id,expires_at,revoked_at FROM course_grants WHERE user_id=?',user.id);
+    const subscription=this.one('SELECT expires_at,revoked_at FROM subscription_grants WHERE user_id=?',user.id);
+    const active=Boolean(subscription&&subscription.revoked_at===null&&subscription.expires_at>Date.now());
+    const activeCourses=grants.filter(g=>g.revoked_at===null&&(g.expires_at===null||g.expires_at>Date.now())&&publishedCourseIds.has(g.course_id)).map(g=>g.course_id);
+    return {grants,subscriptionActive:active,activeCourses};
   }
   async fetch(request){
     try{
@@ -237,6 +248,53 @@ export class HubAuthObject extends DurableObject {
         this.sql.exec('DELETE FROM user_state WHERE user_id=? AND key=?',u.id,b.key);
         return response(200,{ok:true});
       }
+
+      if(path==='/api/access/me'&&method==='GET'){
+        const u=await this.requireUser(request),s=this.accessState(u);
+        return response(200,{courseIds:(u.role==='admin'||u.role==='teacher')?[...publishedCourseIds]:s.activeCourses,
+          subscriptionActive:s.subscriptionActive,staff:u.role==='admin'||u.role==='teacher'});
+      }
+      if(path==='/api/content/authorize'&&method==='POST'){
+        const u=await this.requireUser(request),b=await jsonBody(request,1024);
+        const location=canonicalAssetPath(b.path);
+        if(!location)throw new ApiError(404,'Recurso não encontrado.');
+        const s=this.accessState(u),owners=ownersForPath(location);
+        if(!permitted(u,owners,s.grants,s.subscriptionActive))throw new ApiError(403,'Curso não liberado para esta conta.');
+        return response(200,{ok:true});
+      }
+      if(path==='/api/admin/access/grants'&&method==='GET'){
+        await this.requireAdmin(request);
+        const userId=url.searchParams.get('userId');
+        if(!userId||!this.one('SELECT id FROM users WHERE id=?',userId))throw new ApiError(404,'Conta não encontrada.');
+        return response(200,{grants:this.all('SELECT course_id,granted_at,expires_at,revoked_at FROM course_grants WHERE user_id=?',userId),
+          subscription:this.one('SELECT granted_at,expires_at,revoked_at FROM subscription_grants WHERE user_id=?',userId)||null});
+      }
+      if(path==='/api/admin/access/grants'&&(method==='POST'||method==='DELETE')){
+        await this.requireAdmin(request);const b=await jsonBody(request,1024);
+        if(typeof b.userId!=='string'||!this.one('SELECT id FROM users WHERE id=?',b.userId))throw new ApiError(404,'Conta não encontrada.');
+        if(typeof b.courseId!=='string'||!knownCourseIds.has(b.courseId))throw new ApiError(400,'Curso inválido.');
+        if(method==='POST'){
+          if(!publishedCourseIds.has(b.courseId))throw new ApiError(409,'Curso ainda não publicado.');
+          if(b.validDays!==undefined&&(!Number.isSafeInteger(b.validDays)||b.validDays<1||b.validDays>365))
+            throw new ApiError(400,'Prazo inválido.');
+          const expires=b.validDays?Date.now()+b.validDays*DAY:null;
+          this.sql.exec('INSERT INTO course_grants(user_id,course_id,granted_at,expires_at,revoked_at) VALUES(?,?,?,?,NULL) ON CONFLICT(user_id,course_id) DO UPDATE SET granted_at=excluded.granted_at,expires_at=excluded.expires_at,revoked_at=NULL',
+            b.userId,b.courseId,Date.now(),expires);
+        }else{
+          this.sql.exec('UPDATE course_grants SET revoked_at=? WHERE user_id=? AND course_id=?',Date.now(),b.userId,b.courseId);
+        }
+        return response(200,{ok:true});
+      }
+      if(path==='/api/admin/access/subscriptions'&&(method==='POST'||method==='DELETE')){
+        await this.requireAdmin(request);const b=await jsonBody(request,1024);
+        if(typeof b.userId!=='string'||!this.one('SELECT id FROM users WHERE id=?',b.userId))throw new ApiError(404,'Conta não encontrada.');
+        if(method==='POST'){
+          if(!Number.isSafeInteger(b.validDays)||b.validDays<1||b.validDays>365)throw new ApiError(400,'Prazo inválido.');
+          this.sql.exec('INSERT INTO subscription_grants(user_id,granted_at,expires_at,revoked_at) VALUES(?,?,?,NULL) ON CONFLICT(user_id) DO UPDATE SET granted_at=excluded.granted_at,expires_at=excluded.expires_at,revoked_at=NULL',
+            b.userId,Date.now(),Date.now()+b.validDays*DAY);
+        }else this.sql.exec('UPDATE subscription_grants SET revoked_at=? WHERE user_id=?',Date.now(),b.userId);
+        return response(200,{ok:true});
+      }
       if(roadmapRoute(path))return await handleRoadmap({
         path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
         requireUser:()=>this.requireUser(request),requireAdmin:()=>this.requireAdmin(request),
@@ -289,9 +347,26 @@ export class HubAuthObject extends DurableObject {
   }
 }
 export default {
-  fetch(request,env){
+  async fetch(request,env){
     const url=new URL(request.url);
     if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
+    if(protectedPath(url.pathname)){
+      if(request.method!=='GET'&&request.method!=='HEAD')return response(405,{error:'Método não permitido.'});
+      const path=canonicalAssetPath(url.pathname);
+      if(!path)return response(404,{error:'Recurso não encontrado.'});
+      if(!env.HUB_AUTH)return response(503,{error:'Backend da plataforma não configurado.'});
+      const auth=new Request(url.origin+'/api/content/authorize',{method:'POST',headers:{
+        'Content-Type':'application/json','Origin':url.origin,'Cookie':request.headers.get('cookie')||''
+      },body:JSON.stringify({path})});
+      const gate=await env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(auth);
+      if(!gate.ok)return gate;
+      const asset=await env.ASSETS.fetch(request);
+      const headers=new Headers(asset.headers);
+      headers.set('Cache-Control','private, no-store, max-age=0');
+      headers.set('Vary','Cookie');
+      headers.set('X-Content-Type-Options','nosniff');
+      return new Response(request.method==='HEAD'?null:asset.body,{status:asset.status,statusText:asset.statusText,headers});
+    }
     if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
     if(!env.HUB_AUTH)return response(503,{error:'Backend da plataforma não configurado.'});
     return env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(request);

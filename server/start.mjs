@@ -2,6 +2,7 @@ import { createServer } from 'node:http';
 import { readFile, stat, mkdir } from 'node:fs/promises';
 import { resolve, extname, join, sep } from 'node:path';
 import { createPlatformHandler } from './platform.mjs';
+import { protectedPath, canonicalAssetPath } from '../src/worker/course-access.mjs';
 
 const port=Number(process.env.PORT || 8788);
 const origin=process.env.HUB_ORIGIN || 'http://localhost:8788';
@@ -21,6 +22,11 @@ const server=createServer(async(req,res)=>{
   const route=new URL(req.url,origin).pathname;
   if(route.startsWith('/api/'))return app.handle(req,res);
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end();return;}
+  if(protectedPath(route)){
+    const result=app.authorize(req,route);
+    if(!result.ok){res.writeHead(result.status,{'Cache-Control':'no-store','Content-Type':'text/plain; charset=utf-8'});res.end('Acesso não autorizado.');return;}
+    if(!canonicalAssetPath(route)){res.writeHead(404);res.end();return;}
+  }
   try{
     const relative=decodeURIComponent(route);
     if(relative.includes('\0')||relative.includes('\\'))throw Error('Invalid path');
@@ -36,7 +42,7 @@ const server=createServer(async(req,res)=>{
     }
     const bytes=await readFile(file);
     res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream',
-      'X-Content-Type-Options':'nosniff','Cache-Control':extname(file)==='.html'?'no-store':'public, max-age=300'});
+      'X-Content-Type-Options':'nosniff','Cache-Control':protectedPath(route)?'private, no-store':extname(file)==='.html'?'no-store':'public, max-age=300'});
     res.end(req.method==='HEAD'?undefined:bytes);
   }catch{
     res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});res.end('Recurso indisponível.');

@@ -1,0 +1,1352 @@
+{
+  "schemaVersion": 1,
+  "gradePolicy": "Publicar somente cursos completos e avaliados A (editorial IA). IDs cobrem 607 unidades, incluindo 64 etapas guiadas; isso não implementa pagamentos ou ACL.",
+  "commercialAccess": "not_implemented",
+  "courses": [
+    {
+      "id": "web-apis",
+      "type": "main",
+      "title": "Web Security e APIs",
+      "description": "Aplicações web, autenticação, OAuth e segurança de APIs.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "web-apis-m01",
+          "title": "Fundamentos Web",
+          "lessonCodes": [
+            "AULA-001",
+            "AULA-002",
+            "AULA-003",
+            "AULA-004",
+            "AULA-005",
+            "AULA-006",
+            "AULA-007",
+            "AULA-008",
+            "AULA-009",
+            "AULA-010"
+          ]
+        },
+        {
+          "id": "web-apis-m02",
+          "title": "APIs e Identidade",
+          "lessonCodes": [
+            "AULA-011",
+            "AULA-012",
+            "AULA-013",
+            "AULA-014",
+            "AULA-015",
+            "AULA-016",
+            "AULA-017",
+            "AULA-018",
+            "AULA-019",
+            "AULA-020"
+          ]
+        },
+        {
+          "id": "web-apis-m03",
+          "title": "AppSec Avançado I",
+          "lessonCodes": [
+            "AULA-041",
+            "AULA-042",
+            "AULA-043",
+            "AULA-044",
+            "AULA-045",
+            "AULA-046",
+            "AULA-047",
+            "AULA-048",
+            "AULA-049",
+            "AULA-050"
+          ]
+        },
+        {
+          "id": "web-apis-m04",
+          "title": "AppSec Avançado II",
+          "lessonCodes": [
+            "AULA-051",
+            "AULA-052",
+            "AULA-053",
+            "AULA-054",
+            "AULA-055",
+            "AULA-056",
+            "AULA-057",
+            "AULA-058",
+            "AULA-059",
+            "AULA-060"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "redes-sistemas",
+      "type": "main",
+      "title": "Redes e Segurança de Sistemas",
+      "description": "Redes, Linux, análise de tráfego e sistemas.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "redes-sistemas-m01",
+          "title": "Redes e Sistemas",
+          "lessonCodes": [
+            "AULA-021",
+            "AULA-022",
+            "AULA-023",
+            "AULA-024",
+            "AULA-025",
+            "AULA-026",
+            "AULA-027",
+            "AULA-028",
+            "AULA-029",
+            "AULA-030"
+          ]
+        },
+        {
+          "id": "redes-sistemas-m02",
+          "title": "Systems Security",
+          "lessonCodes": [
+            "AULA-061",
+            "AULA-062",
+            "AULA-063",
+            "AULA-064",
+            "AULA-065",
+            "AULA-066",
+            "AULA-067",
+            "AULA-068",
+            "AULA-069"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pentest-seguro",
+      "type": "main",
+      "title": "Pentest e Desenvolvimento Seguro",
+      "description": "Metodologia de testes autorizados, relatório e práticas defensivas.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "pentest-seguro-m01",
+          "title": "Metodologia Pentest",
+          "lessonCodes": [
+            "AULA-031",
+            "AULA-032",
+            "AULA-033",
+            "AULA-034",
+            "AULA-035"
+          ]
+        },
+        {
+          "id": "pentest-seguro-m02",
+          "title": "Secure Development",
+          "lessonCodes": [
+            "AULA-036",
+            "AULA-037",
+            "AULA-038",
+            "AULA-039",
+            "AULA-040"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "active-directory",
+      "type": "main",
+      "title": "Active Directory Security",
+      "description": "Fundamentos, identidade, segurança e detecção em Active Directory.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "active-directory-m01",
+          "title": "Fundamentos de Active Directory",
+          "lessonCodes": [
+            "AULA-070",
+            "AULA-071",
+            "AULA-072",
+            "AULA-073",
+            "AULA-074"
+          ]
+        },
+        {
+          "id": "active-directory-m02",
+          "title": "Segurança e Detecção em AD",
+          "lessonCodes": [
+            "AULA-075",
+            "AULA-076",
+            "AULA-077",
+            "AULA-078"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blue-team",
+      "type": "main",
+      "title": "Blue Team, SOC e EDR",
+      "description": "Operações defensivas, resposta a incidentes e engenharia de detecção.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "blue-team-m01",
+          "title": "Operações SOC",
+          "lessonCodes": [
+            "AULA-079",
+            "AULA-080",
+            "AULA-081",
+            "AULA-082",
+            "AULA-083",
+            "AULA-084"
+          ]
+        },
+        {
+          "id": "blue-team-m02",
+          "title": "Investigação e DFIR",
+          "lessonCodes": [
+            "AULA-085",
+            "AULA-086",
+            "AULA-087",
+            "AULA-088",
+            "AULA-089",
+            "AULA-090"
+          ]
+        },
+        {
+          "id": "blue-team-m03",
+          "title": "Antivírus e EDR",
+          "lessonCodes": [
+            "AULA-091",
+            "AULA-092",
+            "AULA-093",
+            "AULA-094",
+            "AULA-095"
+          ]
+        },
+        {
+          "id": "blue-team-m04",
+          "title": "Detection Engineering",
+          "lessonCodes": [
+            "AULA-096",
+            "AULA-097",
+            "AULA-098",
+            "AULA-099",
+            "AULA-100"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engenharia-reversa",
+      "type": "main",
+      "title": "C, Windows e Engenharia Reversa",
+      "description": "C, internals, assembly e análise de binários.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "engenharia-reversa-m01",
+          "title": "C e Windows Internals",
+          "lessonCodes": [
+            "AULA-101",
+            "AULA-102",
+            "AULA-103",
+            "AULA-104",
+            "AULA-105",
+            "AULA-106",
+            "AULA-107",
+            "AULA-108",
+            "AULA-109",
+            "AULA-110"
+          ]
+        },
+        {
+          "id": "engenharia-reversa-m02",
+          "title": "Assembly e Binários",
+          "lessonCodes": [
+            "AULA-111",
+            "AULA-112",
+            "AULA-113",
+            "AULA-114",
+            "AULA-115",
+            "AULA-116",
+            "AULA-117",
+            "AULA-118",
+            "AULA-119",
+            "AULA-120"
+          ]
+        },
+        {
+          "id": "engenharia-reversa-m03",
+          "title": "Engenharia Reversa",
+          "lessonCodes": [
+            "AULA-121",
+            "AULA-122",
+            "AULA-123",
+            "AULA-124",
+            "AULA-125",
+            "AULA-126",
+            "AULA-127",
+            "AULA-128",
+            "AULA-129",
+            "AULA-130"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analise-malware",
+      "type": "main",
+      "title": "Análise de Malware e Detecção",
+      "description": "Investigação segura de amostras educacionais e detecção.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "analise-malware-m01",
+          "title": "Fundamentos de Malware",
+          "lessonCodes": [
+            "AULA-131",
+            "AULA-132",
+            "AULA-133",
+            "AULA-134",
+            "AULA-135",
+            "AULA-136",
+            "AULA-137",
+            "AULA-138",
+            "AULA-139",
+            "AULA-140"
+          ]
+        },
+        {
+          "id": "analise-malware-m02",
+          "title": "Análise Estática",
+          "lessonCodes": [
+            "AULA-141",
+            "AULA-142",
+            "AULA-143",
+            "AULA-144",
+            "AULA-145",
+            "AULA-146",
+            "AULA-147",
+            "AULA-148",
+            "AULA-149",
+            "AULA-150"
+          ]
+        },
+        {
+          "id": "analise-malware-m03",
+          "title": "Análise Comportamental e Projeto",
+          "lessonCodes": [
+            "AULA-151",
+            "AULA-152",
+            "AULA-153",
+            "AULA-154",
+            "AULA-155",
+            "AULA-156",
+            "AULA-157",
+            "AULA-158",
+            "AULA-159",
+            "AULA-160"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exploit-research",
+      "type": "main",
+      "title": "Exploit Development e Pesquisa",
+      "description": "Memória, mitigação, fuzzing e análise controlada de falhas.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "exploit-research-m01",
+          "title": "Memória e Mitigações",
+          "lessonCodes": [
+            "AULA-161",
+            "AULA-162",
+            "AULA-163",
+            "AULA-164",
+            "AULA-165",
+            "AULA-166",
+            "AULA-167",
+            "AULA-168",
+            "AULA-169",
+            "AULA-170"
+          ]
+        },
+        {
+          "id": "exploit-research-m02",
+          "title": "Fuzzing e Triagem",
+          "lessonCodes": [
+            "AULA-171",
+            "AULA-172",
+            "AULA-173",
+            "AULA-174",
+            "AULA-175",
+            "AULA-176",
+            "AULA-177",
+            "AULA-178",
+            "AULA-179"
+          ]
+        },
+        {
+          "id": "exploit-research-m03",
+          "title": "Projeto de Pesquisa",
+          "lessonCodes": [
+            "AULA-180"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "red-purple-team",
+      "type": "main",
+      "title": "Red Team e Purple Team",
+      "description": "Emulação ética de adversários e cooperação entre equipes.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "red-purple-team-m01",
+          "title": "Metodologia de Red Team",
+          "lessonCodes": [
+            "AULA-181",
+            "AULA-182",
+            "AULA-183",
+            "AULA-184",
+            "AULA-185"
+          ]
+        },
+        {
+          "id": "red-purple-team-m02",
+          "title": "Purple Team e Telemetria",
+          "lessonCodes": [
+            "AULA-186",
+            "AULA-187",
+            "AULA-188",
+            "AULA-189",
+            "AULA-190"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloud-devsecops",
+      "type": "main",
+      "title": "Cloud, DevSecOps e AppSec Moderna",
+      "description": "Segurança em containers, pipelines e aplicações modernas.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "cloud-devsecops-m01",
+          "title": "Containers e Cloud",
+          "lessonCodes": [
+            "AULA-191",
+            "AULA-192",
+            "AULA-193",
+            "AULA-194"
+          ]
+        },
+        {
+          "id": "cloud-devsecops-m02",
+          "title": "DevSecOps e Supply Chain",
+          "lessonCodes": [
+            "AULA-195",
+            "AULA-196",
+            "AULA-197"
+          ]
+        },
+        {
+          "id": "cloud-devsecops-m03",
+          "title": "Segurança de Aplicações",
+          "lessonCodes": [
+            "AULA-198",
+            "AULA-199",
+            "AULA-200"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seguranca-ia",
+      "type": "main",
+      "title": "Segurança de IA e LLMs",
+      "description": "Segurança de agentes, RAG, modelos e aplicações de IA.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "seguranca-ia-m01",
+          "title": "Fundamentos de Segurança de IA",
+          "lessonCodes": [
+            "AULA-201",
+            "AULA-202",
+            "AULA-203",
+            "AULA-204"
+          ]
+        },
+        {
+          "id": "seguranca-ia-m02",
+          "title": "Agentes, Ferramentas e Defesa",
+          "lessonCodes": [
+            "AULA-205",
+            "AULA-206",
+            "AULA-207",
+            "AULA-208"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projeto-final",
+      "type": "main",
+      "title": "Projeto Final Integrado",
+      "description": "Projeto de laboratório integrado, remediação e relatório final.",
+      "status": "published",
+      "modules": [
+        {
+          "id": "projeto-final-m01",
+          "title": "Planejamento e Investigação",
+          "lessonCodes": [
+            "AULA-209",
+            "AULA-210",
+            "AULA-211",
+            "AULA-212",
+            "AULA-213"
+          ]
+        },
+        {
+          "id": "projeto-final-m02",
+          "title": "Defesa, Reteste e Apresentação",
+          "lessonCodes": [
+            "AULA-214",
+            "AULA-215",
+            "AULA-216",
+            "AULA-217",
+            "AULA-218"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "desenvolvimento-com-ia",
+      "type": "trail",
+      "title": "Desenvolvimento de Sistemas com IA",
+      "description": "Crie o Meu Gestor com ferramentas gratuitas e código local.",
+      "status": "published",
+      "href": "#ai-dev",
+      "sourceId": "DEV-IA-MEU-GESTOR",
+      "modules": [
+        {
+          "id": "dev-ia-m01",
+          "title": "Primeiros passos com IA",
+          "lessonCodes": [
+            "DEV-IA-001",
+            "DEV-IA-002",
+            "DEV-IA-003",
+            "DEV-IA-004"
+          ]
+        },
+        {
+          "id": "dev-ia-m02",
+          "title": "Da ideia ao sistema",
+          "lessonCodes": [
+            "DEV-IA-005",
+            "DEV-IA-006",
+            "DEV-IA-007",
+            "DEV-IA-008"
+          ]
+        },
+        {
+          "id": "dev-ia-m03",
+          "title": "Preparando e criando o projeto",
+          "lessonCodes": [
+            "DEV-IA-009",
+            "DEV-IA-010",
+            "DEV-IA-011",
+            "DEV-IA-012"
+          ]
+        },
+        {
+          "id": "dev-ia-m04",
+          "title": "Criando as telas com IA",
+          "lessonCodes": [
+            "DEV-IA-013",
+            "DEV-IA-014",
+            "DEV-IA-015",
+            "DEV-IA-016"
+          ]
+        },
+        {
+          "id": "dev-ia-m05",
+          "title": "Fazendo o sistema funcionar",
+          "lessonCodes": [
+            "DEV-IA-017",
+            "DEV-IA-018",
+            "DEV-IA-019",
+            "DEV-IA-020"
+          ]
+        },
+        {
+          "id": "dev-ia-m06",
+          "title": "Banco de dados e backend",
+          "lessonCodes": [
+            "DEV-IA-021",
+            "DEV-IA-022",
+            "DEV-IA-023",
+            "DEV-IA-024"
+          ]
+        },
+        {
+          "id": "dev-ia-m07",
+          "title": "Corrigindo erros e garantindo qualidade",
+          "lessonCodes": [
+            "DEV-IA-025",
+            "DEV-IA-026",
+            "DEV-IA-027",
+            "DEV-IA-028"
+          ]
+        },
+        {
+          "id": "dev-ia-m08",
+          "title": "Finalização e publicação",
+          "lessonCodes": [
+            "DEV-IA-029",
+            "DEV-IA-030",
+            "DEV-IA-031",
+            "DEV-IA-032"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "automacao-canal-dark",
+      "type": "trail",
+      "title": "Automação de Canal com IA",
+      "description": "Planeje e automatize a produção de conteúdo com ferramentas gratuitas e open source.",
+      "status": "published",
+      "href": "#channel-dark",
+      "sourceId": "CANAL-DARK-IA",
+      "modules": [
+        {
+          "id": "canal-m01",
+          "title": "Estratégia do canal dark",
+          "lessonCodes": [
+            "CANAL-IA-001",
+            "CANAL-IA-002",
+            "CANAL-IA-003",
+            "CANAL-IA-004"
+          ]
+        },
+        {
+          "id": "canal-m02",
+          "title": "Pesquisa, pautas e roteiros",
+          "lessonCodes": [
+            "CANAL-IA-005",
+            "CANAL-IA-006",
+            "CANAL-IA-007",
+            "CANAL-IA-008"
+          ]
+        },
+        {
+          "id": "canal-m03",
+          "title": "Narração e TTS",
+          "lessonCodes": [
+            "CANAL-IA-009",
+            "CANAL-IA-010",
+            "CANAL-IA-011",
+            "CANAL-IA-012"
+          ]
+        },
+        {
+          "id": "canal-m04",
+          "title": "Imagens, cenas e thumbnails",
+          "lessonCodes": [
+            "CANAL-IA-013",
+            "CANAL-IA-014",
+            "CANAL-IA-015",
+            "CANAL-IA-016"
+          ]
+        },
+        {
+          "id": "canal-m05",
+          "title": "Vídeo com IA: Pika, Flow e Steve",
+          "lessonCodes": [
+            "CANAL-IA-017",
+            "CANAL-IA-018",
+            "CANAL-IA-019",
+            "CANAL-IA-020"
+          ]
+        },
+        {
+          "id": "canal-m06",
+          "title": "Edição, legendas e Shorts",
+          "lessonCodes": [
+            "CANAL-IA-021",
+            "CANAL-IA-022",
+            "CANAL-IA-023",
+            "CANAL-IA-024"
+          ]
+        },
+        {
+          "id": "canal-m07",
+          "title": "Automação com n8n e Node-RED",
+          "lessonCodes": [
+            "CANAL-IA-025",
+            "CANAL-IA-026",
+            "CANAL-IA-027",
+            "CANAL-IA-028"
+          ]
+        },
+        {
+          "id": "canal-m08",
+          "title": "Publicação, métricas e monetização",
+          "lessonCodes": [
+            "CANAL-IA-029",
+            "CANAL-IA-030",
+            "CANAL-IA-031",
+            "CANAL-IA-032"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-log",
+      "type": "parallel",
+      "title": "Lógica e Algoritmos",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-log-m01",
+          "title": "Lógica e Algoritmos — parte 1",
+          "lessonCodes": [
+            "LOG-01",
+            "LOG-02",
+            "LOG-03",
+            "LOG-04",
+            "LOG-05",
+            "LOG-06",
+            "LOG-07",
+            "LOG-08",
+            "LOG-09",
+            "LOG-10"
+          ]
+        },
+        {
+          "id": "paralela-log-m02",
+          "title": "Lógica e Algoritmos — parte 2",
+          "lessonCodes": [
+            "LOG-11",
+            "LOG-12",
+            "LOG-13",
+            "LOG-14",
+            "LOG-15",
+            "LOG-16",
+            "LOG-17",
+            "LOG-18",
+            "LOG-19",
+            "LOG-20"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-py",
+      "type": "parallel",
+      "title": "Python para Segurança",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-py-m01",
+          "title": "Python para Segurança — parte 1",
+          "lessonCodes": [
+            "PY-01",
+            "PY-02",
+            "PY-03",
+            "PY-04",
+            "PY-05",
+            "PY-06",
+            "PY-07",
+            "PY-08",
+            "PY-09",
+            "PY-10"
+          ]
+        },
+        {
+          "id": "paralela-py-m02",
+          "title": "Python para Segurança — parte 2",
+          "lessonCodes": [
+            "PY-11",
+            "PY-12",
+            "PY-13",
+            "PY-14",
+            "PY-15",
+            "PY-16",
+            "PY-17",
+            "PY-18",
+            "PY-19",
+            "PY-20"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-js",
+      "type": "parallel",
+      "title": "JavaScript / TypeScript",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-js-m01",
+          "title": "JavaScript / TypeScript — parte 1",
+          "lessonCodes": [
+            "JS-01",
+            "JS-02",
+            "JS-03",
+            "JS-04",
+            "JS-05",
+            "JS-06",
+            "JS-07",
+            "JS-08",
+            "JS-09",
+            "JS-10"
+          ]
+        },
+        {
+          "id": "paralela-js-m02",
+          "title": "JavaScript / TypeScript — parte 2",
+          "lessonCodes": [
+            "TS-01",
+            "TS-02",
+            "TS-03",
+            "TS-04",
+            "TS-05"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-c",
+      "type": "parallel",
+      "title": "C — Fundamentos Paralelos",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-c-m01",
+          "title": "C — Fundamentos Paralelos — parte 1",
+          "lessonCodes": [
+            "C-01",
+            "C-02",
+            "C-03",
+            "C-04",
+            "C-05",
+            "C-06",
+            "C-07",
+            "C-08",
+            "C-09",
+            "C-10"
+          ]
+        },
+        {
+          "id": "paralela-c-m02",
+          "title": "C — Fundamentos Paralelos — parte 2",
+          "lessonCodes": [
+            "C-11",
+            "C-12",
+            "C-13",
+            "C-14",
+            "C-15",
+            "C-16",
+            "C-17",
+            "C-18",
+            "C-19",
+            "C-20"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-bash",
+      "type": "parallel",
+      "title": "Bash",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-bash-m01",
+          "title": "Bash — parte 1",
+          "lessonCodes": [
+            "BASH-01",
+            "BASH-02",
+            "BASH-03",
+            "BASH-04",
+            "BASH-05",
+            "BASH-06",
+            "BASH-07",
+            "BASH-08",
+            "BASH-09",
+            "BASH-10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-ps",
+      "type": "parallel",
+      "title": "PowerShell",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-ps-m01",
+          "title": "PowerShell — parte 1",
+          "lessonCodes": [
+            "PS-01",
+            "PS-02",
+            "PS-03",
+            "PS-04",
+            "PS-05",
+            "PS-06",
+            "PS-07",
+            "PS-08",
+            "PS-09",
+            "PS-10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-net",
+      "type": "parallel",
+      "title": "Redes para Segurança",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-net-m01",
+          "title": "Redes para Segurança — parte 1",
+          "lessonCodes": [
+            "NET-01",
+            "NET-02",
+            "NET-03",
+            "NET-04",
+            "NET-05",
+            "NET-06",
+            "NET-07",
+            "NET-08",
+            "NET-09",
+            "NET-10"
+          ]
+        },
+        {
+          "id": "paralela-net-m02",
+          "title": "Redes para Segurança — parte 2",
+          "lessonCodes": [
+            "NET-11",
+            "NET-12",
+            "NET-13",
+            "NET-14",
+            "NET-15",
+            "NET-16",
+            "NET-17",
+            "NET-18",
+            "NET-19",
+            "NET-20"
+          ]
+        },
+        {
+          "id": "paralela-net-m03",
+          "title": "Redes para Segurança — parte 3",
+          "lessonCodes": [
+            "NET-21",
+            "NET-22",
+            "NET-23",
+            "NET-24",
+            "NET-25",
+            "NET-26",
+            "NET-27",
+            "NET-28",
+            "NET-29",
+            "NET-30"
+          ]
+        },
+        {
+          "id": "paralela-net-m04",
+          "title": "Redes para Segurança — parte 4",
+          "lessonCodes": [
+            "NET-31",
+            "NET-32",
+            "NET-33",
+            "NET-34",
+            "NET-35",
+            "NET-36",
+            "NET-37",
+            "NET-38",
+            "NET-39",
+            "NET-40"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-lnx",
+      "type": "parallel",
+      "title": "Linux",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-lnx-m01",
+          "title": "Linux — parte 1",
+          "lessonCodes": [
+            "LNX-01",
+            "LNX-02",
+            "LNX-03",
+            "LNX-04",
+            "LNX-05",
+            "LNX-06",
+            "LNX-07",
+            "LNX-08",
+            "LNX-09",
+            "LNX-10"
+          ]
+        },
+        {
+          "id": "paralela-lnx-m02",
+          "title": "Linux — parte 2",
+          "lessonCodes": [
+            "LNX-11",
+            "LNX-12",
+            "LNX-13",
+            "LNX-14",
+            "LNX-15",
+            "LNX-16",
+            "LNX-17",
+            "LNX-18",
+            "LNX-19",
+            "LNX-20"
+          ]
+        },
+        {
+          "id": "paralela-lnx-m03",
+          "title": "Linux — parte 3",
+          "lessonCodes": [
+            "LNX-21",
+            "LNX-22",
+            "LNX-23",
+            "LNX-24",
+            "LNX-25",
+            "LNX-26",
+            "LNX-27",
+            "LNX-28",
+            "LNX-29",
+            "LNX-30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-win",
+      "type": "parallel",
+      "title": "Windows",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-win-m01",
+          "title": "Windows — parte 1",
+          "lessonCodes": [
+            "WIN-01",
+            "WIN-02",
+            "WIN-03",
+            "WIN-04",
+            "WIN-05",
+            "WIN-06",
+            "WIN-07",
+            "WIN-08",
+            "WIN-09",
+            "WIN-10"
+          ]
+        },
+        {
+          "id": "paralela-win-m02",
+          "title": "Windows — parte 2",
+          "lessonCodes": [
+            "WIN-11",
+            "WIN-12",
+            "WIN-13",
+            "WIN-14",
+            "WIN-15",
+            "WIN-16",
+            "WIN-17",
+            "WIN-18",
+            "WIN-19",
+            "WIN-20"
+          ]
+        },
+        {
+          "id": "paralela-win-m03",
+          "title": "Windows — parte 3",
+          "lessonCodes": [
+            "WIN-21",
+            "WIN-22",
+            "WIN-23",
+            "WIN-24",
+            "WIN-25",
+            "WIN-26",
+            "WIN-27",
+            "WIN-28",
+            "WIN-29",
+            "WIN-30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-web",
+      "type": "parallel",
+      "title": "Web Development para AppSec",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-web-m01",
+          "title": "Web Development para AppSec — parte 1",
+          "lessonCodes": [
+            "WEB-01",
+            "WEB-02",
+            "WEB-03",
+            "WEB-04",
+            "WEB-05",
+            "WEB-06",
+            "WEB-07",
+            "WEB-08",
+            "WEB-09",
+            "WEB-10"
+          ]
+        },
+        {
+          "id": "paralela-web-m02",
+          "title": "Web Development para AppSec — parte 2",
+          "lessonCodes": [
+            "WEB-11",
+            "WEB-12",
+            "WEB-13",
+            "WEB-14",
+            "WEB-15",
+            "WEB-16",
+            "WEB-17",
+            "WEB-18",
+            "WEB-19",
+            "WEB-20"
+          ]
+        },
+        {
+          "id": "paralela-web-m03",
+          "title": "Web Development para AppSec — parte 3",
+          "lessonCodes": [
+            "WEB-21",
+            "WEB-22",
+            "WEB-23",
+            "WEB-24",
+            "WEB-25",
+            "WEB-26",
+            "WEB-27",
+            "WEB-28",
+            "WEB-29",
+            "WEB-30"
+          ]
+        },
+        {
+          "id": "paralela-web-m04",
+          "title": "Web Development para AppSec — parte 4",
+          "lessonCodes": [
+            "WEB-31",
+            "WEB-32",
+            "WEB-33",
+            "WEB-34",
+            "WEB-35",
+            "WEB-36",
+            "WEB-37",
+            "WEB-38",
+            "WEB-39",
+            "WEB-40"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-eng",
+      "type": "parallel",
+      "title": "Git e Engenharia de Software",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-eng-m01",
+          "title": "Git e Engenharia de Software — parte 1",
+          "lessonCodes": [
+            "ENG-01",
+            "ENG-02",
+            "ENG-03",
+            "ENG-04",
+            "ENG-05",
+            "ENG-06",
+            "ENG-07",
+            "ENG-08",
+            "ENG-09",
+            "ENG-10"
+          ]
+        },
+        {
+          "id": "paralela-eng-m02",
+          "title": "Git e Engenharia de Software — parte 2",
+          "lessonCodes": [
+            "ENG-11",
+            "ENG-12",
+            "ENG-13",
+            "ENG-14",
+            "ENG-15",
+            "ENG-16",
+            "ENG-17",
+            "ENG-18",
+            "ENG-19",
+            "ENG-20"
+          ]
+        },
+        {
+          "id": "paralela-eng-m03",
+          "title": "Git e Engenharia de Software — parte 3",
+          "lessonCodes": [
+            "ENG-21",
+            "ENG-22",
+            "ENG-23",
+            "ENG-24",
+            "ENG-25",
+            "ENG-26",
+            "ENG-27",
+            "ENG-28",
+            "ENG-29",
+            "ENG-30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-lab",
+      "type": "parallel",
+      "title": "Laboratório e Ferramentas",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-lab-m01",
+          "title": "Laboratório e Ferramentas — parte 1",
+          "lessonCodes": [
+            "LAB-01",
+            "LAB-02",
+            "LAB-03",
+            "LAB-04",
+            "LAB-05",
+            "LAB-06",
+            "LAB-07",
+            "LAB-08",
+            "LAB-09",
+            "LAB-10"
+          ]
+        },
+        {
+          "id": "paralela-lab-m02",
+          "title": "Laboratório e Ferramentas — parte 2",
+          "lessonCodes": [
+            "LAB-11",
+            "LAB-12",
+            "LAB-13",
+            "LAB-14",
+            "LAB-15",
+            "LAB-16",
+            "LAB-17",
+            "LAB-18",
+            "LAB-19",
+            "LAB-20"
+          ]
+        },
+        {
+          "id": "paralela-lab-m03",
+          "title": "Laboratório e Ferramentas — parte 3",
+          "lessonCodes": [
+            "LAB-21",
+            "LAB-22",
+            "LAB-23",
+            "LAB-24",
+            "LAB-25",
+            "LAB-26",
+            "LAB-27",
+            "LAB-28",
+            "LAB-29",
+            "LAB-30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paralela-cld",
+      "type": "parallel",
+      "title": "Cloud, Containers e Kubernetes",
+      "description": "Curso paralelo em preparação editorial.",
+      "status": "draft",
+      "modules": [
+        {
+          "id": "paralela-cld-m01",
+          "title": "Cloud, Containers e Kubernetes — parte 1",
+          "lessonCodes": [
+            "CLD-01",
+            "CLD-02",
+            "CLD-03",
+            "CLD-04",
+            "CLD-05",
+            "CLD-06",
+            "CLD-07",
+            "CLD-08",
+            "CLD-09",
+            "CLD-10"
+          ]
+        },
+        {
+          "id": "paralela-cld-m02",
+          "title": "Cloud, Containers e Kubernetes — parte 2",
+          "lessonCodes": [
+            "CTR-01",
+            "CTR-02",
+            "CTR-03",
+            "CTR-04",
+            "CTR-05",
+            "CTR-06",
+            "CTR-07",
+            "CTR-08",
+            "CTR-09",
+            "CTR-10"
+          ]
+        },
+        {
+          "id": "paralela-cld-m03",
+          "title": "Cloud, Containers e Kubernetes — parte 3",
+          "lessonCodes": [
+            "K8S-01",
+            "K8S-02",
+            "K8S-03",
+            "K8S-04",
+            "K8S-05",
+            "K8S-06",
+            "K8S-07",
+            "K8S-08",
+            "K8S-09",
+            "K8S-10"
+          ]
+        }
+      ]
+    }
+  ],
+  "publishedStandaloneLessonCodes": [
+    "LOG-01",
+    "PY-01",
+    "NET-25"
+  ]
+}

@@ -31,3 +31,11 @@ test('service worker must never intercept requests from another origin',()=>{
   handler({request:{method:'GET',url:'https://another.example.test/private'},respondWith:()=>{interceptions++;}});
   assert.equal(interceptions,0);
 });
+
+test('service worker must not cache lesson markdown, labs, PDF or paid assets',()=>{
+ const handler=swFetchHandler();let n=0;
+ for(const path of ['/course-library/main/001.md','/course-labs/a41-50/test.mjs','/materials/Ethical_Hacking_Aulas_01_10.pdf']){
+  handler({request:{method:'GET',url:'https://hub.example.test'+path},respondWith:()=>n++});
+ }
+ assert.equal(n,0);
+});

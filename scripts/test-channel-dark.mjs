@@ -55,7 +55,7 @@ test('rota isolada e sem alterar a IA existente ou o catálogo canônico', () =>
   assert.match(app, /page: 'channel-dark'/);
   assert.match(app, /ChannelAutomationTrail userId/);
   assert.match(dashboard, /href="#channel-dark"/);
-  assert.match(app, /route.page==='ai-dev' && <AiDevelopmentTrail/);
+  assert.match(app, /route.page==='ai-dev' && \(entitled\('desenvolvimento-com-ia'\)\?<AiDevelopmentTrail/);
   assert.equal(json('src/curriculum/catalog.json').main.length,218);
   assert.equal(json('src/curriculum/catalog.json').parallel.length,325);
 });

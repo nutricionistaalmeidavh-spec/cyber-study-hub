@@ -77,5 +77,5 @@ test('mobile navigation and browser routes remain unchanged; reduced motion resp
   assert.match(css, /prefers-reduced-motion:reduce/);
   const config = read('wrangler.toml');
   assert.match(config, /main\s*=\s*"src\/worker\/index\.mjs"/);
-  assert.match(config, /run_worker_first\s*=\s*\["\/api\/\*"/);
+  assert.match(config, /run_worker_first\s*=\s*true/);
 });
