@@ -1,0 +1,29 @@
+name: Aulas 171-180 QA
+on:
+  pull_request:
+    paths:
+      - 'public/course-library/main/17*.md'
+      - 'public/course-library/main/180.md'
+      - 'public/course-labs/a171-180/**'
+      - 'quality/reviews/a171-180-2026-10-15.json'
+      - 'quality/registry.json'
+      - 'scripts/test-grade-a-171-180.mjs'
+      - 'package.json'
+      - '.github/workflows/a171-180-qa.yml'
+  workflow_dispatch:
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:grade-a-171-180
+      - run: npm run verify:quality
+      - run: npm run build
