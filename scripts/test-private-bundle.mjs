@@ -7,7 +7,4 @@ const code=jsFiles.map(f=>readFileSync('dist/assets/'+f,'utf8')).join('\n');
 for(const privateFragment of ['Objeto trocado','Criação, validação, tuning, versionamento','Um canal dark não mostra obrigatoriamente o rosto do criador']){
   assert.equal(code.includes(privateFragment),false,'Bundle vazou conteúdo privado: '+privateFragment);
 }
-for(const privatePath of ['lessonDetails','reviewPacks','AiDevelopmentTrail']){
-  if(privatePath==='AiDevelopmentTrail')continue; // UI names are public metadata.
-}
 console.log('Bundle auditado: nenhum texto privado/gabarito exposto.');

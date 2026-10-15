@@ -8,8 +8,6 @@ function readExport(path,name){
   const start=source.match(new RegExp('export const '+name+'(?::[^=]*)?=\\s*'));
   if(!start)throw Error('Missing private export '+name);
   const data=source.slice(start.index+start[0].length);
-  // JSON data is terminated by a semicolon after its closing array/object.
-  const end=data.search(/\n[\]}];\s]*(?:\n|$)/);
   // Parse until the top-level JSON closing delimiter; no dynamic code execution.
   const first=data[0],close=first==='['?']':'}';
   let inString=false,escaped=false,depth=0,finish=-1;
