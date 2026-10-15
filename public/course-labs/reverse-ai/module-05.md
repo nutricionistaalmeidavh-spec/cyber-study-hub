@@ -1,43 +1,47 @@
-# Módulo 05 — JavaScript, Electron e interfaces
+# Oficina 05 — JavaScript, Electron e interfaces
 
-**ID canônico do laboratório:** REV-IA-020 · **pré-requisito:** REV-IA-017. Esta oficina complementa a aula, não substitui a explicação.
+**Identidade permanente:** REV-IA-020. **Competência:** Investigar diagrama de módulos e limites de evidência com o arquivo verificável 05-js-boundaries.json, explicando evidências, hipóteses, limitações e um caso negativo sem exigir API ou serviço pago.
 
-## Problema concreto e entrega
-Ao final, o estudante deverá inspecionar um programa JavaScript próprio e identificar seus limites, com evidência local auditável e limite explícito de inferência.
-**Entregue:** Relatório do módulo 5 com previsões, saídas observadas, um teste negativo e limitações. Produza um arquivo Markdown seu com escopo, versão de Node, previsão, resultado executado, erro esperado e limites.
+## O que será produzido
+Arquivo 05-js-boundaries.json realmente criado no computador do aluno, mais hipóteses, limitações e análise do módulo 5. **Arquivo-alvo:** `05-js-boundaries.json`. Prova de execução = nome do arquivo, entrada prevista, comando, saída observada, rejeição/controle e conclusão que possa ser contestada.
 
-## Materiais e links verificáveis
-- Arquivos prontos no repositório: [lab.mjs](https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/blob/main/public/course-labs/reverse-ai/lab.mjs), [reference.mjs](https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/blob/main/public/course-labs/reverse-ai/reference.mjs), [candidate.mjs](https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/blob/main/public/course-labs/reverse-ai/candidate.mjs), [sample.c](https://github.com/nutricionistaalmeidavh-spec/cyber-study-hub/blob/main/public/course-labs/reverse-ai/sample.c).
-- Referência canônica: [AULA-118](/#course/main/118). Não marque a aula original como concluída apenas por ler sua referência.
-- REA: https://github.com/morluto/rea — agente MCP opcional; Ghidra: https://github.com/NationalSecurityAgency/ghidra — alternativa gratuita para inspeção nativa. Hopper/serviços externos são opções pagas, não requisitos.
+## Arquivos que o aluno realmente precisa
+- Código do checkpoint: `public/course-labs/reverse-ai/engine.mjs` e testes em `engine.test.mjs`.
+- Comportamento de referência: `reference.mjs`; reconstrução independente: `candidate.mjs`.
+- Programa C de autoria do curso: `sample.c`; módulos ES originais: `sample-ui.mjs` e `sample-rule.mjs`.
+- Índice e contexto: [README](/course-labs/reverse-ai/README.md); referência canônica já existente: [AULA-118](#course/main/118).
 
-## Execução reproduzível — R$ 0, sem rede
-Na raiz do repositório, com Node.js 22+ instalado:
+## Passo a passo — execução gratuita e local
+Node.js 22+ e o código da trilha. Abra o terminal na raiz do repositório:
 
 ```sh
-node public/course-labs/reverse-ai/lab.mjs --module 5
-node --test public/course-labs/reverse-ai/lab.test.mjs
+node public/course-labs/reverse-ai/engine.mjs --module 5 --out ./rev-evidencias/m05
+node --test public/course-labs/reverse-ai/engine.test.mjs public/course-labs/reverse-ai/lab.test.mjs
 ```
 
-A execução gera JSON com `input`, `observed`, `candidate`, `differentialMatch` e `negativeControl`; o teste de negativa precisa retornar `rejected: true`. O runner não executa REA nem Ghidra por você.
+O primeiro comando cria `05-js-boundaries.json` em `./rev-evidencias/m05/`; o segundo valida as oito oficinas. Abra o artefato produzido com editor de texto. Ambos funcionam sem modelos, API, contas de terceiros, GPU ou acesso à rede.
 
-## Procedimento (previsão antes de resultado)
-1. Leia o roteiro do módulo 5 e anote escopo, ambiente e autorização.
-2. Antes de executar, preveja uma saída legítima e outra inválida para "inspecionar um programa JavaScript próprio e identificar seus limites".
-3. Execute o comando local e os testes; registre saída real e eventuais divergências.
-4. Explique o que o artefato demonstra e o que não pode demonstrar; anexe evidências e limite de confiança.
+1. Abra sample-ui.mjs e sample-rule.mjs e destaque o import/export estático.
+2. Compare 05-js-boundaries.json com os arquivos, indicando o limite exato UI→regra.
+3. Identifique o que NÃO é observado: servidor remoto, código de backend e tokens secretos.
 
-## Caso de transferência
-Atue como revisor de engenharia reversa defensiva. Analise APENAS um programa didático de minha autoria. Meta do módulo 5: inspecionar um programa JavaScript próprio e identificar seus limites. Artefato: O módulo JavaScript do laboratório expõe validação e decisão; nenhum segredo real é incluído. Primeiro formule três hipóteses e indique como refutá-las. Depois escreva uma matriz com entrada legítima, fronteira e negativa, saídas observáveis, proveniência da evidência e limites de inferência. Não presuma acesso a código original nem declare equivalência completa. Não peça credenciais, não examine software de terceiros e não dependa de API paga. Dê uma alternativa totalmente manual/local e distinga sugestões de evidências reais.
+## Perguntas de defesa e diagnóstico
+1. Localizar import e export no módulo ESM Em que linha/saída de `05-js-boundaries.json` você encontra evidência? Qual entrada contestaria essa conclusão?
+2. Separar interface local de regras e servidor remoto Em que linha/saída de `05-js-boundaries.json` você encontra evidência? Qual entrada contestaria essa conclusão?
+3. Descrever o que bundles e source maps não demonstram Em que linha/saída de `05-js-boundaries.json` você encontra evidência? Qual entrada contestaria essa conclusão?
+4. Entregar 05-js-boundaries.json com resultado e contraexemplo reproduzíveis Em que linha/saída de `05-js-boundaries.json` você encontra evidência? Qual entrada contestaria essa conclusão?
 
-**Teste de interpretação:** Leia a AULA-118 e explique em pelo menos 120 caracteres como seu conceito se conecta a "inspecionar um programa JavaScript próprio e identificar seus limites". Compare uma evidência concreta com uma inferência possível e proponha um teste que refutaria a hipótese. Não copie o texto da referência.
+## Avaliação independente
+Tente a [prova do módulo 05](/course-labs/reverse-ai/assessments/module-05.md) sem consultar o gabarito. Guarde um registro de pelo menos 120 caracteres sobre previsão, execução, erro e reteste. Sua marcação de progresso no site é autodeclarada, não execução remota de scripts.
 
-## Checklist de aceitação
+## Restrições honestas
+Ferramenta externa não é executada pelo runner. **REA**, quando instalado e configurado voluntariamente, analisa apps por CLI/MCP e pode combinar ferramentas locais. **Ghidra**, quando instalado pelo aluno, analisa o binário C próprio. Ambos requerem artefatos autorizados. Não execute código de terceiros, não burle DRM/licenças, não invente resultados de Ghidra/REA ou equivalência universal. Código gerado por IA sempre necessita revisão humana.
+
+## Checklist verificável
 - [ ] Usei apenas arquivo próprio e ambiente local.
 - [ ] Registrei uma previsão antes de executar.
 - [ ] Executei um caso permitido e um inválido.
 - [ ] Separei resultado medido de sugestão da IA.
 - [ ] Documentei uma limitação e um reteste.
 
-## Limites e correção
-Verificar `differentialMatch: true` apenas prova igualdade para a entrada executada, não todos os possíveis valores ou todas as plataformas. Se modificar `candidate.mjs` e quebrar uma regra, o reteste deve falhar: explique a causa e repare. Nunca rode arquivos desconhecidos nem contorne mecanismos de licença.
+**Evidência esperada:** O arquivo 05-js-boundaries.json existe na pasta ./rev-evidencias/m05 e a suíte engine.test.mjs passa, cobrindo um controle negativo específico.
