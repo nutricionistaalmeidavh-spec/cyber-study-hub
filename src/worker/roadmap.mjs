@@ -86,7 +86,14 @@ export async function handleRoadmap({path,method,url,readBody,requireUser,requir
       if(existing)return reply(200,{release:{id:existing.id},alreadyPublished:true});
     }
     const id=uuid(),timestamp=now();
-    run('INSERT INTO feedback_releases(id,feedback_id,title,summary,created_at,client_nonce) VALUES(?,?,?,?,?,?)',id,b.feedbackId,b.title.trim(),b.summary.trim(),timestamp,b.clientNonce??null);
+    try{run('INSERT INTO feedback_releases(id,feedback_id,title,summary,created_at,client_nonce) VALUES(?,?,?,?,?,?)',id,b.feedbackId,b.title.trim(),b.summary.trim(),timestamp,b.clientNonce??null);}
+    catch(e){
+      if(b.clientNonce&&String(e).includes('UNIQUE')){
+        const existing=one('SELECT id FROM feedback_releases WHERE client_nonce=?',b.clientNonce);
+        if(existing)return reply(200,{release:{id:existing.id},alreadyPublished:true});
+      }
+      throw e;
+    }
     const publicIdea=one('SELECT id,stage FROM feedback_public_ideas WHERE feedback_id=?',b.feedbackId);
     if(publicIdea&&publicIdea.stage!=='released')
       run("UPDATE feedback_public_ideas SET stage='released',updated_at=? WHERE id=?",timestamp,publicIdea.id);

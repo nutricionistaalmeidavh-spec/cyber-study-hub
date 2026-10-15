@@ -83,6 +83,40 @@ try{
   const feedbackDetail=await request('/api/feedback/'+feedbackId,{cookie:student.cookie});
   assert.equal(feedbackDetail.payload.messages[0].body,'Investigação iniciada.');
   assert.equal((await request('/api/feedback',{cookie:student.cookie})).payload.feedback[0].hasUpdates,0);
+  // P2: verify the real Cloudflare Worker, not only self-hosted SQLite.
+  assert.equal((await request('/api/roadmap')).payload.ideas.length,0);
+  const suggested=await request('/api/feedback',{method:'POST',cookie:student.cookie,body:{
+    clientNonce:'f83e0c9a-1d5b-48df-8f26-b9cd635d0b36',category:'idea',title:'Exercícios offline',
+    description:'Gostaria de usar os exercícios quando estiver sem internet.',
+    contextPath:'#lessons',contextLabel:'Aulas'
+  }});
+  assert.equal(suggested.status,201,suggested.text);
+  const published=await request('/api/admin/feedback/'+suggested.payload.feedback.id+'/publish',{
+    method:'POST',cookie:created.cookie,body:{title:'Exercícios disponíveis offline',summary:'Estudar exercícios sem conexão será mais simples.',stage:'planned'}
+  });
+  assert.equal(published.status,201,published.text);
+  const ideaId=published.payload.idea.id;
+  const publicRoadmap=await request('/api/roadmap');
+  assert.equal(publicRoadmap.payload.ideas.length,1);
+  assert.equal(publicRoadmap.payload.ideas[0].votes,0);
+  assert.equal(JSON.stringify(publicRoadmap.payload).includes('student@example.test'),false);
+  assert.equal((await request('/api/roadmap/ideas/'+ideaId+'/vote',{method:'POST'})).status,401);
+  assert.equal((await request('/api/roadmap/ideas/'+ideaId+'/vote',{method:'POST',cookie:student.cookie})).payload.votes,1);
+  assert.equal((await request('/api/roadmap/ideas/'+ideaId+'/vote',{method:'POST',cookie:student.cookie})).payload.votes,1);
+  assert.equal((await request('/api/roadmap/ideas/'+ideaId+'/vote',{method:'DELETE',cookie:student.cookie})).payload.votes,0);
+  assert.equal((await request('/api/admin/roadmap/ideas/'+ideaId,{method:'PATCH',cookie:student.cookie,body:{stage:'in_progress'}})).status,403);
+  const release=await request('/api/admin/roadmap/releases',{method:'POST',cookie:created.cookie,body:{
+    feedbackId:suggested.payload.feedback.id,title:'Prática offline liberada',
+    summary:'Material para praticar sem internet disponibilizado.',clientNonce:'a33e11a9-c26d-48d9-a108-b976204b1eea'
+  }});
+  assert.equal(release.status,201,release.text);
+  const repeatRelease=await request('/api/admin/roadmap/releases',{method:'POST',cookie:created.cookie,body:{
+    feedbackId:suggested.payload.feedback.id,title:'Prática offline liberada',
+    summary:'Material para praticar sem internet disponibilizado.',clientNonce:'a33e11a9-c26d-48d9-a108-b976204b1eea'
+  }});
+  assert.equal(repeatRelease.status,200,repeatRelease.text);
+  assert.equal((await request('/api/roadmap')).payload.releases.length,1);
+  assert.equal((await request('/api/roadmap')).payload.ideas[0].stage,'released');
   const keyProgress='cyber-study-lessons-v1';
   assert.equal((await request('/api/me/state',{method:'PUT',cookie:student.cookie,
     body:{key:keyProgress,value:'{"1":{"completed":true}}'}})).status,200);
