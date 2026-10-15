@@ -12541,6 +12541,646 @@
           "result": "A equipe integra quatro testes benignos: ROE, árvore de processos, canário fictício e lacuna de coleta. O objetivo é medir o que foi realmente visto e investigar alertas sem confundir cobertura, acerto e falso positivo. Quatro casos e critérios declarados resultam COVERED; falta de fonte e alerta benigno geram GAP_IDENTIFIED."
         }
       ]
+    },
+    "AULA-171": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "09e1f8dbdc2a47dc1f681d995db4064e1b24f5d381587c85c2267ff89493fcf2",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/171.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
+          "result": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/171.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-171."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 171; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 171 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/171.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 171; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/171.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-171.md",
+          "result": "Seis perguntas do tema Fuzzing, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/171.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Fuzzing de pacotes fictícios: campo declarado e corpo, mutação e corpus com casos válidos e inválidos; vinculada ao ID AULA-171 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-172": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Coverage-guided: distinguir sinal de caminho de verificação de segurança. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "8df5e5fbafe7bb412fdaf56fc3858faa61800cce369851e1d073a29e4c41fbab",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/172.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
+          "result": "Coverage-guided: distinguir sinal de caminho de verificação de segurança. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/172.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-172."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 172; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 172 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/172.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 172; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/172.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-172.md",
+          "result": "Seis perguntas do tema Coverage-Guided Fuzzing, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/172.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Coverage-guided: distinguir sinal de caminho de verificação de segurança; vinculada ao ID AULA-172 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-173": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "ASan vs UBSan: classes e limites da ausência de relatório. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "fbcfa9d73ee28377e8d0a47263fa58b06a38ec619c251db84562e46c17155459",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/173.md :: Complemento A 1–2; https://clang.llvm.org/docs/AddressSanitizer.html",
+          "result": "ASan vs UBSan: classes e limites da ausência de relatório. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/173.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-173."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 173; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 173 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/173.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 173; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/173.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-173.md",
+          "result": "Seis perguntas do tema Sanitizers, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/173.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "ASan vs UBSan: classes e limites da ausência de relatório; vinculada ao ID AULA-173 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-174": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Triage: assinatura provisória de crash, grupo por classe/frame. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "0c857adfd6aaab092f2a56364df33e868a3232f446fcc422ac4c27995c170939",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/174.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
+          "result": "Triage: assinatura provisória de crash, grupo por classe/frame. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/174.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-174."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 174; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 174 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/174.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 174; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/174.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-174.md",
+          "result": "Seis perguntas do tema Crash Triage, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/174.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Triage: assinatura provisória de crash, grupo por classe/frame; vinculada ao ID AULA-174 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-175": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Causa primária: comprimento de origem versus capacidade e gatilho. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "f2f7ded45e8e0eed7b93b040df9721a5b14dc527a10d7cb2a7b4c0363be54bd8",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/175.md :: Complemento A 1–2; https://cwe.mitre.org/data/definitions/20.html",
+          "result": "Causa primária: comprimento de origem versus capacidade e gatilho. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/175.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-175."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 175; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 175 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/175.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 175; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/175.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-175.md",
+          "result": "Seis perguntas do tema Root Cause Analysis, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/175.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Causa primária: comprimento de origem versus capacidade e gatilho; vinculada ao ID AULA-175 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-176": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Reprodução: fixture, seed e oráculo com discrepância explícita. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "eda9038fc23c06a010b260d708979b630681bfc08a363b644083c88c6140fccc",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/176.md :: Complemento A 1–2; https://llvm.org/docs/LibFuzzer.html",
+          "result": "Reprodução: fixture, seed e oráculo com discrepância explícita. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/176.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-176."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 176; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 176 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/176.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 176; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/176.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-176.md",
+          "result": "Seis perguntas do tema Reproduzir Vulnerabilidade, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/176.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Reprodução: fixture, seed e oráculo com discrepância explícita; vinculada ao ID AULA-176 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-177": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "PoC segura: gate declarativo sem rede ou dados reais. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "98aea3ea2f01c26084617afbba6d7f6b17ddc0638b149d46e5980a0f4c3c607d",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/177.md :: Complemento A 1–2; https://owasp.org/www-community/",
+          "result": "PoC segura: gate declarativo sem rede ou dados reais. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/177.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-177."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 177; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 177 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/177.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 177; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/177.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-177.md",
+          "result": "Seis perguntas do tema Safe PoC, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/177.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "PoC segura: gate declarativo sem rede ou dados reais; vinculada ao ID AULA-177 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-178": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Patch diff: checar comportamento antes/depois com positivo e negativo. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "4f9239dbbca1505e2eb758a58a1e367c9db4fc175a38769d5ec848498ddc1b63",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/178.md :: Complemento A 1–2; https://cwe.mitre.org/data/definitions/20.html",
+          "result": "Patch diff: checar comportamento antes/depois com positivo e negativo. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/178.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-178."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 178; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 178 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/178.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 178; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/178.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-178.md",
+          "result": "Seis perguntas do tema Patch Diff, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/178.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Patch diff: checar comportamento antes/depois com positivo e negativo; vinculada ao ID AULA-178 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-179": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Variant analysis: candidatos por origem e consumo de comprimento. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "2cde815614381f9a00aacf933736bb0fbbdb8780dd8e9e5e177a4d96e037f63f",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/179.md :: Complemento A 1–2; https://cwe.mitre.org/data/definitions/20.html",
+          "result": "Variant analysis: candidatos por origem e consumo de comprimento. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/179.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-179."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 179; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 179 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/179.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 179; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/179.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-179.md",
+          "result": "Seis perguntas do tema Variant Analysis, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/179.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Variant analysis: candidatos por origem e consumo de comprimento; vinculada ao ID AULA-179 e evidência SHA-256."
+        }
+      ]
+    },
+    "AULA-180": {
+      "grade": "A",
+      "author": "Cyber Study Hub — conteúdo didático assistido por GPT-6",
+      "reviewer": "GPT-6 — segunda passagem crítica editorial assistida por IA; sem revisor humano externo",
+      "reviewedOn": "2026-10-15",
+      "reviewMethod": "ai_editorial_second_pass",
+      "humanLearnerTesting": "not_performed",
+      "summary": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado. Aula com oficina específica, caso positivo, contraprova, modelo Node local, seis questões e gabarito individual. A avaliação é editorial por IA e não envolve alunos reais.",
+      "contentSha256": "8bae66ea33a9bfeecf6ead8c6fc281b49847bc443b037cfe0a7515b8f7cee54f",
+      "scores": {
+        "conteudoTecnico": 92,
+        "didatica": 91,
+        "pratica": 90,
+        "defesa": 93,
+        "avaliacao": 92,
+        "especificidade": 94
+      },
+      "gates": {
+        "precisaoRevisada": true,
+        "didaticaInicianteValidada": true,
+        "praticaVerificada": true,
+        "avaliacaoIndependenteRevisada": true,
+        "escopoSeguroVerificado": true,
+        "revisorIndependente": true
+      },
+      "evidence": [
+        {
+          "dimension": "conteudoTecnico",
+          "method": "Revisão editorial assistida por IA: mecanismo, fronteira, contraexemplo e fontes primárias",
+          "reference": "public/course-library/main/180.md :: Complemento A 1–2; https://www.cve.org/About/Overview",
+          "result": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado. Fonte e limites documentados; o caso modela comportamento em fixture, não exploração real."
+        },
+        {
+          "dimension": "didatica",
+          "method": "Walkthrough editorial IA do ponto de vista do aluno iniciante; estudantes humanos não participaram",
+          "reference": "public/course-library/main/180.md :: Complemento A 1–3",
+          "result": "Caso específico, pré-requisitos, predição antes da execução, exemplo positivo e contraprova para AULA-180."
+        },
+        {
+          "dimension": "pratica",
+          "method": "Conferência da suíte declarativa e de contratos executáveis Node com entradas fixas e negativas; status real depende de CI",
+          "reference": "public/course-labs/a171-180/lab.test.mjs :: caso 180; public/course-labs/a171-180/models.mjs",
+          "result": "Teste 180 contém positivo, negativo e fronteira; executa modelo local sem rede. Aprovado condicionalmente à execução em CI."
+        },
+        {
+          "dimension": "defesa",
+          "method": "Segunda leitura por IA da invariante causal, reteste e preservação de uso legítimo",
+          "reference": "public/course-library/main/180.md :: Complemento A 2–3",
+          "result": "Correção/reteste de causa própria da fixture 180; sem alegar proteção de produtos ou serviços de terceiros."
+        },
+        {
+          "dimension": "avaliacao",
+          "method": "Revisão de seis perguntas de transferência e gabarito individual separado",
+          "reference": "public/course-library/main/180.md :: Complemento A 4; public/course-labs/a171-180/answer-keys/AULA-180.md",
+          "result": "Seis perguntas do tema CVE Research, seis respostas independentes, rubrica de 100 pontos, controles e erro eliminatório."
+        },
+        {
+          "dimension": "especificidade",
+          "method": "Verificação de títulos, IDs, parâmetros sintéticos e resultados rastreáveis no teste",
+          "reference": "public/course-library/main/180.md :: Complemento A 1–4; public/course-labs/a171-180/lab.test.mjs",
+          "result": "Capstone: relato fictício, retestes, sem CVE atribuída nem CVSS calculado; vinculada ao ID AULA-180 e evidência SHA-256."
+        }
+      ]
     }
   },
   "policy": {
