@@ -59,7 +59,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
   const aiModuleCount = new Set(catalog.guided.filter(item => item.source === 'ai-dev').map(item => item.moduleId)).size;
   const channelModuleCount = new Set(catalog.guided.filter(item => item.source === 'channel-dark').map(item => item.moduleId)).size;
-  const reverseModuleCount = new Set(catalog.guided.filter(item => item.source === 'reverse-ai').map(item => item.moduleId)).size;
+  const reverseModuleCount = (user.role==='admin'||user.role==='teacher') ? new Set(catalog.guided.filter(item => item.source === 'reverse-ai').map(item => item.moduleId)).size : 0;
   const totalModules = mainModuleCount + parallelModuleCount + aiModuleCount + channelModuleCount + reverseModuleCount;
   const guidedCompletion = getCanonicalGuidedCompletion();
   return <div className={"page hub-home stack-lg" + (isNewStudent ? "" : " hub-home--returning")}>
