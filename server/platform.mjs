@@ -1,3 +1,4 @@
+import { ownersForPath, knownCourseIds, publishedCourseIds, canonicalAssetPath, permitted } from '../src/worker/course-access.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from 'node:crypto';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from '../src/worker/feedback.mjs';
@@ -67,6 +68,8 @@ function init(db) {
     "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL CHECK(role IN ('admin','teacher','student')),expires_at INTEGER NOT NULL,used_at INTEGER);",
     'CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL);',
     'CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY (user_id,key));',
+    'CREATE TABLE IF NOT EXISTS course_grants (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,course_id TEXT NOT NULL,granted_at INTEGER NOT NULL,expires_at INTEGER,revoked_at INTEGER,PRIMARY KEY(user_id,course_id));',
+    'CREATE TABLE IF NOT EXISTS subscription_grants (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,granted_at INTEGER NOT NULL,expires_at INTEGER NOT NULL,revoked_at INTEGER);',
     ...FEEDBACK_SCHEMA.map(statement=>statement+';'),
     ...ROADMAP_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
@@ -123,6 +126,21 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
     const valid=hit&&hit.reset_at>now();
     q('INSERT INTO login_attempts(key,count,reset_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET count=excluded.count,reset_at=excluded.reset_at')
       .run(key,valid?hit.count+1:1,valid?hit.reset_at:now()+900000);
+  }
+  function accessState(user){
+    const grants=q('SELECT course_id,expires_at,revoked_at FROM course_grants WHERE user_id=?').all(user.id);
+    const subscription=q('SELECT expires_at,revoked_at FROM subscription_grants WHERE user_id=?').get(user.id);
+    const active=Boolean(subscription&&subscription.revoked_at===null&&subscription.expires_at>now());
+    const activeCourses=grants.filter(g=>g.revoked_at===null&&(g.expires_at===null||g.expires_at>now())&&publishedCourseIds.has(g.course_id)).map(g=>g.course_id);
+    return {grants,subscriptionActive:active,activeCourses};
+  }
+  function authorize(req,location){
+    const user=current(req);
+    if(!user)return {ok:false,status:401};
+    const path=canonicalAssetPath(location);
+    if(!path)return {ok:false,status:404};
+    const state=accessState(user);
+    return {ok:permitted(user,ownersForPath(path),state.grants,state.subscriptionActive),status:403};
   }
   async function handle(req,res) {
     try {
@@ -203,6 +221,43 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         q('DELETE FROM user_state WHERE user_id=? AND key=?').run(u.id,b.key);
         return respond(res,200,{ok:true});
       }
+
+      if(path==='/api/access/me'&&method==='GET'){
+        const user=mustUser(req),s=accessState(user);
+        return respond(res,200,{courseIds:(user.role==='admin'||user.role==='teacher')?[...publishedCourseIds]:s.activeCourses,
+          subscriptionActive:s.subscriptionActive,staff:user.role==='admin'||user.role==='teacher'});
+      }
+      if(path==='/api/admin/access/grants'&&method==='GET'){
+        mustAdmin(req);
+        const userId=new URL(req.url,canonicalOrigin).searchParams.get('userId');
+        if(!userId||!q('SELECT id FROM users WHERE id=?').get(userId))throw new HttpError(404,'Conta não encontrada.');
+        return respond(res,200,{grants:q('SELECT course_id,granted_at,expires_at,revoked_at FROM course_grants WHERE user_id=?').all(userId),
+          subscription:q('SELECT granted_at,expires_at,revoked_at FROM subscription_grants WHERE user_id=?').get(userId)||null});
+      }
+      if(path==='/api/admin/access/grants'&&(method==='POST'||method==='DELETE')){
+        mustAdmin(req);const b=await readJson(req,1024);
+        if(typeof b.userId!=='string'||!q('SELECT id FROM users WHERE id=?').get(b.userId))throw new HttpError(404,'Conta não encontrada.');
+        if(typeof b.courseId!=='string'||!knownCourseIds.has(b.courseId))throw new HttpError(400,'Curso inválido.');
+        if(method==='POST'){
+          if(!publishedCourseIds.has(b.courseId))throw new HttpError(409,'Curso ainda não publicado.');
+          if(b.validDays!==undefined&&(!Number.isSafeInteger(b.validDays)||b.validDays<1||b.validDays>365))
+            throw new HttpError(400,'Prazo inválido.');
+          const expires=b.validDays?now()+b.validDays*DAY:null;
+          q('INSERT INTO course_grants(user_id,course_id,granted_at,expires_at,revoked_at) VALUES(?,?,?,?,NULL) ON CONFLICT(user_id,course_id) DO UPDATE SET granted_at=excluded.granted_at,expires_at=excluded.expires_at,revoked_at=NULL')
+            .run(b.userId,b.courseId,now(),expires);
+        }else q('UPDATE course_grants SET revoked_at=? WHERE user_id=? AND course_id=?').run(now(),b.userId,b.courseId);
+        return respond(res,200,{ok:true});
+      }
+      if(path==='/api/admin/access/subscriptions'&&(method==='POST'||method==='DELETE')){
+        mustAdmin(req);const b=await readJson(req,1024);
+        if(typeof b.userId!=='string'||!q('SELECT id FROM users WHERE id=?').get(b.userId))throw new HttpError(404,'Conta não encontrada.');
+        if(method==='POST'){
+          if(!Number.isSafeInteger(b.validDays)||b.validDays<1||b.validDays>365)throw new HttpError(400,'Prazo inválido.');
+          q('INSERT INTO subscription_grants(user_id,granted_at,expires_at,revoked_at) VALUES(?,?,?,NULL) ON CONFLICT(user_id) DO UPDATE SET granted_at=excluded.granted_at,expires_at=excluded.expires_at,revoked_at=NULL')
+            .run(b.userId,now(),now()+b.validDays*DAY);
+        }else q('UPDATE subscription_grants SET revoked_at=? WHERE user_id=?').run(now(),b.userId);
+        return respond(res,200,{ok:true});
+      }
       if(roadmapRoute(path))return await handleRoadmap({
         path,method,url:new URL(req.url,canonicalOrigin).href,
         readBody:limit=>readJson(req,limit),requireUser:()=>mustUser(req),requireAdmin:()=>mustAdmin(req),
@@ -251,5 +306,5 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       return respond(res,500,{error:'Falha interna do servidor.'});
     }
   }
-  return {handle,close:()=>db.close()};
+  return {handle,authorize,close:()=>db.close()};
 }
