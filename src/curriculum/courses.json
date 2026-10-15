@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "gradePolicy": "Publicar apenas cursos completos com todas as unidades A (revisão editorial IA). Status não concede acesso nem habilita cobrança.",
+  "gradePolicy": "Publicar somente cursos completos e avaliados A (editorial IA). IDs cobrem 607 unidades, incluindo 64 etapas guiadas; isso não implementa pagamentos ou ACL.",
   "commercialAccess": "not_implemented",
   "courses": [
     {
@@ -533,42 +533,82 @@
         {
           "id": "dev-ia-m01",
           "title": "Primeiros passos com IA",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-001",
+            "DEV-IA-002",
+            "DEV-IA-003",
+            "DEV-IA-004"
+          ]
         },
         {
           "id": "dev-ia-m02",
           "title": "Da ideia ao sistema",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-005",
+            "DEV-IA-006",
+            "DEV-IA-007",
+            "DEV-IA-008"
+          ]
         },
         {
           "id": "dev-ia-m03",
           "title": "Preparando e criando o projeto",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-009",
+            "DEV-IA-010",
+            "DEV-IA-011",
+            "DEV-IA-012"
+          ]
         },
         {
           "id": "dev-ia-m04",
           "title": "Criando as telas com IA",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-013",
+            "DEV-IA-014",
+            "DEV-IA-015",
+            "DEV-IA-016"
+          ]
         },
         {
           "id": "dev-ia-m05",
           "title": "Fazendo o sistema funcionar",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-017",
+            "DEV-IA-018",
+            "DEV-IA-019",
+            "DEV-IA-020"
+          ]
         },
         {
           "id": "dev-ia-m06",
           "title": "Banco de dados e backend",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-021",
+            "DEV-IA-022",
+            "DEV-IA-023",
+            "DEV-IA-024"
+          ]
         },
         {
           "id": "dev-ia-m07",
           "title": "Corrigindo erros e garantindo qualidade",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-025",
+            "DEV-IA-026",
+            "DEV-IA-027",
+            "DEV-IA-028"
+          ]
         },
         {
           "id": "dev-ia-m08",
           "title": "Finalização e publicação",
-          "lessonCodes": []
+          "lessonCodes": [
+            "DEV-IA-029",
+            "DEV-IA-030",
+            "DEV-IA-031",
+            "DEV-IA-032"
+          ]
         }
       ]
     },
@@ -584,42 +624,82 @@
         {
           "id": "canal-m01",
           "title": "Estratégia do canal dark",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-001",
+            "CANAL-IA-002",
+            "CANAL-IA-003",
+            "CANAL-IA-004"
+          ]
         },
         {
           "id": "canal-m02",
           "title": "Pesquisa, pautas e roteiros",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-005",
+            "CANAL-IA-006",
+            "CANAL-IA-007",
+            "CANAL-IA-008"
+          ]
         },
         {
           "id": "canal-m03",
           "title": "Narração e TTS",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-009",
+            "CANAL-IA-010",
+            "CANAL-IA-011",
+            "CANAL-IA-012"
+          ]
         },
         {
           "id": "canal-m04",
           "title": "Imagens, cenas e thumbnails",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-013",
+            "CANAL-IA-014",
+            "CANAL-IA-015",
+            "CANAL-IA-016"
+          ]
         },
         {
           "id": "canal-m05",
           "title": "Vídeo com IA: Pika, Flow e Steve",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-017",
+            "CANAL-IA-018",
+            "CANAL-IA-019",
+            "CANAL-IA-020"
+          ]
         },
         {
           "id": "canal-m06",
           "title": "Edição, legendas e Shorts",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-021",
+            "CANAL-IA-022",
+            "CANAL-IA-023",
+            "CANAL-IA-024"
+          ]
         },
         {
           "id": "canal-m07",
           "title": "Automação com n8n e Node-RED",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-025",
+            "CANAL-IA-026",
+            "CANAL-IA-027",
+            "CANAL-IA-028"
+          ]
         },
         {
           "id": "canal-m08",
           "title": "Publicação, métricas e monetização",
-          "lessonCodes": []
+          "lessonCodes": [
+            "CANAL-IA-029",
+            "CANAL-IA-030",
+            "CANAL-IA-031",
+            "CANAL-IA-032"
+          ]
         }
       ]
     },
