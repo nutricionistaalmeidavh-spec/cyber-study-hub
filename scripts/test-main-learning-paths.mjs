@@ -28,22 +28,23 @@ test('five thematic paths organize exactly 218 canonical lessons without duplica
   assert.deepEqual(Array.from(mainLearningPaths, mainPathLessonCount), [30, 50, 60, 20, 58]);
 });
 
-test('each original offering appears once and maintains its access identity', () => {
+test('each new track is one published course with its own secure access identity', () => {
   const allCourses = mainLearningPaths.flatMap(mainPathCourses);
   assert.equal(allCourses.length, 5);
   assert.equal(new Set(allCourses.map(course => course.id)).size, 5);
-  assert.deepEqual(allCourses.map(course => course.id).sort(), offerings.filter(course => course.type === 'main').map(course => course.id).sort());
+  assert.deepEqual(Array.from(allCourses, course => course.id).sort(), offerings.filter(course => course.type === 'main').map(course => course.id).sort());
   for (const course of allCourses) {
     assert.equal(course.status, 'published');
     assert.ok(publishedCourseIds.has(course.id));
     const code = course.modules[0].lessonCodes[0];
     assert.deepEqual(ownersForPath('/course-library/main/' + code.slice(-3) + '.md'), [course.id]);
   }
-  assert.deepEqual(ownersForPath('/course-library/main/218.md'), ['projeto-final']);
+  assert.deepEqual(ownersForPath('/course-library/main/218.md'), ['trilha-pentest-ethical-hacking']);
 });
 
-test('existing special trail remains independent; paths are navigation, not payment products', () => {
-  assert.ok(!offerings.some(course => mainLearningPaths.some(path => path.id === course.id)));
+test('existing special trail remains independent; main paths are payment identities', () => {
+  assert.ok(mainLearningPaths.every(path=>offerings.some(course=>course.id===path.id&&course.type==='main')));
+  assert.ok(!mainLearningPaths.some(path=>path.id==='engenharia-reversa-com-ia'));
   assert.equal(offerings.find(course => course.id === 'engenharia-reversa-com-ia').modules.flatMap(m => m.lessonCodes).length, 32);
   const catalogUi = readFileSync('src/components/curriculum/CourseCatalog.tsx', 'utf8');
   const landing = readFileSync('src/components/AcademyLanding.tsx', 'utf8');
