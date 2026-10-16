@@ -6,6 +6,7 @@ import { passwordHash, passwordMatches } from './password-kdf.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from './feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from './roadmap.mjs';
 import { WAITLIST_SCHEMA, waitlistRoute, handleWaitlist } from './waitlist.mjs';
+import { SUBSCRIPTION_OFFER_SCHEMA, subscriptionOfferRoute, handleSubscriptionOffer } from './subscription-offer.mjs';
 import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../billing/artisys.mjs';
 import {issueBuyerIntent} from '../billing/buyer-intent.mjs';
 import { registrationEnabled } from '../auth/registration-policy.mjs';
@@ -80,7 +81,8 @@ export class HubAuthObject extends DurableObject {
       ...BILLING_SCHEMA,
       ...FEEDBACK_SCHEMA,
       ...ROADMAP_SCHEMA,
-      ...WAITLIST_SCHEMA
+      ...WAITLIST_SCHEMA,
+      ...SUBSCRIPTION_OFFER_SCHEMA
     ])this.sql.exec(ddl);
   }
   one(sql,...args){return this.sql.exec(sql,...args).toArray()[0];}
@@ -341,6 +343,11 @@ export class HubAuthObject extends DurableObject {
         if(!payload)throw new ApiError(403,'Curso não liberado para esta conta.');
         return response(200,payload);
       }
+      if(subscriptionOfferRoute(path))return await handleSubscriptionOffer({
+        path,method,readBody:limit=>jsonBody(request,limit),requireAdmin:()=>this.requireAdmin(request),
+        one:(sql,...args)=>this.one(sql,...args),run:(sql,...args)=>this.sql.exec(sql,...args),
+        reply:response,fail:(status,message)=>new ApiError(status,message)
+      });
       if(waitlistRoute(path))return await handleWaitlist({
         path,method,url:url.href,readBody:limit=>jsonBody(request,limit),
         requireAdmin:()=>this.requireAdmin(request),
