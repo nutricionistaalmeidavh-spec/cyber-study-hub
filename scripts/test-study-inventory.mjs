@@ -70,8 +70,7 @@ test('Dashboard e Academy exibem total atualizado a partir de catálogo completo
  assert.match(inv,/source\.guided/);
  assert.match(home,/studyInventory.totalSteps/);
  assert.match(academy,/studyInventory.totalSteps/);
- assert.match(academy,/studyInventory.canonical/);
- assert.match(academy,/studyInventory.legacyCanonical/);
+ assert.match(read('src/components/AcademyCourseCards.tsx'),/course\.modules\.map/);
  assert.doesNotMatch(home,/543 aulas/);
  assert.equal(read('scripts/quality-p0.mjs').includes('canonical-inventory.json'),true);
 });
