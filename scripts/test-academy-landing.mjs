@@ -33,3 +33,34 @@ test('academy is transparent about subscriptions without claiming enabled billin
   assert.doesNotMatch(source, /\/api\/(checkout|payment|subscribe)|stripe\.com|mercadopago/i);
   assert.match(source, /sem API paga obrigatória/i);
 });
+
+test('Engenharia Reversa com IA aparece apenas na vitrine e na lista de espera, não nos direitos de leitura',()=>{
+  const catalog=JSON.parse(read('src/curriculum/courses.json')).courses;
+  const reverse=catalog.find(c=>c.id==='engenharia-reversa-com-ia');
+  const frontend=read('src/curriculum/courseOfferings.ts');
+  const cards=read('src/components/AcademyCourseCards.tsx');
+  const waitlist=read('src/components/AcademyWaitlist.tsx');
+  const access=read('src/worker/course-access.mjs');
+  assert.equal(reverse.status,'draft');
+  assert.equal(reverse.modules.length,8);
+  assert.equal(reverse.modules.reduce((n,m)=>n+m.lessonCodes.length,0),32);
+  assert.match(frontend,/waitlistCatalogCourses/);
+  assert.match(cards,/waitlistCatalogCourses\.map/);
+  assert.match(cards,/course\.modules\.map/);
+  assert.match(cards,/course\.status==='draft'/);
+  assert.match(waitlist,/waitlistCatalogCourses\.map/);
+  assert.match(access,/course\.status === 'published'/);
+});
+
+test('assinatura tem preço editável por admin, sem checkout automático na landing',()=>{
+  const landing=read('src/components/AcademyLanding.tsx');
+  const admin=read('src/components/SubscriptionOfferAdmin.tsx');
+  const node=read('server/platform.mjs');
+  const cloud=read('src/worker/index.mjs');
+  assert.match(landing,/\/api\/subscription\/offer/);
+  assert.match(landing,/monthlyPrice\/100/);
+  assert.match(admin,/\/api\/admin\/subscription\/offer/);
+  assert.match(node,/subscriptionOfferRoute/);
+  assert.match(cloud,/subscriptionOfferRoute/);
+  assert.doesNotMatch(landing,/\/api\/(?:billing\/purchase-intent|checkout)/);
+});
