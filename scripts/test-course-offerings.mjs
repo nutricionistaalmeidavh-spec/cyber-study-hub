@@ -35,6 +35,7 @@ test('trilhas especiais publicadas só com 8 módulos auditados A',()=>{
   assert.equal(course.modules.flatMap(m=>m.lessonCodes).length,32);
   assert.equal(Object.values(review.modules).length,8);
   assert.ok(Object.values(review.modules).every(m=>m.grade==='A'));
+  if(course.id==='engenharia-reversa-com-ia')assert.equal(review.reviewType,'editorial_ai_only');
  }
 });
 test('catálogo não inventa pagamentos, preserva status explícito e acesso separado',()=>{
