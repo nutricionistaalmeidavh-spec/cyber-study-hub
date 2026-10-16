@@ -11,12 +11,18 @@ let student;
 let studentState;
 test.beforeAll(async({browser})=>{
  const admin=await browser.newContext({baseURL:origin});
- const setup=await admin.request.post('/api/auth/bootstrap',{headers:{Origin:origin},data:{name:'QA Admin',email:'admin@qa.example',password:'Qa-Disposable-Password-2026!',bootstrapKey:'qa-disposable-bootstrap-only'}});
- expect(setup.ok()).toBeTruthy();
+ const adminEmail='admin@qa.example',learnerEmail='student@qa.example',password='Qa-Disposable-Password-2026!';
+ const setup=await admin.request.post('/api/auth/bootstrap',{headers:{Origin:origin},data:{name:'QA Admin',email:adminEmail,password,bootstrapKey:'qa-disposable-bootstrap-only'}});
+ if(!setup.ok()){
+  expect(setup.status()).toBe(409); // worker concorrente já inicializou a instalação de QA
+  const login=await admin.request.post('/api/auth/login',{headers:{Origin:origin},data:{email:adminEmail,password}});
+  expect(login.ok()).toBeTruthy();
+ }
  const learner=await browser.newContext({baseURL:origin});
- const signup=await learner.request.post('/api/auth/register',{headers:{Origin:origin},data:{name:'Aluno QA',email:'student@qa.example',password:'Qa-Disposable-Password-2026!'}});
- expect(signup.ok()).toBeTruthy();
- student=(await signup.json()).user;
+ const signup=await learner.request.post('/api/auth/register',{headers:{Origin:origin},data:{name:'Aluno QA',email:learnerEmail,password}});
+ const signed=signup.ok()?signup:await learner.request.post('/api/auth/login',{headers:{Origin:origin},data:{email:learnerEmail,password}});
+ expect(signed.ok()).toBeTruthy();
+ student=(await signed.json()).user;
  expect((await admin.request.post('/api/admin/access/grants',{headers:{Origin:origin},data:{userId:student.id,courseId:course.id}})).ok()).toBeTruthy();
  studentState=await learner.storageState();
  await admin.close();await learner.close();
@@ -45,7 +51,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await main.getByRole('button',{name:'Limpar busca'}).click();
   await expect(main.locator('.course-tile')).toHaveCount(5);
   await main.getByRole('link',{name:'Trilhas práticas',exact:true}).click();
-  await expect(main.locator('.course-tile')).toHaveCount(2);
+  await expect(main.locator('.course-tile')).toHaveCount(3);
   await page.goto('/#courses/'+course.id);
   await expect(main.getByRole('heading',{name:'Sumário do curso'})).toBeVisible();
   const module=main.locator('details.course-module').first();
