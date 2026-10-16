@@ -97,7 +97,7 @@ test('preview de Engenharia Reversa com IA preserva status draft e módulos can�
   assert.equal(reverse.modules.reduce((sum,module)=>sum+module.lessonCodes.length,0),32);
   assert.match(available,/waitlistCatalogCourses/);
   assert.match(waitlist,/waitlistCatalogCourses\.map/);
-  assert.match(access,/course\.status === 'published'/);
+  assert.match(access,/offers\.courses\.filter\(c => c\.status === 'published'\)/);
 });
 test('preço mensal editável apenas na API de administração, sem cobrança automática no site',()=>{
   const landing=read('src/components/AcademyLanding.tsx');
