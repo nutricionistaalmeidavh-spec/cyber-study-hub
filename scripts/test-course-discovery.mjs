@@ -45,6 +45,7 @@ function renderCourse(props,{visits=[],learning={},legacy={}}={}){
  const dependencies={
   '../../curriculum/courseOfferings':offerings,
   '../../lib/courseDiscovery':exports,
+  '../../curriculum/mainLearningPaths':{mainLearningPaths:courses.filter(course=>course.type==='main')},
   '../../lib/studyProgress':{getStudyVisits:()=>visits},
   '../../lib/learningProgress':{getLearningProgress:()=>learning},
   '../../lib/storage':{getLessonState:()=>legacy},
