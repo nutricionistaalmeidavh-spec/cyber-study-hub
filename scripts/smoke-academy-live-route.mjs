@@ -30,7 +30,19 @@ for(let attempt=1;attempt<=maxAttempts;attempt++){
     const html=await site.text();
     assert.match(html,/ArtiSys Academy/,'Academy title not found');
     assert.match(html,/\/academy\/assets\//,'Assets not prefixed under /academy');
-    console.log('ArtiSys Academy /academy: HTTP 200; Worker, API and assets route all verified');
+    const central=await get('/links/');
+    assert.equal(central.status,200,'Central ArtiSys links HTTP');
+    const centralHtml=await central.text();
+    assert.match(centralHtml,/data-link-id="academy"/,'Academy card missing on public Central');
+    assert.match(centralHtml,/href="\/academy"/,'Academy card destination not canonical');
+    const honeypot=await fetch(origin+'/academy/api/waitlist',{
+      method:'POST',headers:{'Origin':origin,'Content-Type':'application/json'},
+      body:JSON.stringify({name:'Smoke Test',email:'test.invalid@example.invalid',courseId:'academy',consent:true,website:'anti-spam-do-not-store'}),
+      signal:AbortSignal.timeout(12000),cache:'no-store'
+    });
+    assert.equal(honeypot.status,200,'Academy waitlist POST honeypot should accept without storing any records');
+    assert.equal((await honeypot.json()).ok,true,'Academy waitlist POST response');
+    console.log('ArtiSys Central /links/, Academy Worker, waitlist POST and public assets: live routing OK');
     passed=true;
     break;
   }catch(error){
