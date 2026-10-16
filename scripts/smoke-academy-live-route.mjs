@@ -30,6 +30,14 @@ for(let attempt=1;attempt<=maxAttempts;attempt++){
     const html=await site.text();
     assert.match(html,/ArtiSys Academy/,'Academy title not found');
     assert.match(html,/\/academy\/assets\//,'Assets not prefixed under /academy');
+    const links=await get('/links/');
+    assert.equal(links.status,200,'ArtiSys Central links HTTP');
+    const linksHtml=await links.text();
+    assert.match(linksHtml,/data-link-id="academy"/,'ArtiSys Central lacks Academy shortcut');
+    assert.match(linksHtml,/href="\/academy"/,'Academy shortcut wrong destination');
+    const portal=await get('/sistema.html');
+    assert.equal(portal.status,200,'Commercial portal must remain available');
+
     console.log('ArtiSys Academy /academy: HTTP 200; Worker, API and assets route all verified');
     passed=true;
     break;
