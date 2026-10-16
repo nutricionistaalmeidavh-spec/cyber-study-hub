@@ -1,0 +1,28 @@
+/* Vitrine Academy: módulos pertencem aos cards de curso, nunca um catálogo duplicado. */
+.academy-courses-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:16px}
+.academy-course-card{min-width:0;border:1px solid #394561;border-radius:19px;background:linear-gradient(145deg,#182138,#101829);overflow:hidden;transition:border-color .18s,box-shadow .18s}
+.academy-course-card[open]{border-color:#a38ae9;box-shadow:0 15px 36px rgba(34,22,77,.15)}
+.academy-course-summary{cursor:pointer;list-style:none;min-height:228px;display:flex;flex-direction:column;gap:13px;padding:23px}
+.academy-course-summary::-webkit-details-marker{display:none}
+.academy-course-summary::marker{content:""}
+.academy-course-card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.academy-course-type{font-size:10px;letter-spacing:.12em;font-weight:850;color:#c8b5ff;line-height:1.5}
+.academy-course-toggle{width:38px;height:38px;flex:none;border-radius:11px;border:1px solid #63548f;background:#30294c;color:#e1d6ff;display:grid;place-items:center}
+.academy-course-toggle::before{content:"+";font-size:25px;line-height:1;font-weight:400}
+.academy-course-card[open] .academy-course-toggle::before{content:"−"}
+.academy-course-summary h3{font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.036em;overflow-wrap:anywhere;color:#f6f4ff}
+.academy-course-summary p{font-size:12px;line-height:1.7;color:#acb9d0}
+.academy-course-card-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #35415c;padding-top:16px;margin-top:auto;color:#bac5da;font-size:12px}
+.academy-course-expand-label{color:#c7b0ff;font-weight:800;white-space:nowrap}
+.academy-course-open{display:none}
+.academy-course-card[open] .academy-course-open{display:inline}
+.academy-course-card[open] .academy-course-closed{display:none}
+.academy-course-expanded{border-top:1px solid #35425f;padding:20px 23px 24px}
+.academy-course-expanded h4{font-size:12px;letter-spacing:.03em;color:#e9defd;margin:0 0 14px;font-weight:800}
+.academy-course-modules{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:9px}
+.academy-course-module{display:flex;align-items:flex-start;gap:12px;min-width:0;padding:11px 12px;border:1px solid #303d5a;background:#0b1427;border-radius:11px;color:#d7e0f4;font-size:12px;line-height:1.5}
+.academy-course-module-index{color:#c6afff;font-size:10px;font-weight:850;flex:none;padding-top:2px}
+.academy-course-preview-note{font-size:12px;line-height:1.65;margin-bottom:16px!important}
+.academy-course-waitlist{display:flex;gap:9px;align-items:center;justify-content:center;min-height:46px;text-align:center}
+@media(max-width:1050px){.academy-courses-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.academy-courses-grid{grid-template-columns:1fr;gap:12px}.academy-course-summary{min-height:0;padding:20px}.academy-course-expanded{padding:18px 20px 21px}.academy-course-summary h3{font-size:23px}}
