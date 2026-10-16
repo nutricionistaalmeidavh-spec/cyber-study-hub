@@ -30,8 +30,8 @@ test('five thematic paths organize exactly 218 canonical lessons without duplica
 
 test('each original offering appears once and maintains its access identity', () => {
   const allCourses = mainLearningPaths.flatMap(mainPathCourses);
-  assert.equal(allCourses.length, 12);
-  assert.equal(new Set(allCourses.map(course => course.id)).size, 12);
+  assert.equal(allCourses.length, 5);
+  assert.equal(new Set(allCourses.map(course => course.id)).size, 5);
   assert.deepEqual(allCourses.map(course => course.id).sort(), offerings.filter(course => course.type === 'main').map(course => course.id).sort());
   for (const course of allCourses) {
     assert.equal(course.status, 'published');
