@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:buyer-intent && npm run test:artisys-billing && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && npm run test:secondary-visual && tsc --noEmit && vite build",
+    "build": "npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:learning-paths && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:buyer-intent && npm run test:artisys-billing && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && npm run test:secondary-visual && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -57,7 +57,7 @@
     "test:kdf": "node --test scripts/test-password-kdf.mjs",
     "test:a-141-150": "node scripts/test-a-141-150-structure.mjs && node --test public/course-labs/a141-150/lab.test.mjs",
     "test:grade-a-141-150": "node scripts/test-grade-a-141-150.mjs",
-    "test:hub-ux": "node --test scripts/test-hub-learning-experience.mjs scripts/test-curriculum-modules.mjs scripts/test-study-inventory.mjs",
+    "test:hub-ux": "node --test scripts/test-hub-learning-experience.mjs scripts/test-curriculum-modules.mjs scripts/test-study-inventory.mjs scripts/test-main-learning-paths.mjs",
     "test:study-inventory": "node --test scripts/test-study-inventory.mjs",
     "verify:ai-dev": "node scripts/verify-ai-dev.mjs",
     "test:editorial": "node --test scripts/test-artisys-editorial.mjs",
@@ -83,7 +83,8 @@
     "test:buyer-intent": "node --test scripts/test-buyer-intent.mjs",
     "test:artisys-billing": "node --test scripts/test-artisys-billing.mjs",
     "test:course-discovery": "node --test scripts/test-course-discovery.mjs",
-    "test:ui-ux": "playwright test --config qa/playwright.config.mjs"
+    "test:ui-ux": "playwright test --config qa/playwright.config.mjs",
+    "test:learning-paths": "node --test scripts/test-main-learning-paths.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

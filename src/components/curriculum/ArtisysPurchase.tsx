@@ -59,7 +59,7 @@ export default function ArtisysPurchase({courseId,email}:{courseId:string;email?
   <div><span className="eyebrow">PAGAMENTO ARTISYS</span><h2 id="artisys-purchase-title">Escolha seu acesso</h2>
    <p>Seu pedido será vinculado à conta autenticada ({email}). Não é necessário código por e-mail. O acesso é liberado somente após pagamento confirmado.</p></div>
   <div className="artisys-purchase-actions">
-   {course&&<button type="button" disabled={Boolean(pending)} className="button primary" onClick={()=>void buy(course)}>{pending===course.id?'Preparando compra…':'Comprar este curso · '+brl(course.priceCents)}</button>}
+   {course&&<button type="button" disabled={Boolean(pending)} className="button primary" onClick={()=>void buy(course)}>{pending===course.id?'Preparando compra…':'Comprar esta trilha · '+brl(course.priceCents)}</button>}
    {monthly&&<button type="button" disabled={Boolean(pending)} className="button ghost" onClick={()=>void buy(monthly)}>{pending===monthly.id?'Preparando compra…':'Assinar mensal · '+brl(monthly.priceCents)}</button>}
    {yearly&&<button type="button" disabled={Boolean(pending)} className="button ghost" onClick={()=>void buy(yearly)}>{pending===yearly.id?'Preparando compra…':'Assinar anual · '+brl(yearly.priceCents)}</button>}
   </div>

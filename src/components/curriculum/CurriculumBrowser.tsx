@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
 import catalogData from '../../curriculum/catalog.json';
+import { mainLearningPaths, mainPathModules } from '../../curriculum/mainLearningPaths';
 import { listNativeV2LessonIds } from '../../content/nativeLessonIndex';
 import type { CurriculumCatalog, MainCurriculumItem, ParallelCurriculumItem } from '../../curriculum/types';
 import { getActiveParallelTracks, setActiveParallelTracks } from '../../lib/curriculumState';
@@ -24,7 +25,11 @@ function groupBy<T>(items: T[], key: (item: T) => string): ModuleGroup<T>[] {
   }
   return Array.from(groups, ([name, groupedItems]) => ({ name, items: groupedItems }));
 }
-const mainModules = groupBy(catalog.main, item => item.block);
+const mainModules = groupBy(catalog.main, item => item.block); // legacy deep-links continuam válidos
+const mainPathGroups=mainLearningPaths.map(path=>{
+  const codes=new Set(mainPathModules(path).flatMap(module=>module.lessonCodes));
+  return {name:path.title,items:catalog.main.filter(item=>codes.has(item.code))};
+});
 const parallelModules = groupBy(catalog.parallel, item => item.track);
 
 function moduleHref(mode: ViewMode, moduleName?: string) {
@@ -63,7 +68,7 @@ export function CurriculumBrowser({
   const nativeIds = useMemo(() => new Set(listNativeV2LessonIds()), []);
   const legacyIds = useMemo(() => new Set(Array.from({length:58},(_,i)=>i+43)), []);
   const selectedMain = initialMode === 'main'
-    ? mainModules.find(group => group.name === initialModule)
+    ? mainPathGroups.find(group => group.name === initialModule) ?? mainModules.find(group=>group.name===initialModule)
       ?? (initialTrack ? mainModules.find(group => group.name === initialTrack || group.items.some(item => item.track === initialTrack)) : undefined)
     : undefined;
   const selectedParallel = initialMode === 'parallel'
@@ -79,7 +84,7 @@ export function CurriculumBrowser({
   }, [initialMode, initialModule, initialTrack]);
 
   const visibleModules = useMemo(() => {
-    if (initialMode === 'main') return mainModules.filter(group =>
+    if (initialMode === 'main') return mainPathGroups.filter(group =>
       !normalizedQuery || matches(group.name, normalizedQuery) ||
       group.items.some(item => matchesMain(item, normalizedQuery)));
     return parallelModules.filter(group =>
@@ -135,7 +140,7 @@ export function CurriculumBrowser({
     </header>
     <nav className="curriculum-tabs" aria-label="Tipo de formação">
       <a href={moduleHref('main')} aria-current={initialMode === 'main' ? 'page' : undefined} className={initialMode === 'main' ? 'active' : ''}>
-        Formação principal <small>{mainModules.length} módulos</small>
+        Trilhas principais <small>{mainPathGroups.length} trilhas</small>
       </a>
       <a href={moduleHref('parallel')} aria-current={initialMode === 'parallel' ? 'page' : undefined} className={initialMode === 'parallel' ? 'active' : ''}>
         Trilhas paralelas <small>{parallelModules.length} trilhas</small>
@@ -143,7 +148,7 @@ export function CurriculumBrowser({
     </nav>
     <div className="curriculum-module-toolbar">
       <label className="curriculum-search-label" htmlFor="curriculum-module-search">
-        {selected ? 'Buscar aula neste módulo' : 'Buscar módulo ou assunto'}
+        {selected ? 'Buscar aula neste módulo' : 'Buscar trilha ou assunto'}
       </label>
       <input
         id="curriculum-module-search"
@@ -156,13 +161,14 @@ export function CurriculumBrowser({
     </div>
 
     {!selected ? <>
-      <div className="curriculum-module-count" role="status">{visibleModules.length} {initialMode === 'main' ? 'módulos' : 'trilhas'} · Tempo aproximado por módulo</div>
-      <section className="curriculum-module-grid" aria-label={initialMode === 'main' ? 'Módulos da formação principal' : 'Módulos paralelos'}>
+      <div className="curriculum-module-count" role="status">{visibleModules.length} trilhas · Tempo aproximado por trilha</div>
+      <section className="curriculum-module-grid" aria-label={initialMode === 'main' ? 'Trilhas da formação principal' : 'Módulos paralelos'}>
         {initialMode === 'main'
-          ? mainModules.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
-              const ordinal = mainModules.findIndex(item => item.name === group.name) + 1;
-              return <ModuleCard key={group.name} name={group.name} href={moduleHref('main', group.name)}
-                index={ordinal} duration={mainStudyTime(group.items.reduce((minutes, item) => minutes + item.durationMin, 0))}
+          ? mainPathGroups.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
+              const ordinal = mainPathGroups.findIndex(item => item.name === group.name) + 1;
+              const path=mainLearningPaths.find(path=>path.title===group.name)!;
+              return <ModuleCard key={group.name} name={group.name} href={'#courses/'+path.id}
+                index={ordinal} kind="trilha" duration={mainStudyTime(group.items.reduce((minutes, item) => minutes + item.durationMin, 0))}
                 progress={group.items.some(item => status(item) !== 'Não iniciada')} />;
             })
           : parallelModules.filter(group => visibleModules.some(item => item.name === group.name)).map(group => {
@@ -213,10 +219,10 @@ export function CurriculumBrowser({
   </div>;
 }
 
-function ModuleCard({name, href, index, duration, studying, progress}:{
-  name:string; href:string; index:number; duration:string; studying?:boolean; progress:boolean
+function ModuleCard({name, href, index, duration, studying, progress, kind='módulo'}:{
+  name:string; href:string; index:number; duration:string; studying?:boolean; progress:boolean; kind?:string
 }) {
-  return <a className="curriculum-module-card" href={href} aria-label={moduleDisplayTitle(name) + '. ' + duration + '. Abrir módulo'}>
+  return <a className="curriculum-module-card" href={href} aria-label={moduleDisplayTitle(name) + '. ' + duration + '. Abrir '+kind}>
     <div className="curriculum-module-top">
       <span className="curriculum-module-index">{String(index).padStart(2,'0')}</span>
       <span className="curriculum-module-arrow" aria-hidden="true">↗</span>

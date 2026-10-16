@@ -45,6 +45,7 @@ function renderCourse(props,{visits=[],learning={},legacy={}}={}){
  const dependencies={
   '../../curriculum/courseOfferings':offerings,
   '../../lib/courseDiscovery':exports,
+  '../../curriculum/mainLearningPaths':{mainLearningPaths:courses.filter(course=>course.type==='main')},
   '../../lib/studyProgress':{getStudyVisits:()=>visits},
   '../../lib/learningProgress':{getLearningProgress:()=>learning},
   '../../lib/storage':{getLessonState:()=>legacy},
@@ -60,7 +61,7 @@ test('student type filters show only published matching courses; drafts remain u
  assert.equal((html.match(/class="course-tile"/g)||[]).length,2);
  assert.ok(html.includes('#courses/desenvolvimento-com-ia'));
  assert.ok(!html.includes('#courses/engenharia-reversa-com-ia'));
- assert.match(renderCourse({courseId:'engenharia-reversa-com-ia'}),/Este curso ainda não foi publicado/);
+ assert.match(renderCourse({courseId:'engenharia-reversa-com-ia'}),/Esta trilha ainda não foi publicada/);
 });
 test('resume preserves interactive routes and sections instead of redirecting them to a reading page',()=>{
  const unit=catalog.main.find(item=>item.id===47);

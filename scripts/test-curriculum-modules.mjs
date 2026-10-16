@@ -56,3 +56,10 @@ test('module search finds lesson terms and the reader remains reachable',()=>{
  assert.match(browser,/Carregar mais 24 unidades/);
  assert.match(browser,/Nenhum módulo encontrado/);
 });
+
+test('a navegação principal exibe cinco trilhas completas e preserva links antigos',()=>{
+ assert.match(browser,/mainPathGroups=mainLearningPaths\.map/);
+ assert.match(browser,/mainPathGroups\.filter/);
+ assert.match(browser,/href=\{'#courses\/'\+path\.id\}/);
+ assert.match(browser,/mainModules\.find\(group=>group\.name===initialModule\)/);
+});

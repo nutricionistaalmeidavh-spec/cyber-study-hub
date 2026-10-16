@@ -33,6 +33,7 @@ test('deep links, incremental search and empty-state recovery', () => {
   assert.match(browser, /count => count \+ 24/);
   assert.match(browser, /Limpar busca e filtros/);
   assert.match(browser, /'Escolha o que estudar'/);
+  assert.match(browser, /mainPathGroups/);
   assert.match(browser, /AULAS DO MÓDULO/);
   assert.match(browser, /Voltar aos módulos/);
   assert.match(browser, /Mostrando /);

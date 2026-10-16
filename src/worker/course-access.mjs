@@ -37,12 +37,12 @@ export function ownersForPath(pathname) {
     if (folder === 'ai-dev-meu-gestor') return ['desenvolvimento-com-ia'];
     if (folder === 'channel-dark') return ['automacao-canal-dark'];
     if (folder === 'reverse-ai') return ['engenharia-reversa-com-ia'];
-    if (folder === 'capstone-final') return ['projeto-final'];
-    if (folder === 'lab-tools') return ['web-apis', 'redes-sistemas', 'pentest-seguro'];
-    if (folder === 'phase16-web-p0' || folder === 'phase16-foundations' || folder === 'pilot-a') return ['web-apis'];
-    if (folder === 'phase16-memory') return ['exploit-research'];
-    if (folder === 'phase16-platform') return ['cloud-devsecops'];
-    if (folder === 'phase16-logic') return ['pentest-seguro'];
+    if (folder === 'capstone-final') return ['trilha-pentest-ethical-hacking'];
+    if (folder === 'lab-tools') return ['trilha-aplicacoes-cloud-ia', 'trilha-seguranca-ofensiva-defensiva', 'trilha-pentest-ethical-hacking'];
+    if (folder === 'phase16-web-p0' || folder === 'phase16-foundations' || folder === 'pilot-a') return ['trilha-aplicacoes-cloud-ia'];
+    if (folder === 'phase16-memory') return ['trilha-pesquisa-vulnerabilidades'];
+    if (folder === 'phase16-platform') return ['trilha-aplicacoes-cloud-ia'];
+    if (folder === 'phase16-logic') return ['trilha-pentest-ethical-hacking'];
     const one = /^aula-(\d{3})$/.exec(folder);
     if (one) return [byLesson.get('AULA-' + one[1])].filter(Boolean);
     const range = /^a-?(\d{1,3})-(\d{1,3})/.exec(folder);

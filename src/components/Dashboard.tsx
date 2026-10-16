@@ -13,6 +13,7 @@ import ProgressSyncStatus from './ProgressSyncStatus';
 import { moduleDisplayTitle } from '../lib/modulePresentation';
 import { studyInventory } from '../lib/studyInventory';
 import { publishedCourses } from '../curriculum/courseOfferings';
+import { mainLearningPaths, mainPathModules } from '../curriculum/mainLearningPaths';
 import { getCanonicalGuidedCompletion } from '../lib/studyProgress';
 
 const catalog = catalogData as CurriculumCatalog;
@@ -57,7 +58,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const trailsHref = editorial ? '#lessons?mode=parallel' : '#courses?type=trail';
   const firstName = user.name.trim().split(/\s+/)[0] || 'Estudante';
   const percent = interactiveLessons.length ? Math.round(completedInteractive / interactiveLessons.length * 100) : 0;
-  const mainModuleCount = new Set(catalog.main.map(item => item.block)).size;
+  const mainModuleCount = mainLearningPaths.reduce((total,path)=>total+mainPathModules(path).length,0);
   const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
   const aiModuleCount = new Set(catalog.guided.filter(item => item.source === 'ai-dev').map(item => item.moduleId)).size;
   const channelModuleCount = new Set(catalog.guided.filter(item => item.source === 'channel-dark').map(item => item.moduleId)).size;
@@ -121,7 +122,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
       <a href={editorial ? "#lessons" : "#courses"} className="hub-home-stat">
         <small>Módulos de estudo</small><strong>{totalModules}</strong>
-        <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + {aiModuleCount} Meu Gestor + {channelModuleCount} Canal Dark + {reverseModuleCount} Engenharia Reversa</span>
+        <span>{mainLearningPaths.length} trilhas principais ({mainModuleCount} módulos) + {parallelModuleCount} paralelos + {aiModuleCount} Meu Gestor + {channelModuleCount} Canal Dark + {reverseModuleCount} Engenharia Reversa</span>
         <span>{studyInventory.totalSteps} aulas e etapas, incluindo {studyInventory.referenceSteps} referências guiadas</span>
         <span>{guidedCompletion.completed}/{guidedCompletion.total} etapas guiadas registradas na sua conta</span>
       </a>

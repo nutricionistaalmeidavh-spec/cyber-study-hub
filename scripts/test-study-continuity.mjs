@@ -192,6 +192,12 @@ test('a completed interactive lesson is not presented as the module continuation
   }
   Object.assign(deps, {
     '../../curriculum/catalog.json': catalog,
+    '../../curriculum/mainLearningPaths': {
+      mainLearningPaths: JSON.parse(readFileSync('src/curriculum/courses.json','utf8')).courses
+        .filter(course=>course.type==='main').map(course=>({id:course.id,title:course.title})),
+      mainPathModules: path=>JSON.parse(readFileSync('src/curriculum/courses.json','utf8')).courses
+        .find(course=>course.id===path.id).modules
+    },
     '../../data/lessons': { lessons: [] },
     '../../content/nativeLessonIndex': { listNativeV2LessonIds: () => [47] },
     '../../lib/curriculumState': { getActiveParallelTracks: () => [] },

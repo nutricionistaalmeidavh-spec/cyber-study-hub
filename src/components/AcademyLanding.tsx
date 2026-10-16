@@ -8,7 +8,8 @@ import AcademyBrand from './AcademyBrand';
 import AcademyWaitlist from './AcademyWaitlist';
 import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
 import { studyInventory } from '../lib/studyInventory';
-import { publishedCourses, publishedMainLessonIds, publishedParallelLessonCodes } from '../curriculum/courseOfferings';
+import { publishedCourses, publishedParallelLessonCodes } from '../curriculum/courseOfferings';
+import { mainLearningPaths, mainPathLessonCount, mainPathModules } from '../curriculum/mainLearningPaths';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -24,13 +25,12 @@ function groupModules(items: Array<{ block?: string; track?: string; durationMin
   }
   return [...grouped].map(([title, info]) => ({ title, ...info }));
 }
-const principal = groupModules(catalog.main.filter(item => publishedMainLessonIds.has(item.id)), 'block');
+const mainMinutes=new Map(catalog.main.map(item=>[item.code,item.durationMin]));
+const principal: ModulePreview[] = mainLearningPaths.map(path=>({title:path.title,count:mainPathLessonCount(path),durationMin:mainPathModules(path).flatMap(module=>module.lessonCodes).reduce((sum,code)=>sum+(mainMinutes.get(code)??0),0)}));
 const paralelas = groupModules(catalog.parallel.filter(item => publishedParallelLessonCodes.has(item.code)), 'track');
 function publicModuleCourseHref(name: string): string {
-  const lessonCodes = new Set(catalog.main.filter(item => item.block === name).map(item => item.code));
-  const parent = publishedCourses.find(course => course.type === 'main' &&
-    course.modules.some(module => module.lessonCodes.some(code => lessonCodes.has(code))));
-  return parent ? '/#courses/' + parent.id : '/#courses';
+  const path=mainLearningPaths.find(path=>path.title===name);
+  return path?'/#courses/'+path.id:'/#courses';
 }
 
 
@@ -162,8 +162,8 @@ export default function AcademyLanding() {
           </a>)}
         </div>
         <div className="academy-available-modules" data-reveal>
-          <h3>Explore também os módulos publicados</h3>
-          <p>Cursos e módulos compartilham os mesmos IDs canônicos de aulas e seus registros de progresso.</p>
+          <h3>Explore as trilhas principais</h3>
+          <p>Cada trilha reúne módulos e aulas com identidade canônica e progresso preservado.</p>
         </div>
         <div className="academy-catalog-panel" data-reveal>
           <div className="academy-catalog-top">
@@ -171,7 +171,7 @@ export default function AcademyLanding() {
               <button type="button" className={mode === 'main' ? 'active' : ''} aria-pressed={mode === 'main'} onClick={() => setMode('main')}>Formação principal <span>{principal.length}</span></button>
               {paralelas.length > 0 && <button type="button" className={mode === 'parallel' ? 'active' : ''} aria-pressed={mode === 'parallel'} onClick={() => setMode('parallel')}>Trilhas paralelas <span>{paralelas.length}</span></button>}
             </div>
-            <span className="academy-catalog-count">{modules.length} {mode === 'main' ? 'módulos' : 'trilhas'} no catálogo</span>
+            <span className="academy-catalog-count">{modules.length} trilhas no catálogo</span>
           </div>
           <div className="academy-module-grid" key={mode}>
             {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title} style={{ '--academy-i': index } as CSSProperties}
