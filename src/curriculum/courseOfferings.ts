@@ -8,9 +8,8 @@ export type CourseOffering = {
 };
 export const courses = data.courses as CourseOffering[];
 export const publishedCourses = courses.filter(course => course.status === 'published');
-// Vitrine de interesse: preview editorial explícito, SEM alterar publishedCourseIds ou direitos de leitura.
-export const waitlistCatalogCourses = courses.filter(course => course.status === 'published' ||
-  (course.id === 'engenharia-reversa-com-ia' && course.status === 'draft'));
+// A vitrine comercial mostra apenas cursos publicados; a lista de espera não concede acesso.
+export const waitlistCatalogCourses = publishedCourses;
 
 const catalog=content as CurriculumCatalog;
 export const mainLessonsByCode = new Map(catalog.main.map(item => [item.code,item]));
