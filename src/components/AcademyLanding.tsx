@@ -60,10 +60,10 @@ export default function AcademyLanding() {
           <a href="#assinaturas">Assinaturas</a>
           <a href="#lista-de-espera">Lista de espera</a>
           <a href="#perguntas">Perguntas</a>
-          <a href="/roadmap">Votar melhorias</a>
+          <a href="/academy/roadmap">Votar melhorias</a>
         </nav>
         <div className="academy-header-actions">
-          <a className="academy-login" href="/">Já sou aluno</a>
+          <a className="academy-login" href="/academy/study">Já sou aluno</a>
           <a className="academy-button academy-button-primary academy-header-cta" href="#lista-de-espera">Lista de espera <Arrow /></a>
         </div>
         <details className="academy-mobile-menu">
@@ -74,8 +74,8 @@ export default function AcademyLanding() {
             <a href="#assinaturas">Assinaturas</a>
             <a href="#lista-de-espera">Lista de espera</a>
             <a href="#perguntas">Perguntas</a>
-            <a href="/roadmap">Votar em melhorias</a>
-            <a href="/?register=1">Criar minha conta</a><a href="/">Entrar no hub</a>
+            <a href="/academy/roadmap">Votar em melhorias</a>
+            <a href="/academy/study?register=1">Criar minha conta</a><a href="/academy/study">Entrar no hub</a>
           </nav>
         </details>
       </div>
@@ -233,10 +233,10 @@ export default function AcademyLanding() {
         <span className="academy-section-index">ARTISYS ACADEMY</span>
         <h2 id="academy-end-title"><KineticText leading="Sua próxima habilidade" accent="começa com um passo." /></h2>
         <p>Explore o conteúdo, escolha uma direção e transforme curiosidade em conhecimento aplicado.</p>
-        <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#lista-de-espera">Participar da lista de espera <Arrow /></a><a className="academy-button academy-button-outline" href="/">Acessar meus estudos <Arrow /></a></div>
+        <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#lista-de-espera">Participar da lista de espera <Arrow /></a><a className="academy-button academy-button-outline" href="/academy/study">Acessar meus estudos <Arrow /></a></div>
       </section>
     </main>
 
-    <footer className="academy-footer"><div className="academy-container academy-footer-inner"><a href="#inicio"><Brand /></a><p>Aprendizado com propósito. Tecnologia na prática.</p><div><a href="https://artisys.dev/" target="_blank" rel="noopener noreferrer">Conheça a ArtiSys <Arrow diagonal /></a><a href="/roadmap">Roadmap e novidades <Arrow /></a><a href="/">Área do aluno <Arrow /></a></div><small>© 2026 ArtiSys · Academy</small></div></footer>
+    <footer className="academy-footer"><div className="academy-container academy-footer-inner"><a href="#inicio"><Brand /></a><p>Aprendizado com propósito. Tecnologia na prática.</p><div><a href="https://artisys.dev/" target="_blank" rel="noopener noreferrer">Conheça a ArtiSys <Arrow diagonal /></a><a href="/academy/roadmap">Roadmap e novidades <Arrow /></a><a href="/academy/study">Área do aluno <Arrow /></a></div><small>© 2026 ArtiSys · Academy</small></div></footer>
   </div>;
 }
