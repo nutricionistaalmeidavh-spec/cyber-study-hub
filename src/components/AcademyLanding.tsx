@@ -87,6 +87,7 @@ export default function AcademyLanding() {
             <a href="#trilhas">Trilhas e módulos</a>
             <a href="#metodo">Como funciona</a>
             <a href="#assinaturas">Assinaturas</a>
+            <a href="#lista-de-espera">Lista de espera</a>
             <a href="#perguntas">Perguntas</a>
             <a href="/roadmap">Votar em melhorias</a>
             <a href="/?register=1">Criar minha conta</a><a href="/">Entrar no hub</a>
@@ -235,6 +236,7 @@ export default function AcademyLanding() {
             <details data-reveal><summary>Já posso contratar uma assinatura?<span aria-hidden="true">+</span></summary><p>Os planos de assinatura ainda estão em preparação. Esta página apresenta a plataforma e os formatos de acesso previstos, sem contratação ou cobrança ativa.</p></details>
             <details data-reveal><summary>Preciso pagar uma ferramenta de IA?<span aria-hidden="true">+</span></summary><p>Sem API paga obrigatória: a trilha de desenvolvimento com IA pode ser concluída com alternativas gratuitas e locais. Você pode usar assistentes disponíveis, estudar sem IA ou optar por IA local se tiver hardware adequado. Alguns serviços externos oferecem planos pagos opcionais.</p></details>
             <details data-reveal><summary>Consigo estudar pelo celular?<span aria-hidden="true">+</span></summary><p>Sim. O ambiente de estudos funciona no navegador de dispositivos móveis e pode ser instalado como aplicativo web progressivo em dispositivos compatíveis.</p></details>
+            <details data-reveal><summary>É preciso criar uma conta para participar da lista de espera?<span aria-hidden="true">+</span></summary><p>Não. Para receber as novidades, basta informar seu nome, e-mail, curso de interesse e concordar com o contato. A lista de espera não libera cursos nem gera compromisso de compra.</p></details>
             <details data-reveal><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Alunos podem criar a própria conta sem convite e sem código por e-mail. Professores e administradores recebem convite da equipe. Ter uma conta não libera automaticamente cursos pagos.</p></details>
           </div>
         </div>
