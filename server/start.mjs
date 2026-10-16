@@ -4,6 +4,7 @@ import { resolve, extname, join, sep } from 'node:path';
 import { createPlatformHandler } from './platform.mjs';
 import { registrationEnabled } from '../src/auth/registration-policy.mjs';
 import { protectedPath, canonicalAssetPath } from '../src/worker/course-access.mjs';
+import { stripAcademyPath } from '../src/lib/academyRouting.mjs';
 
 const port=Number(process.env.PORT || 8788);
 const origin=process.env.HUB_ORIGIN || 'http://localhost:8788';
@@ -21,8 +22,12 @@ const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=u
   '.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp',
   '.jpg':'image/jpeg','.pdf':'application/pdf','.txt':'text/plain; charset=utf-8','.md':'text/markdown; charset=utf-8'};
 const server=createServer(async(req,res)=>{
-  const route=new URL(req.url,origin).pathname;
-  if(route.startsWith('/api/'))return app.handle(req,res);
+  const publicPath=new URL(req.url,origin).pathname;
+  const route=stripAcademyPath(publicPath);
+  if(route.startsWith('/api/')){
+    if(route!==publicPath){const url=new URL(req.url,origin);url.pathname=route;req.url=url.pathname+url.search;req.headers['x-academy-path']='true';}
+    return app.handle(req,res);
+  }
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end();return;}
   if(protectedPath(route)){
     const result=app.authorize(req,route);
