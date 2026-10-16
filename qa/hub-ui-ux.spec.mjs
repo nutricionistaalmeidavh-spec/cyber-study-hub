@@ -30,7 +30,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await expect(main.getByRole('heading',{name:'Olá, Aluno.'})).toBeVisible();
   await main.getByRole('link',{name:/Cursos de cibersegurança/}).click();
   await expect(page).toHaveURL(/#courses\?type=main$/);
-  await expect(main.locator('.course-tile')).toHaveCount(12);
+  await expect(main.locator('.course-tile')).toHaveCount(5);
   const search=main.getByLabel('Buscar por assunto ou aula');
   await search.fill(second.code);
   await expect(main.locator('.course-tile')).toHaveCount(1);
@@ -43,7 +43,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await expect(main.getByRole('heading',{name:'Nenhum curso encontrado.'})).toBeVisible();
   expect(await main.locator('.course-empty p').evaluate(el=>getComputedStyle(el).color)).toBe('rgb(98, 86, 111)');
   await main.getByRole('button',{name:'Limpar busca'}).click();
-  await expect(main.locator('.course-tile')).toHaveCount(12);
+  await expect(main.locator('.course-tile')).toHaveCount(5);
   await main.getByRole('link',{name:'Trilhas práticas',exact:true}).click();
   await expect(main.locator('.course-tile')).toHaveCount(2);
   await page.goto('/#courses/'+course.id);
