@@ -1,38 +1,11 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import catalogData from '../curriculum/catalog.json';
-import type { CurriculumCatalog } from '../curriculum/types';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { useAcademyMotion } from './useAcademyMotion';
 import './academy.css';
 import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
 import AcademyWaitlist from './AcademyWaitlist';
-import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
 import { studyInventory } from '../lib/studyInventory';
-import { publishedCourses, publishedMainLessonIds, publishedParallelLessonCodes } from '../curriculum/courseOfferings';
-
-const catalog = catalogData as CurriculumCatalog;
-
-type CatalogMode = 'main' | 'parallel';
-type ModulePreview = { title: string; count: number; durationMin: number };
-function groupModules(items: Array<{ block?: string; track?: string; durationMin?: number }>, field: 'block' | 'track'): ModulePreview[] {
-  const grouped = new Map<string, { count: number; durationMin: number }>();
-  for (const item of items) {
-    const title = item[field];
-    if (!title) continue;
-    const previous = grouped.get(title) || { count: 0, durationMin: 0 };
-    grouped.set(title, { count: previous.count + 1, durationMin: previous.durationMin + (item.durationMin ?? 0) });
-  }
-  return [...grouped].map(([title, info]) => ({ title, ...info }));
-}
-const principal = groupModules(catalog.main.filter(item => publishedMainLessonIds.has(item.id)), 'block');
-const paralelas = groupModules(catalog.parallel.filter(item => publishedParallelLessonCodes.has(item.code)), 'track');
-function publicModuleCourseHref(name: string): string {
-  const lessonCodes = new Set(catalog.main.filter(item => item.block === name).map(item => item.code));
-  const parent = publishedCourses.find(course => course.type === 'main' &&
-    course.modules.some(module => module.lessonCodes.some(code => lessonCodes.has(code))));
-  return parent ? '/#courses/' + parent.id : '/#courses';
-}
-
+import { publishedCourses } from '../curriculum/courseOfferings';
 
 export function isAcademyPath(pathname: string) {
   return /^\/academy\/?$/.test(pathname);
@@ -55,12 +28,20 @@ function Brand() { return <AcademyBrand />; }
 export default function AcademyLanding() {
   const rootRef = useRef<HTMLDivElement>(null);
   useAcademyMotion(rootRef);
-  const [mode, setMode] = useState<CatalogMode>('main');
-  const modules = mode === 'main' ? principal : paralelas;
+  const [waitlistCourseId, setWaitlistCourseId] = useState('academy');
+  const chooseWaitlistCourse = (event: MouseEvent<HTMLAnchorElement>, courseId: string) => {
+    event.preventDefault();
+    setWaitlistCourseId(courseId);
+    window.history.replaceState(null, '', '/academy?curso=' + encodeURIComponent(courseId) + '#lista-de-espera');
+    document.getElementById('lista-de-espera')?.scrollIntoView({behavior:'smooth',block:'start'});
+  };
 
   useEffect(() => {
     const originalTitle = document.title;
     document.title = 'ArtiSys Academy — Aprenda tecnologia na prática';
+    // Âncoras externas funcionam mesmo após a montagem assíncrona da SPA.
+    if (window.location.hash === '#lista-de-espera')
+      requestAnimationFrame(() => document.getElementById('lista-de-espera')?.scrollIntoView({block:'start'}));
     return () => { document.title = originalTitle; };
   }, []);
 
@@ -152,39 +133,41 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Escolha um curso, avance por módulos e aprenda com projetos reais. Apenas cursos completos com auditoria editorial A são exibidos. O inventário preserva {studyInventory.totalSteps} etapas, com {studyInventory.canonical} IDs canônicos: {studyInventory.legacyCanonical} unidades tradicionais e {studyInventory.guided} etapas guiadas. Cursos ainda sem A permanecem ocultos da vitrine.</p>
+          <p>Conheça as formações disponíveis. Toque no + de um card para ver os módulos de cada curso, sem sair da página. Apenas cursos publicados aparecem nesta vitrine.</p>
         </div>
         <div className="academy-courses-grid" aria-label="Cursos publicados">
-          {publishedCourses.map(course => <a className="academy-course-card" data-reveal key={course.id} href={'/#courses/' + course.id}>
-            <span>{course.type === 'trail' ? 'TRILHA PRÁTICA' : 'CURSO COMPLETO'}</span>
-            <h3>{course.title}</h3><p>{course.description}</p>
-            <strong>{course.modules.length} módulos · Conhecer curso →</strong>
-          </a>)}
-        </div>
-        <div className="academy-available-modules" data-reveal>
-          <h3>Explore também os módulos publicados</h3>
-          <p>Cursos e módulos compartilham os mesmos IDs canônicos de aulas e seus registros de progresso.</p>
-        </div>
-        <div className="academy-catalog-panel" data-reveal>
-          <div className="academy-catalog-top">
-            <div className="academy-tabs" role="group" aria-label="Tipo de formação">
-              <button type="button" className={mode === 'main' ? 'active' : ''} aria-pressed={mode === 'main'} onClick={() => setMode('main')}>Formação principal <span>{principal.length}</span></button>
-              {paralelas.length > 0 && <button type="button" className={mode === 'parallel' ? 'active' : ''} aria-pressed={mode === 'parallel'} onClick={() => setMode('parallel')}>Trilhas paralelas <span>{paralelas.length}</span></button>}
+          {publishedCourses.map(course => <details className="academy-course-card" key={course.id} data-reveal name="academy-courses" id={'curso-' + course.id}>
+            <summary className="academy-course-summary">
+              <span className="academy-course-card-top">
+                <span className="academy-course-type">{course.type === 'trail' ? 'TRILHA PRÁTICA' : 'CURSO COMPLETO'}</span>
+                <span className="academy-course-toggle" aria-hidden="true" />
+              </span>
+              <h3>{course.title}</h3>
+              <p>{course.description}</p>
+              <span className="academy-course-card-bottom">
+                <span>{course.modules.length} módulos</span>
+                <span className="academy-course-expand-label">
+                  <span className="academy-course-label-closed">Ver módulos</span>
+                  <span className="academy-course-label-open">Ocultar módulos</span>
+                  <Arrow />
+                </span>
+              </span>
+            </summary>
+            <div className="academy-course-expanded">
+              <h4>Módulos desta formação</h4>
+              <ol className="academy-course-modules">
+                {course.modules.map((module, index) => <li className="academy-course-module" key={module.id}>
+                  <span className="academy-course-module-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span>{module.title}</span>
+                </li>)}
+              </ol>
+              <a className="academy-button academy-button-outline academy-course-waitlist"
+                href={'/academy?curso=' + encodeURIComponent(course.id) + '#lista-de-espera'}
+                onClick={event => chooseWaitlistCourse(event, course.id)}>
+                Entrar na lista de espera <Arrow />
+              </a>
             </div>
-            <span className="academy-catalog-count">{modules.length} {mode === 'main' ? 'módulos' : 'trilhas'} no catálogo</span>
-          </div>
-          <div className="academy-module-grid" key={mode}>
-            {modules.slice(0, 6).map((module, index) => <a className="academy-module-card" key={module.title} style={{ '--academy-i': index } as CSSProperties}
-              href={mode === 'main' ? publicModuleCourseHref(module.title) : '/#courses'}>
-              <span className="academy-module-top"><span className="academy-module-number">{String(index + 1).padStart(2, '0')}</span><span className="academy-module-arrow" aria-hidden="true">↗</span></span>
-              <h3>{moduleDisplayTitle(module.title)}</h3>
-              <div className="academy-module-bottom"><span>{mode === 'main' ? mainStudyTime(module.durationMin) : parallelStudyTime(module.count)}</span><span>Explorar <Arrow /></span></div>
-            </a>)}
-          </div>
-          <div className="academy-catalog-footer">
-            <p>Prévia do catálogo real. O acesso às aulas depende de uma conta na plataforma.</p>
-            <a href="/">Entrar na plataforma <Arrow /></a>
-          </div>
+          </details>)}
         </div>
 
       </section>
@@ -211,11 +194,11 @@ export default function AcademyLanding() {
         <div className="academy-plans-notice" data-reveal role="status"><span aria-hidden="true">◷</span><div><strong>Assinaturas em preparação</strong><p>Valores, condições comerciais e contratação ainda não estão disponíveis nesta página. Nenhuma cobrança é realizada aqui.</p></div></div>
         <div className="academy-plan-grid">
           <article className="academy-plan-card" data-reveal>
-            <div className="academy-plan-top"><span>ACESSO POR TEMA</span><span className="academy-plan-status">Planejado</span></div>
-            <h3>Curso individual</h3><p>Compra avulsa de uma formação específica, organizada em módulos e aulas.</p>
+            <div className="academy-plan-top"><span>ACESSO POR TEMA</span><span className="academy-plan-status">Lista de espera</span></div>
+            <h3>Curso individual</h3><p>Escolha uma formação e cadastre seu interesse para receber o aviso quando as inscrições abrirem.</p>
             <div className="academy-plan-price">Valores a definir</div>
             <ul><li>Foco em uma trilha de estudo</li><li>Organização por módulos e aulas</li><li>Atividades e recursos da trilha</li></ul>
-            <a className="academy-button academy-button-outline" href="#lista-de-espera">Receber aviso de abertura <Arrow /></a>
+            <a className="academy-button academy-button-outline" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
           </article>
           <article className="academy-plan-card academy-plan-featured" data-reveal>
             <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Planejado</span></div>
@@ -227,7 +210,7 @@ export default function AcademyLanding() {
         </div>
       </section>
 
-      <AcademyWaitlist />
+      <AcademyWaitlist selectedCourseId={waitlistCourseId} />
 
       <section className="academy-section academy-faq-band" id="perguntas" aria-labelledby="academy-faq-title">
         <div className="academy-container academy-faq-layout">
