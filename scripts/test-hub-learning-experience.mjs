@@ -61,8 +61,8 @@ test('module cards show only a short title, estimated time and real state', () =
   assert.doesNotMatch(browser, /Comece por: /);
   assert.doesNotMatch(home, /\{catalog\.main\.length\} aulas/);
   assert.doesNotMatch(home, /32 etapas com laboratórios/);
-  assert.match(academy, /moduleDisplayTitle\(module\.title\)/);
-  assert.match(academy, /parallelStudyTime\(module\.count\)/);
+  assert.match(academy, /course\\.modules\\.map/);
+  assert.match(academy, /academy-course-module/);
   assert.match(presentation, /unitCount \* 25/);
   assert.match(presentation, /unitCount \* 40/);
   assert.match(css, /\.hub-home \.hub-journey:nth-child\(3\),/);
