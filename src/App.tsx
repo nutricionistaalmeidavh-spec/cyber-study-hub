@@ -26,7 +26,7 @@ interface InstallPromptEvent extends Event {
 
 type Route =
   | { page: 'dashboard' }
-  | { page: 'courses'; courseId?: string }
+  | { page: 'courses'; courseId?: string; courseType?: string }
   | { page: 'account' }
   | { page: 'admin-users' }
   | { page: 'admin-feedback' }
@@ -47,7 +47,10 @@ type Route =
 
 function parseHash(): Route {
   const raw = studyRouteHash(window.location.hash);
-  if (raw === 'courses' || raw.startsWith('courses/')) return { page: 'courses', courseId: raw.split('/')[1] || undefined };
+  if (raw.split('?')[0] === 'courses' || raw.startsWith('courses/')) {
+    const [path, query = ''] = raw.split('?');
+    return { page: 'courses', courseId: path.split('/')[1] || undefined, courseType: new URLSearchParams(query).get('type') || undefined };
+  }
   if (raw.startsWith('course/main/')) return { page: 'course-main', id: Number(raw.split('/')[2]) || 1 };
   if (raw.startsWith('course/parallel/')) return { page: 'course-parallel', code: decodeURIComponent(raw.split('/')[2] || 'LOG-01') };
   if (raw.startsWith('lesson/')) return { page: 'lesson', id: Number(raw.split('/')[1]) || 43 };
@@ -138,11 +141,12 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
   };
 
   return <div className="app-shell">
+    <a className="workspace-skip" href="#workspace-content" onClick={event=>{event.preventDefault();document.getElementById('workspace-content')?.focus();}}>Pular para o conteúdo</a>
     <aside className="sidebar">
       <a className="brand" href="#dashboard"><AcademyBrand /></a>
       <nav>
         <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
-        <Nav href="#courses" active={route.page==='courses'} icon="book" label="Cursos" />
+        <Nav href="#courses" active={route.page==='courses'||(user.role!=='admin'&&['course-main','course-parallel','lesson'].includes(route.page))} icon="book" label="Cursos" />
         {user.role==='admin' && <Nav href="#lessons" active={route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Biblioteca editorial" />}
         <Nav href="#ai-dev" active={route.page==='ai-dev'} icon="ai" label="Desenvolver com IA" />
         <Nav href="#channel-dark" active={route.page==='channel-dark'} icon="ai" label="Canal Dark com IA" />
@@ -161,12 +165,12 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <div className="sidebar-note"><small>LAB ÉTICO</small><p>Pratique apenas em ambientes próprios ou explicitamente autorizados.</p></div>
     </aside>
 
-    <main className="main-content">
+    <main className="main-content" id="workspace-content" tabIndex={-1}>
       <div className="feedback-global-action"><button ref={feedbackTrigger} type="button" className="button ghost" onClick={()=>setFeedbackOpen(true)}>
         {route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'?'⚑ Reportar problema nesta aula':'✎ Enviar feedback'}
       </button></div>
       {route.page==='dashboard' && <Dashboard user={user} />}
-      {route.page==='courses' && <CourseCatalog courseId={route.courseId} admin={user.role==='admin'} userEmail={user.email} />}
+      {route.page==='courses' && <CourseCatalog courseId={route.courseId} courseType={route.courseType} admin={user.role==='admin'} userEmail={user.email} />}
       {route.page==='account' && <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />}
       {route.page==='feedback' && <FeedbackBoard user={user} />}
       {route.page==='roadmap' && <RoadmapPage embedded />}
@@ -188,7 +192,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
 
     <nav className="mobile-nav">
       <Nav href="#dashboard" active={route.page==='dashboard'} icon="home" label="Início" />
-      <Nav href="#courses" active={route.page==='courses'||route.page==='lessons'||route.page==='lesson'||route.page==='course-main'||route.page==='course-parallel'} icon="book" label="Cursos" />
+      <Nav href="#courses" active={['courses','lessons','lesson','course-main','course-parallel','ai-dev','channel-dark','reverse-ai'].includes(route.page)} icon="book" label="Cursos" />
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
       <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
       <details key={route.page} className="mobile-nav-more">
