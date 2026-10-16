@@ -13,7 +13,7 @@ const URL='/api/integrations/artisys/fulfillment';
 const email='student@academy.example';
 const bodyFor=(overrides={})=>({
  event:'artisys.license.activate',orderId:randomUUID(),
- productId:'hubestudos-course-web-apis',email,
+ productId:'hubestudos-course-trilha-aplicacoes-cloud-ia',email,
  customerName:'Aluno Exemplo',amountCents:1990,currency:'BRL',saleType:'one_time',
  idempotencyKey:randomUUID(),...overrides
 });
@@ -38,9 +38,9 @@ async function start(secret=SECRET){
  const deliver=async(data,{sign=true,timestamp=Date.now(),deliveryId=data.idempotencyKey}={})=>{
   let signed=issued.get(data.orderId);
   if(!signed){
-   const productId=data.productId?.startsWith('hubestudos-course-')&&data.productId!=='hubestudos-course-web-apis'?'hubestudos-course-web-apis':data.productId;
+   const productId=(data.productId==='hubestudos-subscription'||data.productId?.startsWith('hubestudos-course-trilha-'))?data.productId:'hubestudos-course-trilha-aplicacoes-cloud-ia';
    const saleType=['monthly','yearly'].includes(data.saleType)&&productId==='hubestudos-subscription'?data.saleType:'one_time';
-   const init=await request('/api/billing/purchase-intent','POST',{productId:productId==='hubestudos-subscription'?productId:'hubestudos-course-web-apis',saleType},learner.cookie);
+   const init=await request('/api/billing/purchase-intent','POST',{productId,saleType},learner.cookie);
    signed={buyerBinding:init.payload.buyerBinding,orderCreatedAt:new Date().toISOString()};
    issued.set(data.orderId,signed);
   }
@@ -69,9 +69,9 @@ test('a entrega HMAC é a única origem capaz de liberar um curso pago',async()=
   assert.equal((await s.deliver({...ev,email:'nobody@example.test'})).status,409);
   assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.length,0);
   assert.equal((await s.deliver(ev)).status,200);
-  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['trilha-aplicacoes-cloud-ia']);
   assert.equal((await s.deliver(ev)).status,200);
-  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['trilha-aplicacoes-cloud-ia']);
  }finally{await s.close();}
 });
 test('reembolso não apaga grant manual nem acesso de outro pedido',async()=>{
@@ -81,12 +81,12 @@ test('reembolso não apaga grant manual nem acesso de outro pedido',async()=>{
   assert.equal((await s.deliver(paid)).status,200);
   assert.equal((await s.deliver(other)).status,200);
   assert.equal((await s.deliver({...paid,event:'artisys.license.revoke',idempotencyKey:randomUUID()})).status,200);
-  assert.ok((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.includes('web-apis'));
+  assert.ok((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.includes('trilha-aplicacoes-cloud-ia'));
   assert.equal((await s.deliver({...other,event:'artisys.license.revoke',idempotencyKey:randomUUID()})).status,200);
-  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.includes('web-apis'),false);
-  assert.equal((await s.request('/api/admin/access/grants','POST',{userId:s.learner.payload.user.id,courseId:'web-apis'},s.admin.cookie)).status,200);
+  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.includes('trilha-aplicacoes-cloud-ia'),false);
+  assert.equal((await s.request('/api/admin/access/grants','POST',{userId:s.learner.payload.user.id,courseId:'trilha-aplicacoes-cloud-ia'},s.admin.cookie)).status,200);
   assert.equal((await s.deliver({...other,event:'artisys.license.revoke',idempotencyKey:randomUUID()})).status,200);
-  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.includes('web-apis'),true);
+  assert.equal((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds.includes('trilha-aplicacoes-cloud-ia'),true);
  }finally{await s.close();}
 });
 test('assinatura paga expira, renova idempotentemente e não revoga manual',async()=>{
@@ -107,7 +107,7 @@ test('validação fecha para evento, moeda, valor, perfil e modalidade incorreto
  try{
   for(const b of [
    {currency:'USD'},{amountCents:0},{event:'artisys.license.other'},
-   {productId:'hubestudos-course-web-apis',saleType:'monthly'},
+   {productId:'hubestudos-course-trilha-aplicacoes-cloud-ia',saleType:'monthly'},
    {productId:'hubestudos-subscription',saleType:'one_time'},
    {productId:'pdv-artisys'},{productId:'hubestudos-course-unknown'}
   ])assert.equal((await s.deliver(bodyFor(b))).status,400,JSON.stringify(b));
@@ -159,7 +159,7 @@ test('pedido assinado libera somente a conta correspondente, não outra sessão'
   const purchase=bodyFor();
   assert.equal((await s.deliver(purchase)).status,200);
   assert.deepEqual((await s.request('/api/access/me','GET',null,other.cookie)).payload.courseIds,[]);
-  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['trilha-aplicacoes-cloud-ia']);
   assert.equal((await s.deliver({...purchase,email:'other@academy.example',idempotencyKey:randomUUID()})).status,409);
   assert.deepEqual((await s.request('/api/access/me','GET',null,other.cookie)).payload.courseIds,[]);
  }finally{await s.close();}
@@ -173,7 +173,7 @@ test('reenvio da ativação não soma grants e curso draft segue bloqueado',asyn
   assert.equal((await s.deliver({...paid,idempotencyKey:randomUUID()})).status,200);
   assert.equal((await s.deliver({...paid,productId:'hubestudos-course-paralela-py'})).status,400);
   assert.equal((await s.deliver({...paid,orderId:randomUUID()})).status,409);
-  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['web-apis']);
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,['trilha-aplicacoes-cloud-ia']);
  }finally{await s.close();}
 });
 
@@ -188,11 +188,38 @@ test('sem intenção autenticada, uma compra com e-mail conhecido não libera cu
 test('intenção de compra exige sessão logada; perfil do aluno estável',async()=>{
  const s=await start();
  try{
-  const denied=await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-web-apis',saleType:'one_time'});
+  const denied=await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-trilha-aplicacoes-cloud-ia',saleType:'one_time'});
   assert.equal(denied.status,401);
-  const created=await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-web-apis',saleType:'one_time'},s.learner.cookie);
+  const created=await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-trilha-aplicacoes-cloud-ia',saleType:'one_time'},s.learner.cookie);
   assert.equal(created.status,200);
   assert.match(created.payload.buyerBinding,/^[A-Za-z0-9_-]+\.[0-9a-f]{64}$/);
   assert.equal((await s.request('/api/billing/purchase-intent','POST',{productId:'hubestudos-course-paralela-log',saleType:'one_time'},s.learner.cookie)).status,400);
+ }finally{await s.close();}
+});
+
+test('cada uma das cinco trilhas é um produto isolado e exige confirmação assinada',async()=>{
+ const trackIds=[
+  'trilha-pentest-ethical-hacking',
+  'trilha-seguranca-ofensiva-defensiva',
+  'trilha-engenharia-reversa-malware',
+  'trilha-pesquisa-vulnerabilidades',
+  'trilha-aplicacoes-cloud-ia'
+ ];
+ const s=await start();
+ try{
+  const adminAccess=await s.request('/api/access/me','GET',null,s.admin.cookie);
+  assert.equal(adminAccess.payload.staff,true);
+  assert.ok(trackIds.every(id=>adminAccess.payload.courseIds.includes(id)));
+  assert.deepEqual((await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds,[]);
+  for(const id of trackIds){
+   const purchase=bodyFor({productId:'hubestudos-course-'+id});
+   assert.equal((await s.deliver(purchase)).status,200,id);
+   const grants=(await s.request('/api/access/me','GET',null,s.learner.cookie)).payload.courseIds;
+   assert.ok(grants.includes(id),'grant não liberado: '+id);
+   assert.equal(grants.length,trackIds.indexOf(id)+1,'liberação indesejada: '+id);
+  }
+  assert.equal((await s.request('/api/billing/purchase-intent','POST',{
+   productId:'hubestudos-course-web-apis',saleType:'one_time'
+  },s.learner.cookie)).status,400,'antigo produto não deve ser vendido');
  }finally{await s.close();}
 });
