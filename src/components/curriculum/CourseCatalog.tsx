@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { courses, publishedCourses, mainLessonsByCode, parallelLessonsByCode, guidedLessonsByCode } from '../../curriculum/courseOfferings';
 import type { CourseOffering } from '../../curriculum/courseOfferings';
+import { mainLearningPaths } from '../../curriculum/mainLearningPaths';
 import { catalogType, courseSearchMatch } from '../../lib/courseDiscovery';
 import { getStudyVisits } from '../../lib/studyProgress';
 import { getLearningProgress, type LessonLearningProgress } from '../../lib/learningProgress';
@@ -10,7 +11,7 @@ import './course-catalog.css';
 import ArtisysPurchase from './ArtisysPurchase';
 
 function label(course:CourseOffering){
- return course.type==='trail'?'Trilha prática':course.type==='parallel'?'Formação paralela':'Curso de cibersegurança';
+ return course.type==='trail'?'Trilha prática':course.type==='parallel'?'Formação paralela':'Trilha de cibersegurança';
 }
 function lesson(code:string) {
  const main=mainLessonsByCode.get(code), parallel=parallelLessonsByCode.get(code), guided=guidedLessonsByCode.get(code);
@@ -29,6 +30,7 @@ export default function CourseCatalog({courseId,courseType,admin=false,userEmail
  const [query,setQuery]=useState('');
  const available=admin?courses:publishedCourses;
  const selected=available.find(course=>course.id===courseId);
+ const selectedPath=mainLearningPaths.find(path=>path.id===selected?.id);
  const type=catalogType(courseType);
  const filtered=available.flatMap(course=>{
   if(type&&course.type!==type)return [];
@@ -55,30 +57,31 @@ export default function CourseCatalog({courseId,courseType,admin=false,userEmail
  </div></section>;
  return <div className="page course-catalog stack-lg">
   <header className="course-catalog-header">
-   <div><h1>{selected?selected.title:'Encontre seu próximo curso'}</h1>
-    <p>{selected?selected.description:'Busque por tema, módulo ou aula. Escolha uma formação e avance no seu ritmo.'}</p></div>
-   {selected?<a className="course-back" href="#courses">← Voltar aos cursos</a>:<span className="course-count">{publishedCourses.length} cursos publicados</span>}
+   <div><h1>{selected?selected.title:'Escolha sua trilha de aprendizado'}</h1>
+    <p>{selected?selected.description:'Encontre sua trilha por tema, módulo ou aula. Estude com progressão clara e no seu ritmo.'}</p></div>
+   {selected?<a className="course-back" href="#courses">← Voltar aos cursos</a>:<span className="course-count">{publishedCourses.length} trilhas e formações publicadas</span>}
   </header>
   {!selected?<>
     <section className="course-discovery" aria-label="Encontrar cursos">
      <label className="course-search-label" htmlFor="course-search">Buscar por assunto ou aula</label>
      <input className="search" id="course-search" type="search" placeholder="Ex.: IA, pentest, redes ou AULA-047" value={query} onChange={e=>setQuery(e.target.value)} aria-describedby="course-results"/>
      <nav className="course-type-filters" aria-label="Tipo de formação">
-      {[{value:undefined,title:'Todos'},{value:'main',title:'Cibersegurança'},{value:'trail',title:'Trilhas práticas'},...(admin?[{value:'parallel',title:'Formações paralelas'}]:[])].map(filter=>
+      {[{value:undefined,title:'Todos'},{value:'main',title:'Trilhas de cibersegurança'},{value:'trail',title:'Trilhas práticas'},...(admin?[{value:'parallel',title:'Formações paralelas'}]:[])].map(filter=>
        <a key={filter.value??'all'} href={filter.value?'#courses?type='+filter.value:'#courses'} aria-current={type===filter.value?'page':undefined}>{filter.title}</a>)}
      </nav>
-     <p id="course-results" className="course-results" role="status">{filtered.length} {filtered.length===1?'curso encontrado':'cursos encontrados'}{query.trim()?' para “'+query.trim()+'”':''}</p>
+     <p id="course-results" className="course-results" role="status">{filtered.length} {filtered.length===1?'trilha encontrada':'trilhas encontradas'}{query.trim()?' para “'+query.trim()+'”':''}</p>
     </section>
     <div className="course-grid">{filtered.map(({course,match})=><a className="course-tile" key={course.id} href={'#courses/'+course.id}>
       <span className="course-kind">{label(course)}</span><h2>{course.title}</h2><p>{course.description}</p>
       {query.trim()&&match!==course.title&&<p className="course-match">Inclui: {match}</p>}
-      <div className="course-tile-bottom"><span>{course.modules.length} módulos · {totalLessons(course)} {course.type==='trail'?'etapas':'aulas'}</span><strong>{course.status==='draft'?'Em preparação':'Ver curso →'}</strong></div>
+      <div className="course-tile-bottom"><span>{course.modules.length} módulos · {totalLessons(course)} {course.type==='trail'?'etapas':'aulas'}</span><strong>{course.status==='draft'?'Em preparação':'Ver trilha →'}</strong></div>
     </a>)}</div>
     {filtered.length===0&&<div className="course-empty"><h2>Nenhum curso encontrado.</h2><p>Tente outro assunto ou remova os filtros para ver as formações disponíveis.</p>
      {query&&<button type="button" className="button ghost" onClick={()=>setQuery('')}>Limpar busca</button>}
      {type&&<a className="button ghost" href="#courses" onClick={()=>setQuery('')}>Ver todos os cursos</a>}
     </div>}
    </>:<>
+    {selectedPath&&<p className="course-track-context">Trilha temática completa · {totalLessons(selected)} aulas canônicas</p>}
     {selected.status==='draft'&&<p className="course-draft-note">Prévia administrativa: este curso ainda não é exibido no catálogo público.</p>}
     {selected.status==='published'&&<ArtisysPurchase courseId={selected.id} email={userEmail} />}
     <section className="course-overview" aria-label="Seu próximo passo no curso"><div>
