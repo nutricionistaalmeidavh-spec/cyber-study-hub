@@ -28,7 +28,11 @@ function Brand() { return <AcademyBrand />; }
 export default function AcademyLanding() {
   const rootRef = useRef<HTMLDivElement>(null);
   useAcademyMotion(rootRef);
-  const [waitlistCourseId, setWaitlistCourseId] = useState('academy');
+  const [waitlistCourseId, setWaitlistCourseId] = useState(() => {
+    if (typeof window === 'undefined') return 'academy';
+    const selected = new URLSearchParams(window.location.search).get('curso');
+    return publishedCourses.some(course => course.id === selected) ? String(selected) : 'academy';
+  });
   const chooseWaitlistCourse = (event: MouseEvent<HTMLAnchorElement>, courseId: string) => {
     event.preventDefault();
     setWaitlistCourseId(courseId);
