@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 
-const courses=JSON.parse(readFileSync('src/curriculum/courses.json','utf8')).courses.filter(course=>course.status==='published');
+const courses=JSON.parse(readFileSync('src/curriculum/courses.json','utf8')).courses.filter(course=>course.status==='published'||course.id==='engenharia-reversa-com-ia');
 
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
   test('Academy: expandable modules and waiting list on '+viewport.width,async({browser},testInfo)=>{
