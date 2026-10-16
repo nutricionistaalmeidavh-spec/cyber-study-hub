@@ -70,7 +70,7 @@ test('preço não concede acesso; assinatura manual vale só durante a vigência
  }});
  assert.equal(grant.status,200);
  assert.equal((await req('/api/access/me',{cookie:student.cookie})).body.subscriptionActive,true);
- // Mesmo assinantes não abrem prévias draft.
+ // A rota /api/content/trail/reverse-ai não existe: a trilha REV-IA usa arquivo autenticado /course-labs/reverse-ai/modules.json.
  assert.equal((await req('/api/content/trail/reverse-ai',{cookie:student.cookie})).status,404);
  assert.equal((await req('/api/admin/access/subscriptions',{method:'DELETE',cookie:adminCookie,data:{userId:student.body.user.id}})).status,200);
  assert.equal((await req('/api/access/me',{cookie:student.cookie})).body.subscriptionActive,false);
