@@ -1,0 +1,23 @@
+.waitlist-admin{max-width:1300px;margin:0 auto;padding:28px 24px 70px}
+.waitlist-admin-head{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:22px;margin-bottom:25px}
+.waitlist-admin-head h1{margin:12px 0 9px;font-size:clamp(28px,3vw,42px)}
+.waitlist-admin-head p{max-width:620px;line-height:1.6}
+.waitlist-admin-panel{padding:24px}
+.waitlist-admin-tools{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.waitlist-admin-tools label{font-size:12px;font-weight:750;display:grid;gap:8px}
+.waitlist-admin-tools select{max-width:100%;min-width:min(300px,80vw);border:1px solid var(--line,#cbd5e1);border-radius:9px;padding:12px;background:var(--surface,#fff);color:inherit}
+.waitlist-admin-tools strong{font-variant-numeric:tabular-nums}
+.waitlist-admin-overflow{overflow-x:auto}
+.waitlist-admin table{border-collapse:collapse;width:100%;min-width:650px;text-align:left;font-size:13px}
+.waitlist-admin th,.waitlist-admin td{padding:15px;border-bottom:1px solid var(--line,#d1d5db);vertical-align:middle}
+.waitlist-admin th{font-weight:750;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.waitlist-admin td strong{display:block;font-weight:750;margin-bottom:4px}
+.waitlist-admin td a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.waitlist-admin td small{display:block;opacity:.65;margin-top:4px;font-size:11px}
+.waitlist-admin-delete{border:1px solid #bb4444;color:#bb4444;background:transparent;padding:8px 11px;border-radius:8px;cursor:pointer;font:inherit}
+.waitlist-admin-delete:disabled{opacity:.5;cursor:wait}
+.waitlist-admin-pages{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;margin-top:24px}
+.waitlist-admin-empty{padding:36px 6px}
+.waitlist-admin-error{border:1px solid #c66;background:#ffe9e9;color:#891919;border-radius:9px;padding:12px}
+.waitlist-admin-foot{margin-top:22px;font-size:12px;line-height:1.7}
+@media(max-width:700px){.waitlist-admin{padding:20px 16px 110px}.waitlist-admin-panel{padding:16px}.waitlist-admin-head .button{width:100%}.waitlist-admin-tools label{width:100%}.waitlist-admin-tools select{width:100%}}
