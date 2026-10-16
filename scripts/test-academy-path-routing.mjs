@@ -26,3 +26,19 @@ test('safe course material hrefs use Academy scope but preserve external URLs an
   assert.equal(academyPublicHref('#lesson/1'),'#lesson/1');
   assert.equal(academyPublicHref('/academy/api/me'),'/academy/api/me');
 });
+
+test('Cloudflare route isolates the Academy without DNS or main app rewrites',()=>{
+  const fs = requireFile('../wrangler.toml');
+  assert.match(fs,/artisys\\.dev\\/academy"/);
+  assert.match(fs,/artisys\\.dev\\/academy\\/\\*"/);
+  assert.match(fs,/workers_dev = true/);
+  assert.doesNotMatch(fs,/artisys\\.dev\\/\\*"/);
+  const worker=requireFile('../src/worker/index.mjs');
+  assert.match(worker,/stripAcademyPath/);
+  assert.match(worker,/HUB_AUTH/);
+  const vite=requireFile('../vite.config.ts');
+  assert.match(vite,/base: '\\/academy\\/'/);
+  assert.match(vite,/prefixBrowserPaths/);
+});
+
+function requireFile(path) { return readFileSync(new URL(path,import.meta.url),'utf8'); }
