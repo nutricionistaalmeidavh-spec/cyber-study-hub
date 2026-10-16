@@ -46,7 +46,7 @@ export default function AcademyLanding() {
       if(!response.ok)throw Error('Configuração indisponível');
       return await response.json() as {priceCents?:unknown};
     }).then(data=>{
-      if(active&&Number.isSafeInteger(data.priceCents)&&Number(data.priceCents)>=100)
+      if(active&&typeof data.priceCents==='number'&&Number.isSafeInteger(data.priceCents)&&data.priceCents>=100)
         setMonthlyPrice(Number(data.priceCents));
     }).catch(()=>{/* Vitrine mantém valor indefinido até configuração do servidor. */});
     return () => { active=false; document.title = originalTitle; };
