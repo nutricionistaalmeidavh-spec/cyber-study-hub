@@ -18,6 +18,7 @@ import ChannelAutomationTrail from './trails/channel-dark/ChannelAutomationTrail
 import ReverseAiTrail from './trails/reverse-ai/ReverseAiTrail';
 import { FeedbackBoard, FeedbackComposer } from './components/feedback/FeedbackCenter';
 import { RoadmapPage } from './components/feedback/Roadmap';
+import WaitlistAdmin from './components/WaitlistAdmin';
 
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -29,6 +30,7 @@ type Route =
   | { page: 'courses'; courseId?: string; courseType?: string }
   | { page: 'account' }
   | { page: 'admin-users' }
+  | { page: 'admin-waitlist' }
   | { page: 'admin-feedback' }
   | { page: 'feedback' }
   | { page: 'roadmap' }
@@ -72,6 +74,7 @@ function parseHash(): Route {
   if (raw === 'admin/feedback'||(!window.location.hash&&window.location.pathname==='/admin/feedback')) return { page: 'admin-feedback' };
   if (raw === 'account') return { page: 'account' };
   if (raw === 'admin/users') return { page: 'admin-users' };
+  if (raw === 'admin/waitlist') return { page: 'admin-waitlist' };
   if (raw.split('?')[0] === 'ai-dev') return { page: 'ai-dev' };
   if (raw.split('?')[0] === 'channel-dark') return { page: 'channel-dark' };
   if (raw.split('?')[0] === 'reverse-ai') return { page: 'reverse-ai' };
@@ -159,6 +162,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
         <Nav href="#roadmap" active={route.page==='roadmap'} icon="roadmap" label="Roadmap público" />
         {user.role==='admin' && <Nav href="#admin/feedback" active={route.page==='admin-feedback'} icon="feedback" label="Central de feedback" />}
         {user.role==='admin' && <Nav href="#admin/users" active={route.page==='admin-users'} icon="users" label="Usuários" />}
+        {user.role==='admin' && <Nav href="#admin/waitlist" active={route.page==='admin-waitlist'} icon="users" label="Lista de espera" />}
       </nav>
       <div className="account-sidebar"><strong>{user.name}</strong><small>{user.email}</small><button onClick={() => void actions.logout()}>Sair da conta</button></div>
       {!isStandalone && <button className="install-card" onClick={install}><span>＋</span><div><strong>Instalar app</strong><small>Use como PWA</small></div></button>}
@@ -176,6 +180,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       {route.page==='roadmap' && <RoadmapPage embedded />}
       {route.page==='admin-feedback' && (user.role==='admin'?<FeedbackBoard user={user} admin />:<FeedbackBoard user={user} />)}
       {route.page==='admin-users' && (user.role==='admin' ? <PlatformUsers me={user} /> : <PlatformProfile user={user} onUpdated={actions.refresh} onSignOut={actions.logout} />)}
+      {route.page==='admin-waitlist' && (user.role==='admin'?<WaitlistAdmin />:denied)}
       {route.page==='lessons' && (user.role==='admin' ? <LessonList initialTrack={route.track} initialMode={route.mode} initialModule={route.module} /> : <CourseCatalog />)}
       {route.page==='lesson' && (canReadMain(route.id) ? <LessonViewer key={route.id} id={route.id} onRefresh={refresh} /> : denied)}
       {route.page==='course-main' && (canReadMain(route.id) ? <CourseDocumentViewer key={"main-" + route.id} kind="main" id={route.id} /> : denied)}
@@ -196,7 +201,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
       <Nav href="#games" active={route.page==='games'||route.page==='game'} icon="games" label="Jogos" />
       <Nav href="#account" active={route.page==='account'||route.page==='admin-users'} icon="account" label="Conta" />
       <details key={route.page} className="mobile-nav-more">
-        <summary className={'nav-item mobile-nav-more-trigger'+(['materials','material','review','feedback','roadmap','admin-feedback'].includes(route.page)?' active':'')} aria-label="Mais opções: materiais, revisão e comunidade">
+        <summary className={'nav-item mobile-nav-more-trigger'+(['materials','material','review','feedback','roadmap','admin-feedback','admin-waitlist'].includes(route.page)?' active':'')} aria-label="Mais opções: materiais, revisão e comunidade">
           <span><NavIcon name="roadmap" /></span><b>Mais</b>
         </summary>
         <div className="mobile-nav-more-panel">
@@ -206,6 +211,7 @@ function Workspace({ user, actions }: { user: PlatformUser; actions: { logout: (
           <Nav href="#feedback" active={route.page==='feedback'} icon="feedback" label="Meus feedbacks" />
           <Nav href="#roadmap" active={route.page==='roadmap'} icon="roadmap" label="Votar em melhorias" />
           {user.role==='admin' && <Nav href="#admin/feedback" active={route.page==='admin-feedback'} icon="feedback" label="Central de feedback" />}
+          {user.role==='admin' && <Nav href="#admin/waitlist" active={route.page==='admin-waitlist'} icon="users" label="Lista de espera" />}
         </div>
       </details>
     </nav>
