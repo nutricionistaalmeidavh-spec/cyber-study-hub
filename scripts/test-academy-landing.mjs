@@ -20,7 +20,7 @@ test('academy page includes real curriculum and working navigation targets', () 
     assert.match(source, new RegExp('id="' + anchor + '"'));
     assert.match(source, new RegExp('href="#' + anchor + '"'));
   }
-  assert.match(source, /publishedCourses\.map/);
+  assert.match(source, /waitlistCatalogCourses\.map/);
   assert.match(source, /course\.modules\.map/);
   assert.doesNotMatch(source, /academy-catalog-panel|academy-available-modules|academy-module-grid/);
   assert.match(source, /href="\/"/);
@@ -41,10 +41,12 @@ test('vitrine pública expande os módulos reais de cada curso sem duplicar cat�
   const ts = await import('typescript');
   const vm = await import('node:vm');
   const require = createRequire(import.meta.url);
-  const courses = JSON.parse(read('src/curriculum/courses.json')).courses.filter(c => c.status === 'published');
+  const allCourses = JSON.parse(read('src/curriculum/courses.json')).courses;
+  const courses = allCourses.filter(c => c.status === 'published');
+  const visibleCourses = allCourses.filter(c => c.status === 'published'||c.id==='engenharia-reversa-com-ia');
   const exported = {};
   const mocks = {
-    '../curriculum/courseOfferings': {publishedCourses:courses},
+    '../curriculum/courseOfferings': {publishedCourses:courses,waitlistCatalogCourses:visibleCourses},
     '../lib/studyInventory': {studyInventory:{totalSteps:639,canonical:639,legacyCanonical:543,guided:96}},
     './useAcademyMotion': {useAcademyMotion:()=>undefined},
     './AcademyBrand': {default:()=>createElement('span',null,'Academy')},
@@ -56,11 +58,11 @@ test('vitrine pública expande os módulos reais de cada curso sem duplicar cat�
   }).outputText;
   vm.runInNewContext(output,{exports:exported,require:name=>name in mocks?mocks[name]:require(name)});
   const html = renderToStaticMarkup(createElement(exported.default));
-  assert.equal((html.match(/<details class="academy-course-card"/g)||[]).length,courses.length);
+  assert.equal((html.match(/<details class="academy-course-card"/g)||[]).length,visibleCourses.length);
   assert.equal((html.match(/class="academy-course-module"/g)||[]).length,
-    courses.reduce((total,c)=>total+c.modules.length,0));
+    visibleCourses.reduce((total,c)=>total+c.modules.length,0));
   const escaped = value=>value.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-  for(const course of courses){
+  for(const course of visibleCourses){
     assert.ok(html.includes(escaped(course.title)),course.id+' should be visible');
     for(const module of course.modules)
       assert.ok(html.includes(escaped(module.title)),course.id+' should list '+module.id);
@@ -80,6 +82,6 @@ test('clicking a course waits for the selected canonical offering, not general A
   assert.match(landing,/selectedCourseId=\{waitlistCourseId\}/);
   assert.match(landing,/replaceState\(null, '', '\/academy\?curso='/);
   assert.match(waitlist,/setCourseId\(selectedCourseId\)/);
-  assert.match(waitlist,/publishedCourses\.some\(c=>c\.id===selectedCourseId\)/);
+  assert.match(waitlist,/waitlistCatalogCourses\.some\(c=>c\.id===selectedCourseId\)/);
   assert.match(landing,/>Lista de espera<\/span>/);
 });
