@@ -64,12 +64,12 @@ test('migração dos snapshots legados e leitura da conclusão por ID estável p
  assert.match(revView,/guidedCanonicalId\('reverse-ai'/);
  assert.ok(read('src/lib/accountStorage.ts').includes("'cyber-study-learning-v2'"));
 });
-test('Dashboard e Academy exibem total atualizado a partir de catálogo completo, não número rígido',()=>{
+test('Dashboard preserva inventário; Academy divulga cursos sem expor contagens técnicas',()=>{
  const inv=read('src/lib/studyInventory.ts'),home=read('src/components/Dashboard.tsx'),
  academy=read('src/components/AcademyLanding.tsx');
  assert.match(inv,/source\.guided/);
  assert.match(home,/studyInventory.totalSteps/);
- assert.match(academy,/studyInventory.totalSteps/);
+ assert.doesNotMatch(academy,/studyInventory.totalSteps|IDs canônicos|etapas de estudo no Hub/);
  assert.match(academy,/waitlistCatalogCourses\.map/);
  assert.match(academy,/course\.modules\.map/);
  assert.doesNotMatch(home,/543 aulas/);
