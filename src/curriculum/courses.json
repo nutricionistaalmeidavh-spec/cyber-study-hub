@@ -645,7 +645,7 @@
       "type": "trail",
       "title": "Engenharia Reversa com IA",
       "description": "REA, Ghidra, MCP e reconstrução de funcionalidades próprias com evidências e testes locais. Sem dependência paga.",
-      "status": "draft",
+      "status": "published",
       "href": "#reverse-ai",
       "sourceId": "ENGENHARIA-REVERSA-IA",
       "modules": [
