@@ -86,7 +86,7 @@ function parseHash(): Route {
 
 export default function App() {
   if (isAcademyPath(window.location.pathname)) return <AcademyLanding />;
-  if (/^\/roadmap\/?$/.test(window.location.pathname)) return <RoadmapPage />;
+  if (/^\/(?:academy\/)?roadmap\/?$/.test(window.location.pathname)) return <RoadmapPage />;
   return <PlatformGate>{(user, actions) => <Workspace key={user.id} user={user} actions={actions} />}</PlatformGate>;
 }
 
