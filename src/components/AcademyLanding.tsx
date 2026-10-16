@@ -5,6 +5,7 @@ import { useAcademyMotion } from './useAcademyMotion';
 import './academy.css';
 import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
+import AcademyWaitlist from './AcademyWaitlist';
 import { moduleDisplayTitle, mainStudyTime, parallelStudyTime } from '../lib/modulePresentation';
 import { studyInventory } from '../lib/studyInventory';
 import { publishedCourses, publishedMainLessonIds, publishedParallelLessonCodes } from '../curriculum/courseOfferings';
@@ -72,12 +73,13 @@ export default function AcademyLanding() {
           <a href="#trilhas">Trilhas</a>
           <a href="#metodo">Como funciona</a>
           <a href="#assinaturas">Assinaturas</a>
+          <a href="#lista-de-espera">Lista de espera</a>
           <a href="#perguntas">Perguntas</a>
           <a href="/roadmap">Votar melhorias</a>
         </nav>
         <div className="academy-header-actions">
           <a className="academy-login" href="/">Já sou aluno</a>
-          <a className="academy-button academy-button-primary academy-header-cta" href="/?register=1">Criar conta <Arrow /></a>
+          <a className="academy-button academy-button-primary academy-header-cta" href="#lista-de-espera">Lista de espera <Arrow /></a>
         </div>
         <details className="academy-mobile-menu">
           <summary aria-label="Abrir menu">Menu <span aria-hidden="true">☰</span></summary>
@@ -85,6 +87,7 @@ export default function AcademyLanding() {
             <a href="#trilhas">Trilhas e módulos</a>
             <a href="#metodo">Como funciona</a>
             <a href="#assinaturas">Assinaturas</a>
+            <a href="#lista-de-espera">Lista de espera</a>
             <a href="#perguntas">Perguntas</a>
             <a href="/roadmap">Votar em melhorias</a>
             <a href="/?register=1">Criar minha conta</a><a href="/">Entrar no hub</a>
@@ -103,7 +106,7 @@ export default function AcademyLanding() {
           <p className="academy-hero-lead">Aprenda tecnologia. Desenvolva habilidades. Construa o futuro.</p>
           <p className="academy-hero-description">Trilhas de cibersegurança, programação e inteligência artificial, organizadas em módulos práticos. Estude no seu ritmo, aplique o conhecimento e acompanhe sua evolução.</p>
           <div className="academy-hero-actions">
-            <a className="academy-button academy-button-primary" href="/?register=1">Criar minha conta <Arrow /></a>
+            <a className="academy-button academy-button-primary" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
             <a className="academy-button academy-button-outline" href="#metodo">Como funciona <span aria-hidden="true">↓</span></a>
           </div>
           <div className="academy-hero-proof">
@@ -212,25 +215,28 @@ export default function AcademyLanding() {
             <h3>Curso individual</h3><p>Compra avulsa de uma formação específica, organizada em módulos e aulas.</p>
             <div className="academy-plan-price">Valores a definir</div>
             <ul><li>Foco em uma trilha de estudo</li><li>Organização por módulos e aulas</li><li>Atividades e recursos da trilha</li></ul>
-            <a className="academy-button academy-button-outline" href="#trilhas">Conhecer trilhas <Arrow /></a>
+            <a className="academy-button academy-button-outline" href="#lista-de-espera">Receber aviso de abertura <Arrow /></a>
           </article>
           <article className="academy-plan-card academy-plan-featured" data-reveal>
             <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Planejado</span></div>
             <h3>Assinatura mensal</h3><p>Acesso a todos os cursos publicados e atualizações durante a vigência.</p>
             <div className="academy-plan-price">Valores a definir</div>
             <ul><li>Todos os cursos publicados</li><li>Novos cursos e atualizações durante a assinatura</li><li>Progresso individual preservado</li></ul>
-            <a className="academy-button academy-button-primary" href="#perguntas">Tirar dúvidas <Arrow /></a>
+            <a className="academy-button academy-button-primary" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
           </article>
         </div>
       </section>
 
+      <AcademyWaitlist />
+
       <section className="academy-section academy-faq-band" id="perguntas" aria-labelledby="academy-faq-title">
         <div className="academy-container academy-faq-layout">
-          <div data-reveal><span className="academy-section-index">04 / PERGUNTAS FREQUENTES</span><h2 id="academy-faq-title"><KineticText leading="Antes de" accent="começar." /></h2><p>Informações sobre o formato de estudo e a disponibilidade comercial da plataforma.</p></div>
+          <div data-reveal><span className="academy-section-index">05 / PERGUNTAS FREQUENTES</span><h2 id="academy-faq-title"><KineticText leading="Antes de" accent="começar." /></h2><p>Informações sobre o formato de estudo e a disponibilidade comercial da plataforma.</p></div>
           <div className="academy-faq-items">
             <details data-reveal><summary>Já posso contratar uma assinatura?<span aria-hidden="true">+</span></summary><p>Os planos de assinatura ainda estão em preparação. Esta página apresenta a plataforma e os formatos de acesso previstos, sem contratação ou cobrança ativa.</p></details>
             <details data-reveal><summary>Preciso pagar uma ferramenta de IA?<span aria-hidden="true">+</span></summary><p>Sem API paga obrigatória: a trilha de desenvolvimento com IA pode ser concluída com alternativas gratuitas e locais. Você pode usar assistentes disponíveis, estudar sem IA ou optar por IA local se tiver hardware adequado. Alguns serviços externos oferecem planos pagos opcionais.</p></details>
             <details data-reveal><summary>Consigo estudar pelo celular?<span aria-hidden="true">+</span></summary><p>Sim. O ambiente de estudos funciona no navegador de dispositivos móveis e pode ser instalado como aplicativo web progressivo em dispositivos compatíveis.</p></details>
+            <details data-reveal><summary>É preciso criar uma conta para participar da lista de espera?<span aria-hidden="true">+</span></summary><p>Não. Para receber as novidades, basta informar seu nome, e-mail, curso de interesse e concordar com o contato. A lista de espera não libera cursos nem gera compromisso de compra.</p></details>
             <details data-reveal><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Alunos podem criar a própria conta sem convite e sem código por e-mail. Professores e administradores recebem convite da equipe. Ter uma conta não libera automaticamente cursos pagos.</p></details>
           </div>
         </div>
@@ -240,7 +246,7 @@ export default function AcademyLanding() {
         <span className="academy-section-index">ARTISYS ACADEMY</span>
         <h2 id="academy-end-title"><KineticText leading="Sua próxima habilidade" accent="começa com um passo." /></h2>
         <p>Explore o conteúdo, escolha uma direção e transforme curiosidade em conhecimento aplicado.</p>
-        <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#trilhas">Explorar as trilhas <Arrow /></a><a className="academy-button academy-button-outline" href="/">Acessar meus estudos <Arrow /></a></div>
+        <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#lista-de-espera">Participar da lista de espera <Arrow /></a><a className="academy-button academy-button-outline" href="/">Acessar meus estudos <Arrow /></a></div>
       </section>
     </main>
 
