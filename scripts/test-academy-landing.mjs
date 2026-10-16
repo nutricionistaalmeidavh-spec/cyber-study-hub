@@ -29,7 +29,7 @@ test('academy page includes real curriculum and working navigation targets', () 
 
 test('academy is transparent about subscriptions without claiming enabled billing', () => {
   const source = read('src/components/AcademyLanding.tsx');
-  assert.match(source, /assinaturas em preparação/i);
+  assert.match(source, /Inscrições em lista de espera/i);
   assert.doesNotMatch(source, /\/api\/(checkout|payment|subscribe)|stripe\.com|mercadopago/i);
   assert.match(source, /sem API paga obrigatória/i);
 });
