@@ -4,8 +4,7 @@ import './academy.css';
 import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
 import AcademyWaitlist from './AcademyWaitlist';
-import { studyInventory } from '../lib/studyInventory';
-import { publishedCourses, waitlistCatalogCourses } from '../curriculum/courseOfferings';
+import { waitlistCatalogCourses } from '../curriculum/courseOfferings';
 
 export function isAcademyPath(pathname: string) {
   return /^\/academy\/?$/.test(pathname);
@@ -43,7 +42,7 @@ export default function AcademyLanding() {
 
   useEffect(() => {
     const originalTitle = document.title;
-    document.title = 'ArtiSys Academy — Aprenda tecnologia na prática';
+    document.title = 'ArtiSys Academy — Lista de espera da próxima turma';
     // Âncoras externas funcionam mesmo após a montagem assíncrona da SPA.
     if (window.location.hash === '#lista-de-espera')
       requestAnimationFrame(() => document.getElementById('lista-de-espera')?.scrollIntoView({block:'start'}));
@@ -95,20 +94,20 @@ export default function AcademyLanding() {
       <section className="academy-hero academy-container" aria-labelledby="academy-hero-title">
         <div className="academy-hero-glow" aria-hidden="true"/>
         <div className="academy-hero-copy">
-          <span className="academy-kicker"><span className="academy-kicker-dot" /> UMA PLATAFORMA ARTISYS</span>
-          <h1 id="academy-hero-title">O futuro se aprende <em>construindo.</em></h1>
-          <p className="academy-hero-lead">Aprenda tecnologia. Desenvolva habilidades. Construa o futuro.</p>
-          <p className="academy-hero-description">Trilhas de cibersegurança, programação e inteligência artificial, organizadas em módulos práticos. Estude no seu ritmo, aplique o conhecimento e acompanhe sua evolução.</p>
+          <span className="academy-kicker"><span className="academy-kicker-dot" /> ÚLTIMA TURMA ENCERRADA · LISTA DE ESPERA ABERTA</span>
+          <h1 id="academy-hero-title">A última turma encerrou. <em>Não perca a próxima.</em></h1>
+          <p className="academy-hero-lead">Entre na lista de espera da próxima turma da ArtiSys Academy.</p>
+          <p className="academy-hero-description">Escolha uma formação, deixe seu e-mail e receba o aviso quando as novas inscrições abrirem. O cadastro é gratuito.</p>
           <div className="academy-hero-actions">
             <a className="academy-button academy-button-primary" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
             <a className="academy-button academy-button-outline" href="#metodo">Como funciona <span aria-hidden="true">↓</span></a>
           </div>
           <div className="academy-hero-proof">
-            <span><b>{publishedCourses.length}</b> cursos publicados</span>
+            <span><b>{waitlistCatalogCourses.length}</b> formações para explorar</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
-            <span>Formações práticas e projetos reais</span>
+            <span>Aulas práticas e projetos reais</span>
             <span className="academy-proof-divider" aria-hidden="true"/>
-            <span><b>{studyInventory.totalSteps}</b> etapas de estudo no Hub</span>
+            <span>Estude pelo computador ou celular</span>
           </div>
           <a className="academy-scroll-cue" href="#trilhas"><span aria-hidden="true">↓</span> Role para explorar</a>
         </div>
@@ -146,13 +145,13 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Conheça as formações disponíveis. Toque no + de um card para ver os módulos de cada curso, sem sair da página. Os cursos publicados aparecem junto com a prévia de Engenharia Reversa com IA, disponível somente para lista de espera.</p>
+          <p>Descubra o que você pode aprender na próxima turma. Toque no + para conhecer os módulos de cada formação.</p>
         </div>
         <div className="academy-courses-grid" aria-label="Cursos publicados">
           {waitlistCatalogCourses.map(course => <details className="academy-course-card" key={course.id} data-reveal name="academy-courses" id={'curso-' + course.id}>
             <summary className="academy-course-summary">
               <span className="academy-course-card-top">
-                <span className="academy-course-type">{course.status==='draft'?'PRÉVIA · LISTA DE ESPERA':course.type==='trail'?'TRILHA PRÁTICA':'CURSO COMPLETO'}</span>
+                <span className="academy-course-type">{course.status==='draft'?'PRÓXIMA TURMA · LISTA DE ESPERA':course.type==='trail'?'TRILHA PRÁTICA':'CURSO COMPLETO'}</span>
                 <span className="academy-course-toggle" aria-hidden="true" />
               </span>
               <h3>{course.title}</h3>
@@ -174,7 +173,7 @@ export default function AcademyLanding() {
                   <span>{module.title}</span>
                 </li>)}
               </ol>
-              {course.status==='draft'&&<p className="academy-course-preview-note">Prévia dos 8 módulos. A inscrição na lista não concede acesso às aulas.</p>}
+              {course.status==='draft'&&<p className="academy-course-preview-note">Gostou da formação? Entre na lista e saiba quando as novas vagas abrirem.</p>}
               <a className="academy-button academy-button-outline academy-course-waitlist"
                 href={'/academy?curso=' + encodeURIComponent(course.id) + '#lista-de-espera'}
                 onClick={event => chooseWaitlistCourse(event, course.id)}>
@@ -202,22 +201,22 @@ export default function AcademyLanding() {
 
       <section className="academy-section academy-container" id="assinaturas" aria-labelledby="academy-plans-title">
         <div className="academy-section-heading" data-reveal>
-          <div><span className="academy-section-index">03 / ACESSO E ASSINATURAS</span><h2 id="academy-plans-title"><KineticText leading="Uma plataforma." accent="O seu ritmo." /></h2></div>
-          <p>Estamos preparando os formatos de assinatura. Conheça a proposta de acesso por trilha e ao catálogo completo.</p>
+          <div><span className="academy-section-index">03 / ESCOLHA SEU ACESSO</span><h2 id="academy-plans-title"><KineticText leading="Seu jeito de aprender." accent="Sua próxima turma." /></h2></div>
+          <p>Prefere uma formação específica ou o acesso completo? Escolha como quer estudar e entre na lista da próxima abertura.</p>
         </div>
-        <div className="academy-plans-notice" data-reveal role="status"><span aria-hidden="true">◷</span><div><strong>Assinaturas em preparação</strong><p>O valor da assinatura, quando definido, é informativo. A contratação ainda não está disponível nesta página; entrar na lista não gera cobrança.</p></div></div>
+        <div className="academy-plans-notice" data-reveal><span aria-hidden="true">◷</span><div><strong>Última turma encerrada · próxima abertura por lista de espera</strong><p>Cadastre-se gratuitamente para receber o aviso de novas vagas. Entrar na lista não gera cobrança nem garante a inscrição.</p></div></div>
         <div className="academy-plan-grid">
           <article className="academy-plan-card" data-reveal>
             <div className="academy-plan-top"><span>ACESSO POR TEMA</span><span className="academy-plan-status">Lista de espera</span></div>
-            <h3>Curso individual</h3><p>Escolha uma formação e cadastre seu interesse para receber o aviso quando as inscrições abrirem.</p>
-            <div className="academy-plan-price">Valores a definir</div>
+            <h3>Curso individual</h3><p>Quer se aprofundar em um tema? Entre na lista da formação escolhida e receba o aviso da próxima turma.</p>
+            <div className="academy-plan-price">Condições na próxima abertura</div>
             <ul><li>Foco em uma trilha de estudo</li><li>Organização por módulos e aulas</li><li>Atividades e recursos da trilha</li></ul>
             <a className="academy-button academy-button-outline" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
           </article>
           <article className="academy-plan-card academy-plan-featured" data-reveal>
             <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Lista de espera</span></div>
-            <h3>Assinatura mensal</h3><p>Acesso a todos os cursos publicados e atualizações durante a vigência.</p>
-            <div className="academy-plan-price">{monthlyPrice===null?'Valor mensal a definir':new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(monthlyPrice/100)+' / mês'}</div>
+            <h3>Assinatura mensal</h3><p>Para quem quer estudar várias formações com um único acesso, enquanto a assinatura estiver ativa.</p>
+            <div className="academy-plan-price">{monthlyPrice===null?'Condições na próxima abertura':new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(monthlyPrice/100)+' / mês'}</div>
             <ul><li>Todos os cursos publicados</li><li>Novos cursos e atualizações durante a assinatura</li><li>Progresso individual preservado</li></ul>
             <a className="academy-button academy-button-primary" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
           </article>
@@ -228,22 +227,21 @@ export default function AcademyLanding() {
 
       <section className="academy-section academy-faq-band" id="perguntas" aria-labelledby="academy-faq-title">
         <div className="academy-container academy-faq-layout">
-          <div data-reveal><span className="academy-section-index">05 / PERGUNTAS FREQUENTES</span><h2 id="academy-faq-title"><KineticText leading="Antes de" accent="começar." /></h2><p>Informações sobre o formato de estudo e a disponibilidade comercial da plataforma.</p></div>
+          <div data-reveal><span className="academy-section-index">05 / DÚVIDAS FREQUENTES</span><h2 id="academy-faq-title"><KineticText leading="Tudo sobre" accent="a próxima turma." /></h2><p>Veja como funciona a lista de espera e o aviso de novas vagas.</p></div>
           <div className="academy-faq-items">
-            <details data-reveal><summary>Já posso contratar uma assinatura?<span aria-hidden="true">+</span></summary><p>Os planos de assinatura ainda estão em preparação. Esta página apresenta a plataforma e os formatos de acesso previstos, sem contratação ou cobrança ativa.</p></details>
-            <details data-reveal><summary>Preciso pagar uma ferramenta de IA?<span aria-hidden="true">+</span></summary><p>Sem API paga obrigatória: a trilha de desenvolvimento com IA pode ser concluída com alternativas gratuitas e locais. Você pode usar assistentes disponíveis, estudar sem IA ou optar por IA local se tiver hardware adequado. Alguns serviços externos oferecem planos pagos opcionais.</p></details>
-            <details data-reveal><summary>Consigo estudar pelo celular?<span aria-hidden="true">+</span></summary><p>Sim. O ambiente de estudos funciona no navegador de dispositivos móveis e pode ser instalado como aplicativo web progressivo em dispositivos compatíveis.</p></details>
-            <details data-reveal><summary>É preciso criar uma conta para participar da lista de espera?<span aria-hidden="true">+</span></summary><p>Não. Para receber as novidades, basta informar seu nome, e-mail, curso de interesse e concordar com o contato. A lista de espera não libera cursos nem gera compromisso de compra.</p></details>
-            <details data-reveal><summary>Como entro na plataforma?<span aria-hidden="true">+</span></summary><p>O ambiente de estudos utiliza conta individual. Alunos podem criar a própria conta sem convite e sem código por e-mail. Professores e administradores recebem convite da equipe. Ter uma conta não libera automaticamente cursos pagos.</p></details>
+            <details data-reveal><summary>Como funciona a lista de espera?<span aria-hidden="true">+</span></summary><p>Você escolhe seu curso e deixa nome e e-mail. Quando a próxima turma abrir, entraremos em contato para avisar sobre as inscrições.</p></details>
+            <details data-reveal><summary>Entrar na lista garante uma vaga?<span aria-hidden="true">+</span></summary><p>Não. A lista serve para avisar sobre a nova abertura. A vaga só é confirmada após a inscrição na turma.</p></details>
+            <details data-reveal><summary>Preciso pagar agora?<span aria-hidden="true">+</span></summary><p>Não. Entrar na lista de espera é gratuito e não gera nenhuma cobrança.</p></details>
+            <details data-reveal><summary>Quando recebo acesso às aulas?<span aria-hidden="true">+</span></summary><p>O acesso é liberado após a abertura da nova turma e a confirmação da sua inscrição.</p></details>
           </div>
         </div>
       </section>
 
       <section className="academy-container academy-last-cta" data-reveal aria-labelledby="academy-end-title">
         <span className="academy-section-index">ARTISYS ACADEMY</span>
-        <h2 id="academy-end-title"><KineticText leading="Sua próxima habilidade" accent="começa com um passo." /></h2>
-        <p>Explore o conteúdo, escolha uma direção e transforme curiosidade em conhecimento aplicado.</p>
-        <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#lista-de-espera">Participar da lista de espera <Arrow /></a><a className="academy-button academy-button-outline" href="/academy/study">Acessar meus estudos <Arrow /></a></div>
+        <h2 id="academy-end-title"><KineticText leading="A próxima turma." accent="Seu próximo passo." /></h2>
+        <p>Não perca o aviso da próxima abertura. Escolha sua formação e entre na lista de espera.</p>
+        <div className="academy-hero-actions"><a className="academy-button academy-button-primary" href="#lista-de-espera">Entrar na lista da próxima turma <Arrow /></a><a className="academy-button academy-button-outline" href="/academy/study">Acessar meus estudos <Arrow /></a></div>
       </section>
     </main>
 
