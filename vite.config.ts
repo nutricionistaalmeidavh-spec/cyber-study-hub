@@ -6,8 +6,8 @@ export default defineConfig({
   base: '/academy/',
   plugins: [
     { name:'scope-academy-browser-paths', enforce:'pre', transform(code, id) {
-      const filepath = id.split('?')[0].replaceAll('\\\\','/');
-      if (!filepath.includes('/src/') || !/\\.[cm]?[jt]sx?$/.test(filepath) || filepath.includes('/src/worker/')) return null;
+      const filepath = id.split('?')[0];
+      if (!filepath.includes('/src/') || !['.ts','.tsx','.js','.jsx','.mjs','.mts'].some(ext=>filepath.endsWith(ext)) || filepath.includes('/src/worker/')) return null;
       const scoped = prefixBrowserPaths(code);
       return scoped === code ? null : { code: scoped, map: null };
     } },
