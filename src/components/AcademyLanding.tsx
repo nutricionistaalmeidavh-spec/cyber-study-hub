@@ -5,7 +5,7 @@ import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
 import AcademyWaitlist from './AcademyWaitlist';
 import { studyInventory } from '../lib/studyInventory';
-import { publishedCourses } from '../curriculum/courseOfferings';
+import { publishedCourses, waitlistCatalogCourses } from '../curriculum/courseOfferings';
 
 export function isAcademyPath(pathname: string) {
   return /^\/academy\/?$/.test(pathname);
@@ -31,8 +31,9 @@ export default function AcademyLanding() {
   const [waitlistCourseId, setWaitlistCourseId] = useState(() => {
     if (typeof window === 'undefined') return 'academy';
     const selected = new URLSearchParams(window.location.search).get('curso');
-    return publishedCourses.some(course => course.id === selected) ? String(selected) : 'academy';
+    return waitlistCatalogCourses.some(course => course.id === selected) ? String(selected) : 'academy';
   });
+  const [monthlyPrice,setMonthlyPrice] = useState<number|null>(null);
   const chooseWaitlistCourse = (event: MouseEvent<HTMLAnchorElement>, courseId: string) => {
     event.preventDefault();
     setWaitlistCourseId(courseId);
@@ -46,7 +47,15 @@ export default function AcademyLanding() {
     // Âncoras externas funcionam mesmo após a montagem assíncrona da SPA.
     if (window.location.hash === '#lista-de-espera')
       requestAnimationFrame(() => document.getElementById('lista-de-espera')?.scrollIntoView({block:'start'}));
-    return () => { document.title = originalTitle; };
+    let active=true;
+    void fetch('/api/subscription/offer',{cache:'no-store'}).then(async response=>{
+      if(!response.ok)throw Error('Configuração indisponível');
+      return await response.json() as {priceCents?:unknown};
+    }).then(data=>{
+      if(active&&typeof data.priceCents==='number'&&Number.isSafeInteger(data.priceCents)&&data.priceCents>=100)
+        setMonthlyPrice(data.priceCents);
+    }).catch(()=>{/* Exibir valor a definir se o backend não estiver disponível. */});
+    return () => { active=false; document.title = originalTitle; };
   }, []);
 
   return <div className="academy-page" ref={rootRef} id="inicio">
@@ -137,13 +146,13 @@ export default function AcademyLanding() {
       <section className="academy-section academy-container" id="trilhas" aria-labelledby="academy-trails-title">
         <div className="academy-section-heading" data-reveal>
           <div><span className="academy-section-index">01 / EXPLORE AS FORMAÇÕES</span><h2 id="academy-trails-title"><KineticText leading="Seu próximo conhecimento" accent="começa aqui." /></h2></div>
-          <p>Conheça as formações disponíveis. Toque no + de um card para ver os módulos de cada curso, sem sair da página. Apenas cursos publicados aparecem nesta vitrine.</p>
+          <p>Conheça as formações disponíveis. Toque no + de um card para ver os módulos de cada curso, sem sair da página. Os cursos publicados aparecem junto com a prévia de Engenharia Reversa com IA, disponível somente para lista de espera.</p>
         </div>
         <div className="academy-courses-grid" aria-label="Cursos publicados">
-          {publishedCourses.map(course => <details className="academy-course-card" key={course.id} data-reveal name="academy-courses" id={'curso-' + course.id}>
+          {waitlistCatalogCourses.map(course => <details className="academy-course-card" key={course.id} data-reveal name="academy-courses" id={'curso-' + course.id}>
             <summary className="academy-course-summary">
               <span className="academy-course-card-top">
-                <span className="academy-course-type">{course.type === 'trail' ? 'TRILHA PRÁTICA' : 'CURSO COMPLETO'}</span>
+                <span className="academy-course-type">{course.status==='draft'?'PRÉVIA · LISTA DE ESPERA':course.type==='trail'?'TRILHA PRÁTICA':'CURSO COMPLETO'}</span>
                 <span className="academy-course-toggle" aria-hidden="true" />
               </span>
               <h3>{course.title}</h3>
@@ -165,6 +174,7 @@ export default function AcademyLanding() {
                   <span>{module.title}</span>
                 </li>)}
               </ol>
+              {course.status==='draft'&&<p className="academy-course-preview-note">Prévia dos 8 módulos. A inscrição na lista não concede acesso às aulas.</p>}
               <a className="academy-button academy-button-outline academy-course-waitlist"
                 href={'/academy?curso=' + encodeURIComponent(course.id) + '#lista-de-espera'}
                 onClick={event => chooseWaitlistCourse(event, course.id)}>
@@ -195,7 +205,7 @@ export default function AcademyLanding() {
           <div><span className="academy-section-index">03 / ACESSO E ASSINATURAS</span><h2 id="academy-plans-title"><KineticText leading="Uma plataforma." accent="O seu ritmo." /></h2></div>
           <p>Estamos preparando os formatos de assinatura. Conheça a proposta de acesso por trilha e ao catálogo completo.</p>
         </div>
-        <div className="academy-plans-notice" data-reveal role="status"><span aria-hidden="true">◷</span><div><strong>Assinaturas em preparação</strong><p>Valores, condições comerciais e contratação ainda não estão disponíveis nesta página. Nenhuma cobrança é realizada aqui.</p></div></div>
+        <div className="academy-plans-notice" data-reveal role="status"><span aria-hidden="true">◷</span><div><strong>Assinaturas em preparação</strong><p>O valor da assinatura, quando definido, é informativo. A contratação ainda não está disponível nesta página; entrar na lista não gera cobrança.</p></div></div>
         <div className="academy-plan-grid">
           <article className="academy-plan-card" data-reveal>
             <div className="academy-plan-top"><span>ACESSO POR TEMA</span><span className="academy-plan-status">Lista de espera</span></div>
@@ -205,9 +215,9 @@ export default function AcademyLanding() {
             <a className="academy-button academy-button-outline" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
           </article>
           <article className="academy-plan-card academy-plan-featured" data-reveal>
-            <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Planejado</span></div>
+            <div className="academy-plan-top"><span>VISÃO COMPLETA</span><span className="academy-plan-status">Lista de espera</span></div>
             <h3>Assinatura mensal</h3><p>Acesso a todos os cursos publicados e atualizações durante a vigência.</p>
-            <div className="academy-plan-price">Valores a definir</div>
+            <div className="academy-plan-price">{monthlyPrice===null?'Valor mensal a definir':new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(monthlyPrice/100)+' / mês'}</div>
             <ul><li>Todos os cursos publicados</li><li>Novos cursos e atualizações durante a assinatura</li><li>Progresso individual preservado</li></ul>
             <a className="academy-button academy-button-primary" href="#lista-de-espera">Entrar na lista de espera <Arrow /></a>
           </article>
