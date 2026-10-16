@@ -51,9 +51,9 @@ export default function CourseCatalog({courseId,courseType,admin=false,userEmail
  const next=latest?units.find(unit=>unit.key===latest.key):firstPending??units[0];
  const nextHref=latest&&next?latest.sectionId?studySectionHref(latest.sectionId,latest.href):latest.href:next?.href;
  if(courseId&&!selected)return <section className="page course-catalog"><div className="course-empty">
-  <h1>Este curso ainda não foi publicado.</h1>
+  <h1>Esta trilha ainda não foi publicada.</h1>
   <p>Novas formações aparecem no catálogo somente quando o conteúdo está completo e aprovado editorialmente.</p>
-  <a className="button primary" href="#courses">Ver cursos disponíveis</a>
+  <a className="button primary" href="#courses">Ver trilhas disponíveis</a>
  </div></section>;
  return <div className="page course-catalog stack-lg">
   <header className="course-catalog-header">
