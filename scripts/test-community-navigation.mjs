@@ -17,8 +17,8 @@ test('Academy public desktop and mobile menus expose roadmap and improvements', 
 test('Hub mobile menu exposes feedback, voting and admin-only feedback moderation', () => {
   const mobile = app.split('<nav className="mobile-nav">')[1]?.split('</nav>')[0] ?? '';
   assert.match(mobile, /<details key=\{route\.page\} className="mobile-nav-more">/);
-  assert.ok(mobile.includes('href="/academy/roadmap"'), 'Missing public mobile navigation link to voting');
-  assert.ok(mobile.includes('href="/academy/roadmap"'), 'Missing public mobile navigation link to voting');
+  assert.match(mobile, /href="#feedback"/);
+  assert.match(mobile, /href="#roadmap"/);
   assert.match(mobile, /\{user\.role==='admin'\s*&&\s*<Nav href="#admin\/feedback"/);
   assert.match(mobile, /<summary[^>]+aria-label="Mais opções: materiais, revisão e comunidade"/);
 });
