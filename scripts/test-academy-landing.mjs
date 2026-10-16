@@ -20,8 +20,8 @@ test('academy page includes real curriculum and working navigation targets', () 
     assert.match(source, new RegExp('id="' + anchor + '"'));
     assert.match(source, new RegExp('href="#' + anchor + '"'));
   }
-  assert.match(source, /publishedCourses\\.map/);
-  assert.match(source, /course\\.modules\\.map/);
+  assert.match(source, /publishedCourses\.map/);
+  assert.match(source, /course\.modules\.map/);
   assert.doesNotMatch(source, /academy-catalog-panel|academy-available-modules|academy-module-grid/);
   assert.match(source, /href="\/"/);
   assert.match(css, /@media\s*\(max-width:\s*720px\)/);
