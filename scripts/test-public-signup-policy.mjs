@@ -25,7 +25,7 @@ test('Node e Cloudflare compartilham uma unica política de cadastro, independen
 test('landing e login oferecem cadastro público sem confundir inscrição com compra',()=>{
  const landing=read('src/components/AcademyLanding.tsx');
  const gate=read('src/components/PlatformGate.tsx');
- assert.match(landing,/href="\/\?register=1"/);
+ assert.ok(landing.includes('href="/academy/study?register=1"'));
  assert.match(gate,/searchParams|get\('register'\)/);
  assert.match(gate,/Criar minha conta/);
  assert.doesNotMatch(gate,/c[oó]digo.*e-?mail|verifica[cç][aã]o.*e-?mail/i);
