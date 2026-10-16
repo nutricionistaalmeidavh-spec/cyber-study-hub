@@ -6,12 +6,13 @@ export default defineConfig({
   base: '/academy/',
   plugins: [
     { name:'scope-academy-browser-paths', enforce:'pre', transform(code, id) {
-      if (!/[\\/]src[\\/].*\\.[cm]?[jt]sx?(?:\\?.*)?$/.test(id) || /[\\/]src[\\/]worker[\\/]/.test(id)) return null;
+      const filepath = id.split('?')[0].replaceAll('\\\\','/');
+      if (!filepath.includes('/src/') || !/\\.[cm]?[jt]sx?$/.test(filepath) || filepath.includes('/src/worker/')) return null;
       const scoped = prefixBrowserPaths(code);
       return scoped === code ? null : { code: scoped, map: null };
     } },
     react()
   ],
-  server: { proxy: { '/api': 'http://127.0.0.1:8788', '/academy/api': {target:'http://127.0.0.1:8788',rewrite:path=>path.replace(/^\\/academy(?=\\/api\\/)/,'')} } },
+  server: { proxy: { '/api': 'http://127.0.0.1:8788', '/academy/api': {target:'http://127.0.0.1:8788',rewrite:path=>path.slice('/academy'.length)} } },
   build: { sourcemap: false }
 });
