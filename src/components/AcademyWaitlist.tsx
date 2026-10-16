@@ -1,14 +1,18 @@
-import {useState,type FormEvent} from 'react';
+import {useEffect,useState,type FormEvent} from 'react';
 import {publishedCourses} from '../curriculum/courseOfferings';
 import './academy-waitlist.css';
 
 type Status='idle'|'sending'|'success'|'error';
-export default function AcademyWaitlist(){
+export default function AcademyWaitlist({selectedCourseId}:{selectedCourseId?:string}){
   const courseFromUrl=new URLSearchParams(window.location.search).get('curso');
   const initial=publishedCourses.some(c=>c.id===courseFromUrl)?String(courseFromUrl):'academy';
   const [name,setName]=useState('');
   const [email,setEmail]=useState('');
-  const [courseId,setCourseId]=useState(initial);
+  const [courseId,setCourseId]=useState(selectedCourseId && publishedCourses.some(c=>c.id===selectedCourseId)?selectedCourseId:initial);
+  useEffect(()=>{
+    if(selectedCourseId && (selectedCourseId==='academy'||publishedCourses.some(c=>c.id===selectedCourseId)))
+      setCourseId(selectedCourseId);
+  },[selectedCourseId]);
   const [consent,setConsent]=useState(false);
   const [website,setWebsite]=useState('');
   const [status,setStatus]=useState<Status>('idle');

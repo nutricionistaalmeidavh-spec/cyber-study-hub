@@ -51,6 +51,6 @@ test('existing special trail remains independent; main paths are payment identit
   assert.match(catalogUi, /mainLearningPaths/);
   assert.match(catalogUi, /selectedPath/);
   assert.match(catalogUi, /#courses\/\x27\s*\+\s*course\.id|#courses\/\x27\s*\+\s*sourceCourse\.id/);
-  assert.match(landing, /mainLearningPaths/);
-  assert.match(landing, /#courses\/\x27\s*\+\s*path\.id/);
+  assert.match(landing, /publishedCourses\.map/);
+  assert.match(landing, /course\.modules\.map/);
 });
