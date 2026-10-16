@@ -5,7 +5,7 @@ import './academy-motion.css';
 import AcademyBrand from './AcademyBrand';
 import AcademyWaitlist from './AcademyWaitlist';
 import { studyInventory } from '../lib/studyInventory';
-import { publishedCourses, waitlistCatalogCourses } from '../curriculum/courseOfferings';
+import { waitlistCatalogCourses } from '../curriculum/courseOfferings';
 import AcademyCourseCards from './AcademyCourseCards';
 
 export function isAcademyPath(pathname: string) {
