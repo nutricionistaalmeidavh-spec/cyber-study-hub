@@ -58,10 +58,10 @@ function renderCourse(props,{visits=[],learning={},legacy={}}={}){
 }
 test('student type filters show only published matching courses; drafts remain unavailable',()=>{
  const html=renderCourse({courseType:'trail'});
- assert.equal((html.match(/class="course-tile"/g)||[]).length,2);
+ assert.equal((html.match(/class="course-tile"/g)||[]).length,3);
  assert.ok(html.includes('#courses/desenvolvimento-com-ia'));
- assert.ok(!html.includes('#courses/engenharia-reversa-com-ia'));
- assert.match(renderCourse({courseId:'engenharia-reversa-com-ia'}),/Esta trilha ainda não foi publicada/);
+ assert.ok(html.includes('#courses/engenharia-reversa-com-ia'));
+ assert.match(renderCourse({courseId:'engenharia-reversa-com-ia'}),/REA, Ghidra, MCP/);
 });
 test('resume preserves interactive routes and sections instead of redirecting them to a reading page',()=>{
  const unit=catalog.main.find(item=>item.id===47);
