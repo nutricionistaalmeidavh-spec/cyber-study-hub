@@ -23,9 +23,9 @@ test('nenhum curso incompleto ou sem A fica publicado',()=>{
     if(c.status==='published') assert.ok(codes.every(code=>q.editorialReviews[code]?.grade==='A'),c.id);
     if(c.type==='parallel') assert.equal(c.status,'draft',c.id+' ainda não foi liberado');
   }
-  const final=offers.courses.find(c=>c.id==='projeto-final');
+  const final=offers.courses.find(c=>c.id==='trilha-pentest-ethical-hacking');
   assert.equal(final.status,'published');
-  assert.equal(offers.courses.filter(c=>c.status==='published'&&c.type==='main').length,12);
+  assert.equal(offers.courses.filter(c=>c.status==='published'&&c.type==='main').length,5);
   assert.equal(q.editorialReviews['AULA-211']?.grade,'A');
 });
 test('trilhas especiais publicadas só com 8 módulos auditados A',()=>{
