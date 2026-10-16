@@ -31,7 +31,7 @@ export default function AcademyWaitlist({selectedCourseId}:{selectedCourseId?:st
       const data=await response.json() as {error?:string;message?:string;ok?:boolean};
       if(!response.ok||!data.ok)throw new Error(data.error||'Não foi possível registrar sua inscrição.');
       setStatus('success');
-      setMessage('Interesse registrado! Avisaremos sobre a abertura de vagas ou novidades da formação escolhida.');
+      setMessage('Cadastro confirmado! Você está na lista para receber o aviso quando as inscrições da próxima turma abrirem.');
     }catch(error){
       setStatus('error');
       setMessage(error instanceof Error?error.message:'Não foi possível concluir. Tente novamente.');
@@ -42,20 +42,20 @@ export default function AcademyWaitlist({selectedCourseId}:{selectedCourseId?:st
     <div className="academy-container academy-waitlist-layout">
       <div className="academy-waitlist-copy">
         <span className="academy-section-index">04 / SEU PRÓXIMO PASSO</span>
-        <div className="academy-waitlist-label"><span aria-hidden="true" /> INSCRIÇÕES DE INTERESSE ABERTAS</div>
-        <h2 id="academy-waitlist-title">Seja um dos primeiros <em>a saber.</em></h2>
-        <p>Os formatos de acesso estão em preparação. Entre gratuitamente na lista para receber novidades sobre a abertura das vagas do curso que mais combina com você.</p>
+        <div className="academy-waitlist-label"><span aria-hidden="true" /> PRÓXIMA TURMA · LISTA DE ESPERA ABERTA</div>
+        <h2 id="academy-waitlist-title">Última turma encerrada. <em>Entre na lista da próxima.</em></h2>
+        <p>As inscrições da última turma foram encerradas. Deixe seu nome e e-mail para receber o aviso quando as próximas vagas abrirem.</p>
         <div className="academy-waitlist-highlights">
           <span><b>01</b> Escolha seu curso</span>
-          <span><b>02</b> Registre seu interesse</span>
-          <span><b>03</b> Aguarde as novidades</span>
+          <span><b>02</b> Deixe seu e-mail</span>
+          <span><b>03</b> Receba o aviso</span>
         </div>
-        <small>Entrar na lista não reserva uma vaga, não cria uma conta e não gera cobrança.</small>
+        <small>Entrar na lista é gratuito, não garante vaga e não gera cobrança.</small>
       </div>
       <div className="academy-waitlist-form-card">
         {status==='success'?<div className="academy-waitlist-success" role="status">
           <span className="academy-waitlist-success-icon" aria-hidden="true">✓</span>
-          <span className="academy-waitlist-form-kicker">INTERESSE RECEBIDO</span>
+          <span className="academy-waitlist-form-kicker">CADASTRO CONFIRMADO</span>
           <h3>Você está na lista.</h3>
           <p>{message}</p>
           <button className="academy-button academy-button-outline" type="button" onClick={()=>{
@@ -63,16 +63,16 @@ export default function AcademyWaitlist({selectedCourseId}:{selectedCourseId?:st
           }}>Cadastrar outro interesse <span aria-hidden="true">→</span></button>
         </div>:<>
           <span className="academy-waitlist-form-kicker">LISTA DE ESPERA · ARTISYS ACADEMY</span>
-          <h3>Receba o aviso de abertura.</h3>
-          <p>Preencha seus dados em menos de um minuto.</p>
+          <h3>Garanta seu aviso da próxima turma.</h3>
+          <p>É rápido, gratuito e sem compromisso.</p>
           <form onSubmit={submit} className="academy-waitlist-form">
             <label htmlFor="academy-waitlist-name">Seu nome</label>
             <input id="academy-waitlist-name" name="name" autoComplete="name" required minLength={2} maxLength={100} placeholder="Como podemos te chamar?" value={name} onChange={event=>setName(event.target.value)} disabled={status==='sending'}/>
             <label htmlFor="academy-waitlist-email">Seu melhor e-mail</label>
             <input id="academy-waitlist-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="voce@exemplo.com" value={email} onChange={event=>setEmail(event.target.value)} disabled={status==='sending'}/>
-            <label htmlFor="academy-waitlist-course">Curso de interesse</label>
+            <label htmlFor="academy-waitlist-course">Qual formação você quer estudar?</label>
             <select id="academy-waitlist-course" name="course" value={courseId} onChange={event=>setCourseId(event.target.value)} disabled={status==='sending'}>
-              <option value="academy">Quero conhecer a Academy</option>
+              <option value="academy">Quero saber da próxima turma</option>
               {waitlistCatalogCourses.map(course=><option key={course.id} value={course.id}>{course.title}</option>)}
             </select>
             <div className="academy-waitlist-trap" aria-hidden="true">
@@ -81,14 +81,14 @@ export default function AcademyWaitlist({selectedCourseId}:{selectedCourseId?:st
             </div>
             <label className="academy-waitlist-consent">
               <input type="checkbox" required checked={consent} onChange={event=>setConsent(event.target.checked)} disabled={status==='sending'}/>
-              <span>Concordo em receber por e-mail informações sobre a abertura de vagas e novidades da ArtiSys Academy. Sei que posso solicitar a exclusão dos meus dados.</span>
+              <span>Quero receber por e-mail o aviso da próxima turma e novidades dos cursos ArtiSys Academy. Posso solicitar a exclusão dos meus dados.</span>
             </label>
             {status==='error'&&<p className="academy-waitlist-error" role="alert">{message}</p>}
             <button type="submit" className="academy-button academy-button-primary academy-waitlist-submit" disabled={status==='sending'||!consent}>
-              {status==='sending'?'Registrando interesse…':'Quero entrar na lista de espera'} <span aria-hidden="true">→</span>
+              {status==='sending'?'Registrando interesse…':'Quero ser avisado da próxima turma'} <span aria-hidden="true">→</span>
             </button>
           </form>
-          <small className="academy-waitlist-privacy">Seus dados serão usados apenas para contato sobre a Academy, sem venda de informações ou inscrição automática em um plano.</small>
+          <small className="academy-waitlist-privacy">Usaremos seus dados somente para avisos da Academy. Você não será matriculado nem cobrado ao entrar na lista.</small>
         </>}
       </div>
     </div>

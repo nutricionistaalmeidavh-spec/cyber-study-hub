@@ -27,11 +27,30 @@ test('academy page includes real curriculum and working navigation targets', () 
   assert.match(css, /@media\s*\(max-width:\s*720px\)/);
 });
 
-test('academy is transparent about subscriptions without claiming enabled billing', () => {
-  const source = read('src/components/AcademyLanding.tsx');
-  assert.match(source, /assinaturas em preparação/i);
-  assert.doesNotMatch(source, /\/api\/(checkout|payment|subscribe)|stripe\.com|mercadopago/i);
-  assert.match(source, /sem API paga obrigatória/i);
+test('academy comunica próxima turma, sem prometer vaga nem ativar cobrança', () => {
+  const landing = read('src/components/AcademyLanding.tsx');
+  const waitlist = read('src/components/AcademyWaitlist.tsx');
+  assert.match(landing, /A última turma encerrou/);
+  assert.match(landing, /ÚLTIMA TURMA ENCERRADA/);
+  assert.match(landing, /próxima abertura por lista de espera/i);
+  assert.match(waitlist, /Última turma encerrada/);
+  assert.match(waitlist, /PRÓXIMA TURMA · LISTA DE ESPERA ABERTA/);
+  assert.match(waitlist, /não garante vaga e não gera cobrança/);
+  assert.match(waitlist, /Quero ser avisado da próxima turma/);
+  assert.doesNotMatch(landing + waitlist, /assinaturas em preparação|formatos de acesso previstos|sem código por e-mail|professores e administradores recebem convite|sem API paga obrigatória|em preparação/i);
+  assert.doesNotMatch(landing, /\/api\/(checkout|payment|subscribe)|stripe\.com|mercadopago/i);
+  assert.match(landing, /monthlyPrice\/100/);
+});
+
+test('FAQ pública é curta, acessível e responde dúvidas reais sobre inscrições',()=>{
+  const landing=read('src/components/AcademyLanding.tsx');
+  const faq=landing.split('<div className="academy-faq-items">')[1]?.split('</div>')[0]||'';
+  assert.equal((faq.match(/<details data-reveal>/g)||[]).length,4);
+  for (const question of ['Como funciona a lista de espera?', 'Entrar na lista garante uma vaga?', 'Preciso pagar agora?', 'Quando recebo acesso às aulas?']) {
+    assert.ok(faq.includes(question),question);
+  }
+  assert.match(faq,/não gera nenhuma cobrança/);
+  assert.match(faq,/vaga só é confirmada após a inscrição/);
 });
 
 test('vitrine pública expande os módulos reais de cada curso sem duplicar catálogo', async () => {

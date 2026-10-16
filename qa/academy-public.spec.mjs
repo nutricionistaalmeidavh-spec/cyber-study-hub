@@ -53,10 +53,16 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
     const reverse=page.locator('#curso-engenharia-reversa-com-ia');
     await reverse.locator('summary').click();
     await expect(reverse.locator('.academy-course-module')).toHaveCount(8);
-    await expect(reverse).toContainText('PRÉVIA · LISTA DE ESPERA');
+    await expect(reverse).toContainText('PRÓXIMA TURMA · LISTA DE ESPERA');
     await reverse.locator('.academy-course-waitlist').click();
     await expect(page.locator('#academy-waitlist-course')).toHaveValue('engenharia-reversa-com-ia');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+    await expect(page.locator('#academy-hero-title')).toContainText('A última turma encerrou');
+    await expect(page.locator('#academy-waitlist-title')).toContainText('Última turma encerrada');
+    await expect(page.locator('.academy-faq-items details')).toHaveCount(4);
+    await expect(page.locator('.academy-plan-price').first()).toContainText('Condições na próxima abertura');
+    await expect(page.locator('.academy-waitlist-submit')).toContainText('Quero ser avisado da próxima turma');
+    await expect(page.locator('#academy-waitlist-course')).toHaveValue('engenharia-reversa-com-ia');
     await page.screenshot({path:testInfo.outputPath('academy-'+viewport.width+'.png'),fullPage:true});
     await context.close();
   });
