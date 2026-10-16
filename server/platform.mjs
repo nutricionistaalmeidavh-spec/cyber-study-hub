@@ -6,6 +6,7 @@ import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from '../src/worker/feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from '../src/worker/roadmap.mjs';
 import { WAITLIST_SCHEMA, waitlistRoute, handleWaitlist } from '../src/worker/waitlist.mjs';
+import { SUBSCRIPTION_OFFER_SCHEMA, subscriptionOfferRoute, handleSubscriptionOffer } from '../src/worker/subscription-offer.mjs';
 import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../src/billing/artisys.mjs';
 import {issueBuyerIntent} from '../src/billing/buyer-intent.mjs';
 
@@ -84,7 +85,8 @@ function init(db) {
     ...BILLING_SCHEMA.map(statement=>statement+';'),
     ...FEEDBACK_SCHEMA.map(statement=>statement+';'),
     ...ROADMAP_SCHEMA.map(statement=>statement+';'),
-    ...WAITLIST_SCHEMA.map(statement=>statement+';')
+    ...WAITLIST_SCHEMA.map(statement=>statement+';'),
+    ...SUBSCRIPTION_OFFER_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
 }
 export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true,artisysConnectorSecret=''}) {
@@ -310,6 +312,11 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         if(!payload)throw new HttpError(403,'Curso não liberado para esta conta.');
         return respond(res,200,payload);
       }
+      if(subscriptionOfferRoute(path))return await handleSubscriptionOffer({
+        path,method,readBody:limit=>readJson(req,limit),requireAdmin:()=>mustAdmin(req),
+        one:(sql,...args)=>q(sql).get(...args),run:(sql,...args)=>q(sql).run(...args),
+        reply:(status,data)=>respond(res,status,data),fail:(status,message)=>new HttpError(status,message)
+      });
       if(waitlistRoute(path))return await handleWaitlist({
         path,method,url:new URL(req.url,canonicalOrigin).href,
         readBody:limit=>readJson(req,limit),requireAdmin:()=>mustAdmin(req),
