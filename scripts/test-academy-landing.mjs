@@ -85,3 +85,27 @@ test('clicking a course waits for the selected canonical offering, not general A
   assert.match(waitlist,/waitlistCatalogCourses\.some\(c=>c\.id===selectedCourseId\)/);
   assert.match(landing,/>Lista de espera<\/span>/);
 });
+
+test('preview de Engenharia Reversa com IA preserva status draft e módulos canônicos',()=>{
+  const offers=JSON.parse(read('src/curriculum/courses.json')).courses;
+  const reverse=offers.find(c=>c.id==='engenharia-reversa-com-ia');
+  const available=read('src/curriculum/courseOfferings.ts');
+  const waitlist=read('src/components/AcademyWaitlist.tsx');
+  const access=read('src/worker/course-access.mjs');
+  assert.equal(reverse.status,'draft');
+  assert.equal(reverse.modules.length,8);
+  assert.equal(reverse.modules.reduce((sum,module)=>sum+module.lessonCodes.length,0),32);
+  assert.match(available,/waitlistCatalogCourses/);
+  assert.match(waitlist,/waitlistCatalogCourses\.map/);
+  assert.match(access,/course\.status === 'published'/);
+});
+test('preço mensal editável apenas na API de administração, sem cobrança automática no site',()=>{
+  const landing=read('src/components/AcademyLanding.tsx');
+  const editor=read('src/components/SubscriptionOfferAdmin.tsx');
+  assert.match(landing,/\/api\/subscription\/offer/);
+  assert.match(landing,/monthlyPrice\/100/);
+  assert.match(editor,/\/api\/admin\/subscription\/offer/);
+  assert.match(read('server/platform.mjs'),/subscriptionOfferRoute/);
+  assert.match(read('src/worker/index.mjs'),/subscriptionOfferRoute/);
+  assert.doesNotMatch(landing,/\/api\/(?:billing\/purchase-intent|checkout)/);
+});
