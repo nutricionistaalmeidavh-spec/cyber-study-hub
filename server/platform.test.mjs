@@ -134,14 +134,14 @@ test('HTTP course payload: unauthorized, granted, revoked and subscription scena
   assert.equal((await request('/api/content/trail/ai-dev',{cookie:student.cookie})).status,403);
   assert.equal((await request('/api/content/games',{cookie:student.cookie})).status,403);
   const userId=student.payload.user.id;
-  assert.equal((await request('/api/admin/access/grants',{method:'POST',cookie:adminCookie,data:{userId,courseId:'web-apis'}})).status,200);
+  assert.equal((await request('/api/admin/access/grants',{method:'POST',cookie:adminCookie,data:{userId,courseId:'trilha-aplicacoes-cloud-ia'}})).status,200);
   const opened=await request(lesson,{cookie:student.cookie});
   assert.equal(opened.status,200);
   assert.equal(opened.payload.kind,'legacy');
   assert.equal(opened.payload.lesson.id,43);
   assert.equal((await request('/api/content/lesson/47',{cookie:student.cookie})).payload.kind,'native');
   assert.equal((await request('/api/content/trail/ai-dev',{cookie:student.cookie})).status,403);
-  assert.equal((await request('/api/admin/access/grants',{method:'DELETE',cookie:adminCookie,data:{userId,courseId:'web-apis'}})).status,200);
+  assert.equal((await request('/api/admin/access/grants',{method:'DELETE',cookie:adminCookie,data:{userId,courseId:'trilha-aplicacoes-cloud-ia'}})).status,200);
   assert.equal((await request(lesson,{cookie:student.cookie})).status,403);
   assert.equal((await request('/api/admin/access/subscriptions',{method:'POST',cookie:adminCookie,data:{userId,validDays:30}})).status,200);
   assert.equal((await request('/api/content/trail/channel-dark',{cookie:student.cookie})).payload.modules.length,8);
