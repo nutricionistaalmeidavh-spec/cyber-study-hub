@@ -72,3 +72,14 @@ test('vitrine pública expande os módulos reais de cada curso sem duplicar cat�
   assert.match(html,/Lista de espera/);
   assert.match(html,/Entrar na lista de espera/);
 });
+
+test('clicking a course waits for the selected canonical offering, not general Academy',()=>{
+  const landing=read('src/components/AcademyLanding.tsx');
+  const waitlist=read('src/components/AcademyWaitlist.tsx');
+  assert.match(landing,/chooseWaitlistCourse\(event, course\.id\)/);
+  assert.match(landing,/selectedCourseId=\{waitlistCourseId\}/);
+  assert.match(landing,/replaceState\(null, '', '\/academy\?curso='/);
+  assert.match(waitlist,/setCourseId\(selectedCourseId\)/);
+  assert.match(waitlist,/publishedCourses\.some\(c=>c\.id===selectedCourseId\)/);
+  assert.match(landing,/>Lista de espera<\/span>/);
+});
