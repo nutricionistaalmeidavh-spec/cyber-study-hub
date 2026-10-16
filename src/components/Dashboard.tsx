@@ -12,6 +12,7 @@ import { lessonDurationLabel } from '../lib/courseStudyMetadata';
 import ProgressSyncStatus from './ProgressSyncStatus';
 import { moduleDisplayTitle } from '../lib/modulePresentation';
 import { studyInventory } from '../lib/studyInventory';
+import { publishedCourses } from '../curriculum/courseOfferings';
 import { getCanonicalGuidedCompletion } from '../lib/studyProgress';
 
 const catalog = catalogData as CurriculumCatalog;
@@ -51,6 +52,9 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     const item = catalog.parallel.find(candidate => candidate.trackCode === code);
     return item ? { code, name: item.track } : null;
   }).filter((item): item is {code:string;name:string} => item !== null);
+  const editorial = user.role === 'admin';
+  const mainCatalogHref = editorial ? '#lessons?mode=main' : '#courses?type=main';
+  const trailsHref = editorial ? '#lessons?mode=parallel' : '#courses?type=trail';
   const firstName = user.name.trim().split(/\s+/)[0] || 'Estudante';
   const percent = interactiveLessons.length ? Math.round(completedInteractive / interactiveLessons.length * 100) : 0;
   const mainModuleCount = new Set(catalog.main.map(item => item.block)).size;
@@ -77,7 +81,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
         </div>
         <div className="hub-focus-actions">
           <a className="button primary" href={resumeHref}>{isNewStudent ? 'Começar pela aula 001' : 'Continuar estudo'} <span aria-hidden="true">→</span></a>
-          <a className="button ghost" href="#lessons?mode=main">Explorar formação</a>
+          <a className="button ghost" href={mainCatalogHref}>Explorar cursos</a>
         </div>
       </div>
     </section>
@@ -97,16 +101,16 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
      <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><h2 id="hub-journeys-title">Explore por assunto</h2></div>
-        <a href="#lessons" className="text-link">Ver todo o catálogo →</a>
+        <a href={editorial ? "#lessons" : "#courses"} className="text-link">Ver todo o catálogo →</a>
       </div>
       <div className="hub-journey-grid">
-        <a href="#lessons?mode=main" className="hub-journey">
+        <a href={mainCatalogHref} className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">01</span>
-          <div><strong>Formação principal</strong><p>Do básico ao avançado</p><span>Ver módulos <b aria-hidden="true">↗</b></span></div>
+          <div><strong>{editorial ? "Formação principal" : "Cursos de cibersegurança"}</strong><p>Do básico ao avançado</p><span>Ver módulos <b aria-hidden="true">↗</b></span></div>
         </a>
-        <a href="#lessons?mode=parallel" className="hub-journey">
+        <a href={trailsHref} className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">02</span>
-          <div><strong>Trilhas paralelas</strong><p>Lógica, programação e ferramentas</p><span>Ver trilhas <b aria-hidden="true">↗</b></span></div>
+          <div><strong>{editorial ? "Trilhas paralelas" : "Trilhas práticas com IA"}</strong><p>{editorial ? "Lógica, programação e ferramentas" : "Aprenda construindo projetos"}</p><span>Ver trilhas <b aria-hidden="true">↗</b></span></div>
         </a>
         <a href="#review" className="hub-journey">
           <span className="hub-journey-icon" aria-hidden="true">03</span>
@@ -115,13 +119,13 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       </div>
     </section>
     <section className="hub-home-stats" aria-label="Seu painel de estudos">
-      <a href="#lessons" className="hub-home-stat">
+      <a href={editorial ? "#lessons" : "#courses"} className="hub-home-stat">
         <small>Módulos de estudo</small><strong>{totalModules}</strong>
         <span>{mainModuleCount} principais + {parallelModuleCount} paralelos + {aiModuleCount} Meu Gestor + {channelModuleCount} Canal Dark + {reverseModuleCount} Engenharia Reversa</span>
-        <span>{studyInventory.totalSteps} IDs canônicos, incluindo {studyInventory.referenceSteps} referências guiadas</span>
+        <span>{studyInventory.totalSteps} aulas e etapas, incluindo {studyInventory.referenceSteps} referências guiadas</span>
         <span>{guidedCompletion.completed}/{guidedCompletion.total} etapas guiadas registradas na sua conta</span>
       </a>
-      <a href="#lessons?mode=main" className="hub-home-stat">
+      <a href={mainCatalogHref} className="hub-home-stat">
         <small>Aulas interativas concluídas</small><strong>{completedInteractive}<em> / {interactiveLessons.length}</em></strong>
         <span className="hub-mini-progress" role="progressbar" aria-valuenow={completedInteractive} aria-valuemin={0} aria-valuemax={interactiveLessons.length} aria-label="Aulas interativas concluídas"><i style={{width: percent+'%'}} /></span>
         <span>{percent}% das aulas com conclusão interativa</span>
@@ -133,11 +137,11 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
     </section>
     <section className="hub-home-bottom" aria-label="Atalhos de aprendizagem">
       <article className="hub-home-note">
-        <span className="eyebrow">EM FOCO</span><h2>{activeLabels.length ? 'Suas trilhas em estudo' : 'Organize seus interesses'}</h2>
-        {activeLabels.length ? <div className="hub-active-tracks">{activeLabels.slice(0,4).map(item =>
-          <a href={'#lessons?mode=parallel&track='+encodeURIComponent(item.name)} key={item.code}>{item.name}<span aria-hidden="true">↗</span></a>
+        <span className="eyebrow">EM FOCO</span><h2>{editorial ? activeLabels.length ? 'Suas trilhas em estudo' : 'Organize seus interesses' : 'Aprenda com projetos'}</h2>
+        {!editorial ? <div className="hub-active-tracks">{publishedCourses.filter(course=>course.type==='trail').map(course=><a key={course.id} href={'#courses/'+course.id}>{course.title}<span aria-hidden="true">↗</span></a>)}</div> : activeLabels.length ? <div className="hub-active-tracks">{activeLabels.slice(0,4).map(item =>
+          <a href={editorial ? '#lessons?mode=parallel&track='+encodeURIComponent(item.name) : '#courses/paralela-'+item.code.toLowerCase()} key={item.code}>{item.name}<span aria-hidden="true">↗</span></a>
         )}</div> : <p>Marque uma trilha paralela como “em estudo” para encontrá-la facilmente aqui.</p>}
-        <a href="#lessons?mode=parallel" className="text-link">{activeLabels.length ? 'Gerenciar trilhas →' : 'Escolher uma trilha →'}</a>
+        <a href={trailsHref} className="text-link">{editorial&&activeLabels.length ? 'Gerenciar trilhas →' : 'Escolher uma trilha →'}</a>
       </article>
       <article className="hub-home-note">
         <span className="eyebrow">PRÁTICA</span><h2>Cyber Games</h2>

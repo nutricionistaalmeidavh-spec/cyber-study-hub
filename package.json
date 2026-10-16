@@ -81,7 +81,9 @@
     "test:secondary-visual": "node --test scripts/test-secondary-visual-direction.mjs",
     "test:public-signup": "node --test scripts/test-public-signup-policy.mjs",
     "test:buyer-intent": "node --test scripts/test-buyer-intent.mjs",
-    "test:artisys-billing": "node --test scripts/test-artisys-billing.mjs"
+    "test:artisys-billing": "node --test scripts/test-artisys-billing.mjs",
+    "test:course-discovery": "node --test scripts/test-course-discovery.mjs",
+    "test:ui-ux": "playwright test --config qa/playwright.config.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -89,6 +91,7 @@
     "ts-fsrs": "^5.4.2"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.1",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
