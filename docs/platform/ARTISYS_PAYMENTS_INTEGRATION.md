@@ -8,27 +8,26 @@ A compra individual e a assinatura são modos diferentes da *mesma* API de pagam
 
 **Padrão R$ 0:** a plataforma de estudo, os grants manuais e o backend self-hosted continuam utilizáveis sem pagamentos, credenciais, chave de API, Asaas ou serviço externo. A integração monetizada depende de ativação explícita e a cobrança real pode envolver taxas do processador escolhido; não há dependência paga silenciosa.
 
+## Migração para vendas por trilha (outubro de 2026)
+
+Não há histórico de compras de alunos a migrar: segundo a administração, somente a conta de administrador tem acesso. Os **12 IDs de cursos antigos deixam de ser produtos vendáveis**; compras e liberações novas usam exclusivamente os cinco IDs de trilha da tabela e as trilhas especiais publicadas. O administrador continua com bypass autorizado por perfil, sem compra. As identidades `AULA-001..AULA-218`, progresso, sessões e API de autenticação não mudam.
+
+No painel ArtiSys Pagamentos, criar **novas ofertas inativas** com os IDs abaixo, preços definidos pelo administrador, `one_time` e `webhook`; desativar quaisquer ofertas antigas do Hub se elas tiverem sido cadastradas. Atualizar `PRODUCT_CONNECTORS_JSON` por merge com os segredos existentes dos outros sistemas, sem sobrescrevê-los. **Não publicar ofertas nem ativar cobrança até homologar o conector e proteger o material privado.** O Hub por padrão funciona a R$ 0 com grants manuais e infraestrutura self-hosted; gateway é opcional. Uma compra de trilha concede acesso somente às aulas e laboratórios pertencentes àquela trilha. A assinatura geral permanece como produto separado.
+
 ## 1. Produtos e ofertas no Pagamento ArtiSys
 
-Cadastre no **painel ArtiSys /admin**, **inativos inicialmente**, com `deliveryMode=webhook` e preços definidos exclusivamente pelo administrador em centavos BRL. Não inventar preços no Hub. Cada curso A publicado possui produto:
+Cadastre no **painel ArtiSys /admin**, **inativos inicialmente**, com `deliveryMode=webhook` e preços definidos exclusivamente pelo administrador em centavos BRL. Não inventar preços no Hub. As 218 aulas principais formam cinco trilhas que correspondem aos cinco produtos comerciais novos. As duas trilhas práticas já publicadas permanecem como produtos independentes. Engenharia Reversa com IA (32 etapas) segue draft até aprovação/publicação. Cada trilha publicada possui produto:
 
-| ID de produto no ArtiSys | Curso no Hub | Sale type |
+| ID de produto no ArtiSys | Trilha no Hub | Sale type |
 | --- | --- | --- |
-| hubestudos-course-web-apis | web-apis | one_time |
-| hubestudos-course-redes-sistemas | redes-sistemas | one_time |
-| hubestudos-course-pentest-seguro | pentest-seguro | one_time |
-| hubestudos-course-active-directory | active-directory | one_time |
-| hubestudos-course-blue-team | blue-team | one_time |
-| hubestudos-course-engenharia-reversa | engenharia-reversa | one_time |
-| hubestudos-course-analise-malware | analise-malware | one_time |
-| hubestudos-course-exploit-research | exploit-research | one_time |
-| hubestudos-course-red-purple-team | red-purple-team | one_time |
-| hubestudos-course-cloud-devsecops | cloud-devsecops | one_time |
-| hubestudos-course-seguranca-ia | seguranca-ia | one_time |
-| hubestudos-course-projeto-final | projeto-final | one_time |
-| hubestudos-course-desenvolvimento-com-ia | desenvolvimento-com-ia | one_time |
-| hubestudos-course-automacao-canal-dark | automacao-canal-dark | one_time |
-| hubestudos-subscription | Todos os cursos publicados durante a vigência | monthly **ou** yearly |
+| hubestudos-course-trilha-pentest-ethical-hacking | Pentest e Ethical Hacking (30 aulas) | one_time |
+| hubestudos-course-trilha-seguranca-ofensiva-defensiva | Segurança Ofensiva e Defensiva (50 aulas) | one_time |
+| hubestudos-course-trilha-engenharia-reversa-malware | Engenharia Reversa e Análise de Malware (60 aulas) | one_time |
+| hubestudos-course-trilha-pesquisa-vulnerabilidades | Pesquisa e Exploração de Vulnerabilidades (20 aulas) | one_time |
+| hubestudos-course-trilha-aplicacoes-cloud-ia | Segurança de Aplicações, Infraestrutura, Nuvem e IA (58 aulas) | one_time |
+| hubestudos-course-desenvolvimento-com-ia | Desenvolvimento de Sistemas com IA (32 etapas) | one_time |
+| hubestudos-course-automacao-canal-dark | Automação de Canal com IA (32 etapas) | one_time |
+| hubestudos-subscription | Todas as trilhas publicadas durante a vigência | monthly **ou** yearly |
 
 Para `hubestudos-subscription`, crie duas ofertas distintas com o mesmo `productId`, uma `saleType=monthly` e outra `saleType=yearly`. Cada oferta tem ID único, nome e preço no painel. Para os cursos, cada oferta usa o produto indicado. Não use `manual` ou `download` para esses produtos: somente `webhook` libera acesso no Hub.
 
@@ -56,7 +55,7 @@ O vínculo da compra é com o **ID canônico do aluno que iniciou o checkout em 
 
 1. Gere um segredo aleatório diferente de todos os segredos do Asaas, Admin ou outros produtos, de no mínimo 32 caracteres. Salve-o **somente** nos ambientes privados.
 2. Hub Cloudflare: Secret `HUB_ARTISYS_CONNECTOR_SECRET` no Worker/DO. Hub Node: variável `HUB_ARTISYS_CONNECTOR_SECRET` no servidor. Não usar `VITE_*` para esse valor.
-3. Pagamento ArtiSys: Secret `PRODUCT_CONNECTORS_JSON` com objeto indexado por cada `productId` da tabela; os 15 produtos podem apontar para a mesma URL HTTPS do Hub e o mesmo segredo do Hub, sem conceder permissão sobre os outros produtos. **Faça merge do JSON existente, jamais sobrescreva configurações dos quatro sistemas e DevKits.**
+3. Pagamento ArtiSys: Secret `PRODUCT_CONNECTORS_JSON` com objeto indexado por cada `productId` da tabela; os 8 produtos podem apontar para a mesma URL HTTPS do Hub e o mesmo segredo do Hub, sem conceder permissão sobre os outros produtos. **Faça merge do JSON existente, jamais sobrescreva configurações dos quatro sistemas e DevKits.**
 4. Configure `CONNECTOR_ALLOWED_ORIGINS` do Pagamento ArtiSys para incluir a origem HTTPS do Hub, preservando as origens existentes. O gateway recusa conector fora da lista.
 5. Publique oferta no Pagamento ArtiSys somente depois de concluir a migração de conteúdo privado, QA e homologação. Ative `PAYMENTS_ENABLED=true` no gateway **somente** quando a cobrança estiver preparada. Defina preços, tributos, reembolso e prazo contratual da compra individual.
 6. Vitrine Hub (variáveis **públicas** de build): `VITE_ARTISYS_PAYMENTS_URL=https://pagamentos-artisys-central.nutricionistaalmeidavh.workers.dev` (ou domínio HTTPS oficial configurado) e `VITE_ARTISYS_CHECKOUT_ENABLED=true`. Sem essa flag, não existem botões de compra nem acesso ao gateway.
@@ -66,7 +65,7 @@ O vínculo da compra é com o **ID canônico do aluno que iniciou o checkout em 
 
 ```json
 {
-  "hubestudos-course-web-apis": {
+  "hubestudos-course-trilha-aplicacoes-cloud-ia": {
     "url": "https://SEU-HUB/api/integrations/artisys/fulfillment",
     "secret": "<SEGREDO_PRIVADO_COMPARTILHADO_APENAS_COM_HUB>"
   },
@@ -77,7 +76,7 @@ O vínculo da compra é com o **ID canônico do aluno que iniciou o checkout em 
 }
 ```
 
-Repita o mesmo apontamento para os outros 13 IDs de produto publicados. Nunca usar valores ilustrativos em produção.
+Repita o mesmo apontamento para os outros 6 IDs de produto publicados. Nunca usar valores ilustrativos em produção.
 
 ## 4. Concessões, assinatura e falha segura
 
