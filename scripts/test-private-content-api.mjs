@@ -19,7 +19,7 @@ test('server-only payload de aula preserva dados canônicos de versão legada e 
 test('API de aula exige concessão do próprio curso, incluindo revogações',()=>{
   const path=contentRoute('/api/content/lesson/43');
   assert.equal(securedPayload(path,student,[],false,privateCourseSource),null);
-  const course='web-apis';
+  const course='trilha-aplicacoes-cloud-ia';
   const allowed=securedPayload(path,student,grant(course),false,privateCourseSource);
   assert.ok(allowed?.lesson);
   assert.equal(securedPayload(path,student,[{course_id:course,expires_at:null,revoked_at:1}],false,privateCourseSource),null);
@@ -42,7 +42,7 @@ test('jogos não entregam pacotes sem autorização, nem conteúdo de outros cur
  const full=securedPayload(route,staff,[],false,privateCourseSource);
  assert.equal(full.reviewPacks.length,9);
  assert.equal(full.scenarios.length,32);
- const subset=securedPayload(route,student,grant('web-apis'),false,privateCourseSource);
+ const subset=securedPayload(route,student,grant('trilha-aplicacoes-cloud-ia'),false,privateCourseSource);
  if(subset){
    assert.ok(subset.reviewPacks.length<full.reviewPacks.length);
    const expected=new Set(subset.reviewPacks.flatMap(pack=>pack.scenarioIds));
