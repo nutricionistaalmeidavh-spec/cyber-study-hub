@@ -1,11 +1,11 @@
 import {useState,type FormEvent} from 'react';
-import {publishedCourses} from '../curriculum/courseOfferings';
+import {waitlistCatalogCourses} from '../curriculum/courseOfferings';
 import './academy-waitlist.css';
 
 type Status='idle'|'sending'|'success'|'error';
 export default function AcademyWaitlist(){
   const courseFromUrl=new URLSearchParams(window.location.search).get('curso');
-  const initial=publishedCourses.some(c=>c.id===courseFromUrl)?String(courseFromUrl):'academy';
+  const initial=waitlistCatalogCourses.some(c=>c.id===courseFromUrl)?String(courseFromUrl):'academy';
   const [name,setName]=useState('');
   const [email,setEmail]=useState('');
   const [courseId,setCourseId]=useState(initial);
@@ -69,7 +69,7 @@ export default function AcademyWaitlist(){
             <label htmlFor="academy-waitlist-course">Curso de interesse</label>
             <select id="academy-waitlist-course" name="course" value={courseId} onChange={event=>setCourseId(event.target.value)} disabled={status==='sending'}>
               <option value="academy">Quero conhecer a Academy</option>
-              {publishedCourses.map(course=><option key={course.id} value={course.id}>{course.title}</option>)}
+              {waitlistCatalogCourses.map(course=><option key={course.id} value={course.id}>{course.title}</option>)}
             </select>
             <div className="academy-waitlist-trap" aria-hidden="true">
               <label htmlFor="academy-waitlist-website">Site</label>
