@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {ownersForPath,canonicalAssetPath,permitted,protectedPath,publishedCourseIds} from '../src/worker/course-access.mjs';
 const student={id:'u1',role:'student',status:'active'};
 const owner=(course)=>[{course_id:course,revoked_at:null,expires_at:null}];
@@ -48,4 +49,26 @@ test('novo laboratorio reverse-ai e protegido: staff pode, aluno sem curso publi
  assert.equal(permitted(student,owners,owner('engenharia-reversa-com-ia'),false),false);
  assert.equal(permitted({...student,role:'admin'},owners,[],false),true);
  assert.deepEqual(ownersForPath('/course-labs/reverse-ai/../secret'),[]);
+});
+
+test('compra de trilha libera TODAS as suas aulas, sem liberar nenhuma aula de outra trilha',()=>{
+ const offers=JSON.parse(readFileSync('src/curriculum/courses.json','utf8')).courses;
+ const tracks=offers.filter(c=>c.type==='main'&&c.status==='published');
+ assert.equal(tracks.length,5);
+ const all=new Set();
+ for(const track of tracks){
+  for(const code of track.modules.flatMap(module=>module.lessonCodes)){
+   const path='/course-library/main/'+code.slice(-3)+'.md';
+   const owners=ownersForPath(path);
+   assert.deepEqual(owners,[track.id],path);
+   assert.equal(permitted(student,owners,owner(track.id),false),true,'acesso pago correto: '+code);
+   assert.equal(permitted(student,owners,[],false),false,'não pago: '+code);
+   for(const other of tracks.filter(c=>c.id!==track.id)){
+    assert.equal(permitted(student,owners,owner(other.id),false),false,'vazamento entre trilhas: '+code);
+   }
+   assert.equal(permitted({...student,role:'admin'},owners,[],false),true,'admin continua liberado');
+   all.add(code);
+  }
+ }
+ assert.equal(all.size,218);
 });
