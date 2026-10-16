@@ -1,4 +1,5 @@
 import {practiceFor,type PracticeTarget} from '../../lib/practiceContracts';
+import { academyPublicHref } from '../../lib/academyRouting.mjs';
 import catalogData from '../../curriculum/catalog.json';
 import type {CurriculumCatalog} from '../../curriculum/types';
 import './practice.css';
@@ -20,7 +21,7 @@ export function PracticeOrientation({target,objective,deliverable}:{target:Pract
     <div><dt>O que entregar</dt><dd>{p.deliverable}</dd></div>
     <div><dt>Como conferir</dt><dd>{p.verification}</dd></div></dl>
    <div className="practice-contract-files"><strong>Materiais desta aula</strong>
-    <div>{p.resources.map(x=><a key={x.href} href={x.href} target="_blank" rel="noopener noreferrer">
+    <div>{p.resources.map(x=><a key={x.href} href={academyPublicHref(x.href)} target="_blank" rel="noopener noreferrer">
      <span>{x.role==='base'?'Aula':x.role==='codigo'?'Código':x.role==='teste'?'Teste':'Guia'}</span>{x.label} ↗
     </a>)}</div></div>
    <p className="practice-contract-limit">{p.limits}</p>
