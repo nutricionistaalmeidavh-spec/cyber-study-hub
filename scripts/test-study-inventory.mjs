@@ -70,7 +70,7 @@ test('Dashboard e Academy exibem total atualizado a partir de catálogo completo
  assert.match(inv,/source\.guided/);
  assert.match(home,/studyInventory.totalSteps/);
  assert.match(academy,/studyInventory.totalSteps/);
- assert.match(academy,/publishedCourses\.map/);
+ assert.match(academy,/waitlistCatalogCourses\.map/);
  assert.match(academy,/course\.modules\.map/);
  assert.doesNotMatch(home,/543 aulas/);
  assert.equal(read('scripts/quality-p0.mjs').includes('canonical-inventory.json'),true);
