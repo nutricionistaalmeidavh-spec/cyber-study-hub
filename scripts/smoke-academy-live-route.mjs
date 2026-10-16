@@ -19,6 +19,12 @@ for(let attempt=1;attempt<=maxAttempts;attempt++){
     assert.equal(api.status,200,'Academy API HTTP');
     const payload=await api.json();
     assert.equal(payload.ok,true,'Academy API body');
+    const invalidSignup=await fetch(origin+'/academy/api/waitlist',{
+      method:'POST',headers:{'Origin':origin,'Content-Type':'application/json'},
+      body:JSON.stringify({name:'',email:'invalid',courseId:'academy',consent:false,website:''}),
+      signal:AbortSignal.timeout(12000),cache:'no-store'
+    });
+    assert.equal(invalidSignup.status,400,'Waitlist POST should validate input on the Academy API, not return a CSRF or routing error');
     const site=await get('/academy');
     assert.equal(site.status,200,'Academy landing HTTP');
     const html=await site.text();
