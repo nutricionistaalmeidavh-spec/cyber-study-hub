@@ -434,7 +434,7 @@ export default {
     const apiResponse=await env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(internalRequest);
     if(!scoped||!apiResponse.headers.has('set-cookie'))return apiResponse;
     const responseHeaders=new Headers(apiResponse.headers);
-    responseHeaders.set('set-cookie',responseHeaders.get('set-cookie').replace(/;\\s*Path=\\/(?:;|$)/i,'; Path=/academy;'));
+    responseHeaders.set('set-cookie',(responseHeaders.get('set-cookie')||'').replace('; Path=/;', '; Path=/academy;'));
     return new Response(apiResponse.body,{status:apiResponse.status,statusText:apiResponse.statusText,headers:responseHeaders});
   }
 };
