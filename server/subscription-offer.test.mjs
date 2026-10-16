@@ -64,14 +64,14 @@ test('preço não concede acesso; assinatura manual vale só durante a vigência
  assert.equal((await req('/api/admin/subscription/offer',{method:'PUT',cookie:student.cookie,data:{priceCents:3990}})).status,403);
  assert.equal((await req('/api/admin/subscription/offer',{method:'PUT',cookie:adminCookie,data:{priceCents:3990}})).status,200);
  assert.equal((await req('/api/access/me',{cookie:student.cookie})).body.subscriptionActive,false);
- assert.equal((await req('/api/content/trail/reverse-ai',{cookie:student.cookie})).status,403);
+ assert.equal((await req('/api/content/trail/reverse-ai',{cookie:student.cookie})).status,404);
  const grant=await req('/api/admin/access/subscriptions',{method:'POST',cookie:adminCookie,data:{
   userId:student.body.user.id,validDays:30
  }});
  assert.equal(grant.status,200);
  assert.equal((await req('/api/access/me',{cookie:student.cookie})).body.subscriptionActive,true);
  // Mesmo assinantes não abrem prévias draft.
- assert.equal((await req('/api/content/trail/reverse-ai',{cookie:student.cookie})).status,403);
+ assert.equal((await req('/api/content/trail/reverse-ai',{cookie:student.cookie})).status,404);
  assert.equal((await req('/api/admin/access/subscriptions',{method:'DELETE',cookie:adminCookie,data:{userId:student.body.user.id}})).status,200);
  assert.equal((await req('/api/access/me',{cookie:student.cookie})).body.subscriptionActive,false);
 });
