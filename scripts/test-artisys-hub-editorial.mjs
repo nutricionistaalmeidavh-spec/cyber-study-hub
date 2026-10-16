@@ -63,7 +63,7 @@ test('materials preserve original file links and use real categories and counts'
   assert.match(materials, /materials\.filter\(m=>m\.category===c\)\.length/);
   assert.match(materials, /filtered\.map\(/);
   assert.match(materials, /'#material\/'\+m\.id/);
-  assert.match(materials, /href=\{material\.href\}/);
+  assert.ok(materials.includes('href={academyPublicHref(material.href)}'));
   assert.match(materials, /driveFolderUrl/);
   assert.match(materials, /rel="noopener noreferrer"/);
 });

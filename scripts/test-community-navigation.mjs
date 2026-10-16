@@ -10,8 +10,8 @@ const css = read('src/components/hub-editorial.css');
 test('Academy public desktop and mobile menus expose roadmap and improvements', () => {
   const desktop = academy.split('<nav className="academy-desktop-nav"')[1]?.split('</nav>')[0] ?? '';
   const mobile = academy.split('<nav aria-label="Navegação móvel">')[1]?.split('</nav>')[0] ?? '';
-  assert.match(desktop, /href="\/roadmap"/, 'Missing public desktop navigation link to voting');
-  assert.match(mobile, /href="\/roadmap"/, 'Missing public mobile navigation link to voting');
+  assert.ok(desktop.includes('href="/academy/roadmap"'), 'Missing public desktop navigation link to voting');
+  assert.ok(mobile.includes('href="/academy/roadmap"'), 'Missing public mobile navigation link to voting');
 });
 
 test('Hub mobile menu exposes feedback, voting and admin-only feedback moderation', () => {

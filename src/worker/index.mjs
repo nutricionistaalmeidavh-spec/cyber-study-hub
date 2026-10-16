@@ -1,4 +1,5 @@
 import { privateCourseSource } from './private-course-data.mjs';
+import { stripAcademyPath } from '../lib/academyRouting.mjs';
 import { contentRoute, securedPayload } from './secure-payload-route.mjs';
 import { ownersForPath, publishedCourseIds, knownCourseIds, protectedPath, canonicalAssetPath, permitted } from './course-access.mjs';
 import { DurableObject } from 'cloudflare:workers';
@@ -384,7 +385,7 @@ export class HubAuthObject extends DurableObject {
         const token=randomToken();
         this.sql.exec('INSERT INTO invitations(token_hash,email,role,expires_at) VALUES(?,?,?,?)',
           await sha(token),mail,role,Date.now()+2*DAY);
-        return response(201,{token,inviteUrl:url.origin+'/?invite='+encodeURIComponent(token),expiresInHours:48});
+        return response(201,{token,inviteUrl:url.origin+(request.headers.get('X-Academy-Path')==='true'?'/academy/study':'/')+'?invite='+encodeURIComponent(token),expiresInHours:48});
       }
       const match=/^\/api\/admin\/users\/([0-9a-f-]+)$/.exec(path);
       if(match&&method==='PATCH'){
@@ -409,7 +410,14 @@ export class HubAuthObject extends DurableObject {
 }
 export default {
   async fetch(request,env){
-    const url=new URL(request.url);
+    const publicUrl=new URL(request.url);
+    const internalPath=stripAcademyPath(publicUrl.pathname);
+    const scoped=internalPath!==publicUrl.pathname;
+    const internalUrl=new URL(request.url);
+    internalUrl.pathname=internalPath;
+    const internalRequest=scoped?new Request(internalUrl,request):request;
+    if(scoped)internalRequest.headers.set('X-Academy-Path','true');
+    const url=new URL(internalRequest.url);
     if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
     if(protectedPath(url.pathname)){
       if(request.method!=='GET'&&request.method!=='HEAD')return response(405,{error:'Método não permitido.'});
@@ -421,15 +429,19 @@ export default {
       },body:JSON.stringify({path})});
       const gate=await env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(auth);
       if(!gate.ok)return gate;
-      const asset=await env.ASSETS.fetch(request);
+      const asset=await env.ASSETS.fetch(internalRequest);
       const headers=new Headers(asset.headers);
       headers.set('Cache-Control','private, no-store, max-age=0');
       headers.set('Vary','Cookie');
       headers.set('X-Content-Type-Options','nosniff');
       return new Response(request.method==='HEAD'?null:asset.body,{status:asset.status,statusText:asset.statusText,headers});
     }
-    if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
+    if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(internalRequest);
     if(!env.HUB_AUTH)return response(503,{error:'Backend da plataforma não configurado.'});
-    return env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(request);
+    const apiResponse=await env.HUB_AUTH.get(env.HUB_AUTH.idFromName('canonical-users')).fetch(internalRequest);
+    if(!scoped||!apiResponse.headers.has('set-cookie'))return apiResponse;
+    const responseHeaders=new Headers(apiResponse.headers);
+    responseHeaders.set('set-cookie',(responseHeaders.get('set-cookie')||'').replace('; Path=/;', '; Path=/academy;'));
+    return new Response(apiResponse.body,{status:apiResponse.status,statusText:apiResponse.statusText,headers:responseHeaders});
   }
 };

@@ -8,6 +8,11 @@ on:
       - 'src/components/academy-motion.css'
       - 'src/components/useAcademyMotion.ts'
       - 'scripts/test-academy-landing.mjs'
+      - 'scripts/test-academy-path-routing.mjs'
+      - 'src/lib/academyRouting.mjs'
+      - 'src/worker/index.mjs'
+      - 'wrangler.toml'
+      - 'vite.config.ts'
       - 'scripts/test-academy-motion.mjs'
       - '.github/workflows/academy-landing.yml'
   workflow_dispatch:
@@ -23,4 +28,4 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci --no-audit --no-fund
-      - run: node --test scripts/test-academy-landing.mjs scripts/test-academy-motion.mjs
+      - run: node --test scripts/test-academy-landing.mjs scripts/test-academy-motion.mjs scripts/test-academy-path-routing.mjs

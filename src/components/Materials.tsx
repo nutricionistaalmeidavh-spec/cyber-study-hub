@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { driveFolderUrl, materials } from '../data/materials';
+import { academyPublicHref } from '../lib/academyRouting.mjs';
 
 export function MaterialsHub() {
   const [category,setCategory]=useState('Todos');
@@ -55,10 +56,10 @@ export function MaterialViewer({id}:{id:string}) {
   return <div className="page stack-lg material-viewer-page">
     <div className="material-viewer-head">
       <div><a className="text-link" href="#materials">← Materiais</a><span className="eyebrow">{material.category}</span><h1>{material.title}</h1><p>{material.description}</p></div>
-      <a className="button primary" href={material.href} target="_blank" rel="noreferrer">Abrir em tela cheia</a>
+      <a className="button primary" href={academyPublicHref(material.href)} target="_blank" rel="noreferrer">Abrir em tela cheia</a>
     </div>
     <section className="material-frame-panel">
-      <iframe className="material-frame" src={material.href} title={material.title} />
+      <iframe className="material-frame" src={academyPublicHref(material.href)} title={material.title} />
     </section>
   </div>;
 }

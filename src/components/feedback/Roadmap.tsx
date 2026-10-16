@@ -49,14 +49,14 @@ export function RoadmapPage({embedded=false}:{embedded?:boolean}){
     {!data&&!error&&<p role="status">Carregando as melhorias da comunidade…</p>}
     {data&&tab==='ideas'&&<>
       <div className="roadmap-sort"><span>{data.ideas.length} {data.ideas.length===1?'sugestão publicada':'sugestões publicadas'}</span><label>Ordenar por <select value={sort} onChange={e=>setSort(e.target.value as typeof sort)}><option value="progress">Etapa</option><option value="votes">Mais apoiadas</option></select></label></div>
-      {!list.length?<div className="panel roadmap-empty"><h2>Ainda não há sugestões publicadas.</h2><p>Quando as primeiras propostas forem revisadas, aparecerão aqui.</p><a className="button ghost" href={embedded?'#feedback':'/'}>Compartilhar uma ideia</a></div>:
+      {!list.length?<div className="panel roadmap-empty"><h2>Ainda não há sugestões publicadas.</h2><p>Quando as primeiras propostas forem revisadas, aparecerão aqui.</p><a className="button ghost" href={embedded?'#feedback':'/academy/study#feedback'}>Compartilhar uma ideia</a></div>:
       <div className="roadmap-grid">{list.map(idea=><article className="roadmap-idea" key={idea.id}>
         <div className="roadmap-idea-top"><span className={'roadmap-stage stage-'+idea.stage}>{stages[idea.stage]}</span><span className="roadmap-date">{date(idea.publishedAt)}</span></div>
         <h2>{idea.title}</h2><p>{idea.summary}</p>
         <div className="roadmap-card-footer"><span>{idea.votes} {idea.votes===1?'apoio':'apoios'}</span>
           {idea.stage==='released'?<span className="roadmap-delivered">Melhoria entregue</span>:
             data.authenticated?<button className={idea.voted?'button primary roadmap-vote supported':'button ghost roadmap-vote'} type="button" disabled={busy===idea.id} aria-pressed={Boolean(idea.voted)} aria-label={idea.voted?`Retirar apoio a ${idea.title}`:`Apoiar ${idea.title}`} onClick={()=>void vote(idea)}>{busy===idea.id?'Salvando…':idea.voted?'Apoiado · remover voto':'Apoiar sugestão'}</button>:
-            <a className="button ghost roadmap-vote" href="/?next=roadmap">Entrar para apoiar</a>}
+            <a className="button ghost roadmap-vote" href="/academy/study?next=roadmap">Entrar para apoiar</a>}
         </div>
       </article>)}</div>}
       <p className="roadmap-note">Apoiar uma sugestão sinaliza interesse, não garante prazo nem implementação. Você pode retirar seu apoio a qualquer momento.</p>
@@ -67,7 +67,7 @@ export function RoadmapPage({embedded=false}:{embedded?:boolean}){
     </section>}
   </div>;
   if(embedded)return <div className="page roadmap-page">{content}</div>;
-  return <div className="roadmap-public-layout"><nav className="roadmap-public-nav"><a href="/academy" aria-label="Academy início"><AcademyBrand/></a><a className="button ghost" href="/">Entrar no Hub</a></nav><main>{content}</main><footer className="roadmap-public-footer"><a href="/academy">Conhecer a Academy</a><span>ArtiSys · HubEstudos</span></footer></div>;
+  return <div className="roadmap-public-layout"><nav className="roadmap-public-nav"><a href="/academy" aria-label="Academy início"><AcademyBrand/></a><a className="button ghost" href="/academy/study">Entrar no Hub</a></nav><main>{content}</main><footer className="roadmap-public-footer"><a href="/academy">Conhecer a Academy</a><span>ArtiSys · HubEstudos</span></footer></div>;
 }
 
 export function RoadmapManager({revision=0}:{revision?:number}){
@@ -90,7 +90,7 @@ export function RoadmapManager({revision=0}:{revision?:number}){
     finally{setBusy('');}
   };
   return <section className="panel roadmap-management" aria-labelledby="roadmap-admin-title">
-    <div className="section-head"><div><span className="eyebrow">CONTEÚDO PÚBLICO</span><h2 id="roadmap-admin-title">Roadmap e novidades publicadas</h2><p>Somente textos aprovados aparecem publicamente. O andamento do feedback privado e a etapa pública são estados diferentes; altere cada um conforme necessário.</p></div><a className="button ghost" href="/roadmap" target="_blank" rel="noopener noreferrer">Ver página pública</a></div>
+    <div className="section-head"><div><span className="eyebrow">CONTEÚDO PÚBLICO</span><h2 id="roadmap-admin-title">Roadmap e novidades publicadas</h2><p>Somente textos aprovados aparecem publicamente. O andamento do feedback privado e a etapa pública são estados diferentes; altere cada um conforme necessário.</p></div><a className="button ghost" href="/academy/roadmap" target="_blank" rel="noopener noreferrer">Ver página pública</a></div>
     {error&&<p className="feedback-error" role="alert">{error}</p>}
     {!data?(error?<button className="button ghost" onClick={()=>void reload().then(()=>setError('')).catch(e=>setError(errorText(e)))}>Recarregar publicações</button>:<p role="status">Carregando publicações…</p>):<>
       <h3>Sugestões públicas ({data.ideas.length})</h3>

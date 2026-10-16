@@ -23,7 +23,7 @@ test('academy page includes real curriculum and working navigation targets', () 
   assert.match(source, /waitlistCatalogCourses\.map/);
   assert.match(source, /course\.modules\.map/);
   assert.doesNotMatch(source, /academy-catalog-panel|academy-available-modules|academy-module-grid/);
-  assert.match(source, /href="\/"/);
+  assert.match(source, /href="\/academy\/study"/);
   assert.match(css, /@media\s*\(max-width:\s*720px\)/);
 });
 

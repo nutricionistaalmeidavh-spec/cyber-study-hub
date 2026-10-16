@@ -1,4 +1,5 @@
 import { resolveCourseLink, parsePipeRow, isTableSeparator } from './markdownSupport';
+import { academyPublicHref } from '../../lib/academyRouting.mjs';
 import { Fragment, isValidElement, useEffect, useMemo, useState, type ReactNode } from 'react';
 import catalogData from '../../curriculum/catalog.json';
 import type {
@@ -61,7 +62,7 @@ export function CourseDocumentViewer(props: Props) {
     setError('');
     setMarkdown('');
 
-    fetch(item.contentPath, { cache: 'force-cache' })
+    fetch(academyPublicHref(item.contentPath), { cache: 'force-cache' })
       .then(response => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return response.text();
@@ -366,7 +367,7 @@ function renderInline(text: string) {
     if (link) {
       const target = resolveCourseLink(link[2]);
       return target ? (
-        <a key={index} href={target.href} target="_blank" rel="noopener noreferrer">{link[1]}</a>
+        <a key={index} href={academyPublicHref(target.href)} target="_blank" rel="noopener noreferrer">{link[1]}</a>
       ) : <Fragment key={index}>{link[1]}</Fragment>;
     }
     return <Fragment key={index}>{chunk}</Fragment>;

@@ -1,6 +1,16 @@
 name = "cyber-study-hub"
 compatibility_date = "2026-09-01"
 main = "src/worker/index.mjs"
+workers_dev = true
+
+# More specific than the existing ArtiSys host route: no DNS changes.
+[[routes]]
+pattern = "artisys.dev/academy"
+zone_name = "artisys.dev"
+
+[[routes]]
+pattern = "artisys.dev/academy/*"
+zone_name = "artisys.dev"
 
 [assets]
 directory = "./dist"

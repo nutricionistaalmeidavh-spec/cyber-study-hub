@@ -351,7 +351,7 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         if(q('SELECT id FROM users WHERE email=?').get(mail))throw new HttpError(409,'E-mail já cadastrado.');
         const token=randomBytes(32).toString('base64url');
         q('INSERT INTO invitations(token_hash,email,role,expires_at) VALUES(?,?,?,?)').run(sha(token),mail,role,now()+2*DAY);
-        return respond(res,201,{token,inviteUrl:canonicalOrigin+'/?invite='+encodeURIComponent(token),expiresInHours:48});
+        return respond(res,201,{token,inviteUrl:canonicalOrigin+(req.headers['x-academy-path']==='true'?'/academy/study':'/')+'?invite='+encodeURIComponent(token),expiresInHours:48});
       }
       const m=/^\/api\/admin\/users\/([0-9a-f-]+)$/.exec(path);
       if(m&&method==='PATCH') {
