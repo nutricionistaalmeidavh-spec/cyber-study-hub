@@ -408,9 +408,8 @@ export default {
     const scoped=internalPath!==publicUrl.pathname;
     const internalUrl=new URL(request.url);
     internalUrl.pathname=internalPath;
-    const headers=new Headers(request.headers);
-    if(scoped)headers.set('X-Academy-Path','true');
-    const internalRequest=scoped?new Request(internalUrl,{method:request.method,headers,body:['GET','HEAD'].includes(request.method)?undefined:request.body,redirect:request.redirect}):request;
+    const internalRequest=scoped?new Request(internalUrl,request):request;
+    if(scoped)internalRequest.headers.set('X-Academy-Path','true');
     const url=new URL(internalRequest.url);
     if(url.pathname==='/__worker/health' && (request.method==='GET'||request.method==='HEAD'))return response(200,{ok:true,runtime:'worker',phase:'accounts-active'});
     if(protectedPath(url.pathname)){
