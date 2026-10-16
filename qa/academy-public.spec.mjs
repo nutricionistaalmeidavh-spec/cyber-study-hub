@@ -19,6 +19,12 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
     await first.locator('.academy-course-waitlist').click();
     await expect(page.locator('#academy-waitlist-course')).toHaveValue(courses[0].id);
     await expect(page.locator('.academy-plan-card').first()).toContainText('Lista de espera');
+    const reverse=page.locator('#curso-engenharia-reversa-com-ia');
+    await reverse.locator('summary').click();
+    await expect(reverse.locator('.academy-course-module')).toHaveCount(8);
+    await expect(reverse).toContainText('PRÉVIA · LISTA DE ESPERA');
+    await reverse.locator('.academy-course-waitlist').click();
+    await expect(page.locator('#academy-waitlist-course')).toHaveValue('engenharia-reversa-com-ia');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
     await page.screenshot({path:testInfo.outputPath('academy-'+viewport.width+'.png'),fullPage:true});
     await context.close();
