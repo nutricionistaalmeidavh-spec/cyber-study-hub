@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const load = path => JSON.parse(readFileSync(path,'utf8'));
 const source=load('src/curriculum/catalog.json'), q=load('quality/registry.json'), offers=load('src/curriculum/courses.json');
-const ai=load('quality/trails/ai-dev/reviews.json'), dark=load('quality/trails/channel-dark/reviews.json');
+const ai=load('quality/trails/ai-dev/reviews.json'), dark=load('quality/trails/channel-dark/reviews.json'), reverse=load('quality/trails/reverse-ai/reviews.json');
 const flatten = kind => offers.courses.filter(c=>c.type===kind).flatMap(c=>c.modules.flatMap(m=>m.lessonCodes));
 test('curso agrupa IDs canônicos sem duplicar ou alterar aula/progresso',()=>{
   assert.deepEqual([...flatten('main')].sort(),source.main.map(x=>x.code).sort());
@@ -29,12 +29,13 @@ test('nenhum curso incompleto ou sem A fica publicado',()=>{
   assert.equal(q.editorialReviews['AULA-211']?.grade,'A');
 });
 test('trilhas especiais publicadas só com 8 módulos auditados A',()=>{
- for(const [course,review] of [[offers.courses.find(c=>c.id==='desenvolvimento-com-ia'),ai],[offers.courses.find(c=>c.id==='automacao-canal-dark'),dark]]) {
+ for(const [course,review] of [[offers.courses.find(c=>c.id==='desenvolvimento-com-ia'),ai],[offers.courses.find(c=>c.id==='automacao-canal-dark'),dark],[offers.courses.find(c=>c.id==='engenharia-reversa-com-ia'),reverse]]) {
   assert.equal(course.type,'trail'); assert.equal(course.status,'published');
   assert.equal(course.modules.length,8);
   assert.equal(course.modules.flatMap(m=>m.lessonCodes).length,32);
   assert.equal(Object.values(review.modules).length,8);
   assert.ok(Object.values(review.modules).every(m=>m.grade==='A'));
+  if(course.id==='engenharia-reversa-com-ia')assert.equal(review.reviewType,'editorial_ai_only');
  }
 });
 test('catálogo não inventa pagamentos, preserva status explícito e acesso separado',()=>{

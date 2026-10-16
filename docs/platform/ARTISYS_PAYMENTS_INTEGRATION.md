@@ -4,7 +4,7 @@
 
 A integração usa **o Pagamento ArtiSys existente** (`nutricionistaalmeidavh-spec/pagamentos-artisys`), na `main` que já contempla DevKits e publicações R2. **Não cria um novo gateway, não modifica as 67 ofertas preexistentes, não altera os 71 ZIPs dos kits e não reutiliza segredos de outros produtos.**
 
-A compra por trilha e a assinatura são modos diferentes da *mesma* API de pagamento. O Hub conserva a fonte canônica de cursos (`src/curriculum/courses.json`) e os 639 IDs atuais. Somente cursos `published` podem receber compras e liberações; a trilha REV-IA já integrada entrará no catálogo comercial somente quando seu curso estiver `published`.
+A compra por trilha e a assinatura são modos diferentes da *mesma* API de pagamento. O Hub conserva a fonte canônica de cursos (`src/curriculum/courses.json`) e os 639 IDs atuais. Somente cursos `published` podem receber compras e liberações; a trilha REV-IA, aprovada com 8 módulos editoriais A, está `published` e pode ter oferta comercial preparada sem cobrar automaticamente.
 
 **Padrão R$ 0:** a plataforma de estudo, os grants manuais e o backend self-hosted continuam utilizáveis sem pagamentos, credenciais, chave de API, Asaas ou serviço externo. A integração monetizada depende de ativação explícita e a cobrança real pode envolver taxas do processador escolhido; não há dependência paga silenciosa.
 
@@ -16,7 +16,7 @@ No painel ArtiSys Pagamentos, criar **novas ofertas inativas** com os IDs abaixo
 
 ## 1. Produtos e ofertas no Pagamento ArtiSys
 
-Cadastre no **painel ArtiSys /admin**, **inativos inicialmente**, com `deliveryMode=webhook` e preços definidos exclusivamente pelo administrador em centavos BRL. Não inventar preços no Hub. As 218 aulas principais formam cinco trilhas que correspondem aos cinco produtos comerciais novos. As duas trilhas práticas já publicadas permanecem como produtos independentes. Engenharia Reversa com IA (32 etapas) segue draft até aprovação/publicação. Cada trilha publicada possui produto:
+Cadastre no **painel ArtiSys /admin**, **inativos inicialmente**, com `deliveryMode=webhook` e preços definidos exclusivamente pelo administrador em centavos BRL. Não inventar preços no Hub. As 218 aulas principais formam cinco trilhas que correspondem aos cinco produtos comerciais novos. As três trilhas práticas com 32 etapas estão publicadas com produtos independentes, incluindo Engenharia Reversa com IA aprovada editorialmente A. Os preços e a publicação das ofertas no gateway continuam independentes. Cada trilha publicada possui produto:
 
 | ID de produto no ArtiSys | Trilha no Hub | Sale type |
 | --- | --- | --- |
@@ -27,6 +27,7 @@ Cadastre no **painel ArtiSys /admin**, **inativos inicialmente**, com `deliveryM
 | hubestudos-course-trilha-aplicacoes-cloud-ia | Segurança de Aplicações, Infraestrutura, Nuvem e IA (58 aulas) | one_time |
 | hubestudos-course-desenvolvimento-com-ia | Desenvolvimento de Sistemas com IA (32 etapas) | one_time |
 | hubestudos-course-automacao-canal-dark | Automação de Canal com IA (32 etapas) | one_time |
+| hubestudos-course-engenharia-reversa-com-ia | Engenharia Reversa com IA (32 etapas; editorial A) | one_time |
 | hubestudos-subscription | Todas as trilhas publicadas durante a vigência | monthly **ou** yearly |
 
 Para `hubestudos-subscription`, crie duas ofertas distintas com o mesmo `productId`, uma `saleType=monthly` e outra `saleType=yearly`. Cada oferta tem ID único, nome e preço no painel. Para as trilhas, cada oferta usa o produto indicado. Não use `manual` ou `download` para esses produtos: somente `webhook` libera acesso no Hub.
@@ -55,7 +56,7 @@ O vínculo da compra é com o **ID canônico do aluno que iniciou o checkout em 
 
 1. Gere um segredo aleatório diferente de todos os segredos do Asaas, Admin ou outros produtos, de no mínimo 32 caracteres. Salve-o **somente** nos ambientes privados.
 2. Hub Cloudflare: Secret `HUB_ARTISYS_CONNECTOR_SECRET` no Worker/DO. Hub Node: variável `HUB_ARTISYS_CONNECTOR_SECRET` no servidor. Não usar `VITE_*` para esse valor.
-3. Pagamento ArtiSys: Secret `PRODUCT_CONNECTORS_JSON` com objeto indexado por cada `productId` da tabela; os 8 produtos podem apontar para a mesma URL HTTPS do Hub e o mesmo segredo do Hub, sem conceder permissão sobre os outros produtos. **Faça merge do JSON existente, jamais sobrescreva configurações dos quatro sistemas e DevKits.**
+3. Pagamento ArtiSys: Secret `PRODUCT_CONNECTORS_JSON` com objeto indexado por cada `productId` da tabela; os produtos podem apontar para a mesma URL HTTPS do Hub e o mesmo segredo do Hub, sem conceder permissão sobre os outros produtos. **Faça merge do JSON existente, jamais sobrescreva configurações dos quatro sistemas e DevKits.**
 4. Configure `CONNECTOR_ALLOWED_ORIGINS` do Pagamento ArtiSys para incluir a origem HTTPS do Hub, preservando as origens existentes. O gateway recusa conector fora da lista.
 5. Publique oferta no Pagamento ArtiSys somente depois de concluir a migração de conteúdo privado, QA e homologação. Ative `PAYMENTS_ENABLED=true` no gateway **somente** quando a cobrança estiver preparada. Defina preços, tributos, reembolso e prazo contratual da compra individual.
 6. Vitrine Hub (variáveis **públicas** de build): `VITE_ARTISYS_PAYMENTS_URL=https://pagamentos-artisys-central.nutricionistaalmeidavh.workers.dev` (ou domínio HTTPS oficial configurado) e `VITE_ARTISYS_CHECKOUT_ENABLED=true`. Sem essa flag, não existem botões de compra nem acesso ao gateway.

@@ -105,13 +105,13 @@ test('clicking a course waits for the selected canonical offering, not general A
   assert.match(landing,/>Lista de espera<\/span>/);
 });
 
-test('preview de Engenharia Reversa com IA preserva status draft e módulos canônicos',()=>{
+test('Engenharia Reversa com IA publicada aparece na vitrine e mantém módulos canônicos',()=>{
   const offers=JSON.parse(read('src/curriculum/courses.json')).courses;
   const reverse=offers.find(c=>c.id==='engenharia-reversa-com-ia');
   const available=read('src/curriculum/courseOfferings.ts');
   const waitlist=read('src/components/AcademyWaitlist.tsx');
   const access=read('src/worker/course-access.mjs');
-  assert.equal(reverse.status,'draft');
+  assert.equal(reverse.status,'published');
   assert.equal(reverse.modules.length,8);
   assert.equal(reverse.modules.reduce((sum,module)=>sum+module.lessonCodes.length,0),32);
   assert.match(available,/waitlistCatalogCourses/);

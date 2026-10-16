@@ -17,7 +17,7 @@ const gates=['precisaoRevisada','didaticaInicianteValidada','praticaVerificada',
 assert.equal(manifest.modules.length,8);
 assert.equal(manifest.totalSteps,32);
 assert.equal(course.modules.length,8);
-assert.equal(offering?.status,'draft','Liberar apenas depois de revisão de publicação e autorização comercial');
+assert.equal(offering?.status,'published','Trilha pública apenas com os 8 módulos editoriais A e integridade aprovada');
 assert.equal(offering.modules.length,8);
 assert.equal(grades.reviewType,'editorial_ai_only');
 assert.equal(grades.humanLearnerTesting,'not_performed');

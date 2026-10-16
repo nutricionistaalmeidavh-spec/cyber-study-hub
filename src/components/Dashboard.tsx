@@ -62,7 +62,7 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
   const parallelModuleCount = new Set(catalog.parallel.map(item => item.track)).size;
   const aiModuleCount = new Set(catalog.guided.filter(item => item.source === 'ai-dev').map(item => item.moduleId)).size;
   const channelModuleCount = new Set(catalog.guided.filter(item => item.source === 'channel-dark').map(item => item.moduleId)).size;
-  const reverseModuleCount = (user.role==='admin'||user.role==='teacher') ? new Set(catalog.guided.filter(item => item.source === 'reverse-ai').map(item => item.moduleId)).size : 0;
+  const reverseModuleCount = new Set(catalog.guided.filter(item => item.source === 'reverse-ai').map(item => item.moduleId)).size;
   const totalModules = mainModuleCount + parallelModuleCount + aiModuleCount + channelModuleCount + reverseModuleCount;
   const guidedCompletion = getCanonicalGuidedCompletion();
   return <div className={"page hub-home stack-lg" + (isNewStudent ? "" : " hub-home--returning")}>
@@ -95,10 +95,10 @@ export default function Dashboard({ user }: { user: PlatformUser }) {
       <span><small>CANAL DARK · 8 MÓDULOS</small><strong>Automatize um canal com IA, do zero</strong><em>Steve AI, Pika, Google Flow, Kokoro, n8n e Modal como opções. Núcleo local gratuito em todas as etapas.</em></span>
       <b>Explorar trilha →</b>
     </a>
-    {(user.role==='admin'||user.role==='teacher') && <a className="hub-ai-banner" href="#courses/engenharia-reversa-com-ia">
+    <a className="hub-ai-banner" href="#courses/engenharia-reversa-com-ia">
        <span><small>ENGENHARIA REVERSA · 8 MÓDULOS</small><strong>Engenharia Reversa com IA</strong><em>REA, Ghidra, MCP, testes diferenciais e core local R$ 0.</em></span>
-       <b>Prévia administrativa →</b>
-     </a>}
+       <b>Explorar trilha →</b>
+     </a>
      <section className="hub-home-journeys" aria-labelledby="hub-journeys-title">
       <div className="hub-home-section-title">
         <div><h2 id="hub-journeys-title">Explore por assunto</h2></div>
