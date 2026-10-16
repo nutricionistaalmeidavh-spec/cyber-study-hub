@@ -4,7 +4,7 @@
 
 A integração usa **o Pagamento ArtiSys existente** (`nutricionistaalmeidavh-spec/pagamentos-artisys`), na `main` que já contempla DevKits e publicações R2. **Não cria um novo gateway, não modifica as 67 ofertas preexistentes, não altera os 71 ZIPs dos kits e não reutiliza segredos de outros produtos.**
 
-A compra individual e a assinatura são modos diferentes da *mesma* API de pagamento. O Hub conserva a fonte canônica de cursos (`src/curriculum/courses.json`) e os 607 IDs atuais. Somente cursos `published` podem receber compras e liberações; a trilha REV-IA já integrada entrará no catálogo comercial somente quando seu curso estiver `published`.
+A compra por trilha e a assinatura são modos diferentes da *mesma* API de pagamento. O Hub conserva a fonte canônica de cursos (`src/curriculum/courses.json`) e os 639 IDs atuais. Somente cursos `published` podem receber compras e liberações; a trilha REV-IA já integrada entrará no catálogo comercial somente quando seu curso estiver `published`.
 
 **Padrão R$ 0:** a plataforma de estudo, os grants manuais e o backend self-hosted continuam utilizáveis sem pagamentos, credenciais, chave de API, Asaas ou serviço externo. A integração monetizada depende de ativação explícita e a cobrança real pode envolver taxas do processador escolhido; não há dependência paga silenciosa.
 
@@ -29,7 +29,7 @@ Cadastre no **painel ArtiSys /admin**, **inativos inicialmente**, com `deliveryM
 | hubestudos-course-automacao-canal-dark | Automação de Canal com IA (32 etapas) | one_time |
 | hubestudos-subscription | Todas as trilhas publicadas durante a vigência | monthly **ou** yearly |
 
-Para `hubestudos-subscription`, crie duas ofertas distintas com o mesmo `productId`, uma `saleType=monthly` e outra `saleType=yearly`. Cada oferta tem ID único, nome e preço no painel. Para os cursos, cada oferta usa o produto indicado. Não use `manual` ou `download` para esses produtos: somente `webhook` libera acesso no Hub.
+Para `hubestudos-subscription`, crie duas ofertas distintas com o mesmo `productId`, uma `saleType=monthly` e outra `saleType=yearly`. Cada oferta tem ID único, nome e preço no painel. Para as trilhas, cada oferta usa o produto indicado. Não use `manual` ou `download` para esses produtos: somente `webhook` libera acesso no Hub.
 
 O preço canônico é do Pagamento ArtiSys (não fica duplicado no HubEstudos). A vitrine só usa as ofertas **ativas** do `GET /v1/catalog` — taxas e descontos continuam sob a responsabilidade do gateway.
 
@@ -81,7 +81,7 @@ Repita o mesmo apontamento para os outros 6 IDs de produto publicados. Nunca usa
 ## 4. Concessões, assinatura e falha segura
 
 - Pagamentos ficam em `billing_entitlements`, eventos em `billing_events`. O acesso manual continua independente em `course_grants` e `subscription_grants`. Um reembolso pago não revoga concessão manual nem outro pedido.
-- Compra por curso: acesso sem vencimento técnico, sujeito à política comercial definida antes da venda; o admin pode limitar acesso manual independentemente.
+- Compra por trilha: acesso sem vencimento técnico, sujeito à política comercial definida antes da venda; o admin pode limitar acesso manual independentemente.
 - Assinatura: o ledger local concede **30 dias para mensal** e **365 dias para anual** após ativação; renova somente após `license.renew` **assinado**. Essas durações são operacionais provisórias: alinhar à data real de ciclo de cobrança e contratos antes de habilitar assinatura em produção.
 - `license.revoke` marca somente o pedido correspondente como revogado; rejeita revogação desconhecida e não ressuscita pedido reembolsado.
 - `POST` externo não utiliza cookie de usuário, `Origin` de navegador nem ADMIN_TOKEN; a exceção de origem é **exclusiva** à rota HMAC. APIs restantes mantêm CSRF/origem e autenticação.
