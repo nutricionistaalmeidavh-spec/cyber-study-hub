@@ -53,7 +53,7 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
     const reverse=page.locator('#curso-engenharia-reversa-com-ia');
     await reverse.locator('summary').click();
     await expect(reverse.locator('.academy-course-module')).toHaveCount(8);
-    await expect(reverse).toContainText('PRÓXIMA TURMA · LISTA DE ESPERA');
+    await expect(reverse).toContainText('TRILHA PRÁTICA');
     await reverse.locator('.academy-course-waitlist').click();
     await expect(page.locator('#academy-waitlist-course')).toHaveValue('engenharia-reversa-com-ia');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
