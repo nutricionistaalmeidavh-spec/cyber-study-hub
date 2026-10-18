@@ -15,6 +15,9 @@ import { getStudyVisit, saveStudyVisit } from '../../lib/studyProgress';
 import ProgressSyncStatus from '../ProgressSyncStatus';
 import { lessonDurationLabel } from '../../lib/courseStudyMetadata';
 import { PracticeOrientation } from '../practice/PracticeOrientation';
+import {presentPentestLesson, isIntroPentestLesson} from '../../lib/pentestLessonFlow.mjs';
+import {LAB_LESSON_ID} from '../../lib/escolaLabAccess.mjs';
+import {EscolaLabIntroLab} from '../pentest/EscolaLabIntroLab';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -30,7 +33,7 @@ export function CourseDocumentViewer(props: Props) {
     return catalog.parallel.find(candidate => candidate.code === props.code);
   }, [props]);
 
-  const [markdown, setMarkdown] = useState('');
+  const [sourceMarkdown, setSourceMarkdown] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -39,6 +42,9 @@ export function CourseDocumentViewer(props: Props) {
   const [outlineOpen, setOutlineOpen] = useState(() => window.matchMedia('(min-width: 901px)').matches);
   const unitKey = props.kind === 'main' ? String(props.id) : 'parallel:' + props.code;
   const unitHref = props.kind === 'main' ? '#course/main/' + props.id : '#course/parallel/' + encodeURIComponent(props.code);
+  const markdown = useMemo(() =>
+    item?.kind === 'main' ? presentPentestLesson(item.id, sourceMarkdown) : sourceMarkdown,
+    [item, sourceMarkdown]);
   const outline = useMemo(() => documentOutline(markdown), [markdown]);
   const position = useStudyPosition(unitKey, item?.title || '', unitHref, 'reading', outline, Boolean(item) && !loading && !error);
   const read = useMemo(() => Boolean(getStudyVisit(unitKey)?.read), [unitKey, readRevision]);
@@ -60,7 +66,7 @@ export function CourseDocumentViewer(props: Props) {
     let cancelled = false;
     setLoading(true);
     setError('');
-    setMarkdown('');
+    setSourceMarkdown('');
 
     fetch(academyPublicHref(item.contentPath), { cache: 'force-cache' })
       .then(response => {
@@ -68,7 +74,7 @@ export function CourseDocumentViewer(props: Props) {
         return response.text();
       })
       .then(text => {
-        if (!cancelled) setMarkdown(text);
+        if (!cancelled) setSourceMarkdown(text);
       })
       .catch(reason => {
         if (!cancelled) {
@@ -121,7 +127,7 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
-      <PracticeOrientation target={item} />
+      {!(item.kind === 'main' && isIntroPentestLesson(item.id)) && <PracticeOrientation target={item} />}
       <ProgressSyncStatus />
       <div className="course-document-layout">
         <main className="course-document-content">
@@ -130,6 +136,7 @@ export function CourseDocumentViewer(props: Props) {
           {position.saveError && <div role="alert">{position.saveError} <button type="button" onClick={position.retry}>Tentar salvar novamente</button></div>}
           {readError && <div role="alert">{readError} <button type="button" onClick={recordReading}>Tentar registrar novamente</button></div>}
           {!loading && !error && <MarkdownDocument markdown={markdown} />}
+          {!loading && !error && item.kind === 'main' && item.id === LAB_LESSON_ID && <EscolaLabIntroLab />}
         </main>
 
         <aside className="course-document-aside">
