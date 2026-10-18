@@ -14,7 +14,9 @@ import { getStudyVisit, saveStudyVisit } from '../../lib/studyProgress';
 import ProgressSyncStatus from '../ProgressSyncStatus';
 import { lessonDurationLabel } from '../../lib/courseStudyMetadata';
 import { PracticeOrientation } from '../practice/PracticeOrientation';
-import {presentPentestLesson, isIntroPentestLesson} from '../../lib/pentestLessonFlow.mjs';
+import {presentPentestLesson, isPentestLesson} from '../../lib/pentestLessonFlow.mjs';
+import {getPentestCheckpoint} from '../../lib/pentestCheckpoints.mjs';
+import {PentestCheckpointLab} from '../pentest/PentestCheckpointLab';
 import {presentLessonMarkdown} from '../../lib/lessonPresentation.mjs';
 import {LAB_LESSON_ID} from '../../lib/escolaLabAccess.mjs';
 import {EscolaLabIntroLab} from '../pentest/EscolaLabIntroLab';
@@ -128,7 +130,7 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
-      {!(item.kind === 'main' && isIntroPentestLesson(item.id)) && <PracticeOrientation target={item} />}
+      {!(item.kind === 'main' && isPentestLesson(item.id)) && <PracticeOrientation target={item} />}
       <ProgressSyncStatus />
       <div className="course-document-layout">
         <main className="course-document-content">
@@ -139,6 +141,7 @@ export function CourseDocumentViewer(props: Props) {
           {!loading && !error && item.kind === 'main' && <ModuleOpening lessonId={item.id} />}
           {!loading && !error && <MarkdownDocument markdown={markdown} />}
           {!loading && !error && item.kind === 'main' && item.id === LAB_LESSON_ID && <EscolaLabIntroLab />}
+          {!loading && !error && item.kind === 'main' && getPentestCheckpoint(item.id) && <PentestCheckpointLab key={item.id} lessonId={item.id} />}
         </main>
 
         <aside className="course-document-aside">
