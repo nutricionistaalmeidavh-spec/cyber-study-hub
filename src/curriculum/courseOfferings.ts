@@ -9,7 +9,12 @@ export type CourseOffering = {
 export const courses = data.courses as CourseOffering[];
 export const publishedCourses = courses.filter(course => course.status === 'published');
 // A vitrine comercial mostra apenas cursos publicados; a lista de espera não concede acesso.
-export const waitlistCatalogCourses = publishedCourses;
+// Priorização visual exclusiva da página pública; não altera a ordem canônica do catálogo.
+const featuredAcademyCourseIds = ['automacao-canal-dark', 'desenvolvimento-com-ia'];
+export const waitlistCatalogCourses = [
+  ...featuredAcademyCourseIds.flatMap(id => publishedCourses.filter(course => course.id === id)),
+  ...publishedCourses.filter(course => !featuredAcademyCourseIds.includes(course.id)),
+];
 
 const catalog=content as CurriculumCatalog;
 export const mainLessonsByCode = new Map(catalog.main.map(item => [item.code,item]));
