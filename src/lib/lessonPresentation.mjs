@@ -26,8 +26,7 @@ export function presentLessonMarkdown(markdown, _lesson) {
         'O código é apenas um exemplo da lógica do laboratório. Não é preciso instalá-lo ou executá-lo para acompanhar esta aula. Quando uma atividade exigir execução local, ela informará os arquivos e o preparo necessários.')
       .replace(/## Revisão ativa e fontes/g, '## Revisão ativa')
       .replace(/## Limites, extensões e fonte primária/g, '## Limites e extensões');
-    if (/^## Revisão ativa\n\s*$/m.test(rendered.trim() + '\n')) continue;
-    if (/^## Revisão ativa\s*$/m.test(rendered) && !rendered.split('\n').slice(1).join('').trim()) continue;
+    if (title === 'Revisão ativa e fontes' && !rendered.split('\n').slice(1).join('\n').trim()) continue;
     output.push(rendered);
   }
   return output.join('').trimEnd() + '\n';
