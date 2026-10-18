@@ -7,7 +7,6 @@ import type {
   MainCurriculumItem,
   ParallelCurriculumItem
 } from '../../curriculum/types';
-import { ReferencePanel } from '../references/ReferencePanel';
 import './curriculum.css';
 import { useStudyPosition, type StudySection } from '../useStudyPosition';
 import { studySectionHref } from '../../lib/studyNavigation';
@@ -16,6 +15,7 @@ import ProgressSyncStatus from '../ProgressSyncStatus';
 import { lessonDurationLabel } from '../../lib/courseStudyMetadata';
 import { PracticeOrientation } from '../practice/PracticeOrientation';
 import {presentPentestLesson, isIntroPentestLesson} from '../../lib/pentestLessonFlow.mjs';
+import {presentLessonMarkdown} from '../../lib/lessonPresentation.mjs';
 import {LAB_LESSON_ID} from '../../lib/escolaLabAccess.mjs';
 import {EscolaLabIntroLab} from '../pentest/EscolaLabIntroLab';
 
@@ -42,9 +42,9 @@ export function CourseDocumentViewer(props: Props) {
   const [outlineOpen, setOutlineOpen] = useState(() => window.matchMedia('(min-width: 901px)').matches);
   const unitKey = props.kind === 'main' ? String(props.id) : 'parallel:' + props.code;
   const unitHref = props.kind === 'main' ? '#course/main/' + props.id : '#course/parallel/' + encodeURIComponent(props.code);
-  const markdown = useMemo(() =>
+  const markdown = useMemo(() => presentLessonMarkdown(
     item?.kind === 'main' ? presentPentestLesson(item.id, sourceMarkdown) : sourceMarkdown,
-    [item, sourceMarkdown]);
+    item || undefined), [item, sourceMarkdown]);
   const outline = useMemo(() => documentOutline(markdown), [markdown]);
   const position = useStudyPosition(unitKey, item?.title || '', unitHref, 'reading', outline, Boolean(item) && !loading && !error);
   const read = useMemo(() => Boolean(getStudyVisit(unitKey)?.read), [unitKey, readRevision]);
@@ -145,7 +145,6 @@ export function CourseDocumentViewer(props: Props) {
             <nav aria-label="Capítulos da aula">{outline.map(section => <a key={section.id} href={studySectionHref(section.id)} aria-current={position.active === section.id ? 'location' : undefined}>{section.label}</a>)}</nav>
             <a className="study-outline-module" href={moduleBackLink}>← Aulas do módulo</a>
           </details>}
-          <ReferencePanel curriculumItem={item} />
         </aside>
       </div>
 
@@ -353,10 +352,37 @@ function parseMarkdown(markdown: string) {
       index += 1;
     }
 
-    nodes.push(<p key={`p-${index}`}>{renderInline(paragraph.join(' '))}</p>);
+    const paragraphText = paragraph.join(' ');
+    // Converte decisões em um diagrama visual, mantendo o contexto explicativo.
+    const model = /^\\*\\*Modelo de decisão:\\*\\*\\s*(.+)$/.exec(paragraphText);
+    if (model) {
+      const sentence = model[1].split(/\\.\\s+(?=[A-ZÀ-Ú])/)[0].replace(/\\.$/, '');
+      const steps = sentence.split(/\\s*→\\s*/).map(part => part.trim()).filter(Boolean);
+      const explanation = model[1].slice(sentence.length).replace(/^\\.\\s*/, '').trim();
+      if (steps.length >= 3) {
+        nodes.push(<DecisionFlow key={`flow-${index}`} steps={steps} explanation={explanation} />);
+        continue;
+      }
+    }
+    nodes.push(<p key={`p-${index}`}>{renderInline(paragraphText)}</p>);
   }
 
   return nodes;
+}
+
+function DecisionFlow({steps, explanation}: {steps: string[]; explanation?: string}) {
+  return (
+    <figure className="decision-flow" role="img" aria-label={'Fluxograma de decisão: ' + steps.join(' → ')}>
+      <figcaption>Fluxo da decisão</figcaption>
+      <ol>{steps.map((step, index) =>
+        <li key={index}>
+          <span className="decision-flow-index">{String(index + 1).padStart(2, '0')}</span>
+          <strong>{step}</strong>
+        </li>)}
+      </ol>
+      {explanation && <p className="decision-flow-explanation">{explanation}</p>}
+    </figure>
+  );
 }
 
 function renderInline(text: string) {
