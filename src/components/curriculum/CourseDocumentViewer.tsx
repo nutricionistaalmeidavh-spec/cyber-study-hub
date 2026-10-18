@@ -33,7 +33,7 @@ export function CourseDocumentViewer(props: Props) {
     return catalog.parallel.find(candidate => candidate.code === props.code);
   }, [props]);
 
-  const [markdown, setMarkdown] = useState('');
+  const [sourceMarkdown, setSourceMarkdown] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -42,10 +42,10 @@ export function CourseDocumentViewer(props: Props) {
   const [outlineOpen, setOutlineOpen] = useState(() => window.matchMedia('(min-width: 901px)').matches);
   const unitKey = props.kind === 'main' ? String(props.id) : 'parallel:' + props.code;
   const unitHref = props.kind === 'main' ? '#course/main/' + props.id : '#course/parallel/' + encodeURIComponent(props.code);
-  const visibleMarkdown = useMemo(() =>
-    item?.kind === 'main' ? presentPentestLesson(item.id, markdown) : markdown,
-    [item, markdown]);
-  const outline = useMemo(() => documentOutline(visibleMarkdown), [visibleMarkdown]);
+  const markdown = useMemo(() =>
+    item?.kind === 'main' ? presentPentestLesson(item.id, sourceMarkdown) : sourceMarkdown,
+    [item, sourceMarkdown]);
+  const outline = useMemo(() => documentOutline(markdown), [markdown]);
   const position = useStudyPosition(unitKey, item?.title || '', unitHref, 'reading', outline, Boolean(item) && !loading && !error);
   const read = useMemo(() => Boolean(getStudyVisit(unitKey)?.read), [unitKey, readRevision]);
   const recordReading = () => {
@@ -66,7 +66,7 @@ export function CourseDocumentViewer(props: Props) {
     let cancelled = false;
     setLoading(true);
     setError('');
-    setMarkdown('');
+    setSourceMarkdown('');
 
     fetch(academyPublicHref(item.contentPath), { cache: 'force-cache' })
       .then(response => {
@@ -74,7 +74,7 @@ export function CourseDocumentViewer(props: Props) {
         return response.text();
       })
       .then(text => {
-        if (!cancelled) setMarkdown(text);
+        if (!cancelled) setSourceMarkdown(text);
       })
       .catch(reason => {
         if (!cancelled) {
@@ -135,7 +135,7 @@ export function CourseDocumentViewer(props: Props) {
           {error && <div className="feedback bad" role="alert">{error} <button type="button" onClick={() => setLoadAttempt(value => value + 1)}>Tentar novamente</button></div>}
           {position.saveError && <div role="alert">{position.saveError} <button type="button" onClick={position.retry}>Tentar salvar novamente</button></div>}
           {readError && <div role="alert">{readError} <button type="button" onClick={recordReading}>Tentar registrar novamente</button></div>}
-          {!loading && !error && <MarkdownDocument markdown={visibleMarkdown} />}
+          {!loading && !error && <MarkdownDocument markdown={markdown} />}
           {!loading && !error && item.kind === 'main' && item.id === LAB_LESSON_ID && <EscolaLabIntroLab />}
         </main>
 
