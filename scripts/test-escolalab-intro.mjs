@@ -58,7 +58,8 @@ test('remove standalone practice and assessment from the rendered INTRO lessons,
   }
   const later = read('public/course-library/main/035.md');
   assert.equal(isIntroPentestLesson(35), false);
-  assert.equal(presentPentestLesson(35, later), later);
+  assert.match(presentPentestLesson(35, later), /## Problema e objetivo mensurável/);
+  assert.doesNotMatch(presentPentestLesson(35, later), /## Laboratório reproduzível/);
 });
 
 test('lab renders at the END of AULA-034, uses existing account-owned lesson progress and no new course route', () => {
