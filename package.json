@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run test:pentest-module-openings && npm run test:lesson-presentation && npm run test:escolalab-intro && npm run test:academy-routing && npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:learning-paths && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:buyer-intent && npm run test:artisys-billing && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && npm run test:secondary-visual && tsc --noEmit && vite build",
+    "build": "npm run test:pentest-integrated && npm run test:pentest-module-openings && npm run test:lesson-presentation && npm run test:escolalab-intro && npm run test:academy-routing && npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:learning-paths && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:buyer-intent && npm run test:artisys-billing && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && npm run test:secondary-visual && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -88,7 +88,8 @@
     "test:academy-routing": "node --test scripts/test-academy-path-routing.mjs",
     "test:escolalab-intro": "node --test scripts/test-escolalab-intro.mjs",
     "test:lesson-presentation": "node --test scripts/test-academy-lesson-presentation.mjs",
-    "test:pentest-module-openings": "node --test scripts/test-pentest-module-openings.mjs"
+    "test:pentest-module-openings": "node --test scripts/test-pentest-module-openings.mjs",
+    "test:pentest-integrated": "node --test scripts/test-pentest-integrated-checkpoints.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
