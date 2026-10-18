@@ -9,7 +9,7 @@
     "validate:curriculum": "node scripts/validate-curriculum.mjs",
     "test:curriculum-validator": "node scripts/test-curriculum-validator.mjs",
     "verify:curriculum": "npm run check:baseline && npm run test:curriculum-validator && npm run validate:curriculum",
-    "build": "npm run test:academy-routing && npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:learning-paths && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:buyer-intent && npm run test:artisys-billing && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && npm run test:secondary-visual && tsc --noEmit && vite build",
+    "build": "npm run test:escolalab-intro && npm run test:academy-routing && npm run verify:curriculum && npm run verify:ai-dev && npm run verify:channel-dark && npm run test:reverse-ai && npm run verify:learning && npm run verify:catalog && npm run test:course-catalog && npm run test:learning-paths && npm run test:course-access && npm run test:public-signup && npm run test:platform && npm run test:buyer-intent && npm run test:artisys-billing && npm run test:protected-payloads && npm run verify:quality && npm run test:editorial && npm run test:hub-editorial && npm run test:community-navigation && npm run test:secondary-visual && tsc --noEmit && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "verify:learning": "node scripts/verify-phase-08-11.mjs",
@@ -85,7 +85,8 @@
     "test:course-discovery": "node --test scripts/test-course-discovery.mjs",
     "test:ui-ux": "playwright test --config qa/playwright.config.mjs",
     "test:learning-paths": "node --test scripts/test-main-learning-paths.mjs",
-    "test:academy-routing": "node --test scripts/test-academy-path-routing.mjs"
+    "test:academy-routing": "node --test scripts/test-academy-path-routing.mjs",
+    "test:escolalab-intro": "node --test scripts/test-escolalab-intro.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
