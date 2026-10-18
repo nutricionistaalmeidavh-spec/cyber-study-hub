@@ -354,11 +354,11 @@ function parseMarkdown(markdown: string) {
 
     const paragraphText = paragraph.join(' ');
     // Converte decisões em um diagrama visual, mantendo o contexto explicativo.
-    const model = /^\\*\\*Modelo de decisão:\\*\\*\\s*(.+)$/.exec(paragraphText);
+    const model = /^\*\*Modelo de decisão:\*\*\s*(.+)$/.exec(paragraphText);
     if (model) {
-      const sentence = model[1].split(/\\.\\s+(?=[A-ZÀ-Ú])/)[0].replace(/\\.$/, '');
-      const steps = sentence.split(/\\s*→\\s*/).map(part => part.trim()).filter(Boolean);
-      const explanation = model[1].slice(sentence.length).replace(/^\\.\\s*/, '').trim();
+      const sentence = model[1].split(/\.\s+(?=[A-ZÀ-Ú])/)[0].replace(/\.$/, '');
+      const steps = sentence.split(/\s*→\s*/).map(part => part.trim()).filter(Boolean);
+      const explanation = model[1].slice(sentence.length).replace(/^\.\s*/, '').trim();
       if (steps.length >= 3) {
         nodes.push(<DecisionFlow key={`flow-${index}`} steps={steps} explanation={explanation} />);
         continue;
