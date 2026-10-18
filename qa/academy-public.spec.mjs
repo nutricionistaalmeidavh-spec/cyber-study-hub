@@ -10,6 +10,10 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
     await page.goto('http://127.0.0.1:8790/academy');
     const cards=page.locator('.academy-courses-grid details.academy-course-card');
     await expect(cards).toHaveCount(courses.length);
+    await expect(cards.nth(0)).toHaveAttribute('id','curso-automacao-canal-dark');
+    await expect(cards.nth(1)).toHaveAttribute('id','curso-desenvolvimento-com-ia');
+    const firstCourse = courses.find(course => course.id === 'automacao-canal-dark');
+    expect(firstCourse).toBeDefined();
     await expect(page.locator('.academy-catalog-panel')).toHaveCount(0);
     const assertLegibleCards=async()=>{
       const metrics=await cards.first().evaluate(card=>{
@@ -45,10 +49,10 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
     const first=cards.first();
     await first.locator('summary').click();
     await expect(first).toHaveAttribute('open','');
-    await expect(first.locator('.academy-course-module')).toHaveCount(courses[0].modules.length);
-    await expect(first.locator('.academy-course-module').first()).toContainText(courses[0].modules[0].title);
+    await expect(first.locator('.academy-course-module')).toHaveCount(firstCourse.modules.length);
+    await expect(first.locator('.academy-course-module').first()).toContainText(firstCourse.modules[0].title);
     await first.locator('.academy-course-waitlist').click();
-    await expect(page.locator('#academy-waitlist-course')).toHaveValue(courses[0].id);
+    await expect(page.locator('#academy-waitlist-course')).toHaveValue(firstCourse.id);
     await expect(page.locator('.academy-plan-card').first()).toContainText('Lista de espera');
     const reverse=page.locator('#curso-engenharia-reversa-com-ia');
     await reverse.locator('summary').click();
