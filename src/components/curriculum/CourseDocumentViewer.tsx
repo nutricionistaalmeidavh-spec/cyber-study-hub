@@ -18,6 +18,7 @@ import {presentPentestLesson, isIntroPentestLesson} from '../../lib/pentestLesso
 import {presentLessonMarkdown} from '../../lib/lessonPresentation.mjs';
 import {LAB_LESSON_ID} from '../../lib/escolaLabAccess.mjs';
 import {EscolaLabIntroLab} from '../pentest/EscolaLabIntroLab';
+import {ModuleOpening} from './ModuleOpening';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -135,6 +136,7 @@ export function CourseDocumentViewer(props: Props) {
           {error && <div className="feedback bad" role="alert">{error} <button type="button" onClick={() => setLoadAttempt(value => value + 1)}>Tentar novamente</button></div>}
           {position.saveError && <div role="alert">{position.saveError} <button type="button" onClick={position.retry}>Tentar salvar novamente</button></div>}
           {readError && <div role="alert">{readError} <button type="button" onClick={recordReading}>Tentar registrar novamente</button></div>}
+          {!loading && !error && item.kind === 'main' && <ModuleOpening lessonId={item.id} />}
           {!loading && !error && <MarkdownDocument markdown={markdown} />}
           {!loading && !error && item.kind === 'main' && item.id === LAB_LESSON_ID && <EscolaLabIntroLab />}
         </main>
