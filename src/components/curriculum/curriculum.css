@@ -81,3 +81,20 @@
 .course-lab-resources-command code{max-width:100%;overflow-wrap:anywhere;padding:7px 9px;border-radius:8px;background:rgba(5,11,21,.5);font-size:12px}
 .course-lab-resources small{color:#c9c4db;line-height:1.5;display:block}
 @media(max-width:680px){.course-lab-resources{padding:14px!important}.course-lab-resources-links{display:grid;grid-template-columns:1fr}.course-lab-resources-links a{justify-content:center}}
+
+
+/* Fluxograma do raciocínio: substitui setas em parágrafos por passos visuais acessíveis. */
+.decision-flow{margin:24px 0;padding:18px;border:1px solid #7753a1;border-radius:17px;background:#1d122e;color:#faf6ff;max-width:100%;overflow-wrap:anywhere}
+.decision-flow figcaption{font-size:13px;font-weight:800;color:#e3cdff;margin-bottom:15px}
+.decision-flow ol{display:flex;flex-wrap:wrap;gap:17px;align-items:stretch;padding:0!important;margin:0!important;list-style:none}
+.decision-flow li{flex:1 1 140px;position:relative;min-width:0;border:1px solid #695184;border-radius:11px;background:#30213f;padding:12px 10px;display:flex;flex-direction:column;gap:9px;min-height:78px;margin:0!important}
+.decision-flow li:not(:last-child)::after{content:'→';position:absolute;right:-17px;top:50%;transform:translateY(-50%);color:#c7a0f6;font-size:18px;font-weight:800}
+.decision-flow-index{font:800 10px ui-monospace,SFMono-Regular,Consolas,monospace;color:#d5afff}
+.decision-flow li strong{font-size:12px;line-height:1.5;color:#f8f0ff;font-weight:700}
+.decision-flow .decision-flow-explanation{font-size:12px;line-height:1.6;color:#eadbf8;margin:15px 0 0}
+@media(max-width:700px){
+  .decision-flow{padding:16px}
+  .decision-flow ol{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+  .decision-flow li{min-height:0;padding:12px 14px;gap:6px}
+  .decision-flow li:not(:last-child)::after{content:'↓';right:50%;top:auto;bottom:-23px;transform:translateX(50%);font-size:18px}
+}
