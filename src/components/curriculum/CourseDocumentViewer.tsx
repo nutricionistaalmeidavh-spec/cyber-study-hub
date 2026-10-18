@@ -15,6 +15,9 @@ import { getStudyVisit, saveStudyVisit } from '../../lib/studyProgress';
 import ProgressSyncStatus from '../ProgressSyncStatus';
 import { lessonDurationLabel } from '../../lib/courseStudyMetadata';
 import { PracticeOrientation } from '../practice/PracticeOrientation';
+import {presentPentestLesson, isIntroPentestLesson} from '../../lib/pentestLessonFlow.mjs';
+import {LAB_LESSON_ID} from '../../lib/escolaLabAccess.mjs';
+import {EscolaLabIntroLab} from '../pentest/EscolaLabIntroLab';
 
 const catalog = catalogData as CurriculumCatalog;
 
@@ -39,7 +42,10 @@ export function CourseDocumentViewer(props: Props) {
   const [outlineOpen, setOutlineOpen] = useState(() => window.matchMedia('(min-width: 901px)').matches);
   const unitKey = props.kind === 'main' ? String(props.id) : 'parallel:' + props.code;
   const unitHref = props.kind === 'main' ? '#course/main/' + props.id : '#course/parallel/' + encodeURIComponent(props.code);
-  const outline = useMemo(() => documentOutline(markdown), [markdown]);
+  const visibleMarkdown = useMemo(() =>
+    item?.kind === 'main' ? presentPentestLesson(item.id, markdown) : markdown,
+    [item, markdown]);
+  const outline = useMemo(() => documentOutline(visibleMarkdown), [visibleMarkdown]);
   const position = useStudyPosition(unitKey, item?.title || '', unitHref, 'reading', outline, Boolean(item) && !loading && !error);
   const read = useMemo(() => Boolean(getStudyVisit(unitKey)?.read), [unitKey, readRevision]);
   const recordReading = () => {
@@ -121,7 +127,7 @@ export function CourseDocumentViewer(props: Props) {
         )}
       </section>
 
-      <PracticeOrientation target={item} />
+      {!(item.kind === 'main' && isIntroPentestLesson(item.id)) && <PracticeOrientation target={item} />}
       <ProgressSyncStatus />
       <div className="course-document-layout">
         <main className="course-document-content">
@@ -129,7 +135,8 @@ export function CourseDocumentViewer(props: Props) {
           {error && <div className="feedback bad" role="alert">{error} <button type="button" onClick={() => setLoadAttempt(value => value + 1)}>Tentar novamente</button></div>}
           {position.saveError && <div role="alert">{position.saveError} <button type="button" onClick={position.retry}>Tentar salvar novamente</button></div>}
           {readError && <div role="alert">{readError} <button type="button" onClick={recordReading}>Tentar registrar novamente</button></div>}
-          {!loading && !error && <MarkdownDocument markdown={markdown} />}
+          {!loading && !error && <MarkdownDocument markdown={visibleMarkdown} />}
+          {!loading && !error && item.kind === 'main' && item.id === LAB_LESSON_ID && <EscolaLabIntroLab />}
         </main>
 
         <aside className="course-document-aside">
