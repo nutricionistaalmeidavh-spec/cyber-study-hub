@@ -1,0 +1,1 @@
+export declare function presentLessonMarkdown(markdown: string, lesson?: {id?: number;code?: string}): string;
