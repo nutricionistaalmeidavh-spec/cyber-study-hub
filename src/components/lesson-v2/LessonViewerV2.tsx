@@ -20,7 +20,6 @@ import {
   syncLegacyLessonFlags
 } from '../../lib/learningProgress';
 import { recordQuizConceptEvidence } from '../../lib/mastery';
-import { ReferencePanel } from '../references/ReferencePanel';
 import { canRevealQuizFeedback, quizActionLabel } from './quizCommit';
 import './lesson-v2.css';
 import { useStudyPosition } from '../useStudyPosition';
@@ -440,12 +439,6 @@ function LessonViewerV2Content({
           </section>
 
 
-
-          {lesson.externalReferences.length > 0 && (
-            <section className="lesson-v2-section lesson-v2-reference-section">
-              <ReferencePanel lessonReferences={lesson.externalReferences} />
-            </section>
-          )}
 
           <section className="lesson-v2-section lesson-v2-review" id="v2-revisao">
             <SectionLabel>REVISÃO</SectionLabel>
