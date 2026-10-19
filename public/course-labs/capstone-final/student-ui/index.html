@@ -17,9 +17,10 @@
     </header>
     <main>
       <section class="hero" aria-labelledby="title">
-        <div class="eyebrow">ESCOLALAB / MISSÃO 01 / AULA-034</div>
-        <h1 id="title">Quem pode acessar a fatura F001?</h1>
-        <p>Agora você está testando um <strong>servidor HTTP de verdade</strong>, executado apenas neste computador. Investigue o que acontece quando Alice e Bob pedem o mesmo documento.</p>
+        <div class="eyebrow" id="mission-label">ESCOLALAB / AULA-034</div>
+        <h1 id="title">Autorização e descoberta</h1>
+        <p id="mission-description">Agora você está testando um <strong>servidor HTTP real</strong>, executado somente neste computador.</p>
+        <div class="mission-switch"><label for="mission-select">Qual aula você está praticando?</label><select id="mission-select" aria-label="Missão por aula"><option value="034">034 · Autorização e descoberta</option><option value="040">040 · Correção e relatório</option><option value="213">213 · Inventário e impacto</option><option value="218">218 · Logs e reteste</option></select><p><strong>Uma pasta, quatro missões:</strong> você baixa o EscolaLab apenas uma vez. Nas próximas aulas, abra este mesmo aplicativo e escolha outra missão. Não há necessidade de baixar novamente.</p></div>
         <div class="tags"><span>Dados fictícios</span><span>Node.js 22+</span><span>Sem internet</span><span>Sem conta</span></div>
       </section>
       <div class="columns">
@@ -29,7 +30,7 @@
           <div class="mission-card">
             <div class="eyebrow" id="step-label">ETAPA 01</div>
             <h3 id="step-title">Acesso legítimo</h3>
-            <p id="step-text">Confirme que Alice consegue ler a própria fatura.</p>
+            <p id="step-text">Confirme que Alice consegue ler a própria fatura.</p><p class="mission-focus" id="mission-focus"></p>
             <button class="secondary" type="button" id="prepare">Preparar este teste</button>
           </div>
           <h3 class="small-heading">Evidências coletadas</h3>
@@ -39,6 +40,7 @@
         <section class="console panel" aria-labelledby="console-title">
           <div class="panel-head"><div><div class="eyebrow">BANCO DE TESTES</div><h2 id="console-title">Portal financeiro fictício</h2></div><span id="health" class="server-state">Conectando…</span></div>
           <div class="fields">
+            <fieldset><legend>Recurso deste teste</legend><label for="route">Rota HTTP autorizada</label><select id="route"><option value="/invoices/F001">/invoices/F001</option><option value="/health">/health</option></select></fieldset>
             <fieldset><legend>Qual usuário fará o pedido?</legend>
               <label><input type="radio" name="actor" value="alice" checked> Alice (dona da fatura)</label>
               <label><input type="radio" name="actor" value="bob"> Bob (outra conta)</label>
@@ -58,10 +60,10 @@
       </div>
       <section class="evidence panel" aria-labelledby="evidence-title">
         <div class="panel-head"><div><div class="eyebrow">RESULTADOS</div><h2 id="evidence-title">Meu relatório de laboratório</h2></div><span class="hint">Arquivo JSON local</span></div>
-        <p>Quando terminar, exporte os registros e leve a explicação para a Academy. O arquivo inclui somente as requisições e respostas feitas nesta sessão.</p>
+        <p>Ao concluir uma missão, exporte suas evidências com o código da aula. Cada aula gera um relatório distinto; o mesmo pacote é reutilizado. O arquivo contém somente respostas e logs fictícios observados nesta sessão.</p>
         <div class="actions">
           <button id="export" class="primary outline" type="button" disabled>Exportar evidências (.json)</button>
-          <button id="reset" class="secondary" type="button">Recomeçar missão</button>
+          <button id="reset" class="secondary" type="button">Recomeçar esta missão</button>
         </div>
         <p id="export-hint" class="hint" role="status">Execute ao menos um teste para habilitar o relatório.</p>
       </section>

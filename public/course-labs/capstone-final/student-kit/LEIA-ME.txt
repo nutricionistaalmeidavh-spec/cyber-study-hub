@@ -1,11 +1,14 @@
-ESCOLALAB v1.0.0 - ARTISYS ACADEMY
+ESCOLALAB v1.1.0 - ARTISYS ACADEMY
 ================================
 1. Abra COMECE-AQUI.html para instruções amigáveis.
 2. Instale Node.js 22+ se ainda não estiver instalado.
 3. Windows: iniciar-windows.bat
    macOS / Linux: sh iniciar-linux-mac.sh
 4. Abra http://127.0.0.1:4191
-5. Encerre usando Ctrl+C.
+5. Selecione a missão da AULA-034, 040, 213 ou 218 no topo do aplicativo.
+   O mesmo ZIP contém as quatro atividades: baixe uma única vez.
+6. Ao concluir, exporte o JSON específico da aula.
+7. Encerre usando Ctrl+C.
 
 O laboratório inclui apenas dados fictícios e responde exclusivamente
 no próprio computador (127.0.0.1). Não exponha à rede.
