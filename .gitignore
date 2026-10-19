@@ -13,3 +13,6 @@ dist
 .dev.vars*
 qa-results/
 qa-report/
+
+# Student ZIP built automatically for Vite/Cloudflare deployments
+/public/downloads/EscolaLab-v*.zip
