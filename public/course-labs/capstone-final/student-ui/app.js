@@ -1,112 +1,157 @@
-// Interface do EscolaLab: requisições HTTP reais, exclusivamente ao processo local.
-// Somente a API do próprio servidor é acessada; não há bibliotecas, contas ou CDN.
-const steps=[
-  {actor:'alice',mode:'vulnerable',status:200,title:'Estabeleça um acesso legítimo',
-   instruction:'Alice é a dona de F001. No modo vulnerável, confirme que consegue ler a própria fatura.'},
-  {actor:'bob',mode:'vulnerable',status:200,title:'Investigue uma falha de autorização',
-   instruction:'Troque para Bob, mantenha a versão vulnerável e observe se ele consegue abrir F001, que pertence a Alice.'},
-  {actor:'bob',mode:'corrected',status:403,title:'Verifique a correção',
-   instruction:'Mantenha Bob, escolha a versão corrigida e confira se a API bloqueia a requisição.'},
-  {actor:'alice',mode:'corrected',status:200,title:'Evite uma regressão',
-   instruction:'Agora confirme que Alice continua acessando F001 depois da correção.'}
-];
+// EscolaLab: um pacote, quatro missões com evidências HTTP reais apenas em localhost.
+import {LAB_MISSION_CODES,getLabMission} from './missions.js';
 const $=id=>document.getElementById(id);
-const state={index:0,evidence:[],completed:[]};
+const STORAGE_KEY='escolalab-local-missions-v1.1';
 const actor=()=>document.querySelector('input[name="actor"]:checked')?.value;
 const mode=()=>document.querySelector('input[name="mode"]:checked')?.value;
 function select(name,value){
   const field=document.querySelector('input[name="'+name+'"][value="'+value+'"]');
   if(field)field.checked=true;
 }
+function blankState(){return {completed:[],evidence:[]};}
+function readSaved(){
+  try{
+    const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+    const result={};
+    for(const code of LAB_MISSION_CODES){
+      const source=data?.[code],mission=getLabMission(code);
+      if(!source||!Array.isArray(source.completed)||!Array.isArray(source.evidence)){
+        result[code]=blankState();continue;
+      }
+      const count=mission.steps.length;
+      const ids=source.completed.filter((id,index)=>typeof id==='string'&&id===mission.steps[index]?.id);
+      result[code]={completed:ids.slice(0,count),evidence:source.evidence.filter(e=>e&&typeof e==='object'&&
+        typeof e.status==='number'&&typeof e.route==='string').slice(-80)};
+    }
+    return result;
+  }catch{return Object.fromEntries(LAB_MISSION_CODES.map(code=>[code,blankState()]));}
+}
+const state={mission:'034',missions:readSaved()};
+for(const code of LAB_MISSION_CODES)state.missions[code]??=blankState();
+const currentMission=()=>getLabMission(state.mission);
+const currentProgress=()=>state.missions[state.mission];
+const currentStep=()=>currentMission()?.steps[currentProgress().completed.length];
+function save(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state.missions));}
+  catch{/* A navegação permanece funcional com armazenamento bloqueado. */}
+}
 function prepare(){
-  const step=steps[state.index];
+  const step=currentStep();
   if(!step)return;
-  select('actor',step.actor);select('mode',step.mode);
+  $('route').value=step.route;
+  select('actor',step.actor);
+  select('mode',step.mode);
   $('status').textContent='Aguardando';
-  $('result').textContent='Configurações preparadas. Execute a requisição para observar a resposta.';
+  $('result').textContent='Teste preparado. Execute a requisição para observar o resultado real.';
 }
 function render(){
-  $('step-count').textContent=state.completed.length+'/'+steps.length;
-  $('meter').setAttribute('aria-valuenow',String(state.completed.length));
-  $('meter-fill').style.width=state.completed.length/steps.length*100+'%';
-  const step=steps[state.index];
-  $('step-label').textContent=step?'ETAPA '+String(state.index+1).padStart(2,'0'):'INVESTIGAÇÃO COMPLETA';
-  $('step-title').textContent=step?.title||'Você concluiu a missão.';
-  $('step-text').textContent=step?.instruction||'Quatro respostas HTTP foram observadas. Exporte as evidências para guardar seu registro.';
+  const mission=currentMission(),progress=currentProgress(),index=progress.completed.length;
+  const step=mission.steps[index];
+  $('mission-select').value=state.mission;
+  $('mission-label').textContent='ESCOLALAB / MISSÃO DA AULA-'+state.mission;
+  $('title').textContent=mission.title;
+  $('mission-description').textContent=mission.description+' Você está usando um servidor HTTP real somente neste computador.';
+  $('mission-focus').textContent='Objetivo: '+mission.focus;
+  $('step-count').textContent=index+'/'+mission.steps.length;
+  $('meter').setAttribute('aria-valuenow',String(index));
+  $('meter-fill').style.width=(index/mission.steps.length*100)+'%';
+  $('step-label').textContent=step?'ETAPA '+String(index+1).padStart(2,'0'):'MISSÃO CONCLUÍDA';
+  $('step-title').textContent=step?.title||'AULA-'+state.mission+' concluída';
+  $('step-text').textContent=step?.instruction||mission.outcome;
   $('prepare').disabled=!step;
-  $('checklist').replaceChildren(...steps.map((item,index)=>{
-    const li=document.createElement('li');
-    const marker=document.createElement('span');
-    marker.className='check';
-    marker.textContent=state.completed.includes(index)?'✓':'○';
-    const info=document.createElement('span');
-    info.textContent=(item.actor==='alice'?'Alice':'Bob')+' / '+(item.mode==='vulnerable'?'Vulnerável':'Corrigida');
+  $('checklist').replaceChildren(...mission.steps.map(item=>{
+    const li=document.createElement('li'),marker=document.createElement('span');
+    marker.className='check';marker.textContent=progress.completed.includes(item.id)?'✓':'○';
+    const label=document.createElement('span');label.textContent=item.title;
     const status=document.createElement('strong');
-    status.textContent=state.completed.includes(index)?'HTTP '+item.status:'Pendente';
-    li.append(marker,info,status);
-    return li;
+    status.textContent=progress.completed.includes(item.id)?'HTTP '+item.status:'Pendente';
+    li.append(marker,label,status);return li;
   }));
-  $('export').disabled=state.evidence.length===0;
-  $('export-hint').textContent=state.evidence.length
-    ?state.evidence.length+' requisição(ões) registrada(s) nesta sessão.'
-    :'Execute ao menos um teste para habilitar o relatório.';
+  $('export').disabled=progress.evidence.length===0;
+  $('export-hint').textContent=progress.evidence.length
+    ?progress.evidence.length+' evidência(s) da AULA-'+state.mission+'. O relatório será identificado com esta missão.'
+    :'Execute ao menos um teste desta missão para habilitar o relatório.';
+}
+function switchMission(code){
+  if(!getLabMission(code))return;
+  state.mission=code;
+  $('result').textContent='AULA-'+code+': escolha as configurações e execute.';
+  $('status').textContent='Aguardando';
+  $('feedback').className='outcome';
+  $('feedback').textContent='Missão da AULA-'+code+' selecionada. Os registros das outras aulas continuam salvos neste mesmo EscolaLab.';
+  render();prepare();
 }
 async function request(){
-  const a=actor(),m=mode();
+  const a=actor(),m=mode(),route=$('route').value;
+  const url=route==='/health'
+    ?'/health'
+    :'/lab/api/invoices/F001?as='+encodeURIComponent(a)+'&mode='+encodeURIComponent(m);
   $('execute').disabled=true;
   $('status').textContent='Executando…';
   try{
-    const response=await fetch('/lab/api/invoices/F001?as='+encodeURIComponent(a)+'&mode='+encodeURIComponent(m),{
-      method:'GET',cache:'no-store',headers:{Accept:'application/json'}
-    });
+    const response=await fetch(url,{method:'GET',cache:'no-store',headers:{Accept:'application/json'}});
     const data=await response.json();
     $('status').textContent='HTTP '+response.status;
     $('result').textContent=JSON.stringify(data,null,2);
-    const proof={at:new Date().toISOString(),actor:a,mode:m,status:response.status,
-      path:'/lab/api/invoices/F001',detection:data.detection??null};
-    state.evidence.push(proof);
-    const expected=steps[state.index];
-    if(expected&&a===expected.actor&&m===expected.mode&&response.status===expected.status){
-      state.completed.push(state.index);state.index++;
+    const signal=data?.detection??null;
+    const record={at:new Date().toISOString(),lessonCode:'AULA-'+state.mission,
+      missionStep:currentStep()?.id||'free-test',actor:a,mode:m,route,status:response.status,
+      detection:signal,audit:data?.audit||null,localHttp:true};
+    const progress=currentProgress();
+    progress.evidence.push(record);
+    if(progress.evidence.length>80)progress.evidence.shift();
+    const expected=currentStep();
+    const detectionMatches=expected&&(!Object.prototype.hasOwnProperty.call(expected,'detection')||
+      signal===expected.detection);
+    const matches=expected&&route===expected.route&&a===expected.actor&&m===expected.mode&&
+      response.status===expected.status&&detectionMatches;
+    if(matches){
+      progress.completed.push(expected.id);
       $('feedback').className='outcome good';
-      $('feedback').textContent=proof.actor==='bob'&&proof.mode==='vulnerable'
-        ?'Falha observada: Bob recebeu HTTP 200 para a fatura de Alice. Isso é IDOR/BOLA neste cenário fictício.'
-        :response.status===403
-          ?'Proteção confirmada: o servidor retornou HTTP 403 para Bob.'
-          :'Acesso legítimo observado: a API retornou HTTP 200 para Alice.';
+      $('feedback').textContent='Resultado confirmado na missão '+state.mission+': '+expected.title+'. '
+        +(signal?'Detecção: '+signal+'. ':response.status===403?'Acesso negado pela API. ':'')
+        +(progress.completed.length===currentMission().steps.length?currentMission().outcome:'Continue para a próxima verificação.');
     }else{
       $('feedback').className='outcome caution';
-      $('feedback').textContent='Resultado registrado. Compare com a missão atual e ajuste usuário ou versão para avançar.';
+      $('feedback').textContent='Requisição registrada. Para concluir esta etapa, compare rota, usuário, versão, código HTTP e sinal de detecção com o roteiro.';
     }
-    render();
+    save();render();
   }catch{
     $('status').textContent='Sem conexão';
-    $('result').textContent='Servidor indisponível. Inicie o EscolaLab pelo atalho da pasta e recarregue esta página.';
+    $('result').textContent='Servidor local indisponível. Inicie o EscolaLab pelo atalho da pasta.';
     $('feedback').className='outcome caution';
     $('feedback').textContent='Não foi possível acessar o servidor local.';
   }finally{$('execute').disabled=false;}
 }
 function exportEvidence(){
-  if(!state.evidence.length)return;
-  const data={lab:'EscolaLab',version:'1.0.0',origin:'http://127.0.0.1',simulatedIdentities:true,
-    realLocalHttp:true,completedSteps:state.completed.length,
-    warning:'Somente ambiente didático. Identidades fictícias; não comprova segurança de produção.',
-    entries:state.evidence};
+  const mission=currentMission(),progress=currentProgress();
+  if(!progress.evidence.length)return;
+  const data={lab:'EscolaLab',version:'1.1.0',lessonCode:'AULA-'+state.mission,
+    mission:mission.title,goal:mission.focus,origin:'http://127.0.0.1',simulatedIdentities:true,
+    realLocalHttp:true,completedSteps:progress.completed.length,totalSteps:mission.steps.length,
+    conclusion:progress.completed.length===mission.steps.length?mission.outcome:'Missão parcialmente executada',
+    warning:'Exclusivamente dados fictícios. Não comprova segurança em produção.',
+    entries:progress.evidence};
+  if(state.mission==='040')data.releaseRecommendation=progress.completed.length===mission.steps.length
+    ?'Cenário didático: falha corrigida e regressão legítima aprovada.'
+    :'Não concluir a liberação antes de confirmar os quatro casos de teste.';
+  if(state.mission==='218')data.detectionSummary=progress.completed.length===mission.steps.length
+    ?'Sinal positivo observado e casos benigno/bloqueado verificados.':'Linha do tempo ainda incompleta.';
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const link=document.createElement('a');
-  link.href=url;link.download='EscolaLab-evidencias.json';
+  link.href=url;link.download='EscolaLab-AULA-'+state.mission+'-evidencias.json';
   document.body.append(link);link.click();link.remove();
-  URL.revokeObjectURL(url);
+  // Wait for browser to begin saving before revoking blob URL.
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function reset(){
-  state.index=0;state.evidence=[];state.completed=[];
-  select('actor','alice');select('mode','vulnerable');
+  state.missions[state.mission]=blankState();save();
   $('status').textContent='Aguardando';
-  $('result').textContent='Missão reiniciada. Execute o primeiro teste.';
+  $('result').textContent='Missão reiniciada.';
   $('feedback').className='outcome';
-  $('feedback').textContent='Os registros da sessão foram limpos. O arquivo já exportado permanece no seu computador.';
-  render();
+  $('feedback').textContent='Somente a AULA-'+state.mission+' foi reiniciada. As outras missões e seus relatórios permanecem disponíveis.';
+  render();prepare();
 }
 async function checkHealth(){
   try{
@@ -115,8 +160,13 @@ async function checkHealth(){
     $('health').textContent='ATIVO';$('health').classList.add('online');
   }catch{$('health').textContent='SEM CONEXÃO';}
 }
+$('mission-select').addEventListener('change',event=>switchMission(event.target.value));
 $('prepare').addEventListener('click',prepare);
 $('execute').addEventListener('click',request);
 $('export').addEventListener('click',exportEvidence);
 $('reset').addEventListener('click',reset);
-render();checkHealth();
+for(const key of ['route','actor','mode']) {
+  const el=key==='route'?$('route'):null;
+  if(el)el.addEventListener('change',()=>{$('status').textContent='Configuração alterada';});
+}
+render();prepare();checkHealth();
