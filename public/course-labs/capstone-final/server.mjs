@@ -10,6 +10,7 @@ const root=path.dirname(fileURLToPath(import.meta.url));
 const assets=Object.freeze({
   '/': {file:'student-ui/index.html',type:'text/html; charset=utf-8'},
   '/app.js': {file:'student-ui/app.js',type:'text/javascript; charset=utf-8'},
+  '/missions.js': {file:'student-ui/missions.js',type:'text/javascript; charset=utf-8'},
   '/style.css': {file:'student-ui/style.css',type:'text/css; charset=utf-8'}
 });
 const headers=Object.freeze({
