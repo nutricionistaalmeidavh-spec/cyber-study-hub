@@ -9,6 +9,7 @@ export const FILES=Object.freeze([
   ['public/course-labs/capstone-final/lab.test.mjs','lab.test.mjs'],
   ['public/course-labs/capstone-final/student-ui/index.html','student-ui/index.html'],
   ['public/course-labs/capstone-final/student-ui/app.js','student-ui/app.js'],
+  ['public/course-labs/capstone-final/student-ui/missions.js','student-ui/missions.js'],
   ['public/course-labs/capstone-final/student-ui/style.css','student-ui/style.css'],
   ['public/course-labs/capstone-final/student-kit/COMECE-AQUI.html','COMECE-AQUI.html'],
   ['public/course-labs/capstone-final/student-kit/LEIA-ME.txt','LEIA-ME.txt'],
@@ -16,7 +17,7 @@ export const FILES=Object.freeze([
   ['public/course-labs/capstone-final/student-kit/iniciar-linux-mac.sh','iniciar-linux-mac.sh'],
   ['public/course-labs/capstone-final/student-kit/iniciar-macos.command','iniciar-macos.command']
 ]);
-export const OUTPUT_NAME='EscolaLab-v1.0.0.zip';
+export const OUTPUT_NAME='EscolaLab-v1.1.0.zip';
 const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const crcTable=Array.from({length:256},(_,i)=>{
   let c=i;
