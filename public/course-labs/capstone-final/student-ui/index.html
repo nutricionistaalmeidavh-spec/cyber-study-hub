@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="EscolaLab: prática real de HTTP em um servidor local, sem contas ou dados externos.">
+  <title>EscolaLab | Laboratório de autorização</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <header class="topbar">
+      <div class="identity"><span class="mark" aria-hidden="true">A</span><span>ARTISYS <small>ACADEMY</small></span></div>
+      <div class="local"><span class="live-dot"></span> SERVIDOR LOCAL · 127.0.0.1</div>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">ESCOLALAB / MISSÃO 01 / AULA-034</div>
+        <h1 id="title">Quem pode acessar a fatura F001?</h1>
+        <p>Agora você está testando um <strong>servidor HTTP de verdade</strong>, executado apenas neste computador. Investigue o que acontece quando Alice e Bob pedem o mesmo documento.</p>
+        <div class="tags"><span>Dados fictícios</span><span>Node.js 22+</span><span>Sem internet</span><span>Sem conta</span></div>
+      </section>
+      <div class="columns">
+        <section class="mission panel" aria-labelledby="mission-title">
+          <div class="panel-head"><div><div class="eyebrow">SEU ROTEIRO</div><h2 id="mission-title">Investigação guiada</h2></div><span id="step-count" class="step-count">0/4</span></div>
+          <div class="meter" role="progressbar" aria-label="Progresso da missão" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" id="meter"><span id="meter-fill"></span></div>
+          <div class="mission-card">
+            <div class="eyebrow" id="step-label">ETAPA 01</div>
+            <h3 id="step-title">Acesso legítimo</h3>
+            <p id="step-text">Confirme que Alice consegue ler a própria fatura.</p>
+            <button class="secondary" type="button" id="prepare">Preparar este teste</button>
+          </div>
+          <h3 class="small-heading">Evidências coletadas</h3>
+          <ol id="checklist" class="checklist" aria-label="Testes da missão"></ol>
+          <p class="disclaimer">Este aplicativo usa identidades fictícias por parâmetro. Isso <strong>não é autenticação real</strong>. Não publique o servidor e não o use com dados de clientes.</p>
+        </section>
+        <section class="console panel" aria-labelledby="console-title">
+          <div class="panel-head"><div><div class="eyebrow">BANCO DE TESTES</div><h2 id="console-title">Portal financeiro fictício</h2></div><span id="health" class="server-state">Conectando…</span></div>
+          <div class="fields">
+            <fieldset><legend>Qual usuário fará o pedido?</legend>
+              <label><input type="radio" name="actor" value="alice" checked> Alice (dona da fatura)</label>
+              <label><input type="radio" name="actor" value="bob"> Bob (outra conta)</label>
+            </fieldset>
+            <fieldset><legend>Qual versão testar?</legend>
+              <label><input type="radio" name="mode" value="vulnerable" checked> Vulnerável</label>
+              <label><input type="radio" name="mode" value="corrected"> Corrigida</label>
+            </fieldset>
+          </div>
+          <button type="button" class="primary" id="execute">Executar GET /invoices/F001 <span aria-hidden="true">→</span></button>
+          <div class="terminal" aria-live="polite">
+            <div class="terminal-head"><span>Resposta real do servidor localhost</span><span id="status">Aguardando</span></div>
+            <pre id="result">Selecione o usuário e a versão; depois execute o teste.</pre>
+          </div>
+          <div class="outcome" id="feedback" role="status">A comparação será mostrada aqui após sua primeira requisição.</div>
+        </section>
+      </div>
+      <section class="evidence panel" aria-labelledby="evidence-title">
+        <div class="panel-head"><div><div class="eyebrow">RESULTADOS</div><h2 id="evidence-title">Meu relatório de laboratório</h2></div><span class="hint">Arquivo JSON local</span></div>
+        <p>Quando terminar, exporte os registros e leve a explicação para a Academy. O arquivo inclui somente as requisições e respostas feitas nesta sessão.</p>
+        <div class="actions">
+          <button id="export" class="primary outline" type="button" disabled>Exportar evidências (.json)</button>
+          <button id="reset" class="secondary" type="button">Recomeçar missão</button>
+        </div>
+        <p id="export-hint" class="hint" role="status">Execute ao menos um teste para habilitar o relatório.</p>
+      </section>
+    </main>
+    <footer>ArtiSys Academy · EscolaLab · Laboratório isolado em 127.0.0.1 · Para encerrar, volte ao terminal e pressione Ctrl+C.</footer>
+  </div>
+</body>
+</html>
