@@ -4,6 +4,7 @@ import {mkdtempSync,mkdirSync,writeFileSync,rmSync,readFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import net from 'node:net';
+import http from 'node:http';
 import {spawn} from 'node:child_process';
 import {setTimeout as delay} from 'node:timers/promises';
 import {createStudentZip,FILES,OUTPUT_NAME,packageEscolaLab} from './package-escolalab.mjs';
@@ -99,7 +100,13 @@ test('extracted kit runs outside repository and serves real HTTP, not mock fetch
   assert.equal((await fetch(base+'/lab/api/invoices/F001?as=bob&mode=production')).status,400);
   assert.equal((await fetch(base+'/unknown')).status,404);
   assert.equal((await fetch(base+'/health',{headers:{Origin:'http://some-other-site.invalid'}})).status,403);
-  assert.equal((await fetch(base+'/health',{headers:{Host:'evil.example'}})).status,403);
+  const hostSpoofStatus=await new Promise((resolve,reject)=>{
+    const req=http.get({hostname:'127.0.0.1',port,path:'/health',headers:{Host:'evil.example'}},res=>{
+      res.resume();res.on('end',()=>resolve(res.statusCode));
+    });
+    req.on('error',reject);
+  });
+  assert.equal(hostSpoofStatus,403);
   assert.equal((await fetch(base+'/health',{method:'POST'})).status,405);
   assert.ok(logs.join('').includes('EscolaLab'));
 });
