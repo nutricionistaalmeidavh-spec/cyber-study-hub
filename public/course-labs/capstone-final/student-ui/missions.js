@@ -49,5 +49,6 @@ export const LAB_MISSIONS=Object.freeze({
     ]
   }
 });
-export const LAB_MISSION_CODES=Object.freeze(Object.keys(LAB_MISSIONS));
+// IDs canônicos têm ordem pedagógica; Object.keys reordena as chaves numéricas.
+export const LAB_MISSION_CODES=Object.freeze(['034','040','213','218']);
 export function getLabMission(code){return Object.prototype.hasOwnProperty.call(LAB_MISSIONS,code)?LAB_MISSIONS[code]:null;}
