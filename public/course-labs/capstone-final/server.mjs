@@ -17,8 +17,7 @@ const headers=Object.freeze({
   'X-Content-Type-Options':'nosniff',
   'Referrer-Policy':'no-referrer',
   'X-Frame-Options':'DENY',
-  'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
-  'Access-Control-Allow-Origin':undefined
+  'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
 });
 export function createEscolaLabServer({mode=process.env.LAB_MODE==='vulnerable'?'vulnerable':'corrected',port=Number(process.env.LAB_PORT||4191)}={}){
   if(!['corrected','vulnerable'].includes(mode))throw Error('Modo inválido');
