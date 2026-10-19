@@ -1,0 +1,37 @@
+name: EscolaLab ZIP aluno
+on:
+  pull_request:
+    paths:
+      - 'public/course-labs/capstone-final/**'
+      - 'scripts/package-escolalab.mjs'
+      - 'scripts/test-escolalab-package.mjs'
+      - '.github/workflows/escolalab-kit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'public/course-labs/capstone-final/**'
+      - 'scripts/package-escolalab.mjs'
+      - 'scripts/test-escolalab-package.mjs'
+      - '.github/workflows/escolalab-kit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Provar ZIP extraído e chamadas HTTP locais
+        run: npm run test:escolalab-package
+      - name: Construir ZIP independente
+        run: npm run package:escolalab
+      - name: Publicar pacote para download no GitHub Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: EscolaLab-v1.0.0
+          path: public/downloads/EscolaLab-v1.0.0.zip
+          if-no-files-found: error
+          retention-days: 90

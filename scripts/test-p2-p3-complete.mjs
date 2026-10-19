@@ -39,8 +39,8 @@ test('P3: seis kits aparecem na tela v1.0 e são operados por domínio educacion
  assert.ok(existsSync(base+'tests/extensions.test.mjs'));
 });
 test('sem regressão de IDs, login ou progresso do Hub',()=>{
- assert.deepEqual([catalog.main.length,catalog.parallel.length,catalog.guided.length],[218,325,64]);
- assert.equal(new Set([...catalog.main,...catalog.parallel,...catalog.guided].map(x=>x.code)).size,607);
+ assert.deepEqual([catalog.main.length,catalog.parallel.length,catalog.guided.length],[218,325,96]); // Catálogo canônico atual
+ assert.equal(new Set([...catalog.main,...catalog.parallel,...catalog.guided].map(x=>x.code)).size,639);
  assert.ok(existsSync('src/lib/guidedIdentity.ts'));
  assert.ok(existsSync('src/lib/studyProgress.ts'));
 });

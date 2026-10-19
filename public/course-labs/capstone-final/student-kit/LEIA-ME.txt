@@ -1,0 +1,15 @@
+ESCOLALAB v1.0.0 - ARTISYS ACADEMY
+================================
+1. Abra COMECE-AQUI.html para instruções amigáveis.
+2. Instale Node.js 22+ se ainda não estiver instalado.
+3. Windows: iniciar-windows.bat
+   macOS / Linux: sh iniciar-linux-mac.sh
+4. Abra http://127.0.0.1:4191
+5. Encerre usando Ctrl+C.
+
+O laboratório inclui apenas dados fictícios e responde exclusivamente
+no próprio computador (127.0.0.1). Não exponha à rede.
+
+Incluídos: servidor HTTP, modelo de autorização, testes locais,
+interface web, arquivos de inicialização e guia do aluno.
+Nenhuma dependência npm é necessária.
