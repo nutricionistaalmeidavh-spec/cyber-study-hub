@@ -50,6 +50,25 @@ Acesse http://localhost:8788. O banco local fica em .hub-data/platform.sqlite e 
 - Senhas PBKDF2-SHA256 com salt, sessão aleatória HttpOnly SameSite=Lax e Secure em HTTPS.
 - Progresso e jogos isolados por conta. O aluno precisa confirmar manualmente a importação do progresso antigo.
 - Alterações offline aguardam sincronização em fila local; não é permitido logout com envios pendentes.
-- Não há recuperação de senha por e-mail, MFA ou painel exclusivo de instrutor nesta etapa.
+- Recuperação de senha por e-mail: link aleatório de uso único, expira em 30 minutos; troca preserva ID/permissões/progresso e revoga todas as sessões. MFA e painel exclusivo de instrutor permanecem fora deste escopo.
 - URLs públicas de aulas e PDFs continuam públicas: não foi criado controle de assinatura nem paywall.
 - Não há dependência de serviço de IA ou autenticação pago. O núcleo self-hosted permanece gratuito e aberto.
+
+## Recuperação de senha por e-mail (configuração explícita)
+
+### Cloudflare (Email Sending — opção paga)
+
+Esta branch habilita o binding `EMAIL` e declara o remetente `academy@artisys.dev` em `wrangler.toml`.
+A entrega a qualquer aluno exige **Cloudflare Workers Paid**, domínio `artisys.dev` onboarded no **Compute > Email Service > Email Sending**, e DNS de autenticação (SPF/DKIM/DMARC) que o painel orienta. Não basta criar uma variável: sem onboarding, a Cloudflare rejeita mensagens. Confirme o remetente e faça um envio real antes de disponibilizar publicamente. Não há chave de API ou serviço adicional de terceiros. A opção não é requisito para rodar a plataforma self-hosted.
+
+### Self-hosted, núcleo gratuito / open source
+
+Defina `HUB_EMAIL_FROM=academy@seudominio.org` e instale/configure um MTA local open source com interface sendmail (ex.: Postfix). Opcionalmente defina `HUB_SENDMAIL_PATH=/caminho/absoluto/do/sendmail` (padrão: `/usr/sbin/sendmail`). O envio ocorre por `sendmail -t -i` via stdin, sem shell ou execução de payload de entrada. É necessário configurar DNS/autenticação e reputação do remetente para entregar a caixas externas. Sem transporte, a API devolve 503 e não emite links falsos.
+
+### Rotas e segurança
+
+- `POST /api/auth/password/forgot`: recebe `{email}`, responde genericamente para e-mails existentes/inexistentes, limita requisições por IP e endereço. O token nunca é retornado por API.
+- `POST /api/auth/password/reset`: recebe `{token,newPassword}`, valida 12 a 128 caracteres, expiração e consumo atômico; remove sessões e outros tokens da conta.
+- Página `/academy/study?reset=...` recebe o token pelo e-mail, com `Referrer-Policy` desativada por metatag e limpeza da URL após uso.
+- O backend salva apenas SHA-256 do token, não o token em claro. O e-mail só é gerado para contas ativas. A conta administrativa mantém o mesmo ID e o histórico.
+- Em falha de envio real, a API mantém resposta uniforme para evitar enumeração de contas e registra erro técnico sem imprimir token ou e-mail. Monitore logs e teste entregabilidade.

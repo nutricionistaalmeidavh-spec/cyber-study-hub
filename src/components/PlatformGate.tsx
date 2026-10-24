@@ -71,17 +71,33 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
   const searchParams=new URLSearchParams(window.location.search);
   const invitation=searchParams.get('invite')??'';
   const publicSignup=searchParams.get('register')==='1';
-  const [mode,setMode]=useState<'login'|'register'|'bootstrap'>(!settings?.ready?'bootstrap':invitation||publicSignup?'register':'login');
+  const resetToken=searchParams.get('reset')??'';
+  const [mode,setMode]=useState<'login'|'register'|'bootstrap'|'forgot'|'reset'>(!settings?.ready?'bootstrap':resetToken?'reset':invitation||publicSignup?'register':'login');
   const [name,setName]=useState('');
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+  const [passwordConfirm,setPasswordConfirm]=useState('');
+  const [notice,setNotice]=useState('');
   const [bootstrapKey,setBootstrapKey]=useState('');
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState('');
-  useEffect(()=>{if(settings)setMode(!settings.ready?'bootstrap':invitation||publicSignup?'register':'login');},[settings,invitation,publicSignup]);
+  useEffect(()=>{if(settings)setMode(!settings.ready?'bootstrap':resetToken?'reset':invitation||publicSignup?'register':'login');},[settings,invitation,publicSignup,resetToken]);
   const submit=async(e:FormEvent)=>{
-    e.preventDefault();setLoading(true);setError('');
+    e.preventDefault();setLoading(true);setError('');setNotice('');
     try{
+      if(mode==='forgot'){
+        const reply=await platformApi<{ok:boolean;message:string}>('/api/auth/password/forgot','POST',{email});
+        setNotice(reply.message);
+        return;
+      }
+      if(mode==='reset'){
+        if(password!==passwordConfirm)throw new Error('As senhas não coincidem.');
+        await platformApi<{ok:boolean}>('/api/auth/password/reset','POST',{token:resetToken,newPassword:password});
+        history.replaceState(null,'',window.location.pathname+window.location.hash);
+        setPassword('');setPasswordConfirm('');setMode('login');
+        setNotice('Senha atualizada. Entre com sua nova senha.');
+        return;
+      }
       const result=await platformApi<AuthResponse>(
         mode==='bootstrap'?'/api/auth/bootstrap':mode==='register'?'/api/auth/register':'/api/auth/login',
         'POST',
@@ -98,26 +114,33 @@ function AuthScreen({settings,outerError,onSuccess}:{settings:Settings|null;oute
     <main className="platform-auth">
       <a href="/academy" className="platform-logo" aria-label="ArtiSys Academy — apresentação"><AcademyBrand /></a>
       <span className="eyebrow">PLATAFORMA DE ESTUDOS</span>
-      <h1>{mode==='bootstrap'?'Configurar plataforma':mode==='register'?'Criar sua conta':'Acesse seus estudos'}</h1>
+      <h1>{mode==='bootstrap'?'Configurar plataforma':mode==='register'?'Criar sua conta':mode==='forgot'?'Recuperar acesso':mode==='reset'?'Nova senha':'Acesse seus estudos'}</h1>
       <p>{mode==='bootstrap'?'Configure o primeiro administrador com a chave definida no servidor.':
         mode==='register'?'Crie sua conta de aluno sem convite. O cadastro não libera cursos pagos automaticamente.':
+        mode==='forgot'?'Informe o e-mail da sua conta para receber um link de recuperação.':
+        mode==='reset'?'Escolha uma nova senha com pelo menos 12 caracteres.':
         'Entre para continuar suas aulas, revisões e laboratórios.'}</p>
       {(error||outerError)&&<div className="platform-error" role="alert">{error||outerError}</div>}
+      {notice&&<div className="platform-notice" role="status">{notice}</div>}
       {settings&&<form onSubmit={submit} className="platform-form">
-        {mode!=='login'&&<label>Nome completo<input required autoComplete="name" minLength={2} maxLength={100} value={name} onChange={e=>setName(e.target.value)}/></label>}
-        <label>E-mail<input type="email" required autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)}/></label>
-        <label>Senha<input type="password" required minLength={mode==='login'?1:12} maxLength={128}
+        {!['login','forgot','reset'].includes(mode)&&<label>Nome completo<input required autoComplete="name" minLength={2} maxLength={100} value={name} onChange={e=>setName(e.target.value)}/></label>}
+        {mode!=='reset'&&<label>E-mail<input type="email" required autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)}/></label>}
+        {mode!=='forgot'&&<label>{mode==='reset'?'Nova senha':'Senha'}<input type="password" required minLength={mode==='login'?1:12} maxLength={128}
           autoComplete={mode==='login'?'current-password':'new-password'}
-          value={password} onChange={e=>setPassword(e.target.value)}/></label>
+          value={password} onChange={e=>setPassword(e.target.value)}/></label>}
+        {mode==='reset'&&<label>Confirmar nova senha<input type="password" required autoComplete="new-password" minLength={12} maxLength={128} value={passwordConfirm} onChange={e=>setPasswordConfirm(e.target.value)}/></label>}
         {mode==='bootstrap'&&<label>Chave de instalação<input type="password" required autoComplete="off" value={bootstrapKey} onChange={e=>setBootstrapKey(e.target.value)}/></label>}
         <button className="button primary wide" type="submit" disabled={loading}>
-          {loading?'Verificando…':mode==='bootstrap'?'Criar administrador':mode==='register'?'Criar conta':'Entrar'}
+          {loading?'Verificando…':mode==='bootstrap'?'Criar administrador':mode==='register'?'Criar conta':mode==='forgot'?'Enviar link de recuperação':mode==='reset'?'Salvar nova senha':'Entrar'}
         </button>
       </form>}
       {settings?.ready&&<div className="platform-switch">
-        {mode==='register'?<button type="button" onClick={()=>setMode('login')}>Já tenho conta. Entrar</button>:
-          allowRegister?<button type="button" onClick={()=>setMode('register')}>Criar minha conta</button>:
-          <span>Cadastros disponíveis por convite do administrador.</span>}
+        {mode==='register'||mode==='forgot'||mode==='reset'?
+          <button type="button" onClick={()=>{setMode('login');setNotice('');setError('');}}>Voltar ao login</button>:
+          <>
+            <button type="button" onClick={()=>{setMode('forgot');setNotice('');setError('');}}>Esqueci minha senha</button>
+            {allowRegister&&<button type="button" onClick={()=>{setMode('register');setNotice('');}}>Criar minha conta</button>}
+          </>}
       </div>}
       {!settings&&<p className="platform-help">A API de contas não está configurada neste endereço. Execute a edição self-hosted conforme as instruções do projeto.</p>}
       <small className="platform-footnote">Suas aulas, práticas e revisões em um só lugar.</small>

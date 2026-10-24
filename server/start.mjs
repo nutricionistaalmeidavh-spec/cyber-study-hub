@@ -2,6 +2,7 @@ import { createServer } from 'node:http';
 import { readFile, stat, mkdir } from 'node:fs/promises';
 import { resolve, extname, join, sep } from 'node:path';
 import { createPlatformHandler } from './platform.mjs';
+import { sendWithLocalMta } from './send-email.mjs';
 import { registrationEnabled } from '../src/auth/registration-policy.mjs';
 import { protectedPath, canonicalAssetPath } from '../src/worker/course-access.mjs';
 import { stripAcademyPath } from '../src/lib/academyRouting.mjs';
@@ -15,7 +16,9 @@ const app=createPlatformHandler({
   origin,
   bootstrapKey:process.env.HUB_BOOTSTRAP_KEY,
   openRegistration:registrationEnabled(process.env.HUB_OPEN_REGISTRATION),
-  artisysConnectorSecret:process.env.HUB_ARTISYS_CONNECTOR_SECRET || ''
+  artisysConnectorSecret:process.env.HUB_ARTISYS_CONNECTOR_SECRET || '',
+  emailFrom:process.env.HUB_EMAIL_FROM || '',
+  sendResetMail:process.env.HUB_EMAIL_FROM ? message=>sendWithLocalMta(message,process.env.HUB_SENDMAIL_PATH||'/usr/sbin/sendmail') : null
 });
 const dist=resolve('./dist');
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8',
