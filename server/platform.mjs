@@ -223,7 +223,7 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
       }
       if((path==='/api/auth/password/forgot'||path==='/api/auth/password/reset')&&method==='POST'){
         const b=await readJson(req,1024);
-        return handlePasswordRecovery({
+        return await handlePasswordRecovery({
           path,body:b,ip:req.socket.remoteAddress||'unknown',origin:canonicalOrigin,
           academy:req.headers['x-academy-path']==='true',
           sendReady:Boolean(sendResetMail&&emailFrom),
