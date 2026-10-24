@@ -51,14 +51,14 @@ test('forgot returns uniform response and only delivers to a registered user',as
   assert.equal(found.status,200);
   assert.equal(messages.length,1);
   assert.equal(messages[0].to,email);
-  assert.match(messages[0].resetUrl,/\?reset=[A-Za-z0-9_-]+/);
+  assert.match(messages[0].text,/\?reset=[A-Za-z0-9_-]+/);
   assert.equal(JSON.stringify(found.body).includes('reset='),false);
 });
 test('one-use recovery keeps user identity, revokes sessions and invalidates old password',async()=>{
   const {call,messages,email,original,session}=await setup();
   const initial=(await call('/api/me','GET',null,session)).body.user;
   await call('/api/auth/password/forgot','POST',{email});
-  const token=new URL(messages[0].resetUrl).searchParams.get('reset');
+  const token=new URL(messages[0].text.match(/https?:\/\/[^\s]+\?reset=[A-Za-z0-9_-]+/)[0]).searchParams.get('reset');
   const replacement='NewSafePassword123!';
   const changed=await call('/api/auth/password/reset','POST',{token,newPassword:replacement});
   assert.equal(changed.status,200);
@@ -73,7 +73,7 @@ test('one-use recovery keeps user identity, revokes sessions and invalidates old
 test('expired link rejected; unknown account response does not disclose membership',async()=>{
   const {call,messages,dbPath,email}=await setup();
   await call('/api/auth/password/forgot','POST',{email});
-  const token=new URL(messages[0].resetUrl).searchParams.get('reset');
+  const token=new URL(messages[0].text.match(/https?:\/\/[^\s]+\?reset=[A-Za-z0-9_-]+/)[0]).searchParams.get('reset');
   const db=new DatabaseSync(dbPath);
   db.prepare('UPDATE password_resets SET expires_at=?').run(Date.now()-1000);
   db.close();
