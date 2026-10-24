@@ -26,5 +26,13 @@ class_name = "HubAuthObject"
 tag = "hub-auth-sqlite-v1"
 new_sqlite_classes = ["HubAuthObject"]
 
+# Native transactional sending, explicitly enabled for this Workers Paid deployment.
+# Self-hosted installations can instead use any free sendmail-compatible MTA.
+[[send_email]]
+name = "EMAIL"
+
+[vars]
+HUB_EMAIL_FROM = "academy@artisys.dev"
+
 [secrets]
 required = ["HUB_BOOTSTRAP_KEY"]
