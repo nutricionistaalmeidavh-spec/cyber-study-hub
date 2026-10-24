@@ -3,6 +3,7 @@ import { contentRoute, securedPayload } from '../src/worker/secure-payload-route
 import { ownersForPath, knownCourseIds, publishedCourseIds, canonicalAssetPath, permitted } from '../src/worker/course-access.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomUUID, createHash, pbkdf2Sync, timingSafeEqual } from 'node:crypto';
+import { handlePasswordRecovery, recoveryEmail } from '../src/auth/password-reset.mjs';
 import { FEEDBACK_SCHEMA, feedbackRoute, handleFeedback } from '../src/worker/feedback.mjs';
 import { ROADMAP_SCHEMA, roadmapRoute, handleRoadmap } from '../src/worker/roadmap.mjs';
 import { WAITLIST_SCHEMA, waitlistRoute, handleWaitlist } from '../src/worker/waitlist.mjs';
@@ -79,6 +80,8 @@ function init(db) {
     'CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);',
     "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL CHECK(role IN ('admin','teacher','student')),expires_at INTEGER NOT NULL,used_at INTEGER);",
     'CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL);',
+    'CREATE TABLE IF NOT EXISTS password_resets (token_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,expires_at INTEGER NOT NULL,used_at INTEGER);',
+    'CREATE INDEX IF NOT EXISTS idx_password_resets_user ON password_resets(user_id);',
     'CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY (user_id,key));',
     'CREATE TABLE IF NOT EXISTS course_grants (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,course_id TEXT NOT NULL,granted_at INTEGER NOT NULL,expires_at INTEGER,revoked_at INTEGER,PRIMARY KEY(user_id,course_id));',
     'CREATE TABLE IF NOT EXISTS subscription_grants (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,granted_at INTEGER NOT NULL,expires_at INTEGER NOT NULL,revoked_at INTEGER);',
@@ -89,7 +92,7 @@ function init(db) {
     ...SUBSCRIPTION_OFFER_SCHEMA.map(statement=>statement+';')
   ].join('\n'));
 }
-export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true,artisysConnectorSecret=''}) {
+export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistration=true,artisysConnectorSecret='',emailFrom='',sendResetMail=null}) {
   if(!dbPath||!origin)throw Error('dbPath and HUB_ORIGIN are required');
   const canonicalOrigin=new URL(origin).origin, secure=canonicalOrigin.startsWith('https://');
   const db=new DatabaseSync(dbPath);
@@ -218,6 +221,21 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         if(inv)q('UPDATE invitations SET used_at=? WHERE token_hash=? AND used_at IS NULL').run(now(),sha(b.inviteToken));
         return loginSession(res,user,201);
       }
+      if((path==='/api/auth/password/forgot'||path==='/api/auth/password/reset')&&method==='POST'){
+        const b=await readJson(req,1024);
+        return handlePasswordRecovery({
+          path,body:b,ip:req.socket.remoteAddress||'unknown',origin:canonicalOrigin,
+          academy:req.headers['x-academy-path']==='true',
+          sendReady:Boolean(sendResetMail&&emailFrom),
+          sendMail:message=>sendResetMail(recoveryEmail({...message,from:emailFrom})),
+          one:(sql,...args)=>q(sql).get(...args),
+          run:(sql,...args)=>q(sql).run(...args),
+          digest:sha,hashPassword:passwordHash,validatePassword:checkPassword,
+          newToken:()=>randomBytes(32).toString('base64url'),
+          fail:(status,message)=>new HttpError(status,message),
+          reply:(status,payload)=>respond(res,status,payload)
+        });
+      }
       if(path==='/api/auth/login'&&method==='POST') {
         const b=await readJson(req), mail=emailOf(b.email),key=sha((req.socket.remoteAddress??'unknown')+':'+mail);
         limit(key);
@@ -245,6 +263,7 @@ export function createPlatformHandler({dbPath,origin,bootstrapKey,openRegistrati
         const digest=q('SELECT password_hash FROM users WHERE id=?').get(u.id).password_hash;
         if(!passwordMatches(b.currentPassword,digest))throw new HttpError(403,'Senha atual incorreta.');
         q('UPDATE users SET password_hash=? WHERE id=?').run(passwordHash(b.newPassword),u.id);
+      q('DELETE FROM password_resets WHERE user_id=?').run(u.id);
         q('DELETE FROM sessions WHERE user_id=?').run(u.id);
         return respond(res,200,{ok:true,requiresLogin:true},{'Set-Cookie':cookie('',secure,true)});
       }
