@@ -11,6 +11,7 @@ import { SUBSCRIPTION_OFFER_SCHEMA, subscriptionOfferRoute, handleSubscriptionOf
 import { ARTISYS_FULFILLMENT_PATH, BILLING_SCHEMA, verifyArtisysDelivery, applyArtisysDelivery, ArtisysDeliveryError } from '../billing/artisys.mjs';
 import {issueBuyerIntent} from '../billing/buyer-intent.mjs';
 import { registrationEnabled } from '../auth/registration-policy.mjs';
+import { handlePasswordRecovery, recoveryEmail } from '../auth/password-reset.mjs';
 
 const DAY = 86400000;
 const KEYS = new Set([
@@ -74,6 +75,8 @@ export class HubAuthObject extends DurableObject {
       "CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL,expires_at INTEGER NOT NULL)",
       "CREATE INDEX IF NOT EXISTS sessions_user ON sessions(user_id)",
       "CREATE TABLE IF NOT EXISTS invitations (token_hash TEXT PRIMARY KEY,email TEXT NOT NULL,role TEXT NOT NULL,expires_at INTEGER NOT NULL,used_at INTEGER)",
+      "CREATE TABLE IF NOT EXISTS password_resets (token_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL,expires_at INTEGER NOT NULL,used_at INTEGER)",
+      "CREATE INDEX IF NOT EXISTS idx_password_resets_user ON password_resets(user_id)",
       "CREATE TABLE IF NOT EXISTS login_attempts (key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL)",
       "CREATE TABLE IF NOT EXISTS user_state (user_id TEXT NOT NULL,key TEXT NOT NULL,value TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,key))",
       "CREATE TABLE IF NOT EXISTS course_grants (user_id TEXT NOT NULL,course_id TEXT NOT NULL,granted_at INTEGER NOT NULL,expires_at INTEGER,revoked_at INTEGER,PRIMARY KEY(user_id,course_id))",
@@ -227,6 +230,20 @@ export class HubAuthObject extends DurableObject {
         if(inviteHash)this.sql.exec('UPDATE invitations SET used_at=? WHERE token_hash=? AND used_at IS NULL',Date.now(),inviteHash);
         return this.startSession(user,secure,201);
       }
+      if((path==='/api/auth/password/forgot'||path==='/api/auth/password/reset')&&method==='POST'){
+        const b=await jsonBody(request,1024);
+        const sender=this.env.HUB_EMAIL_FROM;
+        return handlePasswordRecovery({
+          path,body:b,ip:request.headers.get('cf-connecting-ip')||'unknown',
+          origin:url.origin,academy:request.headers.get('X-Academy-Path')==='true',
+          sendReady:Boolean(typeof sender==='string'&&sender.includes('@')&&this.env.EMAIL?.send),
+          sendMail:message=>this.env.EMAIL.send(recoveryEmail({...message,from:sender})),
+          one:(sql,...args)=>this.one(sql,...args),
+          run:(sql,...args)=>this.sql.exec(sql,...args),
+          digest:sha,hashPassword:passwordHash,validatePassword:checkPassword,newToken:randomToken,
+          fail:(status,message)=>new ApiError(status,message),reply:response
+        });
+      }
       if(path==='/api/auth/login'&&method==='POST'){
         const b=await jsonBody(request);
         const email=emailOf(b.email);
@@ -268,6 +285,7 @@ export class HubAuthObject extends DurableObject {
         const digest=await passwordHash(b.newPassword);
         this.sql.exec('UPDATE users SET password_hash=? WHERE id=?',digest,u.id);
         this.sql.exec('DELETE FROM sessions WHERE user_id=?',u.id);
+        this.sql.exec('DELETE FROM password_resets WHERE user_id=?',u.id);
         return response(200,{ok:true,requiresLogin:true},{'Set-Cookie':cookie('',secure,true)});
       }
       if(path==='/api/me/state'&&method==='GET'){
