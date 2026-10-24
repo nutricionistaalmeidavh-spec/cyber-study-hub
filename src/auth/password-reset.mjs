@@ -35,6 +35,7 @@ export async function handlePasswordRecovery({
       run('INSERT INTO login_attempts(key,count,reset_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET count=excluded.count,reset_at=excluded.reset_at',
         key,current?record.count+1:1,current?record.reset_at:now+900000);
     }
+    run('DELETE FROM password_resets WHERE expires_at<?',now);
     const user=one("SELECT id,email FROM users WHERE email=? AND status='active'",mail);
     if(user){
       const token=newToken(),hashed=await digest(token);
@@ -45,10 +46,10 @@ export async function handlePasswordRecovery({
         await sendMail({to:user.email,resetUrl});
         // Only the most recent successfully mailed token remains valid.
         run('DELETE FROM password_resets WHERE user_id=? AND token_hash<>?',user.id,hashed);
-      }catch(error){
+      }catch{
         run('DELETE FROM password_resets WHERE token_hash=?',hashed);
         // Never disclose whether an address exists, including transport failures.
-        console.error('Academy password recovery delivery failed:',String(error?.message||error));
+        console.error('Academy password recovery delivery failed (details omitted).');
       }
     }
     return reply(200,generic);
@@ -59,6 +60,10 @@ export async function handlePasswordRecovery({
       throw fail(400,'Link de recuperação inválido ou expirado.');
     validatePassword(body.newPassword);
     const hashedToken=await digest(token);
+    const valid=one("SELECT p.user_id FROM password_resets p JOIN users u ON u.id=p.user_id "+
+      "WHERE p.token_hash=? AND p.used_at IS NULL AND p.expires_at>? AND u.status='active'",
+      hashedToken,Date.now());
+    if(!valid)throw fail(400,'Link de recuperação inválido ou expirado.');
     const passwordDigest=await hashPassword(body.newPassword);
     // Atomic conditional UPDATE prevents concurrent token replay in SQLite.
     const changed=one("UPDATE users SET password_hash=? WHERE id=("+
