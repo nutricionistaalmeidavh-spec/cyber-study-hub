@@ -233,7 +233,7 @@ export class HubAuthObject extends DurableObject {
       if((path==='/api/auth/password/forgot'||path==='/api/auth/password/reset')&&method==='POST'){
         const b=await jsonBody(request,1024);
         const sender=this.env.HUB_EMAIL_FROM;
-        return handlePasswordRecovery({
+        return await handlePasswordRecovery({
           path,body:b,ip:request.headers.get('cf-connecting-ip')||'unknown',
           origin:url.origin,academy:request.headers.get('X-Academy-Path')==='true',
           sendReady:Boolean(typeof sender==='string'&&sender.includes('@')&&this.env.EMAIL?.send),
